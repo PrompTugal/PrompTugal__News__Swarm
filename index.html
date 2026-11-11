@@ -41,8 +41,14 @@ footer{color:var(--muted);font-size:.8rem}
 .chain{list-style:none;display:flex;gap:0;margin:0 0 10px;padding:0;flex-wrap:wrap}.chain li{flex:1 1 0;min-width:120px;position:relative;border:1px solid var(--line);border-radius:8px;padding:6px 8px;margin-right:18px;background:color-mix(in srgb,var(--a3) 7%,var(--panel));font-size:.8rem}
 .chain li:not(:last-child)::after{content:'→';position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--muted)}.chain li:last-child{margin-right:0}
 .chain b{display:block;font-size:.85rem}.chain small{color:var(--muted);display:block;word-break:break-all}.chain .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--a1)}.chain .k.no{background:var(--muted)}
+.pushed{margin:0 0 8px;padding:8px 12px;border-radius:8px;border-left:4px solid var(--a1);background:color-mix(in srgb,var(--a1) 14%,var(--panel));font-size:.88rem}.pushed b{color:var(--a1)}
 .chain-check{flex-basis:100%;margin:6px 0 0;color:var(--muted);font-size:.78rem}.chain-check code{word-break:break-all}
 @media (max-width:640px){.chain{flex-direction:column}.chain li{margin:0 0 16px}.chain li:not(:last-child)::after{content:'↓';right:auto;left:14px;top:auto;bottom:-17px;transform:none}}#detail code{word-break:break-all}#detail p{overflow-wrap:anywhere}
+.bar button.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
+body.present header,body.present .demos,body.present footer,body.present .panel[aria-label="Capabilities"],body.present #detail,body.present #live{display:none}
+body.present{font-size:19px}body.present main{grid-template-columns:1fr;padding-top:12px}body.present .panel[aria-label="Rungs"]>h2{display:none}
+body.present #rungs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}body.present #rungs .rung{flex:0 0 220px;margin:0}body.present #rungs h2,body.present #rungs p,body.present #rungs .rung[disabled],body.present #checknow{display:none}
+body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.present .tl .lane{font-size:15px}body.present .tl .ph{font-size:13px}body.present svg .lbl{font-size:13px}
 .demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
 </style>
 </head>
@@ -60,7 +66,7 @@ footer{color:var(--muted);font-size:.8rem}
 <main>
   <section class="panel" aria-label="Rungs"><h2>The ladder</h2><div id="rungs"></div></section>
   <section class="panel" aria-label="The run">
-    <div class="bar"><button id="play">▶ Replay</button><span class="amp" id="amp"></span><span id="live" style="color:var(--muted);font-size:.8rem" aria-live="polite">live: checking for new runs every 15 s</span></div>
+    <div class="bar"><button id="play">▶ Replay</button><button id="present" class="ghost" title="Present: the run fills the screen. Keys: ← → change run, space replays, P or Esc leaves">⛶ Present</button><span class="amp" id="amp"></span><span id="live" style="color:var(--muted);font-size:.8rem" aria-live="polite">live: checking for new runs every 15 s</span></div>
     <div id="chain" aria-label="Provenance: how this run started and how to check it"></div>
     <div id="stage"></div>
     <div class="tl" id="tl" aria-label="The run over time"></div>
@@ -180,7 +186,8 @@ function chain(run) {
   const el = $('#chain'); if (run.kind !== 'action') { el.innerHTML = ''; el.hidden = true; return; }
   el.hidden = false; const gh = `https://github.com/${RUNS_REPO}`, fp = (x) => x ? esc(String(x).replace('sha256:', '')) : '', k = (x) => x ? `<span class="k" title="signed"></span>` : "";
   const run_id = (String(run.run_url).match(/runs\/(\d+)/) || [])[1] || '';
-  el.innerHTML = `<ol class="chain"><li><b>${k(run.request_signed_by)}<a href="${gh}/tree/dev/requests/${esc(run.request)}">Request</a></b><small>${esc(run.request_kind)} by ${esc(String(run.requester).split('@')[0])}</small><small>signed ${fp(run.request_signed_by)}</small></li>`
+  el.innerHTML = `<p class="pushed"><b>This run started with a push.</b> No session ran it. Commit <a href="${gh}/commit/${esc(run.commit)}"><code>${esc(String(run.commit).slice(0, 7))}</code></a> by ${esc(String(run.requester).split('@')[0])} started a GitHub Action, which ran the signed request and committed this signed result, ${esc(String(run.started_at).replace('T', ' ').replace('Z', ' UTC'))}.</p>`
+    + `<ol class="chain"><li><b>${k(run.request_signed_by)}<a href="${gh}/tree/dev/requests/${esc(run.request)}">Request</a></b><small>${esc(run.request_kind)} by ${esc(String(run.requester).split('@')[0])}</small><small>signed ${fp(run.request_signed_by)}</small></li>`
     + `<li><b>${k(0)}<a href="${gh}/commit/${esc(run.commit)}">Commit</a></b><small>the push: ${esc(String(run.commit).slice(0, 12))}</small></li>`
     + `<li><b>${k(0)}<a href="${esc(run.run_url)}">GitHub Action</a></b><small>run ${esc(run_id)}</small><small>${(run.wall_ms / 1000).toFixed(1)} s</small></li>`
     + `<li><b>${k(run.signed_by)}<a href="${gh}/commits/dev/runs/${esc(run.request)}">Result</a></b><small>committed by the Action</small><small>signed ${fp(run.signed_by)}</small></li>`
@@ -226,6 +233,24 @@ function togs() {
 }
 function load(id) { cur = runs.find((r) => r.id === id); rungs(); draw(); replay(); try { history.replaceState(null, '', '#' + (cur.rung || cur.id)); } catch {} }
 $("#play").onclick = replay;
+// present: hide everything but the ladder strip and the run; ← → step through the runs, space replays
+function present(on = !document.body.classList.contains('present')) {
+  document.body.classList.toggle('present', on); $('#present').textContent = on ? '✕ Leave' : '⛶ Present';
+  try { if (on && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); if (!on && document.fullscreenElement) document.exitFullscreen().catch(() => {}); } catch {}
+  if (cur) { draw(); replay(); }
+}
+$('#present').onclick = () => present();
+document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && document.body.classList.contains('present')) present(false); });
+document.addEventListener('keydown', (e) => {
+  if (e.target.closest('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey) return;
+  const ids = [...document.querySelectorAll('.rung[data-id]')].map((b) => b.dataset.id), i = cur ? ids.indexOf(cur.id) : -1;
+  if (e.key === 'ArrowRight' && i < ids.length - 1) { load(ids[i + 1]); e.preventDefault(); }
+  else if (e.key === 'ArrowLeft' && i > 0) { load(ids[i - 1]); e.preventDefault(); }
+  else if (e.key === ' ' && !e.target.closest('button')) { replay(); e.preventDefault(); }
+  else if (e.key === 'p' || e.key === 'P') present();
+  else if (e.key === 'Escape' && document.body.classList.contains('present')) present(false);
+  const b = document.querySelector('.rung[aria-pressed="true"]'); if (b && /Arrow/.test(e.key)) b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+});
 let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => cur && draw(), 200); });
 // live: the page checks runs/index.json every 15 s; a run that lands (CI deploys about 20 s after a push) loads and replays by itself
 let known = new Set();

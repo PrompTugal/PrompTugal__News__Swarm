@@ -17,6 +17,11 @@ ol.steps li>b:first-child{display:block}code{background:var(--panel);border:1px 
 .fig text{fill:var(--ink);font-size:12px}.fig .s{fill:var(--muted);font-size:10px}.fig line,.fig path{stroke:var(--muted);stroke-width:1.4;fill:none}
 table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
 footer{color:var(--muted);font-size:.8rem;margin-top:2em}
+/* phone: the figure becomes a vertical flow, so nothing scrolls sideways */
+.flow{display:none;list-style:none;padding:10px 12px;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.flow li{display:flex;gap:10px;align-items:center;padding:4px 0;font-size:.9rem}.flow li+li::before{content:'↓';position:absolute;margin:-26px 0 0 4px;color:var(--muted);font-size:.8rem}.flow li{position:relative}
+.flow i{flex:0 0 16px;height:16px;border-radius:4px}.flow small{color:var(--muted);display:block;font-size:.78rem}
+@media (max-width:640px){.fig{display:none}.flow{display:block}.flow li+li{margin-top:10px}}
 </style>
 </head>
 <body><div class="wrap">
@@ -43,6 +48,14 @@ footer{color:var(--muted);font-size:.8rem;margin-top:2em}
   <path d="M458,92 C400,120 340,110 322,84" marker-end="url(#ar)"/><text x="400" y="128" class="s">signed result</text>
   <line x1="310" y1="82" x2="310" y2="176" marker-end="url(#ar)"/>
 </svg></div>
+<ol class="flow" aria-hidden="true">
+<li><i style="background:var(--p);border-radius:50%"></i><span>Dinis<small>asks swarm.1</small></span></li>
+<li><i style="background:var(--a4)"></i><span>swarm.1 (A4)<small>issues and signs a packet</small></span></li>
+<li><i style="background:var(--res);border-radius:8px"></i><span>GitHub: dev<small>packets/ · results · runs/</small></span></li>
+<li><i style="background:var(--a3)"></i><span>Runners (A3) on any account<small>runner.1, Angelo's conductor, runner.n (next)</small></span></li>
+<li><i style="border:3px solid var(--a2);border-radius:50%"></i><span>A2 loops → A1 calls<small>read, ask, check, retry</small></span></li>
+<li><i style="background:var(--res);border-radius:8px"></i><span>Signed result → CI → the site<small>published and replayed</small></span></li>
+</ol>
 
 <h2>The seven steps</h2>
 <ol class="steps">
