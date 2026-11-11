@@ -244,20 +244,25 @@ async function poll(first) {
 // the Runs repo (every run starts with a push): its runs/index.json on GitHub. raw.githubusercontent.com caches a branch for up to
 // 5 minutes, so "check now" asks the GitHub API for dev's latest commit (one call) and reads the files at that commit, uncached.
 const RUNS_REPO = 'PrompTugal/PrompTugal__News__Swarm__Runs', RAW = (ref) => `https://raw.githubusercontent.com/${RUNS_REPO}/${ref}/runs/`;
-async function pollActions(ref = 'dev', announce = true) {
+async function pollActions(ref = 'dev', announce = true, first = false) {
   try {
     const ix = await (await fetch(RAW(ref) + 'index.json', { cache: 'no-store' })).json();
     const fresh = ix.runs.filter((r) => !known.has('gh:' + r.id));
     if (!fresh.length) { if (!announce) $('#live').textContent = 'no new runs in ' + RUNS_REPO; return; }
     const got = await Promise.all(fresh.map((r) => fetch(RAW(ref) + r.file).then((x) => x.json()).then((j) => (known.add('gh:' + r.id), { ...j.body, signed_by: j.by.fp }))));
-    runs = runs.concat(got); $('#live').textContent = 'new from GitHub Actions: ' + got.map((r) => r.request).join(', '); load(got[got.length - 1].id);
+    // a re-run of a request replaces its earlier result in the list (one entry per request)
+    runs = runs.filter((x) => !(x.kind === 'action' && got.some((g) => g.request === x.request))).concat(got);
+    // on first load, a visitor who opened a link (#r5b, #<request>) stays on it: the new runs are listed, not opened
+    const want = location.hash.slice(1), hit = got.find((r) => r.request === want || r.id === want);
+    if (first && want && !hit) { rungs(); return; }
+    $('#live').textContent = (first ? 'from GitHub Actions: ' : 'new from GitHub Actions: ') + got.map((r) => r.request).join(', '); load((hit || got[got.length - 1]).id);
   } catch (e) { /* no runs yet, or GitHub unreachable */ }
 }
 async function checkNow() {
   $('#live').textContent = 'asking GitHub for the latest commit…';
   try { const c = await (await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`)).json(); await pollActions(c.sha, false); } catch (e) { $('#live').textContent = 'GitHub did not answer'; }
 }
-poll(true).then(() => pollActions('dev')); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000);
+poll(true).then(() => pollActions('dev', true, true)); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000);
 </script>
 </body>
 </html>
