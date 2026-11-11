@@ -1,2 +1,3 @@
 # PrompTugal__News__Swarm
-repo for swarm 
+
+https://swarm.promptugal.news: the swarm, one real run at a time. See MAP.md and CLAUDE.md.

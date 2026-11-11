@@ -1,0 +1,3639 @@
+{
+ "v": 1,
+ "id": "20261111T2134-r5",
+ "rung": "r5",
+ "title": "Me → Claude → a swarm of loops",
+ "story": "Every storm task on every model: 24 loops at once, then a consensus per task in code.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "environment": {
+  "id": "R1",
+  "label": "Claude Code cloud",
+  "account": "riskmandate-personal"
+ },
+ "started_at": "2026-11-11T21:34:40Z",
+ "wall_ms": 19692,
+ "budget": {
+  "usd": 1,
+  "calls": 72,
+  "sessions": 0
+ },
+ "credit_before_usd": 72.42,
+ "source": {
+  "workload": "the storm site's scheduled datasets, read over its public API",
+  "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+ },
+ "metrics": {
+  "units": {
+   "P": 1,
+   "A3": 1,
+   "T": 1,
+   "M": 1,
+   "A2": 24,
+   "A0": 30,
+   "D": 24,
+   "A1": 40
+  },
+  "agents": 1,
+  "loops": 24,
+  "llm_calls": 40,
+  "compute": 30,
+  "peak_concurrency": 48,
+  "valid_calls": 18,
+  "tokens_in": 102418,
+  "tokens_out": 12053,
+  "openrouter_usd": 0.010878,
+  "potential_claude_usd": {
+   "claude-haiku-5.5": 0.016268,
+   "claude-sonnet-5.5": 0.325366,
+   "claude-opus-5.5": 0.650732
+  },
+  "models": [
+   "deepseek/deepseek-v4-flash",
+   "mistralai/mistral-small-2603",
+   "meta-llama/llama-3.3-70b-instruct",
+   "qwen/qwen3.7-flash"
+  ],
+  "latency_ms_p50": 3437,
+  "not_measured": "the A3 agent's own Claude tokens (this Claude Code session): not exposed to the run"
+ },
+ "consensus": {
+  "warnings": {
+   "tally": {
+    "warning": 3
+   },
+   "verdict": "warning",
+   "agree": 3,
+   "of": 4
+  },
+  "forecast": {
+   "tally": {
+    "normal": 2,
+    "disrupted": 1
+   },
+   "verdict": "normal",
+   "agree": 2,
+   "of": 4
+  },
+  "stations": {
+   "tally": {
+    "unknown": 3
+   },
+   "verdict": "unknown",
+   "agree": 3,
+   "of": 4
+  },
+  "tides": {
+   "tally": {
+    "normal": 3
+   },
+   "verdict": "normal",
+   "agree": 3,
+   "of": 4
+  },
+  "transport": {
+   "tally": {
+    "disrupted": 3
+   },
+   "verdict": "disrupted",
+   "agree": 3,
+   "of": 4
+  },
+  "flights": {
+   "tally": {
+    "disrupted": 3
+   },
+   "verdict": "disrupted",
+   "agree": 3,
+   "of": 4
+  }
+ },
+ "calls": [
+  {
+   "unit": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "warnings",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2285,
+   "tokens_out": 44,
+   "cost_usd": 0.0002788632,
+   "latency_ms": 657,
+   "ledger_id": "20261111T213440-6b57d5aa",
+   "answer_sha256": "e0a5978834038ece",
+   "answer_chars": 139
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "transport",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2415,
+   "tokens_out": 37,
+   "cost_usd": 0.0002931291,
+   "latency_ms": 737,
+   "ledger_id": "20261111T213440-7f39f342",
+   "answer_sha256": "05b2f847b232b76a",
+   "answer_chars": 146
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "stations",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "unknown",
+   "tokens_in": 2967,
+   "tokens_out": 29,
+   "cost_usd": 0.0004578255,
+   "latency_ms": 826,
+   "ledger_id": "20261111T213440-ba912f82",
+   "answer_sha256": "41f6ed04056d2fc5",
+   "answer_chars": 111
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "flights",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2291,
+   "tokens_out": 49,
+   "cost_usd": 0.00040625145,
+   "latency_ms": 910,
+   "ledger_id": "20261111T213440-b6318858",
+   "answer_sha256": "c84f030c99ec1fe5",
+   "answer_chars": 150
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "forecast",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 2451,
+   "tokens_out": 32,
+   "cost_usd": 0.0003829815,
+   "latency_ms": 926,
+   "ledger_id": "20261111T213440-29d2379c",
+   "answer_sha256": "5188a01d6f3d5070",
+   "answer_chars": 121
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "transport",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2898,
+   "tokens_out": 38,
+   "cost_usd": 0.0004982175,
+   "latency_ms": 943,
+   "ledger_id": "20261111T213440-22c0e721",
+   "answer_sha256": "1f6ba57f02d25fd4",
+   "answer_chars": 145
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "forecast",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2191,
+   "tokens_out": 21,
+   "cost_usd": 0.0004858524,
+   "latency_ms": 963,
+   "ledger_id": "20261111T213440-70d3c692",
+   "answer_sha256": "ea7b7313cb8c3ab9",
+   "answer_chars": 66
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "tides",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 2911,
+   "tokens_out": 54,
+   "cost_usd": 0.0004643595,
+   "latency_ms": 914,
+   "ledger_id": "20261111T213440-4cc566b3",
+   "answer_sha256": "1d95dda3c693e677",
+   "answer_chars": 138
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "stations",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "unknown",
+   "tokens_in": 2478,
+   "tokens_out": 16,
+   "cost_usd": 0.0005476284,
+   "latency_ms": 1195,
+   "ledger_id": "20261111T213440-74ff62b2",
+   "answer_sha256": "3507fb6ece66932e",
+   "answer_chars": 59
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "transport",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2370,
+   "tokens_out": 20,
+   "cost_usd": 0.000526086,
+   "latency_ms": 1284,
+   "ledger_id": "20261111T213440-dfc05399",
+   "answer_sha256": "05eb7561444258e9",
+   "answer_chars": 69
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "flights",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2051,
+   "tokens_out": 25,
+   "cost_usd": 0.0004573404,
+   "latency_ms": 1309,
+   "ledger_id": "20261111T213440-b6532166",
+   "answer_sha256": "1282eec583d09bf5",
+   "answer_chars": 81
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "tides",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 2384,
+   "tokens_out": 38,
+   "cost_usd": 0.0005363028,
+   "latency_ms": 1355,
+   "ledger_id": "20261111T213440-13e1fae2",
+   "answer_sha256": "a18e8e11e1a555e4",
+   "answer_chars": 88
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "task": "warnings",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2475,
+   "tokens_out": 42,
+   "cost_usd": 0.0003882087,
+   "latency_ms": 1440,
+   "ledger_id": "20261111T213440-fd9788da",
+   "answer_sha256": "2efdf5a7e5e43e8c",
+   "answer_chars": 107
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "task": "warnings",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2195,
+   "tokens_out": 24,
+   "cost_usd": 0.001332342,
+   "latency_ms": 1909,
+   "ledger_id": "20261111T213440-2ffb16a5",
+   "answer_sha256": "beb179ebdef8350c",
+   "answer_chars": 79
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "flights",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2407,
+   "tokens_out": 300,
+   "cost_usd": 0.0001100979,
+   "latency_ms": 3437,
+   "ledger_id": "20261111T213440-42cb3f13",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "tides",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2805,
+   "tokens_out": 300,
+   "cost_usd": 0.0001219185,
+   "latency_ms": 3424,
+   "ledger_id": "20261111T213440-4b996d68",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "warnings",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2508,
+   "tokens_out": 300,
+   "cost_usd": 0.0001130976,
+   "latency_ms": 3445,
+   "ledger_id": "20261111T213440-e9ae770c",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "forecast",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2548,
+   "tokens_out": 300,
+   "cost_usd": 0.0001142856,
+   "latency_ms": 3774,
+   "ledger_id": "20261111T213440-a68bce60",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "stations",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 3064,
+   "tokens_out": 300,
+   "cost_usd": 0.0001296108,
+   "latency_ms": 3717,
+   "ledger_id": "20261111T213440-44dbd939",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "task": "transport",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2980,
+   "tokens_out": 300,
+   "cost_usd": 0.000127116,
+   "latency_ms": 3816,
+   "ledger_id": "20261111T213440-91b30d18",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "flights",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2176,
+   "tokens_out": 1200,
+   "cost_usd": 0.000636710976,
+   "latency_ms": 5959,
+   "ledger_id": "20261111T213440-0ae4d34a",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "stations",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2730,
+   "tokens_out": 1200,
+   "cost_usd": 0.00027765738,
+   "latency_ms": 6333,
+   "ledger_id": "20261111T213440-8e09e9d5",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "flights",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2407,
+   "tokens_out": 300,
+   "cost_usd": 0.00005839614,
+   "latency_ms": 3365,
+   "ledger_id": "20261111T213444-4d217c27",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "tides",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2805,
+   "tokens_out": 300,
+   "cost_usd": 0.0000610929,
+   "latency_ms": 3527,
+   "ledger_id": "20261111T213444-a644e745",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "warnings",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2508,
+   "tokens_out": 300,
+   "cost_usd": 0.00006139584,
+   "latency_ms": 3649,
+   "ledger_id": "20261111T213444-5ca4ad14",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "stations",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 3064,
+   "tokens_out": 300,
+   "cost_usd": 0.00006270264,
+   "latency_ms": 3435,
+   "ledger_id": "20261111T213444-3739ede1",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "forecast",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2548,
+   "tokens_out": 300,
+   "cost_usd": 0.00006258384,
+   "latency_ms": 3923,
+   "ledger_id": "20261111T213444-2dedff42",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "task": "transport",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2980,
+   "tokens_out": 300,
+   "cost_usd": 0.00006020784,
+   "latency_ms": 3993,
+   "ledger_id": "20261111T213445-af54e674",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "tides",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 2478,
+   "tokens_out": 41,
+   "cost_usd": 0.00006386688,
+   "latency_ms": 9238,
+   "ledger_id": "20261111T213440-c61d82a8",
+   "answer_sha256": "63921c13f736b3e2",
+   "answer_chars": 116
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "flights",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2407,
+   "tokens_out": 300,
+   "cost_usd": 0.00005839614,
+   "latency_ms": 3115,
+   "ledger_id": "20261111T213447-ae09a6af",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "tides",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2805,
+   "tokens_out": 300,
+   "cost_usd": 0.0000610929,
+   "latency_ms": 3377,
+   "ledger_id": "20261111T213448-eb49bfe7",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "stations",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 3064,
+   "tokens_out": 300,
+   "cost_usd": 0.00006270264,
+   "latency_ms": 3547,
+   "ledger_id": "20261111T213448-b9e708ae",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "warnings",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2508,
+   "tokens_out": 300,
+   "cost_usd": 0.00006139584,
+   "latency_ms": 3626,
+   "ledger_id": "20261111T213448-48f4846a",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "transport",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2980,
+   "tokens_out": 300,
+   "cost_usd": 0.000127116,
+   "latency_ms": 3544,
+   "ledger_id": "20261111T213449-e0a174b2",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "task": "forecast",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2548,
+   "tokens_out": 300,
+   "cost_usd": 0.00006258384,
+   "latency_ms": 4056,
+   "ledger_id": "20261111T213448-6798697a",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "task": "forecast",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2303,
+   "tokens_out": 1200,
+   "cost_usd": 0.0002327053806,
+   "latency_ms": 12046,
+   "ledger_id": "20261111T213440-38a72159",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "task": "stations",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "unknown",
+   "tokens_in": 2651,
+   "tokens_out": 588,
+   "cost_usd": 0.0001893607254,
+   "latency_ms": 6255,
+   "ledger_id": "20261111T213447-18626b5a",
+   "answer_sha256": "2385b16f10a7628b",
+   "answer_chars": 120
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "task": "flights",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 2097,
+   "tokens_out": 719,
+   "cost_usd": 0.000174912507,
+   "latency_ms": 7769,
+   "ledger_id": "20261111T213447-ebac083b",
+   "answer_sha256": "713dbaadfd7ddb73",
+   "answer_chars": 122
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "task": "forecast",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 2382,
+   "tokens_out": 1200,
+   "cost_usd": 0.000646377732,
+   "latency_ms": 6218,
+   "ledger_id": "20261111T213453-db913f1e",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "task": "forecast",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 2303,
+   "tokens_out": 36,
+   "cost_usd": 0.00008501328,
+   "latency_ms": 559,
+   "ledger_id": "20261111T213459-67e6dbb4",
+   "answer_sha256": "b37f0bc51c33d783",
+   "answer_chars": 129
+  }
+ ],
+ "nodes": [
+  {
+   "id": "dinis",
+   "kind": "person",
+   "altitude": "P",
+   "label": "Dinis"
+  },
+  {
+   "id": "swarm.1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "env": "Claude Code cloud",
+   "account": "riskmandate-personal",
+   "model": "claude-opus-5.5"
+  },
+  {
+   "id": "task",
+   "kind": "task",
+   "altitude": "T",
+   "label": "Me → Claude → a swarm of loops"
+  },
+  {
+   "id": "openrouter",
+   "kind": "provider",
+   "altitude": "M",
+   "label": "OpenRouter"
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "warnings · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json",
+   "bytes": 21063,
+   "sha256": "87f9f7ff95e0eac8",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "warnings · qwen3.7-flash"
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json"
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "warnings · mistral-small-2603"
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json"
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "warnings · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json"
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "forecast · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/forecast.json"
+  },
+  {
+   "id": "data:forecast",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/forecast.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/forecast.json",
+   "bytes": 71716,
+   "sha256": "c60edf6b51b7b196",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "forecast · qwen3.7-flash"
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/read:forecast",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/forecast.json"
+  },
+  {
+   "id": "data:forecast",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/forecast.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/forecast.json"
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "forecast · mistral-small-2603"
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/read:forecast",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/forecast.json"
+  },
+  {
+   "id": "data:forecast",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/forecast.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/forecast.json"
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "forecast · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/forecast.json"
+  },
+  {
+   "id": "data:forecast",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/forecast.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/forecast.json"
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "stations · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/read:stations",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/stations.json"
+  },
+  {
+   "id": "data:stations",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/stations.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/stations.json",
+   "bytes": 77652,
+   "sha256": "e4eb5423e8af89d5",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "stations · qwen3.7-flash"
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/read:stations",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/stations.json"
+  },
+  {
+   "id": "data:stations",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/stations.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/stations.json"
+  },
+  {
+   "id": "loop:stations:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "stations · mistral-small-2603"
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/read:stations",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/stations.json"
+  },
+  {
+   "id": "data:stations",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/stations.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/stations.json"
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "stations · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/stations.json"
+  },
+  {
+   "id": "data:stations",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/stations.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/stations.json"
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "tides · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/read:tides",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read exposure/tides.json"
+  },
+  {
+   "id": "data:tides",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "exposure/tides.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json",
+   "bytes": 24836,
+   "sha256": "c99f98b06ca62105",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "tides · qwen3.7-flash"
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/read:tides",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read exposure/tides.json"
+  },
+  {
+   "id": "data:tides",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "exposure/tides.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json"
+  },
+  {
+   "id": "loop:tides:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "tides · mistral-small-2603"
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/read:tides",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read exposure/tides.json"
+  },
+  {
+   "id": "data:tides",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "exposure/tides.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json"
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "tides · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read exposure/tides.json"
+  },
+  {
+   "id": "data:tides",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "exposure/tides.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json"
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "transport · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/read:transport",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/services.json"
+  },
+  {
+   "id": "data:transport",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/services.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json",
+   "bytes": 12578,
+   "sha256": "33416eb9bcb67a80",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "transport · qwen3.7-flash"
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/read:transport",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/services.json"
+  },
+  {
+   "id": "data:transport",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/services.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json"
+  },
+  {
+   "id": "loop:transport:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "transport · mistral-small-2603"
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/read:transport",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/services.json"
+  },
+  {
+   "id": "data:transport",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/services.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json"
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "transport · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/services.json"
+  },
+  {
+   "id": "data:transport",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/services.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json"
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "flights · deepseek-v4-flash"
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/read:flights",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/flights.json"
+  },
+  {
+   "id": "data:flights",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/flights.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json",
+   "bytes": 16303,
+   "sha256": "cf1fe44a67da096b",
+   "read_at": "2026-11-11T21:34:40Z"
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "flights · qwen3.7-flash"
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/read:flights",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/flights.json"
+  },
+  {
+   "id": "data:flights",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/flights.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json"
+  },
+  {
+   "id": "loop:flights:mistral-small-2603",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "flights · mistral-small-2603"
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/read:flights",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/flights.json"
+  },
+  {
+   "id": "data:flights",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/flights.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json"
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "flights · llama-3.3-70b-instruct"
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read transport/flights.json"
+  },
+  {
+   "id": "data:flights",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/flights.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json"
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2707,
+   "cost_usd": 0.0001100979,
+   "latency_ms": 3437
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2390,
+   "cost_usd": 0.000526086,
+   "latency_ms": 1284
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2340,
+   "cost_usd": 0.00040625145,
+   "latency_ms": 910
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": false,
+   "tokens": 3376,
+   "cost_usd": 0.000636710976,
+   "latency_ms": 5959
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2519,
+   "cost_usd": 0.00006386688,
+   "latency_ms": 9238
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3280,
+   "cost_usd": 0.000127116,
+   "latency_ms": 3816
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2219,
+   "cost_usd": 0.001332342,
+   "latency_ms": 1909
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2936,
+   "cost_usd": 0.0004982175,
+   "latency_ms": 943
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2212,
+   "cost_usd": 0.0004858524,
+   "latency_ms": 963
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3364,
+   "cost_usd": 0.0001296108,
+   "latency_ms": 3717
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": false,
+   "tokens": 3930,
+   "cost_usd": 0.00027765738,
+   "latency_ms": 6333
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2965,
+   "cost_usd": 0.0004643595,
+   "latency_ms": 914
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2808,
+   "cost_usd": 0.0001130976,
+   "latency_ms": 3445
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2996,
+   "cost_usd": 0.0004578255,
+   "latency_ms": 826
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": false,
+   "tokens": 3503,
+   "cost_usd": 0.0002327053806,
+   "latency_ms": 12046
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2483,
+   "cost_usd": 0.0003829815,
+   "latency_ms": 926
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2494,
+   "cost_usd": 0.0005476284,
+   "latency_ms": 1195
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2517,
+   "cost_usd": 0.0003882087,
+   "latency_ms": 1440
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2422,
+   "cost_usd": 0.0005363028,
+   "latency_ms": 1355
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3105,
+   "cost_usd": 0.0001219185,
+   "latency_ms": 3424
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2329,
+   "cost_usd": 0.0002788632,
+   "latency_ms": 657
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2848,
+   "cost_usd": 0.0001142856,
+   "latency_ms": 3774
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2452,
+   "cost_usd": 0.0002931291,
+   "latency_ms": 737
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2076,
+   "cost_usd": 0.0004573404,
+   "latency_ms": 1309
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2707,
+   "cost_usd": 0.00005839614,
+   "latency_ms": 3365
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3105,
+   "cost_usd": 0.0000610929,
+   "latency_ms": 3527
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2808,
+   "cost_usd": 0.00006139584,
+   "latency_ms": 3649
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2848,
+   "cost_usd": 0.00006258384,
+   "latency_ms": 3923
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3364,
+   "cost_usd": 0.00006270264,
+   "latency_ms": 3435
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #2",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3280,
+   "cost_usd": 0.00006020784,
+   "latency_ms": 3993
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #2",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2816,
+   "cost_usd": 0.000174912507,
+   "latency_ms": 7769
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #2",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 3239,
+   "cost_usd": 0.0001893607254,
+   "latency_ms": 6255
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2707,
+   "cost_usd": 0.00005839614,
+   "latency_ms": 3115
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3105,
+   "cost_usd": 0.0000610929,
+   "latency_ms": 3377
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2808,
+   "cost_usd": 0.00006139584,
+   "latency_ms": 3626
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3364,
+   "cost_usd": 0.00006270264,
+   "latency_ms": 3547
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 2848,
+   "cost_usd": 0.00006258384,
+   "latency_ms": 4056
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #3",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 3280,
+   "cost_usd": 0.000127116,
+   "latency_ms": 3544
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #2",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": false,
+   "tokens": 3582,
+   "cost_usd": 0.000646377732,
+   "latency_ms": 6218
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #3",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2339,
+   "cost_usd": 0.00008501328,
+   "latency_ms": 559
+  },
+  {
+   "id": "consensus:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus warnings"
+  },
+  {
+   "id": "consensus:forecast",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus forecast"
+  },
+  {
+   "id": "consensus:stations",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus stations"
+  },
+  {
+   "id": "consensus:tides",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus tides"
+  },
+  {
+   "id": "consensus:transport",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus transport"
+  },
+  {
+   "id": "consensus:flights",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus flights"
+  }
+ ],
+ "edges": [
+  {
+   "from": "dinis",
+   "to": "swarm.1",
+   "kind": "asks"
+  },
+  {
+   "from": "swarm.1",
+   "to": "task",
+   "kind": "owns"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:warnings:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:warnings:deepseek-v4-flash",
+   "to": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:warnings:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash",
+   "to": "loop:warnings:qwen3.7-flash/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:warnings:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:warnings:mistral-small-2603",
+   "to": "loop:warnings:mistral-small-2603/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:warnings:mistral-small-2603/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:warnings:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:warnings:llama-3.3-70b-instruct",
+   "to": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:forecast:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash",
+   "to": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "to": "data:forecast",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:forecast:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash",
+   "to": "loop:forecast:qwen3.7-flash/read:forecast",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash/read:forecast",
+   "to": "data:forecast",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:forecast:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:forecast:mistral-small-2603",
+   "to": "loop:forecast:mistral-small-2603/read:forecast",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:forecast:mistral-small-2603/read:forecast",
+   "to": "data:forecast",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:forecast:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:forecast:llama-3.3-70b-instruct",
+   "to": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "to": "data:forecast",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:stations:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash",
+   "to": "loop:stations:deepseek-v4-flash/read:stations",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash/read:stations",
+   "to": "data:stations",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:stations:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash",
+   "to": "loop:stations:qwen3.7-flash/read:stations",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash/read:stations",
+   "to": "data:stations",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:stations:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:stations:mistral-small-2603",
+   "to": "loop:stations:mistral-small-2603/read:stations",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:stations:mistral-small-2603/read:stations",
+   "to": "data:stations",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:stations:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:stations:llama-3.3-70b-instruct",
+   "to": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "to": "data:stations",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:tides:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:tides:deepseek-v4-flash",
+   "to": "loop:tides:deepseek-v4-flash/read:tides",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:tides:deepseek-v4-flash/read:tides",
+   "to": "data:tides",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:tides:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash",
+   "to": "loop:tides:qwen3.7-flash/read:tides",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash/read:tides",
+   "to": "data:tides",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:tides:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:tides:mistral-small-2603",
+   "to": "loop:tides:mistral-small-2603/read:tides",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:tides:mistral-small-2603/read:tides",
+   "to": "data:tides",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:tides:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:tides:llama-3.3-70b-instruct",
+   "to": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "to": "data:tides",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:transport:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:transport:deepseek-v4-flash",
+   "to": "loop:transport:deepseek-v4-flash/read:transport",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:transport:deepseek-v4-flash/read:transport",
+   "to": "data:transport",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:transport:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash",
+   "to": "loop:transport:qwen3.7-flash/read:transport",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash/read:transport",
+   "to": "data:transport",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:transport:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:transport:mistral-small-2603",
+   "to": "loop:transport:mistral-small-2603/read:transport",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:transport:mistral-small-2603/read:transport",
+   "to": "data:transport",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:transport:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:transport:llama-3.3-70b-instruct",
+   "to": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "to": "data:transport",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:flights:deepseek-v4-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash",
+   "to": "loop:flights:deepseek-v4-flash/read:flights",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash/read:flights",
+   "to": "data:flights",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:flights:qwen3.7-flash",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash",
+   "to": "loop:flights:qwen3.7-flash/read:flights",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash/read:flights",
+   "to": "data:flights",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:flights:mistral-small-2603",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:flights:mistral-small-2603",
+   "to": "loop:flights:mistral-small-2603/read:flights",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:flights:mistral-small-2603/read:flights",
+   "to": "data:flights",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "loop:flights:llama-3.3-70b-instruct",
+   "kind": "starts"
+  },
+  {
+   "from": "loop:flights:llama-3.3-70b-instruct",
+   "to": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "kind": "runs"
+  },
+  {
+   "from": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "to": "data:flights",
+   "kind": "reads"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash",
+   "to": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:llama-3.3-70b-instruct",
+   "to": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:mistral-small-2603",
+   "to": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash",
+   "to": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:deepseek-v4-flash",
+   "to": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash",
+   "to": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:llama-3.3-70b-instruct",
+   "to": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:mistral-small-2603",
+   "to": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:llama-3.3-70b-instruct",
+   "to": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash",
+   "to": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash",
+   "to": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:mistral-small-2603",
+   "to": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash",
+   "to": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:mistral-small-2603",
+   "to": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash",
+   "to": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:mistral-small-2603",
+   "to": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:llama-3.3-70b-instruct",
+   "to": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:mistral-small-2603",
+   "to": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:llama-3.3-70b-instruct",
+   "to": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash",
+   "to": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:deepseek-v4-flash",
+   "to": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash",
+   "to": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:deepseek-v4-flash",
+   "to": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:llama-3.3-70b-instruct",
+   "to": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash",
+   "to": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash",
+   "to": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash",
+   "to": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash",
+   "to": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash",
+   "to": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash",
+   "to": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash",
+   "to": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash",
+   "to": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash",
+   "to": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash",
+   "to": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash",
+   "to": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash",
+   "to": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash",
+   "to": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash",
+   "to": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash",
+   "to": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash",
+   "to": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "kind": "calls"
+  },
+  {
+   "from": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:forecast",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:stations",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:tides",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:transport",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:flights",
+   "kind": "runs"
+  }
+ ],
+ "timeline": [
+  {
+   "t": 0,
+   "unit": "swarm.1",
+   "phase": "start"
+  },
+  {
+   "t": 1,
+   "unit": "loop:warnings:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 1,
+   "unit": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 2,
+   "unit": "loop:warnings:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 2,
+   "unit": "loop:warnings:qwen3.7-flash/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 2,
+   "unit": "loop:warnings:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 2,
+   "unit": "loop:warnings:mistral-small-2603/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 3,
+   "unit": "loop:warnings:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 3,
+   "unit": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 3,
+   "unit": "loop:forecast:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 3,
+   "unit": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "phase": "start"
+  },
+  {
+   "t": 4,
+   "unit": "loop:forecast:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 4,
+   "unit": "loop:forecast:qwen3.7-flash/read:forecast",
+   "phase": "start"
+  },
+  {
+   "t": 4,
+   "unit": "loop:forecast:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 4,
+   "unit": "loop:forecast:mistral-small-2603/read:forecast",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:forecast:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:stations:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:stations:deepseek-v4-flash/read:stations",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:stations:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "loop:stations:qwen3.7-flash/read:stations",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:stations:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:stations:mistral-small-2603/read:stations",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:stations:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:deepseek-v4-flash/read:tides",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:qwen3.7-flash/read:tides",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:mistral-small-2603/read:tides",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 6,
+   "unit": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "phase": "start"
+  },
+  {
+   "t": 7,
+   "unit": "loop:transport:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 7,
+   "unit": "loop:transport:deepseek-v4-flash/read:transport",
+   "phase": "start"
+  },
+  {
+   "t": 7,
+   "unit": "loop:transport:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 7,
+   "unit": "loop:transport:qwen3.7-flash/read:transport",
+   "phase": "start"
+  },
+  {
+   "t": 8,
+   "unit": "loop:transport:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 8,
+   "unit": "loop:transport:mistral-small-2603/read:transport",
+   "phase": "start"
+  },
+  {
+   "t": 8,
+   "unit": "loop:transport:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 8,
+   "unit": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:deepseek-v4-flash",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:deepseek-v4-flash/read:flights",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:qwen3.7-flash",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:qwen3.7-flash/read:flights",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:mistral-small-2603",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:mistral-small-2603/read:flights",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:llama-3.3-70b-instruct",
+   "phase": "start"
+  },
+  {
+   "t": 9,
+   "unit": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "phase": "start"
+  },
+  {
+   "t": 144,
+   "unit": "loop:flights:qwen3.7-flash/read:flights",
+   "phase": "end",
+   "ok": true,
+   "bytes": 16303
+  },
+  {
+   "t": 144,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 332,
+   "unit": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "phase": "end",
+   "ok": true,
+   "bytes": 12578
+  },
+  {
+   "t": 332,
+   "unit": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 335,
+   "unit": "loop:flights:mistral-small-2603/read:flights",
+   "phase": "end",
+   "ok": true,
+   "bytes": 16303
+  },
+  {
+   "t": 335,
+   "unit": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 337,
+   "unit": "loop:flights:deepseek-v4-flash/read:flights",
+   "phase": "end",
+   "ok": true,
+   "bytes": 16303
+  },
+  {
+   "t": 337,
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 345,
+   "unit": "loop:tides:deepseek-v4-flash/read:tides",
+   "phase": "end",
+   "ok": true,
+   "bytes": 24836
+  },
+  {
+   "t": 345,
+   "unit": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 346,
+   "unit": "loop:transport:qwen3.7-flash/read:transport",
+   "phase": "end",
+   "ok": true,
+   "bytes": 12578
+  },
+  {
+   "t": 346,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 353,
+   "unit": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 353,
+   "unit": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 354,
+   "unit": "loop:transport:mistral-small-2603/read:transport",
+   "phase": "end",
+   "ok": true,
+   "bytes": 12578
+  },
+  {
+   "t": 354,
+   "unit": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 358,
+   "unit": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "phase": "end",
+   "ok": true,
+   "bytes": 71716
+  },
+  {
+   "t": 359,
+   "unit": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 362,
+   "unit": "loop:stations:qwen3.7-flash/read:stations",
+   "phase": "end",
+   "ok": true,
+   "bytes": 77652
+  },
+  {
+   "t": 362,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 363,
+   "unit": "loop:stations:deepseek-v4-flash/read:stations",
+   "phase": "end",
+   "ok": true,
+   "bytes": 77652
+  },
+  {
+   "t": 363,
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 366,
+   "unit": "loop:tides:mistral-small-2603/read:tides",
+   "phase": "end",
+   "ok": true,
+   "bytes": 24836
+  },
+  {
+   "t": 366,
+   "unit": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 369,
+   "unit": "loop:warnings:qwen3.7-flash/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 369,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 370,
+   "unit": "loop:stations:mistral-small-2603/read:stations",
+   "phase": "end",
+   "ok": true,
+   "bytes": 77652
+  },
+  {
+   "t": 370,
+   "unit": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 372,
+   "unit": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "phase": "end",
+   "ok": true,
+   "bytes": 71716
+  },
+  {
+   "t": 372,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 375,
+   "unit": "loop:forecast:mistral-small-2603/read:forecast",
+   "phase": "end",
+   "ok": true,
+   "bytes": 71716
+  },
+  {
+   "t": 375,
+   "unit": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 377,
+   "unit": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "phase": "end",
+   "ok": true,
+   "bytes": 77652
+  },
+  {
+   "t": 377,
+   "unit": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 383,
+   "unit": "loop:warnings:mistral-small-2603/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 383,
+   "unit": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 386,
+   "unit": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "phase": "end",
+   "ok": true,
+   "bytes": 24836
+  },
+  {
+   "t": 386,
+   "unit": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 393,
+   "unit": "loop:tides:qwen3.7-flash/read:tides",
+   "phase": "end",
+   "ok": true,
+   "bytes": 24836
+  },
+  {
+   "t": 393,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 411,
+   "unit": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 411,
+   "unit": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 413,
+   "unit": "loop:forecast:qwen3.7-flash/read:forecast",
+   "phase": "end",
+   "ok": true,
+   "bytes": 71716
+  },
+  {
+   "t": 413,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 413,
+   "unit": "loop:transport:deepseek-v4-flash/read:transport",
+   "phase": "end",
+   "ok": true,
+   "bytes": 12578
+  },
+  {
+   "t": 413,
+   "unit": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 426,
+   "unit": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "phase": "end",
+   "ok": true,
+   "bytes": 16303
+  },
+  {
+   "t": 426,
+   "unit": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 1541,
+   "unit": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0002788632
+  },
+  {
+   "t": 1541,
+   "unit": "loop:warnings:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1624,
+   "unit": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0002931291
+  },
+  {
+   "t": 1624,
+   "unit": "loop:transport:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1715,
+   "unit": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004578255
+  },
+  {
+   "t": 1715,
+   "unit": "loop:stations:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1720,
+   "unit": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.00040625145
+  },
+  {
+   "t": 1720,
+   "unit": "loop:flights:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1745,
+   "unit": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0003829815
+  },
+  {
+   "t": 1745,
+   "unit": "loop:forecast:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1770,
+   "unit": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004982175
+  },
+  {
+   "t": 1770,
+   "unit": "loop:transport:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1772,
+   "unit": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004858524
+  },
+  {
+   "t": 1772,
+   "unit": "loop:forecast:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 1834,
+   "unit": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004643595
+  },
+  {
+   "t": 1834,
+   "unit": "loop:tides:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2055,
+   "unit": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0005476284
+  },
+  {
+   "t": 2055,
+   "unit": "loop:stations:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2085,
+   "unit": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.000526086
+  },
+  {
+   "t": 2085,
+   "unit": "loop:transport:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2213,
+   "unit": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004573404
+  },
+  {
+   "t": 2214,
+   "unit": "loop:flights:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2218,
+   "unit": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0005363028
+  },
+  {
+   "t": 2218,
+   "unit": "loop:tides:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2400,
+   "unit": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0003882087
+  },
+  {
+   "t": 2400,
+   "unit": "loop:warnings:mistral-small-2603",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 2804,
+   "unit": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.001332342
+  },
+  {
+   "t": 2804,
+   "unit": "loop:warnings:llama-3.3-70b-instruct",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 4090,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0001100979
+  },
+  {
+   "t": 4090,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 4301,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0001219185
+  },
+  {
+   "t": 4301,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 4312,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0001130976
+  },
+  {
+   "t": 4312,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 4543,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0001142856
+  },
+  {
+   "t": 4543,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 4590,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0001296108
+  },
+  {
+   "t": 4590,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 4733,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.000127116
+  },
+  {
+   "t": 4733,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 6850,
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.000636710976
+  },
+  {
+   "t": 6850,
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 7264,
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00027765738
+  },
+  {
+   "t": 7264,
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 7456,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00005839614
+  },
+  {
+   "t": 7456,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 7828,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0000610929
+  },
+  {
+   "t": 7828,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 7961,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006139584
+  },
+  {
+   "t": 7961,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 8025,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006270264
+  },
+  {
+   "t": 8025,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 8466,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006258384
+  },
+  {
+   "t": 8466,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 8727,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006020784
+  },
+  {
+   "t": 8727,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 10098,
+   "unit": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.00006386688
+  },
+  {
+   "t": 10098,
+   "unit": "loop:tides:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 10572,
+   "unit": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00005839614
+  },
+  {
+   "t": 10572,
+   "unit": "loop:flights:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 11205,
+   "unit": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0000610929
+  },
+  {
+   "t": 11205,
+   "unit": "loop:tides:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 11573,
+   "unit": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006270264
+  },
+  {
+   "t": 11573,
+   "unit": "loop:stations:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 11587,
+   "unit": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006139584
+  },
+  {
+   "t": 11587,
+   "unit": "loop:warnings:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 12271,
+   "unit": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.000127116
+  },
+  {
+   "t": 12271,
+   "unit": "loop:transport:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 12522,
+   "unit": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.00006258384
+  },
+  {
+   "t": 12522,
+   "unit": "loop:forecast:qwen3.7-flash",
+   "phase": "end",
+   "valid": false
+  },
+  {
+   "t": 12913,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.0002327053806
+  },
+  {
+   "t": 12913,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "start"
+  },
+  {
+   "t": 13519,
+   "unit": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0001893607254
+  },
+  {
+   "t": 13519,
+   "unit": "loop:stations:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 14619,
+   "unit": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.000174912507
+  },
+  {
+   "t": 14619,
+   "unit": "loop:flights:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 19132,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0.000646377732
+  },
+  {
+   "t": 19132,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#3",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.00008501328
+  },
+  {
+   "t": 19692,
+   "unit": "loop:forecast:deepseek-v4-flash",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:warnings",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:forecast",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:forecast",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:stations",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:stations",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:tides",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:tides",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:transport",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:transport",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:flights",
+   "phase": "start"
+  },
+  {
+   "t": 19692,
+   "unit": "consensus:flights",
+   "phase": "end"
+  },
+  {
+   "t": 19692,
+   "unit": "swarm.1",
+   "phase": "end"
+  }
+ ]
+}

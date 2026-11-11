@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PrompTugal Swarm</title>
+<meta name="description" content="The swarm, one real run at a time: from one person asking one agent, to a swarm of loops and model calls across environments. Every run is real, recorded as JSON, replayed here.">
+<style>
+:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--live:#ffe066}
+/* the universe is dark; light only when asked */ :root[data-theme="light"]{--bg:#f6f8f7;--panel:#ffffff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86;--ok:#14936a;--bad:#d42f40;--live:#c99a00}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--a3)}header,footer{padding:14px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;color:var(--muted);max-width:70ch}
+main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 16px}
+@media (max-width:900px){main{grid-template-columns:1fr}}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0}
+.panel h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
+.rung{display:block;width:100%;text-align:left;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px;margin:0 0 6px;cursor:pointer;font:inherit}
+.rung b{display:block;font-size:.9rem}.rung span{color:var(--muted);font-size:.78rem}.rung[aria-pressed="true"]{border-color:var(--a3);background:color-mix(in srgb,var(--a3) 12%,transparent)}
+.rung[disabled]{opacity:.5;cursor:default}
+#stage{overflow:auto;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,var(--panel));min-height:420px}
+svg text{fill:var(--ink);font-size:11px}svg .lbl{fill:var(--muted);font-size:10px}
+.edge{stroke:var(--line);stroke-width:1.2}.edge.on{stroke:var(--muted)}.edge.planned{stroke-dasharray:4 4}
+.n{transition:opacity .25s}.n.hidden{opacity:.08}.n.live .shape{stroke:var(--live);stroke-width:3}.n.bad .shape{stroke:var(--bad);stroke-width:2.5}.n.ok .shape{stroke:var(--ok);stroke-width:2}.n.planned .shape{stroke-dasharray:4 3;fill-opacity:.25}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}.bar button{font:inherit;background:var(--a3);color:#fff;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
+.amp{font-weight:600}.amp i{font-style:normal;color:var(--muted);font-weight:400}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
+.card{border:1px solid var(--line);border-radius:8px;padding:8px}.card b{display:block;font-size:1.15rem}.card span{color:var(--muted);font-size:.75rem}
+.tog{display:flex;gap:8px;align-items:center;margin:0 0 6px;font-size:.88rem}.tog small{color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--muted);margin-top:8px}.legend svg{vertical-align:middle}
+table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:10px}td,th{border-bottom:1px solid var(--line);padding:4px;text-align:left}
+footer{color:var(--muted);font-size:.8rem}
+.demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
+</style>
+</head>
+<body>
+<header>
+  <h1>The swarm, one real run at a time</h1>
+  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
+</header>
+<section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
+<li><b>The ladder</b>: from me → Claude → a task, up to a swarm of loops on many models. <em>Live below: six real runs.</em></li>
+<li><b>Sessions across accounts</b>: Dinis's sessions and Angelo's run the same signed packets; results in GitHub and in a vault. <em>Next.</em></li>
+<li><b>Clouds</b>: swarm.cloudflare, swarm.aws, swarm.gcp and swarm.netlify run the storm site's scheduled work. <em>Next.</em></li>
+<li><b>Where the enterprise looks</b>: the same flows in Elastic and Kibana, Grafana and Neo4j. <em>Next.</em></li>
+</ol></section>
+<main>
+  <section class="panel" aria-label="Rungs"><h2>The ladder</h2><div id="rungs"></div></section>
+  <section class="panel" aria-label="The run">
+    <div class="bar"><button id="play">▶ Replay</button><span class="amp" id="amp"></span></div>
+    <div id="stage"></div>
+    <div class="legend" id="legend"></div>
+    <div class="cards" id="cards"></div>
+    <div id="detail"></div>
+  </section>
+  <section class="panel" aria-label="Capabilities"><h2>Who holds what</h2><div id="togs"></div>
+    <p style="color:var(--muted);font-size:.78rem">Solid: used in this run. Dashed: planned, not yet wired. Each button adds or removes the node from the picture.</p></section>
+</main>
+<footer>Run by swarm.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215). The workload is the storm site's public data: <a href="https://storm-charles.promptugal.news/">storm-charles.promptugal.news</a>. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit. Model text is never stored: only its length, sha256 and whether it was valid.</footer>
+<script>
+const ALT = { P: ['person', 'var(--p)'], A4: ['swarm', 'var(--a4)'], A3: ['agent', 'var(--a3)'], A2: ['loop', 'var(--a2)'], A1: ['LLM call', 'var(--a1)'], A0: ['compute', 'var(--a0)'], T: ['task', 'var(--p)'], M: ['provider', 'var(--res)'], D: ['dataset', 'var(--res)'], C: ['capability', 'var(--res)'], E: ['environment', 'var(--res)'] };
+const ROW = { P: 0, A4: 1, T: 1, A3: 2, A2: 3, A1: 4, A0: 4, M: 5, D: 5, C: 2, E: 2 };
+const PLANNED = [
+  { id: 'r6', title: 'Me + Angelo → sessions → packets', story: 'Dinis\'s 3 sessions and Angelo\'s 2 run the same signed packets; results land in GitHub and a vault.' },
+  { id: 'r7', title: '→ Cloudflare, AWS, GCP, Netlify', story: 'swarm.cloudflare, swarm.aws, swarm.gcp and swarm.netlify each run A0, A1 and A2 units of the storm work.' },
+  { id: 'r8', title: '→ everybody', story: 'Every person\'s conductor joins; one swarm, many agents, hundreds of loops, thousands of calls.' },
+];
+const CAPS = [
+  { id: 'github', label: 'GitHub (push to dev)', on: true, real: true }, { id: 'vault', label: 'Vault (sgit)', on: false, real: false },
+  { id: 'secret', label: 'Secret: OpenRouter key (proxy)', on: true, real: true }, { id: 'anthropic', label: 'Anthropic (the agent\'s brain)', on: true, real: true },
+  { id: 'elastic', label: 'Elastic (flows)', on: false, real: false },
+  { id: 'cloudflare', label: 'swarm.cloudflare', on: false, real: false, env: true }, { id: 'aws', label: 'swarm.aws', on: false, real: false, env: true },
+  { id: 'gcp', label: 'swarm.gcp', on: false, real: false, env: true }, { id: 'netlify', label: 'swarm.netlify', on: false, real: false, env: true },
+  { id: 'angelo', label: 'Angelo\'s conductor', on: false, real: false, person: true },
+];
+let runs = [], cur = null, timer = null;
+const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+function shape(alt, r) {
+  const c = (ALT[alt] || ALT.A0)[1];
+  if (alt === 'P') return `<circle class="shape" r="${r}" fill="${c}"/><circle r="${r * .35}" cy="${-r * .25}" fill="var(--bg)"/>`;
+  if (alt === 'A4') { const p = [...Array(6)].map((_, i) => `${r * Math.cos(i * Math.PI / 3)},${r * Math.sin(i * Math.PI / 3)}`).join(' '); return `<polygon class="shape" points="${p}" fill="${c}"/>`; }
+  if (alt === 'A3') return `<rect class="shape" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}" rx="${r * .35}" fill="${c}"/>`;
+  if (alt === 'A2') return `<circle class="shape" r="${r}" fill="none" stroke="${c}" stroke-width="3"/><circle r="${r * .4}" fill="${c}"/>`;
+  if (alt === 'A1') return `<polygon class="shape" points="0,${-r} ${r},0 0,${r} ${-r},0" fill="${c}"/>`;
+  if (alt === 'A0') return `<rect class="shape" x="${-r * .7}" y="${-r * .7}" width="${1.4 * r}" height="${1.4 * r}" fill="${c}"/>`;
+  if (alt === 'D') return `<ellipse class="shape" rx="${r}" ry="${r * .6}" fill="${c}"/>`;
+  return `<rect class="shape" x="${-r * 1.2}" y="${-r * .7}" width="${2.4 * r}" height="${1.4 * r}" rx="${r * .7}" fill="${c}"/>`;
+}
+function withCaps(run) {
+  const seen = new Set(), nodes = run.nodes.filter((n) => !seen.has(n.id) && seen.add(n.id)).map((n) => ({ ...n })), edges = run.edges.map((e) => ({ ...e }));
+  for (const c of CAPS.filter((c) => c.on)) {
+    const id = 'cap:' + c.id; nodes.push({ id, altitude: c.person ? 'P' : c.env ? 'E' : 'C', label: c.label, planned: !c.real, cap: true });
+    edges.push({ from: c.person ? id : 'swarm.1', to: c.person ? 'swarm.1' : id, kind: c.person ? 'asks' : 'holds', planned: !c.real });
+  }
+  return { nodes, edges };
+}
+function layout(nodes, edges) {
+  const rows = {}; const parent = {}; edges.forEach((e) => { if (!(e.to in parent)) parent[e.to] = e.from; });
+  const order = []; const seen = new Set(); const kids = {}; edges.forEach((e) => (kids[e.from] ||= []).push(e.to));
+  (function walk(id) { if (seen.has(id)) return; seen.add(id); order.push(id); (kids[id] || []).forEach(walk); })('dinis');
+  nodes.forEach((n) => { if (!seen.has(n.id)) order.push(n.id); });
+  const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
+  order.forEach((id) => { const n = byId[id]; if (!n) return; const r = n.cap ? (n.altitude === 'P' ? 0 : 1) : ROW[n.altitude] ?? 4; (rows[r] ||= []).push(n); });
+  const widest = Math.max(...Object.values(rows).map((r) => r.length)), W = Math.max(760, widest * 26), H = 6 * 92 + 40;
+  Object.entries(rows).forEach(([r, ns]) => ns.forEach((n, i) => { n.x = (i + .5) * W / ns.length; n.y = 36 + +r * 92; }));
+  return { W, H, byId };
+}
+function draw() {
+  const run = cur; const { nodes, edges } = withCaps(run); const { W, H, byId } = layout(nodes, edges);
+  const big = nodes.length < 40, r = big ? 14 : 8;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(run.title)}">`;
+  edges.forEach((e) => { const a = byId[e.from], b = byId[e.to]; if (a && b) s += `<line class="edge ${e.planned ? 'planned' : ''}" data-to="${esc(e.to)}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`; });
+  nodes.forEach((n) => {
+    const st = n.planned ? 'planned' : n.valid === false ? 'bad' : n.valid ? 'ok' : '';
+    s += `<g class="n ${st}" data-id="${esc(n.id)}" transform="translate(${n.x},${n.y})"><title>${esc((ALT[n.altitude] || [''])[0] + ': ' + n.label + (n.model ? ' · ' + n.model : '') + (n.tokens ? ' · ' + n.tokens + ' tokens' : '') + (n.cost_usd != null ? ' · ' + n.cost_usd + ' USD' : '') + (n.latency_ms ? ' · ' + n.latency_ms + ' ms' : ''))}</title>${shape(n.altitude, n.cap && n.altitude === 'E' ? 12 : r)}`;
+    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, 28))}</text>`;
+    s += '</g>';
+  });
+  $('#stage').innerHTML = s + '</svg>';
+  const m = run.metrics, u = m.units || {};
+  const parts = [['1 person', 1], [`${u.A3 || 0} agent${u.A3 === 1 ? '' : 's'}`, u.A3], [`${u.A2 || 0} loops`, u.A2], [`${m.llm_calls} LLM calls`, m.llm_calls], [`${u.A0 || 0} compute`, u.A0], [`${m.models.length} models`, m.models.length]].filter((p) => p[1]);
+  $('#amp').innerHTML = parts.map((p) => p[0]).join(' <i>+</i> ');
+  const card = (v, l) => `<div class="card"><b>${v}</b><span>${l}</span></div>`;
+  $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
+  const cons = Object.entries(run.consensus || {});
+  const byModel = {}; (run.calls || []).forEach((c) => { const k = c.model.split('/')[1]; const x = (byModel[k] ||= { calls: 0, valid: 0, tin: 0, tout: 0, usd: 0, ms: [] }); x.calls++; x.valid += c.valid ? 1 : 0; x.tin += c.tokens_in; x.tout += c.tokens_out; x.usd += c.cost_usd; x.ms.push(c.latency_ms); });
+  $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}). Budget written before it started: $${run.budget.usd}, at most ${run.budget.calls} calls, ${run.budget.sessions} new sessions.</p>`
+    + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
+    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
+}
+function replay() {
+  clearInterval(timer); const tl = cur.timeline || []; const end = Math.max(1, ...tl.map((e) => e.t)); const D = 6000, step = 40;
+  document.querySelectorAll('.n').forEach((g) => { if (!g.dataset.id.startsWith('cap:') && !['dinis', 'task'].includes(g.dataset.id) && !g.dataset.id.startsWith('data:') && g.dataset.id !== 'openrouter') g.classList.add('hidden'); });
+  let t = 0, i = 0; const ev = [...tl].sort((a, b) => a.t - b.t);
+  timer = setInterval(() => {
+    t += step * end / D;
+    while (i < ev.length && ev[i].t <= t) { const e = ev[i++]; const g = document.querySelector(`.n[data-id="${CSS.escape(e.unit)}"]`); if (!g) continue; g.classList.remove('hidden'); if (e.phase === 'start') g.classList.add('live'); if (e.phase === 'end') g.classList.remove('live'); }
+    if (i >= ev.length) clearInterval(timer);
+  }, step);
+}
+function rungs() {
+  $('#rungs').innerHTML = runs.map((r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung)} · ${esc(r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`).join('')
+    + PLANNED.map((p) => `<button class="rung" disabled title="${esc(p.story)}"><b>${esc(p.id)} · ${esc(p.title)}</b><span>planned: ${esc(p.story)}</span></button>`).join('');
+  document.querySelectorAll('.rung[data-id]').forEach((b) => b.onclick = () => load(b.dataset.id));
+}
+function togs() {
+  $('#togs').innerHTML = CAPS.map((c) => `<label class="tog"><input type="checkbox" data-id="${c.id}" ${c.on ? 'checked' : ''}> ${esc(c.label)} ${c.real ? '' : '<small>(planned)</small>'}</label>`).join('');
+  document.querySelectorAll('#togs input').forEach((i) => i.onchange = () => { CAPS.find((c) => c.id === i.dataset.id).on = i.checked; draw(); });
+  $('#legend').innerHTML = ['P', 'A3', 'A2', 'A1', 'A0', 'M', 'D', 'E'].map((a) => `<span><svg width="22" height="22" viewBox="-11 -11 22 22">${shape(a, 8)}</svg> ${ALT[a][0]}${/^A/.test(a) ? ' (' + a + ')' : ''}</span>`).join('');
+}
+function load(id) { cur = runs.find((r) => r.id === id); rungs(); draw(); replay(); try { history.replaceState(null, '', '#' + cur.rung); } catch {} }
+$('#play').onclick = replay;
+fetch('runs/index.json').then((r) => r.json()).then(async (ix) => {
+  runs = await Promise.all(ix.runs.map((r) => fetch('runs/' + r.file).then((x) => x.json())));
+  togs(); const want = location.hash.slice(1); load((runs.find((r) => r.rung === want) || runs[0]).id);
+});
+</script>
+</body>
+</html>

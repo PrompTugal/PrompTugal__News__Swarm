@@ -1,0 +1,140 @@
+{
+ "v": 1,
+ "id": "20261111T2134-r1",
+ "rung": "r1",
+ "title": "Me → Claude → compute",
+ "story": "The agent runs code (A0): it reads one storm dataset over the public API.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "environment": {
+  "id": "R1",
+  "label": "Claude Code cloud",
+  "account": "riskmandate-personal"
+ },
+ "started_at": "2026-11-11T21:34:07Z",
+ "wall_ms": 398,
+ "budget": {
+  "usd": 1,
+  "calls": 0,
+  "sessions": 0
+ },
+ "credit_before_usd": null,
+ "source": {
+  "workload": "the storm site's scheduled datasets, read over its public API",
+  "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+ },
+ "metrics": {
+  "units": {
+   "P": 1,
+   "A3": 1,
+   "T": 1,
+   "A0": 1,
+   "D": 1
+  },
+  "agents": 1,
+  "loops": 0,
+  "llm_calls": 0,
+  "compute": 1,
+  "peak_concurrency": 1,
+  "valid_calls": 0,
+  "tokens_in": 0,
+  "tokens_out": 0,
+  "openrouter_usd": 0,
+  "potential_claude_usd": {
+   "claude-haiku-5.5": 0,
+   "claude-sonnet-5.5": 0,
+   "claude-opus-5.5": 0
+  },
+  "models": [],
+  "latency_ms_p50": null,
+  "not_measured": "the A3 agent's own Claude tokens (this Claude Code session): not exposed to the run"
+ },
+ "consensus": {},
+ "calls": [],
+ "nodes": [
+  {
+   "id": "dinis",
+   "kind": "person",
+   "altitude": "P",
+   "label": "Dinis"
+  },
+  {
+   "id": "swarm.1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "env": "Claude Code cloud",
+   "account": "riskmandate-personal",
+   "model": "claude-opus-5.5"
+  },
+  {
+   "id": "task",
+   "kind": "task",
+   "altitude": "T",
+   "label": "Me → Claude → compute"
+  },
+  {
+   "id": "swarm.1/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json",
+   "bytes": 21063,
+   "sha256": "87f9f7ff95e0eac8",
+   "read_at": "2026-11-11T21:34:08Z"
+  }
+ ],
+ "edges": [
+  {
+   "from": "dinis",
+   "to": "swarm.1",
+   "kind": "asks"
+  },
+  {
+   "from": "swarm.1",
+   "to": "task",
+   "kind": "owns"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  }
+ ],
+ "timeline": [
+  {
+   "t": 0,
+   "unit": "swarm.1",
+   "phase": "start"
+  },
+  {
+   "t": 0,
+   "unit": "swarm.1/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 398,
+   "unit": "swarm.1/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 398,
+   "unit": "swarm.1",
+   "phase": "end"
+  }
+ ]
+}

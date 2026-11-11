@@ -1,0 +1,380 @@
+{
+ "v": 1,
+ "id": "20261111T2134-r3",
+ "rung": "r3",
+ "title": "Me → Claude → many models",
+ "story": "The same question to four open-weight models at once, compared in code.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "environment": {
+  "id": "R1",
+  "label": "Claude Code cloud",
+  "account": "riskmandate-personal"
+ },
+ "started_at": "2026-11-11T21:34:10Z",
+ "wall_ms": 5389,
+ "budget": {
+  "usd": 1,
+  "calls": 4,
+  "sessions": 0
+ },
+ "credit_before_usd": 72.42,
+ "source": {
+  "workload": "the storm site's scheduled datasets, read over its public API",
+  "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+ },
+ "metrics": {
+  "units": {
+   "P": 1,
+   "A3": 1,
+   "T": 1,
+   "M": 1,
+   "A0": 2,
+   "D": 1,
+   "A1": 4
+  },
+  "agents": 1,
+  "loops": 0,
+  "llm_calls": 4,
+  "compute": 2,
+  "peak_concurrency": 4,
+  "valid_calls": 3,
+  "tokens_in": 6956,
+  "tokens_out": 430,
+  "openrouter_usd": 0.001078,
+  "potential_claude_usd": {
+   "claude-haiku-5.5": 0.000911,
+   "claude-sonnet-5.5": 0.018212,
+   "claude-opus-5.5": 0.036424
+  },
+  "models": [
+   "qwen/qwen3.7-flash",
+   "mistralai/mistral-small-2603",
+   "meta-llama/llama-3.3-70b-instruct",
+   "deepseek/deepseek-v4-flash"
+  ],
+  "latency_ms_p50": 1057,
+  "not_measured": "the A3 agent's own Claude tokens (this Claude Code session): not exposed to the run"
+ },
+ "consensus": {
+  "warnings": {
+   "tally": {
+    "warning": 3
+   },
+   "verdict": "warning",
+   "agree": 3,
+   "of": 4
+  }
+ },
+ "calls": [
+  {
+   "unit": "swarm.1/call:qwen3.7-flash#1",
+   "task": "warnings",
+   "model": "qwen/qwen3.7-flash",
+   "served": "qwen/qwen3.7-flash",
+   "status": "http_429",
+   "valid": false,
+   "verdict": null,
+   "tokens_in": 0,
+   "tokens_out": 0,
+   "cost_usd": 0,
+   "latency_ms": 449,
+   "ledger_id": "20261111T213411-8db76204",
+   "answer_sha256": null,
+   "answer_chars": 0
+  },
+  {
+   "unit": "swarm.1/call:mistral-small-2603#1",
+   "task": "warnings",
+   "model": "mistralai/mistral-small-2603",
+   "served": "mistralai/mistral-small-2603",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2475,
+   "tokens_out": 54,
+   "cost_usd": 0.00043957485,
+   "latency_ms": 814,
+   "ledger_id": "20261111T213411-32cacbaa",
+   "answer_sha256": "59bb746bdc5f4a66",
+   "answer_chars": 140
+  },
+  {
+   "unit": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "task": "warnings",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "served": "meta-llama/llama-3.3-70b-instruct",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2196,
+   "tokens_out": 25,
+   "cost_usd": 0.0004906638,
+   "latency_ms": 1057,
+   "ledger_id": "20261111T213411-b590cea3",
+   "answer_sha256": "beb179ebdef8350c",
+   "answer_chars": 79
+  },
+  {
+   "unit": "swarm.1/call:deepseek-v4-flash#1",
+   "task": "warnings",
+   "model": "deepseek/deepseek-v4-flash",
+   "served": "deepseek/deepseek-v4-flash",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 2285,
+   "tokens_out": 351,
+   "cost_usd": 0.0001477973574,
+   "latency_ms": 4800,
+   "ledger_id": "20261111T213411-b97253b6",
+   "answer_sha256": "82304fe0d194aac4",
+   "answer_chars": 101
+  }
+ ],
+ "nodes": [
+  {
+   "id": "dinis",
+   "kind": "person",
+   "altitude": "P",
+   "label": "Dinis"
+  },
+  {
+   "id": "swarm.1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "env": "Claude Code cloud",
+   "account": "riskmandate-personal",
+   "model": "claude-opus-5.5"
+  },
+  {
+   "id": "task",
+   "kind": "task",
+   "altitude": "T",
+   "label": "Me → Claude → many models"
+  },
+  {
+   "id": "openrouter",
+   "kind": "provider",
+   "altitude": "M",
+   "label": "OpenRouter"
+  },
+  {
+   "id": "swarm.1/read:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json"
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json",
+   "bytes": 21063,
+   "sha256": "87f9f7ff95e0eac8",
+   "read_at": "2026-11-11T21:34:11Z"
+  },
+  {
+   "id": "swarm.1/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash #1",
+   "model": "deepseek/deepseek-v4-flash",
+   "valid": true,
+   "tokens": 2636,
+   "cost_usd": 0.0001477973574,
+   "latency_ms": 4800
+  },
+  {
+   "id": "swarm.1/call:qwen3.7-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "qwen3.7-flash #1",
+   "model": "qwen/qwen3.7-flash",
+   "valid": false,
+   "tokens": 0,
+   "cost_usd": 0,
+   "latency_ms": 449
+  },
+  {
+   "id": "swarm.1/call:mistral-small-2603#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "mistral-small-2603 #1",
+   "model": "mistralai/mistral-small-2603",
+   "valid": true,
+   "tokens": 2529,
+   "cost_usd": 0.00043957485,
+   "latency_ms": 814
+  },
+  {
+   "id": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "llama-3.3-70b-instruct #1",
+   "model": "meta-llama/llama-3.3-70b-instruct",
+   "valid": true,
+   "tokens": 2221,
+   "cost_usd": 0.0004906638,
+   "latency_ms": 1057
+  },
+  {
+   "id": "consensus:warnings",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus warnings"
+  }
+ ],
+ "edges": [
+  {
+   "from": "dinis",
+   "to": "swarm.1",
+   "kind": "asks"
+  },
+  {
+   "from": "swarm.1",
+   "to": "task",
+   "kind": "owns"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/read:warnings",
+   "kind": "runs"
+  },
+  {
+   "from": "swarm.1/read:warnings",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "swarm.1/call:deepseek-v4-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/call:qwen3.7-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "swarm.1/call:qwen3.7-flash#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/call:mistral-small-2603#1",
+   "kind": "calls"
+  },
+  {
+   "from": "swarm.1/call:mistral-small-2603#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "kind": "calls"
+  },
+  {
+   "from": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "to": "openrouter",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "consensus:warnings",
+   "kind": "runs"
+  }
+ ],
+ "timeline": [
+  {
+   "t": 0,
+   "unit": "swarm.1",
+   "phase": "start"
+  },
+  {
+   "t": 0,
+   "unit": "swarm.1/read:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 163,
+   "unit": "swarm.1/read:warnings",
+   "phase": "end",
+   "ok": true,
+   "bytes": 21063
+  },
+  {
+   "t": 164,
+   "unit": "swarm.1/call:deepseek-v4-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 166,
+   "unit": "swarm.1/call:qwen3.7-flash#1",
+   "phase": "start"
+  },
+  {
+   "t": 167,
+   "unit": "swarm.1/call:mistral-small-2603#1",
+   "phase": "start"
+  },
+  {
+   "t": 168,
+   "unit": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "phase": "start"
+  },
+  {
+   "t": 1129,
+   "unit": "swarm.1/call:qwen3.7-flash#1",
+   "phase": "end",
+   "valid": false,
+   "cost_usd": 0
+  },
+  {
+   "t": 1437,
+   "unit": "swarm.1/call:mistral-small-2603#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.00043957485
+  },
+  {
+   "t": 1702,
+   "unit": "swarm.1/call:llama-3.3-70b-instruct#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0004906638
+  },
+  {
+   "t": 5389,
+   "unit": "swarm.1/call:deepseek-v4-flash#1",
+   "phase": "end",
+   "valid": true,
+   "cost_usd": 0.0001477973574
+  },
+  {
+   "t": 5389,
+   "unit": "consensus:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 5389,
+   "unit": "consensus:warnings",
+   "phase": "end"
+  },
+  {
+   "t": 5389,
+   "unit": "swarm.1",
+   "phase": "end"
+  }
+ ]
+}

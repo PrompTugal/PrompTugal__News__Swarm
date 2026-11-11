@@ -1,0 +1,100 @@
+{
+ "v": 1,
+ "id": "20261111T2134-r0",
+ "rung": "r0",
+ "title": "Me → Claude → a task",
+ "story": "Dinis asks one Claude Code agent for one task. No model call leaves the agent.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "environment": {
+  "id": "R1",
+  "label": "Claude Code cloud",
+  "account": "riskmandate-personal"
+ },
+ "started_at": "2026-11-11T21:34:07Z",
+ "wall_ms": 1,
+ "budget": {
+  "usd": 1,
+  "calls": 0,
+  "sessions": 0
+ },
+ "credit_before_usd": null,
+ "source": {
+  "workload": "the storm site's scheduled datasets, read over its public API",
+  "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+ },
+ "metrics": {
+  "units": {
+   "P": 1,
+   "A3": 1,
+   "T": 1
+  },
+  "agents": 1,
+  "loops": 0,
+  "llm_calls": 0,
+  "compute": 0,
+  "peak_concurrency": 0,
+  "valid_calls": 0,
+  "tokens_in": 0,
+  "tokens_out": 0,
+  "openrouter_usd": 0,
+  "potential_claude_usd": {
+   "claude-haiku-5.5": 0,
+   "claude-sonnet-5.5": 0,
+   "claude-opus-5.5": 0
+  },
+  "models": [],
+  "latency_ms_p50": null,
+  "not_measured": "the A3 agent's own Claude tokens (this Claude Code session): not exposed to the run"
+ },
+ "consensus": {},
+ "calls": [],
+ "nodes": [
+  {
+   "id": "dinis",
+   "kind": "person",
+   "altitude": "P",
+   "label": "Dinis"
+  },
+  {
+   "id": "swarm.1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "env": "Claude Code cloud",
+   "account": "riskmandate-personal",
+   "model": "claude-opus-5.5"
+  },
+  {
+   "id": "task",
+   "kind": "task",
+   "altitude": "T",
+   "label": "Me → Claude → a task"
+  }
+ ],
+ "edges": [
+  {
+   "from": "dinis",
+   "to": "swarm.1",
+   "kind": "asks"
+  },
+  {
+   "from": "swarm.1",
+   "to": "task",
+   "kind": "owns"
+  }
+ ],
+ "timeline": [
+  {
+   "t": 1,
+   "unit": "swarm.1",
+   "phase": "start"
+  },
+  {
+   "t": 1,
+   "unit": "swarm.1",
+   "phase": "end"
+  }
+ ]
+}

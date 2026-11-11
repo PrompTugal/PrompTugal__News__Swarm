@@ -1,0 +1,53 @@
+{
+ "about": "Every recorded run of the swarm ladder (work/52 on the Fringe board). One file per run.",
+ "runs": [
+  {
+   "file": "20261111T2134-r0.json",
+   "id": "20261111T2134-r0",
+   "rung": "r0",
+   "title": "Me \u2192 Claude \u2192 a task",
+   "llm_calls": 0,
+   "openrouter_usd": 0
+  },
+  {
+   "file": "20261111T2134-r1.json",
+   "id": "20261111T2134-r1",
+   "rung": "r1",
+   "title": "Me \u2192 Claude \u2192 compute",
+   "llm_calls": 0,
+   "openrouter_usd": 0
+  },
+  {
+   "file": "20261111T2134-r2.json",
+   "id": "20261111T2134-r2",
+   "rung": "r2",
+   "title": "Me \u2192 Claude \u2192 one OpenRouter call",
+   "llm_calls": 1,
+   "openrouter_usd": 0.000212
+  },
+  {
+   "file": "20261111T2134-r3.json",
+   "id": "20261111T2134-r3",
+   "rung": "r3",
+   "title": "Me \u2192 Claude \u2192 many models",
+   "llm_calls": 4,
+   "openrouter_usd": 0.001078
+  },
+  {
+   "file": "20261111T2134-r4.json",
+   "id": "20261111T2134-r4",
+   "rung": "r4",
+   "title": "Me \u2192 Claude \u2192 loops",
+   "llm_calls": 8,
+   "openrouter_usd": 0.002644
+  },
+  {
+   "file": "20261111T2134-r5.json",
+   "id": "20261111T2134-r5",
+   "rung": "r5",
+   "title": "Me \u2192 Claude \u2192 a swarm of loops",
+   "llm_calls": 40,
+   "openrouter_usd": 0.010878
+  }
+ ]
+}
