@@ -1,6 +1,6 @@
 {
  "about": "Every recorded run: the ladder (by swarm.1 alone) and packets run by runners on any account (the GitHub flow). One file per run.",
- "updated": "2026-11-11T22:59:33Z",
+ "updated": "2026-11-11T23:01:18Z",
  "runs": [
   {
    "file": "20261111T2134-r0.json",
@@ -133,6 +133,18 @@
    "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
    "llm_calls": 32,
    "openrouter_usd": 0.012049
+  },
+  {
+   "file": "s002-storm-six--runner.1.swarm.json",
+   "id": "s002-storm-six--runner.1.swarm",
+   "kind": "packet",
+   "rung": null,
+   "packet": "s002-storm-six",
+   "runner": "runner.1.swarm@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+   "llm_calls": 33,
+   "openrouter_usd": 0.013764
   }
  ]
 }

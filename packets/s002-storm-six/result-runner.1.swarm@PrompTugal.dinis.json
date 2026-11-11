@@ -1,0 +1,3899 @@
+{
+ "body": {
+  "v": 1,
+  "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+  "story": "Packet s002-storm-six, issued by swarm.1.fringe@PrompTugal.dinis through GitHub, run by runner.1.swarm@PrompTugal.dinis on riskmandate-personal.",
+  "by": "runner.1.swarm@PrompTugal.dinis",
+  "issue": "WS-215",
+  "environment": {
+   "label": "R1 Claude Code cloud",
+   "account": "riskmandate-personal"
+  },
+  "started_at": "2026-11-11T23:00:21Z",
+  "wall_ms": 52950,
+  "budget": {
+   "usd": 0.25,
+   "calls": 72,
+   "sessions": 0
+  },
+  "credit_before_usd": 70.63,
+  "source": {
+   "workload": "the storm site's scheduled datasets, read over its public API",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+  },
+  "metrics": {
+   "units": {
+    "P": 1,
+    "A4": 1,
+    "C": 1,
+    "T": 1,
+    "A3": 1,
+    "M": 1,
+    "A2": 24,
+    "A0": 30,
+    "D": 6,
+    "A1": 33
+   },
+   "agents": 1,
+   "loops": 24,
+   "llm_calls": 33,
+   "compute": 30,
+   "peak_concurrency": 48,
+   "valid_calls": 20,
+   "tokens_in": 82947,
+   "tokens_out": 24968,
+   "openrouter_usd": 0.013764,
+   "potential_claude_usd": {
+    "claude-haiku-5.5": 0.020779,
+    "claude-sonnet-5.5": 0.415574,
+    "claude-opus-5.5": 0.831148
+   },
+   "models": [
+    "meta-llama/llama-3.3-70b-instruct",
+    "mistralai/mistral-small-2603",
+    "deepseek/deepseek-v4-flash",
+    "qwen/qwen3.7-flash"
+   ],
+   "latency_ms_p50": 7843,
+   "not_measured": "the A3 runner's own Claude tokens (its Claude Code session): not exposed to the run"
+  },
+  "consensus": {
+   "warnings": {
+    "tally": {
+     "warning": 3
+    },
+    "verdict": "warning",
+    "agree": 3,
+    "of": 4
+   },
+   "forecast": {
+    "tally": {
+     "disrupted": 1,
+     "normal": 2
+    },
+    "verdict": "normal",
+    "agree": 2,
+    "of": 4
+   },
+   "stations": {
+    "tally": {
+     "unknown": 4
+    },
+    "verdict": "unknown",
+    "agree": 4,
+    "of": 4
+   },
+   "tides": {
+    "tally": {
+     "normal": 3
+    },
+    "verdict": "normal",
+    "agree": 3,
+    "of": 4
+   },
+   "transport": {
+    "tally": {
+     "disrupted": 4
+    },
+    "verdict": "disrupted",
+    "agree": 4,
+    "of": 4
+   },
+   "flights": {
+    "tally": {
+     "disrupted": 3
+    },
+    "verdict": "disrupted",
+    "agree": 3,
+    "of": 4
+   }
+  },
+  "calls": [
+   {
+    "unit": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "task": "stations",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "unknown",
+    "tokens_in": 2477,
+    "tokens_out": 16,
+    "cost_usd": 0.0017523297,
+    "latency_ms": 520,
+    "ledger_id": "20261111T230022-71605ec1",
+    "answer_sha256": "3507fb6ece66932e",
+    "answer_chars": 59,
+    "signed": {
+     "body": {
+      "task": "stations",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2477,
+      "tokens_out": 16,
+      "cost_usd": 0.0017523297,
+      "answer_sha256": "3507fb6ece66932e",
+      "prompt_sha256": "82818d67720e5886"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call stations llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:e99f39bd2fdfb93f",
+      "pub": "MCowBQYDK2VwAyEAB/fQWbCMS71I6pZUhIG2a216qNREzDhJQ4IA2QX2X9o=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "jMsQpr5tc4Cg3tMiJtMx2WE7n/tY1BEUgWhVNGKuFqxFSePpnTDkR04+ngb/UHPobsdP+sPdEqNKFhfwTSXrCA=="
+    }
+   },
+   {
+    "unit": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "task": "warnings",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "warning",
+    "tokens_in": 2223,
+    "tokens_out": 20,
+    "cost_usd": 0.0015766047,
+    "latency_ms": 592,
+    "ledger_id": "20261111T230022-8c596294",
+    "answer_sha256": "1be36d9cea70668a",
+    "answer_chars": 67,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2223,
+      "tokens_out": 20,
+      "cost_usd": 0.0015766047,
+      "answer_sha256": "1be36d9cea70668a",
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:ef4e9efba82ebdc3",
+      "pub": "MCowBQYDK2VwAyEAC6bhZ1SLyCG8BXnPgg7xVVlRB+Z87BA3EVc2mtHU8X8=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "nbe995B6G8Xbe3KdDZ5jL0xtE41hf7A2+pF7+6208iW2QngirRsSScXvcoyqzRJQEau/ReWvQ06Q+5bx/uOHCg=="
+    }
+   },
+   {
+    "unit": "loop:transport:mistral-small-2603/call#1",
+    "task": "transport",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2687,
+    "tokens_out": 39,
+    "cost_usd": 0.00046440405,
+    "latency_ms": 750,
+    "ledger_id": "20261111T230022-437fec7f",
+    "answer_sha256": "3e882faaf7d0fc67",
+    "answer_chars": 147,
+    "signed": {
+     "body": {
+      "task": "transport",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2687,
+      "tokens_out": 39,
+      "cost_usd": 0.00046440405,
+      "answer_sha256": "3e882faaf7d0fc67",
+      "prompt_sha256": "9828fafd76eb8258"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call transport mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:531e52bff8aaf82b",
+      "pub": "MCowBQYDK2VwAyEA61Ou58HgjsgaJQ/JFPA3XUFJJ5B2hcuHd/hNpckKMMI=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "I0lA3y/tDXqI0GlNZcRuQqKQVhgJwGYNf01Mg8W37VqvKWV+qfrKcE3FFJeqeVl/51NyfSYi9a1/KBqBj+pYAg=="
+    }
+   },
+   {
+    "unit": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "task": "tides",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "normal",
+    "tokens_in": 2383,
+    "tokens_out": 38,
+    "cost_usd": 0.0017017209,
+    "latency_ms": 797,
+    "ledger_id": "20261111T230022-5233641e",
+    "answer_sha256": "a18e8e11e1a555e4",
+    "answer_chars": 88,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2383,
+      "tokens_out": 38,
+      "cost_usd": 0.0017017209,
+      "answer_sha256": "a18e8e11e1a555e4",
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:133b3a094ad0495a",
+      "pub": "MCowBQYDK2VwAyEAfCqoNLh0PnAGRg6Q4eORWSddgak9KkgMwnjv7P1kU0M=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "Z+MS9PDudr8xIp7GMCwOfQZpZwP7Ob4LIDHjealL+6dHEh7KuhrOntBZgNcPVaur7SBDjlKh2i2vPlC4EBuDAw=="
+    }
+   },
+   {
+    "unit": "loop:tides:mistral-small-2603/call#1",
+    "task": "tides",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "normal",
+    "tokens_in": 2911,
+    "tokens_out": 52,
+    "cost_usd": 0.00050948865,
+    "latency_ms": 817,
+    "ledger_id": "20261111T230022-0248d3ce",
+    "answer_sha256": "5fc48e37c6f0dba7",
+    "answer_chars": 139,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2911,
+      "tokens_out": 52,
+      "cost_usd": 0.00050948865,
+      "answer_sha256": "5fc48e37c6f0dba7",
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:6052461c5504ff4e",
+      "pub": "MCowBQYDK2VwAyEA3xn9/W+aMc/16xzbtCp9Qxb5DCQOSJCI61upsqGB0zc=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "xz6SD00EuxkSAQ6BCJ1QqaS8xztqq2B6aGafEldOTeKBR4hyKAG9GRUjBIXNvLcvaoLxqjwC3+MI50GG8cV7Cg=="
+    }
+   },
+   {
+    "unit": "loop:tides:deepseek-v4-flash/call#1",
+    "task": "tides",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "normal",
+    "tokens_in": 2478,
+    "tokens_out": 38,
+    "cost_usd": 0.0002275614,
+    "latency_ms": 879,
+    "ledger_id": "20261111T230022-2c6618e5",
+    "answer_sha256": "19f53f706f39ff59",
+    "answer_chars": 92,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2478,
+      "tokens_out": 38,
+      "cost_usd": 0.0002275614,
+      "answer_sha256": "19f53f706f39ff59",
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:30c9e13b1742f585",
+      "pub": "MCowBQYDK2VwAyEAztsN1nYHMw9OXiYKoohZtnHW7rEmoY+2Fr/HRdoUFQI=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "PkDRphPRrs6YFgdQBiOrgMYySnvjemcexRo0FMnZ2Nl6t55IAtcJgonUAjkV7zcQDM3XqRyf+XGJwQ2moYdNAg=="
+    }
+   },
+   {
+    "unit": "loop:warnings:mistral-small-2603/call#1",
+    "task": "warnings",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "warning",
+    "tokens_in": 2554,
+    "tokens_out": 48,
+    "cost_usd": 0.000407781,
+    "latency_ms": 909,
+    "ledger_id": "20261111T230022-f91b8842",
+    "answer_sha256": "8d9b1d8c74751153",
+    "answer_chars": 110,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2554,
+      "tokens_out": 48,
+      "cost_usd": 0.000407781,
+      "answer_sha256": "8d9b1d8c74751153",
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:3426b961f317f83b",
+      "pub": "MCowBQYDK2VwAyEAzFVEO9ZW4Z+8w5/6olwCYftzJm/kD87ZRoo6OAUfF2Q=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "JNNqTHn48NQvmDy7+4HEtmvvMvooQgPvV+4SjZjPIhadaN7F9hJFITcVhiIoHCeAKE/kXWiom3KrEH5UwkL6Dg=="
+    }
+   },
+   {
+    "unit": "loop:flights:mistral-small-2603/call#1",
+    "task": "flights",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2241,
+    "tokens_out": 46,
+    "cost_usd": 0.00039612375,
+    "latency_ms": 1050,
+    "ledger_id": "20261111T230022-ba7e44fd",
+    "answer_sha256": "3497b7921d9fd480",
+    "answer_chars": 145,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2241,
+      "tokens_out": 46,
+      "cost_usd": 0.00039612375,
+      "answer_sha256": "3497b7921d9fd480",
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:5180b5de2ceca7ae",
+      "pub": "MCowBQYDK2VwAyEAFUrRzrzCKJ+WykubIU6KbymcGaUWHHpJCl/DGCp0D5c=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "1PW3A0J42GEsagNeL7AbhsRtbyKiGaTtRf4UrQWdKiZ4yyRP75MlPuTDHkuOB9Pu12jY2IHpfhjYnXc8nUzTBA=="
+    }
+   },
+   {
+    "unit": "loop:stations:mistral-small-2603/call#1",
+    "task": "stations",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "unknown",
+    "tokens_in": 2966,
+    "tokens_out": 29,
+    "cost_usd": 0.0005034447,
+    "latency_ms": 859,
+    "ledger_id": "20261111T230022-faa7e2f9",
+    "answer_sha256": "41f6ed04056d2fc5",
+    "answer_chars": 111,
+    "signed": {
+     "body": {
+      "task": "stations",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2966,
+      "tokens_out": 29,
+      "cost_usd": 0.0005034447,
+      "answer_sha256": "41f6ed04056d2fc5",
+      "prompt_sha256": "82818d67720e5886"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call stations mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:ec718ceac873e30d",
+      "pub": "MCowBQYDK2VwAyEAFdzOtMMGarCt3rkKqA2tpsOJaLhk6RMDkh2bDBk5ssk=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "V+tuJo07lF91RxQuMNhWLPjr1E0htG4KKJZ2YFb6tdWFIzBiY8cHkUxVhumL+83JESy1vJzkyWEx+ixJZx3KDg=="
+    }
+   },
+   {
+    "unit": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "task": "forecast",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2190,
+    "tokens_out": 21,
+    "cost_usd": 0.000487377,
+    "latency_ms": 1235,
+    "ledger_id": "20261111T230022-ca5d7bd1",
+    "answer_sha256": "ea7b7313cb8c3ab9",
+    "answer_chars": 66,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2190,
+      "tokens_out": 21,
+      "cost_usd": 0.000487377,
+      "answer_sha256": "ea7b7313cb8c3ab9",
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:b77e7b75901aed30",
+      "pub": "MCowBQYDK2VwAyEAw7krLWISiIGVYnI2SsrpOfV1FRSVL9c6D4SwC6ElG3E=",
+      "signed_at": "2026-11-11T23:00:23Z"
+     },
+     "sig": "ZR8E/2W0JrCZQot46gctii3sxcf6TO4rayF8phJaGB57y3HjxG9Ev4QjgN53/zGh11gt/TcAZyLzNQXk498zCQ=="
+    }
+   },
+   {
+    "unit": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "task": "flights",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2024,
+    "tokens_out": 25,
+    "cost_usd": 0.0004532022,
+    "latency_ms": 1412,
+    "ledger_id": "20261111T230022-e09a3dd0",
+    "answer_sha256": "ca30b78589f88a1d",
+    "answer_chars": 81,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2024,
+      "tokens_out": 25,
+      "cost_usd": 0.0004532022,
+      "answer_sha256": "ca30b78589f88a1d",
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:64e5f81d1237114f",
+      "pub": "MCowBQYDK2VwAyEAZhsr97+QJtvpbVVT7Q4i+pHXcFbDYuXzFDxNcST6Fp8=",
+      "signed_at": "2026-11-11T23:00:24Z"
+     },
+     "sig": "c0Ci42NO/EKp+1IAtZh34nZ6hDHlwFdbaloMnRr0bN6vA+W6guUcNq7PNNOImvTqyRU9zesW+/wWcKdoPgpGBw=="
+    }
+   },
+   {
+    "unit": "loop:forecast:mistral-small-2603/call#1",
+    "task": "forecast",
+    "model": "mistralai/mistral-small-2603",
+    "served": "mistralai/mistral-small-2603",
+    "status": "ok",
+    "valid": true,
+    "verdict": "normal",
+    "tokens_in": 2451,
+    "tokens_out": 48,
+    "cost_usd": 0.00042702957,
+    "latency_ms": 1120,
+    "ledger_id": "20261111T230022-71b08f78",
+    "answer_sha256": "7bab52b7a072dfac",
+    "answer_chars": 135,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "mistralai/mistral-small-2603",
+      "valid": true,
+      "tokens_in": 2451,
+      "tokens_out": 48,
+      "cost_usd": 0.00042702957,
+      "answer_sha256": "7bab52b7a072dfac",
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast mistral-small-2603 #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:c8eada07fb001acb",
+      "pub": "MCowBQYDK2VwAyEANTXvTKddfd+nXUbcILH609rC/32gGblR0uwz58+0fW8=",
+      "signed_at": "2026-11-11T23:00:24Z"
+     },
+     "sig": "yAtuDIPPnXwIODXQUi+ritH22yng0/bjSgrnYR/YemGgoGNEJW3pJxBbWMO1jKQDbCUanTJOzXOcJ6TIIENTCA=="
+    }
+   },
+   {
+    "unit": "loop:transport:deepseek-v4-flash/call#1",
+    "task": "transport",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2300,
+    "tokens_out": 42,
+    "cost_usd": 0.0002803086,
+    "latency_ms": 1657,
+    "ledger_id": "20261111T230022-792f57c8",
+    "answer_sha256": "d06ff23368f07fe7",
+    "answer_chars": 180,
+    "signed": {
+     "body": {
+      "task": "transport",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2300,
+      "tokens_out": 42,
+      "cost_usd": 0.0002803086,
+      "answer_sha256": "d06ff23368f07fe7",
+      "prompt_sha256": "9828fafd76eb8258"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call transport deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:c710e3c7fe69f411",
+      "pub": "MCowBQYDK2VwAyEAAnKOOJhHVUpApi0PlAR9/RjZm//ICtMa2BEvSVtXo0U=",
+      "signed_at": "2026-11-11T23:00:24Z"
+     },
+     "sig": "uCy38c9dYyXCDjN9GmqoO+UeR0yfq4dadAps+XimfiEN5iw/ZgnXLLZgA6/f3Jrrk05Gg30PQflwxJggLnlFAA=="
+    }
+   },
+   {
+    "unit": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "task": "transport",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "served": "meta-llama/llama-3.3-70b-instruct",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2279,
+    "tokens_out": 20,
+    "cost_usd": 0.0005062662,
+    "latency_ms": 2470,
+    "ledger_id": "20261111T230022-2d7213f1",
+    "answer_sha256": "05eb7561444258e9",
+    "answer_chars": 69,
+    "signed": {
+     "body": {
+      "task": "transport",
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "valid": true,
+      "tokens_in": 2279,
+      "tokens_out": 20,
+      "cost_usd": 0.0005062662,
+      "answer_sha256": "05eb7561444258e9",
+      "prompt_sha256": "9828fafd76eb8258"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call transport llama-3.3-70b-instruct #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:97849957f79e085d",
+      "pub": "MCowBQYDK2VwAyEAQvJOKK4w2xFPMW8DcTlsOdlj2UVVKUMAL88diqCjtdo=",
+      "signed_at": "2026-11-11T23:00:25Z"
+     },
+     "sig": "lfIElggNAWn/ycpEqbq213dApX5nVyLS/4UDK2Fip+ALw7dTWko01PMf/jKs91UbiDpPagF2mVDjISXpUBVVCg=="
+    }
+   },
+   {
+    "unit": "loop:flights:deepseek-v4-flash/call#1",
+    "task": "flights",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2062,
+    "tokens_out": 719,
+    "cost_usd": 0.0001731807,
+    "latency_ms": 6126,
+    "ledger_id": "20261111T230022-fd904a46",
+    "answer_sha256": "7cdb4b4c965d13e3",
+    "answer_chars": 142,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2062,
+      "tokens_out": 719,
+      "cost_usd": 0.0001731807,
+      "answer_sha256": "7cdb4b4c965d13e3",
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:41a3ab3883278150",
+      "pub": "MCowBQYDK2VwAyEA5cTk8vov5leeO+HrzhX9OhTGkkaIE1RO60F1UiW2QFk=",
+      "signed_at": "2026-11-11T23:00:28Z"
+     },
+     "sig": "lNBC3Lzi/RRIPSRMbX2ATiv33TyrUCuzpqoMltcOt9/TrzlJAGk1O5tpPEeApSXjYnz0WHYe4ck8Vh492RuDAQ=="
+    }
+   },
+   {
+    "unit": "loop:forecast:deepseek-v4-flash/call#1",
+    "task": "forecast",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "normal",
+    "tokens_in": 2303,
+    "tokens_out": 981,
+    "cost_usd": 0.000211033053,
+    "latency_ms": 7843,
+    "ledger_id": "20261111T230022-c850ae89",
+    "answer_sha256": "d99708fc37cb60d3",
+    "answer_chars": 94,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2303,
+      "tokens_out": 981,
+      "cost_usd": 0.000211033053,
+      "answer_sha256": "d99708fc37cb60d3",
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:cfe58252bd3995fe",
+      "pub": "MCowBQYDK2VwAyEAGOnaRN+TrslYdq+ShFCjqMyiGsUJzT4BnNDBSUeaiUc=",
+      "signed_at": "2026-11-11T23:00:30Z"
+     },
+     "sig": "EW5LgKCzhprlA+UNl7fs7ju3+DC1Lz/DbF0QxAdCN9eJF2Xz8Lul4M6paQ8OWGzpv65Uuh8Y3RvhFBWeIDnBDA=="
+    }
+   },
+   {
+    "unit": "loop:warnings:deepseek-v4-flash/call#1",
+    "task": "warnings",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "warning",
+    "tokens_in": 2296,
+    "tokens_out": 384,
+    "cost_usd": 0.000136637424,
+    "latency_ms": 12882,
+    "ledger_id": "20261111T230022-df5647b1",
+    "answer_sha256": "d8a570fcb3d9db97",
+    "answer_chars": 124,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2296,
+      "tokens_out": 384,
+      "cost_usd": 0.000136637424,
+      "answer_sha256": "d8a570fcb3d9db97",
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:0577b883528d0eac",
+      "pub": "MCowBQYDK2VwAyEAqUwF9O6bjNAApZXkNvWkGx8cvF7eANze8uXegtf2Hxc=",
+      "signed_at": "2026-11-11T23:00:36Z"
+     },
+     "sig": "88Whd/e4DVwKHapjkr74wLDChGGbN1DWQdqzXAVW7DL11oXKFu+0U5Z61oOaGRaZA7MJaDGQaap7Vvrn7WKADg=="
+    }
+   },
+   {
+    "unit": "loop:warnings:qwen3.7-flash/call#1",
+    "task": "warnings",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2607,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 13996,
+    "ledger_id": "20261111T230022-9bdb7372",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2607,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002096523,
+      "answer_sha256": null,
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:b08b98d9b98aa67b",
+      "pub": "MCowBQYDK2VwAyEA+iJmZwQg74bIEF/SV0Q20EoJ+0VZG+E7WFdB3StgB4o=",
+      "signed_at": "2026-11-11T23:00:36Z"
+     },
+     "sig": "GQu3HOj9w7rsslOHBp07rNoNXRG6u0qBKP6/Uf8tD5fFkqNE/rJDjAeilkCLrNu6WKIGEprOveNkWVm/oJWBDA=="
+    }
+   },
+   {
+    "unit": "loop:stations:deepseek-v4-flash/call#1",
+    "task": "stations",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2730,
+    "tokens_out": 1500,
+    "cost_usd": 0.0005162157,
+    "latency_ms": 14080,
+    "ledger_id": "20261111T230022-abaf843d",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "stations",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": false,
+      "tokens_in": 2730,
+      "tokens_out": 1500,
+      "cost_usd": 0.0005162157,
+      "answer_sha256": null,
+      "prompt_sha256": "82818d67720e5886"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call stations deepseek-v4-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:c0468ed07b423b7e",
+      "pub": "MCowBQYDK2VwAyEAJEKbiwgdPPaXIe3wIBVZgMK5/tayKqCdWU/e3IjEqFg=",
+      "signed_at": "2026-11-11T23:00:36Z"
+     },
+     "sig": "k0yRxTnKcumGtFPju6oyG6siRQkXIsHv1NCL6/U+ASXXH7uKlpvkyDCRKJ9oxIvDso7XiRnhT66dhXEFPCReBQ=="
+    }
+   },
+   {
+    "unit": "loop:tides:qwen3.7-flash/call#1",
+    "task": "tides",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2805,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 14146,
+    "ledger_id": "20261111T230022-da055e10",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2805,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002155329,
+      "answer_sha256": null,
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:53dec8261c8a8cfc",
+      "pub": "MCowBQYDK2VwAyEAZVjqmyDZQmOxSMpTipEKWa6WQ+m0lME0Z9RNw03wUwY=",
+      "signed_at": "2026-11-11T23:00:36Z"
+     },
+     "sig": "6SaHUt1bqxc4OezwjjJoNqFFuxyvYNaHy5hCiB9g7x7hvbLkrMzelm6XwnUdORvu56wBA3vwQ84mVI2qm5WoCQ=="
+    }
+   },
+   {
+    "unit": "loop:transport:qwen3.7-flash/call#1",
+    "task": "transport",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "disrupted",
+    "tokens_in": 2750,
+    "tokens_out": 1438,
+    "cost_usd": 0.00020592,
+    "latency_ms": 15617,
+    "ledger_id": "20261111T230022-3581b50a",
+    "answer_sha256": "0a815c08d9a064a0",
+    "answer_chars": 181,
+    "signed": {
+     "body": {
+      "task": "transport",
+      "model": "qwen/qwen3.7-flash",
+      "valid": true,
+      "tokens_in": 2750,
+      "tokens_out": 1438,
+      "cost_usd": 0.00020592,
+      "answer_sha256": "0a815c08d9a064a0",
+      "prompt_sha256": "9828fafd76eb8258"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call transport qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:5f5b322cb5de66db",
+      "pub": "MCowBQYDK2VwAyEA0Hus29UJizfHctHkSrQVQRy8piLqPd2qU9mbpiQT9Gg=",
+      "signed_at": "2026-11-11T23:00:38Z"
+     },
+     "sig": "d/HmWo6izlBqQosR6Yl+VybW9BWAriIlb7H/oMfBRq68Xpli6SivpYa8862n2zYS8RIcCgD7B4DONo8KPXm1Ag=="
+    }
+   },
+   {
+    "unit": "loop:forecast:qwen3.7-flash/call#1",
+    "task": "forecast",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2547,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15825,
+    "ledger_id": "20261111T230022-75d5251c",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2547,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021699414,
+      "answer_sha256": null,
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:ba3c04f3f5acc4cd",
+      "pub": "MCowBQYDK2VwAyEAdWH8aVkzyny6c52S7RPx29/kPHC6XD6W0KyLdKTmffk=",
+      "signed_at": "2026-11-11T23:00:38Z"
+     },
+     "sig": "l6Fcsj/G3/I9pEuajCpAyRSkMYIwJVM3xloGZtA4Lt1U/kR9RaAj8mNfT9OH6j5eFDcdnQtzygIqFKRC5FfTDg=="
+    }
+   },
+   {
+    "unit": "loop:stations:qwen3.7-flash/call#1",
+    "task": "stations",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "unknown",
+    "tokens_in": 3064,
+    "tokens_out": 1432,
+    "cost_usd": 0.00020839104,
+    "latency_ms": 16433,
+    "ledger_id": "20261111T230022-cd73fe98",
+    "answer_sha256": "70d008cf7dcc4e01",
+    "answer_chars": 131,
+    "signed": {
+     "body": {
+      "task": "stations",
+      "model": "qwen/qwen3.7-flash",
+      "valid": true,
+      "tokens_in": 3064,
+      "tokens_out": 1432,
+      "cost_usd": 0.00020839104,
+      "answer_sha256": "70d008cf7dcc4e01",
+      "prompt_sha256": "82818d67720e5886"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call stations qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:ae8892f283e2cf3f",
+      "pub": "MCowBQYDK2VwAyEAzZOJjlnjaDEqyJQvbEmGJBAYxbZPjvAjzCjp1+BLFtM=",
+      "signed_at": "2026-11-11T23:00:39Z"
+     },
+     "sig": "aERIM+hw2rUD0Q2qUdIYeaO1zcm22u+FNVa3TiqeKX0HvuYTs2S9t6uPrUqlVnuFB8uY9oglVunMiLB4Eq/1DQ=="
+    }
+   },
+   {
+    "unit": "loop:stations:deepseek-v4-flash/call#2",
+    "task": "stations",
+    "model": "deepseek/deepseek-v4-flash",
+    "served": "deepseek/deepseek-v4-flash",
+    "status": "ok",
+    "valid": true,
+    "verdict": "unknown",
+    "tokens_in": 2651,
+    "tokens_out": 32,
+    "cost_usd": 0.0000594297,
+    "latency_ms": 3387,
+    "ledger_id": "20261111T230036-28e02dfa",
+    "answer_sha256": "7fe223da7b55d189",
+    "answer_chars": 125,
+    "signed": {
+     "body": {
+      "task": "stations",
+      "model": "deepseek/deepseek-v4-flash",
+      "valid": true,
+      "tokens_in": 2651,
+      "tokens_out": 32,
+      "cost_usd": 0.0000594297,
+      "answer_sha256": "7fe223da7b55d189",
+      "prompt_sha256": "82818d67720e5886"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call stations deepseek-v4-flash #2 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:cc9f4cacffbe26a9",
+      "pub": "MCowBQYDK2VwAyEAav6qVCt1c+nF5L1lJYeTliQDUsRlIF0eGlgIni6r2co=",
+      "signed_at": "2026-11-11T23:00:40Z"
+     },
+     "sig": "l1IkE6JzM28eN5zGqqVLPmwi+cZ5dsP+OoMpO1mNSjdsFiONmjcYDDseOGt91CZ2bmIlfZKOhfH3hJUXKoVMDQ=="
+    }
+   },
+   {
+    "unit": "loop:flights:qwen3.7-flash/call#1",
+    "task": "flights",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2350,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 18123,
+    "ledger_id": "20261111T230022-7bf4a26a",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2350,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021114324,
+      "answer_sha256": null,
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights qwen3.7-flash #1 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:96a42ed38f354a31",
+      "pub": "MCowBQYDK2VwAyEAVhG1Es88A9Vgi2pYZDmypcqB+0dRy3fkYwoYSkvatB8=",
+      "signed_at": "2026-11-11T23:00:40Z"
+     },
+     "sig": "/IfxAip2ykAI1bpy0rIbPRltKfvTTs0IHWqOePiYxiufN9Pu4XdWl30W5uuHW8JvldWTqySIjfvIbnCzpfc2Ag=="
+    }
+   },
+   {
+    "unit": "loop:tides:qwen3.7-flash/call#2",
+    "task": "tides",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2805,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 16100,
+    "ledger_id": "20261111T230036-054a81e8",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2805,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002155329,
+      "answer_sha256": null,
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides qwen3.7-flash #2 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:bef09fb6620ce6b0",
+      "pub": "MCowBQYDK2VwAyEAQ0ei1bDhRA6gfdyd88FVWiPTSSYGYp5Zy+1pqeRSy0g=",
+      "signed_at": "2026-11-11T23:00:52Z"
+     },
+     "sig": "hdtGPeMB4QX3A4P/E5zfs0rtMWUvVB4r6GYzBUnie/GAaRiC66U3wRDRP4l0nUjmONgsDEZ2SagVmE9uT53aAg=="
+    }
+   },
+   {
+    "unit": "loop:forecast:qwen3.7-flash/call#2",
+    "task": "forecast",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2547,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15168,
+    "ledger_id": "20261111T230038-74df28db",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2547,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021699414,
+      "answer_sha256": null,
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast qwen3.7-flash #2 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:d0f66e1530d713e5",
+      "pub": "MCowBQYDK2VwAyEAknO32mnldy6sLy+WgOn325zaeEoGBPKyVwCGL4o+gT0=",
+      "signed_at": "2026-11-11T23:00:53Z"
+     },
+     "sig": "jHBIXAiAYYx4nBIqffX/7RbzUxf70MgU1+N7+J6PJJ483I+20AqdLqLiZ7ZkiN7HTgGOVPlKBV0AMw2k/927AA=="
+    }
+   },
+   {
+    "unit": "loop:warnings:qwen3.7-flash/call#2",
+    "task": "warnings",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2607,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 17161,
+    "ledger_id": "20261111T230036-06ddf559",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2607,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002096523,
+      "answer_sha256": null,
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings qwen3.7-flash #2 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:83d31881c201fc4c",
+      "pub": "MCowBQYDK2VwAyEAV79f+fNYjxNoy23cce8aNdNOpeC2fm4IiCDaTJsoVXY=",
+      "signed_at": "2026-11-11T23:00:53Z"
+     },
+     "sig": "Ve8eeEggmnOoUaowA6imTMcCBR1IW22ZLH7FCDXb9eKbuZL0lKDrbsnGKEsYRm1wp10HiFeN1l242gRx1UzoCw=="
+    }
+   },
+   {
+    "unit": "loop:flights:qwen3.7-flash/call#2",
+    "task": "flights",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2350,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 17282,
+    "ledger_id": "20261111T230040-24117980",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2350,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021114324,
+      "answer_sha256": null,
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights qwen3.7-flash #2 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:7e40de778d4d40d3",
+      "pub": "MCowBQYDK2VwAyEAgpLPMtxUdilOXEfxnrLt+RrXq7lmQyNit+1YONKBRdg=",
+      "signed_at": "2026-11-11T23:00:58Z"
+     },
+     "sig": "1KaqiZu2dV+78ZIy/IZV0oRkV6qzIomOYglddzyDdHyITySN7yngscdOSaM9IxqvTRFojNzqOOHIi+VCurJfDw=="
+    }
+   },
+   {
+    "unit": "loop:tides:qwen3.7-flash/call#3",
+    "task": "tides",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2805,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 15336,
+    "ledger_id": "20261111T230052-1fcee27e",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "tides",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2805,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002155329,
+      "answer_sha256": null,
+      "prompt_sha256": "207f592af026ac07"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call tides qwen3.7-flash #3 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:01dc0996cee1a91d",
+      "pub": "MCowBQYDK2VwAyEA3DdaHO7DyoMrybl0dcS+eQAqUKrNHaDd/vMFULLXKPA=",
+      "signed_at": "2026-11-11T23:01:08Z"
+     },
+     "sig": "GL4OmXVB+2nau+PP6aNQqTkRV1ApjBOUhRf63vnD92q7PV3qWk65pwd2Rwt72E5HTwrG3JfLevtV4p43xeETAQ=="
+    }
+   },
+   {
+    "unit": "loop:warnings:qwen3.7-flash/call#3",
+    "task": "warnings",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2607,
+    "tokens_out": 1500,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 15376,
+    "ledger_id": "20261111T230053-f75b99cd",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "warnings",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2607,
+      "tokens_out": 1500,
+      "cost_usd": 0.0002096523,
+      "answer_sha256": null,
+      "prompt_sha256": "55d4b35436d3cdb1"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call warnings qwen3.7-flash #3 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:3ff72c1d572b1997",
+      "pub": "MCowBQYDK2VwAyEArceQEv2272ob0WS3kLH69TVzedQVF4iDjbVYUWonHAE=",
+      "signed_at": "2026-11-11T23:01:09Z"
+     },
+     "sig": "hpITRI/3rJks4mCVi/SACLbHWNaYLdNgKjrEpZBpOHuuwiDRR8sqFjmwcq5qMITYscJoG86wvZ12VsOMqRtXAQ=="
+    }
+   },
+   {
+    "unit": "loop:forecast:qwen3.7-flash/call#3",
+    "task": "forecast",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2547,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15867,
+    "ledger_id": "20261111T230053-217e360e",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "forecast",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2547,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021699414,
+      "answer_sha256": null,
+      "prompt_sha256": "e692417e99627082"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call forecast qwen3.7-flash #3 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:5a85da66a44f19f8",
+      "pub": "MCowBQYDK2VwAyEAP4i8mtxaXSNx0csqHkmZQIs5BWIRjDIkGbsgIlwSWQU=",
+      "signed_at": "2026-11-11T23:01:09Z"
+     },
+     "sig": "o5u28fRH/K4yiHYLANrhk7mXZObKyq2NsiY834HqCwQ4J9C+MQLCsxIC32CXNukeYwfkxRZhChYWPtjC/njcBg=="
+    }
+   },
+   {
+    "unit": "loop:flights:qwen3.7-flash/call#3",
+    "task": "flights",
+    "model": "qwen/qwen3.7-flash",
+    "served": "qwen/qwen3.7-flash",
+    "status": "ok",
+    "valid": false,
+    "verdict": null,
+    "tokens_in": 2350,
+    "tokens_out": 1500,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 16688,
+    "ledger_id": "20261111T230058-627beeff",
+    "answer_sha256": null,
+    "answer_chars": 0,
+    "signed": {
+     "body": {
+      "task": "flights",
+      "model": "qwen/qwen3.7-flash",
+      "valid": false,
+      "tokens_in": 2350,
+      "tokens_out": 1500,
+      "cost_usd": 0.00021114324,
+      "answer_sha256": null,
+      "prompt_sha256": "f24d5c21fa35dec8"
+     },
+     "by": {
+      "altitude": "A1",
+      "name": "LLM call flights qwen3.7-flash #3 by runner.1.swarm@PrompTugal.dinis",
+      "fp": "sha256:8ba50141fe3f6ed6",
+      "pub": "MCowBQYDK2VwAyEA1gHOq6M1MGGnfgeY/A33n/sIppGFE0ONRd1JrFz48+A=",
+      "signed_at": "2026-11-11T23:01:14Z"
+     },
+     "sig": "iRYnPlSxtffVea99v77Q1SAm+uqdHHOdv66mplbHDwVQh6WHoWyTXRXmyElPKldrNs7Q/8pWcLMQBw4j/vmSDQ=="
+    }
+   }
+  ],
+  "nodes": [
+   {
+    "id": "dinis",
+    "kind": "person",
+    "altitude": "P",
+    "label": "Dinis"
+   },
+   {
+    "id": "swarm.1",
+    "kind": "swarm",
+    "altitude": "A4",
+    "label": "swarm.1.fringe@PrompTugal.dinis"
+   },
+   {
+    "id": "github",
+    "kind": "capability",
+    "altitude": "C",
+    "label": "GitHub (dev)",
+    "edge": "pushes"
+   },
+   {
+    "id": "packet:s002-storm-six",
+    "kind": "task",
+    "altitude": "T",
+    "label": "packet s002-storm-six",
+    "edge": "carries"
+   },
+   {
+    "id": "runner",
+    "kind": "agent",
+    "altitude": "A3",
+    "label": "runner.1.swarm@PrompTugal.dinis",
+    "env": "R1 Claude Code cloud",
+    "account": "riskmandate-personal"
+   },
+   {
+    "id": "openrouter",
+    "kind": "provider",
+    "altitude": "M",
+    "label": "OpenRouter"
+   },
+   {
+    "id": "loop:warnings:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "warnings · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:warnings:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/warnings.json"
+   },
+   {
+    "id": "data:warnings",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "weather/warnings.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json",
+    "bytes": 20252,
+    "sha256": "25370c8c20ddfecd",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:warnings:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "warnings · mistral-small-2603"
+   },
+   {
+    "id": "loop:warnings:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/warnings.json"
+   },
+   {
+    "id": "loop:warnings:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "warnings · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:warnings:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/warnings.json"
+   },
+   {
+    "id": "loop:warnings:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "warnings · qwen3.7-flash"
+   },
+   {
+    "id": "loop:warnings:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/warnings.json"
+   },
+   {
+    "id": "loop:forecast:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "forecast · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:forecast:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/forecast.json"
+   },
+   {
+    "id": "data:forecast",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "weather/forecast.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/forecast.json",
+    "bytes": 71344,
+    "sha256": "2487c0661642f43f",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:forecast:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "forecast · mistral-small-2603"
+   },
+   {
+    "id": "loop:forecast:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/forecast.json"
+   },
+   {
+    "id": "loop:forecast:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "forecast · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:forecast:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/forecast.json"
+   },
+   {
+    "id": "loop:forecast:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "forecast · qwen3.7-flash"
+   },
+   {
+    "id": "loop:forecast:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/forecast.json"
+   },
+   {
+    "id": "loop:stations:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "stations · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:stations:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/stations.json"
+   },
+   {
+    "id": "data:stations",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "weather/stations.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/stations.json",
+    "bytes": 80404,
+    "sha256": "2ee24217ebbd7923",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:stations:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "stations · mistral-small-2603"
+   },
+   {
+    "id": "loop:stations:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/stations.json"
+   },
+   {
+    "id": "loop:stations:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "stations · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:stations:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/stations.json"
+   },
+   {
+    "id": "loop:stations:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "stations · qwen3.7-flash"
+   },
+   {
+    "id": "loop:stations:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read weather/stations.json"
+   },
+   {
+    "id": "loop:tides:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "tides · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:tides:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read exposure/tides.json"
+   },
+   {
+    "id": "data:tides",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "exposure/tides.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json",
+    "bytes": 24836,
+    "sha256": "c99f98b06ca62105",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:tides:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "tides · mistral-small-2603"
+   },
+   {
+    "id": "loop:tides:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read exposure/tides.json"
+   },
+   {
+    "id": "loop:tides:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "tides · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:tides:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read exposure/tides.json"
+   },
+   {
+    "id": "loop:tides:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "tides · qwen3.7-flash"
+   },
+   {
+    "id": "loop:tides:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read exposure/tides.json"
+   },
+   {
+    "id": "loop:transport:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "transport · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:transport:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/services.json"
+   },
+   {
+    "id": "data:transport",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "transport/services.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json",
+    "bytes": 17321,
+    "sha256": "05e53015be4c5bf7",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:transport:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "transport · mistral-small-2603"
+   },
+   {
+    "id": "loop:transport:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/services.json"
+   },
+   {
+    "id": "loop:transport:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "transport · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:transport:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/services.json"
+   },
+   {
+    "id": "loop:transport:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "transport · qwen3.7-flash"
+   },
+   {
+    "id": "loop:transport:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/services.json"
+   },
+   {
+    "id": "loop:flights:deepseek-v4-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "flights · deepseek-v4-flash"
+   },
+   {
+    "id": "loop:flights:deepseek-v4-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/flights.json"
+   },
+   {
+    "id": "data:flights",
+    "kind": "dataset",
+    "altitude": "D",
+    "label": "transport/flights.json",
+    "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json",
+    "bytes": 20302,
+    "sha256": "501e7f72f5462410",
+    "read_at": "2026-11-11T23:00:22Z"
+   },
+   {
+    "id": "loop:flights:mistral-small-2603",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "flights · mistral-small-2603"
+   },
+   {
+    "id": "loop:flights:mistral-small-2603/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/flights.json"
+   },
+   {
+    "id": "loop:flights:llama-3.3-70b-instruct",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "flights · llama-3.3-70b-instruct"
+   },
+   {
+    "id": "loop:flights:llama-3.3-70b-instruct/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/flights.json"
+   },
+   {
+    "id": "loop:flights:qwen3.7-flash",
+    "kind": "loop",
+    "altitude": "A2",
+    "label": "flights · qwen3.7-flash"
+   },
+   {
+    "id": "loop:flights:qwen3.7-flash/read",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "read transport/flights.json"
+   },
+   {
+    "id": "loop:warnings:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:0577b883528d0eac",
+    "valid": true,
+    "tokens": 2680,
+    "cost_usd": 0.000136637424,
+    "latency_ms": 12882
+   },
+   {
+    "id": "loop:forecast:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:c8eada07fb001acb",
+    "valid": true,
+    "tokens": 2499,
+    "cost_usd": 0.00042702957,
+    "latency_ms": 1120
+   },
+   {
+    "id": "loop:warnings:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:b08b98d9b98aa67b",
+    "valid": false,
+    "tokens": 4107,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 13996
+   },
+   {
+    "id": "loop:tides:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:6052461c5504ff4e",
+    "valid": true,
+    "tokens": 2963,
+    "cost_usd": 0.00050948865,
+    "latency_ms": 817
+   },
+   {
+    "id": "loop:flights:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:5180b5de2ceca7ae",
+    "valid": true,
+    "tokens": 2287,
+    "cost_usd": 0.00039612375,
+    "latency_ms": 1050
+   },
+   {
+    "id": "loop:forecast:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:ba3c04f3f5acc4cd",
+    "valid": false,
+    "tokens": 4047,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15825
+   },
+   {
+    "id": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:64e5f81d1237114f",
+    "valid": true,
+    "tokens": 2049,
+    "cost_usd": 0.0004532022,
+    "latency_ms": 1412
+   },
+   {
+    "id": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:133b3a094ad0495a",
+    "valid": true,
+    "tokens": 2421,
+    "cost_usd": 0.0017017209,
+    "latency_ms": 797
+   },
+   {
+    "id": "loop:warnings:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:3426b961f317f83b",
+    "valid": true,
+    "tokens": 2602,
+    "cost_usd": 0.000407781,
+    "latency_ms": 909
+   },
+   {
+    "id": "loop:flights:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:96a42ed38f354a31",
+    "valid": false,
+    "tokens": 3850,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 18123
+   },
+   {
+    "id": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:ef4e9efba82ebdc3",
+    "valid": true,
+    "tokens": 2243,
+    "cost_usd": 0.0015766047,
+    "latency_ms": 592
+   },
+   {
+    "id": "loop:flights:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:41a3ab3883278150",
+    "valid": true,
+    "tokens": 2781,
+    "cost_usd": 0.0001731807,
+    "latency_ms": 6126
+   },
+   {
+    "id": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:b77e7b75901aed30",
+    "valid": true,
+    "tokens": 2211,
+    "cost_usd": 0.000487377,
+    "latency_ms": 1235
+   },
+   {
+    "id": "loop:transport:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:531e52bff8aaf82b",
+    "valid": true,
+    "tokens": 2726,
+    "cost_usd": 0.00046440405,
+    "latency_ms": 750
+   },
+   {
+    "id": "loop:transport:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:5f5b322cb5de66db",
+    "valid": true,
+    "tokens": 4188,
+    "cost_usd": 0.00020592,
+    "latency_ms": 15617
+   },
+   {
+    "id": "loop:forecast:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:cfe58252bd3995fe",
+    "valid": true,
+    "tokens": 3284,
+    "cost_usd": 0.000211033053,
+    "latency_ms": 7843
+   },
+   {
+    "id": "loop:tides:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:30c9e13b1742f585",
+    "valid": true,
+    "tokens": 2516,
+    "cost_usd": 0.0002275614,
+    "latency_ms": 879
+   },
+   {
+    "id": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:e99f39bd2fdfb93f",
+    "valid": true,
+    "tokens": 2493,
+    "cost_usd": 0.0017523297,
+    "latency_ms": 520
+   },
+   {
+    "id": "loop:stations:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:ae8892f283e2cf3f",
+    "valid": true,
+    "tokens": 4496,
+    "cost_usd": 0.00020839104,
+    "latency_ms": 16433
+   },
+   {
+    "id": "loop:stations:mistral-small-2603/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "mistral-small-2603 #1",
+    "model": "mistralai/mistral-small-2603",
+    "key_fp": "sha256:ec718ceac873e30d",
+    "valid": true,
+    "tokens": 2995,
+    "cost_usd": 0.0005034447,
+    "latency_ms": 859
+   },
+   {
+    "id": "loop:transport:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:c710e3c7fe69f411",
+    "valid": true,
+    "tokens": 2342,
+    "cost_usd": 0.0002803086,
+    "latency_ms": 1657
+   },
+   {
+    "id": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "llama-3.3-70b-instruct #1",
+    "model": "meta-llama/llama-3.3-70b-instruct",
+    "key_fp": "sha256:97849957f79e085d",
+    "valid": true,
+    "tokens": 2299,
+    "cost_usd": 0.0005062662,
+    "latency_ms": 2470
+   },
+   {
+    "id": "loop:tides:qwen3.7-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #1",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:53dec8261c8a8cfc",
+    "valid": false,
+    "tokens": 4305,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 14146
+   },
+   {
+    "id": "loop:stations:deepseek-v4-flash/call#1",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #1",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:c0468ed07b423b7e",
+    "valid": false,
+    "tokens": 4230,
+    "cost_usd": 0.0005162157,
+    "latency_ms": 14080
+   },
+   {
+    "id": "loop:warnings:qwen3.7-flash/call#2",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #2",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:83d31881c201fc4c",
+    "valid": false,
+    "tokens": 4107,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 17161
+   },
+   {
+    "id": "loop:stations:deepseek-v4-flash/call#2",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "deepseek-v4-flash #2",
+    "model": "deepseek/deepseek-v4-flash",
+    "key_fp": "sha256:cc9f4cacffbe26a9",
+    "valid": true,
+    "tokens": 2683,
+    "cost_usd": 0.0000594297,
+    "latency_ms": 3387
+   },
+   {
+    "id": "loop:tides:qwen3.7-flash/call#2",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #2",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:bef09fb6620ce6b0",
+    "valid": false,
+    "tokens": 4305,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 16100
+   },
+   {
+    "id": "loop:forecast:qwen3.7-flash/call#2",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #2",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:d0f66e1530d713e5",
+    "valid": false,
+    "tokens": 4047,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15168
+   },
+   {
+    "id": "loop:flights:qwen3.7-flash/call#2",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #2",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:7e40de778d4d40d3",
+    "valid": false,
+    "tokens": 3850,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 17282
+   },
+   {
+    "id": "loop:tides:qwen3.7-flash/call#3",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #3",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:01dc0996cee1a91d",
+    "valid": false,
+    "tokens": 4305,
+    "cost_usd": 0.0002155329,
+    "latency_ms": 15336
+   },
+   {
+    "id": "loop:forecast:qwen3.7-flash/call#3",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #3",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:5a85da66a44f19f8",
+    "valid": false,
+    "tokens": 4047,
+    "cost_usd": 0.00021699414,
+    "latency_ms": 15867
+   },
+   {
+    "id": "loop:warnings:qwen3.7-flash/call#3",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #3",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:3ff72c1d572b1997",
+    "valid": false,
+    "tokens": 4107,
+    "cost_usd": 0.0002096523,
+    "latency_ms": 15376
+   },
+   {
+    "id": "loop:flights:qwen3.7-flash/call#3",
+    "kind": "llm-call",
+    "altitude": "A1",
+    "label": "qwen3.7-flash #3",
+    "model": "qwen/qwen3.7-flash",
+    "key_fp": "sha256:8ba50141fe3f6ed6",
+    "valid": false,
+    "tokens": 3850,
+    "cost_usd": 0.00021114324,
+    "latency_ms": 16688
+   },
+   {
+    "id": "consensus:warnings",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus warnings"
+   },
+   {
+    "id": "consensus:forecast",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus forecast"
+   },
+   {
+    "id": "consensus:stations",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus stations"
+   },
+   {
+    "id": "consensus:tides",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus tides"
+   },
+   {
+    "id": "consensus:transport",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus transport"
+   },
+   {
+    "id": "consensus:flights",
+    "kind": "compute",
+    "altitude": "A0",
+    "label": "consensus flights"
+   }
+  ],
+  "edges": [
+   {
+    "from": "dinis",
+    "to": "swarm.1",
+    "kind": "asks"
+   },
+   {
+    "from": "swarm.1",
+    "to": "github",
+    "kind": "pushes"
+   },
+   {
+    "from": "github",
+    "to": "packet:s002-storm-six",
+    "kind": "carries"
+   },
+   {
+    "from": "packet:s002-storm-six",
+    "to": "runner",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "loop:warnings:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:warnings:deepseek-v4-flash",
+    "to": "loop:warnings:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:warnings:deepseek-v4-flash/read",
+    "to": "data:warnings",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:warnings:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:warnings:mistral-small-2603",
+    "to": "loop:warnings:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:warnings:mistral-small-2603/read",
+    "to": "data:warnings",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:warnings:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:warnings:llama-3.3-70b-instruct",
+    "to": "loop:warnings:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:warnings:llama-3.3-70b-instruct/read",
+    "to": "data:warnings",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:warnings:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash",
+    "to": "loop:warnings:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash/read",
+    "to": "data:warnings",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:forecast:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:forecast:deepseek-v4-flash",
+    "to": "loop:forecast:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:forecast:deepseek-v4-flash/read",
+    "to": "data:forecast",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:forecast:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:forecast:mistral-small-2603",
+    "to": "loop:forecast:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:forecast:mistral-small-2603/read",
+    "to": "data:forecast",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:forecast:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:forecast:llama-3.3-70b-instruct",
+    "to": "loop:forecast:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:forecast:llama-3.3-70b-instruct/read",
+    "to": "data:forecast",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:forecast:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash",
+    "to": "loop:forecast:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash/read",
+    "to": "data:forecast",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:stations:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash",
+    "to": "loop:stations:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash/read",
+    "to": "data:stations",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:stations:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:stations:mistral-small-2603",
+    "to": "loop:stations:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:stations:mistral-small-2603/read",
+    "to": "data:stations",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:stations:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:stations:llama-3.3-70b-instruct",
+    "to": "loop:stations:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:stations:llama-3.3-70b-instruct/read",
+    "to": "data:stations",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:stations:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:stations:qwen3.7-flash",
+    "to": "loop:stations:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:stations:qwen3.7-flash/read",
+    "to": "data:stations",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:tides:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:tides:deepseek-v4-flash",
+    "to": "loop:tides:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:tides:deepseek-v4-flash/read",
+    "to": "data:tides",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:tides:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:tides:mistral-small-2603",
+    "to": "loop:tides:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:tides:mistral-small-2603/read",
+    "to": "data:tides",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:tides:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:tides:llama-3.3-70b-instruct",
+    "to": "loop:tides:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:tides:llama-3.3-70b-instruct/read",
+    "to": "data:tides",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:tides:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash",
+    "to": "loop:tides:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash/read",
+    "to": "data:tides",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:transport:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:transport:deepseek-v4-flash",
+    "to": "loop:transport:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:transport:deepseek-v4-flash/read",
+    "to": "data:transport",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:transport:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:transport:mistral-small-2603",
+    "to": "loop:transport:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:transport:mistral-small-2603/read",
+    "to": "data:transport",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:transport:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:transport:llama-3.3-70b-instruct",
+    "to": "loop:transport:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:transport:llama-3.3-70b-instruct/read",
+    "to": "data:transport",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:transport:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:transport:qwen3.7-flash",
+    "to": "loop:transport:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:transport:qwen3.7-flash/read",
+    "to": "data:transport",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:flights:deepseek-v4-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:flights:deepseek-v4-flash",
+    "to": "loop:flights:deepseek-v4-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:flights:deepseek-v4-flash/read",
+    "to": "data:flights",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:flights:mistral-small-2603",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:flights:mistral-small-2603",
+    "to": "loop:flights:mistral-small-2603/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:flights:mistral-small-2603/read",
+    "to": "data:flights",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:flights:llama-3.3-70b-instruct",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:flights:llama-3.3-70b-instruct",
+    "to": "loop:flights:llama-3.3-70b-instruct/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:flights:llama-3.3-70b-instruct/read",
+    "to": "data:flights",
+    "kind": "reads"
+   },
+   {
+    "from": "runner",
+    "to": "loop:flights:qwen3.7-flash",
+    "kind": "starts"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash",
+    "to": "loop:flights:qwen3.7-flash/read",
+    "kind": "runs"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash/read",
+    "to": "data:flights",
+    "kind": "reads"
+   },
+   {
+    "from": "loop:warnings:deepseek-v4-flash",
+    "to": "loop:warnings:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:mistral-small-2603",
+    "to": "loop:forecast:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash",
+    "to": "loop:warnings:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:mistral-small-2603",
+    "to": "loop:tides:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:mistral-small-2603",
+    "to": "loop:flights:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash",
+    "to": "loop:forecast:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:llama-3.3-70b-instruct",
+    "to": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:llama-3.3-70b-instruct",
+    "to": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:warnings:mistral-small-2603",
+    "to": "loop:warnings:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash",
+    "to": "loop:flights:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:warnings:llama-3.3-70b-instruct",
+    "to": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:deepseek-v4-flash",
+    "to": "loop:flights:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:llama-3.3-70b-instruct",
+    "to": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:transport:mistral-small-2603",
+    "to": "loop:transport:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:transport:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:transport:qwen3.7-flash",
+    "to": "loop:transport:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:transport:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:deepseek-v4-flash",
+    "to": "loop:forecast:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:deepseek-v4-flash",
+    "to": "loop:tides:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:stations:llama-3.3-70b-instruct",
+    "to": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:stations:qwen3.7-flash",
+    "to": "loop:stations:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:stations:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:stations:mistral-small-2603",
+    "to": "loop:stations:mistral-small-2603/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:stations:mistral-small-2603/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:transport:deepseek-v4-flash",
+    "to": "loop:transport:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:transport:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:transport:llama-3.3-70b-instruct",
+    "to": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash",
+    "to": "loop:tides:qwen3.7-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash",
+    "to": "loop:stations:deepseek-v4-flash/call#1",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash/call#1",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash",
+    "to": "loop:warnings:qwen3.7-flash/call#2",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash/call#2",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash",
+    "to": "loop:stations:deepseek-v4-flash/call#2",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:stations:deepseek-v4-flash/call#2",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash",
+    "to": "loop:tides:qwen3.7-flash/call#2",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash/call#2",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash",
+    "to": "loop:forecast:qwen3.7-flash/call#2",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash/call#2",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash",
+    "to": "loop:flights:qwen3.7-flash/call#2",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash/call#2",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash",
+    "to": "loop:tides:qwen3.7-flash/call#3",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:tides:qwen3.7-flash/call#3",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash",
+    "to": "loop:forecast:qwen3.7-flash/call#3",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:forecast:qwen3.7-flash/call#3",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash",
+    "to": "loop:warnings:qwen3.7-flash/call#3",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:warnings:qwen3.7-flash/call#3",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash",
+    "to": "loop:flights:qwen3.7-flash/call#3",
+    "kind": "calls"
+   },
+   {
+    "from": "loop:flights:qwen3.7-flash/call#3",
+    "to": "openrouter",
+    "kind": "via"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:warnings",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:forecast",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:stations",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:tides",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:transport",
+    "kind": "runs"
+   },
+   {
+    "from": "runner",
+    "to": "consensus:flights",
+    "kind": "runs"
+   }
+  ],
+  "timeline": [
+   {
+    "t": 0,
+    "unit": "runner",
+    "phase": "start"
+   },
+   {
+    "t": 0,
+    "unit": "loop:warnings:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 0,
+    "unit": "loop:warnings:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 2,
+    "unit": "loop:warnings:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 2,
+    "unit": "loop:warnings:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 3,
+    "unit": "loop:warnings:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 3,
+    "unit": "loop:warnings:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 4,
+    "unit": "loop:warnings:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 4,
+    "unit": "loop:warnings:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 5,
+    "unit": "loop:forecast:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 5,
+    "unit": "loop:forecast:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 6,
+    "unit": "loop:forecast:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 6,
+    "unit": "loop:forecast:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 7,
+    "unit": "loop:forecast:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 7,
+    "unit": "loop:forecast:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 8,
+    "unit": "loop:forecast:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 8,
+    "unit": "loop:forecast:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 9,
+    "unit": "loop:stations:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 9,
+    "unit": "loop:stations:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 10,
+    "unit": "loop:stations:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 10,
+    "unit": "loop:stations:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 10,
+    "unit": "loop:stations:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 10,
+    "unit": "loop:stations:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:stations:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:stations:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:tides:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:tides:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:tides:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 11,
+    "unit": "loop:tides:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 12,
+    "unit": "loop:tides:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 12,
+    "unit": "loop:tides:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 12,
+    "unit": "loop:tides:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 12,
+    "unit": "loop:tides:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 13,
+    "unit": "loop:transport:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 13,
+    "unit": "loop:transport:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 15,
+    "unit": "loop:transport:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 15,
+    "unit": "loop:transport:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 15,
+    "unit": "loop:transport:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 15,
+    "unit": "loop:transport:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 16,
+    "unit": "loop:transport:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 16,
+    "unit": "loop:transport:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 16,
+    "unit": "loop:flights:deepseek-v4-flash",
+    "phase": "start"
+   },
+   {
+    "t": 16,
+    "unit": "loop:flights:deepseek-v4-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:mistral-small-2603",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:mistral-small-2603/read",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:llama-3.3-70b-instruct",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:llama-3.3-70b-instruct/read",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:qwen3.7-flash",
+    "phase": "start"
+   },
+   {
+    "t": 17,
+    "unit": "loop:flights:qwen3.7-flash/read",
+    "phase": "start"
+   },
+   {
+    "t": 171,
+    "unit": "loop:warnings:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20252
+   },
+   {
+    "t": 172,
+    "unit": "loop:warnings:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 284,
+    "unit": "loop:forecast:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 71344
+   },
+   {
+    "t": 284,
+    "unit": "loop:forecast:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 327,
+    "unit": "loop:warnings:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20252
+   },
+   {
+    "t": 327,
+    "unit": "loop:warnings:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 337,
+    "unit": "loop:tides:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 24836
+   },
+   {
+    "t": 337,
+    "unit": "loop:tides:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 342,
+    "unit": "loop:flights:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20302
+   },
+   {
+    "t": 342,
+    "unit": "loop:flights:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 355,
+    "unit": "loop:forecast:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 71344
+   },
+   {
+    "t": 355,
+    "unit": "loop:forecast:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 358,
+    "unit": "loop:flights:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20302
+   },
+   {
+    "t": 359,
+    "unit": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 360,
+    "unit": "loop:tides:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 24836
+   },
+   {
+    "t": 360,
+    "unit": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 361,
+    "unit": "loop:warnings:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20252
+   },
+   {
+    "t": 361,
+    "unit": "loop:warnings:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 363,
+    "unit": "loop:flights:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20302
+   },
+   {
+    "t": 363,
+    "unit": "loop:flights:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 367,
+    "unit": "loop:warnings:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20252
+   },
+   {
+    "t": 368,
+    "unit": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 370,
+    "unit": "loop:flights:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20302
+   },
+   {
+    "t": 370,
+    "unit": "loop:flights:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 371,
+    "unit": "loop:forecast:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 71344
+   },
+   {
+    "t": 371,
+    "unit": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 374,
+    "unit": "loop:transport:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 17321
+   },
+   {
+    "t": 374,
+    "unit": "loop:transport:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 376,
+    "unit": "loop:transport:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 17321
+   },
+   {
+    "t": 376,
+    "unit": "loop:transport:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 377,
+    "unit": "loop:forecast:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 71344
+   },
+   {
+    "t": 377,
+    "unit": "loop:forecast:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 381,
+    "unit": "loop:tides:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 24836
+   },
+   {
+    "t": 381,
+    "unit": "loop:tides:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 383,
+    "unit": "loop:stations:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 80404
+   },
+   {
+    "t": 383,
+    "unit": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 386,
+    "unit": "loop:stations:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 80404
+   },
+   {
+    "t": 386,
+    "unit": "loop:stations:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 387,
+    "unit": "loop:stations:mistral-small-2603/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 80404
+   },
+   {
+    "t": 387,
+    "unit": "loop:stations:mistral-small-2603/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 402,
+    "unit": "loop:transport:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 17321
+   },
+   {
+    "t": 402,
+    "unit": "loop:transport:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 403,
+    "unit": "loop:transport:llama-3.3-70b-instruct/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 17321
+   },
+   {
+    "t": 404,
+    "unit": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 404,
+    "unit": "loop:tides:qwen3.7-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 24836
+   },
+   {
+    "t": 404,
+    "unit": "loop:tides:qwen3.7-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 407,
+    "unit": "loop:stations:deepseek-v4-flash/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 80404
+   },
+   {
+    "t": 407,
+    "unit": "loop:stations:deepseek-v4-flash/call#1",
+    "phase": "start"
+   },
+   {
+    "t": 1382,
+    "unit": "loop:stations:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0017523297
+   },
+   {
+    "t": 1382,
+    "unit": "loop:stations:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1576,
+    "unit": "loop:warnings:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0015766047
+   },
+   {
+    "t": 1576,
+    "unit": "loop:warnings:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1610,
+    "unit": "loop:transport:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00046440405
+   },
+   {
+    "t": 1610,
+    "unit": "loop:transport:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1617,
+    "unit": "loop:tides:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0017017209
+   },
+   {
+    "t": 1617,
+    "unit": "loop:tides:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1646,
+    "unit": "loop:tides:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00050948865
+   },
+   {
+    "t": 1646,
+    "unit": "loop:tides:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1779,
+    "unit": "loop:tides:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0002275614
+   },
+   {
+    "t": 1779,
+    "unit": "loop:tides:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1832,
+    "unit": "loop:warnings:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.000407781
+   },
+   {
+    "t": 1832,
+    "unit": "loop:warnings:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1889,
+    "unit": "loop:flights:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00039612375
+   },
+   {
+    "t": 1889,
+    "unit": "loop:flights:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1962,
+    "unit": "loop:stations:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0005034447
+   },
+   {
+    "t": 1962,
+    "unit": "loop:stations:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 1992,
+    "unit": "loop:forecast:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.000487377
+   },
+   {
+    "t": 1992,
+    "unit": "loop:forecast:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 2225,
+    "unit": "loop:flights:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0004532022
+   },
+   {
+    "t": 2225,
+    "unit": "loop:flights:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 2228,
+    "unit": "loop:forecast:mistral-small-2603/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00042702957
+   },
+   {
+    "t": 2228,
+    "unit": "loop:forecast:mistral-small-2603",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 2526,
+    "unit": "loop:transport:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0002803086
+   },
+   {
+    "t": 2526,
+    "unit": "loop:transport:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 3897,
+    "unit": "loop:transport:llama-3.3-70b-instruct/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0005062662
+   },
+   {
+    "t": 3897,
+    "unit": "loop:transport:llama-3.3-70b-instruct",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 6970,
+    "unit": "loop:flights:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0001731807
+   },
+   {
+    "t": 6970,
+    "unit": "loop:flights:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 9082,
+    "unit": "loop:forecast:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.000211033053
+   },
+   {
+    "t": 9082,
+    "unit": "loop:forecast:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 14340,
+    "unit": "loop:warnings:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.000136637424
+   },
+   {
+    "t": 14340,
+    "unit": "loop:warnings:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 14837,
+    "unit": "loop:warnings:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002096523
+   },
+   {
+    "t": 14837,
+    "unit": "loop:warnings:qwen3.7-flash/call#2",
+    "phase": "start"
+   },
+   {
+    "t": 14841,
+    "unit": "loop:stations:deepseek-v4-flash/call#1",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0005162157
+   },
+   {
+    "t": 14842,
+    "unit": "loop:stations:deepseek-v4-flash/call#2",
+    "phase": "start"
+   },
+   {
+    "t": 15048,
+    "unit": "loop:tides:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002155329
+   },
+   {
+    "t": 15048,
+    "unit": "loop:tides:qwen3.7-flash/call#2",
+    "phase": "start"
+   },
+   {
+    "t": 16393,
+    "unit": "loop:transport:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00020592
+   },
+   {
+    "t": 16393,
+    "unit": "loop:transport:qwen3.7-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 16688,
+    "unit": "loop:forecast:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021699414
+   },
+   {
+    "t": 16688,
+    "unit": "loop:forecast:qwen3.7-flash/call#2",
+    "phase": "start"
+   },
+   {
+    "t": 17185,
+    "unit": "loop:stations:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.00020839104
+   },
+   {
+    "t": 17185,
+    "unit": "loop:stations:qwen3.7-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 18229,
+    "unit": "loop:stations:deepseek-v4-flash/call#2",
+    "phase": "end",
+    "valid": true,
+    "cost_usd": 0.0000594297
+   },
+   {
+    "t": 18229,
+    "unit": "loop:stations:deepseek-v4-flash",
+    "phase": "end",
+    "valid": true
+   },
+   {
+    "t": 18979,
+    "unit": "loop:flights:qwen3.7-flash/call#1",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021114324
+   },
+   {
+    "t": 18979,
+    "unit": "loop:flights:qwen3.7-flash/call#2",
+    "phase": "start"
+   },
+   {
+    "t": 31148,
+    "unit": "loop:tides:qwen3.7-flash/call#2",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002155329
+   },
+   {
+    "t": 31148,
+    "unit": "loop:tides:qwen3.7-flash/call#3",
+    "phase": "start"
+   },
+   {
+    "t": 31856,
+    "unit": "loop:forecast:qwen3.7-flash/call#2",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021699414
+   },
+   {
+    "t": 31857,
+    "unit": "loop:forecast:qwen3.7-flash/call#3",
+    "phase": "start"
+   },
+   {
+    "t": 31999,
+    "unit": "loop:warnings:qwen3.7-flash/call#2",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002096523
+   },
+   {
+    "t": 31999,
+    "unit": "loop:warnings:qwen3.7-flash/call#3",
+    "phase": "start"
+   },
+   {
+    "t": 36261,
+    "unit": "loop:flights:qwen3.7-flash/call#2",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021114324
+   },
+   {
+    "t": 36262,
+    "unit": "loop:flights:qwen3.7-flash/call#3",
+    "phase": "start"
+   },
+   {
+    "t": 46486,
+    "unit": "loop:tides:qwen3.7-flash/call#3",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002155329
+   },
+   {
+    "t": 46486,
+    "unit": "loop:tides:qwen3.7-flash",
+    "phase": "end",
+    "valid": false
+   },
+   {
+    "t": 47375,
+    "unit": "loop:warnings:qwen3.7-flash/call#3",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.0002096523
+   },
+   {
+    "t": 47375,
+    "unit": "loop:warnings:qwen3.7-flash",
+    "phase": "end",
+    "valid": false
+   },
+   {
+    "t": 47724,
+    "unit": "loop:forecast:qwen3.7-flash/call#3",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021699414
+   },
+   {
+    "t": 47724,
+    "unit": "loop:forecast:qwen3.7-flash",
+    "phase": "end",
+    "valid": false
+   },
+   {
+    "t": 52950,
+    "unit": "loop:flights:qwen3.7-flash/call#3",
+    "phase": "end",
+    "valid": false,
+    "cost_usd": 0.00021114324
+   },
+   {
+    "t": 52950,
+    "unit": "loop:flights:qwen3.7-flash",
+    "phase": "end",
+    "valid": false
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:warnings",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:warnings",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:forecast",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:forecast",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:stations",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:stations",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:tides",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:tides",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:transport",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:transport",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:flights",
+    "phase": "start"
+   },
+   {
+    "t": 52950,
+    "unit": "consensus:flights",
+    "phase": "end"
+   },
+   {
+    "t": 52950,
+    "unit": "runner",
+    "phase": "end"
+   }
+  ],
+  "id": "s002-storm-six--runner.1.swarm",
+  "kind": "packet",
+  "packet": "s002-storm-six",
+  "packet_fp": "sha256:a111261ab8036a83",
+  "runner_key_fp": "sha256:2f10e242729ae8f9"
+ },
+ "by": {
+  "altitude": "A3",
+  "name": "runner: runner.1.swarm@PrompTugal.dinis for s002-storm-six",
+  "fp": "sha256:2f10e242729ae8f9",
+  "pub": "MCowBQYDK2VwAyEAhgqXYb7Z6Y8y6BHJKHsI8YHOOnNRX4HzNDswsICKem0=",
+  "signed_at": "2026-11-11T23:01:14Z"
+ },
+ "sig": "qQJmBW3dNZv27kH8IAgLyeLSoOP+uK+8jDctNAxorgtYaKS+ZeIrbfYQ8tFflGlfcbQ8/hzAie1kbxBuzo/sCw=="
+}
