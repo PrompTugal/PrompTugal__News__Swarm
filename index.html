@@ -37,7 +37,12 @@ footer{color:var(--muted);font-size:.8rem}
 .tl{margin-top:10px}.tl svg{display:block;width:100%;height:auto}.tl .lane{font-size:12px}.tl .ph{fill:var(--muted);font-size:11px}
 .bm{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:.85rem;margin-top:10px}.bm .track{height:10px;border-radius:5px;background:var(--line);overflow:hidden}.bm .fill{height:100%;background:var(--a1)}.bm .fill.over{background:var(--bad)}.bm small{color:var(--muted)}
 .sig{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.82rem}.sig h3,.bud h3{margin:0 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.sig code{font-size:.8em;word-break:break-all}.sig ul{margin:4px 0 0;padding-left:18px}
-.bud{margin-top:12px}#detail code{word-break:break-all}#detail p{overflow-wrap:anywhere}
+.bud{margin-top:12px}
+.chain{list-style:none;display:flex;gap:0;margin:0 0 10px;padding:0;flex-wrap:wrap}.chain li{flex:1 1 0;min-width:120px;position:relative;border:1px solid var(--line);border-radius:8px;padding:6px 8px;margin-right:18px;background:color-mix(in srgb,var(--a3) 7%,var(--panel));font-size:.8rem}
+.chain li:not(:last-child)::after{content:'→';position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--muted)}.chain li:last-child{margin-right:0}
+.chain b{display:block;font-size:.85rem}.chain small{color:var(--muted);display:block;word-break:break-all}.chain .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--a1)}.chain .k.no{background:var(--muted)}
+.chain-check{flex-basis:100%;margin:6px 0 0;color:var(--muted);font-size:.78rem}.chain-check code{word-break:break-all}
+@media (max-width:640px){.chain{flex-direction:column}.chain li{margin:0 0 16px}.chain li:not(:last-child)::after{content:'↓';right:auto;left:14px;top:auto;bottom:-17px;transform:none}}#detail code{word-break:break-all}#detail p{overflow-wrap:anywhere}
 .demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
 </style>
 </head>
@@ -56,6 +61,7 @@ footer{color:var(--muted);font-size:.8rem}
   <section class="panel" aria-label="Rungs"><h2>The ladder</h2><div id="rungs"></div></section>
   <section class="panel" aria-label="The run">
     <div class="bar"><button id="play">▶ Replay</button><span class="amp" id="amp"></span><span id="live" style="color:var(--muted);font-size:.8rem" aria-live="polite">live: checking for new runs every 15 s</span></div>
+    <div id="chain" aria-label="Provenance: how this run started and how to check it"></div>
     <div id="stage"></div>
     <div class="tl" id="tl" aria-label="The run over time"></div>
     <div class="legend" id="legend"></div>
@@ -105,27 +111,31 @@ function withCaps(run) {
   }
   return { nodes, edges };
 }
-function layout(nodes, edges) {
+function layout(nodes, edges, W) {
   const rows = {}; const parent = {}; edges.forEach((e) => { if (!(e.to in parent)) parent[e.to] = e.from; });
   const order = []; const seen = new Set(); const kids = {}; edges.forEach((e) => (kids[e.from] ||= []).push(e.to));
   (function walk(id) { if (seen.has(id)) return; seen.add(id); order.push(id); (kids[id] || []).forEach(walk); })('dinis');
   nodes.forEach((n) => { if (!seen.has(n.id)) order.push(n.id); });
   const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
   order.forEach((id) => { const n = byId[id]; if (!n) return; const r = n.cap ? (n.altitude === 'P' ? 0 : 1) : ROW[n.altitude] ?? 4; (rows[r] ||= []).push(n); });
-  const widest = Math.max(...Object.values(rows).map((r) => r.length)), W = Math.max(760, widest * 26), H = 6 * 92 + 40;
-  Object.entries(rows).forEach(([r, ns]) => ns.forEach((n, i) => { n.x = (i + .5) * W / ns.length; n.y = 36 + +r * 92; }));
-  return { W, H, byId };
+  // a long row (24 to 133 loops, calls or reads) wraps onto as many lines as it needs, keeping its order, so loops stay grouped by task
+  const big = nodes.length < 40, gap = big ? 34 : 19, K = Math.max(4, Math.floor((W - 16) / gap)), rowH = big ? 92 : 62, lineH = big ? 56 : 24;
+  let y = 30;
+  Object.keys(rows).map(Number).sort((a, b) => a - b).forEach((r) => {
+    const ns = rows[r], lines = Math.ceil(ns.length / K), per = Math.ceil(ns.length / lines), dx = W / Math.max(per, big ? 1 : 6);
+    for (let l = 0; l < lines; l++) { const part = ns.slice(l * per, (l + 1) * per), x0 = (W - part.length * dx) / 2; part.forEach((n, i) => { n.x = x0 + (i + .5) * dx; n.y = y; n.dx = dx; }); y += l < lines - 1 ? lineH : rowH; }
+  });
+  return { W, H: y - rowH + 44, byId };
 }
 function draw() {
-  const run = cur; const { nodes, edges } = withCaps(run); const { W, H, byId } = layout(nodes, edges);
+  const run = cur; const { nodes, edges } = withCaps(run); const { W, H, byId } = layout(nodes, edges, Math.max(320, $('#stage').clientWidth || 760));
   const big = nodes.length < 40, r = big ? 14 : 8;
-  const sw = $('#stage').clientWidth || 360, w = Math.max(sw, Math.round(W * 0.45));
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="${w}" role="img" aria-label="${esc(run.title)}">`;
+  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(run.title)}">`;
   edges.forEach((e) => { const a = byId[e.from], b = byId[e.to]; if (a && b) s += `<line class="edge ${e.planned ? 'planned' : ''}" data-to="${esc(e.to)}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`; });
   nodes.forEach((n) => {
     const st = n.planned ? 'planned' : n.valid === false ? 'bad' : n.valid ? 'ok' : '';
     s += `<g class="n ${st}" data-id="${esc(n.id)}" transform="translate(${n.x},${n.y})"><title>${esc((ALT[n.altitude] || [''])[0] + ': ' + n.label + (n.model ? ' · ' + n.model : '') + (n.tokens ? ' · ' + n.tokens + ' tokens' : '') + (n.cost_usd != null ? ' · ' + n.cost_usd + ' USD' : '') + (n.latency_ms ? ' · ' + n.latency_ms + ' ms' : ''))}</title>${shape(n.altitude, n.cap && n.altitude === 'E' ? 12 : r)}`;
-    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, 34))}</text>`;
+    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 6.2)))))}</text>`;
     s += '</g>';
   });
   $('#stage').innerHTML = s + '</svg>'; timeline(run); budget(run); sigs(run);
@@ -136,8 +146,8 @@ function draw() {
   $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
   const cons = Object.entries(run.consensus || {});
   const byModel = {}; (run.calls || []).forEach((c) => { const k = c.model.split('/')[1]; const x = (byModel[k] ||= { calls: 0, valid: 0, tin: 0, tout: 0, usd: 0, ms: [] }); x.calls++; x.valid += c.valid ? 1 : 0; x.tin += c.tokens_in; x.tout += c.tokens_out; x.usd += c.cost_usd; x.ms.push(c.latency_ms); });
-  const prov = run.kind === 'action' ? `<p style="margin:10px 0 0">Provenance: <a href="https://github.com/${RUNS_REPO}/tree/dev/requests/${esc(run.request)}">the signed request</a> · <a href="https://github.com/${RUNS_REPO}/commit/${esc(run.commit)}">the commit that started it</a> · <a href="${esc(run.run_url)}">the Actions run</a> · <a href="https://github.com/${RUNS_REPO}/tree/dev/runs/${esc(run.request)}">the signed result and attestation</a> · check it yourself: <code>gh attestation verify runs/${esc(run.request)}/result.json -R ${RUNS_REPO}</code></p>` : '';
-  $('#detail').innerHTML = prov + `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}).</p>`
+  chain(run);
+  $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}).</p>`
     + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
     + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
 }
@@ -165,6 +175,19 @@ function timeline(run) {
   $('#tl').innerHTML = g; $("#tl").dataset.l = L; $("#tl").dataset.pw = PW; $("#tl").dataset.end = end;
 }
 function playhead(ms) { const p = $("#ph"), d = $("#tl").dataset; if (p) { const x = +d.l + Math.min(1, ms / +d.end) * +d.pw; p.setAttribute('x1', x); p.setAttribute('x2', x); } }
+// request (signed) → commit → GitHub Action → result (signed) → attestation: each step a link to where it can be checked
+function chain(run) {
+  const el = $('#chain'); if (run.kind !== 'action') { el.innerHTML = ''; el.hidden = true; return; }
+  el.hidden = false; const gh = `https://github.com/${RUNS_REPO}`, fp = (x) => x ? esc(String(x).replace('sha256:', '')) : '', k = (x) => x ? `<span class="k" title="signed"></span>` : "";
+  const run_id = (String(run.run_url).match(/runs\/(\d+)/) || [])[1] || '';
+  el.innerHTML = `<ol class="chain"><li><b>${k(run.request_signed_by)}<a href="${gh}/tree/dev/requests/${esc(run.request)}">Request</a></b><small>${esc(run.request_kind)} by ${esc(String(run.requester).split('@')[0])}</small><small>signed ${fp(run.request_signed_by)}</small></li>`
+    + `<li><b>${k(0)}<a href="${gh}/commit/${esc(run.commit)}">Commit</a></b><small>the push: ${esc(String(run.commit).slice(0, 12))}</small></li>`
+    + `<li><b>${k(0)}<a href="${esc(run.run_url)}">GitHub Action</a></b><small>run ${esc(run_id)}</small><small>${(run.wall_ms / 1000).toFixed(1)} s</small></li>`
+    + `<li><b>${k(run.signed_by)}<a href="${gh}/commits/dev/runs/${esc(run.request)}">Result</a></b><small>committed by the Action</small><small>signed ${fp(run.signed_by)}</small></li>`
+    + `<li id="att"><b>${k(0)}<a href="${gh}/attestations">Attestation</a></b><small>GitHub's, for result.json</small></li></ol>`
+    + `<p class="chain-check">Check it yourself: <code>gh attestation verify runs/${esc(run.request)}/result.json -R ${RUNS_REPO}</code></p>`;
+  fetch(RAW('dev') + run.request + '/provenance.json').then((x) => x.json()).then((pv) => { const a = document.querySelector('#att'); if (a && pv.attestation && cur === run) a.innerHTML = `<b>${k(1)}<a href="${esc(pv.attestation)}">Attestation</a></b><small>GitHub's, for result.json</small><small>sha256 ${esc(String(pv.result_sha256 || '').slice(0, 16))}</small>`; }).catch(() => {});
+}
 function budget(run) {
   const m = run.metrics, b = run.budget || {}, row = (l, v, cap, fmt) => { const f = cap ? v / cap : 0; return `<span>${l}</span><div class="track" title="${fmt(v)} of ${fmt(cap)}"><div class="fill ${f > 1 ? 'over' : ''}" style="width:${Math.min(100, f * 100).toFixed(1)}%"></div></div><span>${fmt(v)} <small>of ${fmt(cap)}</small></span>`; };
   $('#bud').innerHTML = `<h3>Budget: written before the run, then spent</h3><div class="bm">${row('USD', m.openrouter_usd, b.usd, (x) => '$' + (+x || 0).toFixed(4))}${row('LLM calls', m.llm_calls, b.calls, (x) => String(x ?? 0))}<span>sessions</span><div class="track"><div class="fill" style="width:0"></div></div><span>0 new <small>of ${b.sessions ?? 0}</small></span></div>`

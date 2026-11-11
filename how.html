@@ -12,7 +12,7 @@
 a{color:var(--a3)}.wrap{max-width:860px;margin:0 auto;padding:16px}h1{font-size:1.6rem;margin:.4em 0}h2{font-size:1.15rem;margin:1.6em 0 .4em}.muted{color:var(--muted)}
 ol.steps{list-style:none;padding:0;counter-reset:s}ol.steps li{counter-increment:s;position:relative;padding:10px 12px 10px 52px;margin:0 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 ol.steps li::before{content:counter(s);position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--a3);color:#04100F;font-weight:700;display:grid;place-items:center}
-ol.steps li>b:first-child{display:block}code{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:.88em}
+ol.steps li>b:first-child{display:block}code{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:.88em;overflow-wrap:anywhere}
 .fig{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;overflow-x:auto}.fig svg{display:block;min-width:640px;width:100%;height:auto}
 .fig text{fill:var(--ink);font-size:12px}.fig .s{fill:var(--muted);font-size:10px}.fig line,.fig path{stroke:var(--muted);stroke-width:1.4;fill:none}
 table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
@@ -53,6 +53,16 @@ footer{color:var(--muted);font-size:.8rem;margin-top:2em}
 <li><b>Result.</b> The runner writes <code>packets/&lt;id&gt;/result-&lt;runner&gt;.json</code>: the units, edges, timeline and metrics, signed by the runner's key for this run. It pushes the result to <code>dev</code> under its own name. Model text is never stored; only its length, its sha256 and whether it was valid.</li>
 <li><b>Publish.</b> <code>node tools/swarm.mjs publish</code> verifies every result, checking the packet, the result and each call's signature. Each verified result becomes a run in <code>runs/</code>. The gate checks the repository, and CI deploys it in about 20 seconds.</li>
 <li><b>Replay.</b> <a href="./">The site</a> checks for new runs every 15 seconds and replays each one. The same files can go to Elastic, Kibana, Grafana and the Gravity universe.</li>
+</ol>
+
+<h2>Every run starts with a push</h2>
+<p>The next step needs no runner session at all. Each run lives in <a href="https://github.com/PrompTugal/PrompTugal__News__Swarm__Runs">PrompTugal__News__Swarm__Runs</a>: one commit, one workflow run, one result. On <a href="./">the site</a>, the five links above the graph of such a run are this chain.</p>
+<ol class="steps">
+<li><b>Request, signed.</b> An agent writes <code>requests/&lt;id&gt;/packet.json</code> (the kind, A0, A1 or A2; the storm tasks; the models; the budget), signs it with its key and commits the signature beside it.</li>
+<li><b>Commit.</b> It pushes to <code>dev</code>. The push itself is what starts the run; nobody presses a button.</li>
+<li><b>GitHub Action.</b> The workflow checks the request's signature, then runs it inside its budget: reads, model calls and loops, each unit streamed to Elastic.</li>
+<li><b>Result, signed.</b> The Action commits <code>runs/&lt;id&gt;/result.json</code>, signed with a key made for this run, with every model call signed by its own key.</li>
+<li><b>Attestation.</b> GitHub attests that this result came from this workflow run on this commit. Anyone can check it: <code>gh attestation verify runs/&lt;id&gt;/result.json -R PrompTugal/PrompTugal__News__Swarm__Runs</code>.</li>
 </ol>
 
 <h2>Who holds what</h2>
