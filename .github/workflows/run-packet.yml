@@ -1,0 +1,49 @@
+name: run a packet
+# GitHub Actions as one more environment of the swarm (R: GitHub-hosted runner): pick a packet, run it here, push the signed result to dev.
+# Needs the repository secret OPENROUTER_API_KEY (Dinis adds it in Settings > Secrets and variables > Actions); without it, the run stops.
+on:
+  workflow_dispatch:
+    inputs:
+      packet:
+        description: 'packet id (packets/<id>/packet.json)'
+        required: true
+        default: 's002-storm-six'
+permissions:
+  contents: write
+concurrency:
+  group: run-packet-${{ github.event.inputs.packet }}
+  cancel-in-progress: false
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    env:
+      RUNNER: runner.gha.swarm@PrompTugal.dinis
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: The key is there (never printed)
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: test -n "$OPENROUTER_API_KEY" || { echo "::error::add the OPENROUTER_API_KEY repository secret first"; exit 1; }
+      - name: Run the packet
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          LLM_LEDGER_DIR: /tmp/ledger
+          LLM_RAW_DIR: /tmp/raw
+        run: |
+          node tools/swarm.mjs verify --id "${{ github.event.inputs.packet }}" || true
+          node tools/swarm.mjs run --id "${{ github.event.inputs.packet }}" --as "$RUNNER" --env "GitHub Actions (ubuntu-latest), run ${{ github.run_id }}" --account "github-actions:${{ github.repository }}"
+          node tools/swarm.mjs publish
+          node tools/gate.mjs
+      - name: Push the signed result to dev
+        run: |
+          git config user.name "runner.gha.swarm"
+          git config user.email "runner.gha.swarm@users.noreply.github.com"
+          git add packets runs
+          git commit -m "runner.gha.swarm@PrompTugal.dinis: ran packet ${{ github.event.inputs.packet }} on GitHub Actions" -m "Agent: runner.gha.swarm@PrompTugal.dinis" -m "Issue: WS-215" -m "For: swarm.1.fringe@PrompTugal.dinis" -m "Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          for i in 1 2 3; do git pull --rebase origin dev && git push origin HEAD:dev && break; sleep 3; done

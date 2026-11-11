@@ -1,0 +1,425 @@
+{
+ "v": 1,
+ "id": "20261111T2258-r4s",
+ "rung": "r4s",
+ "kind": "ladder",
+ "for": "Dinis Cruz",
+ "title": "Me → Claude → Claude sub-agents",
+ "story": "Three Claude Code sub-agents (Haiku), started by swarm.1 with the Agent tool: each an A2 loop with tools (curl, python) on one storm task, answering in checked JSON. They run on the account's Claude quota, not OpenRouter. Tokens are what the harness reported per sub-agent (in and out together; mostly the agent's own context), so the potential cost counts them all at the input price.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "environment": {
+  "label": "R1 Claude Code cloud",
+  "account": "riskmandate-personal"
+ },
+ "started_at": "2026-11-11T22:58:50Z",
+ "wall_ms": 7233,
+ "budget": {
+  "usd": 0,
+  "calls": 3,
+  "sessions": 0,
+  "claude_subagents": 3
+ },
+ "credit_before_usd": null,
+ "source": {
+  "workload": "the storm site's scheduled datasets, read over its public API",
+  "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/"
+ },
+ "metrics": {
+  "units": {
+   "P": 1,
+   "A3": 1,
+   "A2": 3,
+   "A1": 3,
+   "A0": 3,
+   "M": 1,
+   "D": 3
+  },
+  "agents": 1,
+  "loops": 3,
+  "llm_calls": 3,
+  "compute": 3,
+  "peak_concurrency": 9,
+  "valid_calls": 3,
+  "tokens_in": 241000,
+  "tokens_out": 0,
+  "openrouter_usd": 0,
+  "potential_claude_usd": {
+   "claude-haiku-5.5": 0.0241,
+   "claude-sonnet-5.5": 0.482,
+   "claude-opus-5.5": 0.964
+  },
+  "models": [
+   "claude-haiku-5.5 (Claude Code sub-agents)"
+  ],
+  "latency_ms_p50": 6342,
+  "tool_uses": 6,
+  "not_measured": "the split of the sub-agents' tokens into input and output, and how much was cached; and swarm.1's own Opus tokens"
+ },
+ "consensus": {},
+ "calls": [
+  {
+   "unit": "sub:warnings/think",
+   "task": "warnings",
+   "model": "anthropic/claude-haiku-5.5",
+   "served": "claude-haiku-5.5 (Claude Code sub-agent)",
+   "status": "ok",
+   "valid": true,
+   "verdict": "warning",
+   "tokens_in": 79707,
+   "tokens_out": 0,
+   "cost_usd": 0,
+   "latency_ms": 7183,
+   "tool_uses": 2,
+   "answer_sha256": "5fc411a934b2dbad",
+   "answer_chars": 225
+  },
+  {
+   "unit": "sub:transport/think",
+   "task": "transport",
+   "model": "anthropic/claude-haiku-5.5",
+   "served": "claude-haiku-5.5 (Claude Code sub-agent)",
+   "status": "ok",
+   "valid": true,
+   "verdict": "disrupted",
+   "tokens_in": 77378,
+   "tokens_out": 0,
+   "cost_usd": 0,
+   "latency_ms": 6342,
+   "tool_uses": 2,
+   "answer_sha256": "25d68d3ab9fd0a8b",
+   "answer_chars": 241
+  },
+  {
+   "unit": "sub:tides/think",
+   "task": "tides",
+   "model": "anthropic/claude-haiku-5.5",
+   "served": "claude-haiku-5.5 (Claude Code sub-agent)",
+   "status": "ok",
+   "valid": true,
+   "verdict": "normal",
+   "tokens_in": 83915,
+   "tokens_out": 0,
+   "cost_usd": 0,
+   "latency_ms": 5455,
+   "tool_uses": 2,
+   "answer_sha256": "ccdd63a6c5e086a8",
+   "answer_chars": 215
+  }
+ ],
+ "nodes": [
+  {
+   "id": "dinis",
+   "kind": "person",
+   "altitude": "P",
+   "label": "Dinis"
+  },
+  {
+   "id": "swarm.1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "env": "R1 Claude Code cloud",
+   "account": "riskmandate-personal",
+   "model": "claude-opus-5.5"
+  },
+  {
+   "id": "anthropic",
+   "kind": "provider",
+   "altitude": "M",
+   "label": "Anthropic (Claude Code sub-agents)"
+  },
+  {
+   "id": "sub:warnings",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "warnings · Claude Haiku sub-agent",
+   "model": "claude-haiku-5.5",
+   "tokens": 79707,
+   "latency_ms": 7183,
+   "valid": true
+  },
+  {
+   "id": "sub:warnings/read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "curl weather/warnings.json"
+  },
+  {
+   "id": "sub:warnings/think",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "haiku-5.5 (its own turns)",
+   "model": "anthropic/claude-haiku-5.5",
+   "tokens": 79707,
+   "valid": true
+  },
+  {
+   "id": "data:warnings",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/warnings.json",
+   "bytes": 20445,
+   "read_at": "2026-11-11T22:58:56Z"
+  },
+  {
+   "id": "sub:transport",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "transport · Claude Haiku sub-agent",
+   "model": "claude-haiku-5.5",
+   "tokens": 77378,
+   "latency_ms": 6342,
+   "valid": true
+  },
+  {
+   "id": "sub:transport/read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "curl transport/services.json"
+  },
+  {
+   "id": "sub:transport/think",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "haiku-5.5 (its own turns)",
+   "model": "anthropic/claude-haiku-5.5",
+   "tokens": 77378,
+   "valid": true
+  },
+  {
+   "id": "data:transport",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "transport/services.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/services.json",
+   "bytes": 17459,
+   "read_at": "2026-11-11T22:58:56Z"
+  },
+  {
+   "id": "sub:tides",
+   "kind": "loop",
+   "altitude": "A2",
+   "label": "tides · Claude Haiku sub-agent",
+   "model": "claude-haiku-5.5",
+   "tokens": 83915,
+   "latency_ms": 5455,
+   "valid": true
+  },
+  {
+   "id": "sub:tides/read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "curl exposure/tides.json"
+  },
+  {
+   "id": "sub:tides/think",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "haiku-5.5 (its own turns)",
+   "model": "anthropic/claude-haiku-5.5",
+   "tokens": 83915,
+   "valid": true
+  },
+  {
+   "id": "data:tides",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "exposure/tides.json",
+   "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json",
+   "bytes": 24842,
+   "read_at": "2026-11-11T22:58:56Z"
+  }
+ ],
+ "edges": [
+  {
+   "from": "dinis",
+   "to": "swarm.1",
+   "kind": "asks"
+  },
+  {
+   "from": "swarm.1",
+   "to": "sub:warnings",
+   "kind": "starts"
+  },
+  {
+   "from": "sub:warnings",
+   "to": "sub:warnings/read",
+   "kind": "runs"
+  },
+  {
+   "from": "sub:warnings/read",
+   "to": "data:warnings",
+   "kind": "reads"
+  },
+  {
+   "from": "sub:warnings",
+   "to": "sub:warnings/think",
+   "kind": "calls"
+  },
+  {
+   "from": "sub:warnings/think",
+   "to": "anthropic",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "sub:transport",
+   "kind": "starts"
+  },
+  {
+   "from": "sub:transport",
+   "to": "sub:transport/read",
+   "kind": "runs"
+  },
+  {
+   "from": "sub:transport/read",
+   "to": "data:transport",
+   "kind": "reads"
+  },
+  {
+   "from": "sub:transport",
+   "to": "sub:transport/think",
+   "kind": "calls"
+  },
+  {
+   "from": "sub:transport/think",
+   "to": "anthropic",
+   "kind": "via"
+  },
+  {
+   "from": "swarm.1",
+   "to": "sub:tides",
+   "kind": "starts"
+  },
+  {
+   "from": "sub:tides",
+   "to": "sub:tides/read",
+   "kind": "runs"
+  },
+  {
+   "from": "sub:tides/read",
+   "to": "data:tides",
+   "kind": "reads"
+  },
+  {
+   "from": "sub:tides",
+   "to": "sub:tides/think",
+   "kind": "calls"
+  },
+  {
+   "from": "sub:tides/think",
+   "to": "anthropic",
+   "kind": "via"
+  }
+ ],
+ "timeline": [
+  {
+   "t": 0,
+   "unit": "swarm.1",
+   "phase": "start"
+  },
+  {
+   "t": 5,
+   "unit": "sub:warnings",
+   "phase": "start"
+  },
+  {
+   "t": 10,
+   "unit": "sub:warnings/think",
+   "phase": "start"
+  },
+  {
+   "t": 900,
+   "unit": "sub:warnings/read",
+   "phase": "start"
+  },
+  {
+   "t": 1500,
+   "unit": "sub:warnings/read",
+   "phase": "end"
+  },
+  {
+   "t": 7173,
+   "unit": "sub:warnings/think",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 7183,
+   "unit": "sub:warnings",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 5,
+   "unit": "sub:transport",
+   "phase": "start"
+  },
+  {
+   "t": 10,
+   "unit": "sub:transport/think",
+   "phase": "start"
+  },
+  {
+   "t": 900,
+   "unit": "sub:transport/read",
+   "phase": "start"
+  },
+  {
+   "t": 1500,
+   "unit": "sub:transport/read",
+   "phase": "end"
+  },
+  {
+   "t": 6332,
+   "unit": "sub:transport/think",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 6342,
+   "unit": "sub:transport",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 5,
+   "unit": "sub:tides",
+   "phase": "start"
+  },
+  {
+   "t": 10,
+   "unit": "sub:tides/think",
+   "phase": "start"
+  },
+  {
+   "t": 900,
+   "unit": "sub:tides/read",
+   "phase": "start"
+  },
+  {
+   "t": 1500,
+   "unit": "sub:tides/read",
+   "phase": "end"
+  },
+  {
+   "t": 5445,
+   "unit": "sub:tides/think",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 5455,
+   "unit": "sub:tides",
+   "phase": "end",
+   "valid": true
+  },
+  {
+   "t": 7233,
+   "unit": "swarm.1",
+   "phase": "end"
+  }
+ ]
+}

@@ -88,7 +88,7 @@ export async function execute({ title, story, tasks, models, loop = true, tries 
     if (budget && spent >= budget.usd) { ev(u, 'end', { valid: false, refused: 'budget' }); return { unit: u, task: tid, model, valid: false, status: 'refused_budget', tokens_in: 0, tokens_out: 0, cost_usd: 0, latency_ms: 0 }; }
     const prompt = `From this public storm data (source: ${STORM}${t.dataset}), answer: ${t.ask}.\nReply with JSON only: {"headline": "<one sentence, at most 160 characters, facts from the data only>", "status": "normal" | "disrupted" | "warning" | "unknown"}.\nDATA (first 6000 characters):\n${input.slice(0, 6000)}`;
     // reasoning models (DeepSeek, Qwen) spend tokens thinking before they answer: give them room (qwen3.7-flash gave 0 of 18 at 300)
-    const { text, line } = await call({ task: `WS-215/swarm/${tid}`, agent: runner, model, messages: [{ role: 'user', content: prompt }], max_tokens: /deepseek|qwen/.test(model) ? 1500 : 300 });
+    const { text, line } = await call({ task: `WS-215/swarm/${tid}`, agent: runner, model, messages: [{ role: 'user', content: prompt }], max_tokens: /deepseek|qwen|anthropic/.test(model) ? 1500 : 300 });
     spent += line.cost_usd || 0;
     let parsed = null; try { parsed = JSON.parse((/\{[\s\S]*\}/.exec(text || '') || ['null'])[0]); } catch {}
     const valid = !!parsed && typeof parsed.headline === 'string' && ['normal', 'disrupted', 'warning', 'unknown'].includes(parsed.status);
@@ -138,6 +138,7 @@ const RUNGS = {
   r3: { title: 'Me → Claude → many models', tasks: ['warnings'], models: MODELS, loop: false, story: 'The same question to four open-weight models at once, compared in code.' },
   r4: { title: 'Me → Claude → loops', tasks: Object.keys(TASKS).slice(0, 6), models: MODELS.slice(0, 1), loop: true, story: 'Six loops (A2), one per storm task: read, ask, check, retry until valid.' },
   r5: { title: 'Me → Claude → a swarm of loops', tasks: Object.keys(TASKS).slice(0, 6), models: MODELS, loop: true, story: 'Every storm task on every model: 24 loops at once, then a consensus per task in code.' },
+  r4c: { title: 'Me → Claude → Claude models', tasks: Object.keys(TASKS).slice(0, 6), models: ['anthropic/claude-haiku-5.5', 'anthropic/claude-sonnet-5.5'], loop: true, story: 'The same six storm loops, now on Claude Haiku and Sonnet through the router: real Anthropic tokens and cost, next to the open-weight runs.' },
   r5b: { title: 'Me → Claude → a bigger swarm', tasks: Object.keys(TASKS), models: MODELS, loop: true, story: 'Twelve storm tasks on four models: 48 loops at once.' },
 };
 const ME = 'swarm.1.fringe@PrompTugal.dinis', ENV = 'R1 Claude Code cloud', ACCOUNT = 'riskmandate-personal';

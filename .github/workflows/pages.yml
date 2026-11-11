@@ -3,6 +3,9 @@ on:
   push:
     branches: [dev]
   workflow_dispatch:
+  workflow_run:            # a push made by the 'run a packet' workflow does not trigger this one: deploy when it finishes
+    workflows: ['run a packet']
+    types: [completed]
 permissions:
   contents: read
   pages: write
@@ -16,6 +19,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: dev
           fetch-depth: 1
       - uses: actions/setup-node@v4
         with:
