@@ -123,7 +123,8 @@ function draw() {
   $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
   const cons = Object.entries(run.consensus || {});
   const byModel = {}; (run.calls || []).forEach((c) => { const k = c.model.split('/')[1]; const x = (byModel[k] ||= { calls: 0, valid: 0, tin: 0, tout: 0, usd: 0, ms: [] }); x.calls++; x.valid += c.valid ? 1 : 0; x.tin += c.tokens_in; x.tout += c.tokens_out; x.usd += c.cost_usd; x.ms.push(c.latency_ms); });
-  $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}). Budget written before it started: $${run.budget.usd}, at most ${run.budget.calls} calls, ${run.budget.sessions} new sessions.</p>`
+  const prov = run.kind === 'action' ? `<p style="margin:10px 0 0">Provenance: <a href="https://github.com/${RUNS_REPO}/tree/dev/requests/${esc(run.request)}">the signed request</a> · <a href="https://github.com/${RUNS_REPO}/commit/${esc(run.commit)}">the commit that started it</a> · <a href="${esc(run.run_url)}">the Actions run</a> · <a href="https://github.com/${RUNS_REPO}/tree/dev/runs/${esc(run.request)}">the signed result and attestation</a> · check it yourself: <code>gh attestation verify runs/${esc(run.request)}/result.json -R ${RUNS_REPO}</code></p>` : '';
+  $('#detail').innerHTML = prov + `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}). Budget written before it started: $${run.budget.usd}, at most ${run.budget.calls} calls, ${run.budget.sessions} new sessions.</p>`
     + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
     + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
 }
@@ -138,11 +139,11 @@ function replay() {
   }, step);
 }
 function rungs() {
-  const btn = (r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung || r.packet)} · ${esc(r.kind === 'packet' ? r.by.split('@')[0] + ' on ' + r.environment.account : r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`;
-  const lad = runs.filter((r) => r.kind !== 'packet'), pk = runs.filter((r) => r.kind === 'packet');
-  $('#rungs').innerHTML = lad.map(btn).join('') + (pk.length ? `<h2 style="margin-top:12px">Packets: the GitHub flow</h2>` + pk.map(btn).join('') : '') + `<h2 style="margin-top:12px">Next</h2>`
+  const btn = (r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung || r.packet || r.request)} · ${esc(r.kind === 'packet' ? r.by.split('@')[0] + ' on ' + r.environment.account : r.kind === 'action' ? r.request_kind + ' on GitHub Actions' : r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`;
+  const lad = runs.filter((r) => r.kind !== 'packet' && r.kind !== 'action'), pk = runs.filter((r) => r.kind === 'packet'), ac = runs.filter((r) => r.kind === 'action');
+  $('#rungs').innerHTML = lad.map(btn).join('') + (pk.length ? `<h2 style="margin-top:12px">Packets: the GitHub flow</h2>` + pk.map(btn).join('') : '') + `<h2 style="margin-top:12px">Every run starts with a push</h2>` + (ac.length ? ac.map(btn).join('') : '<p style="color:var(--muted);font-size:.8rem">none yet</p>') + `<button class="rung" id="checknow"><b>↻ Check GitHub now</b><span>${esc(RUNS_REPO)}</span></button>` + `<h2 style="margin-top:12px">Next</h2>`
     + PLANNED.map((p) => `<button class="rung" disabled title="${esc(p.story)}"><b>${esc(p.id)} · ${esc(p.title)}</b><span>planned: ${esc(p.story)}</span></button>`).join('');
-  document.querySelectorAll('.rung[data-id]').forEach((b) => b.onclick = () => load(b.dataset.id));
+  document.querySelectorAll('.rung[data-id]').forEach((b) => b.onclick = () => load(b.dataset.id)); const cn = document.getElementById('checknow'); if (cn) cn.onclick = checkNow;
 }
 function togs() {
   $('#togs').innerHTML = CAPS.map((c) => `<label class="tog"><input type="checkbox" data-id="${c.id}" ${c.on ? 'checked' : ''}> ${esc(c.label)} ${c.real ? '' : '<small>(planned)</small>'}</label>`).join('');
@@ -164,7 +165,23 @@ async function poll(first) {
     else { $('#live').textContent = 'new: ' + got.map((r) => r.id).join(', '); load(got[got.length - 1].id); }
   } catch (e) { $('#live').textContent = 'live check failed; retrying'; }
 }
-poll(true); setInterval(() => poll(false), 15000);
+// the Runs repo (every run starts with a push): its runs/index.json on GitHub. raw.githubusercontent.com caches a branch for up to
+// 5 minutes, so "check now" asks the GitHub API for dev's latest commit (one call) and reads the files at that commit, uncached.
+const RUNS_REPO = 'PrompTugal/PrompTugal__News__Swarm__Runs', RAW = (ref) => `https://raw.githubusercontent.com/${RUNS_REPO}/${ref}/runs/`;
+async function pollActions(ref = 'dev', announce = true) {
+  try {
+    const ix = await (await fetch(RAW(ref) + 'index.json', { cache: 'no-store' })).json();
+    const fresh = ix.runs.filter((r) => !known.has('gh:' + r.id));
+    if (!fresh.length) { if (!announce) $('#live').textContent = 'no new runs in ' + RUNS_REPO; return; }
+    const got = await Promise.all(fresh.map((r) => fetch(RAW(ref) + r.file).then((x) => x.json()).then((j) => (known.add('gh:' + r.id), { ...j.body, signed_by: j.by.fp }))));
+    runs = runs.concat(got); $('#live').textContent = 'new from GitHub Actions: ' + got.map((r) => r.request).join(', '); load(got[got.length - 1].id);
+  } catch (e) { /* no runs yet, or GitHub unreachable */ }
+}
+async function checkNow() {
+  $('#live').textContent = 'asking GitHub for the latest commit…';
+  try { const c = await (await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`)).json(); await pollActions(c.sha, false); } catch (e) { $('#live').textContent = 'GitHub did not answer'; }
+}
+poll(true).then(() => pollActions('dev')); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000);
 </script>
 </body>
 </html>
