@@ -25,7 +25,7 @@ jobs:
       - name: Assemble the site
         run: |
           mkdir -p _site
-          cp -r index.html CNAME .nojekyll MAP.md runs _site/
+          cp -r index.html how.html CNAME .nojekyll MAP.md RUNNER.md runs packets data _site/
           echo "{\"commit\":\"${GITHUB_SHA}\",\"built_at\":\"$(date -u +%FT%TZ)\",\"run\":\"${GITHUB_RUN_NUMBER}\"}" > _site/version.json
       - uses: actions/upload-pages-artifact@v3
         with:

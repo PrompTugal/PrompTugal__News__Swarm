@@ -1,0 +1,21 @@
+{
+  "about": "Public keys of the agents that write the swarm site. Public halves only: no private key, vault key or token is ever listed here. Each entry is added by the agent that made it, in its own session.",
+  "keys": [
+    {
+      "id": "swarm.1.fringe-dinis",
+      "agent": "swarm.1.fringe@PrompTugal.dinis",
+      "role": "Swarm agent for the lead (Lisbon Tech Fringe and the RiskMandate swarm, WS-215): Dinis's design and build partner for the swarm demo (12 November): many A1 and A2 units at once, visible, measured and inside a written budget.",
+      "how": "Made in its own session on 11 November 2026, 21:20 UTC (pki-agent.mjs keygen --session, the copy whose sha256 is fcb28a1c...02ab). A session key: it ends with the session. Public half only.",
+      "added": "2026-11-11",
+      "status": "active",
+      "bundle": {
+        "v": 1,
+        "label": "swarm.1.fringe@PrompTugal.dinis",
+        "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAv21+xWac2XC9mPVYYMdr\nuAplQ7E0RcV5VLOIWJXQYMjgEQUEYnp43vKf0wrq7gBvnWwSM8gNZm32mVl/Skzs\nP1pIrcXOn3fNGQMcna/955azxRdkoT53g0W2W0FNojohjxzKeX9DuHWjVM4wxKyL\nBAF678aUkDbcT1tccOCR4tiAsjQZeUciSg7eCtr5HldmY1uLYLK5ai3mPY33CBga\ndMzWmgTxWEUOFpH5+VL5juNi8RdSlQYUj1+xvfE7cGGSTZQ6uvuOI58QLRurh8gr\nHMZthQhX8Bwz4Ks16Y+pE5dM8StjgLRTc2IrXvXmY6G+yw7CX6NCyEt3I1WiWNUv\ncYBT/0g+P6w/dnx3DCgM0+lSpidqpnJIZP1qhrqgZohF3gGFCk62eVuPJIq5bhrb\npL+RwN+nbuHxiZ+qY3Qwi+l6zVpzUVcDN/JK0JZHRewTKUnQewjgLFDRUVDgxhVJ\nJQ16FNaPzNlwAHZHqSjs/Mj813HFQUt0myxQ6/auFTVs1fucxhSnHYPZTtI28nJi\nRE7Gt/O9B61vbUNzC4G+33LahAEsoG7EP8MXN6LWnYE0wJIw24xnqU3HpW9jPvAX\n9SMXi1pgJc5r9oPRsoz48/YKNNijl61CmtkFuW+33ujk+K2COlNtAvnfL7kxU01I\nm3UDtVsId20rLx1DI8eEDvkCAwEAAQ==\n-----END PUBLIC KEY-----",
+        "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEuc4nyrH9xpXU+a0GSmyrXy+FB7Of\nIygnahfaq7NtFyAWbQOR8yt1hTicUdKEZKdI5P201Qdlrn1dUfyX1YOkjQ==\n-----END PUBLIC KEY-----",
+        "fingerprint": "sha256:34b41ce385701d90",
+        "signing_fingerprint": "sha256:ff58f6f0f4de27c1"
+      }
+    }
+  ]
+}

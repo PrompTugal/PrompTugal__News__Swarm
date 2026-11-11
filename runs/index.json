@@ -1,53 +1,90 @@
 {
- "about": "Every recorded run of the swarm ladder (work/52 on the Fringe board). One file per run.",
+ "about": "Every recorded run: the ladder (by swarm.1 alone) and packets run by runners on any account (the GitHub flow). One file per run.",
+ "updated": "2026-11-11T22:51:29Z",
  "runs": [
   {
    "file": "20261111T2134-r0.json",
    "id": "20261111T2134-r0",
+   "kind": "ladder",
    "rung": "r0",
-   "title": "Me \u2192 Claude \u2192 a task",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → a task",
    "llm_calls": 0,
    "openrouter_usd": 0
   },
   {
    "file": "20261111T2134-r1.json",
    "id": "20261111T2134-r1",
+   "kind": "ladder",
    "rung": "r1",
-   "title": "Me \u2192 Claude \u2192 compute",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → compute",
    "llm_calls": 0,
    "openrouter_usd": 0
   },
   {
    "file": "20261111T2134-r2.json",
    "id": "20261111T2134-r2",
+   "kind": "ladder",
    "rung": "r2",
-   "title": "Me \u2192 Claude \u2192 one OpenRouter call",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → one OpenRouter call",
    "llm_calls": 1,
    "openrouter_usd": 0.000212
   },
   {
    "file": "20261111T2134-r3.json",
    "id": "20261111T2134-r3",
+   "kind": "ladder",
    "rung": "r3",
-   "title": "Me \u2192 Claude \u2192 many models",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → many models",
    "llm_calls": 4,
    "openrouter_usd": 0.001078
   },
   {
    "file": "20261111T2134-r4.json",
    "id": "20261111T2134-r4",
+   "kind": "ladder",
    "rung": "r4",
-   "title": "Me \u2192 Claude \u2192 loops",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → loops",
    "llm_calls": 8,
    "openrouter_usd": 0.002644
   },
   {
    "file": "20261111T2134-r5.json",
    "id": "20261111T2134-r5",
+   "kind": "ladder",
    "rung": "r5",
-   "title": "Me \u2192 Claude \u2192 a swarm of loops",
+   "packet": null,
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Me → Claude → a swarm of loops",
    "llm_calls": 40,
    "openrouter_usd": 0.010878
+  },
+  {
+   "file": "s001-storm-six--swarm.1.fringe.json",
+   "id": "s001-storm-six--swarm.1.fringe",
+   "kind": "packet",
+   "rung": null,
+   "packet": "s001-storm-six",
+   "runner": "swarm.1.fringe@PrompTugal.dinis",
+   "account": "riskmandate-personal",
+   "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+   "llm_calls": 32,
+   "openrouter_usd": 0.012049
   }
  ]
 }

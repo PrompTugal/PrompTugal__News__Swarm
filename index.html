@@ -35,7 +35,7 @@ footer{color:var(--muted);font-size:.8rem}
 <body>
 <header>
   <h1>The swarm, one real run at a time</h1>
-  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
+  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="how.html">How the GitHub flow works</a> · <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
 </header>
 <section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
 <li><b>The ladder</b>: from me → Claude → a task, up to a swarm of loops on many models. <em>Live below: six real runs.</em></li>
@@ -46,7 +46,7 @@ footer{color:var(--muted);font-size:.8rem}
 <main>
   <section class="panel" aria-label="Rungs"><h2>The ladder</h2><div id="rungs"></div></section>
   <section class="panel" aria-label="The run">
-    <div class="bar"><button id="play">▶ Replay</button><span class="amp" id="amp"></span></div>
+    <div class="bar"><button id="play">▶ Replay</button><span class="amp" id="amp"></span><span id="live" style="color:var(--muted);font-size:.8rem" aria-live="polite">live: checking for new runs every 15 s</span></div>
     <div id="stage"></div>
     <div class="legend" id="legend"></div>
     <div class="cards" id="cards"></div>
@@ -89,7 +89,7 @@ function withCaps(run) {
   const seen = new Set(), nodes = run.nodes.filter((n) => !seen.has(n.id) && seen.add(n.id)).map((n) => ({ ...n })), edges = run.edges.map((e) => ({ ...e }));
   for (const c of CAPS.filter((c) => c.on)) {
     const id = 'cap:' + c.id; nodes.push({ id, altitude: c.person ? 'P' : c.env ? 'E' : 'C', label: c.label, planned: !c.real, cap: true });
-    edges.push({ from: c.person ? id : 'swarm.1', to: c.person ? 'swarm.1' : id, kind: c.person ? 'asks' : 'holds', planned: !c.real });
+    const hub = nodes.some((n) => n.id === 'runner') ? 'runner' : 'swarm.1'; edges.push({ from: c.person ? id : hub, to: c.person ? hub : id, kind: c.person ? 'asks' : 'holds', planned: !c.real });
   }
   return { nodes, edges };
 }
@@ -129,7 +129,7 @@ function draw() {
 }
 function replay() {
   clearInterval(timer); const tl = cur.timeline || []; const end = Math.max(1, ...tl.map((e) => e.t)); const D = 6000, step = 40;
-  document.querySelectorAll('.n').forEach((g) => { if (!g.dataset.id.startsWith('cap:') && !['dinis', 'task'].includes(g.dataset.id) && !g.dataset.id.startsWith('data:') && g.dataset.id !== 'openrouter') g.classList.add('hidden'); });
+  const timed = new Set(tl.map((e) => e.unit)); document.querySelectorAll('.n').forEach((g) => { if (timed.has(g.dataset.id)) g.classList.add('hidden'); });
   let t = 0, i = 0; const ev = [...tl].sort((a, b) => a.t - b.t);
   timer = setInterval(() => {
     t += step * end / D;
@@ -138,7 +138,9 @@ function replay() {
   }, step);
 }
 function rungs() {
-  $('#rungs').innerHTML = runs.map((r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung)} · ${esc(r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`).join('')
+  const btn = (r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung || r.packet)} · ${esc(r.kind === 'packet' ? r.by.split('@')[0] + ' on ' + r.environment.account : r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`;
+  const lad = runs.filter((r) => r.kind !== 'packet'), pk = runs.filter((r) => r.kind === 'packet');
+  $('#rungs').innerHTML = lad.map(btn).join('') + (pk.length ? `<h2 style="margin-top:12px">Packets: the GitHub flow</h2>` + pk.map(btn).join('') : '') + `<h2 style="margin-top:12px">Next</h2>`
     + PLANNED.map((p) => `<button class="rung" disabled title="${esc(p.story)}"><b>${esc(p.id)} · ${esc(p.title)}</b><span>planned: ${esc(p.story)}</span></button>`).join('');
   document.querySelectorAll('.rung[data-id]').forEach((b) => b.onclick = () => load(b.dataset.id));
 }
@@ -147,12 +149,22 @@ function togs() {
   document.querySelectorAll('#togs input').forEach((i) => i.onchange = () => { CAPS.find((c) => c.id === i.dataset.id).on = i.checked; draw(); });
   $('#legend').innerHTML = ['P', 'A3', 'A2', 'A1', 'A0', 'M', 'D', 'E'].map((a) => `<span><svg width="22" height="22" viewBox="-11 -11 22 22">${shape(a, 8)}</svg> ${ALT[a][0]}${/^A/.test(a) ? ' (' + a + ')' : ''}</span>`).join('');
 }
-function load(id) { cur = runs.find((r) => r.id === id); rungs(); draw(); replay(); try { history.replaceState(null, '', '#' + cur.rung); } catch {} }
+function load(id) { cur = runs.find((r) => r.id === id); rungs(); draw(); replay(); try { history.replaceState(null, '', '#' + (cur.rung || cur.id)); } catch {} }
 $('#play').onclick = replay;
-fetch('runs/index.json').then((r) => r.json()).then(async (ix) => {
-  runs = await Promise.all(ix.runs.map((r) => fetch('runs/' + r.file).then((x) => x.json())));
-  togs(); const want = location.hash.slice(1); load((runs.find((r) => r.rung === want) || runs[0]).id);
-});
+// live: the page checks runs/index.json every 15 s; a run that lands (CI deploys about 20 s after a push) loads and replays by itself
+let known = new Set();
+async function poll(first) {
+  try {
+    const ix = await (await fetch('runs/index.json?t=' + Date.now(), { cache: 'no-store' })).json();
+    const fresh = ix.runs.filter((r) => !known.has(r.file));
+    if (!fresh.length) return;
+    const got = await Promise.all(fresh.map((r) => fetch('runs/' + r.file).then((x) => x.json()).then((j) => (known.add(r.file), j))));
+    runs = runs.concat(got);
+    if (first) { togs(); const want = location.hash.slice(1); load((runs.find((r) => r.rung === want || r.packet === want || r.id === want) || runs[0]).id); }
+    else { $('#live').textContent = 'new: ' + got.map((r) => r.id).join(', '); load(got[got.length - 1].id); }
+  } catch (e) { $('#live').textContent = 'live check failed; retrying'; }
+}
+poll(true); setInterval(() => poll(false), 15000);
 </script>
 </body>
 </html>

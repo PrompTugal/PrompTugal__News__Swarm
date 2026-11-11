@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The GitHub Flow</title>
+<meta name="description" content="How work moves through the swarm by GitHub: a signed packet is issued, any runner on any account picks it up, runs it, pushes a signed result, and the site replays it.">
+<style>
+:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0}
+:root[data-theme="light"]{--bg:#f6f8f7;--panel:#fff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a{color:var(--a3)}.wrap{max-width:860px;margin:0 auto;padding:16px}h1{font-size:1.6rem;margin:.4em 0}h2{font-size:1.15rem;margin:1.6em 0 .4em}.muted{color:var(--muted)}
+ol.steps{list-style:none;padding:0;counter-reset:s}ol.steps li{counter-increment:s;position:relative;padding:10px 12px 10px 52px;margin:0 0 8px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+ol.steps li::before{content:counter(s);position:absolute;left:12px;top:10px;width:28px;height:28px;border-radius:50%;background:var(--a3);color:#04100F;font-weight:700;display:grid;place-items:center}
+ol.steps li>b:first-child{display:block}code{background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 4px;font-size:.88em}
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px;overflow-x:auto}.fig svg{display:block;min-width:640px;width:100%;height:auto}
+.fig text{fill:var(--ink);font-size:12px}.fig .s{fill:var(--muted);font-size:10px}.fig line,.fig path{stroke:var(--muted);stroke-width:1.4;fill:none}
+table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
+footer{color:var(--muted);font-size:.8rem;margin-top:2em}
+</style>
+</head>
+<body><div class="wrap">
+<p><a href="./">← the swarm, live</a></p>
+<h1>The GitHub flow: how work moves through the swarm</h1>
+<p class="muted">swarm.1.fringe@PrompTugal.dinis, for Dinis Cruz (WS-215), 11 November 2026. Work goes out as signed <b>packets</b>. Any runner on any account can run one, as long as it can pull and push this repository. GitHub carries the work and keeps the record, and the site replays it. Next, the same packets go through a vault, so the flow does not depend on GitHub.</p>
+
+<div class="fig" role="img" aria-label="Dinis asks swarm.1; swarm.1 issues a packet to GitHub; runners on several accounts pull it, run loops and model calls, and push signed results; CI deploys; the site replays.">
+<svg viewBox="0 0 760 250">
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="var(--muted)" stroke="none"/></marker></defs>
+  <circle cx="40" cy="60" r="16" fill="var(--p)"/><text x="40" y="96" text-anchor="middle">Dinis</text>
+  <polygon points="150,44 164,52 164,68 150,76 136,68 136,52" fill="var(--a4)"/><text x="150" y="96" text-anchor="middle">swarm.1 (A4)</text><text x="150" y="110" text-anchor="middle" class="s">issues, signs</text>
+  <rect x="250" y="40" width="120" height="40" rx="20" fill="var(--res)"/><text x="310" y="65" text-anchor="middle" style="fill:#04100F">GitHub: dev</text><text x="310" y="96" text-anchor="middle" class="s">packets/ · results · runs/</text>
+  <rect x="460" y="20" width="30" height="30" rx="8" fill="var(--a3)"/><text x="500" y="40" class="s">runner.1 · riskmandate-personal</text>
+  <rect x="460" y="70" width="30" height="30" rx="8" fill="var(--a3)"/><text x="500" y="90" class="s">Angelo's conductor · Angelo's account</text>
+  <rect x="460" y="120" width="30" height="30" rx="8" fill="var(--a3)" opacity=".5"/><text x="500" y="140" class="s">runner.n · any account (next)</text>
+  <circle cx="560" cy="205" r="11" fill="none" stroke="var(--a2)" stroke-width="3"/><text x="580" y="209" class="s">A2 loops</text>
+  <polygon points="660,194 671,205 660,216 649,205" fill="var(--a1)"/><text x="680" y="209" class="s">A1 calls</text>
+  <rect x="250" y="180" width="120" height="40" rx="20" fill="var(--res)"/><text x="310" y="205" text-anchor="middle" style="fill:#04100F">CI → the site</text>
+  <line x1="58" y1="60" x2="132" y2="60" marker-end="url(#ar)"/>
+  <line x1="168" y1="60" x2="248" y2="60" marker-end="url(#ar)"/>
+  <path d="M372,56 C420,40 430,35 456,35" marker-end="url(#ar)"/><path d="M372,62 C420,70 430,85 456,85" marker-end="url(#ar)"/><path d="M372,70 C420,110 430,135 456,135" marker-end="url(#ar)"/>
+  <path d="M475,102 C480,150 520,195 546,203" marker-end="url(#ar)"/><line x1="574" y1="205" x2="646" y2="205" marker-end="url(#ar)"/>
+  <path d="M458,92 C400,120 340,110 322,84" marker-end="url(#ar)"/><text x="400" y="128" class="s">signed result</text>
+  <line x1="310" y1="82" x2="310" y2="176" marker-end="url(#ar)"/>
+</svg></div>
+
+<h2>The seven steps</h2>
+<ol class="steps">
+<li><b>Ask.</b> Dinis asks swarm.1, in its own session. What he says is written down: the brief, its status file, the board.</li>
+<li><b>Issue.</b> swarm.1 writes <code>packets/&lt;id&gt;/packet.json</code> with <code>node tools/swarm.mjs issue</code>. The packet holds the storm tasks, the models and the number of tries. It also holds a <b>mandate</b> (what to do), a <b>grant</b> (what the runner may touch: the storm API, the router, one file, a push to dev) and a <b>budget</b> (USD and calls). It is signed by a key made for it, and pushed to <code>dev</code>.</li>
+<li><b>Pick up.</b> A runner (an A3 agent on any account) pulls <code>dev</code>, runs <code>node tools/swarm.mjs list</code>, and checks the packet's signature before running anything.</li>
+<li><b>Run.</b> <code>node tools/swarm.mjs run</code> starts one A2 loop per task and model. Each loop reads the storm site's public data (A0), asks an open-weight model through the router (A1), checks the answer, and retries until it is valid or the tries run out. Every call is signed by a key made for that call, and the budget is checked as it goes.</li>
+<li><b>Result.</b> The runner writes <code>packets/&lt;id&gt;/result-&lt;runner&gt;.json</code>: the units, edges, timeline and metrics, signed by the runner's key for this run. It pushes the result to <code>dev</code> under its own name. Model text is never stored; only its length, its sha256 and whether it was valid.</li>
+<li><b>Publish.</b> <code>node tools/swarm.mjs publish</code> verifies every result, checking the packet, the result and each call's signature. Each verified result becomes a run in <code>runs/</code>. The gate checks the repository, and CI deploys it in about 20 seconds.</li>
+<li><b>Replay.</b> <a href="./">The site</a> checks for new runs every 15 seconds and replays each one. The same files can go to Elastic, Kibana, Grafana and the Gravity universe.</li>
+</ol>
+
+<h2>Who holds what</h2>
+<table>
+<tr><th>Unit</th><th>Altitude</th><th>Holds</th><th>Cannot</th></tr>
+<tr><td>swarm.1</td><td>A4 swarm</td><td>this repository (push to dev), the router, packets it issues</td><td>push to main; start sessions without Dinis's word</td></tr>
+<tr><td>a runner</td><td>A3 agent</td><td>its own key, a clone of this repository, the router (its account's OpenRouter key)</td><td>run what a packet does not say; spend over the packet's budget</td></tr>
+<tr><td>a loop</td><td>A2</td><td>the packet's grant: the storm API, the router</td><td>start others, schedule, push</td></tr>
+<tr><td>an LLM call</td><td>A1</td><td>a prompt in, an answer out, a key for its signature</td><td>use any tool</td></tr>
+<tr><td>a read, a consensus</td><td>A0 compute</td><td>code</td><td>call a model</td></tr>
+</table>
+
+<h2>Start a runner on another account</h2>
+<p>Open a Claude Code session with PrompTugal/PrompTugal__News__Swarm attached and paste the prompt in <a href="RUNNER.md">RUNNER.md</a>. The runner needs push access to this repository and an OpenRouter key on its environment.</p>
+
+<h2>Read more</h2>
+<ul>
+<li><a href="https://lisbontechfringe.com/agentic-team/articles/the-altitudes-of-execution/">The altitudes of execution</a> (the article)</li>
+<li><a href="https://lisbontechfringe.com/agentic-team/where-agents-run/">Where agents run</a>: runtimes, endpoints, the formula, the task packet</li>
+<li><a href="https://lisbontechfringe.com/agentic-team/operating-model/">The operating model</a> · <a href="https://lisbontechfringe.com/agentic-team/how-it-flows/">How it flows</a></li>
+<li><a href="MAP.md">The map of tomorrow's demos</a></li>
+</ul>
+<footer>The workload is the storm site's public data: <a href="https://storm-charles.promptugal.news/">storm-charles.promptugal.news</a>. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit.</footer>
+</div></body>
+</html>

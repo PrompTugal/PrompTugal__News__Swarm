@@ -1,0 +1,48 @@
+{
+ "body": {
+  "v": 1,
+  "id": "s002-storm-six",
+  "altitude": "A2",
+  "from": "swarm.1.fringe@PrompTugal.dinis",
+  "for": "runner.1.swarm@PrompTugal.dinis (Dinis's account)",
+  "issued_at": "2026-11-11T22:50:41Z",
+  "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+  "mandate": "Read the named storm datasets from the storm site's public API and answer each task's question, checked, on each named model. Nothing else.",
+  "grant": [
+   "read.web:storm-charles.promptugal.news/api/v1",
+   "call.llm:openrouter.ai (through tools/llm.mjs)",
+   "write.file:packets/<id>/result-<runner>.json",
+   "push.git:dev"
+  ],
+  "tasks": [
+   "warnings",
+   "forecast",
+   "stations",
+   "tides",
+   "transport",
+   "flights"
+  ],
+  "models": [
+   "deepseek/deepseek-v4-flash",
+   "mistralai/mistral-small-2603",
+   "meta-llama/llama-3.3-70b-instruct",
+   "qwen/qwen3.7-flash"
+  ],
+  "tries": 3,
+  "budget": {
+   "usd": 0.25,
+   "calls": 72,
+   "sessions": 0
+  },
+  "output": "packets/<id>/result-<runner>.json, signed by a key made for the run; model text never stored",
+  "how": "node tools/swarm.mjs run --id <id> --as <your agent name> --env \"<runtime>\" --account <account label>; then commit and push to dev"
+ },
+ "by": {
+  "altitude": "A4",
+  "name": "issuer: swarm.1.fringe@PrompTugal.dinis",
+  "fp": "sha256:a111261ab8036a83",
+  "pub": "MCowBQYDK2VwAyEAE4VoGAScr5BH1Tb4rW5HvCcDCBoPE018H27XCytZOeU=",
+  "signed_at": "2026-11-11T22:50:41Z"
+ },
+ "sig": "KvDkXTHTju24ZrtuvEydS4uSet+5prtCJijMgoKp+SdYnryVaR6Q5MvC87H0X4wMhKXv7z9a+SsQrLz3p1nuBQ=="
+}

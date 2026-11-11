@@ -1,0 +1,39 @@
+{
+  "about": "The model router's table (work/20). Tiers by task; the caller names a tier, never a model, unless it must. Slugs are OpenRouter's, read from https://openrouter.ai/api/v1/models at 12:10 UTC on 11 November 2026 (prices in USD per million tokens: in/out). Change a tier here, nowhere else.",
+  "default_tier": "cheap",
+  "tiers": {
+    "cheap": {
+      "model": "deepseek/deepseek-v4-flash",
+      "fallback": "anthropic/claude-haiku-5.5",
+      "usd_per_m": "0.09/0.18",
+      "for": "classify, extract, summarise, dedupe, check, draft first passes (open weights)"
+    },
+    "strong": {
+      "model": "anthropic/claude-sonnet-5.5",
+      "fallback": "deepseek/deepseek-v4-pro",
+      "usd_per_m": "2/10",
+      "for": "writing that is published, reviews, anything a person will read as ours"
+    },
+    "hard": {
+      "model": "anthropic/claude-opus-5.5",
+      "fallback": "anthropic/claude-sonnet-5.5",
+      "usd_per_m": "4/20",
+      "for": "hard reasoning, the lead's decisions; use sparingly"
+    },
+    "long": {
+      "model": "deepseek/deepseek-v4-flash",
+      "fallback": "google/gemini-3.6-flash",
+      "usd_per_m": "0.09/0.18",
+      "for": "a whole page set or repository in one prompt (1M context)"
+    },
+    "check": {
+      "model": "meta-llama/llama-3.3-70b-instruct",
+      "fallback": "meta-llama/llama-3.1-8b-instruct",
+      "usd_per_m": "0.71/0.71",
+      "for": "second-opinion checks: extracts what a public page says; the comparison is done in code; its word is evidence, never fact (the 8B model was too noisy, the lead 12:49 UTC)"
+    }
+  },
+  "min_credit_usd": 5,
+  "daily_cap_usd": 5,
+  "note": "daily_cap_usd (5, the lead at 12:39 UTC) is counted per session from that session's own ledger, so the team total is the sum over sessions; min_credit_usd: no call is sent when the key's remaining credit is below it."
+}
