@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" data-theme="gravity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm Stage</title>
+<meta name="description" content="The swarm's real runs as a presentation: scenes and steps you control, five views, by altitude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="stage/themes.css">
+<link rel="stylesheet" href="stage/stage.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="stage/stage.js"></script>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1><a href="index.html" title="the runs, one by one">Swarm</a> · stage</h1>
+    <span id="where">loading…</span>
+    <div id="modes" role="group" aria-label="view"></div>
+    <div class="ctl"><button id="tglL" title="left pane (Q)" aria-label="toggle left pane">⇤</button><button id="tglR" title="right pane (E)" aria-label="toggle right pane">⇥</button><button id="focusbtn" title="focus: the stage only (Z)">focus</button><button id="fs" title="fullscreen (F)">⛶</button><button id="helpbtn" title="keys (?)">?</button></div>
+  </header>
+  <aside class="pane" id="left">
+    <details open><summary>The story</summary><div id="story"></div></details>
+    <details><summary>Every run</summary><div id="runs"></div></details>
+    <details open><summary>Altitudes</summary><div id="legend"></div><small class="muted">click: hide or show · shift-click: only this one</small></details>
+  </aside>
+  <div class="handle" id="hL" title="drag to resize · double-click to hide"></div>
+  <main id="stage">
+    <svg id="svg" role="img" aria-label="the run as a graph"></svg>
+    <div id="uni"></div>
+    <div id="bars" style="display:none"></div>
+    <div id="caption"></div>
+    <div id="counter" style="display:none"></div>
+    <div id="simflag" style="display:none" title="no run file: an illustration of the story">SIMULATED</div>
+    <div id="info"></div>
+  </main>
+  <div class="handle" id="hR" title="drag to resize · double-click to hide"></div>
+  <aside class="pane" id="right">
+    <details open><summary>What to say</summary><div id="say"></div></details>
+    <details open><summary>This run</summary><div id="runmeta"></div><div class="cards" id="cards"></div></details>
+    <details><summary>Knobs</summary>
+      <label class="knob">view <select id="k-mode"></select></label>
+      <label class="knob">theme <select id="k-theme"></select></label>
+      <label class="knob">text <input id="k-text" type="range" min="0.6" max="2.4" step="0.05"></label>
+      <label class="knob">labels <input id="k-label" type="range" min="0.5" max="3" step="0.05"></label>
+      <label class="knob">circles <input id="k-node" type="range" min="0.3" max="4" step="0.05"></label>
+      <label class="knob">lines <input id="k-link" type="range" min="0.2" max="4" step="0.05"></label>
+      <label class="knob">show labels <input id="k-labels" type="checkbox"></label>
+      <label class="knob">anchors <input id="k-anchors" type="checkbox"></label>
+      <label class="knob">auto-advance <input id="k-auto" type="checkbox"></label>
+      <button id="k-reset" class="chip">reset the knobs</button>
+    </details>
+  </aside>
+  <footer>
+    <div class="ctl"><button id="prevS" title="previous scene (PageUp)">«</button><button id="prev" title="previous step (←): the end of the step before">‹</button><button id="play" title="play or pause (Space)">▶</button><button id="next" title="next step (→): plays it, holds on its end">›</button><button id="nextS" title="next scene (PageDown)">»</button><button id="rate" title="speed (S)">1×</button></div>
+    <div id="steps" title="this scene's steps: click to play one"></div>
+    <div class="ctl"><button id="zout" title="zoom out (-)">−</button><button id="fit" title="fit (0)">fit</button><button id="zin" title="zoom in (=)">+</button></div>
+  </footer>
+</div>
+<section id="help" aria-label="keys"><h2>Keys</h2><dl id="helpkeys"></dl><p class="muted">Drag a node to move it (hold shift as you let go to pin it in the force view). Double-click a node to focus on its neighbours; Esc to clear. Drag the pane edges to resize; double-click an edge to hide that pane. The knobs are kept in this browser.</p></section>
+<div id="toast"></div>
+</body>
+</html>

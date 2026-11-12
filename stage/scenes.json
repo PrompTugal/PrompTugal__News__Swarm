@@ -1,0 +1,515 @@
+{
+ "about": "The stage's story, as data (stage/stage.js reads it). One scene tells one story; each step adds one thing and is cumulative. From Dinis's arc to storytelling.1 (12 Nov 2026, 01:18 UTC): the five altitudes; the same privileges; policies; runs that cannot reach the asset; the mesh against one agent per asset; scale; cost. Numbers come from the run files; scenes on sim: graphs are labelled SIMULATED on screen. storytelling.1 and swarm.1.designer may edit this file: keys are documented in stage/README.md.",
+ "scenes": [
+  {
+   "id": "altitudes",
+   "act": "1 · Five altitudes",
+   "title": "One agent, five altitudes",
+   "run": "20261111T2134-r4.json",
+   "mode": "layers",
+   "say": "A real run from last night: one agent doing six of the storm site's scheduled jobs. Watch what one agent turns into.",
+   "steps": [
+    {
+     "label": "you and the agent",
+     "dur": 2,
+     "show": [
+      "P",
+      "A3",
+      "T"
+     ],
+     "caption": "You ask one agent (A3) to do a job. It has memory, tools and its own wake."
+    },
+    {
+     "label": "loops",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "T",
+      "A2"
+     ],
+     "caption": "It starts loops (A2): read, ask, check, retry. Six of them, one per job."
+    },
+    {
+     "label": "model calls",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "T",
+      "A2",
+      "A1",
+      "M"
+     ],
+     "caption": "Each loop calls a model (A1): one prompt in, one answer out. Eight calls, on OpenRouter."
+    },
+    {
+     "label": "code",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "T",
+      "A2",
+      "A1",
+      "M",
+      "A0",
+      "D"
+     ],
+     "caption": "And code runs (A0): it reads the public storm data. 30 units from one request."
+    },
+    {
+     "label": "by colour",
+     "dur": 2,
+     "highlight": null,
+     "caption": "Five altitudes, one colour each. The same job; very different powers needed at each level."
+    }
+   ]
+  },
+  {
+   "id": "swarm-of-loops",
+   "act": "1 · Five altitudes",
+   "title": "A swarm of loops",
+   "run": "20261111T2257-r5b.json",
+   "mode": "radial",
+   "say": "The same shape, bigger: 12 jobs on 4 models, 48 loops at once. Replayed from the run file, as it happened.",
+   "steps": [
+    {
+     "label": "the agent",
+     "dur": 1.5,
+     "show": [
+      "P",
+      "A3"
+     ],
+     "caption": "Still one agent."
+    },
+    {
+     "label": "the run, replayed",
+     "dur": 7,
+     "replay": true,
+     "counter": {
+      "of": "peak",
+      "label": "units running at once (peak)"
+     },
+     "caption": "It fans out: 48 loops, 73 model calls, 96 units at once.",
+     "show": null
+    },
+    {
+     "label": "who did the work",
+     "dur": 2.5,
+     "highlight": [
+      "A2",
+      "A1",
+      "A0"
+     ],
+     "caption": "The agent did almost none of the work. Loops, calls and code did."
+    }
+   ]
+  },
+  {
+   "id": "same-privileges",
+   "act": "2 · The same privileges",
+   "title": "Everybody can reach everything",
+   "run": "20261111T2134-r4.json",
+   "mode": "force",
+   "anchors": {
+    "P": "left",
+    "A3": "left",
+    "X": "right"
+   },
+   "say": "Today, everything an agent starts runs with the agent's privileges. Connect the agent to your systems and see who can reach them.",
+   "steps": [
+    {
+     "label": "the run",
+     "dur": 2,
+     "caption": "The same run: one agent, its loops, its calls, its code."
+    },
+    {
+     "label": "connect the agent",
+     "dur": 2.5,
+     "assets": [
+      "Gmail",
+      "Drive",
+      "GitHub",
+      "Database"
+     ],
+     "caption": "The agent is connected: Gmail, Drive, GitHub, a database (the assets are simulated)."
+    },
+    {
+     "label": "who can reach them?",
+     "dur": 4,
+     "assets": [
+      "Gmail",
+      "Drive",
+      "GitHub",
+      "Database"
+     ],
+     "overlay": "all",
+     "counter": {
+      "of": "reach"
+     },
+     "caption": "Who can reach them? Every loop, every model call, every line of code. Everybody."
+    },
+    {
+     "label": "one goes wrong",
+     "dur": 3,
+     "fail": "loop:tides:deepseek-v4-flash/read:tides",
+     "caption": "One bad read, one prompt injection in the data: that code holds the agent's keys."
+    }
+   ]
+  },
+  {
+   "id": "policies",
+   "act": "3 · Policies",
+   "title": "A policy on every unit",
+   "run": "20261111T2134-r4.json",
+   "mode": "force",
+   "anchors": {
+    "P": "left",
+    "A3": "left",
+    "X": "right"
+   },
+   "say": "RiskMandate puts a policy on each unit: what it may reach, at its altitude.",
+   "steps": [
+    {
+     "label": "everybody",
+     "dur": 1.5,
+     "assets": [
+      "Gmail",
+      "Drive",
+      "GitHub",
+      "Database"
+     ],
+     "overlay": "all",
+     "counter": {
+      "of": "reach"
+     },
+     "caption": "Where we were: everybody reaches everything."
+    },
+    {
+     "label": "policy on",
+     "dur": 3.5,
+     "overlay": "policy",
+     "owner": "swarm.1",
+     "caption": "Policy on: only the agent may reach the assets. Loops, calls and code may not."
+    },
+    {
+     "label": "but who enforces it?",
+     "dur": 3,
+     "highlight": [
+      "A3",
+      "X"
+     ],
+     "caption": "But if the agent enforces its own policy, we are still hoping it behaves."
+    }
+   ]
+  },
+  {
+   "id": "elsewhere",
+   "act": "3 · Policies",
+   "title": "Run it where the assets are not",
+   "run": "gh:20261111-2344-storm-a2",
+   "mode": "layers",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. Neither is connected to your assets.",
+   "steps": [
+    {
+     "label": "a signed request",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "C"
+     ],
+     "caption": "The agent commits a signed request. That is all it does."
+    },
+    {
+     "label": "the push starts an Action",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "C",
+      "E"
+     ],
+     "caption": "The push starts a GitHub Action: a different place, with no access to your systems."
+    },
+    {
+     "label": "the work runs there",
+     "dur": 4,
+     "show": null,
+     "replay": true,
+     "caption": "36 model calls and 24 loops run there, and on OpenRouter."
+    },
+    {
+     "label": "can they reach the assets?",
+     "dur": 4,
+     "assets": [
+      "Gmail",
+      "Drive",
+      "Database"
+     ],
+     "overlay": "isolated",
+     "owner": "requester",
+     "counter": {
+      "of": "reach"
+     },
+     "caption": "Can any of them reach Gmail? No: they run where it is not connected. Not a policy: physics."
+    }
+   ]
+  },
+  {
+   "id": "mesh",
+   "act": "4 · The mesh",
+   "title": "Five agents, every one wired to everything",
+   "run": "sim:mesh",
+   "mode": "force",
+   "anchors": {
+    "P": "left",
+    "A3": "middle",
+    "X": "right"
+   },
+   "say": "People struggle with five agents, ten agents. Why: it is a mesh. Every agent has every connector.",
+   "steps": [
+    {
+     "label": "five agents",
+     "dur": 2,
+     "show": [
+      "P",
+      "A3"
+     ],
+     "caption": "Five agents. A normal team setup."
+    },
+    {
+     "label": "every connector",
+     "dur": 3.5,
+     "show": null,
+     "counter": {
+      "of": "value",
+      "value": 35,
+      "label": "agent-to-system connections"
+     },
+     "caption": "Each one has Gmail, Calendar, Drive, Slack, Zapier, GitHub, a database."
+    },
+    {
+     "label": "one loses control",
+     "dur": 3,
+     "fail": "agent3",
+     "caption": "Any one of them can lose control, or make a mistake: and it reaches everything."
+    }
+   ]
+  },
+  {
+   "id": "one-per-asset",
+   "act": "4 · The mesh",
+   "title": "One agent per asset",
+   "run": "sim:policy",
+   "mode": "force",
+   "anchors": {
+    "P": "left",
+    "A3": "middle",
+    "X": "right"
+   },
+   "say": "With agentic policies: one agent may touch the inbox, one may touch the code, one may touch the database.",
+   "steps": [
+    {
+     "label": "the same five",
+     "dur": 2,
+     "show": [
+      "P",
+      "A3"
+     ],
+     "caption": "The same five agents."
+    },
+    {
+     "label": "one each",
+     "dur": 3,
+     "show": null,
+     "counter": {
+      "of": "value",
+      "value": 7,
+      "label": "connections, each one on purpose"
+     },
+     "caption": "Each system has one agent allowed to reach it."
+    },
+    {
+     "label": "one loses control",
+     "dur": 3,
+     "fail": "agent3",
+     "caption": "Agent 3 loses control: it reaches what it was given, and nothing else."
+    }
+   ]
+  },
+  {
+   "id": "scale",
+   "act": "5 · Scale",
+   "title": "One push, twelve jobs at once",
+   "run": "gh:20261111-2359-storm-scale-01",
+   "mode": "tree",
+   "say": "Because the work runs as small, isolated units, it scales. Tonight's scale test: one push, twelve GitHub jobs at once, every result signed.",
+   "steps": [
+    {
+     "label": "one job",
+     "dur": 3,
+     "replay": true,
+     "caption": "One of the jobs: a signed request, an Action, its loops and calls."
+    },
+    {
+     "label": "jobs at once",
+     "dur": 2.5,
+     "counter": {
+      "of": "summary.peak_jobs_at_once",
+      "label": "GitHub jobs at once, from one push"
+     },
+     "caption": "Twelve of them at once, from one push."
+    },
+    {
+     "label": "calls",
+     "dur": 2.5,
+     "counter": {
+      "of": "summary.calls",
+      "label": "model calls from pushes, all of tonight"
+     },
+     "caption": "Every call recorded: model, tokens, cost, valid or not. Never the text."
+    },
+    {
+     "label": "signed",
+     "dur": 2.5,
+     "counter": {
+      "of": "summary.jobs",
+      "label": "results, each signed and attested by GitHub"
+     },
+     "caption": "Each result signed by a key that lived only for its run, and attested by GitHub."
+    }
+   ]
+  },
+  {
+   "id": "cost",
+   "act": "6 · Cost",
+   "title": "The same tokens, four prices",
+   "run": "20261111T2257-r5b.json",
+   "say": "The big run again (73 calls, 236k tokens). What it cost, and what the same tokens would cost on each Claude model.",
+   "steps": [
+    {
+     "label": "Opus",
+     "dur": 2,
+     "bars": {
+      "upto": 1,
+      "items": [
+       {
+        "label": "Claude Opus",
+        "of": "claude-opus-5.5",
+        "color": "var(--alt-A4)"
+       },
+       {
+        "label": "Claude Sonnet",
+        "of": "claude-sonnet-5.5",
+        "color": "var(--alt-A3)"
+       },
+       {
+        "label": "Claude Haiku",
+        "of": "claude-haiku-5.5",
+        "color": "var(--alt-A2)"
+       },
+       {
+        "label": "OpenRouter (paid)",
+        "of": "openrouter",
+        "color": "var(--alt-A1)"
+       }
+      ]
+     },
+     "caption": "Every unit on the top model: the most capable, the most expensive."
+    },
+    {
+     "label": "Sonnet",
+     "dur": 2,
+     "bars": {
+      "upto": 2,
+      "items": [
+       {
+        "label": "Claude Opus",
+        "of": "claude-opus-5.5",
+        "color": "var(--alt-A4)"
+       },
+       {
+        "label": "Claude Sonnet",
+        "of": "claude-sonnet-5.5",
+        "color": "var(--alt-A3)"
+       },
+       {
+        "label": "Claude Haiku",
+        "of": "claude-haiku-5.5",
+        "color": "var(--alt-A2)"
+       },
+       {
+        "label": "OpenRouter (paid)",
+        "of": "openrouter",
+        "color": "var(--alt-A1)"
+       }
+      ]
+     },
+     "caption": "Half of it on the middle model."
+    },
+    {
+     "label": "Haiku",
+     "dur": 2,
+     "bars": {
+      "upto": 3,
+      "items": [
+       {
+        "label": "Claude Opus",
+        "of": "claude-opus-5.5",
+        "color": "var(--alt-A4)"
+       },
+       {
+        "label": "Claude Sonnet",
+        "of": "claude-sonnet-5.5",
+        "color": "var(--alt-A3)"
+       },
+       {
+        "label": "Claude Haiku",
+        "of": "claude-haiku-5.5",
+        "color": "var(--alt-A2)"
+       },
+       {
+        "label": "OpenRouter (paid)",
+        "of": "openrouter",
+        "color": "var(--alt-A1)"
+       }
+      ]
+     },
+     "caption": "A twentieth of that on the small one."
+    },
+    {
+     "label": "OpenRouter",
+     "dur": 2.5,
+     "bars": {
+      "upto": 4,
+      "items": [
+       {
+        "label": "Claude Opus",
+        "of": "claude-opus-5.5",
+        "color": "var(--alt-A4)"
+       },
+       {
+        "label": "Claude Sonnet",
+        "of": "claude-sonnet-5.5",
+        "color": "var(--alt-A3)"
+       },
+       {
+        "label": "Claude Haiku",
+        "of": "claude-haiku-5.5",
+        "color": "var(--alt-A2)"
+       },
+       {
+        "label": "OpenRouter (paid)",
+        "of": "openrouter",
+        "color": "var(--alt-A1)"
+       }
+      ]
+     },
+     "caption": "What we paid: open-weight models on OpenRouter, for the loops that do not need the agent's brain."
+    }
+   ]
+  }
+ ]
+}

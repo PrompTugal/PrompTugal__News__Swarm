@@ -1,0 +1,39 @@
+/* The stage's themes: tokens only. swarm.1.designer owns this file (add themes, change any value); stage.js reads only
+   these variables and the data-theme attribute on <html>. Altitude colours: --alt-<altitude> (P, A4, A3, A2, A1, A0, M, D, X, C, E).
+   gravity: Silvio's Gravity universe (Fringe _site/universe: bg #04100F, teal #43D9C6, gold #D9B26E, violet #A58BFF, pink #FF7FB0).
+   The altitude hues follow the Fringe's trace page (graph/trace: A4 pink, A3 blue, A2 orange, A1 green, A0 amber).
+   Names after ruv.sgit.ai's themes (night, ember, blueprint, paper, newsprint). */
+:root, :root[data-theme="gravity"] {
+  --bg: #04100F; --bg2: #0E3330; --panel: rgba(14, 40, 40, .62); --panel-solid: #0b2826; --line: rgba(150, 230, 215, .14);
+  --ink: #EAF6F3; --muted: #8EADA8; --dim: #5F7D79; --accent: #43D9C6; --accent2: #D9B26E; --ok: #3DDC97; --bad: #FF4D6D; --warn: #F2B544;
+  --live: #FBE2AE; --reach: #FF7FB0; --cut: #5F7D79; --glass: blur(18px) saturate(140%);
+  --alt-P: #FBE2AE; --alt-A4: #e87ba4; --alt-A3: #3987e5; --alt-A2: #d95926; --alt-A1: #1baf7a; --alt-A0: #c98500;
+  --alt-M: #A58BFF; --alt-D: #8EADA8; --alt-T: #9FE8DF; --alt-X: #FF7FB0; --alt-C: #D9B26E; --alt-E: #43D9C6;
+  --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-head: "Space Grotesk", var(--font); --mono: "JetBrains Mono", ui-monospace, monospace;
+  --glow: drop-shadow(0 0 6px color-mix(in srgb, currentColor 60%, transparent));
+}
+:root[data-theme="night"] {
+  --bg: #0b1416; --bg2: #102226; --panel: rgba(16, 30, 34, .9); --panel-solid: #101e22; --line: #1f3a3f;
+  --ink: #e6f1f1; --muted: #8fb0b0; --dim: #577474; --accent: #2ec4b6; --accent2: #e0b860; --reach: #ff8fb3; --cut: #4a6464; --live: #ffe7a8; --glass: none;
+  --alt-A4: #ff7aa8; --alt-A3: #4ea1ff; --alt-A2: #ff8a4c; --alt-A1: #36d39a; --alt-A0: #f1b62e; --glow: none;
+}
+:root[data-theme="ember"] {
+  --bg: #120c07; --bg2: #241509; --panel: rgba(36, 22, 12, .86); --panel-solid: #24160c; --line: #4a2f18;
+  --ink: #fbe9d6; --muted: #c9a07a; --dim: #7a5b40; --accent: #ffb347; --accent2: #ff7b3a; --reach: #ff5d5d; --cut: #6a4a33; --live: #fff1c2;
+  --alt-P: #fff1c2; --alt-A4: #ff5d8f; --alt-A3: #ffb347; --alt-A2: #ff7b3a; --alt-A1: #e9d16b; --alt-A0: #c98a5a; --alt-M: #d58cff; --alt-D: #a58b74; --alt-X: #ff5d5d; --alt-E: #ffcf7a;
+}
+:root[data-theme="blueprint"] {
+  --bg: #f4f8ff; --bg2: #e3edff; --panel: rgba(255, 255, 255, .92); --panel-solid: #ffffff; --line: #b9cdf2;
+  --ink: #0c2a66; --muted: #4d6aa6; --dim: #8aa2d0; --accent: #1652f0; --accent2: #00a3ff; --ok: #0a8f5a; --bad: #d42f40; --reach: #e0245e; --cut: #b9cdf2; --live: #ffb000; --glass: none; --glow: none;
+  --alt-P: #0c2a66; --alt-A4: #c2185b; --alt-A3: #1652f0; --alt-A2: #e65100; --alt-A1: #00897b; --alt-A0: #8d6e00; --alt-M: #6a1b9a; --alt-D: #607d9f; --alt-X: #e0245e; --alt-C: #8d6e00; --alt-E: #0097a7;
+}
+:root[data-theme="paper"] {
+  --bg: #f7f1e6; --bg2: #efe4d0; --panel: rgba(255, 251, 243, .94); --panel-solid: #fffbf3; --line: #dccbb0;
+  --ink: #2b2118; --muted: #7a6650; --dim: #b29f86; --accent: #c0522b; --accent2: #2f7f72; --ok: #2f7f4a; --bad: #b3261e; --reach: #c0522b; --cut: #d9c8ae; --live: #d99b00; --glass: none; --glow: none;
+  --alt-P: #2b2118; --alt-A4: #a13d63; --alt-A3: #2e5e9e; --alt-A2: #c0522b; --alt-A1: #2f7f72; --alt-A0: #a07a1a; --alt-M: #6d4c9e; --alt-D: #8a7a66; --alt-X: #c0522b; --alt-C: #a07a1a; --alt-E: #2f7f72;
+}
+:root[data-theme="newsprint"] {
+  --bg: #fbfbf8; --bg2: #f0f0ea; --panel: rgba(255, 255, 255, .95); --panel-solid: #ffffff; --line: #d6d6cf;
+  --ink: #161616; --muted: #5d5d58; --dim: #a3a39c; --accent: #0f766e; --accent2: #b45309; --ok: #15803d; --bad: #b91c1c; --reach: #be123c; --cut: #d6d6cf; --live: #ca8a04; --glass: none; --glow: none;
+  --alt-P: #161616; --alt-A4: #be185d; --alt-A3: #1d4ed8; --alt-A2: #c2410c; --alt-A1: #0f766e; --alt-A0: #a16207; --alt-M: #7c3aed; --alt-D: #737373; --alt-X: #be123c; --alt-C: #a16207; --alt-E: #0e7490;
+}
