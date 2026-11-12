@@ -129,7 +129,9 @@
   function applyPack(name) {
     PACK = name && PACKS[name] ? name : null;
     SCENES = PACK ? PACKS[PACK].scenes.map((id) => ALL_SCENES.find((s) => s.id === id)).filter(Boolean) : ALL_SCENES.filter((s) => !s.hidden);
-    layout(); t = 0; playing = false; stopAt = null; shownScene = null;
+    // a pack (or the story) opens by playing its first step and holding on its end, so it never opens on an empty
+    // card frame (swarm.1.designer, 04:36: the harness pack opened on a table with 0 rows); ← goes back to t = 0
+    layout(); t = 0; shownScene = null; playing = STEPS.length > 0; stopAt = STEPS.length ? STEPS[0].e - 1e-3 : null;
     if (typeof renderStory === 'function' && $('#story')) renderStory();
   }
   addEventListener('hashchange', () => applyPack(packFromUrl()));
