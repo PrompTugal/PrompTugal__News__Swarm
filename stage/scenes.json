@@ -109,7 +109,8 @@
        "unshare, setpriv, strace, iptables, nft, useradd",
        "the working directory: writable",
        "network: the whole internet (session proxy)"
-      ]
+      ],
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (before: the E01 probe, 01:37 UTC)"
      },
      "caption": "A model call's mandate: one prompt in, one answer out. No tools."
     },
@@ -129,7 +130,8 @@
        "unshare, setpriv, strace, iptables, nft, useradd",
        "the working directory: writable",
        "network: the whole internet (session proxy)"
-      ]
+      ],
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (before: the E01 probe, 01:37 UTC)"
      },
      "caption": "The process it ran in could reach all of this. Measured, not assumed."
     },
@@ -149,7 +151,8 @@
        "unshare, setpriv, strace, iptables, nft, useradd",
        "the working directory: writable",
        "network: the whole internet (session proxy)"
-      ]
+      ],
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (before: the E01 probe, 01:37 UTC)"
      },
      "caption": "Reach minus mandate: the gap. Every incident lives there."
     },
