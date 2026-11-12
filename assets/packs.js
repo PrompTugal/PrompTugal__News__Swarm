@@ -39,7 +39,9 @@
     ],
     draw() {
       const c = [260, 800, 1340];
-      return S(1, `<circle cx="${c[0]}" cy="260" r="34" class="mandate"/>` + T(c[0], 340, 'mandate', { size: 24, w: 600 }))
+      // a title so the first frame reads as a deliberate start, not an empty canvas (audience.1, review 3)
+      return S(1, T(800, 110, 'Six marks, the same in every pack', { size: 44, w: 700 }) + T(800, 150, 'one idea per step · → to go on', { size: 20, fill: 'var(--muted)' }), { until: 1 })
+        + S(1, `<circle cx="${c[0]}" cy="260" r="34" class="mandate"/>` + T(c[0], 340, 'mandate', { size: 24, w: 600 }))
         + S(2, `<circle cx="${c[1]}" cy="260" r="120" class="reach"/><circle cx="${c[1]}" cy="260" r="34" class="mandate"/>` + T(c[1], 420, 'reach', { size: 24, w: 600 }))
         + S(3, `<circle cx="${c[2]}" cy="260" r="120" class="reach"/><path d="${ring(c[2], 260, 120, 34)}" class="gap"/><circle cx="${c[2]}" cy="260" r="34" class="mandate"/>` + T(c[2], 420, 'the gap', { size: 24, w: 600, fill: 'var(--warn)' }))
         + S(4, page(220, 600, 1.6) + T(220, 680, 'public', { size: 20 }), { d: 0 }) + S(4, `<rect x="400" y="555" width="110" height="90" rx="10" class="cipher"/>` + lock(455, 600, 1.4) + T(455, 680, 'encrypted', { size: 20 }), { d: .5 }) + S(4, `<rect x="640" y="555" width="110" height="90" rx="10" class="plain"/>` + T(695, 608, 'abc…', { size: 22, fill: 'var(--warn)' }) + T(695, 680, 'decrypted, in memory', { size: 20 }), { d: 1 })
