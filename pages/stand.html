@@ -75,12 +75,18 @@ button,input[type=range]{touch-action:manipulation;-webkit-tap-highlight-color:t
 button.rec.on{animation:recpulse 1.2s ease-in-out infinite}@keyframes recpulse{50%{box-shadow:0 0 0 10px color-mix(in srgb,var(--bad) 30%,transparent)}}
 #pastlist{position:absolute;right:14px;bottom:64px;z-index:40;width:min(420px,92vw);max-height:50vh;overflow:auto;background:var(--panel-solid);border:1px solid var(--line);border-radius:14px;padding:8px}
 #pastlist[hidden]{display:none}#pastlist button{display:block;width:100%;text-align:left;margin:4px 0}#left{position:relative}
+#spend{font:.85rem var(--mono);color:var(--muted);padding:6px 10px;border:1px solid var(--line);border-radius:10px;white-space:nowrap}#spend b{color:var(--accent2);font-size:1.05rem}#spend small{margin-left:6px}
+#modes{display:inline-flex;gap:4px}#modes button[aria-pressed=true]{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:700}#modes[hidden]{display:none}
+#deck.infodeck{align-content:start}.ig{display:grid;gap:10px;justify-items:center;text-align:center}.ig h2{margin:0;font:700 1.9em/1.15 var(--font-head)}.ig img{max-width:100%;max-height:calc(100vh - 330px);border-radius:14px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.4)}
+html.focus .ig img{max-height:calc(100vh - 170px)}.igwait{display:grid;place-items:center;width:min(900px,100%);aspect-ratio:16/9;border:1px dashed var(--line);border-radius:14px;color:var(--muted);animation:blink 1.6s ease-in-out infinite}
+@media (max-width:900px){#spend small{display:none}}
 </style>
 </head>
 <body data-nav="float">
 <header>
  <h1>Story Studio</h1><span class="tag">SIMULATION · MADE LIVE</span><span class="sp"></span>
  <select id="coord" aria-label="Coordinator model" title="The coordinator: it may only call the story primitives"></select>
+ <span id="spend" title="Spent on models from this tablet today (OpenRouter)">spent today <b id="money">$0.0000</b> <small id="credit"></small></span><span id="modes" hidden><button data-m="deck" aria-pressed="true">Deck</button><button data-m="info" aria-pressed="false">✨ Infographics</button></span>
  <button id="newbtn" class="go" title="Start again from a clean page">✎ New story</button><button id="focus" title="The deck alone (Z)">⛶</button>
 </header>
 <main>
@@ -88,13 +94,13 @@ button.rec.on{animation:recpulse 1.2s ease-in-out infinite}@keyframes recpulse{5
   <div id="ask">
    <div class="row"><button id="again" class="again" type="button">✎ Edit the words</button><button class="rec" id="rec">● Record</button><span id="recbar" hidden><b id="rect">0:00</b><i id="lvl"></i></span><span class="muted" id="recst">Ask a question, then let them answer out loud. Or type below.</span></div>
    <textarea id="text" placeholder="The words to tell as a story: a transcript appears here, or type it"></textarea>
-   <div class="row"><input id="who" placeholder="Whose words? (first name, optional)" style="flex:1;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)">
+   <div class="row"><input id="org" placeholder="Company or industry" style="flex:1;min-width:160px;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)"><input id="email" type="email" inputmode="email" autocomplete="off" placeholder="Email to send the deck to (optional, private)" style="flex:1;min-width:200px;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)"><input id="who" placeholder="Their first name (optional)" style="flex:1;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)">
     <label class="muted"><input type="checkbox" id="consent"> they agree we show their words</label>
     <button class="go" id="make">Make the story ▶</button></div>
   </div>
   <div id="wrap"><div id="deck" class="sdeck"><p class="empty">The deck builds here, scene by scene.</p></div><div id="cap"></div></div>
   <div id="ctl"><button id="play" aria-label="Play">▶</button><input type="range" id="slider" min="0" max="0" value="0" step="1" disabled aria-label="Slides"><span class="n" id="n"></span>
-   <button id="past" title="Decks saved on this tablet">🗂 Saved</button><button id="save" disabled title="Send the deck and how it was made to the team (sealed)">📮 Send to the team</button></div>
+   <button id="info" hidden title="Redraw every slide as an infographic (Gemini)">✨ Infographics</button><button id="past" title="Decks saved on this tablet">🗂 Saved</button><button id="save" disabled title="Send the deck and how it was made to the team (sealed)">📮 Send to the team</button></div>
   <div id="pastlist" hidden></div>
  </section>
  <aside><h2>How it is being made <button id="replay" hidden style="min-height:32px;padding:2px 10px;font-size:.75rem;margin-left:8px">▶ Replay in 10 s</button></h2><ol id="hops"></ol><div id="rp" hidden style="min-height:0;overflow:hidden"></div><div id="tot">Nothing yet.</div></aside>
@@ -107,7 +113,18 @@ import { autoKey, credit } from '../assets/stand-key.js';
 import { seal } from '../assets/vendor/pki/2026-11-06/keys.js';
 const $ = (s) => document.querySelector(s), K = window.StoryKit;
 const OR = 'https://openrouter.ai/api/v1', SAVED = 'swarm-studio-decks/v1';
-let KEY = null, MODELS = [], HOPS = [], T0 = 0, P = null, STORY = null, TRANSCRIBE = null, BUILD = null, SENT = false;
+let KEY = null, MODELS = [], HOPS = [], T0 = 0, P = null, STORY = null, TRANSCRIBE = null, BUILD = null, SENT = false, IMAGER = null, INFO = null, MODE = 'deck';
+// the closing slide, always the same (Dinis, 08:50 UTC: "the 500, the 1,500 and the 5K ... and also our email"); £500 and £1,500 are the store's levels (store.sgit.ai, read 08:52 UTC)
+const OFFER = { email: 'agent@riskmandate.ai', store: 'store.sgit.ai', levels: [
+  '£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)',
+  '£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)',
+  '£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end'],
+  discount: 'Met us at the summit? 25% off any of these when you commit to follow up.' };
+// money: every call's cost, added up and shown as a rolling number (this tablet, today)
+const DAY = 'swarm-studio-spend/' + new Date().toISOString().slice(0, 10);
+let SPENT = (() => { try { return +localStorage.getItem(DAY) || 0; } catch { return 0; } })(), SHOWN = SPENT;
+function spend(usd) { if (!usd) return; SPENT += usd; try { localStorage.setItem(DAY, String(SPENT)); } catch {} }
+(function roll() { SHOWN += (SPENT - SHOWN) * 0.12; if (Math.abs(SPENT - SHOWN) < 1e-6) SHOWN = SPENT; const e = document.getElementById('money'); if (e) e.textContent = '$' + SHOWN.toFixed(4); requestAnimationFrame(roll); })();
 const now = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
 const sha = async (s) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('');
 const C = { person: 'var(--alt-P)', browser: 'var(--alt-A0)', model: 'var(--alt-A1)', coordinator: 'var(--alt-A3)', kit: 'var(--alt-A0)', site: 'var(--accent)' };
@@ -120,7 +137,7 @@ function hop(h) {
   h.el = li; paintHop(h); $('#hops').appendChild(li); requestAnimationFrame(() => li.classList.add('on')); li.scrollIntoView({ block: 'nearest' });
   return h;
 }
-function done(h, more = {}) { Object.assign(h, more); h.ms = Math.round(performance.now() - h.t0); h.el.classList.remove('run'); paintHop(h); totals(); return h; }
+function done(h, more = {}) { Object.assign(h, more); if (more.usd) spend(more.usd); h.ms = Math.round(performance.now() - h.t0); h.el.classList.remove('run'); paintHop(h); totals(); return h; }
 function paintHop(h) {
   h.el.innerHTML = `<b>${h.who}</b><span class="w">${h.what}</span><div class="m">${h.where}${h.model ? ' · ' + h.model : ''}${h.ms != null ? ' · ' + (h.ms / 1000).toFixed(1) + ' s' : ' · …'}${h.usd != null ? ' · $' + h.usd.toFixed(5) : ''}${h.tokens ? ' · ' + h.tokens + ' tokens' : ''}${h.err ? ` · <span class="bad">${h.err}</span>` : ''}</div>`;
 }
@@ -143,6 +160,9 @@ async function unlock() {
   const audio = MODELS.filter((m) => ((m.architecture || {}).input_modalities || []).includes('audio'));
   TRANSCRIBE = (audio.find((m) => /gemini.*flash/.test(m.id) && !/lite|image/.test(m.id)) || audio.find((m) => /gemini/.test(m.id)) || audio[0] || {}).id || null;
   if (!TRANSCRIBE) say('No audio model found on the router: type the words instead.');
+  const img = MODELS.filter((m) => ((m.architecture || {}).output_modalities || []).includes('image')).sort((a, b) => (b.created || 0) - (a.created || 0));
+  IMAGER = (img.find((m) => /^google\/gemini/.test(m.id) && /pro/.test(m.id)) || img.find((m) => /^google\/gemini/.test(m.id)) || img[0] || {}).id || null;
+  credit(KEY).then((c) => { const e = document.getElementById('credit'); if (e && c.remaining != null) e.textContent = '$' + Number(c.remaining).toFixed(2) + ' left on the key'; }).catch(() => {});
 }
 $('#unlock').onclick = unlock; unlock();
 
@@ -211,7 +231,7 @@ async function transcribe(blob) {
 // ---------- the coordinator: it may only call primitives
 const SYSTEM = `You are the coordinator of the PrompTugal swarm's story studio, at a stand at a tech event in Lisbon. You turn what a person said into a short visual story, a deck, using ONLY the tools you are given: each tool adds one scene, built from one primitive. You cannot run code or reach anything else.
 Rules:
-- Make 5 to 8 scenes, in order: open with a title, then carry the person's idea, and end with one strong statement.
+- Make 4 to 7 scenes that carry the person's idea and end with one strong statement. Do NOT make an opening title slide or a closing offer or contact slide: the studio adds both itself.
 - Use a quote scene for the person's own words, copied EXACTLY from the transcript; never invent or polish a quote. Who: the name given, or "a visitor".
 - Mix primitives where they fit: bullets, compare (before/after), ladder (levels), flow (A to B to C), graph, counter (only numbers the person said), table.
 - Do not invent facts, numbers, companies or people. If the person was unclear, say less.
@@ -221,36 +241,55 @@ async function make() {
   const text = $('#text').value.trim(); if (!text) return say('Record or type the words first.', true);
   if (!KEY) return unlock();
   if (!T0) T0 = performance.now(); $('#make').disabled = true; document.body.classList.remove('asking');
-  const who = $('#who').value.trim() || 'a visitor', model = $('#coord').value;
+  const who = $('#who').value.trim() || 'a visitor', org = $('#org').value.trim(), model = $('#coord').value;
   if (!HOPS.some((x) => x.role === 'person')) done(hop({ who, role: 'person', where: 'the stand', what: 'says what they think (typed)' }));
   const h = hop({ who: 'the coordinator', role: 'coordinator', where: 'OpenRouter, from this browser', model, what: `plans the deck with ${K.STORY_TOOLS.length} primitives as its only tools` });
   const stop = waiting('The coordinator is planning the deck…'); let d;
-  try { d = await chat(model, [{ role: 'system', content: SYSTEM }, { role: 'user', content: `The person: ${who}.\nTheir words (transcript):\n"""${text}"""` }], { tools: K.openaiTools(), tool_choice: 'auto', parallel_tool_calls: true, max_tokens: 4000 }); }
+  try { d = await chat(model, [{ role: 'system', content: SYSTEM }, { role: 'user', content: `The person: ${who}.${org ? `\nTheir company or industry: ${org}. Make the story speak to it, without inventing facts about it.` : ''}\nTheir words (transcript):\n"""${text}"""` }], { tools: K.openaiTools(), tool_choice: 'auto', parallel_tool_calls: true, max_tokens: 12000 }); }
   catch (e) { stop(); done(h, { err: e.message }); say('The coordinator failed: ' + e.message, true); $('#make').disabled = false; return; }
   stop(); say('');
-  const calls = (((d.choices || [])[0] || {}).message || {}).tool_calls || [];
-  done(h, { ...cost(d), what: `calls ${calls.length} primitives: ${calls.map((c) => c.function && c.function.name).join(', ')}` });
+  const am = ((d.choices || [])[0] || {}).message || {}; let calls = am.tool_calls || [];
+  done(h, { ...cost(d), what: `calls ${calls.length} primitives: ${calls.map((c) => c.function && c.function.name).join(', ')}`, err: (d.choices || [])[0]?.finish_reason === 'length' ? 'ran out of tokens' : null });
+  // one repair round: StoryKit says what is wrong with each call, and the coordinator re-calls only those (a refusal is feedback, not the end)
+  const bad = calls.map((c) => { const r = K.fromToolCalls([c]); return r.errors.length ? r.errors.join('; ').slice(0, 300) : null; });
+  if (bad.some(Boolean)) {
+    const fx = hop({ who: 'StoryKit → the coordinator', role: 'kit', where: 'this browser → OpenRouter', model, what: `returns ${bad.filter(Boolean).length} refused calls with the reason, to be fixed` });
+    try {
+      const d2 = await chat(model, [{ role: 'system', content: SYSTEM }, { role: 'user', content: `The person: ${who}.${org ? `\nTheir company or industry: ${org}.` : ''}\nTheir words (transcript):\n"""${text}"""` }, am,
+        ...calls.map((c, i) => ({ role: 'tool', tool_call_id: c.id, content: bad[i] ? 'REFUSED: ' + bad[i] + '. Call this tool again, corrected, with every required field.' : 'ok' })),
+        { role: 'user', content: 'Re-call ONLY the refused tools, corrected, in the same order. Nothing else.' }], { tools: K.openaiTools(), tool_choice: 'auto', parallel_tool_calls: true, max_tokens: 8000 });
+      const fixed = (((d2.choices || [])[0] || {}).message || {}).tool_calls || []; let j = 0;
+      calls = calls.map((c, i) => (bad[i] && fixed[j] ? fixed[j++] : c));
+      done(fx, { ...cost(d2), what: `the coordinator fixes ${j} of ${bad.filter(Boolean).length} refused calls` });
+    } catch (e) { done(fx, { err: e.message }); }
+  }
   const v = hop({ who: 'StoryKit', role: 'kit', where: 'this browser', what: 'checks every call is a primitive with only its own fields' });
   const { story, errors } = K.fromToolCalls(calls, { id: 'stand-' + Date.now().toString(36), simulated: true, answered_by: who, at: now() });
   if (errors.length) story.scenes = story.scenes.filter((sc) => K.validate({ title: 'x', scenes: [sc] }).ok);
   done(v, { what: errors.length ? `refuses ${errors.length} thing${errors.length > 1 ? 's' : ''}, keeps ${story.scenes.length} scenes` : `accepts all ${story.scenes.length} scenes`, err: errors.length ? errors[0].slice(0, 90) : null });
   if (!story.scenes.length) { $('#make').disabled = false; return say('The coordinator made nothing usable; try again.', true); }
-  STORY = story; show(STORY);
-  const r = hop({ who: 'the deck', role: 'site', where: 'this browser', what: 'builds on screen, scene by scene' });
-  BUILD = setInterval(() => { if (!P.next()) { clearInterval(BUILD); BUILD = null; done(r, { what: `${STORY.scenes.length} scenes, built and shown` }); finished(); } }, 700);
+  const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  story.scenes = story.scenes.filter((sc, i) => !(i === 0 && sc.type === 'title'));
+  story.scenes.unshift({ type: 'title', kicker: 'RiskMandate · a story made live', title: (org || 'A story told at the stand').slice(0, 90), sub: `${who !== 'a visitor' ? 'With ' + who + ' · ' : ''}Lisbon, ${date}`.slice(0, 160), caption: org ? `For ${org}` : 'Made live, from one conversation' });
+  story.scenes.push({ type: 'bullets', kicker: 'Working together · 25% summit discount', title: 'Three ways to start', items: [...OFFER.levels, OFFER.discount], caption: `${OFFER.email} · ${OFFER.store}`, say: ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: 25% off when you commit to follow up.', `Write to ${OFFER.email}.`] });
+  story.title = org ? `${org}: ${who}` : story.title;
+  STORY = story; show(STORY); P.goto(0);
+  done(hop({ who: 'the deck', role: 'site', where: 'this browser', what: `${STORY.scenes.length} scenes ready: a front page, the story, and the way to work together` }));
+  finished();
 }
 $('#make').onclick = make;
 function show(story) {
+  MODE = 'deck'; INFO = null; $('#modes').hidden = true;
   P = K.present($('#deck'), story, { caption: $('#cap'), dwell: 2600, onStep: (i, n) => { $('#n').textContent = `${i + 1} / ${n}`; const sl = $('#slider'); sl.max = n - 1; sl.value = i; sl.disabled = false; } });
 }
 function finished() {
-  $('#make').disabled = false; $('#replay').hidden = !K.replay; $('#save').disabled = false;
+  $('#make').disabled = false; $('#replay').hidden = !K.replay; $('#save').disabled = false; $('#info').hidden = !IMAGER; say('Ready: swipe or slide through it, or press ✨ Infographics for the advanced version.');
   saveLocal(); send(true);   // every deck is kept on this tablet and sent, sealed, to the team: the gotchas are worth keeping
 }
 
 // ---------- the slider: every step of the deck, under a thumb
-$('#slider').addEventListener('input', (e) => { if (!P) return; if (BUILD) { clearInterval(BUILD); BUILD = null; } P.stop && P.stop(); P.goto(+e.target.value); });
-$('#play').onclick = () => { if (!P) return; if (P.state.index >= P.state.total - 1) P.goto(0); P.play(); };
+$('#slider').addEventListener('input', (e) => { if (MODE === 'info') return infoGo(+e.target.value); if (!P) return; if (BUILD) { clearInterval(BUILD); BUILD = null; } P.stop && P.stop(); P.goto(+e.target.value); });
+$('#play').onclick = () => { if (MODE === 'info') return infoPlay(); if (!P) return; if (P.state.index >= P.state.total - 1) P.goto(0); P.play(); };
 $('#replay').onclick = () => {
   const rp = $('#rp'), on = rp.hidden; rp.hidden = !on; $('#hops').hidden = on; $('#replay').textContent = on ? '☰ The list' : '▶ Replay in 10 s';
   if (on) { rp.innerHTML = ''; K.replay(rp, trailOf(), { seconds: 10, autoplay: true }); }
@@ -263,7 +302,7 @@ function reset() {
   $('#hops').innerHTML = ''; $('#hops').hidden = false; $('#rp').hidden = true; $('#rp').innerHTML = ''; $('#replay').hidden = true; $('#replay').textContent = '▶ Replay in 10 s';
   $('#deck').innerHTML = '<p class="empty">The deck builds here, scene by scene.</p>'; $('#cap').textContent = ''; $('#n').textContent = '';
   const sl = $('#slider'); sl.value = 0; sl.max = 0; sl.disabled = true;
-  $('#text').value = ''; $('#who').value = ''; $('#consent').checked = false; $('#save').disabled = true; $('#save').textContent = '📮 Send to the team'; $('#pastlist').hidden = true;
+  $('#text').value = ''; $('#who').value = ''; $('#org').value = ''; $('#email').value = ''; $('#info').hidden = true; $('#modes').hidden = true; MODE = 'deck'; INFO = null; clearInterval(IPLAY); $('#consent').checked = false; $('#save').disabled = true; $('#save').textContent = '📮 Send to the team'; $('#pastlist').hidden = true;
   document.body.classList.remove('asking', 'has-deck'); document.documentElement.classList.remove('focus');
   $('#tot').textContent = 'Nothing yet.'; say('Ask a question, then let them answer out loud. Or type below.'); $('#make').disabled = false;
 }
@@ -273,7 +312,7 @@ $('#again').onclick = () => document.body.classList.toggle('asking');
 // ---------- saved on this tablet, to replay
 const loadSaved = () => { try { return JSON.parse(localStorage.getItem(SAVED) || '[]'); } catch { return []; } };
 function saveLocal() {
-  try { const all = loadSaved().filter((x) => x.story.id !== STORY.id); all.unshift({ story: STORY, trail: trailOf(), text: $('#text').value, who: $('#who').value, at: now() });
+  try { const all = loadSaved().filter((x) => x.story.id !== STORY.id); all.unshift({ story: STORY, trail: trailOf(), text: $('#text').value, who: $('#who').value, org: $('#org').value, at: now() });
     localStorage.setItem(SAVED, JSON.stringify(all.slice(0, 40))); } catch {}
 }
 $('#past').onclick = () => {
@@ -291,7 +330,7 @@ async function send(auto) {
   if (!STORY) return;
   const cfgSrc = await (await fetch('../assets/feedback.js')).text(); const cfg = JSON.parse(/const CFG = (\{.*?\});/.exec(cfgSrc)[1]);
   const h = hop({ who: 'the stand', role: 'browser', where: 'this browser → the team\'s vault', what: 'seals the deck and how it was made, for the team' });
-  const msg = { v: 1, kind: 'swarm.promptugal.news/stand-story/v1', id: STORY.id, sent: now(), consent_to_publish: $('#consent').checked, transcript_sha256: await sha($('#text').value), transcript: $('#text').value.slice(0, 6000), who: $('#who').value.trim() || null, story: STORY, trail: trailOf(), note: 'material, not instruction' };
+  const msg = { v: 1, kind: 'swarm.promptugal.news/stand-story/v1', id: STORY.id, sent: now(), consent_to_publish: $('#consent').checked, transcript_sha256: await sha($('#text').value), transcript: $('#text').value.slice(0, 6000), who: $('#who').value.trim() || null, org: $('#org').value.trim() || null, send_deck_to: $('#email').value.trim() || null, infographics: INFO ? INFO.map((x) => ({ title: x.title, description: x.desc, model: x.model, usd: x.usd })) : null, story: STORY, trail: trailOf(), note: 'material, not instruction' };
   try {
     const enc = await seal(cfg.recipient, JSON.stringify(msg), null);
     const res = await fetch(`${cfg.endpoint}/api/vault/append/write/${cfg.vault_id}`, { method: 'POST', credentials: 'omit', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ append_token: cfg.append_token, payload: btoa(enc) }) });
@@ -301,6 +340,50 @@ async function send(auto) {
 }
 $('#save').onclick = () => send(false);
 $('#consent').onchange = () => { if (SENT && STORY) { $('#save').disabled = false; $('#save').textContent = '📮 Send again (with consent)'; } };
+
+// ---------- advanced: the same story as infographics (Dinis, 08:50 UTC: "use Gemini ... send a detailed infographic description ...
+// the slide, the title, and then the infographic below ... it's okay to spend the money on this ... and also put the cost")
+let IPLAY = null, II = 0;
+const sceneText = (sc) => JSON.stringify(Object.fromEntries(Object.entries(sc).filter(([k]) => !['say', 'caption'].includes(k)))).slice(0, 1600);
+async function infographics() {
+  if (!STORY || !IMAGER) return;
+  if (INFO) return setMode('info');
+  $('#info').disabled = true;
+  const org = $('#org').value.trim(), model = $('#coord').value;
+  const h = hop({ who: 'the coordinator', role: 'coordinator', where: 'OpenRouter, from this browser', model, what: `writes a detailed infographic brief for each of the ${STORY.scenes.length} slides` });
+  const stop = waiting('Writing the infographic briefs…'); let briefs = [];
+  try {
+    const d = await chat(model, [{ role: 'system', content: 'You write briefs for an image model that draws one infographic per slide. For each slide, write one detailed description (80 to 140 words): the layout, the visual metaphor, the few short labels it must show (spelled exactly), and the hierarchy. Style for all: a clean modern infographic, 16:9, dark teal background (#04100F), teal (#43D9C6), gold (#D9B26E) and violet (#A58BFF) accents, flat vector shapes, generous spacing, at most 12 words of text in the image, no logos, no brand marks, no photographs, no people\'s faces. Use only the slide\'s content; invent no facts or numbers. Answer with JSON only: {"briefs": ["...", "..."]} in slide order.' },
+      { role: 'user', content: `${org ? 'For: ' + org + '\n' : ''}Slides:\n` + STORY.scenes.map((sc, i) => `${i + 1}. ${sceneText(sc)}`).join('\n') }], { max_tokens: 4000, response_format: { type: 'json_object' } });
+    const raw = String(((d.choices || [])[0] || {}).message?.content || '').replace(/^```(json)?|```$/g, '');
+    briefs = (JSON.parse(raw).briefs || []).map(String); done(h, { ...cost(d), what: `writes ${briefs.length} infographic briefs` }); stop();
+  } catch (e) { stop(); done(h, { err: e.message }); $('#info').disabled = false; return say('The briefs failed: ' + e.message, true); }
+  INFO = STORY.scenes.map((sc, i) => ({ title: sc.title || sc.text || (sc.type === 'quote' ? '“' + (sc.text || '') + '”' : sc.kicker) || '', caption: sc.caption || '', desc: briefs[i] || sceneText(sc), img: null, usd: null, model: IMAGER, err: null }));
+  setMode('info'); infoGo(0);
+  const g = hop({ who: 'the illustrator', role: 'model', where: 'OpenRouter, from this browser', model: IMAGER, what: `draws ${INFO.length} infographics, three at a time` });
+  const stop2 = waiting(`Drawing ${INFO.length} infographics…`); let next = 0, made = 0, usd = 0, tok = 0;
+  async function worker() { while (next < INFO.length) { const i = next++, x = INFO[i]; const t0 = performance.now();
+    try { const d = await chat(IMAGER, [{ role: 'user', content: 'Draw this infographic.\n' + x.desc }], { modalities: ['image', 'text'] });
+      const msg = ((d.choices || [])[0] || {}).message || {}, im = (msg.images || [])[0];
+      x.img = im && (im.image_url && im.image_url.url || im.url) || null; const c = cost(d); x.usd = c.usd; usd += c.usd || 0; tok += c.tokens || 0; spend(c.usd); x.ms = Math.round(performance.now() - t0);
+      if (!x.img) x.err = 'no image came back'; made++;
+    } catch (e) { x.err = e.message; }
+    if (MODE === 'info' && II === i) infoGo(i); g.what = `draws ${INFO.length} infographics: ${made} done`; paintHop(g); } }
+  await Promise.all([worker(), worker(), worker()]); stop2();
+  g.usd = 0; done(g, { what: `draws ${made} of ${INFO.length} infographics`, tokens: tok }); g.usd = usd; paintHop(g); totals();
+  $('#info').disabled = false; say(`Infographics ready: ${made} of ${INFO.length}, $${usd.toFixed(4)}.`); saveLocal();
+}
+function setMode(md) { MODE = md; $('#modes').hidden = !INFO; document.querySelectorAll('#modes button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === md)));
+  if (md === 'deck') { $('#deck').classList.remove('infodeck'); P && P.goto(0); } else { $('#deck').classList.add('infodeck'); infoGo(0); } }
+function infoGo(i) { if (!INFO) return; II = Math.max(0, Math.min(INFO.length - 1, i)); const x = INFO[II];
+  $('#deck').innerHTML = `<div class="ig"><div class="k">Infographic ${II + 1} of ${INFO.length}${x.usd != null ? ' · $' + x.usd.toFixed(4) : ''} · ${x.model}</div><h2>${(x.title || '').replace(/[<>&]/g, '')}</h2>${x.img ? `<img alt="${(x.title || 'infographic').replace(/"/g, '')}" src="${x.img}">` : `<div class="igwait">${x.err ? 'Not drawn: ' + x.err.replace(/[<>&]/g, '') : 'Drawing…'}</div>`}</div>`;
+  $('#cap').textContent = x.caption || ''; const sl = $('#slider'); sl.max = INFO.length - 1; sl.value = II; sl.disabled = false; $('#n').textContent = `${II + 1} / ${INFO.length}`; }
+function infoPlay() { if (IPLAY) { clearInterval(IPLAY); IPLAY = null; return; } if (II >= INFO.length - 1) infoGo(0); IPLAY = setInterval(() => { if (II >= INFO.length - 1) { clearInterval(IPLAY); IPLAY = null; return; } infoGo(II + 1); }, 4000); }
+$('#info').onclick = infographics;
+document.querySelectorAll('#modes button').forEach((b) => (b.onclick = () => setMode(b.dataset.m)));
+// swipe in infographic mode (the kit swipes the deck mode itself)
+(() => { let sx = null; const d = $('#deck'); d.addEventListener('touchstart', (e) => { sx = e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive: true });
+  d.addEventListener('touchend', (e) => { if (sx == null || MODE !== 'info') return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 50) infoGo(II + (dx < 0 ? 1 : -1)); }, { passive: true }); })();
 </script>
 <button class="exitf" id="exitf" type="button">✕ Leave focus</button>
 <script>
