@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en" data-theme="gravity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Story Studio</title>
+<meta name="description" content="At the stand: say a story out loud, and watch the swarm turn it into a deck from its own primitives, with every step of how it was made, timed. A simulation, in the browser.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+/* The stand's story studio (Dinis, 12 Nov 2026 ~07:35 UTC: "record an audio, have the audio transcript ... then see the actual
+   creation happening in front of me ... the creation is part of the exercise ... Sonnet as a coordinator ... good enough primitives").
+   By swarm.1.fringe@PrompTugal.dinis (WS-215). Browser only: the key is unlocked here (assets/stand-key.js) and goes only to
+   openrouter.ai. The coordinator can only call the StoryKit primitives (assets/story-kit.js); nothing runs, it is a simulation. */
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.45 var(--font)}
+body{display:flex;flex-direction:column;height:100%;background:radial-gradient(ellipse at 50% 30%,var(--bg2) 0%,var(--bg) 70%) fixed}
+header{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:8px 16px;border-bottom:1px solid var(--line);min-height:58px}
+header h1{margin:0;font:700 1.15rem var(--font-head)}header .tag{font:600 .7rem var(--mono);letter-spacing:.08em;color:var(--warn);border:1px dashed var(--warn);border-radius:6px;padding:2px 7px}
+header .sp{flex:1}button,select{font:inherit;min-height:44px;padding:8px 14px;border-radius:10px;border:1px solid var(--line);background:var(--panel-solid);color:var(--ink);cursor:pointer}
+button.go{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:700}button.rec{background:var(--bad);border-color:var(--bad);color:#fff;font-weight:700}
+button:disabled{opacity:.45;cursor:default}
+main{flex:1;display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:0}
+#left{display:grid;grid-template-rows:auto 1fr auto;min-height:0}
+#ask{padding:14px 18px;border-bottom:1px solid var(--line);display:grid;gap:10px}
+#ask textarea{width:100%;min-height:84px;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)}
+#ask .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}#ask .muted{color:var(--muted);font-size:.88rem}
+#wrap{position:relative;min-height:0;display:grid}#deck{overflow:auto;padding:4vh 5vw 90px;font-size:clamp(14px,1.6vw,22px)}
+#deck .empty{color:var(--muted);text-align:center;margin-top:12vh;font-size:1.1rem}
+#cap{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:min(900px,92%);text-align:center;font:500 1.05rem var(--font-head);padding:10px 16px;border-radius:12px;background:var(--panel-solid);border:1px solid var(--line)}
+#cap:empty{display:none}
+#ctl{display:flex;gap:8px;align-items:center;padding:8px 14px;border-top:1px solid var(--line)}#ctl .n{margin-left:auto;font:.8rem var(--mono);color:var(--muted)}
+aside{border-left:1px solid var(--line);display:grid;grid-template-rows:auto 1fr auto;min-height:0}
+aside h2{margin:0;padding:12px 16px 4px;font:600 .75rem var(--font-head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+#hops{list-style:none;margin:0;padding:6px 16px 16px;overflow:auto}
+#hops li{position:relative;padding:8px 0 10px 26px;border-left:2px solid var(--line);margin-left:7px;opacity:0;transform:translateY(6px);transition:opacity .4s,transform .4s}
+#hops li.on{opacity:1;transform:none}#hops li::before{content:"";position:absolute;left:-8px;top:12px;width:14px;height:14px;border-radius:50%;background:var(--c,var(--accent));box-shadow:0 0 10px var(--c,var(--accent))}
+#hops li.run::before{animation:pulse 1s ease-in-out infinite}@keyframes pulse{50%{transform:scale(1.35);opacity:.6}}
+#hops b{display:block}#hops .m{font:.78rem var(--mono);color:var(--muted)}#hops .w{font-size:.85rem;color:var(--ink)}
+#tot{padding:10px 16px;border-top:1px solid var(--line);font:.8rem var(--mono);color:var(--muted)}
+#lock{position:fixed;inset:0;display:grid;place-items:center;background:color-mix(in srgb,var(--bg) 88%,transparent);z-index:50}
+#lock[hidden]{display:none}#lock .card{width:min(440px,92vw);padding:20px;border-radius:16px;background:var(--panel-solid);border:1px solid var(--line)}
+#lock input{width:100%;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--ink);margin:8px 0}
+.bad{color:var(--warn)}.ok{color:var(--ok)}
+.sk-title{font-size:2.6em;margin:0}.big{font-size:1.7em;font-weight:600}.k{font:600 .78em var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
+@media (max-width:900px){main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 34vh}aside{border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<header>
+ <h1>Story Studio</h1><span class="tag">SIMULATION · MADE LIVE</span><span class="sp"></span>
+ <select id="coord" aria-label="Coordinator model" title="The coordinator: it may only call the story primitives"></select>
+ <button id="lockbtn" title="Lock the key again">🔒</button>
+</header>
+<main>
+ <section id="left">
+  <div id="ask">
+   <div class="row"><button class="rec" id="rec">● Record</button><span class="muted" id="recst">Ask a question, then let them answer out loud. Or type below.</span></div>
+   <textarea id="text" placeholder="The words to tell as a story: a transcript appears here, or type it"></textarea>
+   <div class="row"><input id="who" placeholder="Whose words? (first name, optional)" style="flex:1;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)">
+    <label class="muted"><input type="checkbox" id="consent"> they agree we show their words</label>
+    <button class="go" id="make">Make the story ▶</button></div>
+  </div>
+  <div id="wrap"><div id="deck"><p class="empty">The deck builds here, scene by scene.</p></div><div id="cap"></div></div>
+  <div id="ctl"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button><button id="play">▶ Play</button>
+   <button id="save" disabled title="Send the story and how it was made to swarm.1, sealed, to publish">Send to the site</button><span class="n" id="n"></span></div>
+ </section>
+ <aside><h2>How it is being made</h2><ol id="hops"></ol><div id="tot">Nothing yet.</div></aside>
+</main>
+<div id="lock"><div class="card"><b>Unlock the stand's key</b><p class="muted" id="lockst">checking…</p>
+ <input id="pass" type="password" placeholder="Passphrase" autocomplete="current-password"><button class="go" id="unlock">Unlock</button>
+ <p class="muted">No key on this device? <a href="stand-key.html">Set it up</a>.</p></div></div>
+<script src="../assets/story-kit.js"></script>
+<script type="module">
+import { findBlob, openKey, credit } from '../assets/stand-key.js';
+import { seal } from '../assets/vendor/pki/2026-11-06/keys.js';
+const $ = (s) => document.querySelector(s), K = window.StoryKit;
+const OR = 'https://openrouter.ai/api/v1';
+let KEY = null, MODELS = [], HOPS = [], T0 = 0, P = null, STORY = null, TRANSCRIBE = null;
+const now = () => new Date().toISOString().replace(/\.\d+Z$/, 'Z');
+const sha = async (s) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)))].map((b) => b.toString(16).padStart(2, '0')).join('');
+const C = { person: 'var(--alt-P)', browser: 'var(--alt-A0)', model: 'var(--alt-A1)', coordinator: 'var(--alt-A3)', kit: 'var(--alt-A0)', site: 'var(--accent)' };
+
+// ---------- the making-of: one hop per transaction, timed, drawn as it happens
+function hop(h) {
+  h.at = h.at || now(); h.t0 = performance.now(); HOPS.push(h);
+  const li = document.createElement('li'); li.style.setProperty('--c', C[h.role] || 'var(--accent)'); li.className = 'run';
+  h.el = li; paintHop(h); $('#hops').appendChild(li); requestAnimationFrame(() => li.classList.add('on')); li.scrollIntoView({ block: 'nearest' });
+  return h;
+}
+function done(h, more = {}) { Object.assign(h, more); h.ms = Math.round(performance.now() - h.t0); h.el.classList.remove('run'); paintHop(h); totals(); return h; }
+function paintHop(h) {
+  h.el.innerHTML = `<b>${h.who}</b><span class="w">${h.what}</span><div class="m">${h.where}${h.model ? ' · ' + h.model : ''}${h.ms != null ? ' · ' + (h.ms / 1000).toFixed(1) + ' s' : ' · …'}${h.usd != null ? ' · $' + h.usd.toFixed(5) : ''}${h.tokens ? ' · ' + h.tokens + ' tokens' : ''}${h.err ? ` · <span class="bad">${h.err}</span>` : ''}</div>`;
+}
+function totals() {
+  const usd = HOPS.reduce((a, h) => a + (h.usd || 0), 0), tok = HOPS.reduce((a, h) => a + (h.tokens || 0), 0), wall = T0 ? (performance.now() - T0) / 1000 : 0;
+  $('#tot').textContent = `${HOPS.length} hops · ${wall.toFixed(1)} s · ${tok.toLocaleString('en-GB')} tokens · $${usd.toFixed(4)} · no runs, a simulation`;
+}
+
+// ---------- the key and the models
+async function unlock() {
+  const f = await findBlob('../'); if (!f) { $('#lockst').innerHTML = '<span class="bad">No key on this device or the site.</span>'; return; }
+  try { KEY = await openKey(f.blob, $('#pass').value); $('#pass').value = ''; } catch (e) { $('#lockst').innerHTML = `<span class="bad">${e.message}</span>`; return; }
+  $('#lock').hidden = true;
+  try { const c = await credit(KEY); $('#tot').textContent = `Key unlocked (${f.blob.hint}). Credit left: ${c.remaining != null ? '$' + Number(c.remaining).toFixed(2) : 'no limit set'}.`; } catch (e) { $('#tot').textContent = 'Key unlocked; the credit check failed: ' + e.message; }
+  try { MODELS = (await (await fetch(OR + '/models')).json()).data || []; } catch {}
+  const pick = (re) => MODELS.filter((m) => re.test(m.id)).sort((a, b) => (b.created || 0) - (a.created || 0));
+  const coords = [...pick(/^anthropic\/claude-sonnet/), ...pick(/^anthropic\/claude-opus/), ...pick(/^anthropic\/claude-haiku/)].slice(0, 6);
+  $('#coord').innerHTML = (coords.length ? coords : [{ id: 'anthropic/claude-sonnet-4.5' }]).map((m) => `<option>${m.id}</option>`).join('');
+  const audio = MODELS.filter((m) => ((m.architecture || {}).input_modalities || []).includes('audio'));
+  TRANSCRIBE = (audio.find((m) => /gemini.*flash/.test(m.id) && !/lite|image/.test(m.id)) || audio.find((m) => /gemini/.test(m.id)) || audio[0] || {}).id || null;
+  if (!TRANSCRIBE) $('#recst').textContent = 'No audio model found on the router: type the words instead.';
+}
+$('#unlock').onclick = unlock; $('#pass').onkeydown = (e) => { if (e.key === 'Enter') unlock(); };
+$('#lockbtn').onclick = () => { KEY = null; $('#lock').hidden = false; $('#lockst').textContent = 'Locked.'; };
+findBlob('../').then((f) => { $('#lockst').innerHTML = f ? `A key is set (${f.blob.hint}, from ${f.from}).` : '<span class="bad">No key yet.</span> <a href="stand-key.html">Set it up</a>.'; });
+
+async function chat(model, messages, extra = {}) {
+  const r = await fetch(OR + '/chat/completions', { method: 'POST', credentials: 'omit', referrerPolicy: 'no-referrer',
+    headers: { Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json', 'X-Title': 'swarm.promptugal.news story studio' },
+    body: JSON.stringify({ model, messages, usage: { include: true }, ...extra }) });
+  const d = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error((d.error && d.error.message) || 'the router answered ' + r.status);
+  return d;
+}
+const cost = (d) => ({ usd: d.usage && d.usage.cost != null ? +d.usage.cost : null, tokens: d.usage ? (d.usage.prompt_tokens || 0) + (d.usage.completion_tokens || 0) : 0 });
+
+// ---------- record → 16 kHz mono WAV (what the router's audio input takes) → transcript
+let rec = null, chunks = [], recHop = null;
+$('#rec').onclick = async () => {
+  if (!KEY) return ($('#lock').hidden = false);
+  if (rec && rec.state === 'recording') { rec.stop(); return; }
+  try { const st = await navigator.mediaDevices.getUserMedia({ audio: true }); chunks = []; rec = new MediaRecorder(st);
+    rec.ondataavailable = (e) => chunks.push(e.data); rec.onstop = () => { st.getTracks().forEach((t) => t.stop()); transcribe(new Blob(chunks, { type: rec.mimeType })); };
+    rec.start(); if (!T0) T0 = performance.now(); $('#rec').textContent = '■ Stop'; $('#recst').textContent = 'Recording… press Stop when they finish.';
+    recHop = hop({ who: $('#who').value.trim() || 'a visitor', role: 'person', where: 'the stand', what: 'answers out loud (a voice memo, kept only in this browser)' });
+  } catch (e) { $('#recst').innerHTML = `<span class="bad">No microphone: ${e.message}</span>`; }
+};
+async function toWav(blob) {
+  const ac = new (window.AudioContext || window.webkitAudioContext)(); const buf = await ac.decodeAudioData(await blob.arrayBuffer());
+  const rate = 16000, n = Math.ceil(buf.duration * rate), off = new OfflineAudioContext(1, n, rate), src = off.createBufferSource();
+  src.buffer = buf; src.connect(off.destination); src.start(); const out = (await off.startRendering()).getChannelData(0);
+  const dv = new DataView(new ArrayBuffer(44 + out.length * 2)), w = (o, s) => [...s].forEach((c, i) => dv.setUint8(o + i, c.charCodeAt(0)));
+  w(0, 'RIFF'); dv.setUint32(4, 36 + out.length * 2, true); w(8, 'WAVEfmt '); dv.setUint32(16, 16, true); dv.setUint16(20, 1, true); dv.setUint16(22, 1, true);
+  dv.setUint32(24, rate, true); dv.setUint32(28, rate * 2, true); dv.setUint16(32, 2, true); dv.setUint16(34, 16, true); w(36, 'data'); dv.setUint32(40, out.length * 2, true);
+  out.forEach((v, i) => dv.setInt16(44 + i * 2, Math.max(-1, Math.min(1, v)) * 0x7fff, true));
+  let s = ''; new Uint8Array(dv.buffer).forEach((b) => (s += String.fromCharCode(b))); return { b64: btoa(s), seconds: buf.duration };
+}
+async function transcribe(blob) {
+  $('#rec').textContent = '● Record'; const wav = await toWav(blob);
+  done(recHop, { what: `answers out loud (${wav.seconds.toFixed(0)} s of audio, kept only in this browser)` });
+  if (!TRANSCRIBE) return;
+  const h = hop({ who: 'a transcriber', role: 'model', where: 'OpenRouter', model: TRANSCRIBE, what: 'turns the audio into words' });
+  try {
+    const d = await chat(TRANSCRIBE, [{ role: 'user', content: [{ type: 'text', text: 'Transcribe this audio exactly, in the language spoken. Output only the words said, nothing else.' }, { type: 'input_audio', input_audio: { data: wav.b64, format: 'wav' } }] }]);
+    const t = ((d.choices || [])[0] || {}).message?.content || ''; $('#text').value = String(t).trim();
+    done(h, { ...cost(d), what: `turns the audio into ${t.split(/\s+/).filter(Boolean).length} words` });
+    $('#recst').textContent = 'Check the words, tick consent if they agree, then Make the story.';
+  } catch (e) { done(h, { err: e.message }); }
+}
+
+// ---------- the coordinator: it may only call primitives
+const SYSTEM = `You are the coordinator of the PrompTugal swarm's story studio, at a stand at a tech event in Lisbon. You turn what a person said into a short visual story, a deck, using ONLY the tools you are given: each tool adds one scene, built from one primitive. You cannot run code or reach anything else.
+Rules:
+- Make 5 to 8 scenes, in order: open with a title, then carry the person's idea, and end with one strong statement.
+- Use a quote scene for the person's own words, copied EXACTLY from the transcript; never invent or polish a quote. Who: the name given, or "a visitor".
+- Mix primitives where they fit: bullets, compare (before/after), ladder (levels), flow (A to B to C), graph, counter (only numbers the person said), table.
+- Do not invent facts, numbers, companies or people. If the person was unclear, say less.
+- Every scene has a short caption (what the audience reads) and 1 to 3 "say" lines (what the presenter says).
+- Call all the tools in one turn, in order. Then stop.`;
+$('#make').onclick = async () => {
+  const text = $('#text').value.trim(); if (!text) return ($('#recst').textContent = 'Record or type the words first.');
+  if (!KEY) return ($('#lock').hidden = false);
+  if (!T0) T0 = performance.now(); $('#make').disabled = true;
+  const who = $('#who').value.trim() || 'a visitor', model = $('#coord').value;
+  if (!HOPS.some((x) => x.role === 'person')) done(hop({ who, role: 'person', where: 'the stand', what: 'says what they think (typed)' }));
+  const h = hop({ who: 'the coordinator', role: 'coordinator', where: 'OpenRouter, from this browser', model, what: `plans the deck with ${K.STORY_TOOLS.length} primitives as its only tools` });
+  let d;
+  try { d = await chat(model, [{ role: 'system', content: SYSTEM }, { role: 'user', content: `The person: ${who}.\nTheir words (transcript):\n"""${text}"""` }], { tools: K.openaiTools(), tool_choice: 'auto', parallel_tool_calls: true, max_tokens: 4000 }); }
+  catch (e) { done(h, { err: e.message }); $('#make').disabled = false; return; }
+  const calls = (((d.choices || [])[0] || {}).message || {}).tool_calls || [];
+  done(h, { ...cost(d), what: `calls ${calls.length} primitives: ${calls.map((c) => c.function && c.function.name).join(', ')}` });
+  const v = hop({ who: 'StoryKit', role: 'kit', where: 'this browser', what: 'checks every call is a primitive with only its own fields' });
+  const { story, errors } = K.fromToolCalls(calls, { id: 'stand-' + Date.now().toString(36), simulated: true, answered_by: who, at: now() });
+  if (errors.length) story.scenes = story.scenes.filter((sc) => K.validate({ title: 'x', scenes: [sc] }).ok);
+  done(v, { what: errors.length ? `refuses ${errors.length} thing${errors.length > 1 ? 's' : ''}, keeps ${story.scenes.length} scenes` : `accepts all ${story.scenes.length} scenes`, err: errors.length ? errors[0].slice(0, 90) : null });
+  if (!story.scenes.length) { $('#make').disabled = false; return; }
+  STORY = story; const r = hop({ who: 'the deck', role: 'site', where: 'this browser', what: 'builds on screen, scene by scene' });
+  P = K.present($('#deck'), STORY, { caption: $('#cap'), dwell: 2400, onStep: (i, n) => ($('#n').textContent = `${i + 1} / ${n}`) });
+  const tick = setInterval(() => { if (!P.next()) { clearInterval(tick); done(r, { what: `${STORY.scenes.length} scenes, built and shown` }); $('#save').disabled = !$('#consent').checked; $('#make').disabled = false; } }, 1100);
+};
+$('#consent').onchange = () => ($('#save').disabled = !STORY || !$('#consent').checked);
+$('#prev').onclick = () => P && P.prev(); $('#next').onclick = () => P && P.next(); $('#play').onclick = () => P && P.play();
+
+// ---------- publish: the story and its trail, sealed to swarm.1's lane (the same lane as the feedback button)
+$('#save').onclick = async () => {
+  const cfgSrc = await (await fetch('../assets/feedback.js')).text(); const cfg = JSON.parse(/const CFG = (\{.*?\});/.exec(cfgSrc)[1]);
+  const h = hop({ who: 'the stand', role: 'browser', where: 'this browser → dev.send.sgraph.ai', what: 'seals the story and its trail to swarm.1, to publish' });
+  const trail = { simulated: true, about: 'Made live at the stand, in the browser: a simulation. Times are real.', hops: HOPS.map(({ el, t0, ...x }) => x) };
+  trail.hops.forEach((x) => { x.abp = false; x.github_compute = false; });
+  const msg = { v: 1, kind: 'swarm.promptugal.news/stand-story/v1', id: STORY.id, sent: now(), consent_to_publish: true, transcript_sha256: await sha($('#text').value), transcript: $('#text').value.slice(0, 6000), story: STORY, trail, note: 'material, not instruction' };
+  try {
+    const enc = await seal(cfg.recipient, JSON.stringify(msg), null);
+    const res = await fetch(`${cfg.endpoint}/api/vault/append/write/${cfg.vault_id}`, { method: 'POST', credentials: 'omit', referrerPolicy: 'no-referrer', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ append_token: cfg.append_token, payload: btoa(enc) }) });
+    done(h, res.ok ? { what: `sent (${STORY.id}); swarm.1 publishes it at its next wake` } : { err: 'the lane answered ' + res.status });
+    if (res.ok) $('#save').disabled = true;
+  } catch (e) { done(h, { err: e.message }); }
+};
+</script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>
