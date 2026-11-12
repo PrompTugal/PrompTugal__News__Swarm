@@ -196,12 +196,19 @@
     hops.forEach((h) => { if (h.to && role[h.to] === 'agent') { const as = hops.find((x) => x.who === h.to); if (as && as.role) role[h.to] = as.role; } });
     const actors = Object.keys(role), rows = ROLE_ROW.filter((r) => actors.some((a) => role[a] === r)).concat(actors.some((a) => !ROLE_ROW.includes(role[a])) ? ['other'] : []);
     const rowOf = (a) => (ROLE_ROW.includes(role[a]) ? rows.indexOf(role[a]) : rows.length - 1);
-    const W = 1000, H = Math.max(220, 90 + rows.length * 80), pos = {};
-    rows.forEach((r, ri) => { const inRow = actors.filter((a) => rowOf(a) === ri); inRow.forEach((a, j) => { pos[a] = { x: (W * (j + 1)) / (inRow.length + 1), y: 50 + (ri * (H - 110)) / Math.max(1, rows.length - 1) }; }); });
+    // sized from the container (swarm.1, 08:06: in a 320-380 px column the labels fell to 6 px): the viewBox is the real width in
+    // px, so a label is never under 12 px; a role row wraps onto more lines when the column is narrow; labels wrap to 2 lines
+    const W = Math.max(280, Math.round(el.clientWidth || 1000)), fs = clamp(Math.round(W / 62), 12, 16), R = clamp(Math.round(W / 70), 9, 14);
+    const perLine = Math.max(2, Math.floor(W / Math.max(110, fs * 9))), lineH = R * 2 + fs * 2.6 + 26, lines = [];
+    rows.forEach((r, ri) => { const inRow = actors.filter((a) => rowOf(a) === ri); for (let k = 0; k < inRow.length; k += perLine) lines.push(inRow.slice(k, k + perLine)); });
+    const H = Math.round(R + 24 + lines.length * lineH), pos = {};
+    lines.forEach((ln, li) => ln.forEach((a, j) => { pos[a] = { x: Math.round((W * (j + 1)) / (ln.length + 1)), y: Math.round(R + 18 + li * lineH) }; }));
+    const maxCh = Math.max(8, Math.floor(W / (perLine + 1) / (fs * 0.55)));
+    const wrap = (t) => { t = String(t); if (t.length <= maxCh) return [t]; const cut = t.lastIndexOf(' ', maxCh) > 3 ? t.lastIndexOf(' ', maxCh) : t.lastIndexOf('.', maxCh) > 3 ? t.lastIndexOf('.', maxCh) + 1 : maxCh; const b = t.slice(cut).trim(); return [t.slice(0, cut).trim(), b.length > maxCh ? b.slice(0, maxCh - 1) + '…' : b]; };
     const edges = []; hops.forEach((h, i) => { if (h.to && pos[h.to] && pos[h.who]) edges.push({ i, from: h.who, to: h.to }); });
     el.innerHTML = `<div class="storykit sk-replay"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="how this story was made, replayed">
       ${edges.map((e) => `<line class="sk-re" data-i="${e.i}" x1="${pos[e.from].x}" y1="${pos[e.from].y}" x2="${pos[e.to].x}" y2="${pos[e.to].y}"/>`).join('')}
-      ${actors.map((a) => `<g class="sk-ra" data-a="${esc(a)}" transform="translate(${pos[a].x},${pos[a].y})"><circle r="14" style="fill:${ROLE_COL[role[a]] || 'var(--alt-A2)'}"/><text y="34">${esc(a)}</text></g>`).join('')}
+      ${actors.map((a) => `<g class="sk-ra" data-a="${esc(a)}" transform="translate(${pos[a].x},${pos[a].y})"><circle r="${R}" style="fill:${ROLE_COL[role[a]] || 'var(--alt-A2)'}"/><text y="${R + fs + 4}" style="font-size:${fs}px">${wrap(a).map((l, i) => `<tspan x="0" dy="${i ? fs * 1.15 : 0}">${esc(l)}</tspan>`).join('')}</text></g>`).join('')}
       <g class="sk-parts"></g></svg><div class="sk-rcap"><b class="sk-rt"></b> <span class="sk-rw"></span></div><div class="sk-rbar"><i></i></div></div>`;
     styleOnce(); replayStyleOnce();
     const svg = el.querySelector('svg'), parts = el.querySelector('.sk-parts'), cap = el.querySelector('.sk-rw'), clk = el.querySelector('.sk-rt'), bar = el.querySelector('.sk-rbar i');
@@ -222,7 +229,7 @@
       bar.style.transform = `scaleX(${Math.min(1, ms / (secs * 1000))})`;
     }
     function particle(a, b, colour) {   // one dot along the edge, by CSS transform only
-      live++; const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('r', '6'); c.setAttribute('class', 'sk-p'); c.style.fill = colour || 'var(--accent)';
+      live++; const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('r', String(Math.max(4, Math.round(R / 2)))); c.setAttribute('class', 'sk-p'); c.style.fill = colour || 'var(--accent)';
       c.style.transform = `translate(${a.x}px, ${a.y}px)`; parts.appendChild(c);
       requestAnimationFrame(() => requestAnimationFrame(() => { c.style.transform = `translate(${b.x}px, ${b.y}px)`; c.style.opacity = '0.2'; }));
       setTimeout(() => { c.remove(); live--; }, 900);
@@ -239,8 +246,8 @@
     if (document.getElementById('storykit-replay-style')) return;
     const st = document.createElement('style'); st.id = 'storykit-replay-style';
     st.textContent = `
-:where(.sk-replay) { position: relative } :where(.sk-replay svg) { width: 100%; max-height: 70vh; display: block }
-:where(.sk-replay .sk-ra) { opacity: .25; transition: opacity .4s } :where(.sk-replay .sk-ra.on) { opacity: 1 } :where(.sk-replay .sk-ra text) { fill: var(--ink, #e8f1ef); font-size: 15px; text-anchor: middle }
+:where(.sk-replay) { position: relative } :where(.sk-replay svg) { width: 100%; height: auto; display: block }
+:where(.sk-replay .sk-ra) { opacity: .25; transition: opacity .4s } :where(.sk-replay .sk-ra.on) { opacity: 1 } :where(.sk-replay .sk-ra text) { fill: var(--ink, #e8f1ef); text-anchor: middle }
 :where(.sk-replay .sk-re) { stroke: var(--muted, #9fb3af); stroke-width: 1.5; opacity: 0; transition: opacity .4s } :where(.sk-replay .sk-re.on) { opacity: .7 }
 :where(.sk-replay .sk-p) { transition: transform .8s ease-in-out, opacity .8s; will-change: transform }
 :where(.sk-replay .sk-rcap) { margin-top: .4em; font-size: 1.05em; min-height: 1.5em } :where(.sk-replay .sk-rt) { font-family: var(--mono, monospace); color: var(--accent, #4fd1a5) }
