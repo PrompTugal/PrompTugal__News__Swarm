@@ -658,6 +658,110 @@
      "at": "2026-11-12T11:35Z"
     }
    ]
+  },
+  {
+   "slug": "adios",
+   "name": "Adios",
+   "kind": "infrastructure",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T11:45Z"
+   },
+   "domain_note": "No domain was given. adios.dev names its legal entity as 'Adios Global LLC', which matches the name given; adios.ai (an email app) and adiosglobal.com (a parked domain) are not it. The company has not confirmed it yet.",
+   "one_line": "An AI cloud platform: AI agents work in a scoped, isolated workspace on a project's source, and Adios builds, previews and hosts the result, without giving the agent the platform.",
+   "site": "https://www.adios.dev/",
+   "public": [
+    {
+     "fact": "Describes itself as an AI cloud platform for developers and founders to build with AI agents, review source changes, and deploy and operate applications, APIs, databases and workflows. Its legal name is Adios Global LLC.",
+     "source": "https://www.adios.dev/llms.txt",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Claude, Cursor, Codex or ChatGPT connect to Adios over MCP; Adios builds the app in an isolated cloud workspace, gives a preview, and puts it live with HTTPS when the user approves.",
+     "source": "https://www.adios.dev/",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "An agent connects to one selected workspace 'without receiving a general browser shell or platform credentials'; every action is narrowed to that team and workspace, through scoped file, Git, task, preview and log operations.",
+     "source": "https://www.adios.dev/ai/agents",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Its stated principle: 'Give the agent enough context to work, without giving it the platform.' Agent activity stays tied to the workspace it affected, with diffs, task output, previews and logs for review.",
+     "source": "https://www.adios.dev/ai/agents",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Runtime controls: restricted runtime sandboxes with Linux namespaces, cgroups and resource limits where the runtime supports them; secrets as secret:// references resolved only for the build or runtime path that needs them; tenant boundaries through platform APIs.",
+     "source": "https://www.adios.dev/security",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Its security page says SOC 2 and ISO 27001 work is underway and the reports are not final yet.",
+     "source": "https://www.adios.dev/security",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Named customers on its site run on Adios: one moved its frontend and backend from Kubernetes on AWS, one runs workflows and agents, one deploys prototypes to production.",
+     "source": "https://www.adios.dev/",
+     "read_at": "2026-11-12T12:09Z"
+    },
+    {
+     "fact": "Plans start with a free workspace; always-on hosting from $10 a month.",
+     "source": "https://www.adios.dev/",
+     "read_at": "2026-11-12T12:09Z"
+    }
+   ],
+   "told": [
+    "Its environment runs agents under controls that greatly reduce their reach and blast radius."
+   ],
+   "help": {
+    "pitch": "Adios shrinks what an agent can reach: one workspace, scoped operations, no platform credentials, secrets resolved only where needed. RiskMandate measures exactly that difference: the mandate (what the agent should do), the reach (what it can actually do), and the gap. Run the same agent bare and on Adios, and the shrinking gap is the business case, measured and evidenced.",
+    "mandate": [
+     "A declared task in a selected workspace: edit these files, run this task, return a reviewable change. That is a written mandate."
+    ],
+    "reach": [
+     "On Adios, by its own pages: one workspace, scoped tools, no general shell or platform credentials, secrets resolved per path. On a developer's laptop, the same agent reaches everything the developer can."
+    ],
+    "gap": [
+     "Unknown in numbers until measured. Our measurement would put a figure on how much reach Adios removes per agent, against the same task run without it."
+    ]
+   },
+   "together": [
+    {
+     "title": "The business case, measured",
+     "text": "Run the same agent and task bare and inside an Adios workspace; RiskMandate records the mandate, both reaches and the gap that Adios closes (Dinis's first point).",
+     "link": "harness.html"
+    },
+    {
+     "title": "Transparent integrations",
+     "text": "For the customer, the agent simply runs inside Adios's environment through MCP; the mandate and the reach record travel with it (Dinis's second point).",
+     "link": "https://www.adios.dev/ai/agents"
+    },
+    {
+     "title": "Evidence beside its certifications",
+     "text": "While its SOC 2 and ISO 27001 work is underway, a per-agent record of mandate, reach and gap as additional evidence for its customers.",
+     "link": "https://www.adios.dev/security"
+    }
+   ],
+   "demos": [
+    [
+     "harness",
+     "harness-before-after"
+    ],
+    [
+     "reach",
+     "same-privileges"
+    ],
+    [
+     "harness",
+     "harness-door"
+    ],
+    [
+     "control",
+     "one-per-asset"
+    ]
+   ]
   }
  ]
 }
