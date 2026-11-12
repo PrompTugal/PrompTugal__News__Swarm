@@ -217,6 +217,15 @@ def help_for(name, cards, xray):
             'pitch': pitch, 'mandate': mandate[:6], 'reach': reach[:6], 'gap': gap[:6]}
 
 
+# The summit offer (Dinis, ~08:55 UTC 12 Nov 2026, relayed by swarm.1): the same words as the Studio's closing slide (pages/stand.html).
+# £500 and £1,500 checked on store.sgit.ai at 08:46 UTC; £5,000 is Dinis's word, not yet on the store.
+OFFER = {'title': 'The summit offer', 'dated': '2026-11-12', 'email': 'agent@riskmandate.ai', 'store': 'https://store.sgit.ai/',
+         'levels': [{'price': '£500', 'name': 'ABP Tailored', 'text': 'your deployment, reflected in the mandate, corrected by a named security professional', 'time': '1 to 3 days', 'where': 'store.sgit.ai'},
+                    {'price': '£1,500', 'name': 'ABP Reviewed', 'text': 'two sessions with your team and a custom vault, signed off by a security professional', 'time': '1 to 5 days', 'where': 'store.sgit.ai'},
+                    {'price': '£5,000', 'name': 'A deeper engagement', 'text': 'your agents mapped, mandated and measured with us, end to end', 'time': None, 'where': 'not yet on the store'}],
+         'discount': 'Met us at the summit? 25% off any of these when you commit to follow up.'}
+
+
 def together_for(name, cards, xray):
     out = []
     if cards:
@@ -227,7 +236,7 @@ def together_for(name, cards, xray):
         out.append({'title': 'Answer the open questions of the X-ray', 'text': f'The X-ray lists the questions we would ask {name}; none has been asked yet.', 'link': xray['page']})
     out.append({'title': 'Measure one deployment', 'text': 'Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.', 'link': GR + 'lens/'})
     out.append({'title': 'Run one of their agents under a harness, on stage', 'text': 'The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).', 'link': 'harness.html'})
-    return {'label': 'Our suggestions. Nothing here is agreed.', 'items': out}
+    return {'label': 'Our suggestions. Nothing here is agreed.', 'items': out, 'offer': OFFER}
 
 
 def demos_for(kind):
@@ -275,6 +284,10 @@ def deck_for(p, steps):
         if st:
             sc.append({'type': 'embed', 'kicker': 'A demo to show', 'title': cut(d['title'], 90), 'step': st[-1], 'caption': cut(d['why'], 240)}); break
     sc.append({'type': 'statement', 'text': "Don't hope the agent behaves. Make the dangerous thing unreachable.", 'caption': 'The sentence.'})
+    sc.append({'type': 'bullets', 'kicker': 'Working together · 25% summit discount', 'title': 'Three ways to start',
+               'items': [cut(f"{l['price']} · {l['name']}: {l['text']}" + (f" ({l['time']})" if l['time'] else ''), 140) for l in OFFER['levels']] + [OFFER['discount']],
+               'caption': f"{OFFER['email']} · store.sgit.ai · the summit offer, 12 Nov 2026",
+               'say': ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: 25% off when you commit to follow up.', f"Write to {OFFER['email']}."]})
     return {'id': 'partner-' + p['slug'], 'title': cut(name + ': a partner brief', 90), 'by': BY, 'at': p['built_at'], 'scenes': sc}
 
 

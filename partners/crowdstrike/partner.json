@@ -253,7 +253,37 @@
     "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
     "link": "harness.html"
    }
-  ]
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Met us at the summit? 25% off any of these when you commit to follow up."
+  }
  },
  "demos": [
   {
@@ -386,6 +416,23 @@
     "type": "statement",
     "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
     "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · 25% summit discount",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Met us at the summit? 25% off any of these when you commit to follow up."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: 25% off when you commit to follow up.",
+     "Write to agent@riskmandate.ai."
+    ]
    }
   ]
  }

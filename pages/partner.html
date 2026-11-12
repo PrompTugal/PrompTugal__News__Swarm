@@ -47,6 +47,11 @@ details.sit>div{padding:0 14px 12px}details.sit h4{margin:10px 0 4px;font-size:.
 .cards2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
 .cards2>div{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
 .cards2 h3{margin:0;font:700 1.05rem var(--font-head)}.cards2 p{margin:0;color:var(--muted);font-size:.93rem}.cards2 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.offer{margin:6px 0 14px;padding:14px;border:1px solid color-mix(in srgb,var(--accent) 55%,transparent);border-radius:12px;background:color-mix(in srgb,var(--accent) 7%,var(--panel))}
+.offer h3{margin:0 0 10px;font:700 1.1rem var(--font-head);display:flex;flex-wrap:wrap;gap:8px;align-items:center}.offer .lv{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:820px){.offer .lv{grid-template-columns:1fr}}.offer .lv>div{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel-solid)}
+.offer .lv b{display:block;font:700 1.5rem var(--font-head);color:var(--accent)}.offer .lv span{display:block;font-weight:600}.offer .lv small{display:block;color:var(--muted);font-size:.85rem;margin-top:3px}
+.offer .disc{margin:12px 0 8px;font-size:1.08rem;font-weight:600}.offer .acts{display:flex;flex-wrap:wrap;gap:8px}
 ol.qs{margin:0;padding-left:22px}ol.qs li{margin:8px 0}
 /* present mode: the StoryKit deck */
 #present{display:none}body.present #brief{display:none}body.present #present{display:block}
@@ -73,7 +78,7 @@ footer{margin-top:20px;padding:14px 0 30px;color:var(--muted);font-size:.82rem;b
     <div class="ctl"><button class="btn" id="prev" type="button" aria-label="Back">←</button><button class="btn" id="next" type="button" aria-label="Next">→</button><button class="btn" id="play" type="button">▶ Play all</button><button class="btn" id="focus" type="button">⤢ Focus</button><span class="pos" id="pos"></span></div>
     <p class="cap" id="cap"></p><ul class="say" id="say"></ul>
   </section>
-  <footer id="foot">Built by partners.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215). Public sources only; no contact details. Facts, our hypotheses and our suggestions are labelled apart. Independent of Web Summit.</footer>
+  <footer id="foot">Built by partners.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215). Public sources only; no contact details of anyone else (the only address is RiskMandate's own, for the summit offer). Facts, our hypotheses and our suggestions are labelled apart. Independent of Web Summit.</footer>
 </div>
 <script src="../assets/story-kit.js"></script>
 <script>
@@ -115,13 +120,18 @@ function brief(p) {
   if (x && x.questions.length) out.push(`<section class="s"><h2>The questions we would ask <span class="lab sug">Not asked yet</span></h2><ol class="qs">${x.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol></section>`);
   // together
   out.push(`<section class="s" id="together"><h2>How we could work together <span class="lab sug">Our suggestions</span></h2><p class="note">${esc(p.together.label)}</p>
-    <div class="cards2">${p.together.items.map((t) => `<div><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p><div class="acts"><a class="btn" href="${esc(t.link)}"${/^https?:/.test(t.link) ? ' target="_blank" rel="noopener"' : ''}>Open</a>${t.link2 ? `<a class="btn" href="${esc(t.link2)}" target="_blank" rel="noopener">How</a>` : ''}</div></div>`).join('')}</div></section>`);
+    ${offer(p.together.offer)}<div class="cards2">${p.together.items.map((t) => `<div><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p><div class="acts"><a class="btn" href="${esc(t.link)}"${/^https?:/.test(t.link) ? ' target="_blank" rel="noopener"' : ''}>Open</a>${t.link2 ? `<a class="btn" href="${esc(t.link2)}" target="_blank" rel="noopener">How</a>` : ''}</div></div>`).join('')}</div></section>`);
   // demos
   out.push(`<section class="s" id="demos"><h2>Demos to show them</h2><p class="note">Our own demos that speak to ${esc(p.kind_label.toLowerCase())}. "With notes" opens the theme page (the demo on the left, what to say on the right); "Stage" opens the scene alone.</p>
     <div class="cards2">${p.demos.map((d) => `<div><h3>${esc(d.title)}</h3><p>${esc(d.why)}</p><div class="acts"><a class="btn" href="${esc(d.present)}">With notes</a><a class="btn" href="${esc(d.stage)}">Stage</a></div></div>`).join('')}</div></section>`);
   return out.join('');
 }
 
+function offer(o) {   // the summit offer (Dinis, 12 Nov 2026), the same words as the Studio's closing slide
+  if (!o) return '';
+  return `<div class="offer"><h3>${esc(o.title)} <span class="lab sug">Dated ${esc(o.dated)}</span></h3><div class="lv">${o.levels.map((l) => `<div><b>${esc(l.price)}</b><span>${esc(l.name)}</span><small>${esc(l.text)}${l.time ? ` · ${esc(l.time)}` : ''} · ${esc(l.where)}</small></div>`).join('')}</div>
+    <p class="disc">${esc(o.discount)}</p><div class="acts"><a class="btn" href="mailto:${esc(o.email)}">${esc(o.email)}</a><a class="btn" href="${esc(o.store)}" target="_blank" rel="noopener">store.sgit.ai</a></div></div>`;
+}
 function present() {
   if (player || !window.StoryKit || !P.deck) return;
   player = StoryKit.present($('#deck'), P.deck, { caption: $('#cap'), keys: false, dwell: 3200, onStep: (i, n, info) => { $('#pos').textContent = `${i + 1} / ${n}`; $('#say').innerHTML = (info.say || []).map((s) => `<li>${esc(s)}</li>`).join(''); } });
