@@ -1,0 +1,220 @@
+{
+ "title": "Picari and RiskMandate",
+ "id": "summit-picari",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Picari and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Picari"
+  },
+  {
+   "type": "bullets",
+   "title": "Where Picari stands, in its own words",
+   "items": [
+    "A buyer-led evaluation platform for security tools",
+    "A ranked shortlist no vendor can pay to influence",
+    "Scores rest on what vendors can prove, not what they promise",
+    "Free for security teams",
+    "3,000+ products, 1,000+ vendors, 60+ categories"
+   ],
+   "kicker": "Starting point",
+   "caption": "All of this comes from Picari's own public pages.",
+   "say": [
+    "We start from what Picari already says about itself.",
+    "Its principle is that proof counts, and placement cannot be bought. Our five suggestions build on that."
+   ],
+   "badge": "real",
+   "source": "Picari public pages"
+  },
+  {
+   "type": "flow",
+   "title": "1. Run GAMMA-Ray on Picari's listings",
+   "steps": [
+    "Picari listing (AI and agent security)",
+    "GAMMA-Ray reads public evidence",
+    "Rated against 7 to 8 standards",
+    "Every claim linked to its source",
+    "An opinion without confrontation"
+   ],
+   "kicker": "Suggestion 1",
+   "caption": "Our suggestion, what we would do together. Not Picari's claim, and nothing of theirs was tested.",
+   "say": [
+    "We would run GAMMA-Ray on the agentic tools in Picari's catalogue.",
+    "Seven to eight standards give a second, evidence-graded view a buyer can read, with no confrontation with the vendor."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "ladder",
+   "title": "2. Rank evidence by assurance level",
+   "levels": [
+    {
+     "id": "L1",
+     "label": "Public",
+     "note": "Published pages and documents anyone can read."
+    },
+    {
+     "id": "L2",
+     "label": "Vendor-commented",
+     "note": "The vendor has responded to the evidence on record."
+    },
+    {
+     "id": "L3",
+     "label": "Customer",
+     "note": "Evidence that comes from those who use the product."
+    },
+    {
+     "id": "L4",
+     "label": "Regulator (FACT-Ray)",
+     "note": "The highest level of assurance."
+    }
+   ],
+   "kicker": "Suggestion 2",
+   "caption": "Our suggestion: each fact carries a trust level, from public up to regulator.",
+   "say": [
+    "Not all evidence weighs the same, so we would show the level beside every fact.",
+    "A buyer sees at a glance how far a claim has climbed."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "graph",
+   "title": "3. Openness, not pay-to-play: claim to evidence",
+   "nodes": [
+    {
+     "id": "claim",
+     "label": "Vendor claim",
+     "alt": "C"
+    },
+    {
+     "id": "pub",
+     "label": "Public, on-record source",
+     "alt": "E"
+    },
+    {
+     "id": "cust",
+     "label": "Customer evidence",
+     "alt": "E"
+    },
+    {
+     "id": "reg",
+     "label": "Regulator evidence",
+     "alt": "E"
+    },
+    {
+     "id": "gap",
+     "label": "Not yet evidenced",
+     "alt": "D"
+    }
+   ],
+   "edges": [
+    {
+     "from": "claim",
+     "to": "pub",
+     "label": "linked to"
+    },
+    {
+     "from": "claim",
+     "to": "cust",
+     "label": "linked to"
+    },
+    {
+     "from": "claim",
+     "to": "reg",
+     "label": "linked to"
+    },
+    {
+     "from": "claim",
+     "to": "gap",
+     "label": "if no source"
+    }
+   ],
+   "kicker": "Suggestion 3",
+   "caption": "Our suggestion: public, on-record evidence, with every claim tied to its source.",
+   "say": [
+    "Picari says if a vendor hasn't shared the data, you'll know. GAMMA-Ray says 'not yet evidenced'. It is the same idea.",
+    "A claim-to-evidence graph makes that gap visible, and money cannot buy a link."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "title": "4. Signed identities for every party and agent",
+   "items": [
+    "Buyers, vendors, reviewers: each one signs what they say",
+    "Agents that query or write evidence sign too",
+    "SGit vaults keep the signed record",
+    "Anyone can see who said what, and when"
+   ],
+   "kicker": "Suggestion 4",
+   "caption": "Our suggestion: signed identities, with SGit vaults.",
+   "say": [
+    "Picari offers an MCP server so Claude or ChatGPT can query vendor facts.",
+    "If agents read the facts, agents and people should both be identified and signed."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "compare",
+   "title": "5. Trials for vendors, paid evaluation for buyers",
+   "before": {
+    "label": "Today (Picari's pages)",
+    "items": [
+     "Free for security teams",
+     "Vendors can claim their profile",
+     "Vendors can take part in evaluations"
+    ]
+   },
+   "after": {
+    "label": "Our suggestion",
+    "items": [
+     "Low-commitment trials for vendors",
+     "Paid evaluation for buyers"
+    ]
+   },
+   "kicker": "Suggestion 5",
+   "caption": "Our suggestion for how both sides could start. It is not a Picari plan.",
+   "say": [
+    "Vendors could try it with little commitment, and nobody pays for placement.",
+    "Buyers could pay for a deeper evaluation. That is our suggestion, to be discussed."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "statement",
+   "text": "Picari ranks on what vendors can prove. We would make the proof visible, graded and signed.",
+   "kicker": "The point",
+   "caption": "Our hypothesis, built from public pages only.",
+   "say": [
+    "The gap between claim and evidence is what both Picari and GAMMA-Ray make visible.",
+    "Together, a buyer could read it."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T13:14:49Z",
+ "partners": [
+  "picari"
+ ],
+ "simulated": false
+}
