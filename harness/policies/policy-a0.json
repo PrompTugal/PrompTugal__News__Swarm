@@ -1,0 +1,32 @@
+{
+ "pbp": 1,
+ "id": "a0-consensus",
+ "layer": "invocation",
+ "notes": "harness.1.fringe: the A0 compute unit. Reads the system libraries, node and its workspace; writes only workspace/out; executes only node; no network; 1024 MB (V8 cannot reserve its code range under 512 MiB of address space).",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/opt/hx/bin",
+   "/opt/hx/ws"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": "none",
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 1024,
+  "max_pids": 16
+ }
+}

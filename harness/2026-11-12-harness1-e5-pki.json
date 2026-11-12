@@ -1,0 +1,259 @@
+{
+ "about": "E5: a key on everything, for one run. The operator key signs the code (its sha256) and the policy (its hash) and issues a certificate to a key made for one execution; that key signs the output. Public fingerprints only; each private key with its path and lifetime.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E5",
+ "measured_at": "2026-11-12T01:4xZ to 01:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "units": [
+  {
+   "id": "operator",
+   "kind": "key",
+   "altitude": "K",
+   "label": "operator key (harness.1, A3)",
+   "key_fp": "sha256:ad8964ffe8164c5b"
+  },
+  {
+   "id": "code",
+   "kind": "artifact",
+   "altitude": "C",
+   "label": "harness/bin/a0-consensus-signed.mjs",
+   "sha256": "10c8793b008934dfd27f618c256bb3f079fc8d2e1cff1a1831127d1830e43afc"
+  },
+  {
+   "id": "policy",
+   "kind": "policy",
+   "altitude": "P2",
+   "label": "policy-a0-pki (manifest hash)",
+   "hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905"
+  },
+  {
+   "id": "exec-key",
+   "kind": "key",
+   "altitude": "K",
+   "label": "execution key: one process, 213 ms",
+   "key_fp": "sha256:78ec06122f65d7b3"
+  },
+  {
+   "id": "a0-consensus",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "the signed A0 compute, harnessed",
+   "harnessed": true,
+   "policy_hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905",
+   "key_fp": "sha256:78ec06122f65d7b3"
+  },
+  {
+   "id": "output",
+   "kind": "artifact",
+   "altitude": "O",
+   "label": "out/summary.json",
+   "sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1"
+  }
+ ],
+ "edges": [
+  {
+   "from": "operator",
+   "to": "code",
+   "kind": "signs"
+  },
+  {
+   "from": "operator",
+   "to": "policy",
+   "kind": "signs"
+  },
+  {
+   "from": "operator",
+   "to": "exec-key",
+   "kind": "signs",
+   "note": "certificate binds the key to the code sha256 and the policy hash, 60 s validity"
+  },
+  {
+   "from": "exec-key",
+   "to": "a0-consensus",
+   "kind": "held by"
+  },
+  {
+   "from": "a0-consensus",
+   "to": "output",
+   "kind": "writes"
+  },
+  {
+   "from": "exec-key",
+   "to": "output",
+   "kind": "signs"
+  }
+ ],
+ "chain": {
+  "code": {
+   "file": "/opt/hx/bin/a0-consensus-signed.mjs",
+   "sha256": "10c8793b008934dfd27f618c256bb3f079fc8d2e1cff1a1831127d1830e43afc",
+   "sig_by": "sha256:ad8964ffe8164c5b"
+  },
+  "policy": {
+   "file": "/opt/hx/policy-a0-pki.json",
+   "hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905",
+   "sig_by": "sha256:ad8964ffe8164c5b"
+  },
+  "policy_hash_check": "sharness-ai policy hash = sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905; run with --expect-hash: refused unless equal",
+  "exec_cert": {
+   "subject": "execution of a0-consensus",
+   "exec_fp": "sha256:78ec06122f65d7b3",
+   "code_sha256": "10c8793b008934dfd27f618c256bb3f079fc8d2e1cff1a1831127d1830e43afc",
+   "policy_hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905",
+   "not_after": "2026-11-12T01:52:12.549Z",
+   "sig_by": "sha256:ad8964ffe8164c5b"
+  },
+  "output": {
+   "file": "out/summary.json",
+   "sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+   "sig_by": "sha256:78ec06122f65d7b3",
+   "pid": 996,
+   "signed_at": "2026-11-12T01:51:12.730Z"
+  }
+ },
+ "checks": {
+  "code_signed_by_operator": true,
+  "policy_signed_by_operator": true,
+  "exec_cert_signed_by_operator": true,
+  "output_signed_by_exec_key": true,
+  "output_bytes_match": true,
+  "process_saw_policy_hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905",
+  "tamper_one_byte_detected": true,
+  "tamper_statement_detected": true
+ },
+ "keys": [
+  {
+   "role": "operator (harness.1, A3)",
+   "alg": "ed25519",
+   "fp": "sha256:ad8964ffe8164c5b",
+   "pub": "MCowBQYDK2VwAyEApsh++MghJe0ntJilXCZdRmnPnJ0uV+aoB8HY5s+F+3Q=",
+   "private_key_path": "memory of the orchestrator process only (never on disk)",
+   "created_at": "2026-11-12T01:51:12.449Z",
+   "destroyed_at": "2026-11-12T01:51:12.763Z",
+   "destroyed_how": "dropped with the orchestrator process at its exit (never serialised)"
+  },
+  {
+   "role": "execution (one process, A0)",
+   "alg": "ed25519",
+   "fp": "sha256:78ec06122f65d7b3",
+   "pub": "MCowBQYDK2VwAyEAmWpIn6GPOgn2eeQYmlVpbXQEq135Qamoo4TICZJRuuU=",
+   "private_key_path": "/opt/hx/keys/exec.pem (mode 0400; the policy's only key row: files.read)",
+   "created_at": "2026-11-12T01:51:12.548Z",
+   "destroyed_at": "2026-11-12T01:51:12.761Z",
+   "destroyed_how": "overwritten with random bytes, then unlinked, after the process exited"
+  },
+  {
+   "role": "session CA (sharness-ai session)",
+   "alg": "P-256 x509",
+   "fp": "x509 sha256:4B2AC69DA904822E",
+   "private_key_path": "never written to a path that survives: destroyed by session new after issuing",
+   "created_at": "2026-11-12T01:48:24Z",
+   "destroyed_at": "2026-11-12T01:48:24Z"
+  }
+ ],
+ "session_pki": {
+  "id": "97f7676bb243d224",
+  "created": "2026-11-12T01:48:24Z",
+  "not_after": "2026-11-13T01:48:24Z",
+  "ca_key": "destroyed by sharness-ai session new after issuing (no ca.key on disk, measured)",
+  "certs": [
+   {
+    "role": "ca",
+    "x509_sha256_16": "4B2AC69DA904822E"
+   },
+   {
+    "role": "app",
+    "x509_sha256_16": "18C9882651091E27"
+   },
+   {
+    "role": "fs",
+    "x509_sha256_16": "D22ECF46BDD4FD76"
+   },
+   {
+    "role": "net",
+    "x509_sha256_16": "1CEA9F5945484112"
+   },
+   {
+    "role": "launcher",
+    "x509_sha256_16": "6C34525D4194A550"
+   }
+  ],
+  "role_private_keys": "/opt/hx/session/{app,fs,net,launcher}.key (mode 0600, P-256), for the 1-day session; overwritten with random bytes and unlinked at 2026-11-12T01:53:24Z, after the door stopped"
+ },
+ "timeline": [
+  {
+   "t_ms": 0,
+   "unit": "operator",
+   "phase": "start"
+  },
+  {
+   "t_ms": 8,
+   "unit": "operator",
+   "phase": "key",
+   "fp": "sha256:ad8964ffe8164c5b"
+  },
+  {
+   "t_ms": 8,
+   "unit": "code",
+   "phase": "signed",
+   "sha256": "10c8793b008934dfd27f618c256bb3f079fc8d2e1cff1a1831127d1830e43afc",
+   "by": "sha256:ad8964ffe8164c5b"
+  },
+  {
+   "t_ms": 101,
+   "unit": "policy",
+   "phase": "signed",
+   "hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905",
+   "by": "sha256:ad8964ffe8164c5b"
+  },
+  {
+   "t_ms": 102,
+   "unit": "exec-key",
+   "phase": "issued",
+   "fp": "sha256:78ec06122f65d7b3",
+   "by": "sha256:ad8964ffe8164c5b",
+   "handed_via": "/opt/hx/keys/exec.pem"
+  },
+  {
+   "t_ms": 102,
+   "unit": "a0-consensus",
+   "phase": "start",
+   "harnessed": true,
+   "policy_hash": "sha256:569dda776ca5576b90c992e2ed499cb81d4b106e9c8b64bbfd4cc63d8b299905"
+  },
+  {
+   "t_ms": 313,
+   "unit": "a0-consensus",
+   "phase": "end",
+   "exit": 0
+  },
+  {
+   "t_ms": 314,
+   "unit": "exec-key",
+   "phase": "destroyed",
+   "path": "/opt/hx/keys/exec.pem",
+   "exists_after": false
+  },
+  {
+   "t_ms": 316,
+   "unit": "verifier",
+   "phase": "verified",
+   "all": true
+  },
+  {
+   "t_ms": 316,
+   "unit": "operator",
+   "phase": "end"
+  }
+ ],
+ "flow": [
+  "operator key: born in the orchestrator's memory, never serialised; signs code, policy and the execution certificate; dies with the orchestrator (314 ms).",
+  "execution key: born in the orchestrator, written once to /opt/hx/keys/exec.pem (mode 0400, dir 0700); the policy's one key row lets the harnessed process read that one file; the process signs its output and exits; the orchestrator overwrites the file with random bytes and unlinks it (213 ms from birth to destruction).",
+  "the process reports the policy hash it was started under (SHARNESS_AI_POLICY_HASH, set by the harness) inside the signed statement: it equals the hash the operator signed."
+ ],
+ "gap": [
+  "the execution key spent 213 ms in a file any other uid-0 process here could read: the harness binds the child, not its neighbours (a separate uid, or a key born inside the process, closes this)",
+  "the operator key is ephemeral: nothing outside this run vouches for it yet; anchoring it in data/keys.json (the swarm's keys) is the next link"
+ ]
+}

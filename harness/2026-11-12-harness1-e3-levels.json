@@ -1,0 +1,185 @@
+{
+ "about": "E3: policies at levels. One sentence (contain) is compiled down to the kernel, hash by hash, with what is not held. Then the same chain for the hand-written level-3 rows of E1+E2, and what running the sentence did.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E3",
+ "measured_at": "2026-11-12T01:4xZ to 01:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "sentence": "sharness-ai contain --profile newsroom-agent --workspace /opt/hx/ws --sites storm-charles.promptugal.news --memory-mb 1024 --pids 16 --agent a0-consensus -- node a0-consensus.mjs",
+ "units": [
+  {
+   "id": "L5",
+   "kind": "policy",
+   "altitude": "P5",
+   "label": "intent: one sentence",
+   "hash": "sha256:3ba5c5cec2c6ed368b39d601dda43dc022e11abea596f5e02203af713cc2ea07"
+  },
+  {
+   "id": "L4",
+   "kind": "policy",
+   "altitude": "P4",
+   "label": "profile newsroom-agent v1 (the vendor's)",
+   "hash": "sha256:feb8ca372501243ff933a073ce8b33f8507732f894a8fd231c046e913de051c6"
+  },
+  {
+   "id": "L3",
+   "kind": "policy",
+   "altitude": "P3",
+   "label": "rows (what a manager reads)",
+   "hash": "sha256:3786f476346a36a15a5496bab28626fc56f8594e3ff2cd242e597f9bc1cd7237"
+  },
+  {
+   "id": "L2",
+   "kind": "policy",
+   "altitude": "P2",
+   "label": "manifest: the doors (the kernel is the only door in v0)",
+   "hash": "sha256:1d438b1ca849f0ca5f7cc8e4bc3f628bac58d777c980c820dd2cc224f5dc9abe"
+  },
+  {
+   "id": "L1",
+   "kind": "policy",
+   "altitude": "P1",
+   "label": "kernel: Landlock rules, rlimits, cgroups",
+   "hash": "sha256:e7387159d1fe123f70c83aa9322796d201629d6f2b4a51856814b68285c24274"
+  }
+ ],
+ "edges": [
+  {
+   "from": "L5",
+   "to": "L4",
+   "kind": "compiles to"
+  },
+  {
+   "from": "L4",
+   "to": "L3",
+   "kind": "compiles to"
+  },
+  {
+   "from": "L3",
+   "to": "L2",
+   "kind": "compiles to"
+  },
+  {
+   "from": "L2",
+   "to": "L1",
+   "kind": "compiles to"
+  }
+ ],
+ "chain": [
+  {
+   "level": 5,
+   "name": "intent",
+   "hash": "sha256:3ba5c5cec2c6ed368b39d601dda43dc022e11abea596f5e02203af713cc2ea07",
+   "notes": [
+    "contain a0-consensus to /opt/hx/ws, storm-charles.promptugal.news, no secrets"
+   ],
+   "unheld": []
+  },
+  {
+   "level": 4,
+   "name": "profile",
+   "hash": "sha256:feb8ca372501243ff933a073ce8b33f8507732f894a8fd231c046e913de051c6",
+   "notes": [
+    "profile newsroom-agent v1: the newsroom agent: reads a vault, writes one output folder, reaches its sites",
+    "blanks workspace=/opt/hx/ws, sites=storm-charles.promptugal.news, secrets=none, memory_mb=1024, pids=16"
+   ],
+   "unheld": []
+  },
+  {
+   "level": 3,
+   "name": "rows",
+   "hash": "sha256:3786f476346a36a15a5496bab28626fc56f8594e3ff2cd242e597f9bc1cd7237",
+   "notes": [],
+   "unheld": [
+    "storm-charles.promptugal.news: held as port 443; the host name is not held until sharness.net runs here"
+   ]
+  },
+  {
+   "level": 2,
+   "name": "manifest",
+   "hash": "sha256:1d438b1ca849f0ca5f7cc8e4bc3f628bac58d777c980c820dd2cc224f5dc9abe",
+   "notes": [
+    "the kernel is the only door here (v0): files, ports, caps"
+   ],
+   "unheld": []
+  },
+  {
+   "level": 1,
+   "name": "kernel",
+   "hash": "sha256:e7387159d1fe123f70c83aa9322796d201629d6f2b4a51856814b68285c24274",
+   "notes": [
+    "14 Landlock path rules, 1 TCP port rules",
+    "RLIMIT_AS 1024 MiB, RLIMIT_NPROC 16, cgroups ['memory', 'pids'], no_new_privs"
+   ],
+   "unheld": []
+  }
+ ],
+ "kernel": {
+  "landlock_paths": {
+   "read": 8,
+   "write": 1,
+   "exec": 5
+  },
+  "landlock_tcp_ports": [
+   443
+  ],
+  "network_namespace": false,
+  "rlimit_as_mb": 1024,
+  "rlimit_nproc": 16,
+  "cgroup": [
+   "memory",
+   "pids"
+  ],
+  "no_new_privs": true,
+  "closerange_from": 3,
+  "env": {
+   "SHARNESS_AI_POLICY_HASH": "sha256:1d438b1ca849f0ca5f7cc8e4bc3f628bac58d777c980c820dd2cc224f5dc9abe"
+  }
+ },
+ "held": "17 rows by the kernel: files, ports, caps",
+ "not_held": [
+  "storm-charles.promptugal.news: held as TCP port 443, any host; the host name is held only by sharness.net (E4)"
+ ],
+ "not_covered": [
+  "UDP (DNS) unless an empty network namespace applied",
+  "Unix sockets by path",
+  "the inherited environment"
+ ],
+ "ran": [
+  {
+   "what": "the sentence, for real, with node",
+   "exit": 126,
+   "result": "refused: \"could not apply the policy or start the command: Permission denied. Nothing ran.\"",
+   "why": "the profile executes /usr /bin /sbin /lib /lib64; node lives in /opt/node22, outside every exec row. Fail-closed."
+  },
+  {
+   "what": "the sentence with /bin/sh as the agent",
+   "exit": 0,
+   "result": "ran",
+   "reach_measured": {
+    "/etc/passwd": "readable",
+    "/etc/shadow": "readable",
+    "/proc/self/status": "refused",
+    "/opt/hx/decoy/decoy.key": "refused",
+    "/root/.bashrc": "refused"
+   },
+   "why": "the profile reads all of /etc and executes /bin, so a contained root shell runs and reads /etc/shadow (readable: yes; content never read into any record). The hand-written rows of E1+E2 read only /etc/ssl and execute only node: there /etc/shadow is refused and no shell starts."
+  }
+ ],
+ "hand_written_rows": {
+  "policy": "harness/policies/policy-a0.json",
+  "chain": [
+   {
+    "level": 2,
+    "name": "manifest",
+    "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+   },
+   {
+    "level": 1,
+    "name": "kernel",
+    "hash": "sha256:2a4088fe64a4c5b74d48051275fc35e94105d7d5830c881cf8e93ca9a23b7a55"
+   }
+  ]
+ },
+ "gap": "what a profile grants is wider than what the unit needs: the level-4 blank fills in the workspace and the sites, not the system paths. Writing the level-3 rows by hand closed /etc and the shell; the sentence did not."
+}

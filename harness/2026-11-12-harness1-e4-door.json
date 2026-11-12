@@ -1,0 +1,589 @@
+{
+ "about": "E4: the network door. sharness.net serves a proxy on 127.0.0.1:18443 that allows one host (the storm site) on one port (443). The A0 read goes through it; everything else is refused, by the door (hosts, IP literals, ports, fronting) or by the kernel (any way around the door).",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E4",
+ "measured_at": "2026-11-12T01:4xZ to 01:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "door": {
+  "command": "sharness-ai net serve --hosts storm-charles.promptugal.news --ports 443 --proxy-port 18443 --audit --session /opt/hx/session",
+  "identity": "spiffe://97f7676bb243d224/net (mutual TLS admin face on 127.0.0.1:7302)",
+  "hosts": [
+   "storm-charles.promptugal.news"
+  ],
+  "ports": [
+   443
+  ],
+  "caveat": "applied by a process to its own child: a boundary for the child, a setting for the parent. The proxy does not terminate TLS: it holds hosts and ports, not paths."
+ },
+ "units": [
+  {
+   "id": "harness1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "harness.1.fringe@PrompTugal.dinis",
+   "harnessed": false
+  },
+  {
+   "id": "door",
+   "kind": "harness",
+   "altitude": "H",
+   "label": "sharness.net proxy door",
+   "key_fp": "x509 sha256:1CEA9F5945484112"
+  },
+  {
+   "id": "a0-read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read 2 storm datasets through the door, then 6 attempts",
+   "harnessed": null,
+   "policy_hash": "sha256:7ead0a778dc8603518edb25cc5b4d86cecafb7f04ba107dd899c78ed10ebe1b2",
+   "code_sha256": "dcfe6d75afc5f2cb6fdd148151a96bbd1ccf52b691e73cf8299bb5f0f7daacd7"
+  },
+  {
+   "id": "storm",
+   "kind": "site",
+   "altitude": "D",
+   "label": "storm-charles.promptugal.news"
+  },
+  {
+   "id": "openrouter",
+   "kind": "site",
+   "altitude": "M",
+   "label": "openrouter.ai (the allowlist test: never reached)"
+  }
+ ],
+ "edges": [
+  {
+   "from": "harness1",
+   "to": "door",
+   "kind": "runs"
+  },
+  {
+   "from": "harness1",
+   "to": "a0-read",
+   "kind": "runs"
+  },
+  {
+   "from": "a0-read",
+   "to": "door",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "storm",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "openrouter",
+   "kind": "refused"
+  },
+  {
+   "from": "a0-read",
+   "to": "storm",
+   "kind": "refused",
+   "note": "direct, around the door"
+  }
+ ],
+ "policy": {
+  "id": "a0-read-door",
+  "hash": "sha256:7ead0a778dc8603518edb25cc5b4d86cecafb7f04ba107dd899c78ed10ebe1b2",
+  "file": "harness/policies/policy-a0-door.json",
+  "rows": {
+   "files": {
+    "read": [
+     "/usr",
+     "/lib",
+     "/lib64",
+     "/etc/ssl",
+     "/opt/node22",
+     "/opt/hx/bin",
+     "/opt/hx/ws",
+     "/root/.ccr/ca-bundle.crt"
+    ],
+    "write": [
+     "/opt/hx/ws/out"
+    ],
+    "exec": [
+     "/opt/node22",
+     "/lib",
+     "/lib64",
+     "/usr/lib"
+    ]
+   },
+   "network": {
+    "connect_tcp_ports": [
+     18443
+    ]
+   },
+   "process": {
+    "no_new_privs": true,
+    "max_memory_mb": 2048,
+    "max_pids": 16
+   }
+  }
+ },
+ "before": {
+  "what": "unharnessed: the same script, the door running, nothing binding the process to it",
+  "results": [
+   {
+    "id": "a0-read-warnings",
+    "target": "storm-charles.promptugal.news:443 /weather/warnings.json",
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": "HTTP/1.1 200 OK",
+    "bytes": 21010,
+    "sha256": "b6dd3f86c697d86813ea31358191c210667c77daa925c276739e6c6fd1b65051",
+    "ms": 180
+   },
+   {
+    "id": "a0-read-services",
+    "target": "storm-charles.promptugal.news:443 /transport/services.json",
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": "HTTP/1.1 200 OK",
+    "bytes": 19153,
+    "sha256": "0ff74eb2b646cbdb1c77d59d1cfe662f26e50fe78624e398f3fd30f514614a77",
+    "ms": 67
+   },
+   {
+    "id": "off-allowlist-host",
+    "target": "openrouter.ai:443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])",
+    "ms": 2
+   },
+   {
+    "id": "ip-literal",
+    "target": "127.0.0.1:443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: 127.0.0.1: IP literals are refused; name the host (row: refuse_ip_literals)",
+    "ms": 2
+   },
+   {
+    "id": "off-list-port",
+    "target": "storm-charles.promptugal.news:8443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: port 8443 is not on the list [443] (row: ports [443])",
+    "ms": 2
+   },
+   {
+    "id": "domain-fronting",
+    "target": "CONNECT storm-charles.promptugal.news:443, SNI openrouter.ai",
+    "result": "refused",
+    "error": "the door cut the tunnel after the TLS hello (no bytes back)",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": null,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ms": 12
+   },
+   {
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:38115",
+    "result": "succeeded",
+    "ms": 0
+   },
+   {
+    "id": "bypass-door-direct-tls",
+    "target": "storm-charles.promptugal.news:443 direct",
+    "result": "succeeded",
+    "ms": 14
+   },
+   {
+    "id": "direct-ip",
+    "target": "185.199.108.153:443",
+    "result": "succeeded"
+   }
+  ],
+  "went_around_the_door": [
+   "bypass-session-proxy",
+   "bypass-door-direct-tls",
+   "direct-ip"
+  ]
+ },
+ "after": {
+  "what": "harnessed: sharness-ai run --policy policy-a0-door.json --expect-hash sha256:7ead0a778dc8603518edb25cc5b4d86cecafb7f04ba107dd899c78ed10ebe1b2",
+  "results": [
+   {
+    "id": "a0-read-warnings",
+    "target": "storm-charles.promptugal.news:443 /weather/warnings.json",
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": "HTTP/1.1 200 OK",
+    "bytes": 21010,
+    "sha256": "b6dd3f86c697d86813ea31358191c210667c77daa925c276739e6c6fd1b65051",
+    "ms": 82
+   },
+   {
+    "id": "a0-read-services",
+    "target": "storm-charles.promptugal.news:443 /transport/services.json",
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": "HTTP/1.1 200 OK",
+    "bytes": 19153,
+    "sha256": "0ff74eb2b646cbdb1c77d59d1cfe662f26e50fe78624e398f3fd30f514614a77",
+    "ms": 35
+   },
+   {
+    "id": "off-allowlist-host",
+    "target": "openrouter.ai:443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])",
+    "ms": 2
+   },
+   {
+    "id": "ip-literal",
+    "target": "127.0.0.1:443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: 127.0.0.1: IP literals are refused; name the host (row: refuse_ip_literals)",
+    "ms": 1
+   },
+   {
+    "id": "off-list-port",
+    "target": "storm-charles.promptugal.news:8443",
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: port 8443 is not on the list [443] (row: ports [443])",
+    "ms": 3
+   },
+   {
+    "id": "domain-fronting",
+    "target": "CONNECT storm-charles.promptugal.news:443, SNI openrouter.ai",
+    "result": "refused",
+    "error": "the door cut the tunnel after the TLS hello (no bytes back)",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "http": null,
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "ms": 9
+   },
+   {
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:38115",
+    "result": "refused",
+    "error": "EACCES: connect EACCES 127.0.0.1:38115 - Local (0.0.0.0:0)",
+    "ms": 0
+   },
+   {
+    "id": "bypass-door-direct-tls",
+    "target": "storm-charles.promptugal.news:443 direct",
+    "result": "refused",
+    "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news",
+    "ms": 7
+   },
+   {
+    "id": "direct-ip",
+    "target": "185.199.108.153:443",
+    "result": "refused",
+    "error": "EACCES: connect EACCES 185.199.108.153:443 - Local (0.0.0.0:0)"
+   }
+  ],
+  "timeline": [
+   {
+    "t_ms": 0,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "a0-read-warnings",
+    "target": "storm-charles.promptugal.news:443 /weather/warnings.json"
+   },
+   {
+    "t_ms": 82,
+    "unit": "a0-read",
+    "phase": "allowed",
+    "id": "a0-read-warnings",
+    "target": "storm-charles.promptugal.news:443 /weather/warnings.json",
+    "bytes": 21010,
+    "sha256": "b6dd3f86c697d86813ea31358191c210667c77daa925c276739e6c6fd1b65051",
+    "http": "HTTP/1.1 200 OK"
+   },
+   {
+    "t_ms": 82,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "a0-read-services",
+    "target": "storm-charles.promptugal.news:443 /transport/services.json"
+   },
+   {
+    "t_ms": 117,
+    "unit": "a0-read",
+    "phase": "allowed",
+    "id": "a0-read-services",
+    "target": "storm-charles.promptugal.news:443 /transport/services.json",
+    "bytes": 19153,
+    "sha256": "0ff74eb2b646cbdb1c77d59d1cfe662f26e50fe78624e398f3fd30f514614a77",
+    "http": "HTTP/1.1 200 OK"
+   },
+   {
+    "t_ms": 117,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "off-allowlist-host",
+    "target": "openrouter.ai:443"
+   },
+   {
+    "t_ms": 119,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "off-allowlist-host",
+    "target": "openrouter.ai:443",
+    "policy_row": "door row hosts",
+    "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])"
+   },
+   {
+    "t_ms": 119,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "ip-literal",
+    "target": "127.0.0.1:443"
+   },
+   {
+    "t_ms": 120,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "ip-literal",
+    "target": "127.0.0.1:443",
+    "policy_row": "door row refuse_ip_literals",
+    "error": "refused by sharness.net.proxy: 127.0.0.1: IP literals are refused; name the host (row: refuse_ip_literals)"
+   },
+   {
+    "t_ms": 120,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "off-list-port",
+    "target": "storm-charles.promptugal.news:8443"
+   },
+   {
+    "t_ms": 123,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "off-list-port",
+    "target": "storm-charles.promptugal.news:8443",
+    "policy_row": "door row ports [443]",
+    "error": "refused by sharness.net.proxy: port 8443 is not on the list [443] (row: ports [443])"
+   },
+   {
+    "t_ms": 123,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "domain-fronting",
+    "target": "CONNECT storm-charles.promptugal.news:443, SNI openrouter.ai"
+   },
+   {
+    "t_ms": 132,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "domain-fronting",
+    "target": "CONNECT storm-charles.promptugal.news:443, SNI openrouter.ai",
+    "policy_row": "door: no domain fronting (the TLS hello named openrouter.ai, the tunnel was for the storm site; cut)",
+    "error": "the door cut the tunnel after the TLS hello (no bytes back)"
+   },
+   {
+    "t_ms": 132,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:38115"
+   },
+   {
+    "t_ms": 132,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:38115",
+    "policy_row": "kernel: network.connect_tcp_ports [18443] (Landlock TCP)",
+    "error": "EACCES: connect EACCES 127.0.0.1:38115 - Local (0.0.0.0:0)"
+   },
+   {
+    "t_ms": 132,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "bypass-door-direct-tls",
+    "target": "storm-charles.promptugal.news:443 direct"
+   },
+   {
+    "t_ms": 139,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "bypass-door-direct-tls",
+    "target": "storm-charles.promptugal.news:443 direct",
+    "policy_row": "files.read (no /etc/resolv.conf: the name did not resolve); the next row, connect_tcp_ports [18443], refuses the TCP itself (see direct-ip)",
+    "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news"
+   },
+   {
+    "t_ms": 139,
+    "unit": "a0-read",
+    "phase": "attempt",
+    "id": "direct-ip",
+    "target": "185.199.108.153:443 (the storm site, by address)"
+   },
+   {
+    "t_ms": 139,
+    "unit": "a0-read",
+    "phase": "refused",
+    "id": "direct-ip",
+    "target": "185.199.108.153:443",
+    "policy_row": "kernel: network.connect_tcp_ports [18443]",
+    "error": "EACCES: connect EACCES 185.199.108.153:443 - Local (0.0.0.0:0)"
+   }
+  ]
+ },
+ "door_audit": [
+  {
+   "at": "2026-11-12T01:50:07Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "127.0.0.1:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "127.0.0.1: IP literals are refused; name the host",
+   "row": "refuse_ip_literals"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:8443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "port 8443 is not on the list [443]",
+   "row": "ports [443]"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "127.0.0.1:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "127.0.0.1: IP literals are refused; name the host",
+   "row": "refuse_ip_literals"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:8443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "port 8443 is not on the list [443]",
+   "row": "ports [443]"
+  },
+  {
+   "at": "2026-11-12T01:50:08Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  }
+ ],
+ "findings": [
+  "Without the kernel row the door is advice: unharnessed, the same process went around it (the session proxy, direct TLS, direct TCP by address). Under the policy the only TCP port is the door's.",
+  "node doing TLS aborts (SIGABRT, exit 250, no message) under max_memory_mb 1024; 2048 works. The A0 compute without TLS ran at 1024.",
+  "The streamed audit line for the domain-fronting tunnel says allowed: true (written when the CONNECT is decided); the cut after the TLS hello updates that line in memory, not in the stream.",
+  "Unharnessed, the door already refuses off-list hosts, IP literals and ports for any client that chooses to use it: the door holds what reaches it, the kernel holds what reaches the door."
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "about": "harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "format": {
+  "units": "[{id, kind, altitude, label, harnessed?, policy_hash?, key_fp?, code_sha256?}]",
+  "edges": "[{from, to, kind: runs|reads|writes|signs|allowed|refused}]",
+  "timeline": "[{t_ms, unit, phase: start|attempt|allowed|refused|end, id?, target?, policy_row?, error?}]",
+  "keys": "[{role, alg, fp, private_key_path, created_at, destroyed_at}]"
+ },
+ "records": [
+  {
+   "experiment": "E1+E2",
+   "file": "harness/2026-11-12-harness1-e1e2-before-after.json"
+  },
+  {
+   "experiment": "E3",
+   "file": "harness/2026-11-12-harness1-e3-levels.json"
+  },
+  {
+   "experiment": "E4",
+   "file": "harness/2026-11-12-harness1-e4-door.json"
+  },
+  {
+   "experiment": "E5",
+   "file": "harness/2026-11-12-harness1-e5-pki.json"
+  },
+  {
+   "experiment": "E6",
+   "file": "harness/2026-11-12-harness1-e6-reach.json"
+  },
+  {
+   "experiment": "E01+E04",
+   "file": "harness/2026-11-12-swarm1-probe-and-hello.json",
+   "by": "swarm.1.fringe@PrompTugal.dinis"
+  }
+ ],
+ "units_code": "harness/bin/",
+ "policies": "harness/policies/",
+ "raw": "harness/raw/ (the measured outputs these records are made from)",
+ "assembler": "tools/harness1-assemble.py",
+ "session_keys_destroyed_at": "2026-11-12T01:53:24Z"
+}

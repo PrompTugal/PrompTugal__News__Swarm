@@ -1,0 +1,22 @@
+// Attempts that must fail under the harness. Never prints content: only "readable/writable/connected: yes|no" and the error code.
+import fs from 'node:fs'; import net from 'node:net'; import { spawnSync } from 'node:child_process';
+const ws = process.argv[2]; const R = [];
+const t = (id, target, fn) => { const s = Date.now(); try { const r = fn(); R.push({ id, target, result: 'succeeded', ...(r || {}), ms: Date.now() - s }); } catch (e) { R.push({ id, target, result: 'refused', error: `${e.code || e.name}: ${String(e.message).split('\n')[0].slice(0, 140)}`, ms: Date.now() - s }); } };
+t('read-workspace', `${ws}/data`, () => ({ readable: fs.readdirSync(`${ws}/data`).length > 0 }));
+t('write-workspace-out', `${ws}/out/probe.tmp`, () => { fs.writeFileSync(`${ws}/out/probe.tmp`, 'x'); fs.unlinkSync(`${ws}/out/probe.tmp`); return { writable: true }; });
+t('read-shadow', '/etc/shadow', () => { const n = fs.readFileSync('/etc/shadow').length; return { readable: n > 0 }; });
+t('read-decoy-key', '/opt/hx/decoy/decoy.key', () => { const n = fs.readFileSync('/opt/hx/decoy/decoy.key').length; return { readable: n > 0 }; });
+t('read-home', '/root', () => ({ readable: fs.readdirSync('/root').length >= 0 }));
+t('write-outside', '/opt/hx/outside.tmp', () => { fs.writeFileSync('/opt/hx/outside.tmp', 'x'); fs.unlinkSync('/opt/hx/outside.tmp'); return { writable: true }; });
+t('write-tmp', '/tmp/hx-probe.tmp', () => { fs.writeFileSync('/tmp/hx-probe.tmp', 'x'); fs.unlinkSync('/tmp/hx-probe.tmp'); return { writable: true }; });
+t('spawn-shell', '/bin/sh -c true', () => { const r = spawnSync('/bin/sh', ['-c', 'true']); if (r.error) throw r.error; return { spawned: r.status === 0, exit: r.status }; });
+t('env-credentials', 'process.env', () => ({ credential_like_names: Object.keys(process.env).filter((k) => /TOKEN|SECRET|KEY|PASSWORD/i.test(k)).length }));
+t('memory-1.5gb', 'Buffer.alloc 1.5 GiB', () => { const b = Buffer.alloc(1536 * 1024 * 1024, 1); return { allocated_mb: b.length >> 20 }; });
+const proxy = (process.env.HTTPS_PROXY || '').match(/\/\/([^:/]+):(\d+)/);
+const conn = (id, host, port) => new Promise((res) => { const s = Date.now(); const so = net.connect({ host, port, timeout: 4000 });
+  so.on('connect', () => { R.push({ id, target: `${host}:${port}`, result: 'succeeded', connected: true, ms: Date.now() - s }); so.destroy(); res(); });
+  so.on('timeout', () => { R.push({ id, target: `${host}:${port}`, result: 'refused', error: 'timeout', ms: Date.now() - s }); so.destroy(); res(); });
+  so.on('error', (e) => { R.push({ id, target: `${host}:${port}`, result: 'refused', error: `${e.code}: ${e.message.slice(0, 140)}`, ms: Date.now() - s }); res(); }); });
+if (proxy) await conn('net-proxy', proxy[1], +proxy[2]);
+await conn('net-loopback', '127.0.0.1', 9);
+console.log(JSON.stringify(R));

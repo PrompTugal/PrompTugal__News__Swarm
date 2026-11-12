@@ -1,0 +1,804 @@
+{
+ "about": "E1 + E2: the same A0 compute and the same 12 attempts, unharnessed and then under one policy. The output is byte-identical (same sha256); the reach is not.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E1+E2",
+ "measured_at": "2026-11-12T01:4xZ to 01:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "units": [
+  {
+   "id": "harness1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "harness.1.fringe@PrompTugal.dinis",
+   "harnessed": false
+  },
+  {
+   "id": "a0-consensus",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "consensus over 3 saved storm datasets (node)",
+   "harnessed": null,
+   "code_sha256": "bc5b661418d69c026cdcb34e0fc00a704ef47503e583732047f0357874452ed2"
+  },
+  {
+   "id": "attempts",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "12 attempts, the same script before and after",
+   "harnessed": null,
+   "code_sha256": "446b37cf48e6453e1d58608a024a7bfa92d1d37ffa84f75e907749b51977d7f2"
+  },
+  {
+   "id": "sharness-run",
+   "kind": "harness",
+   "altitude": "H",
+   "label": "sharness-ai run (Landlock + netns + rlimits + cgroup)",
+   "policy_hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+  },
+  {
+   "id": "data:storm",
+   "kind": "dataset",
+   "altitude": "D",
+   "label": "weather/warnings, weather/stations, transport/services (saved)"
+  }
+ ],
+ "edges": [
+  {
+   "from": "harness1",
+   "to": "sharness-run",
+   "kind": "runs"
+  },
+  {
+   "from": "sharness-run",
+   "to": "a0-consensus",
+   "kind": "runs"
+  },
+  {
+   "from": "sharness-run",
+   "to": "attempts",
+   "kind": "runs"
+  },
+  {
+   "from": "a0-consensus",
+   "to": "data:storm",
+   "kind": "reads"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/ws/data",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/ws/out/probe.tmp",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/etc/shadow",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/decoy/decoy.key",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/root",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/outside.tmp",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/tmp/hx-probe.tmp",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/bin/sh -c true",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "process.env",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "Buffer.alloc 1.5 GiB",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "127.0.0.1:38115",
+   "kind": "allowed",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "127.0.0.1:9",
+   "kind": "refused",
+   "when": "before"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/ws/data",
+   "kind": "allowed",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/ws/out/probe.tmp",
+   "kind": "allowed",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/etc/shadow",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/decoy/decoy.key",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/root",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/opt/hx/outside.tmp",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/tmp/hx-probe.tmp",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "/bin/sh -c true",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "process.env",
+   "kind": "allowed",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "Buffer.alloc 1.5 GiB",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "127.0.0.1:38115",
+   "kind": "refused",
+   "when": "after"
+  },
+  {
+   "from": "attempts",
+   "to": "127.0.0.1:9",
+   "kind": "refused",
+   "when": "after"
+  }
+ ],
+ "policy": {
+  "id": "a0-consensus",
+  "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "file": "harness/policies/policy-a0.json",
+  "rows": {
+   "files": {
+    "read": [
+     "/usr",
+     "/lib",
+     "/lib64",
+     "/etc/ssl",
+     "/opt/node22",
+     "/opt/hx/bin",
+     "/opt/hx/ws"
+    ],
+    "write": [
+     "/opt/hx/ws/out"
+    ],
+    "exec": [
+     "/opt/node22",
+     "/lib",
+     "/lib64",
+     "/usr/lib"
+    ]
+   },
+   "network": "none",
+   "process": {
+    "no_new_privs": true,
+    "max_memory_mb": 1024,
+    "max_pids": 16
+   }
+  },
+  "applied": {
+   "netns": "empty network namespace",
+   "landlock_paths": 12,
+   "limits": [
+    "cgroup1 memory.limit_in_bytes=1024MiB",
+    "cgroup1 pids.max=16",
+    "RLIMIT_AS=1024MiB"
+   ],
+   "no_new_privs": true
+  },
+  "not_covered": [
+   "Unix-domain sockets by path (Landlock has no rule)",
+   "RLIMIT_NPROC=16 set but not binding: the kernel exempts uid 0",
+   "the child inherits the parent's environment variables (v0 has no row)"
+  ]
+ },
+ "compute": {
+  "unit": "a0-consensus",
+  "datasets": 3,
+  "output": "out/summary.json",
+  "unharnessed": {
+   "exit": 0,
+   "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1"
+  },
+  "harnessed": {
+   "exit": 0,
+   "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1"
+  },
+  "same_output": true
+ },
+ "before": {
+  "what": "unharnessed: node as uid 0 with all capabilities",
+  "succeeded": 11,
+  "of": 12,
+  "timeline": [
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "start",
+    "harnessed": false
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-workspace",
+    "target": "/opt/hx/ws/data"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "read-workspace",
+    "target": "/opt/hx/ws/data",
+    "readable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-workspace-out",
+    "target": "/opt/hx/ws/out/probe.tmp"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "write-workspace-out",
+    "target": "/opt/hx/ws/out/probe.tmp",
+    "writable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-shadow",
+    "target": "/etc/shadow"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "read-shadow",
+    "target": "/etc/shadow",
+    "readable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-decoy-key",
+    "target": "/opt/hx/decoy/decoy.key"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "read-decoy-key",
+    "target": "/opt/hx/decoy/decoy.key",
+    "readable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-home",
+    "target": "/root"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "read-home",
+    "target": "/root",
+    "readable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-outside",
+    "target": "/opt/hx/outside.tmp"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "write-outside",
+    "target": "/opt/hx/outside.tmp",
+    "writable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-tmp",
+    "target": "/tmp/hx-probe.tmp"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "write-tmp",
+    "target": "/tmp/hx-probe.tmp",
+    "writable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true"
+   },
+   {
+    "t_ms": 4,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true",
+    "spawned": true
+   },
+   {
+    "t_ms": 4,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "env-credentials",
+    "target": "process.env"
+   },
+   {
+    "t_ms": 4,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "env-credentials",
+    "target": "process.env",
+    "credential_like_names": 17
+   },
+   {
+    "t_ms": 4,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "memory-1.5gb",
+    "target": "Buffer.alloc 1.5 GiB"
+   },
+   {
+    "t_ms": 923,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "memory-1.5gb",
+    "target": "Buffer.alloc 1.5 GiB",
+    "allocated_mb": 1536
+   },
+   {
+    "t_ms": 923,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "net-proxy",
+    "target": "127.0.0.1:38115"
+   },
+   {
+    "t_ms": 925,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "net-proxy",
+    "target": "127.0.0.1:38115",
+    "connected": true
+   },
+   {
+    "t_ms": 925,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "net-loopback",
+    "target": "127.0.0.1:9"
+   },
+   {
+    "t_ms": 926,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "net-loopback",
+    "target": "127.0.0.1:9",
+    "error": "ECONNREFUSED: connect ECONNREFUSED 127.0.0.1:9"
+   },
+   {
+    "t_ms": 926,
+    "unit": "attempts",
+    "phase": "end",
+    "exit": 0
+   }
+  ]
+ },
+ "after": {
+  "what": "harnessed: sharness-ai run --policy policy-a0.json --expect-hash sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "succeeded": 3,
+  "of": 12,
+  "succeeded_ids": [
+   "read-workspace",
+   "write-workspace-out",
+   "env-credentials"
+  ],
+  "timeline": [
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "start",
+    "harnessed": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-workspace",
+    "target": "/opt/hx/ws/data"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "read-workspace",
+    "target": "/opt/hx/ws/data",
+    "readable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-workspace-out",
+    "target": "/opt/hx/ws/out/probe.tmp"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "write-workspace-out",
+    "target": "/opt/hx/ws/out/probe.tmp",
+    "writable": true
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-shadow",
+    "target": "/etc/shadow"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "read-shadow",
+    "target": "/etc/shadow",
+    "policy_row": "files.read (no row covers /etc/shadow; only /etc/ssl of /etc)",
+    "error": "EACCES: EACCES: permission denied, open '/etc/shadow'"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-decoy-key",
+    "target": "/opt/hx/decoy/decoy.key"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "read-decoy-key",
+    "target": "/opt/hx/decoy/decoy.key",
+    "policy_row": "files.read (no row covers /opt/hx/decoy)",
+    "error": "EACCES: EACCES: permission denied, open '/opt/hx/decoy/decoy.key'"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "read-home",
+    "target": "/root"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "read-home",
+    "target": "/root",
+    "policy_row": "files.read (no row covers /root)",
+    "error": "EACCES: EACCES: permission denied, scandir '/root'"
+   },
+   {
+    "t_ms": 0,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-outside",
+    "target": "/opt/hx/outside.tmp"
+   },
+   {
+    "t_ms": 1,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "write-outside",
+    "target": "/opt/hx/outside.tmp",
+    "policy_row": "files.write (only /opt/hx/ws/out)",
+    "error": "EACCES: EACCES: permission denied, open '/opt/hx/outside.tmp'"
+   },
+   {
+    "t_ms": 1,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "write-tmp",
+    "target": "/tmp/hx-probe.tmp"
+   },
+   {
+    "t_ms": 1,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "write-tmp",
+    "target": "/tmp/hx-probe.tmp",
+    "policy_row": "files.write (only /opt/hx/ws/out)",
+    "error": "EACCES: EACCES: permission denied, open '/tmp/hx-probe.tmp'"
+   },
+   {
+    "t_ms": 1,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true"
+   },
+   {
+    "t_ms": 3,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true",
+    "policy_row": "files.exec (only /opt/node22 and the libraries; /bin/sh is not executable)",
+    "error": "EACCES: spawnSync /bin/sh EACCES"
+   },
+   {
+    "t_ms": 3,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "env-credentials",
+    "target": "process.env"
+   },
+   {
+    "t_ms": 3,
+    "unit": "attempts",
+    "phase": "allowed",
+    "id": "env-credentials",
+    "target": "process.env",
+    "credential_like_names": 17
+   },
+   {
+    "t_ms": 3,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "memory-1.5gb",
+    "target": "Buffer.alloc 1.5 GiB"
+   },
+   {
+    "t_ms": 18,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "memory-1.5gb",
+    "target": "Buffer.alloc 1.5 GiB",
+    "policy_row": "process.max_memory_mb = 1024 (RLIMIT_AS and cgroup memory.limit_in_bytes)",
+    "error": "RangeError: Array buffer allocation failed"
+   },
+   {
+    "t_ms": 18,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "net-proxy",
+    "target": "127.0.0.1:38115"
+   },
+   {
+    "t_ms": 21,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "net-proxy",
+    "target": "127.0.0.1:38115",
+    "policy_row": "network: none (an empty network namespace, then Landlock TCP)",
+    "error": "EACCES: connect EACCES 127.0.0.1:38115 - Local (0.0.0.0:0)"
+   },
+   {
+    "t_ms": 21,
+    "unit": "attempts",
+    "phase": "attempt",
+    "id": "net-loopback",
+    "target": "127.0.0.1:9"
+   },
+   {
+    "t_ms": 22,
+    "unit": "attempts",
+    "phase": "refused",
+    "id": "net-loopback",
+    "target": "127.0.0.1:9",
+    "policy_row": "network: none (an empty network namespace, then Landlock TCP)",
+    "error": "EACCES: connect EACCES 127.0.0.1:9 - Local (0.0.0.0:0)"
+   },
+   {
+    "t_ms": 22,
+    "unit": "attempts",
+    "phase": "end",
+    "exit": 0
+   }
+  ]
+ },
+ "comparison": [
+  {
+   "id": "read-workspace",
+   "target": "/opt/hx/ws/data",
+   "what": "mandate: the unit reads its datasets",
+   "unharnessed": "succeeded",
+   "harnessed": "succeeded",
+   "refused_by": null,
+   "error": null
+  },
+  {
+   "id": "write-workspace-out",
+   "target": "/opt/hx/ws/out/probe.tmp",
+   "what": "mandate: the unit writes its summary",
+   "unharnessed": "succeeded",
+   "harnessed": "succeeded",
+   "refused_by": null,
+   "error": null
+  },
+  {
+   "id": "read-shadow",
+   "target": "/etc/shadow",
+   "what": "a system secret (record: readable yes/no, never content)",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.read (no row covers /etc/shadow; only /etc/ssl of /etc)",
+   "error": "EACCES: EACCES: permission denied, open '/etc/shadow'"
+  },
+  {
+   "id": "read-decoy-key",
+   "target": "/opt/hx/decoy/decoy.key",
+   "what": "a decoy key made for this test (random bytes)",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.read (no row covers /opt/hx/decoy)",
+   "error": "EACCES: EACCES: permission denied, open '/opt/hx/decoy/decoy.key'"
+  },
+  {
+   "id": "read-home",
+   "target": "/root",
+   "what": "the home directory, where tokens live",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.read (no row covers /root)",
+   "error": "EACCES: EACCES: permission denied, scandir '/root'"
+  },
+  {
+   "id": "write-outside",
+   "target": "/opt/hx/outside.tmp",
+   "what": "write outside the workspace",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.write (only /opt/hx/ws/out)",
+   "error": "EACCES: EACCES: permission denied, open '/opt/hx/outside.tmp'"
+  },
+  {
+   "id": "write-tmp",
+   "target": "/tmp/hx-probe.tmp",
+   "what": "write to /tmp",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.write (only /opt/hx/ws/out)",
+   "error": "EACCES: EACCES: permission denied, open '/tmp/hx-probe.tmp'"
+  },
+  {
+   "id": "spawn-shell",
+   "target": "/bin/sh -c true",
+   "what": "spawn a shell",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "files.exec (only /opt/node22 and the libraries; /bin/sh is not executable)",
+   "error": "EACCES: spawnSync /bin/sh EACCES"
+  },
+  {
+   "id": "env-credentials",
+   "target": "process.env",
+   "what": "GAP: the environment is inherited (v0 has no row); count of credential-like names only",
+   "unharnessed": "succeeded",
+   "harnessed": "succeeded",
+   "refused_by": null,
+   "error": null
+  },
+  {
+   "id": "memory-1.5gb",
+   "target": "Buffer.alloc 1.5 GiB",
+   "what": "use too much memory",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "process.max_memory_mb = 1024 (RLIMIT_AS and cgroup memory.limit_in_bytes)",
+   "error": "RangeError: Array buffer allocation failed"
+  },
+  {
+   "id": "net-proxy",
+   "target": "127.0.0.1:38115",
+   "what": "reach the session proxy, the whole internet",
+   "unharnessed": "succeeded",
+   "harnessed": "refused",
+   "refused_by": "network: none (an empty network namespace, then Landlock TCP)",
+   "error": "EACCES: connect EACCES 127.0.0.1:38115 - Local (0.0.0.0:0)"
+  },
+  {
+   "id": "net-loopback",
+   "target": "127.0.0.1:9",
+   "what": "open any TCP connection",
+   "unharnessed": "refused",
+   "harnessed": "refused",
+   "refused_by": "network: none (an empty network namespace, then Landlock TCP)",
+   "error": "EACCES: connect EACCES 127.0.0.1:9 - Local (0.0.0.0:0)"
+  }
+ ],
+ "gap": {
+  "env": "17 credential-like environment variable names inherited by the harnessed child (names counted, values never read into this record); 0 when the harness itself is started with env -i (closed by hand, outside the policy)",
+  "unix_sockets": "not tested: Landlock has no rule for them; only a mount namespace or a separate uid closes them"
+ },
+ "findings": [
+  "node under max_memory_mb 512 does not start: V8 fails to reserve its CodeRange under RLIMIT_AS 512 MiB (exit 251, \"Fatal process out of memory\"); 1024 works. The memory row is an address-space limit, and V8 reserves address space it never uses.",
+  "net-loopback (127.0.0.1:9) is refused unharnessed too (ECONNREFUSED: nothing listens); harnessed the refusal is EACCES, before any packet."
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "pbp": 1,
+ "id": "a0-read-door",
+ "layer": "invocation",
+ "notes": "harness.1.fringe: the A0 read unit. As a0-consensus, but its only network row is TCP to the sharness.net door on 127.0.0.1:18443; the door holds the host (storm-charles.promptugal.news only). 2048 MB: node with TLS aborts (SIGABRT) under 1024 MiB of address space.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/opt/hx/bin",
+   "/opt/hx/ws",
+   "/root/.ccr/ca-bundle.crt"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": {
+  "connect_tcp_ports": [
+   18443
+  ]
+ },
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 2048,
+  "max_pids": 16
+ }
+}

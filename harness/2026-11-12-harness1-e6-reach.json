@@ -1,0 +1,164 @@
+{
+ "about": "E6: mandate, reach and gap for each unit of tonight's runs: what it needed against what it held, unharnessed and harnessed. Reach is measured (E1-E5), not read from the policy.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E6",
+ "measured_at": "2026-11-12T01:4xZ to 01:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "vocabulary": "mandate = what the unit needs; reach = what it can do (measured); gap = reach minus mandate (PrompTugal__News__Fringe data/run-reach.json)",
+ "units": [
+  {
+   "unit": "a0-consensus (E1)",
+   "mandate": [
+    "read workspace/data",
+    "write workspace/out",
+    "execute node"
+   ],
+   "reach_unharnessed": [
+    "read workspace/data",
+    "write workspace/out",
+    "execute node",
+    "read /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "spawn a shell",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
+   ],
+   "reach_harnessed": [
+    "read workspace/data",
+    "write workspace/out",
+    "execute node",
+    "17 credential-like env names"
+   ],
+   "gap_unharnessed": [
+    "read /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "spawn a shell",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
+   ],
+   "gap_harnessed": [
+    "17 credential-like env names (0 with env -i)",
+    "Unix sockets by path (not tested)"
+   ],
+   "closed_by_harness": [
+    "read /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "spawn a shell",
+    "unlimited memory",
+    "the internet via the session proxy"
+   ]
+  },
+  {
+   "unit": "a0-read (E4)",
+   "mandate": [
+    "read storm-charles.promptugal.news:443",
+    "execute node"
+   ],
+   "reach_unharnessed": [
+    "read storm-charles.promptugal.news:443",
+    "execute node",
+    "the internet via the session proxy",
+    "direct TLS to any host",
+    "direct TCP to any address",
+    "read /etc/shadow",
+    "write anywhere"
+   ],
+   "reach_harnessed": [
+    "read storm-charles.promptugal.news:443 (through the door)",
+    "execute node",
+    "credential-like env names"
+   ],
+   "gap_unharnessed": [
+    "the internet via the session proxy",
+    "direct TLS to any host",
+    "direct TCP to any address",
+    "read /etc/shadow",
+    "write anywhere"
+   ],
+   "gap_harnessed": [
+    "inherited env",
+    "paths on the storm site are not held (the door holds hosts and ports)"
+   ],
+   "closed_by_harness": [
+    "the internet via the session proxy",
+    "direct TLS to any host",
+    "direct TCP to any address",
+    "read /etc/shadow",
+    "write anywhere"
+   ]
+  },
+  {
+   "unit": "contained shell (E3, profile newsroom-agent)",
+   "mandate": [
+    "read workspace",
+    "write workspace/out"
+   ],
+   "reach_unharnessed": [
+    "everything uid 0 can do"
+   ],
+   "reach_harnessed": [
+    "read workspace",
+    "write workspace/out",
+    "execute /bin /usr",
+    "read /etc incl. /etc/shadow",
+    "TCP 443 to any host (from the rows; not measured)"
+   ],
+   "gap_unharnessed": [
+    "everything uid 0 can do"
+   ],
+   "gap_harnessed": [
+    "read /etc/shadow (the profile reads all of /etc)",
+    "spawn a shell (the profile executes /bin)",
+    "TCP 443 to any host until sharness.net runs (from the rows; not measured)"
+   ],
+   "closed_by_harness": [
+    "read /root",
+    "read keys (decoy)",
+    "write outside the workspace"
+   ]
+  },
+  {
+   "unit": "a0-consensus-signed (E5)",
+   "mandate": [
+    "read workspace/data",
+    "write workspace/out",
+    "read its one execution key",
+    "execute node"
+   ],
+   "reach_unharnessed": [
+    "(unharnessed run not repeated: as a0-consensus)"
+   ],
+   "reach_harnessed": [
+    "read workspace/data",
+    "write workspace/out",
+    "read /opt/hx/keys/exec.pem",
+    "execute node",
+    "credential-like env names"
+   ],
+   "gap_unharnessed": [
+    "(unharnessed run not repeated: as a0-consensus)"
+   ],
+   "gap_harnessed": [
+    "inherited env",
+    "the key file is readable by other uid-0 processes for its 213 ms"
+   ],
+   "closed_by_harness": [
+    "as a0-consensus"
+   ]
+  }
+ ],
+ "records": [
+  "2026-11-12-harness1-e1e2-before-after.json",
+  "2026-11-12-harness1-e3-levels.json",
+  "2026-11-12-harness1-e4-door.json",
+  "2026-11-12-harness1-e5-pki.json"
+ ]
+}

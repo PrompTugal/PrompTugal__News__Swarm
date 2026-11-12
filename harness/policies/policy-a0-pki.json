@@ -1,0 +1,33 @@
+{
+ "pbp": 1,
+ "id": "a0-consensus-signed",
+ "layer": "invocation",
+ "notes": "harness.1.fringe: the A0 compute unit, signed. As a0-consensus, plus read on one file: the execution private key handed to this process for its lifetime.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/opt/hx/bin",
+   "/opt/hx/ws",
+   "/opt/hx/keys/exec.pem"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": "none",
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 1024,
+  "max_pids": 16
+ }
+}

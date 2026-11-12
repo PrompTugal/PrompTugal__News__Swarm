@@ -1,0 +1,187 @@
+{
+ "steps": [
+  {
+   "level": 5,
+   "name": "intent",
+   "hash": "sha256:3ba5c5cec2c6ed368b39d601dda43dc022e11abea596f5e02203af713cc2ea07",
+   "notes": [
+    "contain a0-consensus to /opt/hx/ws, storm-charles.promptugal.news, no secrets"
+   ],
+   "unheld": [],
+   "passthrough": [],
+   "document": {
+    "pbp": 1,
+    "level": 5,
+    "contain": {
+     "agent": "a0-consensus",
+     "workspace": "/opt/hx/ws",
+     "sites": [
+      "storm-charles.promptugal.news"
+     ],
+     "secrets": [],
+     "profile": "newsroom-agent",
+     "budget": {
+      "memory_mb": 1024,
+      "pids": 16
+     }
+    }
+   }
+  },
+  {
+   "level": 4,
+   "name": "profile",
+   "hash": "sha256:feb8ca372501243ff933a073ce8b33f8507732f894a8fd231c046e913de051c6",
+   "notes": [
+    "profile newsroom-agent v1: the newsroom agent: reads a vault, writes one output folder, reaches its sites",
+    "blanks workspace=/opt/hx/ws, sites=storm-charles.promptugal.news, secrets=none, memory_mb=1024, pids=16"
+   ],
+   "unheld": [],
+   "passthrough": [],
+   "document": {
+    "pbp": 1,
+    "level": 4,
+    "profile": "newsroom-agent",
+    "id": "a0-consensus",
+    "blanks": {
+     "workspace": "/opt/hx/ws",
+     "sites": [
+      "storm-charles.promptugal.news"
+     ],
+     "secrets": [],
+     "memory_mb": 1024,
+     "pids": 16
+    }
+   }
+  },
+  {
+   "level": 3,
+   "name": "rows",
+   "hash": "sha256:3786f476346a36a15a5496bab28626fc56f8594e3ff2cd242e597f9bc1cd7237",
+   "notes": [],
+   "unheld": [
+    "storm-charles.promptugal.news: held as port 443; the host name is not held until sharness.net runs here"
+   ],
+   "passthrough": [],
+   "document": {
+    "pbp": 1,
+    "id": "a0-consensus",
+    "layer": "invocation",
+    "notes": "P3 as a profile: reads the vault and the output, writes only the output.",
+    "files": {
+     "read": [
+      "/bin",
+      "/etc",
+      "/lib",
+      "/lib64",
+      "/opt/hx/ws",
+      "/opt/hx/ws/out",
+      "/sbin",
+      "/usr"
+     ],
+     "write": [
+      "/opt/hx/ws/out"
+     ],
+     "exec": [
+      "/bin",
+      "/lib",
+      "/lib64",
+      "/sbin",
+      "/usr"
+     ]
+    },
+    "network": {
+     "sites": [
+      "storm-charles.promptugal.news"
+     ]
+    },
+    "process": {
+     "no_new_privs": true,
+     "max_memory_mb": 1024,
+     "max_pids": 16
+    },
+    "level": 3
+   }
+  },
+  {
+   "level": 2,
+   "name": "manifest",
+   "hash": "sha256:1d438b1ca849f0ca5f7cc8e4bc3f628bac58d777c980c820dd2cc224f5dc9abe",
+   "notes": [
+    "the kernel is the only door here (v0): files, ports, caps"
+   ],
+   "unheld": [],
+   "passthrough": [],
+   "document": {
+    "pbp": 1,
+    "id": "a0-consensus",
+    "layer": "invocation",
+    "notes": "P3 as a profile: reads the vault and the output, writes only the output.",
+    "files": {
+     "read": [
+      "/bin",
+      "/etc",
+      "/lib",
+      "/lib64",
+      "/opt/hx/ws",
+      "/opt/hx/ws/out",
+      "/sbin",
+      "/usr"
+     ],
+     "write": [
+      "/opt/hx/ws/out"
+     ],
+     "exec": [
+      "/bin",
+      "/lib",
+      "/lib64",
+      "/sbin",
+      "/usr"
+     ]
+    },
+    "network": {
+     "connect_tcp_ports": [
+      443
+     ]
+    },
+    "process": {
+     "no_new_privs": true,
+     "max_memory_mb": 1024,
+     "max_pids": 16
+    }
+   }
+  },
+  {
+   "level": 1,
+   "name": "kernel",
+   "hash": "sha256:e7387159d1fe123f70c83aa9322796d201629d6f2b4a51856814b68285c24274",
+   "notes": [
+    "14 Landlock path rules, 1 TCP port rules",
+    "RLIMIT_AS 1024 MiB, RLIMIT_NPROC 16, cgroups ['memory', 'pids'], no_new_privs"
+   ],
+   "unheld": [],
+   "passthrough": [],
+   "document": {
+    "landlock_paths": {
+     "read": 8,
+     "write": 1,
+     "exec": 5
+    },
+    "landlock_tcp_ports": [
+     443
+    ],
+    "network_namespace": false,
+    "rlimit_as_mb": 1024,
+    "rlimit_nproc": 16,
+    "cgroup": [
+     "memory",
+     "pids"
+    ],
+    "no_new_privs": true,
+    "closerange_from": 3,
+    "env": {
+     "SHARNESS_AI_POLICY_HASH": "sha256:1d438b1ca849f0ca5f7cc8e4bc3f628bac58d777c980c820dd2cc224f5dc9abe"
+    }
+   }
+  }
+ ]
+}
