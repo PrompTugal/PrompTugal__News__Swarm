@@ -29,7 +29,7 @@ jobs:
       - name: Assemble the site
         run: |
           mkdir -p _site
-          cp -r index.html how.html stage.html stage CNAME .nojekyll MAP.md RUNNER.md runs packets data _site/
+          for f in $(git ls-files | cut -d/ -f1 | sort -u); do case "$f" in .github|tools|_site) ;; *) cp -r "$f" _site/ ;; esac; done   # every tracked file and folder (pages, assets, css, stage, harness, handover, stories, reviews): no fixed list to forget
           echo "{\"commit\":\"${GITHUB_SHA}\",\"built_at\":\"$(date -u +%FT%TZ)\",\"run\":\"${GITHUB_RUN_NUMBER}\"}" > _site/version.json
       - uses: actions/upload-pages-artifact@v3
         with:
