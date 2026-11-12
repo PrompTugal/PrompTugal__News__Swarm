@@ -23,3 +23,4 @@ Public data only; no contact details; no private people; no automated reading of
 | Runner | Account | Started |
 |---|---|---|
 | runner.1.swarm@PrompTugal.dinis | riskmandate-personal | at Dinis's word, 11 Nov 2026 ~22:4x UTC |
+| runner.2.swarm@PrompTugal.dinis | Dinis's other account (in place of Angelo's, who is offline) | to start at Dinis's word, 12 Nov 2026 ~00:4x UTC; its packet is s004-storm-six |
