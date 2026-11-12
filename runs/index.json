@@ -1,6 +1,6 @@
 {
  "about": "Every recorded run: the ladder (by swarm.1 alone) and packets run by runners on any account (the GitHub flow). One file per run.",
- "updated": "2026-11-11T23:01:18Z",
+ "updated": "2026-11-12T00:11:26Z",
  "runs": [
   {
    "file": "20261111T2134-r0.json",
@@ -78,7 +78,7 @@
    "file": "20261111T2257-r4c.json",
    "id": "20261111T2257-r4c",
    "kind": "ladder",
-   "rung": "r4c",
+   "rung": "r4c-try1",
    "packet": null,
    "runner": "swarm.1.fringe@PrompTugal.dinis",
    "account": "riskmandate-personal",
