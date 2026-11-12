@@ -54,7 +54,7 @@ body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.p
 .headline .sub{color:var(--muted);font-size:.8rem;margin:4px 0 0}.headline .sub b{color:var(--ink)}
 .batches{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px}.batch{flex:0 0 auto;min-width:150px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.78rem;color:var(--muted);text-decoration:none;background:var(--panel)}.batch b{display:block;color:var(--ink);font-size:.9rem}
 .batch .jobs{display:flex;gap:2px;margin:4px 0}.batch .jobs i{width:8px;height:8px;border-radius:2px;background:var(--a3)}
-body.present .headline{margin-top:12px}body.present .headline .big{font-size:1.35rem}
+body.present .headline{margin-top:12px;padding:8px 16px}body.present .headline .sub,body.present .batches,body.present .chain-check{display:none}body.present .headline .big{font-size:1.35rem}
 .demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
 </style>
 </head>
@@ -148,7 +148,7 @@ function draw() {
   nodes.forEach((n) => {
     const st = n.planned ? 'planned' : n.valid === false ? 'bad' : n.valid ? 'ok' : '';
     s += `<g class="n ${st}" data-id="${esc(n.id)}" transform="translate(${n.x},${n.y})"><title>${esc((ALT[n.altitude] || [''])[0] + ': ' + n.label + (n.model ? ' · ' + n.model : '') + (n.tokens ? ' · ' + n.tokens + ' tokens' : '') + (n.cost_usd != null ? ' · ' + n.cost_usd + ' USD' : '') + (n.latency_ms ? ' · ' + n.latency_ms + ' ms' : ''))}</title>${shape(n.altitude, n.cap && n.altitude === 'E' ? 12 : r)}`;
-    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 6.2)))))}</text>`;
+    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 7.4)))))}</text>`;
     s += '</g>';
   });
   $('#stage').innerHTML = s + '</svg>'; timeline(run); budget(run); sigs(run);
@@ -227,6 +227,7 @@ function replay() {
   }, step);
 }
 function rungs() {
+  { const ac = runs.filter((r) => r.kind === 'action').length; $('#nruns').textContent = `Live below: ${runs.length - ac} ladder and packet runs` + (ac ? `, plus ${ac} that started with a push.` : '.'); }
   const btn = (r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung || r.packet || r.request)} · ${esc(r.kind === 'packet' ? r.by.split('@')[0] + ' on ' + r.environment.account : r.kind === 'action' ? r.request_kind + ' on GitHub Actions' : r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`;
   const lad = runs.filter((r) => r.kind !== 'packet' && r.kind !== 'action'), pk = runs.filter((r) => r.kind === 'packet'), ac = runs.filter((r) => r.kind === 'action');
   $('#rungs').innerHTML = lad.map(btn).join('') + (pk.length ? `<h2 style="margin-top:12px">Packets: the GitHub flow</h2>` + pk.map(btn).join('') : '') + `<h2 style="margin-top:12px">Every run starts with a push</h2>` + (ac.length ? ac.map(btn).join('') : '<p style="color:var(--muted);font-size:.8rem">none yet</p>') + `<button class="rung" id="checknow"><b>↻ Check GitHub now</b><span>${esc(RUNS_REPO)}</span></button>` + `<h2 style="margin-top:12px">Next</h2>`
@@ -268,7 +269,6 @@ async function poll(first) {
     if (!fresh.length) return;
     const got = await Promise.all(fresh.map((r) => fetch('runs/' + r.file).then((x) => x.json()).then((j) => (known.add(r.file), j))));
     runs = runs.concat(got);
-    $('#nruns').textContent = `Live below: ${runs.length} real runs.`;
     if (first) { togs(); const want = location.hash.slice(1); load((runs.find((r) => r.rung === want || r.packet === want || r.id === want) || runs[0]).id); }
     else { $('#live').textContent = 'new: ' + got.map((r) => r.id).join(', '); load(got[got.length - 1].id); }
   } catch (e) { $('#live').textContent = 'live check failed; retrying'; }
