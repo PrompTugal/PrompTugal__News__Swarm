@@ -1218,7 +1218,7 @@
       "title": "A key on everything, for one run",
       "source": "harness/2026-11-12-harness1-e5-pki.json (keys: created_at, destroyed_at)"
      },
-     "caption": "Made in memory, used, and dropped with the process: never on disk."
+     "caption": "The operator key lived 314 ms, in memory only. One gap, said plainly: the execution key spent 213 ms in a file other root processes could read."
     }
    ]
   },
@@ -1272,28 +1272,82 @@
    "id": "handover",
    "act": "11 · Vaults",
    "title": "A handover through a vault",
-   "say": "relay.1 hands a task to relay.2: the data travels encrypted through a vault; only the vault key is in Git, sealed to relay.2's key. Live: this file grows as the relays work.",
+   "say": "A real handover, 01:46:30 to 01:56:43 UTC: relay.1 hands a task to relay.2, which hands its result to relay.3. 21 steps, 3 agents, 3 keys. The data travels encrypted through vaults; Git only ever holds keys sealed to the next agent and a public summary. Step 16 is the beat: relay.3 tries to open a key sealed to relay.2.",
    "steps": [
     {
-     "label": "the lanes",
+     "label": "the four places",
      "dur": 2,
      "card": {
       "kind": "flow",
       "src": "handover/flows/h001.json",
       "upto": 0,
+      "fromN": 0,
+      "mark": [
+       16
+      ],
       "title": "Where the data is, step by step"
      },
      "caption": "Four places data can be: on the network, decrypted in an agent's memory, encrypted in a vault, public in Git."
     },
     {
-     "label": "the handover",
-     "dur": 9,
+     "label": "relay.1 hands over",
+     "dur": 5,
      "card": {
       "kind": "flow",
       "src": "handover/flows/h001.json",
+      "upto": 5,
+      "fromN": 0,
+      "mark": [
+       16
+      ],
       "title": "Where the data is, step by step"
      },
-     "caption": "Plaintext only inside the agent that works on it. Git only ever sees a key sealed to the next agent."
+     "caption": "relay.1 reads the public data, puts it in a vault, and seals the vault's key to relay.2's key alone. Git gets the sealed key and a signed task."
+    },
+    {
+     "label": "relay.2 works",
+     "dur": 7,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h001.json",
+      "upto": 14,
+      "fromN": 5,
+      "mark": [
+       16
+      ],
+      "title": "Where the data is, step by step"
+     },
+     "caption": "relay.2 checks the signature, unseals the key, works on the data in its own memory, and hands its result on the same way."
+    },
+    {
+     "label": "relay.3 tries the wrong key",
+     "dur": 3,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h001.json",
+      "upto": 16,
+      "fromN": 14,
+      "mark": [
+       16
+      ],
+      "title": "Where the data is, step by step"
+     },
+     "caption": "relay.3 tries to open the key sealed to relay.2. Decryption failed; nothing written. The seal is the control, not a rule."
+    },
+    {
+     "label": "the public summary",
+     "dur": 4.5,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h001.json",
+      "upto": 21,
+      "fromN": 16,
+      "mark": [
+       16
+      ],
+      "title": "Where the data is, step by step"
+     },
+     "caption": "relay.3 opens its own, checks the result, and publishes aggregates only. Private input in Git: never."
     }
    ]
   },
@@ -2202,6 +2256,105 @@
      }
     }
    ]
+  },
+  {
+   "id": "licence",
+   "act": "14 · Licence to operate",
+   "title": "A licence that lapses when the reach changes",
+   "say": "A licence to operate, granted against this container's measured reach. Then a tool is connected (simulated: a Gmail MCP server). The fingerprint changes, the licence suspends itself, and the next actions wait for a person.",
+   "cue": "The licence was for the world as it was. When the world changes, the licence waits for a person.",
+   "steps": [
+    {
+     "label": "granted",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "A licence to operate",
+      "title": "Granted against the reach, as measured",
+      "lines": [
+       "Mandate: read the storm site's public API; write its own run file.",
+       "Assumes: no mail, calendar or chat tool is connected.",
+       {
+        "text": "Reach fingerprint sha256:ee3f71fc062b081c",
+        "big": true
+       },
+       "Measured: 8 tools on PATH that reach outside (bq, curl, docker, gcloud, gh, gsutil, psql, wget), 18 credential-like env names (counted, never read), HTTPS through a proxy, no MCP servers."
+      ],
+      "source": "sims/licence/result.json (real measurement, simulated change; storytelling.1, 02:05 UTC)"
+     },
+     "caption": "The licence names the mandate, what it assumes, and the reach it was granted against."
+    },
+    {
+     "label": "two actions",
+     "dur": 2.5,
+     "card": {
+      "kind": "check",
+      "src": "sims/licence/result.json",
+      "fromActions": "actions",
+      "upto": 2,
+      "fromN": 0,
+      "who": "the storm agent",
+      "policy": "the licence",
+      "title": "Each action meets the licence",
+      "source": "sims/licence/result.json (real measurement, simulated change; storytelling.1, 02:05 UTC)"
+     },
+     "caption": "Two actions, inside the mandate, against the same reach: done."
+    },
+    {
+     "label": "a tool is connected",
+     "dur": 3,
+     "idea": true,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Simulated: the world changes",
+      "title": "A Gmail tool is connected",
+      "lines": [
+       "tools on PATH: + gmail-mcp",
+       "MCP servers: [] → [gmail-mcp]",
+       {
+        "text": "fingerprint ee3f71fc… → 30365193…: licence SUSPENDED",
+        "big": true
+       }
+      ],
+      "source": "sims/licence/result.json (real measurement, simulated change; storytelling.1, 02:05 UTC)"
+     },
+     "caption": "Nobody asked whether the mandate still fits. The fingerprint does: it changed, so the licence suspends itself."
+    },
+    {
+     "label": "the next three",
+     "dur": 3,
+     "card": {
+      "kind": "check",
+      "src": "sims/licence/result.json",
+      "fromActions": "actions",
+      "upto": 5,
+      "fromN": 2,
+      "who": "the storm agent",
+      "policy": "the licence",
+      "title": "Each action meets the licence",
+      "source": "sims/licence/result.json (real measurement, simulated change; storytelling.1, 02:05 UTC)"
+     },
+     "caption": "The next three actions are refused: the licence is suspended until a person reviews the new reach. 2 done, 3 refused."
+    },
+    {
+     "label": "it happened tonight",
+     "dur": 3.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "A real example, and what this does not cover",
+      "title": "It happened tonight",
+      "lines": [
+       "storytelling.1's own tool list changed tonight: Gmail, GitHub and Claude Docs connectors disconnected and reconnected, about 01:27 to 01:40 UTC, with no one asking whether the mandate still fitted.",
+       "Not covered: connectors held by the agent's host are outside the container; the check belongs outside the agent; the actions are named, not performed; re-granting needs a review."
+      ],
+      "source": "sims/licence/result.json (real measurement, simulated change; storytelling.1, 02:05 UTC) · real_example, not_covered"
+     },
+     "caption": "The licence was for the world as it was. When the world changes, the licence waits for a person."
+    }
+   ]
   }
  ],
  "packs": {
@@ -2322,6 +2475,13 @@
    "about": "access against a mandate enforced by the database engine",
    "scenes": [
     "db-mandate"
+   ]
+  },
+  "licence": {
+   "title": "Licence to operate",
+   "about": "a licence that lapses when the reach changes",
+   "scenes": [
+    "licence"
    ]
   }
  }

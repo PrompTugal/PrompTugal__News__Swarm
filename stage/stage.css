@@ -108,36 +108,14 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .ck { margin: 0 0 8px; font-size: calc(1.05em * var(--text, 1)) } .ck .ask, .ck .gate, .ck .out { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--panel) } .ck small { display: block; color: var(--muted); font-size: .72em }
 .ck .gate { border-color: var(--accent); text-align: center } .ck .gate.inside { border-color: var(--warn); border-style: dashed } .ck .arrow { text-align: center; color: var(--muted) }
 .ck .out { text-align: center; font: 700 1em var(--font-head); text-transform: uppercase; letter-spacing: .04em } .ck .out.ok { color: var(--ok); border-color: var(--ok) } .ck .out.no { color: var(--accent); border-color: var(--accent) } .ck .out.skip { color: var(--warn); border-color: var(--warn) }
-/* the handover flow */
-#card .flow { width: 100% } #card .flow h2 { font-size: calc(2em * var(--text, 1)) }
-.lanes { display: grid; grid-auto-columns: minmax(120px, 1fr); grid-template-columns: 170px; gap: 8px 10px; min-height: 360px }
-.lane { grid-column: 1 / -1; border-radius: 10px; display: flex; align-items: center; padding-left: 10px; font: 600 .82em var(--mono); color: var(--muted) }
-.lane.l-network { background: color-mix(in srgb, var(--alt-M) 10%, transparent) } .lane.l-memory-decrypted { background: color-mix(in srgb, var(--warn) 12%, transparent) } .lane.l-vault-encrypted { background: color-mix(in srgb, var(--accent) 12%, transparent) } .lane.l-git-public { background: color-mix(in srgb, var(--alt-A3) 12%, transparent) }
-.fs { position: relative; z-index: 1; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-solid); padding: 6px 8px; font-size: .82em; display: flex; flex-direction: column; gap: 2px }
-.fs b { font: 700 1.1em var(--font-head) } .fs small { color: var(--muted) } .fs .fp { font-family: var(--mono); color: var(--accent2) } .fs i { position: absolute; right: 6px; top: 4px; font-style: normal }
-.fs.l-memory-decrypted { border-color: var(--warn) } .fs.l-vault-encrypted { border-color: var(--accent) } .fs.l-git-public { border-color: var(--alt-A3) }
-/* the designer's views, mounted in the stage */
-#views { position: absolute; inset: 0 } #views.sv { background: transparent }
-#vpick { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 6px; z-index: 3 } #vpick select { background: var(--panel-solid); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 3px 6px }
-
-/* needed against held (run-reach) */
-#card .nh { width: 100%; max-width: 1150px } #card .nh h2 { font-size: calc(2.1em * var(--text, 1)) }
-.nh-head, .nh-row { display: grid; grid-template-columns: 260px 1fr 90px 60px; gap: 12px; align-items: center } .nh-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; margin-bottom: 8px }
-.nh-head i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px } .nh-head i.need, .nh-row i.need { background: var(--alt-A1) } .nh-head i.held, .nh-row i.held { background: color-mix(in srgb, var(--warn) 75%, var(--alt-A0)) }
-.nh-row { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) } .nh-row .nl small { display: block; color: var(--muted); font: .75em var(--mono) }
-.nh-row .bars { display: flex; flex-direction: column; gap: 4px } .nh-row .bars i { display: block; height: 12px; border-radius: 4px; transition: width .6s } .nh-row .nums { font: 600 .95em var(--mono); color: var(--muted) }
-.gapn { font: 700 1.4em var(--font-head); text-align: center } .gapn.big { color: var(--warn) } .gapn.some { color: var(--warn) } .gapn.none { color: var(--ok) } .nh-row.mark { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px }
-
-/* before and after (E1+E2) */
-#card .cmp { width: 100%; max-width: 1250px } #card .cmp h2 { font-size: calc(2em * var(--text, 1)); margin-bottom: 8px } #card .cmp .same { color: var(--muted); margin: 0 0 14px } #card .cmp .same b { color: var(--ok); font-family: var(--mono) }
-.cm-head, .cm { display: grid; grid-template-columns: 1.4fr 130px 130px 1.4fr; gap: 10px; align-items: center } .cm-head { color: var(--muted); font: 600 .78em var(--mono); text-transform: uppercase; margin-bottom: 6px }
-.cm { padding: 3px 0; border-bottom: 1px solid var(--line); font-size: calc(.9em * var(--text, 1)) } .cm .what small { display: block; color: var(--muted); font-size: .8em } .cm .what b { font-family: var(--mono); font-weight: 600 }
-.cm .b, .cm .a { text-align: center; font: 700 .95em var(--font-head); border-radius: 8px; padding: 4px 0; transition: opacity .3s } .cm .ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent) } .cm .no { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent) } .cm .gp { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent) }
-.cm .b.ok { color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent) } .cm .rb { color: var(--muted); font: .8em var(--mono); transition: opacity .3s }
-/* keys and their lifetimes (E5) */
-#card .kys { width: 100%; max-width: 1150px } .ky { display: grid; grid-template-columns: 1.3fr 220px 1.4fr; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) }
-.ky small { display: block; color: var(--muted); font-size: .78em; font-family: var(--mono) } .ky .kl b { color: var(--accent); font: 700 1.3em var(--font-head) }
-.nh-row i.held2, .nh-head i.held2 { background: var(--ok) }
+/* the handover flow: a vertical timeline, one column per place the data can be */
+#card .flow { width: 100%; max-width: 1300px } #card .flow h2 { font-size: calc(1.9em * var(--text, 1)); margin-bottom: 10px }
+.fl-head, .fr { display: grid; grid-template-columns: 36px repeat(4, 1fr); gap: 8px; align-items: center } .fl-head { position: static; padding: 4px 0; font: 600 .78em var(--mono); text-transform: uppercase; letter-spacing: .05em }
+.fl-head span { padding: 4px 8px; border-radius: 6px; text-align: center } .l-network { color: var(--alt-M) } .l-memory-decrypted { color: var(--warn) } .l-vault-encrypted { color: var(--accent) } .l-git-public { color: var(--alt-A3) }
+.fr { margin: 3px 0 } .fr .fn { font: 700 .9em var(--mono); color: var(--muted); text-align: right } .fr.mark .fn { color: var(--accent) }
+.fs { border: 1px solid var(--line); border-radius: 9px; background: var(--panel-solid); padding: 4px 8px; font-size: .76em; line-height: 1.25 } .fs span { display: block; color: var(--ink) } .fs small { color: var(--muted) } .fs .fp { display: block; font-family: var(--mono); color: var(--accent2) } .fs i { font-style: normal }
+.fs.l-network { border-color: color-mix(in srgb, var(--alt-M) 60%, transparent) } .fs.l-memory-decrypted { border-color: var(--warn) } .fs.l-vault-encrypted { border-color: var(--accent) } .fs.l-git-public { border-color: color-mix(in srgb, var(--alt-A3) 60%, transparent) }
+.fs.refused { border: 2px solid var(--accent); box-shadow: 0 0 18px color-mix(in srgb, var(--accent) 35%, transparent) } .fr.mark .fs { outline: 2px solid var(--accent); outline-offset: 2px }
 /* phone (swarm.1.designer, from audience.1's review 2): the stage keeps its width, the header and footer wrap,
    the views scroll sideways, the card's type fits, and a line says where it reads best */
 @media (max-width: 800px) {
