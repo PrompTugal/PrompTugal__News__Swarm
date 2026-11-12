@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm Story</title>
+<meta name="description" content="One story made live by the swarm: the deck, and how it was made, hop by hop: timeline, graph and delivery.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+/* story.html: one story in four modes (Dinis, 07:35 UTC: "the creation of this is as important as the final deck").
+   swarm.1.designer.fringe@PrompTugal.dinis, WS-215. Look and tokens: the stage's (stage/themes.css). Primitives render
+   through swarm.1.dev's StoryKit when assets/story-kit.js is there; until then through the small renderers below. */
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+body{display:grid;grid-template-rows:auto minmax(0,1fr);background:radial-gradient(ellipse at 50% -20%,var(--bg2) 0%,var(--bg) 62%) fixed;overflow:hidden}
+a{color:var(--accent)}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px 16px 10px 110px;border-bottom:1px solid var(--line)}
+header h1{margin:0;font:600 1.15rem/1.2 var(--font-head);flex:1 1 280px;min-width:0}
+header h1 small{display:block;font:400 .78rem var(--font);color:var(--muted);margin-top:2px}
+.modes{display:flex;gap:4px;background:var(--panel-solid);border:1px solid var(--line);border-radius:10px;padding:3px}
+.modes a{font:600 .85rem var(--font);color:var(--muted);text-decoration:none;padding:6px 12px;border-radius:7px}
+.modes a[aria-current="page"]{color:var(--bg);background:var(--accent)}
+.tools{display:flex;gap:6px}.tools button{font:inherit;font-size:.85rem;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}.tools button:hover{border-color:var(--accent)}
+.tools button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
+.flag{font:700 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:5px 7px;border:1px solid var(--warn);color:var(--warn)}
+.flag.real{border-color:var(--ok);color:var(--ok)}
+main{position:relative;min-height:0;overflow:auto}
+html.focus header{display:none}html.focus body{grid-template-rows:minmax(0,1fr)}
+
+/* ---- Present: the deck, at stage size ---- */
+#deck{position:absolute;inset:0;display:grid;place-items:center;padding:4vh 6vw 90px}
+#slide{width:min(1400px,100%);max-height:100%;font-size:clamp(15px,1.75vw,34px)}
+html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
+#slide .k{font:700 .62em/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9em}
+#slide h2{margin:0 0 .6em;font:700 2.1em/1.12 var(--font-head);letter-spacing:-.01em}
+#slide .sub{color:var(--muted);font-size:1.15em;margin:0}
+#slide .big{font:600 2.3em/1.2 var(--font-head);margin:0;max-width:26ch}
+#slide ul{margin:0;padding:0;list-style:none;display:grid;gap:.55em}
+#slide li{padding:.55em .8em;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 10px 10px 0;font-size:1.15em}
+#slide blockquote{margin:0;font:500 1.8em/1.3 var(--font-head);border-left:4px solid var(--accent2);padding-left:.8em}
+#slide blockquote cite{display:block;margin-top:.7em;font:400 .5em var(--font);color:var(--muted);font-style:normal}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2em}.cmp2>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1em 1.2em}
+.cmp2 h3{margin:0 0 .5em;font:700 .8em var(--mono);letter-spacing:.1em;text-transform:uppercase}.cmp2 .b h3{color:var(--warn)}.cmp2 .a h3{color:var(--accent)}
+.cmp2 p{margin:.3em 0;font-size:1.1em}
+.lad{display:grid;gap:.4em}.lad>div{display:grid;grid-template-columns:4.5em 1fr;align-items:center;gap:.8em;padding:.5em .8em;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.lad b{font:700 1.1em var(--mono);color:var(--accent)}.lad span{font-size:1.1em}.lad small{display:block;color:var(--muted);font-size:.8em}
+.flw{display:flex;flex-wrap:wrap;align-items:center;gap:.5em}.flw>div{padding:.7em 1em;background:var(--panel);border:1px solid var(--line);border-radius:12px;font:600 1.1em var(--font-head)}.flw i{color:var(--muted);font-style:normal;font-size:1.4em}
+.ctr{font:700 5.5em/1 var(--font-head);color:var(--accent);font-variant-numeric:tabular-nums}.ctr small{font-size:.3em;color:var(--muted);margin-left:.3em}
+.tbl{width:100%;border-collapse:collapse;font-size:1.05em}.tbl th{text-align:left;font:700 .7em var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.4em .6em;border-bottom:1px solid var(--line)}.tbl td{padding:.5em .6em;border-bottom:1px solid var(--line)}
+.emb{position:relative;aspect-ratio:16/9;width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden}.emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+[data-r]{transition:opacity .4s,transform .4s}[data-r].off{opacity:0;transform:translateY(.4em)}
+#cap{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);max-width:min(900px,90%);width:max-content;text-align:center;font:500 1.15rem/1.35 var(--font-head);padding:10px 18px;border-radius:12px;background:var(--panel);backdrop-filter:var(--glass);border:1px solid var(--line)}
+#cap:empty{display:none}
+#prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--line)}#prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
+#pn{position:absolute;right:14px;bottom:12px;font:600 .8rem var(--mono);color:var(--muted)}
+
+/* ---- the trail: timeline, graph, delivery ---- */
+.pane{max-width:1320px;margin:0 auto;padding:20px 20px 40px}
+.pane>p.lead{margin:0 0 14px;color:var(--muted);max-width:80ch}
+.keyrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 14px;font-size:.82rem;color:var(--muted)}.keyrow span{display:inline-flex;align-items:center;gap:6px}
+.dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:none}
+.axis{position:relative;height:56px;margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
+.axis b{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 3px var(--bg)}
+.axis small{position:absolute;bottom:3px;font:500 .7rem var(--mono);color:var(--muted);transform:translateX(-50%)}
+.tl{list-style:none;margin:0;padding:0;position:relative}.tl::before{content:"";position:absolute;left:96px;top:0;bottom:0;width:2px;background:var(--line)}
+.tl li{position:relative;display:grid;grid-template-columns:84px 1fr;gap:26px;padding:8px 0;cursor:pointer}
+.tl .t{font:600 .85rem var(--mono);color:var(--muted);text-align:right;padding-top:9px}
+.tl .t em{display:block;font-style:normal;font-weight:400;font-size:.72rem;color:var(--dim)}
+.tl li>.dot{position:absolute;left:91px;top:20px;width:12px;height:12px;box-shadow:0 0 0 3px var(--bg)}
+.hop{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 14px}.tl li.sel .hop,.tl li:hover .hop{border-color:var(--accent)}
+.hop h3{margin:0;font:600 1rem var(--font-head)}.hop p{margin:4px 0 0;color:var(--muted);font-size:.88rem}
+.chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px}.chips span{font:600 .68rem/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;border:1px solid var(--line);border-radius:6px;padding:4px 6px;color:var(--muted)}
+.chips .on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 55%,transparent)}.chips .off{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 55%,transparent)}
+.gap{margin:-2px 0 -2px 112px;font:500 .72rem var(--mono);color:var(--dim)}
+#gsvg{width:100%;height:auto;display:block;background:var(--panel);border:1px solid var(--line);border-radius:14px}
+#gsvg text{fill:var(--ink);font-family:var(--font)}#gsvg .lbl{font-size:13px;fill:var(--muted)}#gsvg .e{fill:none;stroke-width:2;opacity:.75}#gsvg .e.sel{stroke-width:4;opacity:1}
+#gsvg g.n{cursor:pointer}#gsvg g.n circle{stroke:var(--bg);stroke-width:3}
+.det{margin-top:14px;background:var(--panel-solid);border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-height:60px}.det h3{margin:0 0 4px;font:600 1rem var(--font-head)}.det p{margin:2px 0;color:var(--muted);font-size:.9rem}
+.dl{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+.art{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;position:relative}
+.art .n{font:700 .7rem var(--mono);color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.art h3{margin:0;font:600 1.05rem var(--font-head);word-break:break-word}
+.art dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:4px 0 0;font-size:.82rem}.art dt{color:var(--muted)}.art dd{margin:0;font-family:var(--mono);word-break:break-all}
+.art.final{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+.arrow{color:var(--dim);text-align:center;font-size:1.2rem;align-self:center}
+.empty{color:var(--muted);padding:30px 0}
+body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}body.embed{grid-template-rows:minmax(0,1fr)}
+@media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.cmp2{grid-template-columns:1fr}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}.ctr{font-size:3.6em}}
+</style>
+</head>
+<body data-nav="float">
+<header>
+  <h1 id="h">…<small id="hs"></small></h1>
+  <span class="flag" id="flag" hidden></span>
+  <nav class="modes" id="modes" aria-label="Modes"></nav>
+  <div class="tools" id="tools"><button id="play" aria-pressed="false" title="Play the whole deck (P)">▶ Play all</button><button id="foc" title="Focus: the deck alone (Z)">⛶ Focus</button></div>
+</header>
+<main id="main"></main>
+<script>
+const $ = (s, r = document) => r.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const Q = new URLSearchParams(location.search), SID = Q.get('s') || 'sample', EMBED = Q.has('embed');
+const MODES = [['present', 'Present'], ['timeline', 'Timeline'], ['graph', 'Graph'], ['delivery', 'Delivery']];
+let MODE = MODES.some(([m]) => m === Q.get('m')) ? Q.get('m') : 'present';
+if (EMBED) document.body.classList.add('embed');
+
+// The sample: invented, to show the shape until the first real story lands. Every screen says so.
+const SAMPLE = {
+  story: { id: 'sample', title: 'What is an agent behaviour policy?', asked_by: 'the head conductor', answered_by: 'a team member, by voice', at: '2026-11-12T08:00:00Z', abp: true, github_compute: true, sample: true,
+    scenes: [
+      { type: 'title', title: 'What is an agent behaviour policy?', sub: 'Answered by voice; made into this deck by the swarm', caption: 'One question, one voice memo, one deck within the hour.' },
+      { type: 'quote', text: 'It is the list of what the agent may touch, written before it runs, and enforced outside it.', who: 'the answer, in the person’s own words (sample)' },
+      { type: 'compare', title: 'Without and with a policy', before: { label: 'Without', items: ['The agent holds everything its process holds', 'We hope it behaves'] }, after: { label: 'With', items: ['It holds only what the policy grants', 'Anything else is unreachable'] }, caption: 'Amber is the gap; teal is the control working.' },
+      { type: 'flow', title: 'How it was made', steps: ['Voice memo', 'Transcript', 'Brief', 'Deck', 'Page'], caption: 'Every hop is in the Timeline, the Graph and Delivery.' },
+      { type: 'counter', label: 'From the question to the page', value: 47, unit: 'minutes' },
+    ] },
+  trail: { hops: [
+    { at: '2026-11-12T08:00:00Z', who: 'head conductor', role: 'conductor', where: 'Claude Code cloud', what: 'Sends the question to the team', to: 'team member', artefact: { kind: 'question', name: 'question.md', sha256: 'a1c3…', bytes: 212 } },
+    { at: '2026-11-12T08:04:00Z', who: 'team member', role: 'person', where: 'the Claude app', what: 'Answers by voice', to: 'their conductor', artefact: { kind: 'voice', name: 'voice memo (not stored)', bytes: null } },
+    { at: '2026-11-12T08:05:00Z', who: 'their conductor', role: 'conductor', where: 'Claude Code cloud', abp: true, what: 'Transcribes and packages the brief', to: 'swarm.1', artefact: { kind: 'brief', name: 'brief.md', sha256: '9e0f…', bytes: 1840 } },
+    { at: '2026-11-12T08:12:00Z', who: 'swarm.1', role: 'lead', where: 'Claude Code cloud', abp: true, what: 'Drains its inbox, routes to the storyteller', to: 'storyteller', artefact: { kind: 'inbox', name: 'inbox message', sha256: '41b7…', bytes: 2210 } },
+    { at: '2026-11-12T08:26:00Z', who: 'storyteller', role: 'agent', where: 'Claude Code cloud', abp: true, model: 'a Sonnet-class model', usd: 0.04, what: 'Writes the deck from primitives', to: 'GitHub Action', artefact: { kind: 'story', name: 'story.json', sha256: 'c802…', bytes: 3104, commit: 'abc1234' } },
+    { at: '2026-11-12T08:41:00Z', who: 'GitHub Action', role: 'compute', where: 'GitHub Actions', github_compute: true, abp: true, what: 'Gate and deploy', to: 'the page', artefact: { kind: 'page', name: 'story.html?s=…', sha256: '77de…', bytes: null } },
+    { at: '2026-11-12T08:47:00Z', who: 'the page', role: 'page', where: 'the browser', what: 'Live', artefact: { kind: 'deck', name: 'the deck', final: true } },
+  ] },
+};
+
+const ROLE = { person: 'var(--alt-P)', conductor: 'var(--alt-A4)', lead: 'var(--alt-A4)', agent: 'var(--alt-A3)', model: 'var(--alt-A1)', compute: 'var(--alt-A0)', page: 'var(--accent)' };
+const col = (h) => ROLE[h.role] || 'var(--alt-A2)';
+const hm = (t) => (t ? new Date(t).toISOString().slice(11, 16) : '—');
+const mins = (a, b) => Math.round((new Date(b) - new Date(a)) / 60000);
+const hopsOf = (trail) => (trail && (trail.hops || trail.nodes || trail.trail)) || [];
+
+async function load() {
+  if (SID === 'sample') return SAMPLE;
+  if (window.StoryKit && StoryKit.load) { try { return await StoryKit.load(SID); } catch (e) {} }
+  const get = (f) => fetch(`../stories/${encodeURIComponent(SID)}/${f}`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  const [story, trail] = await Promise.all([get('story.json'), get('trail.json')]);
+  return { story, trail };
+}
+
+function chrome(D) {
+  const s = D.story || {};
+  document.title = `${s.title || SID} · Swarm Stories`;
+  $('#h').innerHTML = `${esc(s.title || 'This story has not landed yet')}<small>${[s.asked_by && `asked by ${esc(s.asked_by)}`, s.answered_by && `answered by ${esc(s.answered_by)}`, s.at && esc(hm(s.at) + ' UTC')].filter(Boolean).join(' · ')}</small>`;
+  const f = $('#flag'); f.hidden = false;
+  if (s.sample) f.textContent = 'Sample · invented'; else if (s.simulated) f.textContent = 'Simulated'; else { f.textContent = 'Real'; f.classList.add('real'); }
+  $('#modes').innerHTML = MODES.map(([m, l]) => `<a href="?${new URLSearchParams({ s: SID, m })}"${m === MODE ? ' aria-current="page"' : ''} data-m="${m}">${l}</a>`).join('');
+  $('#modes').onclick = (e) => { const a = e.target.closest('a'); if (!a) return; e.preventDefault(); go(a.dataset.m); };
+  $('#tools').style.display = MODE === 'present' ? '' : 'none';
+}
+function go(m) { MODE = m; try { history.replaceState(null, '', '?' + new URLSearchParams({ s: SID, m })); } catch (e) {} stop(); chrome(DATA); draw(); }
+
+/* ---------- Present ---------- */
+let SC = [], si = 0, ri = 0, timer = null, kit = null;
+const reveals = (sc) => ({ bullets: (sc.items || []).length, ladder: (sc.levels || []).length, flow: (sc.steps || []).length, compare: 2 }[sc.type] || 1);
+function scene(sc) {
+  const k = sc.kicker ? `<div class="k">${esc(sc.kicker)}</div>` : '', h = sc.title ? `<h2>${esc(sc.title)}</h2>` : '';
+  switch (sc.type) {
+    case 'title': return `${k}<h2 style="font-size:2.8em">${esc(sc.title)}</h2>${sc.sub ? `<p class="sub">${esc(sc.sub)}</p>` : ''}`;
+    case 'statement': return `${k}<p class="big">${esc(sc.text)}</p>`;
+    case 'bullets': return `${k}${h}<ul>${(sc.items || []).map((x, j) => `<li data-r="${j}">${esc(x)}</li>`).join('')}</ul>`;
+    case 'quote': return `${k}<blockquote>“${esc(sc.text)}”<cite>${esc(sc.who || '')}</cite></blockquote>`;
+    case 'compare': return `${k}${h}<div class="cmp2"><div class="b" data-r="0"><h3>${esc(sc.before?.label || 'Before')}</h3>${(sc.before?.items || []).map((x) => `<p>${esc(x)}</p>`).join('')}</div><div class="a" data-r="1"><h3>${esc(sc.after?.label || 'After')}</h3>${(sc.after?.items || []).map((x) => `<p>${esc(x)}</p>`).join('')}</div></div>`;
+    case 'ladder': return `${k}${h}<div class="lad">${(sc.levels || []).map((l, j) => `<div data-r="${j}"><b>${esc(l.id || l.label)}</b><span>${esc(l.label === l.id ? '' : l.label)}<small>${esc(l.note || '')}</small></span></div>`).join('')}</div>`;
+    case 'flow': return `${k}${h}<div class="flw">${(sc.steps || []).map((x, j) => `${j ? `<i data-r="${j}">→</i>` : ''}<div data-r="${j}">${esc(x.label || x)}</div>`).join('')}</div>`;
+    case 'counter': return `${k}<p class="sub">${esc(sc.label || '')}</p><div class="ctr" data-to="${+sc.value || 0}">0<small>${esc(sc.unit || '')}</small></div>`;
+    case 'table': return `${k}${h}<table class="tbl"><thead><tr>${(sc.cols || []).map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(sc.rows || []).map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+    case 'embed': return `${k}${h}<div class="emb"><iframe src="../${esc(sc.link || `stage.html#pack=main&scene=${sc.scene}`)}" title="${esc(sc.title || 'A stage scene')}"></iframe></div>`;
+    default: return `${k}${h}${sc.text ? `<p class="big">${esc(sc.text)}</p>` : ''}`;
+  }
+}
+function paint(all) {
+  const sc = SC[si]; if (!sc) return;
+  const el = $('#slide'); el.innerHTML = scene(sc);
+  el.querySelectorAll('[data-r]').forEach((n) => n.classList.toggle('off', !all && +n.dataset.r > ri));
+  const c = el.querySelector('.ctr'); if (c) { const to = +c.dataset.to, u = c.innerHTML.replace(/^[^<]*/, ''), t0 = performance.now(); const tick = (t) => { const p = all ? 1 : Math.min(1, (t - t0) / 900); c.innerHTML = Math.round(to * (1 - (1 - p) ** 3)) + u; if (p < 1) requestAnimationFrame(tick); }; requestAnimationFrame(tick); }
+  $('#cap').textContent = sc.caption || ''; $('#pn').textContent = `${si + 1} / ${SC.length}`;
+  const tot = SC.reduce((a, s) => a + reveals(s), 0), done = SC.slice(0, si).reduce((a, s) => a + reveals(s), 0) + ri + 1; $('#prog i').style.width = (100 * done / tot) + '%';
+}
+function step(d) {
+  if (kit) return d > 0 ? kit.next() : kit.prev();
+  const n = reveals(SC[si]);
+  if (d > 0) { if (ri < n - 1) { ri++; $('#slide').querySelectorAll('[data-r]').forEach((x) => x.classList.toggle('off', +x.dataset.r > ri)); paintBar(); return true; } if (si < SC.length - 1) { si++; ri = 0; paint(); return true; } return false; }
+  if (ri > 0) { ri--; paint(); return true; } if (si > 0) { si--; ri = reveals(SC[si]) - 1; paint(); return true; } return false;
+}
+function paintBar() { const tot = SC.reduce((a, s) => a + reveals(s), 0), done = SC.slice(0, si).reduce((a, s) => a + reveals(s), 0) + ri + 1; $('#prog i').style.width = (100 * done / tot) + '%'; }
+function play() { if (timer) return stop(); $('#play').setAttribute('aria-pressed', 'true'); $('#play').textContent = '❚❚ Pause'; if (!kit && si === SC.length - 1 && ri === reveals(SC[si]) - 1) { si = 0; ri = 0; paint(); } timer = setInterval(() => { if (kit ? kit.next() === false : !step(1)) stop(); }, 2600); }
+function stop() { clearInterval(timer); timer = null; const b = $('#play'); if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = '▶ Play all'; } }
+function present(D) {
+  const s = D.story || {}; SC = s.scenes || s.slides || [];
+  $('#main').innerHTML = `<section id="deck" aria-live="polite"><div id="slide"></div></section><div id="cap"></div><span id="pn"></span><div id="prog"><i></i></div>`;
+  if (!SC.length) { $('#slide').innerHTML = `<p class="big">The deck has not landed yet.</p><p class="sub">The making-of is in Timeline, Graph and Delivery as it happens.</p>`; return; }
+  if (window.StoryKit && StoryKit.present && !s.sample) { try { kit = StoryKit.present($('#slide'), s, { onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); return; } catch (e) { kit = null; } }
+  si = 0; ri = 0; paint(EMBED);
+}
+
+/* ---------- Timeline ---------- */
+const chipsOf = (h) => [h.where && `<span>${esc(h.where)}</span>`, h.abp === true && '<span class="on">ABP on</span>', h.abp === false && '<span class="off">no ABP</span>', h.github_compute && '<span class="on">GitHub compute</span>', h.model && `<span>${esc(h.model)}</span>`, h.usd != null && `<span>$${(+h.usd).toFixed(3)}</span>`].filter(Boolean).join('');
+function key() { return `<div class="keyrow">${[['person', 'a person'], ['conductor', 'a conductor or the lead'], ['agent', 'an agent'], ['compute', 'GitHub compute'], ['page', 'the page']].map(([r, l]) => `<span><i class="dot" style="background:${ROLE[r]}"></i>${l}</span>`).join('')}<span>teal chip: ABP on · amber chip: no ABP</span></div>`; }
+function timeline(D) {
+  const H = hopsOf(D.trail);
+  if (!H.length) { $('#main').innerHTML = `<section class="pane"><p class="empty">The trail has not landed yet: it is built from the inbox times, the commits and the sessions (tools/story-trail.mjs).</p></section>`; return; }
+  const t0 = new Date(H[0].at), t1 = new Date(H[H.length - 1].at), span = Math.max(1, t1 - t0);
+  const axis = H.map((h, j) => `<b data-j="${j}" style="left:calc(14px + (100% - 28px) * ${(new Date(h.at) - t0) / span});background:${col(h)}" title="${esc(hm(h.at) + ' · ' + (h.what || h.who))}"></b>`).join('') + `<small style="left:14px;transform:none">${hm(H[0].at)}</small><small style="right:14px;left:auto;transform:none">${hm(H[H.length - 1].at)} UTC</small>`;
+  const list = H.map((h, j) => `${j ? `<div class="gap">+${mins(H[j - 1].at, h.at)} min</div>` : ''}<li data-j="${j}"><span class="t">${hm(h.at)}<em>${esc(h.who || '')}</em></span><i class="dot" style="background:${col(h)}"></i><div class="hop"><h3>${esc(h.what || h.who)}</h3><p>${esc(h.who || '')}${h.to ? ` → ${esc(h.to)}` : ''}${h.artefact ? ` · passes on <b>${esc(h.artefact.name || h.artefact.kind)}</b>` : ''}</p><div class="chips">${chipsOf(h)}</div></div></li>`).join('');
+  $('#main').innerHTML = `<section class="pane"><p class="lead">Every hop from the question to the page, on its real time (UTC, from the commits, inbox times and sessions). ${mins(H[0].at, H[H.length - 1].at)} minutes from first to last.</p>${key()}<div class="axis">${axis}</div><ol class="tl">${list}</ol></section>`;
+  const sel = (j) => { document.querySelectorAll('.tl li').forEach((l) => l.classList.toggle('sel', +l.dataset.j === j)); const li = $(`.tl li[data-j="${j}"]`); li && li.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
+  $('#main').onclick = (e) => { const t = e.target.closest('[data-j]'); if (t) sel(+t.dataset.j); };
+}
+
+/* ---------- Graph: who passed what to whom ---------- */
+function graph(D) {
+  const H = hopsOf(D.trail);
+  if (!H.length) { $('#main').innerHTML = `<section class="pane"><p class="empty">The trail has not landed yet.</p></section>`; return; }
+  const who = []; H.forEach((h) => { [h.who, h.to].forEach((w) => { if (w && !who.includes(w)) who.push(w); }); });
+  const role = (w) => (H.find((h) => h.who === w) || {}).role;
+  const W = Math.max(900, who.length * 170), Hh = 420, x = (j) => 80 + j * ((W - 160) / Math.max(1, who.length - 1));
+  const lane = (w) => ({ person: 110, conductor: 170, lead: 170, agent: 230, model: 230, compute: 300, page: 300 }[role(w)] || 230);
+  const pos = Object.fromEntries(who.map((w, j) => [w, [x(j), lane(w)]]));
+  const edges = H.filter((h) => h.to && pos[h.to]).map((h, j) => { const [x1, y1] = pos[h.who], [x2, y2] = pos[h.to], my = Math.min(y1, y2) - 60 - (j % 2) * 18; return `<path class="e" data-j="${H.indexOf(h)}" d="M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2}" stroke="${col(h)}" marker-end="url(#ah)"/><text class="lbl" x="${(x1 + x2) / 2}" y="${my + 8}" text-anchor="middle">${H.indexOf(h) + 1}. ${esc(h.artefact?.name || h.what || '')}</text>`; }).join('');
+  const nodes = who.map((w) => { const [cx, cy] = pos[w], h = H.find((k) => k.who === w) || { role: role(w) }; return `<g class="n" data-w="${esc(w)}"><circle cx="${cx}" cy="${cy}" r="18" fill="${col(h)}"/><text x="${cx}" y="${cy + 40}" text-anchor="middle" font-size="15" font-weight="600">${esc(w)}</text><text class="lbl" x="${cx}" y="${cy + 58}" text-anchor="middle">${esc(h.where || '')}</text></g>`; }).join('');
+  $('#main').innerHTML = `<section class="pane"><p class="lead">Who passed what to whom. Each arc is one hop, numbered in order and labelled with the artefact it carried. Click an arc or a node.</p>${key()}
+    <svg id="gsvg" viewBox="0 0 ${W} ${Hh}" role="img" aria-label="The story's hops as a graph"><defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>${edges}${nodes}</svg><div class="det" id="det"><p>Click an arc or a node for its detail.</p></div></section>`;
+  $('#gsvg').onclick = (e) => {
+    const p = e.target.closest('.e'), n = e.target.closest('g.n'); document.querySelectorAll('#gsvg .e').forEach((q) => q.classList.toggle('sel', q === p));
+    if (p) { const h = H[+p.dataset.j]; $('#det').innerHTML = `<h3>${+p.dataset.j + 1}. ${esc(h.what || '')}</h3><p>${esc(h.who)} → ${esc(h.to)} at ${hm(h.at)} UTC</p>${h.artefact ? `<p>Passed on: ${esc(h.artefact.name || h.artefact.kind)}${h.artefact.sha256 ? ` · sha256 ${esc(h.artefact.sha256)}` : ''}</p>` : ''}<div class="chips">${chipsOf(h)}</div>`; }
+    else if (n) { const w = n.dataset.w, mine = H.filter((h) => h.who === w || h.to === w); $('#det').innerHTML = `<h3>${esc(w)}</h3>${mine.map((h) => `<p>${hm(h.at)} · ${esc(h.who === w ? `sends ${h.artefact?.name || h.what} to ${h.to || '—'}` : `receives ${h.artefact?.name || h.what} from ${h.who}`)}</p>`).join('')}`; }
+  };
+}
+
+/* ---------- Delivery: the artefacts, in order ---------- */
+function delivery(D) {
+  const H = hopsOf(D.trail).filter((h) => h.artefact);
+  if (!H.length) { $('#main').innerHTML = `<section class="pane"><p class="empty">No artefacts yet.</p></section>`; return; }
+  const repo = (D.story && D.story.repo) || 'https://github.com/PrompTugal/PrompTugal__News__Swarm';
+  const card = (h, j) => { const a = h.artefact; return `<article class="art${a.final ? ' final' : ''}"><span class="n">${j + 1} · ${esc(a.kind || 'artefact')} · ${hm(h.at)} UTC</span><h3>${esc(a.name || a.kind)}</h3><p style="margin:0;color:var(--muted);font-size:.88rem">${esc(h.who)}${h.to ? ` → ${esc(h.to)}` : ''}</p><dl>${a.sha256 ? `<dt>sha256</dt><dd>${esc(a.sha256)}</dd>` : ''}${a.bytes != null ? `<dt>size</dt><dd>${(+a.bytes).toLocaleString()} bytes</dd>` : ''}${a.commit ? `<dt>commit</dt><dd><a href="${esc(repo)}/commit/${esc(a.commit)}" target="_blank" rel="noopener">${esc(String(a.commit).slice(0, 7))}</a></dd>` : ''}${a.link ? `<dt>open</dt><dd><a href="${esc(a.link)}">${esc(a.link)}</a></dd>` : ''}</dl>${a.final ? `<p style="margin:6px 0 0"><a href="?${new URLSearchParams({ s: SID, m: 'present' })}">Present the deck →</a></p>` : ''}</article>`; };
+  $('#main').innerHTML = `<section class="pane"><p class="lead">What each hop delivered, in order, with its hash and commit. Model text is never stored: only its length and sha256. ${D.story && D.story.sample ? '<b style="color:var(--warn)">This is the sample: the hashes are placeholders.</b>' : ''}</p><div class="dl">${H.map(card).join('')}</div></section>`;
+}
+
+function draw() { ({ present, timeline, graph, delivery })[MODE](DATA); }
+let DATA = null;
+document.addEventListener('keydown', (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey || /input|textarea|select/i.test(e.target.tagName)) return;
+  const k = e.key;
+  if (k === '1' || k === '2' || k === '3' || k === '4') return go(MODES[+k - 1][0]);
+  if (MODE !== 'present') return;
+  if (k === 'ArrowRight' || k === ' ' || k === 'PageDown') { e.preventDefault(); stop(); step(1); }
+  else if (k === 'ArrowLeft' || k === 'PageUp') { e.preventDefault(); stop(); step(-1); }
+  else if (k === 'p' || k === 'P') play();
+  else if (k === 'z' || k === 'Z') $('#foc').click();
+  else if (k === 'Escape') { document.documentElement.classList.remove('focus'); }
+});
+$('#play').onclick = play;
+$('#foc').onclick = () => { document.documentElement.classList.toggle('focus'); dispatchEvent(new Event('resize')); };
+document.addEventListener('click', (e) => { if (MODE === 'present' && e.target.closest('#deck') && !e.target.closest('a,iframe')) { stop(); step(1); } });
+
+// swarm.1.dev's kit, when it is there; the page works without it
+const ks = document.createElement('script'); ks.src = '../assets/story-kit.js';
+const start = () => load().then((D) => { DATA = D || { story: null, trail: null }; chrome(DATA); draw(); });
+ks.onload = start; ks.onerror = start; document.head.appendChild(ks);
+</script>
+<script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

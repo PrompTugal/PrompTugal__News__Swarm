@@ -29,6 +29,9 @@ a{color:var(--a3)}
 .box.main{border-color:color-mix(in srgb,var(--a1) 45%,var(--line))}.box.main .txt h2{font-size:1.3rem}
 
 .row{max-width:1320px;margin:0 auto;padding:4px 20px 18px}.row h2{margin:0 0 10px;font-size:1.1rem}.row h2 small{color:var(--muted);font-weight:400;font-size:.88rem;margin-left:8px}
+.story{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--ink);transition:border-color .15s}.story:hover{border-color:var(--a1)}
+.story .shot{border-bottom:0;border-right:1px solid var(--line)}.story .txt{padding:18px 20px;display:flex;flex-direction:column;gap:8px}.story h2{margin:0;font-size:1.3rem}.story p{margin:0;color:var(--muted)}.story .go{margin-top:auto;color:var(--a1);font-weight:600}
+@media (max-width:760px){.story{grid-template-columns:1fr}.story .shot{border-right:0;border-bottom:1px solid var(--line)}}
 .best{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.best a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink)}
 .best a:hover{border-color:var(--a1)}.best b{display:block;font-size:1rem}.best small{display:block;color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.35}.best .n{color:var(--a1);font:600 .72rem/1 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;display:block}
 .tgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.tgrid a{display:flex;flex-direction:column;gap:4px;background:linear-gradient(160deg,color-mix(in srgb,var(--a3) 10%,var(--panel)),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none;color:var(--ink);min-height:150px}
@@ -59,6 +62,9 @@ footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);
   <a class="box" href="pages/harness.html" style="--c:var(--a4)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/harness.html" title="Preview: the harness" tabindex="-1" aria-hidden="true"></iframe></div>
     <div class="txt"><h2><i></i>The harness</h2><p>The swarm's own agents under SHarness (early beta): the same work, first with no policy and then with one. What held, and what didn't yet.</p><span class="go">Read the findings →</span></div></a>
 </section>
+<section class="row" aria-label="Stories"><h2>Stories <small>made live at the event: a question, a voice answer, a deck within the hour, and every hop of how it was made</small></h2>
+  <a class="story" href="pages/stories.html"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/story.html?s=sample&m=timeline&embed=1" title="Preview: a story's making-of" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2>The deck, and how it was made</h2><p>Each story has four modes: <b>Present</b> (the deck, at stage quality), <b>Timeline</b> (every hop on its real time), <b>Graph</b> (who passed what to whom) and <b>Delivery</b> (each artefact with its hash and commit). Some ran under an agent behaviour policy and some did not; some on GitHub compute and some not. The trail says which.</p><span class="go">Open the stories →</span></div></a></section>
 <section class="row" aria-label="Best of"><h2>Best of <small>five demos to start with, one from each theme</small></h2><div class="best" id="best"></div></section>
 <section class="row" aria-label="Themes"><h2>Themes <small>five demos each: the demo on the left, the context and what to say on the right</small></h2><div class="tgrid" id="tgrid"></div></section>
 <p class="more">Also: <a href="pages/map.html">the map</a>, what we planned rung by rung.</p>

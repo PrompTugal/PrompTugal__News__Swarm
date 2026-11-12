@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm Stories</title>
+<meta name="description" content="Stories made live during the event: a question, a voice answer, and the swarm turning it into a deck within the hour. Each story shows the deck and how it was made, hop by hop.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--font)}
+body{background:radial-gradient(ellipse at 50% -10%,var(--bg2) 0%,var(--bg) 60%) fixed}a{color:var(--accent)}
+.hero{max-width:1320px;margin:0 auto;padding:30px 20px 8px}.hero h1{margin:0;font:700 clamp(1.6rem,3vw,2.4rem)/1.15 var(--font-head)}
+.hero p{margin:8px 0 0;color:var(--muted);max-width:72ch;font-size:1.02rem}
+.grid{max-width:1320px;margin:0 auto;padding:18px 20px 30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:640px){.grid{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;background:var(--panel-solid);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--accent)}
+.shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:var(--bg);border-bottom:1px solid var(--line)}.shot iframe{position:absolute;left:0;top:0;width:1600px;height:900px;border:0;transform-origin:0 0;pointer-events:none}.shot::after{content:"";position:absolute;inset:0}
+.t{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px;flex:1}.t h2{margin:0;font:600 1.15rem var(--font-head)}
+.who{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;font-size:.85rem;color:var(--muted)}.who b{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}.tags span{font:600 .7rem/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;border:1px solid var(--line);border-radius:6px;padding:4px 6px;color:var(--muted)}
+.tags .on{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.empty{max-width:1320px;margin:0 auto;padding:10px 20px;color:var(--muted)}
+footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<section class="hero"><h1>Stories</h1>
+<p>A question goes to a person; they answer by voice; the swarm turns the answer into a deck within the hour. Each story has the deck and, as important, how it was made: every hop from the voice memo to the page, with its time, where it ran and under which policy.</p></section>
+<section class="grid" id="grid" aria-label="The stories"></section>
+<p class="empty" id="empty" hidden>The first stories are being made. They will appear here as they land.</p>
+<footer>Made live at the event, for Dinis Cruz (WS-215). Model text is never stored: only its length and hash. Independent of Web Summit.</footer>
+<script>
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const when = (t) => (t ? String(t).replace('T', ' ').replace(/:\d\d(\.\d+)?Z$/, ' UTC') : '');
+function render(list) {
+  const g = document.getElementById('grid');
+  if (!list.length) { document.getElementById('empty').hidden = false; return; }
+  g.innerHTML = list.map((s) => `<a class="card" href="story.html?s=${esc(s.id)}"><div class="shot"><iframe data-src="story.html?s=${esc(s.id)}&embed=1" title="Preview" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="t"><h2>${esc(s.title)}</h2><div class="who"><span>asked by</span><b>${esc(s.asked_by || '…')}</b><span>answered by</span><b>${esc(s.answered_by || '…')}</b><span>when</span><b>${esc(when(s.at))}</b></div>
+    <div class="tags"><span class="${s.abp ? 'on' : ''}">${s.abp ? 'under ABP' : 'no ABP'}</span><span class="${s.github_compute ? 'on' : ''}">${s.github_compute ? 'GitHub compute' : 'no GitHub compute'}</span></div></div></a>`).join('');
+  const fit = (f) => (f.style.transform = `scale(${f.parentElement.clientWidth / 1600})`);
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { e.target.src = e.target.dataset.src; io.unobserve(e.target); } }), { rootMargin: '200px' });
+  g.querySelectorAll('iframe').forEach((f) => { fit(f); io.observe(f); }); addEventListener('resize', () => g.querySelectorAll('iframe').forEach(fit));
+}
+// until the first real story lands, the sample shows the shape (it says so on every screen)
+const SAMPLE = { id: 'sample', title: 'What is an agent behaviour policy? (sample, invented)', asked_by: 'the head conductor', answered_by: 'a team member, by voice', at: '2026-11-12T08:00:00Z', abp: true, github_compute: true };
+const withSample = (l) => (l.length ? l : [SAMPLE]);
+fetch('../stories/index.json', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : { stories: [] })).then((j) => render(withSample(j.stories || []))).catch(() => render([SAMPLE]));
+</script>
+<script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>
