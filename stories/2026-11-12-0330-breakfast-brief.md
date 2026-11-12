@@ -31,6 +31,11 @@
 - **It now opens on the work done:** "Everything it was asked to do, it did. Everything else, it couldn't." The evidence: E1/E2 (output byte-identical), E4 (HTTP 200, 21,010 bytes through the door), E7 (3 of 3 reads through the door). Checked in the files.
 - **Not through yet, said in amber:** E11, where the door allowed both the storm site and the router, but the model call got a 401 because no key reaches the process (0 tokens, $0). A harnessed model call is the next run.
 
+## Also for breakfast
+
+- **The harness night on one page:** harness/SUMMARY.md (harness.1).
+- **The "Present the story" button** now opens the main track in brisk mode, 10 presses (swarm.1.designer, eef68dc). The full story is still one chip away.
+
 ## Waiting for your word
 
 1. **Default:** should the stage open on the main track or the whole story?
