@@ -331,8 +331,8 @@
     // the camera follows the story: a new step refits (twice: as it starts, and once the layout settles), unless the presenter
     // zoomed by hand during this scene (0 or the fit button gives the camera back)
     // during a replay the picture grows: the camera follows it about once a second (unless the presenter zoomed)
-    if (st.replay != null && st.replay < 1 && playing && !userZoomed && performance.now() - lastReplayFit > 1000) { lastReplayFit = performance.now(); fit(); }
-    if (st.k !== lastStepK) { const sameScene = lastStepK >= 0 && STEPS[lastStepK] && STEPS[lastStepK].si === st.si; lastStepK = st.k; if (!sameScene) userZoomed = false; if (!userZoomed && st.camera !== 'hold') { setTimeout(() => { if (!userZoomed) fit(); }, 350); setTimeout(() => { if (!userZoomed) fit(); }, 1500); } }
+    if (st.replay != null && st.replay < 1 && playing && !userZoomed && performance.now() - lastReplayFit > 450) { lastReplayFit = performance.now(); fit(); }
+    if (st.k !== lastStepK) { const sameScene = lastStepK >= 0 && STEPS[lastStepK] && STEPS[lastStepK].si === st.si; lastStepK = st.k; if (!sameScene) userZoomed = false; if (!userZoomed && st.camera !== 'hold') { setTimeout(() => { if (!userZoomed) fit(); }, 350); setTimeout(() => { if (!userZoomed) fit(); }, 1500); setTimeout(() => { if (!userZoomed) fit(); }, 2700); } }
     if (st.card) { hideViews(); drawCard(st); return; }
     $('#card').style.display = 'none';
     if (st.bars) { hideViews(); drawBars(st); return; }

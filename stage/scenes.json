@@ -1426,22 +1426,38 @@
    "act": "11 · Vaults",
    "title": "The wrong agent gets nothing",
    "hidden": true,
-   "say": "handover h002 (real): relay.2 tries to open a vault key sealed to relay.3. The unwrap fails; nothing is written and the vault is never fetched.",
+   "say": "handover h002 (real): relay.1 sealed the vault key to relay.3 but addressed the task to relay.2. relay.2's key cannot open it: that is reach. relay.3 could open it and did not, because it was not the named reader: that is behaviour.",
    "steps": [
     {
-     "label": "the handover",
-     "dur": 7,
+     "label": "the wrong key",
+     "dur": 6,
      "card": {
       "kind": "flow",
       "src": "handover/flows/h002.json",
+      "upto": 9,
+      "fromN": 0,
       "mark": [
        8
       ],
-      "title": "h002: a key sealed to someone else",
-      "upto": 12,
-      "fromN": 0
+      "title": "h002: a key sealed to someone else"
      },
-     "caption": "Step 8: relay.2's key cannot open a vault key sealed to relay.3. Nothing written; the vault never fetched."
+     "caption": "relay.2's key cannot open a key sealed to relay.3: refused, nothing written, the vault never fetched. That is reach: it cannot."
+    },
+    {
+     "label": "could, and didn't",
+     "dur": 3.5,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h002.json",
+      "upto": 12,
+      "fromN": 9,
+      "mark": [
+       8,
+       11
+      ],
+      "title": "h002: a key sealed to someone else"
+     },
+     "caption": "relay.3 could open it, and did not: it was not the reader named in the task. That is behaviour, not reach. We show it; we don't rely on it."
     }
    ]
   },
@@ -1450,7 +1466,7 @@
    "act": "11 · Vaults",
    "title": "Blocked inside the harness",
    "hidden": true,
-   "say": "handover h003 (real), held back with the findings: relay.2 worked inside SHarness; the vault push through the harness's network door got 401, because the door does not carry the credential the session proxy adds (harness.1's F6, drafted, not filed). Closed as failed, not worked around.",
+   "say": "handover h003 (real), held back with the findings: inside SHarness, verify, unseal, clone through the door, compute and sign all ran; the vault write then failed (a system file denied; the door carries no credential, so HTTP 401: harness.1's F6, F7, drafted, not filed). Outcome: failed.",
    "steps": [
     {
      "label": "the handover",
@@ -1468,13 +1484,14 @@
        "vault-encrypted",
        "git-public"
       ],
-      "title": "h003: the harness held, and so did the work",
+      "title": "h003: the harness held; the work did not finish",
       "upto": 19,
       "fromN": 0
      },
-     "caption": "Inside the harness: verify, unseal, clone, compute. The push out got 401: the door holds the host but not the credential. Closed as failed, not worked around."
+     "caption": "The harness held. The work didn't finish, and the record says why: one system file denied, one credential the door can't carry. Closed as failed, not worked around."
     }
-   ]
+   ],
+   "cue": "The harness stopped the attacker we imagined, and the job we needed. Both are in the log."
   },
   {
    "id": "q-identity",
@@ -2480,9 +2497,52 @@
      "caption": "The licence was for the world as it was. When the world changes, the licence waits for a person."
     }
    ]
+  },
+  {
+   "id": "the-sentence",
+   "act": "The end of the main track",
+   "title": "The sentence",
+   "hidden": true,
+   "say": "The main track ends on the sentence Dinis agreed (\"That is freaking good\", 01:54 UTC).",
+   "steps": [
+    {
+     "label": "the sentence",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "RiskMandate",
+      "title": "",
+      "lines": [
+       {
+        "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+        "big": true
+       }
+      ],
+      "source": "stories/2026-11-12-0118-altitudes-and-reach.md (agreed with Dinis, 01:54 UTC)"
+     },
+     "caption": ""
+    }
+   ]
   }
  ],
  "packs": {
+  "main": {
+   "title": "Main track (9)",
+   "about": "storytelling.1's proposed running order: 9 scenes, ending on the sentence; Dinis decides",
+   "scenes": [
+    "opening",
+    "gap",
+    "reach-measured",
+    "same-privileges",
+    "send-button",
+    "db-mandate",
+    "elsewhere",
+    "scale",
+    "cost",
+    "the-sentence"
+   ]
+  },
   "questions": {
    "title": "Five questions",
    "about": "identity, communication, governance, audit, why allowed: each answered with a file",
