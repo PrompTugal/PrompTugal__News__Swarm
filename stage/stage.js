@@ -127,7 +127,7 @@
   function packFromUrl() { const m = /pack=([\w-]+)/.exec(location.hash + '&' + location.search); return m ? m[1] : null; }
   function applyPack(name) {
     PACK = name && PACKS[name] ? name : null;
-    SCENES = PACK ? PACKS[PACK].scenes.map((id) => ALL_SCENES.find((s) => s.id === id)).filter(Boolean) : ALL_SCENES.slice();
+    SCENES = PACK ? PACKS[PACK].scenes.map((id) => ALL_SCENES.find((s) => s.id === id)).filter(Boolean) : ALL_SCENES.filter((s) => !s.hidden);
     layout(); t = 0; playing = false; stopAt = null; shownScene = null;
     if (typeof renderStory === 'function' && $('#story')) renderStory();
   }
@@ -668,7 +668,7 @@
     const acts = []; SCENES.forEach((s, si) => { if (s.free) return; let a = acts.find((x) => x.name === (s.act || '')); if (!a) acts.push(a = { name: s.act || '', scenes: [] }); a.scenes.push({ s, si }); });
     const curAct = STEPS[stepAt(t)] ? STEPS[stepAt(t)].scene.act : acts[0] && acts[0].name;
     const packs = Object.entries(PACKS);
-    $('#packs').innerHTML = packs.length ? `<a class="pk ${PACK ? '' : 'cur'}" href="#">the whole story</a>` + packs.map(([k, v]) => `<a class="pk ${PACK === k ? 'cur' : ''}" href="#pack=${esc(k)}" title="${esc(v.about || '')}">${esc(v.title || k)}</a>`).join('') : '';
+    $('#packs').innerHTML = packs.length ? `<a class="pk ${PACK ? '' : 'cur'}" href="#">the whole story</a>` + packs.filter(([k, v]) => !v.hidden || PACK === k).map(([k, v]) => `<a class="pk ${PACK === k ? 'cur' : ''}" href="#pack=${esc(k)}" title="${esc(v.about || '')}">${esc(v.title || k)}</a>`).join('') : '';
     $('#story').innerHTML = acts.map((a, ai) => `<details ${a.name === curAct ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
     $('#runs').innerHTML = FREE.map((s, i) => `<button class="sc" data-free="${i}"><b>${esc(s.title)}</b></button>`).join('');
     const ARROW = { left: '←', right: '→', top: '↑', bottom: '↓', middle: '↔', center: '◎' };
@@ -867,7 +867,7 @@
     $('#k-labels').onchange = (e) => { K.labels = e.target.checked; applyPanes(); };
     $('#k-anchors').onchange = (e) => { K.anchors = e.target.checked; applyPanes(); lastLayoutKey = ''; };
     $('#k-auto').onchange = (e) => { K.auto = e.target.checked; applyPanes(); };
-    $('#vpick').innerHTML = `<select id="v-mode" title="the designer's mode">${['flat', 'blueprint', 'heat', 'neon', 'three'].map((m) => `<option ${m === K.vmode ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="v-layout" title="layout">${['down', 'right', 'radial', 'tree'].map((m) => `<option ${m === K.vlayout ? 'selected' : ''}>${m}</option>`).join('')}</select>`;
+    $('#vpick').innerHTML = `<select id="v-mode" title="the designer's mode">${['flat', 'blueprint', 'heat', 'neon', 'orbit', 'three'].map((m) => `<option ${m === K.vmode ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="v-layout" title="layout">${['down', 'right', 'radial', 'tree'].map((m) => `<option ${m === K.vlayout ? 'selected' : ''}>${m}</option>`).join('')}</select>`;
     $('#v-mode').onchange = (e) => { K.vmode = e.target.value; saveK(); }; $('#v-layout').onchange = (e) => { K.vlayout = e.target.value; saveK(); };
     $('#k-reset').onclick = () => { store.set('knobs', {}); store.set('hiddenAlts', []); location.reload(); };
     $('#helpkeys').innerHTML = KEYS.map(([k, d]) => `<dt>${esc(k)}</dt><dd>${esc(d)}</dd>`).join('');

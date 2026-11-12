@@ -1120,6 +1120,76 @@
    ]
   },
   {
+   "id": "finding-f1",
+   "act": "8 · The harness",
+   "title": "A sentence that reads as contained",
+   "hidden": true,
+   "say": "Off by default: harness.1's finding F1 is drafted, not filed, and Dinis decides whether it is shown. A one-line containment profile read as 'contained', yet a root shell under it could read /etc/shadow; hand-written level-3 rows closed it.",
+   "cue": "We measure the reach; we don't read it off the policy.",
+   "steps": [
+    {
+     "label": "the sentence",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Finding F1 · drafted, not filed",
+      "title": "A sentence that reads as contained",
+      "lines": [
+       "sharness-ai contain --profile newsroom-agent --workspace /opt/hx/ws --sites storm-charles.promptugal.news --memory-mb 1024 --pids 16 -- …",
+       {
+        "text": "a root shell under it read /etc/shadow",
+        "big": true
+       },
+       "The profile grants all of /etc and executes /bin. Writing the level-3 rows by hand closed /etc and the shell; the sentence did not."
+      ],
+      "source": "harness/2026-11-12-harness1-e3-levels.json · finding F1: DRAFTED, NOT FILED (Dinis decides)"
+     },
+     "caption": "One line, and it reads as contained."
+    },
+    {
+     "label": "the measured reach",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Finding F1 · drafted, not filed",
+      "title": "A sentence that reads as contained",
+      "lines": [
+       "sharness-ai contain --profile newsroom-agent --workspace /opt/hx/ws --sites storm-charles.promptugal.news --memory-mb 1024 --pids 16 -- …",
+       {
+        "text": "a root shell under it read /etc/shadow",
+        "big": true
+       },
+       "The profile grants all of /etc and executes /bin. Writing the level-3 rows by hand closed /etc and the shell; the sentence did not."
+      ],
+      "source": "harness/2026-11-12-harness1-e3-levels.json · finding F1: DRAFTED, NOT FILED (Dinis decides)"
+     },
+     "caption": "Measured: under it, a root shell could read /etc/shadow. The profile grants all of /etc."
+    },
+    {
+     "label": "closed by hand",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Finding F1 · drafted, not filed",
+      "title": "A sentence that reads as contained",
+      "lines": [
+       "sharness-ai contain --profile newsroom-agent --workspace /opt/hx/ws --sites storm-charles.promptugal.news --memory-mb 1024 --pids 16 -- …",
+       {
+        "text": "a root shell under it read /etc/shadow",
+        "big": true
+       },
+       "The profile grants all of /etc and executes /bin. Writing the level-3 rows by hand closed /etc and the shell; the sentence did not."
+      ],
+      "source": "harness/2026-11-12-harness1-e3-levels.json · finding F1: DRAFTED, NOT FILED (Dinis decides)"
+     },
+     "caption": "We measure the reach; we don't read it off the policy."
+    }
+   ]
+  },
+  {
    "id": "pki",
    "act": "9 · Keys on everything",
    "title": "Who did what, provably",
@@ -2482,6 +2552,14 @@
    "about": "a licence that lapses when the reach changes",
    "scenes": [
     "licence"
+   ]
+  },
+  "findings": {
+   "title": "Findings (off)",
+   "hidden": true,
+   "about": "drafted, not filed: shown only at Dinis's word",
+   "scenes": [
+    "finding-f1"
    ]
   }
  }
