@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="../stage/themes.css">
 <style>
 *{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.45 var(--font)}
-body{display:grid;grid-template-rows:auto 1fr auto;background:radial-gradient(ellipse at 50% 35%,var(--bg2) 0%,var(--bg) 70%) fixed}
+body{display:grid;grid-template-rows:auto auto 1fr auto;background:radial-gradient(ellipse at 50% 35%,var(--bg2) 0%,var(--bg) 70%) fixed}
 a{color:var(--accent)}
 header{display:flex;gap:14px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}header h1{margin:0;font:600 1.05rem var(--font-head)}header .muted{color:var(--muted);font-size:.85rem}
 #tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1}#tabs button{font:inherit;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:5px 10px;cursor:pointer}
@@ -51,7 +51,7 @@ body.embed{grid-template-rows:1fr;background:transparent}body.embed header,body.
 </style>
 </head>
 <body>
-<header><h1>Demo Packs</h1><span class="muted">one idea per step · <a href="../stage.html">the stage</a> · <a href="views.html">five views</a> · <a href="../">live</a></span><div id="tabs"></div></header>
+<header><h1>Demo Packs</h1><span class="muted">one idea per step</span><div id="tabs"></div></header>
 <main><section id="stage"><svg id="svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" role="img"></svg><div id="cap"></div></section>
 <aside><h3 id="ptitle"></h3><p id="pblurb" class="muted"></p>
 <details open><summary>What to say</summary><div class="who" id="who"></div></details>
@@ -134,5 +134,6 @@ document.addEventListener('keydown', (e) => {
 })();
 </script>
 <script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
 </body>
 </html>

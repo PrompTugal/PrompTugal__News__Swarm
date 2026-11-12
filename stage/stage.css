@@ -199,3 +199,5 @@ html.focus #card .cm .rb { font-size: .98em }   /* the "refused by" rules: the c
 /* the gap rings scale to the stage's height too, so their labels stay above the caption on a short screen (swarm.1.dev's overflow flag at 1366×768) */
 #card .gap svg { max-height: calc(100vh - 360px); width: 100%; } 
 @media (max-height: 860px) { #card .gap .glabels { margin-top: 4px } }
+header h1 { padding-left: 96px }   /* room for the common navigation pill (assets/nav.js), which stays in focus mode */
+html.focus #simflag { left: 116px !important }   /* in focus mode the badge moves right of the navigation pill */

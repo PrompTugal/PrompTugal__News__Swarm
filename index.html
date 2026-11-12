@@ -4,318 +4,73 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PrompTugal Swarm</title>
-<meta name="description" content="The swarm, one real run at a time: from one person asking one agent, to a swarm of loops and model calls across environments. Every run is real, recorded as JSON, replayed here.">
+<meta name="description" content="A swarm of AI agents, loops and model calls, every run real and recorded. Present the story, step through the demo packs, see a run six ways, follow the execution flow, the GitHub flow and the secure harness.">
 <style>
-:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--warn:#f2b544;--live:#ffe066}
-/* the universe is dark; light only when asked */ :root[data-theme="light"]{--bg:#f6f8f7;--panel:#ffffff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86;--ok:#14936a;--bad:#d42f40;--warn:#b7791f;--live:#c99a00}
-*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-a.cta{display:inline-block;background:var(--a3);color:#04100F;font-weight:700;text-decoration:none;border-radius:8px;padding:3px 10px;margin:2px 0}
-a{color:var(--a3)}header,footer{padding:14px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;color:var(--muted);max-width:70ch}
-main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 16px}
-@media (max-width:900px){main{grid-template-columns:1fr}
- /* phone: the ladder becomes one swipeable row above the run, so the run is on the first screen */
- #rungs{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent);padding-right:60px}#rungs .rung{flex:0 0 200px;margin:0;scroll-snap-align:start}#rungs h2{display:none}#rungs .rung[disabled]{display:none}
- .panel[aria-label="Capabilities"]{order:3}}
-/* projector: bigger type at 1600 px and up */
-@media (min-width:1600px){html,body{font-size:18px}.tl .lane{font-size:14px}.tl .ph{font-size:13px}main{grid-template-columns:280px 1fr 260px}svg text{font-size:13px}svg .lbl{font-size:12px}}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px;min-width:0}
-.panel h2{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
-.rung{display:block;width:100%;text-align:left;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:8px;margin:0 0 6px;cursor:pointer;font:inherit}
-.rung b{display:block;font-size:.9rem}.rung span{color:var(--muted);font-size:.78rem}.rung[aria-pressed="true"]{border-color:var(--a3);background:color-mix(in srgb,var(--a3) 12%,transparent)}
-.rung[disabled]{opacity:.5;cursor:default}
-#stage{overflow:auto;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,var(--panel))}#stage svg{display:block;height:auto}
-svg text{fill:var(--ink);font-size:11px}svg .lbl{fill:var(--muted);font-size:10px}svg.few .lbl{font-size:13px}svg .lbl.hero{fill:var(--ink);font-weight:600;font-size:12px}svg.few .lbl.hero{font-size:16px}
-.edge{stroke:var(--line);stroke-width:1.2}.edge.on{stroke:var(--muted)}.edge.planned{stroke-dasharray:4 4}
-.n{transition:opacity .25s}.n.hidden{opacity:.08}.n.live .shape{stroke:var(--live);stroke-width:3}.n.bad .shape{stroke:var(--warn);stroke-width:2.5} /* an invalid answer is the check working: amber; red is for real harm (Dinis, ~01:58 UTC) */.n.ok .shape{stroke:var(--ok);stroke-width:2}.n.planned .shape{stroke-dasharray:4 3;fill-opacity:.25}
-.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}.bar button{font:inherit;background:var(--a3);color:#fff;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
-.amp{font-weight:600}.amp i{font-style:normal;color:var(--muted);font-weight:400}
-.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
-.card{border:1px solid var(--line);border-radius:8px;padding:8px}.card b{display:block;font-size:1.15rem}.card span{color:var(--muted);font-size:.75rem}
-.tog{display:flex;gap:8px;align-items:center;margin:0 0 6px;font-size:.88rem}.tog small{color:var(--muted)}
-.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:.78rem;color:var(--muted);margin-top:8px}.legend svg{vertical-align:middle}
-table{width:100%;border-collapse:collapse;font-size:.8rem;margin-top:10px}td,th{border-bottom:1px solid var(--line);padding:4px;text-align:left}
-footer{color:var(--muted);font-size:.8rem}
-.tl{margin-top:10px}.tl svg{display:block;width:100%;height:auto}.tl .lane{font-size:12px}.tl .ph{fill:var(--muted);font-size:11px}
-.bm{display:grid;grid-template-columns:auto 1fr auto;gap:4px 10px;align-items:center;font-size:.85rem;margin-top:10px}.bm .track{height:10px;border-radius:5px;background:var(--line);overflow:hidden}.bm .fill{height:100%;background:var(--a1)}.bm .fill.over{background:var(--bad)}.bm small{color:var(--muted)}
-.sig{margin-top:10px;border:1px solid var(--line);border-radius:8px;padding:8px 10px;font-size:.82rem}.sig h3,.bud h3{margin:0 0 4px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}.sig code{font-size:.8em;word-break:break-all}.sig ul{margin:4px 0 0;padding-left:18px}
-.bud{margin-top:12px}
-.chain{list-style:none;display:flex;gap:0;margin:0 0 10px;padding:0;flex-wrap:wrap}.chain li{flex:1 1 0;min-width:120px;position:relative;border:1px solid var(--line);border-radius:8px;padding:6px 8px;margin-right:18px;background:color-mix(in srgb,var(--a3) 7%,var(--panel));font-size:.8rem}
-.chain li:not(:last-child)::after{content:'→';position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--muted)}.chain li:last-child{margin-right:0}
-.chain b{display:block;font-size:.85rem}.chain small{color:var(--muted);display:block;word-break:break-all}.chain .k{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;background:var(--a1)}.chain .k.no{background:var(--muted)}
-.pushed{margin:0 0 8px;padding:8px 12px;border-radius:8px;border-left:4px solid var(--a1);background:color-mix(in srgb,var(--a1) 14%,var(--panel));font-size:.88rem}.pushed b{color:var(--a1)}
-.chain-check{flex-basis:100%;margin:6px 0 0;color:var(--muted);font-size:.78rem}.chain-check code{word-break:break-all}
-@media (max-width:640px){.chain{flex-direction:column}.chain li{margin:0 0 16px}.chain li:not(:last-child)::after{content:'↓';right:auto;left:14px;top:auto;bottom:-17px;transform:none}}#detail code{word-break:break-all}#detail p{overflow-wrap:anywhere}
-.bar button.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
-body.present header,body.present .demos,body.present footer,body.present .panel[aria-label="Capabilities"],body.present #detail,body.present #live{display:none}
-body.present{font-size:19px}body.present main{grid-template-columns:1fr;padding-top:12px}body.present .panel[aria-label="Rungs"]>h2{display:none}
-body.present #rungs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent);padding-right:120px}body.present #rungs .rung{flex:0 0 220px;margin:0}body.present #rungs h2,body.present #rungs p,body.present #rungs .rung[disabled],body.present #checknow{display:none}
-body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.present .tl .lane{font-size:15px}body.present .tl .ph{font-size:13px}body.present svg .lbl{font-size:13px}
-.headline{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 14%,var(--panel)),var(--panel))}
-.headline .big{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:1.15rem;font-weight:600;margin:0}.headline .big span{white-space:nowrap}@media (max-width:600px){.headline .big span{white-space:normal}}.headline .big i{font-style:normal;color:var(--muted);font-weight:400;font-size:.8em}
-.headline .sub{color:var(--muted);font-size:.8rem;margin:4px 0 0}.headline .sub b{color:var(--ink)}
-.batches{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px}.batch{flex:0 0 auto;min-width:150px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.78rem;color:var(--muted);text-decoration:none;background:var(--panel)}.batch b{display:block;color:var(--ink);font-size:.9rem}
-.batch .jobs{display:flex;gap:2px;margin:4px 0}.batch .jobs i{width:8px;height:8px;border-radius:2px;background:var(--a3)}
-body.present .headline{margin-top:12px;padding:8px 16px}body.present .headline .sub,body.present .batches,body.present .chain-check{display:none}body.present .headline .big{font-size:1.35rem}
-.demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
+:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0}
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{background:radial-gradient(ellipse at 50% -10%,#0e2c2a 0%,var(--bg) 60%) fixed}
+a{color:var(--a3)}
+.hero{max-width:1320px;margin:0 auto;padding:36px 20px 10px}
+.hero h1{margin:0;font-size:clamp(1.7rem,3.2vw,2.6rem);line-height:1.15;letter-spacing:-.01em}
+.hero p{margin:10px 0 0;color:var(--muted);max-width:70ch;font-size:1.05rem}
+.facts{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;font-size:.92rem;color:var(--muted)}.facts b{color:var(--ink)}
+.grid{max-width:1320px;margin:0 auto;padding:18px 20px 28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.hero{padding-top:22px}}
+.box{display:flex;flex-direction:column;background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s,box-shadow .15s}
+.box:hover,.box:focus-visible{transform:translateY(-2px);border-color:var(--c,var(--a3));box-shadow:0 10px 30px #0008;outline:none}
+.shot{position:relative;aspect-ratio:16/9;overflow:hidden;background:#06130f;border-bottom:1px solid var(--line)}
+.shot iframe{position:absolute;left:0;top:0;width:1600px;height:900px;border:0;transform-origin:0 0;pointer-events:none}
+.shot::after{content:"";position:absolute;inset:0}   /* the whole box is the link: the preview never takes the click */
+.shot .live{position:absolute;right:8px;top:8px;z-index:1;font:600 10px/1 ui-monospace,monospace;letter-spacing:.08em;color:var(--muted);background:#04100Fcc;border:1px solid var(--line);border-radius:6px;padding:4px 6px}
+.txt{padding:14px 16px 16px;display:flex;flex-direction:column;gap:4px;flex:1}
+.txt h2{margin:0;font-size:1.2rem;display:flex;align-items:center;gap:8px}.txt h2 i{width:10px;height:10px;border-radius:3px;background:var(--c,var(--a3));flex:0 0 10px}
+.txt p{margin:0;color:var(--muted);font-size:.95rem}.txt .go{margin-top:auto;padding-top:8px;color:var(--c,var(--a3));font-weight:600;font-size:.9rem}
+.box.main{border-color:color-mix(in srgb,var(--a1) 45%,var(--line))}.box.main .txt h2{font-size:1.3rem}
+
+.more{max-width:1320px;margin:0 auto;padding:0 20px 18px;color:var(--muted);font-size:.92rem}.more a{color:var(--ink)}
+footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
+@media (prefers-reduced-motion:reduce){.box{transition:none}}
 </style>
 </head>
 <body>
-<header>
+<section class="hero">
   <h1>The swarm, one real run at a time</h1>
-  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="stage.html#pack=main&brisk" class="cta" title="The main track, brisk: one press per scene (10 presses). Every other scene is a chip on the left.">Present the story ▶</a> <a href="stage.html#pack=main" title="The same main track, one press per step (37 presses)" style="font-size:.85em">(step by step)</a> · <a href="pages/packs.html">Demo packs</a> · <a href="pages/views.html">Five ways to see a run</a> · <a href="how.html">How the GitHub flow works</a> · <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
-</header>
-<section class="headline" id="headline" aria-label="Every run that started with a push, added up" hidden></section>
-<section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
-<li><b>The ladder</b>: from me → Claude → a task, up to a swarm of loops on many models. <em id="nruns">Live below: real runs.</em></li>
-<li><b>Sessions across accounts</b>: sessions on two of Dinis's accounts (Angelo's when he's back) run the same signed packets; results in GitHub and in a vault. <em>Next.</em></li>
-<li><b>Clouds</b>: swarm.cloudflare, swarm.aws, swarm.gcp and swarm.netlify run the storm site's scheduled work. <em>Next.</em></li>
-<li><b>Where the enterprise looks</b>: the same flows in Elastic and Kibana, Grafana and Neo4j. <em>Next.</em></li>
-</ol></section>
-<main>
-  <section class="panel" aria-label="Rungs"><h2>The ladder</h2><div id="rungs"></div></section>
-  <section class="panel" aria-label="The run">
-    <div class="bar"><button id="play">▶ Replay</button><button id="present" class="ghost" title="Present: the run fills the screen. Keys: ← → change run, space replays, P or Esc leaves">⛶ Present</button><span class="amp" id="amp"></span><span id="live" style="color:var(--muted);font-size:.8rem" aria-live="polite">live: checking for new runs every 15 s</span></div>
-    <div id="chain" aria-label="Provenance: how this run started and how to check it"></div>
-    <div id="stage"></div>
-    <div class="tl" id="tl" aria-label="The run over time"></div>
-    <div class="legend" id="legend"></div>
-    <div class="cards" id="cards"></div>
-    <div class="bud" id="bud"></div>
-    <div class="sig" id="sig"></div>
-    <div id="detail"></div>
-  </section>
-  <section class="panel" aria-label="Capabilities"><h2>Who holds what</h2><div id="togs"></div>
-    <p style="color:var(--muted);font-size:.78rem">Solid: used in this run. Dashed: planned, not yet wired. Each button adds or removes the node from the picture.</p></section>
-</main>
-<footer>Run by swarm.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215). The workload is the storm site's public data: <a href="https://storm-charles.promptugal.news/">storm-charles.promptugal.news</a>. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit. Model text is never stored: only its length, sha256 and whether it was valid.</footer>
+  <p>AI agents, the loops they start and the model calls they make, run for real and recorded: what each one was asked to do, what it could actually reach, and how to close the gap. Pick an area to start.</p>
+  <div class="facts" id="facts"><span>Every run is real, signed and replayable</span><span>Model text is never stored: only its length and hash</span></div>
+</section>
+<section class="grid" aria-label="The main areas">
+  <a class="box main" href="stage.html#pack=main&brisk" style="--c:var(--a1)"><div class="shot"><span class="live">LIVE</span><iframe data-src="stage.html#pack=main" title="Preview: the stage" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>Present the story</h2><p>The talk: nine scenes, one press each. From "everything an agent starts runs with its keys" to the gap, measured, and how to close it. Press <b>Z</b> for the stage alone.</p><span class="go">Start the presentation →</span></div></a>
+  <a class="box" href="pages/packs.html" style="--c:var(--p)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/packs.html?pack=gap&step=4&embed=1" title="Preview: the demo packs" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>Demo packs</h2><p>Seven short packs, one idea per step: mandate, reach and the gap; the harness; keys; where the data is encrypted.</p><span class="go">Open the packs →</span></div></a>
+  <a class="box" href="pages/views.html" style="--c:var(--a2)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/views.html?run=r5b&mode=orbit" title="Preview: the views" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>Views</h2><p>One run, six ways to see it: flat, blueprint, heat, neon, orbit and 3D. Click any unit: what it is, what it holds, what it did.</p><span class="go">Explore a run →</span></div></a>
+  <a class="box" href="pages/flow.html" style="--c:var(--a3)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/flow.html#r5b" title="Preview: the execution flow" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>Execution flow</h2><p>The ladder of real runs, rung by rung: one person and one agent, up to a swarm of 48 loops. Replay any run, with its budget and signatures.</p><span class="go">Follow the runs →</span></div></a>
+  <a class="box" href="how.html" style="--c:var(--res)"><div class="shot"><span class="live">LIVE</span><iframe data-src="how.html" title="Preview: the GitHub flow" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>The GitHub flow</h2><p>How work moves: a signed request is pushed, a GitHub Action runs it inside its budget, and the signed result comes back with an attestation.</p><span class="go">See how it works →</span></div></a>
+  <a class="box" href="pages/harness.html" style="--c:var(--a4)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/harness.html" title="Preview: the harness" tabindex="-1" aria-hidden="true"></iframe></div>
+    <div class="txt"><h2><i></i>The harness</h2><p>The swarm's own agents under SHarness (early beta): the same work, first with no policy and then with one. What held, and what didn't yet.</p><span class="go">Read the findings →</span></div></a>
+</section>
+<p class="more">Also: <a href="pages/map.html">the map</a>, what we planned rung by rung.</p>
+<footer>Run by the swarm for Dinis Cruz (WS-215). The workload is the storm site's public data: <a href="https://storm-charles.promptugal.news/">storm-charles.promptugal.news</a>. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit.</footer>
 <script>
-const ALT = { P: ['person', 'var(--p)'], A4: ['swarm', 'var(--a4)'], A3: ['agent', 'var(--a3)'], A2: ['loop', 'var(--a2)'], A1: ['LLM call', 'var(--a1)'], A0: ['compute', 'var(--a0)'], T: ['task', 'var(--p)'], M: ['provider', 'var(--res)'], D: ['dataset', 'var(--res)'], C: ['capability', 'var(--res)'], E: ['environment', 'var(--res)'] };
-const ROW = { P: 0, A4: 1, T: 1, A3: 2, A2: 3, A1: 4, A0: 4, M: 5, D: 5, C: 2, E: 2 };
-const PLANNED = [
-  { id: 'r6', title: 'Me + Angelo → sessions → packets', story: 'Dinis\'s 3 sessions and Angelo\'s 2 run the same signed packets; results land in GitHub and a vault.' },
-  { id: 'r7', title: '→ Cloudflare, AWS, GCP, Netlify', story: 'swarm.cloudflare, swarm.aws, swarm.gcp and swarm.netlify each run A0, A1 and A2 units of the storm work.' },
-  { id: 'r8', title: '→ everybody', story: 'Every person\'s conductor joins; one swarm, many agents, hundreds of loops, thousands of calls.' },
-];
-const CAPS = [
-  { id: 'github', label: 'GitHub (push to dev)', short: 'GitHub', on: true, real: true }, { id: 'vault', label: 'Vault (sgit)', on: false, real: false },
-  { id: 'secret', label: 'Secret: OpenRouter key (proxy)', short: 'OpenRouter key', on: true, real: true }, { id: 'anthropic', label: 'Anthropic (the agent\'s brain)', short: 'Anthropic', on: true, real: true },
-  { id: 'elastic', label: 'Elastic (flows)', on: false, real: false },
-  { id: 'cloudflare', label: 'swarm.cloudflare', on: false, real: false, env: true }, { id: 'aws', label: 'swarm.aws', on: false, real: false, env: true },
-  { id: 'gcp', label: 'swarm.gcp', on: false, real: false, env: true }, { id: 'netlify', label: 'swarm.netlify', on: false, real: false, env: true },
-  { id: 'angelo', label: 'Angelo\'s conductor', on: false, real: false, person: true },
-];
-let runs = [], cur = null, timer = null;
-const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-function shape(alt, r) {
-  const c = (ALT[alt] || ALT.A0)[1];
-  if (alt === 'P') return `<circle class="shape" r="${r}" fill="${c}"/><circle r="${r * .35}" cy="${-r * .25}" fill="var(--bg)"/>`;
-  if (alt === 'A4') { const p = [...Array(6)].map((_, i) => `${r * Math.cos(i * Math.PI / 3)},${r * Math.sin(i * Math.PI / 3)}`).join(' '); return `<polygon class="shape" points="${p}" fill="${c}"/>`; }
-  if (alt === 'A3') return `<rect class="shape" x="${-r}" y="${-r}" width="${2 * r}" height="${2 * r}" rx="${r * .35}" fill="${c}"/>`;
-  if (alt === 'A2') return `<circle class="shape" r="${r}" fill="none" stroke="${c}" stroke-width="3"/><circle r="${r * .4}" fill="${c}"/>`;
-  if (alt === 'A1') return `<polygon class="shape" points="0,${-r} ${r},0 0,${r} ${-r},0" fill="${c}"/>`;
-  if (alt === 'A0') return `<rect class="shape" x="${-r * .7}" y="${-r * .7}" width="${1.4 * r}" height="${1.4 * r}" fill="${c}"/>`;
-  if (alt === 'D') return `<ellipse class="shape" rx="${r}" ry="${r * .6}" fill="${c}"/>`;
-  return `<rect class="shape" x="${-r * 1.2}" y="${-r * .7}" width="${2.4 * r}" height="${1.4 * r}" rx="${r * .7}" fill="${c}"/>`;
-}
-function withCaps(run) {
-  const seen = new Set(), nodes = run.nodes.filter((n) => !seen.has(n.id) && seen.add(n.id)).map((n) => ({ ...n })), edges = run.edges.map((e) => ({ ...e }));
-  for (const c of CAPS.filter((c) => c.on)) {
-    const id = 'cap:' + c.id; nodes.push({ id, altitude: c.person ? 'P' : c.env ? 'E' : 'C', label: c.short || c.label, planned: !c.real, cap: true });
-    const hub = nodes.some((n) => n.id === 'runner') ? 'runner' : 'swarm.1'; edges.push({ from: c.person ? id : hub, to: c.person ? hub : id, kind: c.person ? 'asks' : 'holds', planned: !c.real });
-  }
-  return { nodes, edges };
-}
-function layout(nodes, edges, W) {
-  const rows = {}; const parent = {}; edges.forEach((e) => { if (!(e.to in parent)) parent[e.to] = e.from; });
-  const order = []; const seen = new Set(); const kids = {}; edges.forEach((e) => (kids[e.from] ||= []).push(e.to));
-  (function walk(id) { if (seen.has(id)) return; seen.add(id); order.push(id); (kids[id] || []).forEach(walk); })('dinis');
-  nodes.forEach((n) => { if (!seen.has(n.id)) order.push(n.id); });
-  const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
-  order.forEach((id) => { const n = byId[id]; if (!n) return; const r = n.cap ? (n.altitude === 'P' ? 0 : 1) : ROW[n.altitude] ?? 4; (rows[r] ||= []).push(n); });
-  // a long row (24 to 133 loops, calls or reads) wraps onto as many lines as it needs, keeping its order, so loops stay grouped by task
-  const big = nodes.length < 40, gap = big ? 34 : 19, K = Math.max(4, Math.floor((W - 16) / gap)), rowH = big ? 92 : 62, lineH = big ? 56 : 24;
-  let y = 30;
-  Object.keys(rows).map(Number).sort((a, b) => a - b).forEach((r) => {
-    const ns = rows[r], lines = Math.ceil(ns.length / K), per = Math.ceil(ns.length / lines), dx = W / Math.max(per, big ? 1 : 6);
-    for (let l = 0; l < lines; l++) { const part = ns.slice(l * per, (l + 1) * per), x0 = (W - part.length * dx) / 2; part.forEach((n, i) => { n.x = x0 + (i + .5) * dx; n.y = y; n.dx = dx; }); y += l < lines - 1 ? lineH : rowH; }
-  });
-  return { W, H: y - rowH + 44, byId };
-}
-function draw() {
-  const run = cur; const { nodes, edges } = withCaps(run); const { W, H, byId } = layout(nodes, edges, Math.max(320, $('#stage').clientWidth || 760));
-  const big = nodes.length < 40, r = big ? 14 : 8;
-  let s = `<svg class="${big ? 'few' : ''}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(run.title)}">`;
-  edges.forEach((e) => { const a = byId[e.from], b = byId[e.to]; if (a && b) s += `<line class="edge ${e.planned ? 'planned' : ''}" data-to="${esc(e.to)}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`; });
-  nodes.forEach((n) => {
-    const st = n.planned ? 'planned' : n.valid === false ? 'bad' : n.valid ? 'ok' : '';
-    s += `<g class="n ${st}" data-id="${esc(n.id)}" transform="translate(${n.x},${n.y})"><title>${esc((ALT[n.altitude] || [''])[0] + ': ' + n.label + (n.model ? ' · ' + n.model : '') + (n.tokens ? ' · ' + n.tokens + ' tokens' : '') + (n.cost_usd != null ? ' · ' + n.cost_usd + ' USD' : '') + (n.latency_ms ? ' · ' + n.latency_ms + ' ms' : ''))}</title>${shape(n.altitude, n.cap && n.altitude === 'E' ? 12 : r)}`;
-    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl${['P', 'A3', 'A4'].includes(n.altitude) ? ' hero' : ''}" text-anchor="middle" y="${r + (big ? 17 : 13)}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 7.4)))))}</text>`;
-    s += '</g>';
-  });
-  $('#stage').innerHTML = s + '</svg>'; timeline(run); budget(run); sigs(run);
-  const m = run.metrics, u = m.units || {};
-  const parts = [['1 person', 1], [`${u.A3 || 0} agent${u.A3 === 1 ? '' : 's'}`, u.A3], [`${u.A2 || 0} loops`, u.A2], [`${m.llm_calls} LLM calls`, m.llm_calls], [`${u.A0 || 0} compute`, u.A0], [`${m.models.length} models`, m.models.length]].filter((p) => p[1]);
-  $('#amp').innerHTML = parts.map((p) => p[0]).join(' <i>+</i> ');
-  const card = (v, l) => `<div class="card"><b>${v}</b><span>${l}</span></div>`;
-  $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid (${Math.round(100 * m.valid_calls / m.llm_calls)}%)</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
-  const cons = Object.entries(run.consensus || {});
-  const byModel = {}; (run.calls || []).forEach((c) => { const k = c.model.split('/')[1]; const x = (byModel[k] ||= { calls: 0, valid: 0, tin: 0, tout: 0, usd: 0, ms: [] }); x.calls++; x.valid += c.valid ? 1 : 0; x.tin += c.tokens_in; x.tout += c.tokens_out; x.usd += c.cost_usd; x.ms.push(c.latency_ms); });
-  chain(run);
-  $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}).</p>`
-    + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
-    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}${c.agree * 4 < c.of * 3 ? ` <small style="color:var(--warn)">${c.agree * 2 <= c.of ? 'no consensus' : 'weak'}</small>` : ''}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
-}
-// the run over time: one lane per altitude, the height is how many units of it were live; a playhead follows the replay
-// drawn at the panel's real width, so its text stays the same size on a phone and on a projector
-function timeline(run) {
-  const tl = run.timeline || [], alt = Object.fromEntries((run.nodes || []).map((n) => [n.id, n.altitude]));
-  const end = Math.max(1, run.wall_ms || 0, ...tl.map((e) => e.t)), open = {}, iv = [];
-  [...tl].sort((a, b) => a.t - b.t).forEach((e) => { if (e.phase === 'start') open[e.unit] = e.t; else if (e.unit in open) { iv.push([e.unit, open[e.unit], e.t]); delete open[e.unit]; } });
-  Object.entries(open).forEach(([u, t]) => iv.push([u, t, end]));
-  const lanes = ['A3', 'A2', 'A1', 'A0'].filter((a) => iv.some((x) => alt[x[0]] === a));
-  if (!lanes.length) { $('#tl').innerHTML = ''; return; }
-  const TLW = Math.max(300, $("#tl").clientWidth || 800), N = Math.min(200, Math.round(TLW / 4)), L = TLW < 500 ? 88 : 110, PW = TLW - L - 8, LH = 30, H = lanes.length * (LH + 6) + 30;
-  let g = `<svg viewBox="0 0 ${TLW} ${H}" role="img" aria-label="Units live over time, by altitude">`;
-  lanes.forEach((a, li) => {
-    const bins = Array(N).fill(0); iv.filter((x) => alt[x[0]] === a).forEach(([, t0, t1]) => { for (let b = Math.floor(t0 / end * (N - 1)); b <= Math.min(N - 1, Math.ceil(t1 / end * (N - 1))); b++) bins[b]++; });
-    const mx = Math.max(1, ...bins), y0 = li * (LH + 6) + LH, c = ALT[a][1];
-    const pts = bins.map((v, b) => `${L + b / (N - 1) * PW},${y0 - v / mx * (LH - 2)}`).join(' ');
-    g += `<text class="lane" x="0" y="${y0 - 10}">${ALT[a][0]} (${a})</text><text class="ph" x="0" y="${y0 + 1}">peak ${mx}</text>`
-      + `<line x1="${L}" x2="${L + PW}" y1="${y0}" y2="${y0}" stroke="var(--line)"/><polygon points="${L},${y0} ${pts} ${L + PW},${y0}" fill="${c}" fill-opacity=".55" stroke="${c}"/>`;
-  });
-  const yb = lanes.length * (LH + 6) + 14, sec = (ms) => (ms / 1000).toFixed(1) + ' s';
-  g += `<text class="ph" x="${L}" y="${yb}">beginning${TLW < 500 ? "" : " · 0 s"}</text><text class="ph" x="${L + PW / 2}" y="${yb}" text-anchor="middle">middle${TLW < 500 ? "" : " · " + sec(end / 2)}</text><text class="ph" x="${L + PW}" y="${yb}" text-anchor="end">end · ${sec(end)}</text>`
-    + `<line id="ph" x1="${L + PW}" x2="${L + PW}" y1="0" y2="${yb - 10}" stroke="var(--live)" stroke-width="2"/></svg>`;
-  $('#tl').innerHTML = g; $("#tl").dataset.l = L; $("#tl").dataset.pw = PW; $("#tl").dataset.end = end;
-}
-function playhead(ms) { const p = $("#ph"), d = $("#tl").dataset; if (p) { const x = +d.l + Math.min(1, ms / +d.end) * +d.pw; p.setAttribute('x1', x); p.setAttribute('x2', x); } }
-// request (signed) → commit → GitHub Action → result (signed) → attestation: each step a link to where it can be checked
-function chain(run) {
-  const el = $('#chain'); if (run.kind !== 'action') { el.innerHTML = ''; el.hidden = true; return; }
-  el.hidden = false; const gh = `https://github.com/${RUNS_REPO}`, fp = (x) => x ? esc(String(x).replace('sha256:', '')) : '', k = (x) => x ? `<span class="k" title="signed"></span>` : "";
-  const run_id = (String(run.run_url).match(/runs\/(\d+)/) || [])[1] || '';
-  el.innerHTML = `<p class="pushed"><b>This run started with a push.</b> No session ran it. Commit <a href="${gh}/commit/${esc(run.commit)}"><code>${esc(String(run.commit).slice(0, 7))}</code></a> by ${esc(String(run.requester).split('@')[0])} started a GitHub Action, which ran the signed request and committed this signed result, ${esc(String(run.started_at).replace('T', ' ').replace('Z', ' UTC'))}.</p>`
-    + `<ol class="chain"><li><b>${k(run.request_signed_by)}<a href="${gh}/tree/dev/requests/${esc(run.request)}">Request</a></b><small>${esc(run.request_kind)} by ${esc(String(run.requester).split('@')[0])}</small><small>signed ${fp(run.request_signed_by)}</small></li>`
-    + `<li><b>${k(0)}<a href="${gh}/commit/${esc(run.commit)}">Commit</a></b><small>the push: ${esc(String(run.commit).slice(0, 12))}</small></li>`
-    + `<li><b>${k(0)}<a href="${esc(run.run_url)}">GitHub Action</a></b><small>run ${esc(run_id)}</small><small>${(run.wall_ms / 1000).toFixed(1)} s</small></li>`
-    + `<li><b>${k(run.signed_by)}<a href="${gh}/commits/dev/runs/${esc(run.request)}">Result</a></b><small>committed by the Action</small><small>signed ${fp(run.signed_by)}</small></li>`
-    + `<li id="att"><b>${k(0)}<a href="${gh}/attestations">Attestation</a></b><small>GitHub's, for result.json</small></li></ol>`
-    + `<p class="chain-check">Check it yourself: <code>gh attestation verify runs/${esc(run.request)}/result.json -R ${RUNS_REPO}</code></p>`;
-  fetch(RAW('dev') + run.request + '/provenance.json').then((x) => x.json()).then((pv) => { const a = document.querySelector('#att'); if (a && pv.attestation && cur === run) a.innerHTML = `<b>${k(1)}<a href="${esc(pv.attestation)}">Attestation</a></b><small>GitHub's, for result.json</small><small>sha256 ${esc(String(pv.result_sha256 || '').slice(0, 16))}</small>`; }).catch(() => {});
-}
-function budget(run) {
-  const m = run.metrics, b = run.budget || {}, row = (l, v, cap, fmt) => { const f = cap ? v / cap : 0; return `<span>${l}</span><div class="track" title="${fmt(v)} of ${fmt(cap)}"><div class="fill ${f > 1 ? 'over' : ''}" style="width:${Math.min(100, f * 100).toFixed(1)}%"></div></div><span>${fmt(v)} <small>of ${fmt(cap)}</small></span>`; };
-  $('#bud').innerHTML = `<h3>Budget: written before the run, then spent</h3><div class="bm">${row('USD', m.openrouter_usd, b.usd, (x) => '$' + (+x || 0).toFixed(4))}${row('LLM calls', m.llm_calls, b.calls, (x) => String(x ?? 0))}<span>sessions</span><div class="track"><div class="fill" style="width:0"></div></div><span>0 new <small>of ${b.sessions ?? 0}</small></span></div>`
-    + (run.credit_before_usd != null ? `<p style="color:var(--muted);font-size:.8rem;margin:4px 0 0">Router credit before the run: $${run.credit_before_usd}.</p>` : '');
-}
-function sigs(run) {
-  const signed = (run.calls || []).filter((c) => c.signed), fps = new Set(signed.map((c) => c.signed.by && c.signed.by.fp).filter(Boolean)), sh = (x) => esc(String(x).replace('sha256:', ''));
-  if (!run.signed_by && !signed.length) { $('#sig').innerHTML = '<h3>Signatures</h3>None recorded in this run.'; return; }
-  $('#sig').innerHTML = '<h3>Signatures</h3><ul>'
-    + (run.packet_fp ? `<li>Packet <b>${esc(run.packet)}</b>, signed when it was issued: <code>${sh(run.packet_fp)}</code></li>` : '')
-    + (run.signed_by ? `<li>Result signed by <b>${esc(String(run.by).split('@')[0])}</b> (A3) with its key for this run: <code>${sh(run.signed_by)}</code></li>` : '')
-    + (signed.length ? `<li><b>${signed.length} of ${run.calls.length}</b> LLM calls (A1) signed, each with a key made for that call (${fps.size} keys), over the answer's sha256, never its text</li>` : '')
-    + '</ul>' + (run.kind === 'packet' ? '<p style="color:var(--muted);margin:4px 0 0">Checked by <code>swarm.mjs publish</code> before the result became a run (<a href="how.html">step 6</a>).</p>' : '');
-}
-function replay() {
-  clearInterval(timer); const tl = cur.timeline || []; const end = Math.max(1, ...tl.map((e) => e.t)); const D = 6000, step = 40;
-  const timed = new Set(tl.map((e) => e.unit)); document.querySelectorAll('.n').forEach((g) => { if (timed.has(g.dataset.id)) g.classList.add('hidden'); });
-  let t = 0, i = 0; const ev = [...tl].sort((a, b) => a.t - b.t); playhead(0);
-  timer = setInterval(() => {
-    t += step * end / D; playhead(t);
-    while (i < ev.length && ev[i].t <= t) { const e = ev[i++]; const g = document.querySelector(`.n[data-id="${CSS.escape(e.unit)}"]`); if (!g) continue; g.classList.remove('hidden'); if (e.phase === 'start') g.classList.add('live'); if (e.phase === 'end') g.classList.remove('live'); }
-    if (i >= ev.length) clearInterval(timer);
-  }, step);
-}
-function rungs() {
-  { const ac = runs.filter((r) => r.kind === 'action').length; $('#nruns').textContent = `Live below: ${runs.length - ac} ladder and packet runs` + (ac ? `, plus ${ac} that started with a push.` : '.'); }
-  const btn = (r) => `<button class="rung" data-id="${esc(r.id)}" aria-pressed="${cur && cur.id === r.id}"><b>${esc(r.rung || r.packet || r.request)} · ${esc(r.kind === 'packet' ? r.by.split('@')[0] + ' on ' + r.environment.account : r.kind === 'action' ? r.request_kind + ' on GitHub Actions' : r.title)}</b><span>${r.metrics.llm_calls} calls · ${Object.values(r.metrics.units).reduce((a, b) => a + b, 0)} nodes · $${r.metrics.openrouter_usd.toFixed(4)}</span></button>`;
-  const lad = runs.filter((r) => r.kind !== 'packet' && r.kind !== 'action'), pk = runs.filter((r) => r.kind === 'packet'), ac = runs.filter((r) => r.kind === 'action');
-  $('#rungs').innerHTML = lad.map(btn).join('') + (pk.length ? `<h2 style="margin-top:12px">Packets: the GitHub flow</h2>` + pk.map(btn).join('') : '') + `<h2 style="margin-top:12px">Every run starts with a push</h2>` + (ac.length ? ac.map(btn).join('') : '<p style="color:var(--muted);font-size:.8rem">none yet</p>') + `<button class="rung" id="checknow"><b>↻ Check GitHub now</b><span>${esc(RUNS_REPO)}</span></button>` + `<h2 style="margin-top:12px">Next</h2>`
-    + PLANNED.map((p) => `<button class="rung" disabled title="${esc(p.story)}"><b>${esc(p.id)} · ${esc(p.title)}</b><span>planned: ${esc(p.story)}</span></button>`).join('');
-  document.querySelectorAll('.rung[data-id]').forEach((b) => b.onclick = () => load(b.dataset.id)); const cn = document.getElementById('checknow'); if (cn) cn.onclick = checkNow;
-}
-function togs() {
-  $('#togs').innerHTML = CAPS.map((c) => `<label class="tog"><input type="checkbox" data-id="${c.id}" ${c.on ? 'checked' : ''}> ${esc(c.label)} ${c.real ? '' : '<small>(planned)</small>'}</label>`).join('');
-  document.querySelectorAll('#togs input').forEach((i) => i.onchange = () => { CAPS.find((c) => c.id === i.dataset.id).on = i.checked; draw(); });
-  $('#legend').innerHTML = ['P', 'A3', 'A2', 'A1', 'A0', 'M', 'D', 'E'].map((a) => `<span><svg width="22" height="22" viewBox="-11 -11 22 22">${shape(a, 8)}</svg> ${ALT[a][0]}${/^A/.test(a) ? ' (' + a + ')' : ''}</span>`).join('');
-}
-function load(id) { cur = runs.find((r) => r.id === id); rungs(); draw(); replay(); try { history.replaceState(null, '', '#' + (cur.rung || cur.id)); } catch {} }
-$("#play").onclick = replay;
-// present: hide everything but the ladder strip and the run; ← → step through the runs, space replays
-function present(on = !document.body.classList.contains('present')) {
-  document.body.classList.toggle('present', on); $('#present').textContent = on ? '✕ Leave' : '⛶ Present';
-  try { if (on && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); if (!on && document.fullscreenElement) document.exitFullscreen().catch(() => {}); } catch {}
-  if (cur) { draw(); replay(); }
-}
-$('#present').onclick = () => present();
-document.addEventListener('fullscreenchange', () => { if (!document.fullscreenElement && document.body.classList.contains('present')) present(false); });
-document.addEventListener('keydown', (e) => {
-  if (e.target.closest('input,textarea,select') || e.metaKey || e.ctrlKey || e.altKey) return;
-  const ids = [...document.querySelectorAll('.rung[data-id]')].map((b) => b.dataset.id), i = cur ? ids.indexOf(cur.id) : -1;
-  if (e.key === 'ArrowRight' && i < ids.length - 1) { load(ids[i + 1]); e.preventDefault(); }
-  else if (e.key === 'ArrowLeft' && i > 0) { load(ids[i - 1]); e.preventDefault(); }
-  else if (e.key === ' ' && !e.target.closest('button')) { replay(); e.preventDefault(); }
-  else if (e.key === 'p' || e.key === 'P') present();
-  else if (e.key === 'Escape' && document.body.classList.contains('present')) present(false);
-  const b = document.querySelector('.rung[aria-pressed="true"]'); if (b && /Arrow/.test(e.key)) b.scrollIntoView({ block: 'nearest', inline: 'nearest' });
-});
-let rz; addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => cur && draw(), 200); });
-// live: the page checks runs/index.json every 15 s; a run that lands (CI deploys about 20 s after a push) loads and replays by itself
-let known = new Set();
-async function poll(first) {
-  try {
-    const ix = await (await fetch('runs/index.json?t=' + Date.now(), { cache: 'no-store' })).json();
-    const fresh = ix.runs.filter((r) => !known.has(r.file));
-    if (!fresh.length) return;
-    const got = await Promise.all(fresh.map((r) => fetch('runs/' + r.file).then((x) => x.json()).then((j) => (known.add(r.file), j))));
-    runs = runs.concat(got);
-    if (first) { togs(); const want = location.hash.slice(1); load((runs.find((r) => r.rung === want || r.packet === want || r.id === want) || runs[0]).id); }
-    else { $('#live').textContent = 'new: ' + got.map((r) => r.id).join(', '); load(got[got.length - 1].id); }
-  } catch (e) { $('#live').textContent = 'live check failed; retrying'; }
-}
-// the Runs repo (every run starts with a push): its runs/index.json on GitHub. raw.githubusercontent.com caches a branch for up to
-// 5 minutes, so "check now" asks the GitHub API for dev's latest commit (one call) and reads the files at that commit, uncached.
-const RUNS_REPO = 'PrompTugal/PrompTugal__News__Swarm__Runs', RAW = (ref) => `https://raw.githubusercontent.com/${RUNS_REPO}/${ref}/runs/`;
-async function pollActions(ref = 'dev', announce = true, first = false) {
-  try {
-    const ix = await (await fetch(RAW(ref) + 'index.json', { cache: 'no-store' })).json();
-    const fresh = ix.runs.filter((r) => !known.has('gh:' + r.id));
-    if (!fresh.length) { if (!announce) $('#live').textContent = 'no new runs in ' + RUNS_REPO; return; }
-    const got = await Promise.all(fresh.map((r) => fetch(RAW(ref) + r.file).then((x) => x.json()).then((j) => (known.add('gh:' + r.id), { ...j.body, signed_by: j.by.fp }))));
-    // a re-run of a request replaces its earlier result in the list (one entry per request)
-    runs = runs.filter((x) => !(x.kind === 'action' && got.some((g) => g.request === x.request))).concat(got);
-    // on first load, a visitor who opened a link (#r5b, #<request>) stays on it: the new runs are listed, not opened
-    const want = location.hash.slice(1), hit = got.find((r) => r.request === want || r.id === want);
-    if (first && want && !hit) { rungs(); return; }
-    $('#live').textContent = (first ? 'from GitHub Actions: ' : 'new from GitHub Actions: ') + got.map((r) => r.request).join(', '); load((hit || got[got.length - 1]).id);
-  } catch (e) { if (!announce) $('#live').textContent = 'could not read the runs from GitHub; retrying every 30 s'; }
-}
-// the headline: every run that started with a push, added up (runs/summary.json in the Runs repo), and one chip per push (a batch of jobs)
-async function headline() {
-  try {
-    const j = await (await fetch(RAW('dev') + 'summary.json', { cache: 'no-store' })).json(), t = j.totals, u = t.units || {}, el = $('#headline');
-    const n = (x) => Number(x || 0).toLocaleString(), usd = (x) => '$' + Number(x || 0).toFixed(Number(x) < 1 ? 3 : 2), sec = (ms) => Math.round(ms / 1000) + ' s';
-    const big = [[n(t.requests) + ' requests', 'signed'], [n(t.workflow_runs) + ' pushes', ''], [n(t.jobs) + ' jobs', t.peak_jobs_at_once + ' at once at peak'], [n(u.A2) + ' loops', 'A2'], [n(t.calls) + ' LLM calls', 'A1, ' + t.valid_pct + '% valid'], [n(u.A0) + ' compute', 'A0'], [usd(t.openrouter_usd), 'spent'], [usd((t.potential_claude_usd || {})['claude-sonnet-5.5']), `same tokens on Claude Sonnet, for these ${n(t.requests)} push runs`]];
-    const batches = [...(j.by_workflow_run || [])].sort((a, b) => String(b.first_start).localeCompare(String(a.first_start))); // newest first
-    el.innerHTML = `<p class="big">${big.map(([a, b]) => `<span>${a}${b ? ` <i>${esc(b)}</i>` : ''}</span>`).join('')}</p>`
-      + `<p class="sub">Every run that started with a push to <a href="https://github.com/${RUNS_REPO}">${esc(RUNS_REPO.split('/')[1])}</a>, added up: <b>${n(t.tokens_in + t.tokens_out)}</b> tokens on ${(t.models || []).length} open-weight models, from ${esc(String(t.first_start).slice(11, 16))} to ${esc(String(t.last_end).slice(11, 16))} UTC. Updated ${esc(String(j.updated).replace('T', ' ').replace('Z', ' UTC'))}. Not measured: ${esc(j.not_measured || '')}</p>`
-      + (batches.length ? `<div class="batches" aria-label="One push, many jobs">${batches.map((b) => `<a class="batch" href="${esc(b.run_url)}" title="${esc((b.requests || []).join(', '))}"><b>1 push → ${b.jobs} job${b.jobs === 1 ? '' : 's'}</b><span class="jobs">${'<i></i>'.repeat(Math.min(b.jobs, 24))}</span>${n(b.calls)} calls · ${usd(b.openrouter_usd)} · ${sec(b.span_ms)}<br>${esc(String(b.first_start).slice(11, 16))} UTC · ${esc(String(b.commit).slice(0, 7))}</a>`).join('')}</div>` : '');
-    el.hidden = false;
-  } catch (e) { /* no summary yet, or GitHub unreachable: the band stays hidden */ }
-}
-async function checkNow() {
-  $('#live').textContent = 'asking GitHub for the latest commit…';
-  // GitHub's API allows 60 calls an hour per network without a login (a shared venue wifi can use them up): when it refuses,
-  // say so and fall back to the branch read (which can be up to 5 minutes behind), instead of waiting for ever
-  let sha = null, why = '';
-  try { const r = await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`); if (r.ok) sha = (await r.json()).sha; else why = r.status === 403 || r.status === 429 ? 'GitHub API limit reached on this network' : 'GitHub API answered ' + r.status; } catch (e) { why = 'GitHub API unreachable'; }
-  const before = runs.length;
-  await pollActions(sha || 'dev', false);
-  if (!sha) $('#live').textContent = `${why}: read the branch instead (up to 5 min behind)` + (runs.length > before ? ' and found new runs' : '; nothing new yet');
-}
-poll(true).then(() => pollActions('dev', true, true)); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000); headline(); setInterval(headline, 30000);
+// the previews are the pages themselves, scaled down; each loads only when its box comes into view (no screenshots in git)
+const fit = (f) => { const w = f.parentElement.clientWidth; f.style.transform = `scale(${w / 1600})`; };
+const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { const f = e.target; if (!f.src) f.src = f.dataset.src; io.unobserve(f); } }), { rootMargin: '200px' }) : null;
+document.querySelectorAll('.shot iframe').forEach((f) => { fit(f); if (io) io.observe(f); else f.src = f.dataset.src; });
+addEventListener('resize', () => document.querySelectorAll('.shot iframe').forEach(fit));
+// a line of real numbers from the runs, if they load
+fetch('runs/index.json', { cache: 'no-store' }).then((r) => r.json()).then((ix) => {
+  const n = ix.runs.length; return fetch('https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Swarm__Runs/dev/runs/summary.json', { cache: 'no-store' }).then((r) => r.json()).then((s) => [n, s.totals]).catch(() => [n, null]);
+}).then(([n, t]) => {
+  const f = document.getElementById('facts'), bits = [`<span><b>${n}</b> ladder and packet runs</span>`];
+  if (t) bits.push(`<span><b>${t.requests}</b> runs started with a push</span>`, `<span><b>${t.calls}</b> model calls, <b>${t.peak_jobs_at_once}</b> jobs at once</span>`, `<span><b>$${Number(t.openrouter_usd).toFixed(3)}</b> spent</span>`);
+  f.innerHTML = bits.join('') + f.innerHTML;
+}).catch(() => {});
 </script>
 <script type="module" src="assets/feedback.js"></script>
+<script src="assets/nav.js"></script>
 </body>
 </html>

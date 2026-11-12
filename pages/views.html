@@ -15,7 +15,7 @@ a{color:var(--a3)}header{padding:12px 16px 4px;display:flex;gap:12px;align-items
 .seg button+button{border-left:1px solid var(--line)}.seg button[aria-pressed="true"]{background:color-mix(in srgb,var(--a3) 22%,transparent);color:#fff}
 .bar label{font-size:.8rem;color:var(--muted);display:inline-flex;gap:6px;align-items:center}select{font:inherit;font-size:.85rem;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:5px 8px;max-width:260px}
 .play{display:flex;gap:8px;align-items:center;flex:1 1 260px;min-width:220px}.play button{font:inherit;background:var(--a3);color:#04100F;border:0;border-radius:8px;padding:6px 12px;font-weight:600;cursor:pointer}.play input{flex:1;accent-color:var(--live)}.play output{font-variant-numeric:tabular-nums;color:var(--muted);font-size:.8rem;min-width:84px}
-main{display:grid;grid-template-columns:200px minmax(0,1fr) 320px;gap:12px;padding:0 16px 12px;height:calc(100vh - 150px);min-height:520px}
+main{display:grid;grid-template-columns:200px minmax(0,1fr) 320px;gap:12px;padding:0 16px 12px;height:calc(100vh - 190px);min-height:520px}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:10px 12px;overflow:auto;min-width:0}.panel h2{font-size:.75rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:0 0 8px}
 .rail button{display:flex;gap:8px;align-items:flex-start;width:100%;text-align:left;font:inherit;background:none;color:var(--ink);border:1px solid transparent;border-radius:8px;padding:6px;cursor:pointer}
 .rail button:hover,.rail button[aria-pressed="true"]{border-color:var(--line);background:color-mix(in srgb,var(--ink) 4%,transparent)}.rail button[aria-pressed="true"]{border-color:var(--a3)}
@@ -38,7 +38,7 @@ body.present header,body.present footer,body.present .rail{display:none}body.pre
 </style>
 </head>
 <body>
-<header><h1>Swarm Views</h1><p>One real run, five ways to see it. Click any unit: what it is, what it holds, what it did. <a href="../">← the swarm, live</a> · <a href="../how.html">how it works</a></p></header>
+<header><h1>Swarm Views</h1><p>One real run, six ways to see it. Click any unit: what it is, what it holds, what it did.</p></header>
 <div class="bar">
   <label>Run <select id="run"></select></label>
   <span class="seg" id="modes" aria-label="Mode"></span>
@@ -147,5 +147,6 @@ document.addEventListener('keydown', (e) => {
 })();
 </script>
 <script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
 </body>
 </html>

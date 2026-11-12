@@ -35,15 +35,6 @@ footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);marg
 </style>
 </head>
 <body>
-<nav aria-label="Swarm">
- <b>Swarm</b>
- <a href="../index.html">Home</a>
- <a href="../stage.html#pack=main&amp;brisk">Present the story</a>
- <a href="packs.html">Demo packs</a>
- <a href="views.html">Views</a>
- <a href="../how.html">How the GitHub flow works</a>
- <a href="harness.html" aria-current="page">The harness</a>
-</nav>
 <main>
  <span class="tag">REAL RUNS · 12 NOVEMBER 2026, 01:37–05:39 UTC</span>
  <h1>The swarm's agents under a secure harness</h1>
@@ -92,5 +83,6 @@ fetch('../harness/2026-11-12-harness1-findings.json').then((r) => r.json()).then
 }).catch(() => { document.getElementById('findings').innerHTML = '<p>The findings file did not load: <a href="https://github.com/PrompTugal/PrompTugal__News__Swarm/blob/dev/harness/2026-11-12-harness1-findings.json">read it on GitHub</a>.</p>'; });
 </script>
 <script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
 </body>
 </html>
