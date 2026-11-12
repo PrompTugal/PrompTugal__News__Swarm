@@ -393,7 +393,7 @@ def e10():
     hu, hn = phash(os.path.join(H, 'policies', 'policy-a0-uid.json')), phash(os.path.join(H, 'policies', 'policy-neighbour.json'))
     return write('2026-11-12-harness1-e10-separate-uid.json', {
         'about': 'E10: the row E9 named. The same unit (key born inside, env -i) runs as uid 65534 under the policy; while it lives, four neighbours try to open its /proc/<pid>/mem and /proc/<pid>/environ (opened, 0 bytes read; memory is never read). A separate uid stops other uids; it does not stop root or the same uid outside the sandbox. Putting the root neighbour under its own Landlock policy stops it opening memory (Landlock scopes ptrace to its domain), but not environ.',
-        'by': BY, 'experiment': 'E10', 'measured_at': '2026-11-12T03:5xZ', 'where': WHERE, 'tool': TOOL,
+        'by': BY, 'experiment': 'E10', 'measured_at': (d['unit'].get('key_died_at') or '')[:19] + 'Z', 'where': WHERE, 'tool': TOOL,
         'units': [
             {'id': 'a0-consensus', 'kind': 'compute', 'altitude': 'A0', 'label': 'the A0 compute as uid 65534, key born inside, env -i', 'harnessed': True, 'policy_hash': hu, 'key_fp': d['exec_fp'], 'uid': d['uid']},
             {'id': 'n-root', 'kind': 'agent', 'altitude': 'A3', 'label': 'root next door (all capabilities)', 'harnessed': False},

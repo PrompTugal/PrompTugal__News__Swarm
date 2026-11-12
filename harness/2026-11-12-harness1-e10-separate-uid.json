@@ -2,7 +2,7 @@
  "about": "E10: the row E9 named. The same unit (key born inside, env -i) runs as uid 65534 under the policy; while it lives, four neighbours try to open its /proc/<pid>/mem and /proc/<pid>/environ (opened, 0 bytes read; memory is never read). A separate uid stops other uids; it does not stop root or the same uid outside the sandbox. Putting the root neighbour under its own Landlock policy stops it opening memory (Landlock scopes ptrace to its domain), but not environ.",
  "by": "harness.1.fringe@PrompTugal.dinis",
  "experiment": "E10",
- "measured_at": "2026-11-12T03:5xZ",
+ "measured_at": "2026-11-12T03:50:55Z",
  "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
  "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
  "units": [
