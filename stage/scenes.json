@@ -596,10 +596,9 @@
    "act": "5 · The mesh",
    "title": "One agent per asset",
    "run": "sim:policy",
-   "mode": "force",
+   "mode": "layers",
    "anchors": {
     "P": "left",
-    "A3": "middle",
     "X": "right"
    },
    "say": "With agentic policies: one agent may touch the inbox, one may touch the code, one may touch the database.",

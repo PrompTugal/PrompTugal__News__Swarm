@@ -138,3 +138,16 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #card .kys { width: 100%; max-width: 1150px } .ky { display: grid; grid-template-columns: 1.3fr 220px 1.4fr; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) }
 .ky small { display: block; color: var(--muted); font-size: .78em; font-family: var(--mono) } .ky .kl b { color: var(--accent); font: 700 1.3em var(--font-head) }
 .nh-row i.held2, .nh-head i.held2 { background: var(--ok) }
+/* phone (swarm.1.designer, from audience.1's review 2): the stage keeps its width, the header and footer wrap,
+   the views scroll sideways, the card's type fits, and a line says where it reads best */
+@media (max-width: 800px) {
+  .app { grid-template-columns: 0 0 minmax(0, 1fr) 0 0 !important }
+  .app > main { grid-column: 3 }   /* the panes are hidden, so main would auto-place into the 0-wide first column */
+  header { flex-wrap: wrap; row-gap: 6px } header h1 { font-size: .95rem }
+  #modes { max-width: 100%; overflow-x: auto; scrollbar-width: none } #modes button { white-space: nowrap }
+  footer { flex-wrap: wrap; row-gap: 6px } footer .ctl { flex-wrap: wrap }
+  #card { padding: 16px 16px 120px } #card h2 { font-size: calc(1.7em * var(--text, 1)) } #card .line { font-size: calc(1.15em * var(--text, 1)) } #card .line.big { font-size: calc(1.6em * var(--text, 1)) }
+  #card .gap { grid-template-columns: 1fr }
+  #caption { font-size: .95em; bottom: 8px }
+  header::after { content: "Best on a laptop or a projector"; flex-basis: 100%; color: var(--muted); font-size: .75em }
+}
