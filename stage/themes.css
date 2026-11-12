@@ -11,6 +11,7 @@
   --alt-M: #A58BFF; --alt-D: #8EADA8; --alt-T: #9FE8DF; --alt-X: #FF7FB0; --alt-C: #D9B26E; --alt-E: #43D9C6;
   --font: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; --font-head: "Space Grotesk", var(--font); --mono: "JetBrains Mono", ui-monospace, monospace;
   --glow: drop-shadow(0 0 6px color-mix(in srgb, currentColor 60%, transparent));
+  --label-boost: 1; /* multiplies the stage's labels; they already grow when few are on screen (2.2x at 10 or fewer) */
 }
 :root[data-theme="night"] {
   --bg: #0b1416; --bg2: #102226; --panel: rgba(16, 30, 34, .9); --panel-solid: #101e22; --line: #1f3a3f;
