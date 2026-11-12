@@ -191,3 +191,8 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #caption { width: max-content }
 /* the play hint lives bottom-right, above the zoom buttons, clear of the badge, the counter and the caption (swarm.1.designer) */
 #playhint { left: auto !important; right: 16px; top: auto !important; bottom: 52px; transform: none !important }
+/* focus mode (Z) frees the panes: cards drop the laptop step-down and grow back, tables first (audience.1, review 6) */
+@media (max-width: 1440px) { html.focus #card { font-size: 112% } html.focus #card .check, html.focus #card .cmp, html.focus #card .kys, html.focus #card .nh { font-size: 108% } }
+@media (max-width: 1440px) and (max-height: 860px) { html.focus #card { font-size: 100% } }
+html.focus #card .cm .rb { font-size: .98em }   /* the "refused by" rules: the column a CISO reads, as large as the row in focus mode */
+@media (max-width: 1440px) and (max-height: 860px) { html.focus #card .cmp:has(.cm:nth-of-type(13)) { font-size: 96% } }   /* the 12-row harness table keeps above the caption on a 768-tall screen */
