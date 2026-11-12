@@ -1,5 +1,5 @@
 {
- "about": "Every company we have something on: a GAMMA-Ray card (beta) or an X-ray record, on our own public sites. One entry per company; its mini deck is pages/partner.html?c=<slug>. Only companies with at least one real artefact.",
+ "about": "Every company we have something on: a GAMMA-Ray card (beta) or an X-ray record, on our own public sites. One entry per company; its mini deck is pages/partner.html?c=<slug>. Only companies with at least one real artefact, or asked for by name at the summit (partners/requested.json, from their own public pages).",
  "by": "partners.1.fringe@PrompTugal.dinis",
  "for": "Dinis Cruz",
  "issue": "WS-215",
@@ -17,9 +17,63 @@
   "legal": "Legal",
   "finance": "Finance and insurance",
   "infrastructure": "Infrastructure for agents",
+  "governance": "AI governance",
   "other": "Other"
  },
  "partners": [
+  {
+   "slug": "sustain-nobility",
+   "name": "Sustain-Nobility",
+   "kind": "governance",
+   "kind_label": "AI governance",
+   "one_line": "An AI-governance readiness check for SMEs and the advisors, law firms and ecosystem partners that support them: a governance score, an executive snapshot and a board report.",
+   "has": [
+    "met"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T09:35Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://www.sustain-nobility.com/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:36Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
+   "slug": "cycubix",
+   "name": "Cycubix",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "A Dublin cybersecurity and GRC consultancy and training company; its first product, ConsentScan, scans websites for cookie and consent violations, with an MCP server on its Pro plan.",
+   "has": [
+    "met"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T09:35Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://www.consentscan.io/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:36Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "site",
+     "url": "https://www.cycubix.com/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:36Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 6
+  },
   {
    "slug": "replit",
    "name": "Replit",

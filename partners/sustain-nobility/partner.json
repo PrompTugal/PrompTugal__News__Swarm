@@ -1,0 +1,304 @@
+{
+ "slug": "sustain-nobility",
+ "name": "Sustain-Nobility",
+ "kind": "governance",
+ "kind_label": "AI governance",
+ "one_line": "An AI-governance readiness check for SMEs and the advisors, law firms and ecosystem partners that support them: a governance score, an executive snapshot and a board report.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T09:36Z",
+ "asked": {
+  "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T09:35Z"
+ },
+ "note": "Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.",
+ "artefacts": [
+  {
+   "kind": "brief",
+   "title": "This partner brief: Sustain-Nobility",
+   "url": "#know",
+   "note": "asked for by name at the summit, 2026-11-12T09:35Z",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T09:36Z"
+  },
+  {
+   "kind": "site",
+   "title": "Their own site: sustain-nobility.com",
+   "url": "https://www.sustain-nobility.com/",
+   "note": "read by hand for this brief",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T09:36Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Offers an AI Governance Readiness Check that assesses governance maturity, identifies risks and generates 'practical, defensible outputs in days instead of months'.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Serves two audiences: SMEs using AI but unsure about the risks, and ecosystem partners 'supporting hundreds of SMEs with one scalable intelligent governance tool'.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Plans: Essentials (a 10-minute assessment, a governance score, an initial executive snapshot); Professional (adds a 30-minute review call and an initial executive board report); Partner Licensing (custom, for firms that monitor AI governance across clients).",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Says it combines AI governance, regulatory and legal risk, AI assurance and audit readiness, human rights and ethical safeguards, public policy, and SME operational realities, where most solutions cover only one of legal, technical or policy.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "The check aims to move an organisation from 'We think our AI is governed' to 'We can demonstrate our AI is governed operationally and defensibly', looking at accountability, oversight, monitoring and evidence readiness.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/our-services",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/our-services"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "It says it follows the main UK and EU regulators relevant to AI, and offers real-time diagnostics when a company changes its strategy.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/our-services",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/our-services"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Operated by SUSTAIN-NOBILITY Advisory Ltd, registered in England and Wales.",
+   "quote": "",
+   "source": "https://www.sustain-nobility.com/",
+   "read_at": "2026-11-12T09:36Z",
+   "via": "https://www.sustain-nobility.com/"
+  }
+ ],
+ "told": [
+  "It is selecting 15 pilot startups and is looking for design partners.",
+  "Both sides agreed the public company information can be published as a case study."
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "Sustain-Nobility assesses whether an organisation's AI governance can be demonstrated; RiskMandate measures, per agent, what it was asked to do, what it can actually reach, and the gap. Its assessments ask for evidence; we produce evidence, read-only, as a written record.",
+  "mandate": [
+   {
+    "text": "A readiness check states what each AI system is for and who is accountable: that is the mandate, in writing."
+   }
+  ],
+  "reach": [
+   {
+    "text": "Its public pages do not say how the reach of an organisation's agents (credentials, tools, data) is measured: unknown, and where RiskMandate's measurement fits."
+   }
+  ],
+  "gap": [
+   {
+    "text": "Its own words: from 'we think' to 'we can demonstrate'. The gap between mandate and reach, measured per agent, is that demonstration for agentic AI."
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "The evidence layer for its assessments",
+    "text": "RiskMandate's mandate, reach and gap record as evidence behind a readiness score, for clients that run AI agents.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Its pilot, with our agents as a design partner",
+    "text": "Our own agent swarm, with its policies and runs public, as a pilot subject that gives feedback on the check.",
+    "link": "../index.html"
+   },
+   {
+    "title": "Refer clients both ways",
+    "text": "Its SMEs with agents to RiskMandate for measurement; our contacts that need a governance programme to Sustain-Nobility.",
+    "link": "https://www.sustain-nobility.com/"
+   }
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+  }
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Three words for the rest of the demo. The reach shown is measured, in our own container.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A REAL measurement of our container, with a SIMULATED change: a new tool is connected mid-run.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "Mandate, reach and gap, per unit",
+   "theme": "harness",
+   "demo": "harness-reach",
+   "why": "Tonight's units, measured three ways.",
+   "present": "theme.html?t=harness&d=harness-reach",
+   "stage": "../stage.html?scene=harness-reach"
+  }
+ ],
+ "deck": {
+  "id": "partner-sustain-nobility",
+  "title": "Sustain-Nobility: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T09:36Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Sustain-Nobility",
+    "sub": "An AI-governance readiness check for SMEs and the advisors, law firms and ecosystem partners that support them: a governance score, an executive snapshot and…",
+    "caption": "What we have on Sustain-Nobility, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Offers an AI Governance Readiness Check that assesses governance maturity, identifies risks and generates 'practical, defensible outputs…",
+     "Serves two audiences: SMEs using AI but unsure about the risks, and ecosystem partners 'supporting hundreds of SMEs with one scalable…",
+     "Plans: Essentials (a 10-minute assessment, a governance score, an initial executive snapshot); Professional (adds a 30-minute review call…",
+     "Says it combines AI governance, regulatory and legal risk, AI assurance and audit readiness, human rights and ethical safeguards, public…",
+     "The check aims to move an organisation from 'We think our AI is governed' to 'We can demonstrate our AI is governed operationally and…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "from 'we think' to 'we can demonstrate'. The gap between mandate and reach, measured per agent, is that demonstration…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "The evidence layer for its assessments",
+     "Its pilot, with our agents as a design partner",
+     "Refer clients both ways"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach, gap",
+    "step": "gap/two-ways-to-close-it",
+    "caption": "Three words for the rest of the demo. The reach shown is measured, in our own container."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · the summit promotion",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
+     "Write to agent@riskmandate.ai."
+    ]
+   }
+  ]
+ }
+}

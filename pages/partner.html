@@ -87,7 +87,7 @@ const Q = new URLSearchParams(location.search), slug = (Q.get('c') || '').replac
 const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
 const day = (t) => String(t || '').replace('T', ' ').replace(/Z$/, ' UTC');
 const srcs = (list) => (list || []).filter(Boolean).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join('');
-const KIND = { 'gamma-ray': 'GAMMA-Ray card (beta)', 'gamma-ray-scan': 'GAMMA-Ray scan (beta)', xray: 'X-ray record', 'xray-deck': 'X-ray deck', 'xray-run': 'X-ray run' };
+const KIND = { brief: 'Brief', site: 'Their own site', 'gamma-ray': 'GAMMA-Ray card (beta)', 'gamma-ray-scan': 'GAMMA-Ray scan (beta)', xray: 'X-ray record', 'xray-deck': 'X-ray deck', 'xray-run': 'X-ray run' };
 let P = null, player = null;
 
 function brief(p) {
@@ -100,6 +100,8 @@ function brief(p) {
   const k = [];
   const x = p.xray;
   if (x && x.what_it_does) k.push(`<p>${esc(x.what_it_does)}</p><div class="src">From <a href="${esc(x.page)}" target="_blank" rel="noopener">the X-ray</a>, sources read ${esc(x.read_on)}</div>`);
+  if (!p.gamma_ray.length && p.facts.length) k.push(`<h3 style="margin:16px 0 8px">From their own public pages</h3><ul class="facts">${p.facts.map((f) => `<li>${esc(f.fact)}<div class="src"><a href="${esc(f.source)}" target="_blank" rel="noopener">${esc(host(f.source))}</a><span>read ${esc(day(f.read_at))}</span></div></li>`).join('')}</ul>`);
+  if ((p.told || []).length) k.push(`<h3 style="margin:16px 0 8px">What they told us at the summit <span class="lab hyp">Said to us, not on their pages</span></h3><ul class="facts">${p.told.map((t) => `<li>${esc(t)}<div class="src"><span>${esc((p.asked || {}).by || '')}${(p.asked || {}).at ? ', ' + esc(day(p.asked.at)) : ''}</span></div></li>`).join('')}</ul>`);
   if (p.gamma_ray.length) k.push(`<h3 style="margin:16px 0 8px">From the GAMMA-Ray evidence</h3><ul class="facts">${p.facts.map((f) => `<li>${esc(f.fact)}${f.quote ? `<q>${esc(f.quote)}</q>` : ''}<div class="src"><span>${esc(f.label)} (${esc(f.dims.join(', '))})</span><a href="${esc(f.source)}" target="_blank" rel="noopener">${esc(host(f.source))}</a><span>read ${esc(day(f.read_at))}</span><a href="${esc(f.via)}" target="_blank" rel="noopener">on the card</a></div></li>`).join('')}</ul>`);
   if (x) {
     k.push(`<h3 style="margin:16px 0 8px">From the X-ray: what its AI helpers can reach</h3>` + x.situations.map((s, i) => `<details class="sit"${i ? '' : ' open'}><summary>${esc(s.title)}${s.helper ? ` <span style="color:var(--muted);font-weight:400">· ${esc(s.helper)}</span>` : ''}</summary><div><ul>${s.reach.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><div class="src">${srcs(s.reach_sources)}<span>read ${esc(x.read_on)}</span></div></div></details>`).join(''));

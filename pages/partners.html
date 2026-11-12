@@ -52,7 +52,7 @@ footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);
 <footer>Built by partners.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215), from our own public sites: <a href="https://gamma-ray.sgit.ai/">GAMMA-Ray</a> (a beta standard; every rating is experimental) and <a href="https://web-summit.sgit.ai/xray/">the X-ray</a>. Public sources only; no contact details. Independent of Web Summit. <span id="upd"></span></footer>
 <script>
 const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const HAS = [['all', 'All'], ['both', 'Card and X-ray'], ['gamma-ray', 'GAMMA-Ray card'], ['xray', 'X-ray record']];
+const HAS = [['all', 'All'], ['met', 'Met at the summit'], ['both', 'Card and X-ray'], ['gamma-ray', 'GAMMA-Ray card'], ['xray', 'X-ray record']];
 const Q = new URLSearchParams(location.search);
 let ALL = [], KINDS = {}, st = { q: Q.get('q') || '', has: Q.get('has') || 'all', kind: Q.get('kind') || 'all' };
 function route() { const p = new URLSearchParams(); if (st.q) p.set('q', st.q); if (st.has !== 'all') p.set('has', st.has); if (st.kind !== 'all') p.set('kind', st.kind); try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) {} }
@@ -72,7 +72,7 @@ function chips() {
 function render() {
   const L = ALL.filter(match);
   $('#grid').innerHTML = L.map((p) => `<a class="card" href="partner.html?c=${encodeURIComponent(p.slug)}"><h2>${esc(p.name)}<small>${esc(p.kind_label)}</small></h2><p>${esc(p.one_line)}</p>
-    <div class="tags">${p.has.includes('gamma-ray') ? (p.codes || []).map((c) => `<span class="g" title="GAMMA-Ray card (beta)">γ ${esc(c)}</span>`).join('') : ''}${p.has.includes('xray') ? '<span class="x">X-ray + deck</span>' : ''}${(p.products || []).map((x) => `<span>${esc(x)}</span>`).join('')}</div></a>`).join('');
+    <div class="tags">${p.has.includes('gamma-ray') ? (p.codes || []).map((c) => `<span class="g" title="GAMMA-Ray card (beta)">γ ${esc(c)}</span>`).join('') : ''}${p.has.includes('xray') ? '<span class="x">X-ray + deck</span>' : ''}${p.has.includes('met') ? '<span class="g">Met at the summit</span>' : ''}${(p.products || []).map((x) => `<span>${esc(x)}</span>`).join('')}</div></a>`).join('');
   $('#empty').hidden = !!L.length; $('#count').textContent = `${L.length} of ${ALL.length} companies`;
   chips(); route();
 }

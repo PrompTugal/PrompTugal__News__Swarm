@@ -59,7 +59,7 @@ COMPANIES = {
 
 KIND_LABEL = {'coding': 'Coding agents', 'general-agent': 'General agents', 'customer-service': 'Customer service',
               'security': 'Security', 'platform': 'Agent platforms', 'legal': 'Legal', 'finance': 'Finance and insurance',
-              'infrastructure': 'Infrastructure for agents', 'other': 'Other'}
+              'infrastructure': 'Infrastructure for agents', 'governance': 'AI governance', 'other': 'Other'}
 
 # Our demos, by the kind of agent they speak to: (theme, demo id, why it fits them). Deep links into the themes page
 # (the demo on the left, what to say on the right) and the stage scene itself.
@@ -325,8 +325,38 @@ def main():
                       'products': [c['product'] for c in cards], 'codes': [c['code'] for c in cards],
                       'artefacts': [{k: a[k] for k in ('kind', 'url', 'read_on', 'fetched_at')} | {'source': 'gamma-ray.sgit.ai' if a['kind'].startswith('gamma') else 'web-summit.sgit.ai/xray'} for a in arte],
                       'material': len(arte) + len(p['facts']) + (len(xray['situations']) * 3 if xray else 0)})
-    index.sort(key=lambda x: (-len(x['has']), -x['material'], x['name'].lower()))
-    out = {'about': 'Every company we have something on: a GAMMA-Ray card (beta) or an X-ray record, on our own public sites. One entry per company; its mini deck is pages/partner.html?c=<slug>. Only companies with at least one real artefact.',
+    # companies asked for by name at the summit: written by hand from their own public pages (partners/requested.json)
+    themes = {(t['id'], d['id']): d for t in json.load(open(os.path.join(ROOT, 'stories/themes.json')))['themes'] for d in t['demos']}
+    req = json.load(open(os.path.join(ROOT, 'partners/requested.json')))
+    for r in req['partners']:
+        slug, name = r['slug'], r['name']
+        brief = f'pages/partner.html?c={slug}'
+        arte = [{'kind': 'brief', 'title': f'This partner brief: {name}', 'url': '#know', 'note': f'asked for by name at the summit, {r["asked"]["at"]}', 'read_on': r['public'][0]['read_at'][:10], 'fetched_at': r['public'][0]['read_at']}]
+        arte += [{'kind': 'site', 'title': f'Their own site: {host}', 'url': url, 'note': 'read by hand for this brief', 'read_on': r['public'][0]['read_at'][:10], 'fetched_at': r['public'][0]['read_at']}
+                 for url, host in sorted({(f['source'].split('/', 3)[0] + '//' + f['source'].split('/', 3)[2] + '/', f['source'].split('/', 3)[2].replace('www.', '')) for f in r['public']})]
+        facts = [{'indicator': None, 'dims': [], 'label': 'From their own pages', 'fact': f['fact'], 'quote': '', 'source': f['source'], 'read_at': f['read_at'], 'via': f['source']} for f in r['public']]
+        demos = []
+        for t, d in r['demos']:
+            th = themes.get((t, d), {})
+            demos.append({'title': scenes.get(d, d), 'theme': t, 'demo': d, 'why': th.get('context', ''), 'present': f'theme.html?t={t}&d={d}', 'stage': f'../stage.html?scene={d}'})
+        h = r['help']
+        p = {'slug': slug, 'name': name, 'kind': r['kind'], 'kind_label': KIND_LABEL[r['kind']], 'one_line': r['one_line'],
+             'made_by': BY, 'issue': 'WS-215', 'for': 'Dinis Cruz', 'built_at': r['public'][0]['read_at'], 'asked': r['asked'],
+             'note': 'Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.',
+             'artefacts': arte, 'gamma_ray': [], 'facts': facts, 'told': r.get('told', []), 'xray': None,
+             'help': {'label': 'Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.', 'pitch': h['pitch'],
+                      'mandate': [{'text': x} for x in h['mandate']], 'reach': [{'text': x} for x in h['reach']], 'gap': [{'text': x} for x in h['gap']]},
+             'together': {'label': 'Our suggestions. Nothing here is agreed.', 'items': r['together'], 'offer': OFFER}, 'demos': demos}
+        p['deck'] = deck_for(p, steps)
+        os.makedirs(os.path.join(ROOT, 'partners', slug), exist_ok=True)
+        with open(os.path.join(ROOT, 'partners', slug, 'partner.json'), 'w', encoding='utf-8') as f:
+            json.dump(p, f, ensure_ascii=False, indent=1); f.write('\n')
+        index.append({'slug': slug, 'name': name, 'kind': r['kind'], 'kind_label': KIND_LABEL[r['kind']], 'one_line': r['one_line'], 'has': ['met'],
+                      'products': [], 'codes': [], 'asked_at': r['asked']['at'],
+                      'artefacts': [{k: a[k] for k in ('kind', 'url', 'read_on', 'fetched_at')} | {'source': 'their own site, read by hand'} for a in arte if a['kind'] == 'site'],
+                      'material': len(facts)})
+    index.sort(key=lambda x: (x['has'] != ['met'], -len(x['has']), -x['material'], x['name'].lower()))
+    out = {'about': 'Every company we have something on: a GAMMA-Ray card (beta) or an X-ray record, on our own public sites. One entry per company; its mini deck is pages/partner.html?c=<slug>. Only companies with at least one real artefact, or asked for by name at the summit (partners/requested.json, from their own public pages).',
            'by': BY, 'for': 'Dinis Cruz', 'issue': 'WS-215', 'updated': FETCHED,
            'sources': [GR, XR], 'kinds': KIND_LABEL, 'partners': index}
     with open(os.path.join(ROOT, 'partners', 'index.json'), 'w', encoding='utf-8') as f:
