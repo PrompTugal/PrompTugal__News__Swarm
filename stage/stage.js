@@ -131,7 +131,8 @@
     SCENES = PACK ? PACKS[PACK].scenes.map((id) => ALL_SCENES.find((s) => s.id === id)).filter(Boolean) : ALL_SCENES.filter((s) => !s.hidden);
     // a pack (or the story) opens by playing its first step and holding on its end, so it never opens on an empty
     // card frame (swarm.1.designer, 04:36: the harness pack opened on a table with 0 rows); ← goes back to t = 0
-    layout(); t = 0; shownScene = null; playing = STEPS.length > 0; stopAt = STEPS.length ? STEPS[0].e - 1e-3 : null;
+    layout(); t = 0; shownScene = null; embedFromUrl();
+    const k0 = Math.max(0, stepFromUrl()); playing = STEPS.length > 0; t = STEPS.length ? STEPS[k0].s : 0; stopAt = STEPS.length ? STEPS[k0].e - 1e-3 : null;
     if (typeof renderStory === 'function' && $('#story')) renderStory();
   }
   addEventListener('hashchange', () => applyPack(packFromUrl()));
@@ -156,9 +157,15 @@
     const order = []; SCENES.forEach((x) => { const a = x.act || ''; if (!order.includes(a)) order.push(a); });
     return (order.indexOf(sc.act || '') + 1) + ' · ' + String(sc.act || '').replace(/^\d+\s*·\s*/, '');
   }
+  const slug = (x) => String(x || '').toLowerCase().normalize('NFKD').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  function stepId(sc, st, i) { return sc.id + '/' + (st.id || slug(st.label) || String(i + 1)); }
+  // #...&step=<id or n>: open on that step (an id from stepId, or 1..n inside the pack); &embed: the stage alone, for an iframe
+  const hashParam = (k) => { const m = new RegExp('[#&]' + k + '(?:=([^&]*))?(?:&|$)').exec(location.hash); return m ? (m[1] != null ? decodeURIComponent(m[1]) : '') : null; };
+  function stepFromUrl() { const v = hashParam('step'); if (v == null || v === '') return -1; if (/^\d+$/.test(v)) return clamp(+v - 1, 0, STEPS.length - 1); return STEPS.findIndex((x) => x.sid === v || x.sid === v.replace(/^\//, '')); }
+  function embedFromUrl() { document.documentElement.classList.toggle('embed', hashParam('embed') != null); }
   function layout() {   // the flattened clock: steps back to back
     STEPS = []; let at = 0;
-    SCENES.forEach((sc, si) => sc.steps.forEach((st, i) => { STEPS.push({ scene: sc, si, i, s: at, e: at + st.dur, step: st }); at += st.dur; }));
+    SCENES.forEach((sc, si) => sc.steps.forEach((st, i) => { STEPS.push({ scene: sc, si, i, s: at, e: at + st.dur, step: st, sid: stepId(sc, st, i) }); at += st.dur; }));
     TOTAL = at;
   }
   function stepAt(time) { for (let k = 0; k < STEPS.length; k++) if (time < STEPS[k].e - 1e-6) return k; return STEPS.length - 1; }
@@ -780,7 +787,7 @@
     if (!st) { $('#where').textContent = 'no scenes'; return; }
     const mine = STEPS.filter((x) => x.si === st.si);
     $('#where').innerHTML = `<b>${esc(actName(st.scene))}</b> · ${esc(st.scene.title)} <small>${st.si + 1}/${SCENES.length}</small>`;
-    $('#steps').innerHTML = mine.map((x) => { const cur = x.i === st.i, done = x.i < st.i || (cur && st.p >= 0.999); return `<button class="st ${cur ? 'cur' : ''} ${done ? 'done' : ''}" data-k="${STEPS.indexOf(x)}" title="${esc(x.step.label || '')}"><i style="width:${cur ? st.p * 100 : done ? 100 : 0}%"></i><span>${esc(x.step.label || 'step ' + (x.i + 1))}</span></button>`; }).join('');
+    $('#steps').innerHTML = mine.map((x) => { const cur = x.i === st.i, done = x.i < st.i || (cur && st.p >= 0.999); return `<button class="st ${cur ? 'cur' : ''} ${done ? 'done' : ''}" data-k="${STEPS.indexOf(x)}" title="${esc((x.step.label || '') + '  ·  #step=' + x.sid)}"><i style="width:${cur ? st.p * 100 : done ? 100 : 0}%"></i><span>${esc(x.step.label || 'step ' + (x.i + 1))}</span></button>`; }).join('');
     document.querySelectorAll('#story .sc').forEach((b) => b.classList.toggle('cur', +b.dataset.si === st.si));
   }
   let lastCap = '';
@@ -874,7 +881,7 @@
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
     ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–6', 'view: top-down, tree, radial, force, 3D, the designer\'s views'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
-    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['P', 'play the whole story, from this scene to the end, without stopping'], ['B', 'brisk: one press of → plays a whole scene; ← to the end of the one before (or #...&brisk)'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'], ['double-click a unit', 'zoom to it and everything it started (0 to come back)'], ['click a unit', 'open its box'],
+    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['U', 'copy a link to this step (#step=<scene>/<step>; add &embed for an iframe)'], ['P', 'play the whole story, from this scene to the end, without stopping'], ['B', 'brisk: one press of → plays a whole scene; ← to the end of the one before (or #...&brisk)'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'], ['double-click a unit', 'zoom to it and everything it started (0 to come back)'], ['click a unit', 'open its box'],
   ];
   const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'];
   function onKey(e) {
@@ -896,6 +903,7 @@
     else if (k === 's' || k === 'S') { const R = [0.5, 1, 2, 5, 20], i = R.indexOf(K.rate); K.rate = R[(i < 0 ? 1 : i + (k === 'S' ? R.length - 1 : 1)) % R.length]; saveK(); toast('speed ' + K.rate + '×'); }
     else if (k === 'h' || k === 'H') { K.auto = !K.auto; applyPanes(); toast('auto-advance ' + (K.auto ? 'on' : 'off')); }
     else if (k === 'p' || k === 'P') playAll();
+    else if (k === 'u' || k === 'U') { const S = STEPS[stepAt(t)]; if (S) { const url = location.origin + location.pathname + '#' + (PACK ? 'pack=' + PACK + '&' : '') + 'step=' + S.sid; try { navigator.clipboard.writeText(url); } catch (e) { /* no clipboard */ } toast('link to this step: ' + S.sid); } }
     else if (k === 'b' || k === 'B') { K.brisk = !K.brisk; applyPanes(); toast(K.brisk ? 'brisk: one press plays a whole scene' : 'step by step'); }
     else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
     else if (k === '?') $('#help').toggleAttribute('open');

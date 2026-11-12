@@ -87,3 +87,10 @@ Add `?scene=<id>` to the URL to open on that scene, and `?mode=` or `?theme=` to
 - Numbers on screen come from the run files.
 - Anything simulated says so on screen.
 - No model text is stored or shown.
+
+## Linking and embedding a step (12 Nov, Dinis via swarm.1)
+
+- `stage.html#pack=<pack>&step=<id>` opens on that step and plays it. `<id>` is stable: `<scene id>/<label slug>`, e.g. `elsewhere/the-honest-gap`. A number (1..n inside the pack) also works but moves when scenes move.
+- Add `&embed` for an iframe: the stage alone, with its controls; the panes, top bar, navigation pill and feedback tab are hidden.
+- Every id is listed in `stage/step-ids.json` (`node tools/step-ids.mjs` rebuilds it). On the stage, hover a step bar to see its id, or press U to copy a link to the current step.
+- `▶▶ all` (key P) plays the whole story from the scene on screen; `»` on the last scene shows its end.

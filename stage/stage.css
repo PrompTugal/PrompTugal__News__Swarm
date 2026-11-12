@@ -209,3 +209,7 @@ html.focus #simflag { left: 116px !important }   /* in focus mode the badge move
 #packs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px } #packs .pk { display: flex; align-items: center; justify-content: center; text-align: center; white-space: normal; line-height: 1.2; padding: 3px 6px; border-radius: 8px; min-height: 2.1em }
 #playall { font-size: .8em; white-space: nowrap }
 #card details.src { border: 0; background: none; box-shadow: none; padding: 0; width: auto; max-width: none }   /* a quiet line, not a box */
+/* embed (#...&embed): the stage alone, for an iframe on a theme page; the controls stay, the panes, top bar and nav pill go */
+html.embed .app { grid-template-columns: 0 0 1fr 0 0 !important; grid-template-rows: 0 1fr auto }
+html.embed header, html.embed .pane, html.embed .handle { visibility: hidden; overflow: hidden; padding: 0; border: 0; min-height: 0 } html.embed .swpill, html.embed .swnav { display: none !important }
+html.embed #simflag { left: 12px !important }

@@ -1,0 +1,1937 @@
+{
+ "about": "stage.html#pack=<pack>&step=<step>&embed (tools/step-ids.mjs)",
+ "story": [
+  {
+   "step": "opening/the-question",
+   "label": "the question",
+   "scene": "The same work, two ways"
+  },
+  {
+   "step": "opening/what-it-runs",
+   "label": "what it runs",
+   "scene": "The same work, two ways"
+  },
+  {
+   "step": "opening/the-number",
+   "label": "the number",
+   "scene": "The same work, two ways"
+  },
+  {
+   "step": "opening/the-promise",
+   "label": "the promise",
+   "scene": "The same work, two ways"
+  },
+  {
+   "step": "gap/mandate",
+   "label": "mandate",
+   "scene": "Mandate, reach, gap"
+  },
+  {
+   "step": "gap/reach",
+   "label": "reach",
+   "scene": "Mandate, reach, gap"
+  },
+  {
+   "step": "gap/the-gap",
+   "label": "the gap",
+   "scene": "Mandate, reach, gap"
+  },
+  {
+   "step": "gap/two-ways-to-close-it",
+   "label": "two ways to close it",
+   "scene": "Mandate, reach, gap"
+  },
+  {
+   "step": "reach-measured/needed-against-held",
+   "label": "needed against held",
+   "scene": "The gap, measured unit by unit"
+  },
+  {
+   "step": "reach-measured/only-the-calls",
+   "label": "only the calls",
+   "scene": "The gap, measured unit by unit"
+  },
+  {
+   "step": "reach-measured/narrowed",
+   "label": "narrowed",
+   "scene": "The gap, measured unit by unit"
+  },
+  {
+   "step": "altitudes/you-and-the-agent",
+   "label": "you and the agent",
+   "scene": "One agent, five altitudes"
+  },
+  {
+   "step": "altitudes/loops",
+   "label": "loops",
+   "scene": "One agent, five altitudes"
+  },
+  {
+   "step": "altitudes/model-calls",
+   "label": "model calls",
+   "scene": "One agent, five altitudes"
+  },
+  {
+   "step": "altitudes/code",
+   "label": "code",
+   "scene": "One agent, five altitudes"
+  },
+  {
+   "step": "altitudes/by-colour",
+   "label": "by colour",
+   "scene": "One agent, five altitudes"
+  },
+  {
+   "step": "swarm-of-loops/the-agent",
+   "label": "the agent",
+   "scene": "A swarm of loops"
+  },
+  {
+   "step": "swarm-of-loops/the-run-replayed",
+   "label": "the run, replayed",
+   "scene": "A swarm of loops"
+  },
+  {
+   "step": "swarm-of-loops/who-did-the-work",
+   "label": "who did the work",
+   "scene": "A swarm of loops"
+  },
+  {
+   "step": "same-privileges/the-run",
+   "label": "the run",
+   "scene": "Everybody can reach everything"
+  },
+  {
+   "step": "same-privileges/connect-the-agent",
+   "label": "connect the agent",
+   "scene": "Everybody can reach everything"
+  },
+  {
+   "step": "same-privileges/who-can-reach-them",
+   "label": "who can reach them?",
+   "scene": "Everybody can reach everything"
+  },
+  {
+   "step": "same-privileges/send-not-draft",
+   "label": "send, not draft",
+   "scene": "Everybody can reach everything"
+  },
+  {
+   "step": "same-privileges/one-goes-wrong",
+   "label": "one goes wrong",
+   "scene": "Everybody can reach everything"
+  },
+  {
+   "step": "send-button/draft-not-send",
+   "label": "draft, not send",
+   "scene": "A send button is not a mandate"
+  },
+  {
+   "step": "send-button/one-message-every-message",
+   "label": "one message, every message",
+   "scene": "A send button is not a mandate"
+  },
+  {
+   "step": "send-button/an-edit-cannot-be-undone",
+   "label": "an edit cannot be undone",
+   "scene": "A send button is not a mandate"
+  },
+  {
+   "step": "send-button/a-rule-in-prose",
+   "label": "a rule in prose",
+   "scene": "A send button is not a mandate"
+  },
+  {
+   "step": "policies/everybody",
+   "label": "everybody",
+   "scene": "A policy on every unit"
+  },
+  {
+   "step": "policies/policy-on",
+   "label": "policy on",
+   "scene": "A policy on every unit"
+  },
+  {
+   "step": "policies/but-who-enforces-it",
+   "label": "but who enforces it?",
+   "scene": "A policy on every unit"
+  },
+  {
+   "step": "db-mandate/access-only",
+   "label": "access only",
+   "scene": "A mandate as deep as the business logic"
+  },
+  {
+   "step": "db-mandate/under-the-mandate",
+   "label": "under the mandate",
+   "scene": "A mandate as deep as the business logic"
+  },
+  {
+   "step": "db-mandate/the-line",
+   "label": "the line",
+   "scene": "A mandate as deep as the business logic"
+  },
+  {
+   "step": "elsewhere/a-signed-request",
+   "label": "a signed request",
+   "scene": "Run it where the assets are not"
+  },
+  {
+   "step": "elsewhere/the-push-starts-an-action",
+   "label": "the push starts an Action",
+   "scene": "Run it where the assets are not"
+  },
+  {
+   "step": "elsewhere/the-work-runs-there",
+   "label": "the work runs there",
+   "scene": "Run it where the assets are not"
+  },
+  {
+   "step": "elsewhere/the-honest-gap",
+   "label": "the honest gap",
+   "scene": "Run it where the assets are not"
+  },
+  {
+   "step": "elsewhere/can-they-reach-the-assets",
+   "label": "can they reach the assets?",
+   "scene": "Run it where the assets are not"
+  },
+  {
+   "step": "mesh/five-agents",
+   "label": "five agents",
+   "scene": "Five agents, every one wired to everything"
+  },
+  {
+   "step": "mesh/every-connector",
+   "label": "every connector",
+   "scene": "Five agents, every one wired to everything"
+  },
+  {
+   "step": "mesh/one-loses-control",
+   "label": "one loses control",
+   "scene": "Five agents, every one wired to everything"
+  },
+  {
+   "step": "one-per-asset/the-same-five",
+   "label": "the same five",
+   "scene": "One agent per asset"
+  },
+  {
+   "step": "one-per-asset/one-each",
+   "label": "one each",
+   "scene": "One agent per asset"
+  },
+  {
+   "step": "one-per-asset/one-loses-control",
+   "label": "one loses control",
+   "scene": "One agent per asset"
+  },
+  {
+   "step": "scale/one-job",
+   "label": "one job",
+   "scene": "One push, twelve jobs at once"
+  },
+  {
+   "step": "scale/jobs-at-once",
+   "label": "jobs at once",
+   "scene": "One push, twelve jobs at once"
+  },
+  {
+   "step": "scale/calls",
+   "label": "calls",
+   "scene": "One push, twelve jobs at once"
+  },
+  {
+   "step": "scale/signed",
+   "label": "signed",
+   "scene": "One push, twelve jobs at once"
+  },
+  {
+   "step": "cost/opus",
+   "label": "Opus",
+   "scene": "The same tokens, four prices"
+  },
+  {
+   "step": "cost/sonnet",
+   "label": "Sonnet",
+   "scene": "The same tokens, four prices"
+  },
+  {
+   "step": "cost/haiku",
+   "label": "Haiku",
+   "scene": "The same tokens, four prices"
+  },
+  {
+   "step": "cost/openrouter",
+   "label": "OpenRouter",
+   "scene": "The same tokens, four prices"
+  },
+  {
+   "step": "harness-did-its-job/the-work",
+   "label": "the work",
+   "scene": "Everything it was asked to do, it did"
+  },
+  {
+   "step": "harness-did-its-job/and-everything-else",
+   "label": "and everything else",
+   "scene": "Everything it was asked to do, it did"
+  },
+  {
+   "step": "harness/before",
+   "label": "before",
+   "scene": "One process, one policy, six probes"
+  },
+  {
+   "step": "harness/six-probes",
+   "label": "six probes",
+   "scene": "One process, one policy, six probes"
+  },
+  {
+   "step": "harness/not-covered",
+   "label": "not covered",
+   "scene": "One process, one policy, six probes"
+  },
+  {
+   "step": "harness/closed-since",
+   "label": "closed since",
+   "scene": "One process, one policy, six probes"
+  },
+  {
+   "step": "check-inside/the-ask",
+   "label": "the ask",
+   "scene": "A check inside the agent"
+  },
+  {
+   "step": "check-inside/tricked",
+   "label": "tricked",
+   "scene": "A check inside the agent"
+  },
+  {
+   "step": "check-outside/six-asks-one-policy",
+   "label": "six asks, one policy",
+   "scene": "A check outside the process"
+  },
+  {
+   "step": "harness-before-after/unharnessed",
+   "label": "unharnessed",
+   "scene": "The same code, before and after the harness"
+  },
+  {
+   "step": "harness-before-after/harnessed",
+   "label": "harnessed",
+   "scene": "The same code, before and after the harness"
+  },
+  {
+   "step": "harness-before-after/same-output",
+   "label": "same output",
+   "scene": "The same code, before and after the harness"
+  },
+  {
+   "step": "harness-door/the-door-s-log",
+   "label": "the door's log",
+   "scene": "The network door"
+  },
+  {
+   "step": "harness-engine/bare",
+   "label": "bare",
+   "scene": "The real engine, under the harness"
+  },
+  {
+   "step": "harness-engine/no-network",
+   "label": "no network",
+   "scene": "The real engine, under the harness"
+  },
+  {
+   "step": "harness-engine/the-door",
+   "label": "the door",
+   "scene": "The real engine, under the harness"
+  },
+  {
+   "step": "harness-engine/the-model-call",
+   "label": "the model call",
+   "scene": "The real engine, under the harness"
+  },
+  {
+   "step": "harness-loops/four-loops",
+   "label": "four loops",
+   "scene": "Loops that retry, under the harness"
+  },
+  {
+   "step": "harness-credential/through-the-door",
+   "label": "through the door",
+   "scene": "The mandate allowed, the credential not yet carried"
+  },
+  {
+   "step": "harness-credential/the-missing-row",
+   "label": "the missing row",
+   "scene": "The mandate allowed, the credential not yet carried"
+  },
+  {
+   "step": "harness-reach/need-reach-harnessed",
+   "label": "need, reach, harnessed",
+   "scene": "Mandate, reach and gap, per unit"
+  },
+  {
+   "step": "pki/the-packet",
+   "label": "the packet",
+   "scene": "Who did what, provably"
+  },
+  {
+   "step": "pki/each-call",
+   "label": "each call",
+   "scene": "Who did what, provably"
+  },
+  {
+   "step": "pki/the-result",
+   "label": "the result",
+   "scene": "Who did what, provably"
+  },
+  {
+   "step": "pki/the-push",
+   "label": "the push",
+   "scene": "Who did what, provably"
+  },
+  {
+   "step": "pki/in-the-graph",
+   "label": "in the graph",
+   "scene": "Who did what, provably"
+  },
+  {
+   "step": "harness-keys/the-keys",
+   "label": "the keys",
+   "scene": "Keys that live for one run"
+  },
+  {
+   "step": "harness-key-inside/the-keys",
+   "label": "the keys",
+   "scene": "A key born inside the run"
+  },
+  {
+   "step": "harness-key-inside/no-file-no-row",
+   "label": "no file, no row",
+   "scene": "A key born inside the run"
+  },
+  {
+   "step": "harness-key-inside/nothing-to-inherit",
+   "label": "nothing to inherit",
+   "scene": "A key born inside the run"
+  },
+  {
+   "step": "harness-key-inside/the-honest-line",
+   "label": "the honest line",
+   "scene": "A key born inside the run"
+  },
+  {
+   "step": "harness-key-inside/a-separate-uid",
+   "label": "a separate uid",
+   "scene": "A key born inside the run"
+  },
+  {
+   "step": "team/everyone-faint",
+   "label": "everyone, faint",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "team/dinis",
+   "label": "Dinis",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "team/the-conductors",
+   "label": "the conductors",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "team/the-agents",
+   "label": "the agents",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "team/the-day-replayed",
+   "label": "the day, replayed",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "team/and-the-action",
+   "label": "and the Action",
+   "scene": "Who is building this demo tonight"
+  },
+  {
+   "step": "handover/the-four-places",
+   "label": "the four places",
+   "scene": "A handover through a vault"
+  },
+  {
+   "step": "handover/relay-1-hands-over",
+   "label": "relay.1 hands over",
+   "scene": "A handover through a vault"
+  },
+  {
+   "step": "handover/relay-2-works",
+   "label": "relay.2 works",
+   "scene": "A handover through a vault"
+  },
+  {
+   "step": "handover/relay-3-tries-the-wrong-key",
+   "label": "relay.3 tries the wrong key",
+   "scene": "A handover through a vault"
+  },
+  {
+   "step": "handover/the-public-summary",
+   "label": "the public summary",
+   "scene": "A handover through a vault"
+  },
+  {
+   "step": "q-identity/every-agent-makes-its",
+   "label": "every agent makes its",
+   "scene": "How do they get an identity?"
+  },
+  {
+   "step": "q-identity/29-public-keys-in",
+   "label": "29 public keys in",
+   "scene": "How do they get an identity?"
+  },
+  {
+   "step": "q-identity/every-packet-every-model",
+   "label": "every packet every model",
+   "scene": "How do they get an identity?"
+  },
+  {
+   "step": "q-identity/the-same-packet-on",
+   "label": "the same packet on",
+   "scene": "How do they get an identity?"
+  },
+  {
+   "step": "q-communication/through-git-every-commit",
+   "label": "through git every commit",
+   "scene": "How do they talk to each other?"
+  },
+  {
+   "step": "q-communication/806-commits-in-24",
+   "label": "806 commits in 24",
+   "scene": "How do they talk to each other?"
+  },
+  {
+   "step": "q-communication/signed-requests-start-runs",
+   "label": "signed requests start runs",
+   "scene": "How do they talk to each other?"
+  },
+  {
+   "step": "q-communication/messages-between-agents-are",
+   "label": "messages between agents are",
+   "scene": "How do they talk to each other?"
+  },
+  {
+   "step": "q-governance/deny-by-default-one",
+   "label": "deny by default one",
+   "scene": "Who controls what they can do?"
+  },
+  {
+   "step": "q-governance/12-core-rules-3",
+   "label": "12 core rules 3",
+   "scene": "Who controls what they can do?"
+  },
+  {
+   "step": "q-governance/enforced-by-a-hook",
+   "label": "enforced by a hook",
+   "scene": "Who controls what they can do?"
+  },
+  {
+   "step": "q-governance/the-rest-observe-and",
+   "label": "the rest observe and",
+   "scene": "Who controls what they can do?"
+  },
+  {
+   "step": "q-audit/every-run-is-a",
+   "label": "every run is a",
+   "scene": "Where is the audit history?"
+  },
+  {
+   "step": "q-audit/every-result-is-signed",
+   "label": "every result is signed",
+   "scene": "Where is the audit history?"
+  },
+  {
+   "step": "q-audit/13-checks-offline-toolscheck-runmjs",
+   "label": "13 checks offline toolscheck-runmjs",
+   "scene": "Where is the audit history?"
+  },
+  {
+   "step": "q-audit/no-prompt-or-answer",
+   "label": "no prompt or answer",
+   "scene": "Where is the audit history?"
+  },
+  {
+   "step": "q-why/every-request-carries-its",
+   "label": "every request carries its",
+   "scene": "Why did they think they were allowed?"
+  },
+  {
+   "step": "q-why/every-commit-names-the",
+   "label": "every commit names the",
+   "scene": "Why did they think they were allowed?"
+  },
+  {
+   "step": "q-why/and-we-measure-where",
+   "label": "and we measure where",
+   "scene": "Why did they think they were allowed?"
+  },
+  {
+   "step": "q-gap/needed-against-held",
+   "label": "needed against held",
+   "scene": "The gap, measured"
+  },
+  {
+   "step": "q-gap/only-the-calls",
+   "label": "only the calls",
+   "scene": "The gap, measured"
+  },
+  {
+   "step": "q-gap/narrowed",
+   "label": "narrowed",
+   "scene": "The gap, measured"
+  },
+  {
+   "step": "glyph-language/1",
+   "label": "1",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-language/2",
+   "label": "2",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-language/3",
+   "label": "3",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-language/4",
+   "label": "4",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-language/5",
+   "label": "5",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-language/6",
+   "label": "6",
+   "scene": "The language"
+  },
+  {
+   "step": "glyph-gap/1",
+   "label": "1",
+   "scene": "Mandate, reach, gap (animated)"
+  },
+  {
+   "step": "glyph-gap/2",
+   "label": "2",
+   "scene": "Mandate, reach, gap (animated)"
+  },
+  {
+   "step": "glyph-gap/3",
+   "label": "3",
+   "scene": "Mandate, reach, gap (animated)"
+  },
+  {
+   "step": "glyph-gap/4",
+   "label": "4",
+   "scene": "Mandate, reach, gap (animated)"
+  },
+  {
+   "step": "glyph-harness/1",
+   "label": "1",
+   "scene": "The harness (animated)"
+  },
+  {
+   "step": "glyph-harness/2",
+   "label": "2",
+   "scene": "The harness (animated)"
+  },
+  {
+   "step": "glyph-harness/3",
+   "label": "3",
+   "scene": "The harness (animated)"
+  },
+  {
+   "step": "glyph-harness/4",
+   "label": "4",
+   "scene": "The harness (animated)"
+  },
+  {
+   "step": "glyph-harness/5",
+   "label": "5",
+   "scene": "The harness (animated)"
+  },
+  {
+   "step": "glyph-policy/1",
+   "label": "1",
+   "scene": "Where the check lives (animated)"
+  },
+  {
+   "step": "glyph-policy/2",
+   "label": "2",
+   "scene": "Where the check lives (animated)"
+  },
+  {
+   "step": "glyph-policy/3",
+   "label": "3",
+   "scene": "Where the check lives (animated)"
+  },
+  {
+   "step": "glyph-policy/4",
+   "label": "4",
+   "scene": "Where the check lives (animated)"
+  },
+  {
+   "step": "glyph-keys/1",
+   "label": "1",
+   "scene": "A key's life (animated)"
+  },
+  {
+   "step": "glyph-keys/2",
+   "label": "2",
+   "scene": "A key's life (animated)"
+  },
+  {
+   "step": "glyph-keys/3",
+   "label": "3",
+   "scene": "A key's life (animated)"
+  },
+  {
+   "step": "glyph-keys/4",
+   "label": "4",
+   "scene": "A key's life (animated)"
+  },
+  {
+   "step": "glyph-keys/5",
+   "label": "5",
+   "scene": "A key's life (animated)"
+  },
+  {
+   "step": "glyph-vault/1",
+   "label": "1",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-vault/2",
+   "label": "2",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-vault/3",
+   "label": "3",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-vault/4",
+   "label": "4",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-vault/5",
+   "label": "5",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-vault/6",
+   "label": "6",
+   "scene": "Through a vault (animated)"
+  },
+  {
+   "step": "glyph-push/1",
+   "label": "1",
+   "scene": "One push, twelve jobs (animated)"
+  },
+  {
+   "step": "glyph-push/2",
+   "label": "2",
+   "scene": "One push, twelve jobs (animated)"
+  },
+  {
+   "step": "glyph-push/3",
+   "label": "3",
+   "scene": "One push, twelve jobs (animated)"
+  },
+  {
+   "step": "glyph-push/4",
+   "label": "4",
+   "scene": "One push, twelve jobs (animated)"
+  },
+  {
+   "step": "glyph-push/5",
+   "label": "5",
+   "scene": "One push, twelve jobs (animated)"
+  },
+  {
+   "step": "licence/granted",
+   "label": "granted",
+   "scene": "A licence that lapses when the reach changes"
+  },
+  {
+   "step": "licence/two-actions",
+   "label": "two actions",
+   "scene": "A licence that lapses when the reach changes"
+  },
+  {
+   "step": "licence/a-tool-is-connected",
+   "label": "a tool is connected",
+   "scene": "A licence that lapses when the reach changes"
+  },
+  {
+   "step": "licence/the-next-three",
+   "label": "the next three",
+   "scene": "A licence that lapses when the reach changes"
+  },
+  {
+   "step": "licence/it-happened-tonight",
+   "label": "it happened tonight",
+   "scene": "A licence that lapses when the reach changes"
+  }
+ ],
+ "packs": {
+  "main": {
+   "title": "Main track (9 + close)",
+   "steps": [
+    {
+     "step": "opening/the-question",
+     "label": "the question",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/what-it-runs",
+     "label": "what it runs",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/the-number",
+     "label": "the number",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/the-promise",
+     "label": "the promise",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "gap/mandate",
+     "label": "mandate",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/reach",
+     "label": "reach",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/the-gap",
+     "label": "the gap",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/two-ways-to-close-it",
+     "label": "two ways to close it",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "reach-measured/needed-against-held",
+     "label": "needed against held",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/only-the-calls",
+     "label": "only the calls",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/narrowed",
+     "label": "narrowed",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "same-privileges/the-run",
+     "label": "the run",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/connect-the-agent",
+     "label": "connect the agent",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/who-can-reach-them",
+     "label": "who can reach them?",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/send-not-draft",
+     "label": "send, not draft",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/one-goes-wrong",
+     "label": "one goes wrong",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "send-button/draft-not-send",
+     "label": "draft, not send",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/one-message-every-message",
+     "label": "one message, every message",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/an-edit-cannot-be-undone",
+     "label": "an edit cannot be undone",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/a-rule-in-prose",
+     "label": "a rule in prose",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "db-mandate/access-only",
+     "label": "access only",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/under-the-mandate",
+     "label": "under the mandate",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/the-line",
+     "label": "the line",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "elsewhere/a-signed-request",
+     "label": "a signed request",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-push-starts-an-action",
+     "label": "the push starts an Action",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-work-runs-there",
+     "label": "the work runs there",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-honest-gap",
+     "label": "the honest gap",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/can-they-reach-the-assets",
+     "label": "can they reach the assets?",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "scale/one-job",
+     "label": "one job",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/jobs-at-once",
+     "label": "jobs at once",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/calls",
+     "label": "calls",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/signed",
+     "label": "signed",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "cost/opus",
+     "label": "Opus",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/sonnet",
+     "label": "Sonnet",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/haiku",
+     "label": "Haiku",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/openrouter",
+     "label": "OpenRouter",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "the-sentence/the-sentence",
+     "label": "the sentence",
+     "scene": "The sentence"
+    }
+   ]
+  },
+  "questions": {
+   "title": "Five questions",
+   "steps": [
+    {
+     "step": "q-identity/every-agent-makes-its",
+     "label": "every agent makes its",
+     "scene": "How do they get an identity?"
+    },
+    {
+     "step": "q-identity/29-public-keys-in",
+     "label": "29 public keys in",
+     "scene": "How do they get an identity?"
+    },
+    {
+     "step": "q-identity/every-packet-every-model",
+     "label": "every packet every model",
+     "scene": "How do they get an identity?"
+    },
+    {
+     "step": "q-identity/the-same-packet-on",
+     "label": "the same packet on",
+     "scene": "How do they get an identity?"
+    },
+    {
+     "step": "q-communication/through-git-every-commit",
+     "label": "through git every commit",
+     "scene": "How do they talk to each other?"
+    },
+    {
+     "step": "q-communication/806-commits-in-24",
+     "label": "806 commits in 24",
+     "scene": "How do they talk to each other?"
+    },
+    {
+     "step": "q-communication/signed-requests-start-runs",
+     "label": "signed requests start runs",
+     "scene": "How do they talk to each other?"
+    },
+    {
+     "step": "q-communication/messages-between-agents-are",
+     "label": "messages between agents are",
+     "scene": "How do they talk to each other?"
+    },
+    {
+     "step": "q-governance/deny-by-default-one",
+     "label": "deny by default one",
+     "scene": "Who controls what they can do?"
+    },
+    {
+     "step": "q-governance/12-core-rules-3",
+     "label": "12 core rules 3",
+     "scene": "Who controls what they can do?"
+    },
+    {
+     "step": "q-governance/enforced-by-a-hook",
+     "label": "enforced by a hook",
+     "scene": "Who controls what they can do?"
+    },
+    {
+     "step": "q-governance/the-rest-observe-and",
+     "label": "the rest observe and",
+     "scene": "Who controls what they can do?"
+    },
+    {
+     "step": "q-audit/every-run-is-a",
+     "label": "every run is a",
+     "scene": "Where is the audit history?"
+    },
+    {
+     "step": "q-audit/every-result-is-signed",
+     "label": "every result is signed",
+     "scene": "Where is the audit history?"
+    },
+    {
+     "step": "q-audit/13-checks-offline-toolscheck-runmjs",
+     "label": "13 checks offline toolscheck-runmjs",
+     "scene": "Where is the audit history?"
+    },
+    {
+     "step": "q-audit/no-prompt-or-answer",
+     "label": "no prompt or answer",
+     "scene": "Where is the audit history?"
+    },
+    {
+     "step": "q-why/every-request-carries-its",
+     "label": "every request carries its",
+     "scene": "Why did they think they were allowed?"
+    },
+    {
+     "step": "q-why/every-commit-names-the",
+     "label": "every commit names the",
+     "scene": "Why did they think they were allowed?"
+    },
+    {
+     "step": "q-why/and-we-measure-where",
+     "label": "and we measure where",
+     "scene": "Why did they think they were allowed?"
+    },
+    {
+     "step": "q-gap/needed-against-held",
+     "label": "needed against held",
+     "scene": "The gap, measured"
+    },
+    {
+     "step": "q-gap/only-the-calls",
+     "label": "only the calls",
+     "scene": "The gap, measured"
+    },
+    {
+     "step": "q-gap/narrowed",
+     "label": "narrowed",
+     "scene": "The gap, measured"
+    }
+   ]
+  },
+  "problem": {
+   "title": "The problem",
+   "steps": [
+    {
+     "step": "opening/the-question",
+     "label": "the question",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/what-it-runs",
+     "label": "what it runs",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/the-number",
+     "label": "the number",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "opening/the-promise",
+     "label": "the promise",
+     "scene": "The same work, two ways"
+    },
+    {
+     "step": "gap/mandate",
+     "label": "mandate",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/reach",
+     "label": "reach",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/the-gap",
+     "label": "the gap",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "gap/two-ways-to-close-it",
+     "label": "two ways to close it",
+     "scene": "Mandate, reach, gap"
+    },
+    {
+     "step": "reach-measured/needed-against-held",
+     "label": "needed against held",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/only-the-calls",
+     "label": "only the calls",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/narrowed",
+     "label": "narrowed",
+     "scene": "The gap, measured unit by unit"
+    }
+   ]
+  },
+  "ladder": {
+   "title": "The ladder",
+   "steps": [
+    {
+     "step": "altitudes/you-and-the-agent",
+     "label": "you and the agent",
+     "scene": "One agent, five altitudes"
+    },
+    {
+     "step": "altitudes/loops",
+     "label": "loops",
+     "scene": "One agent, five altitudes"
+    },
+    {
+     "step": "altitudes/model-calls",
+     "label": "model calls",
+     "scene": "One agent, five altitudes"
+    },
+    {
+     "step": "altitudes/code",
+     "label": "code",
+     "scene": "One agent, five altitudes"
+    },
+    {
+     "step": "altitudes/by-colour",
+     "label": "by colour",
+     "scene": "One agent, five altitudes"
+    },
+    {
+     "step": "swarm-of-loops/the-agent",
+     "label": "the agent",
+     "scene": "A swarm of loops"
+    },
+    {
+     "step": "swarm-of-loops/the-run-replayed",
+     "label": "the run, replayed",
+     "scene": "A swarm of loops"
+    },
+    {
+     "step": "swarm-of-loops/who-did-the-work",
+     "label": "who did the work",
+     "scene": "A swarm of loops"
+    }
+   ]
+  },
+  "privileges": {
+   "title": "Same privileges",
+   "steps": [
+    {
+     "step": "same-privileges/the-run",
+     "label": "the run",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/connect-the-agent",
+     "label": "connect the agent",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/who-can-reach-them",
+     "label": "who can reach them?",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/send-not-draft",
+     "label": "send, not draft",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "same-privileges/one-goes-wrong",
+     "label": "one goes wrong",
+     "scene": "Everybody can reach everything"
+    },
+    {
+     "step": "send-button/draft-not-send",
+     "label": "draft, not send",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/one-message-every-message",
+     "label": "one message, every message",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/an-edit-cannot-be-undone",
+     "label": "an edit cannot be undone",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "send-button/a-rule-in-prose",
+     "label": "a rule in prose",
+     "scene": "A send button is not a mandate"
+    },
+    {
+     "step": "policies/everybody",
+     "label": "everybody",
+     "scene": "A policy on every unit"
+    },
+    {
+     "step": "policies/policy-on",
+     "label": "policy on",
+     "scene": "A policy on every unit"
+    },
+    {
+     "step": "policies/but-who-enforces-it",
+     "label": "but who enforces it?",
+     "scene": "A policy on every unit"
+    },
+    {
+     "step": "db-mandate/access-only",
+     "label": "access only",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/under-the-mandate",
+     "label": "under the mandate",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/the-line",
+     "label": "the line",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "elsewhere/a-signed-request",
+     "label": "a signed request",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-push-starts-an-action",
+     "label": "the push starts an Action",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-work-runs-there",
+     "label": "the work runs there",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-honest-gap",
+     "label": "the honest gap",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/can-they-reach-the-assets",
+     "label": "can they reach the assets?",
+     "scene": "Run it where the assets are not"
+    }
+   ]
+  },
+  "mesh": {
+   "title": "The mesh",
+   "steps": [
+    {
+     "step": "mesh/five-agents",
+     "label": "five agents",
+     "scene": "Five agents, every one wired to everything"
+    },
+    {
+     "step": "mesh/every-connector",
+     "label": "every connector",
+     "scene": "Five agents, every one wired to everything"
+    },
+    {
+     "step": "mesh/one-loses-control",
+     "label": "one loses control",
+     "scene": "Five agents, every one wired to everything"
+    },
+    {
+     "step": "one-per-asset/the-same-five",
+     "label": "the same five",
+     "scene": "One agent per asset"
+    },
+    {
+     "step": "one-per-asset/one-each",
+     "label": "one each",
+     "scene": "One agent per asset"
+    },
+    {
+     "step": "one-per-asset/one-loses-control",
+     "label": "one loses control",
+     "scene": "One agent per asset"
+    }
+   ]
+  },
+  "push": {
+   "title": "Every run starts with a push",
+   "steps": [
+    {
+     "step": "elsewhere/a-signed-request",
+     "label": "a signed request",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-push-starts-an-action",
+     "label": "the push starts an Action",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-work-runs-there",
+     "label": "the work runs there",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/the-honest-gap",
+     "label": "the honest gap",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "elsewhere/can-they-reach-the-assets",
+     "label": "can they reach the assets?",
+     "scene": "Run it where the assets are not"
+    },
+    {
+     "step": "scale/one-job",
+     "label": "one job",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/jobs-at-once",
+     "label": "jobs at once",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/calls",
+     "label": "calls",
+     "scene": "One push, twelve jobs at once"
+    },
+    {
+     "step": "scale/signed",
+     "label": "signed",
+     "scene": "One push, twelve jobs at once"
+    }
+   ]
+  },
+  "cost": {
+   "title": "Cost",
+   "steps": [
+    {
+     "step": "cost/opus",
+     "label": "Opus",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/sonnet",
+     "label": "Sonnet",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/haiku",
+     "label": "Haiku",
+     "scene": "The same tokens, four prices"
+    },
+    {
+     "step": "cost/openrouter",
+     "label": "OpenRouter",
+     "scene": "The same tokens, four prices"
+    }
+   ]
+  },
+  "harness": {
+   "title": "The harness",
+   "steps": [
+    {
+     "step": "harness-did-its-job/the-work",
+     "label": "the work",
+     "scene": "Everything it was asked to do, it did"
+    },
+    {
+     "step": "harness-did-its-job/and-everything-else",
+     "label": "and everything else",
+     "scene": "Everything it was asked to do, it did"
+    },
+    {
+     "step": "harness/before",
+     "label": "before",
+     "scene": "One process, one policy, six probes"
+    },
+    {
+     "step": "harness/six-probes",
+     "label": "six probes",
+     "scene": "One process, one policy, six probes"
+    },
+    {
+     "step": "harness/not-covered",
+     "label": "not covered",
+     "scene": "One process, one policy, six probes"
+    },
+    {
+     "step": "harness/closed-since",
+     "label": "closed since",
+     "scene": "One process, one policy, six probes"
+    },
+    {
+     "step": "harness-before-after/unharnessed",
+     "label": "unharnessed",
+     "scene": "The same code, before and after the harness"
+    },
+    {
+     "step": "harness-before-after/harnessed",
+     "label": "harnessed",
+     "scene": "The same code, before and after the harness"
+    },
+    {
+     "step": "harness-before-after/same-output",
+     "label": "same output",
+     "scene": "The same code, before and after the harness"
+    },
+    {
+     "step": "check-inside/the-ask",
+     "label": "the ask",
+     "scene": "A check inside the agent"
+    },
+    {
+     "step": "check-inside/tricked",
+     "label": "tricked",
+     "scene": "A check inside the agent"
+    },
+    {
+     "step": "check-outside/six-asks-one-policy",
+     "label": "six asks, one policy",
+     "scene": "A check outside the process"
+    },
+    {
+     "step": "harness-door/the-door-s-log",
+     "label": "the door's log",
+     "scene": "The network door"
+    },
+    {
+     "step": "harness-engine/bare",
+     "label": "bare",
+     "scene": "The real engine, under the harness"
+    },
+    {
+     "step": "harness-engine/no-network",
+     "label": "no network",
+     "scene": "The real engine, under the harness"
+    },
+    {
+     "step": "harness-engine/the-door",
+     "label": "the door",
+     "scene": "The real engine, under the harness"
+    },
+    {
+     "step": "harness-engine/the-model-call",
+     "label": "the model call",
+     "scene": "The real engine, under the harness"
+    },
+    {
+     "step": "harness-loops/four-loops",
+     "label": "four loops",
+     "scene": "Loops that retry, under the harness"
+    },
+    {
+     "step": "harness-credential/through-the-door",
+     "label": "through the door",
+     "scene": "The mandate allowed, the credential not yet carried"
+    },
+    {
+     "step": "harness-credential/the-missing-row",
+     "label": "the missing row",
+     "scene": "The mandate allowed, the credential not yet carried"
+    },
+    {
+     "step": "harness-reach/need-reach-harnessed",
+     "label": "need, reach, harnessed",
+     "scene": "Mandate, reach and gap, per unit"
+    },
+    {
+     "step": "reach-measured/needed-against-held",
+     "label": "needed against held",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/only-the-calls",
+     "label": "only the calls",
+     "scene": "The gap, measured unit by unit"
+    },
+    {
+     "step": "reach-measured/narrowed",
+     "label": "narrowed",
+     "scene": "The gap, measured unit by unit"
+    }
+   ]
+  },
+  "pki": {
+   "title": "Keys on everything",
+   "steps": [
+    {
+     "step": "pki/the-packet",
+     "label": "the packet",
+     "scene": "Who did what, provably"
+    },
+    {
+     "step": "pki/each-call",
+     "label": "each call",
+     "scene": "Who did what, provably"
+    },
+    {
+     "step": "pki/the-result",
+     "label": "the result",
+     "scene": "Who did what, provably"
+    },
+    {
+     "step": "pki/the-push",
+     "label": "the push",
+     "scene": "Who did what, provably"
+    },
+    {
+     "step": "pki/in-the-graph",
+     "label": "in the graph",
+     "scene": "Who did what, provably"
+    },
+    {
+     "step": "harness-keys/the-keys",
+     "label": "the keys",
+     "scene": "Keys that live for one run"
+    },
+    {
+     "step": "harness-key-inside/the-keys",
+     "label": "the keys",
+     "scene": "A key born inside the run"
+    },
+    {
+     "step": "harness-key-inside/no-file-no-row",
+     "label": "no file, no row",
+     "scene": "A key born inside the run"
+    },
+    {
+     "step": "harness-key-inside/nothing-to-inherit",
+     "label": "nothing to inherit",
+     "scene": "A key born inside the run"
+    },
+    {
+     "step": "harness-key-inside/the-honest-line",
+     "label": "the honest line",
+     "scene": "A key born inside the run"
+    },
+    {
+     "step": "harness-key-inside/a-separate-uid",
+     "label": "a separate uid",
+     "scene": "A key born inside the run"
+    }
+   ]
+  },
+  "vaults": {
+   "title": "Vaults",
+   "steps": [
+    {
+     "step": "handover/the-four-places",
+     "label": "the four places",
+     "scene": "A handover through a vault"
+    },
+    {
+     "step": "handover/relay-1-hands-over",
+     "label": "relay.1 hands over",
+     "scene": "A handover through a vault"
+    },
+    {
+     "step": "handover/relay-2-works",
+     "label": "relay.2 works",
+     "scene": "A handover through a vault"
+    },
+    {
+     "step": "handover/relay-3-tries-the-wrong-key",
+     "label": "relay.3 tries the wrong key",
+     "scene": "A handover through a vault"
+    },
+    {
+     "step": "handover/the-public-summary",
+     "label": "the public summary",
+     "scene": "A handover through a vault"
+    },
+    {
+     "step": "handover-h002/the-wrong-key",
+     "label": "the wrong key",
+     "scene": "The wrong agent gets nothing"
+    },
+    {
+     "step": "handover-h002/could-and-didn-t",
+     "label": "could, and didn't",
+     "scene": "The wrong agent gets nothing"
+    }
+   ]
+  },
+  "team": {
+   "title": "Who built this",
+   "steps": [
+    {
+     "step": "team/everyone-faint",
+     "label": "everyone, faint",
+     "scene": "Who is building this demo tonight"
+    },
+    {
+     "step": "team/dinis",
+     "label": "Dinis",
+     "scene": "Who is building this demo tonight"
+    },
+    {
+     "step": "team/the-conductors",
+     "label": "the conductors",
+     "scene": "Who is building this demo tonight"
+    },
+    {
+     "step": "team/the-agents",
+     "label": "the agents",
+     "scene": "Who is building this demo tonight"
+    },
+    {
+     "step": "team/the-day-replayed",
+     "label": "the day, replayed",
+     "scene": "Who is building this demo tonight"
+    },
+    {
+     "step": "team/and-the-action",
+     "label": "and the Action",
+     "scene": "Who is building this demo tonight"
+    }
+   ]
+  },
+  "animated": {
+   "title": "Animated packs",
+   "steps": [
+    {
+     "step": "glyph-language/1",
+     "label": "1",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-language/2",
+     "label": "2",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-language/3",
+     "label": "3",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-language/4",
+     "label": "4",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-language/5",
+     "label": "5",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-language/6",
+     "label": "6",
+     "scene": "The language"
+    },
+    {
+     "step": "glyph-gap/1",
+     "label": "1",
+     "scene": "Mandate, reach, gap (animated)"
+    },
+    {
+     "step": "glyph-gap/2",
+     "label": "2",
+     "scene": "Mandate, reach, gap (animated)"
+    },
+    {
+     "step": "glyph-gap/3",
+     "label": "3",
+     "scene": "Mandate, reach, gap (animated)"
+    },
+    {
+     "step": "glyph-gap/4",
+     "label": "4",
+     "scene": "Mandate, reach, gap (animated)"
+    },
+    {
+     "step": "glyph-harness/1",
+     "label": "1",
+     "scene": "The harness (animated)"
+    },
+    {
+     "step": "glyph-harness/2",
+     "label": "2",
+     "scene": "The harness (animated)"
+    },
+    {
+     "step": "glyph-harness/3",
+     "label": "3",
+     "scene": "The harness (animated)"
+    },
+    {
+     "step": "glyph-harness/4",
+     "label": "4",
+     "scene": "The harness (animated)"
+    },
+    {
+     "step": "glyph-harness/5",
+     "label": "5",
+     "scene": "The harness (animated)"
+    },
+    {
+     "step": "glyph-policy/1",
+     "label": "1",
+     "scene": "Where the check lives (animated)"
+    },
+    {
+     "step": "glyph-policy/2",
+     "label": "2",
+     "scene": "Where the check lives (animated)"
+    },
+    {
+     "step": "glyph-policy/3",
+     "label": "3",
+     "scene": "Where the check lives (animated)"
+    },
+    {
+     "step": "glyph-policy/4",
+     "label": "4",
+     "scene": "Where the check lives (animated)"
+    },
+    {
+     "step": "glyph-keys/1",
+     "label": "1",
+     "scene": "A key's life (animated)"
+    },
+    {
+     "step": "glyph-keys/2",
+     "label": "2",
+     "scene": "A key's life (animated)"
+    },
+    {
+     "step": "glyph-keys/3",
+     "label": "3",
+     "scene": "A key's life (animated)"
+    },
+    {
+     "step": "glyph-keys/4",
+     "label": "4",
+     "scene": "A key's life (animated)"
+    },
+    {
+     "step": "glyph-keys/5",
+     "label": "5",
+     "scene": "A key's life (animated)"
+    },
+    {
+     "step": "glyph-vault/1",
+     "label": "1",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-vault/2",
+     "label": "2",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-vault/3",
+     "label": "3",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-vault/4",
+     "label": "4",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-vault/5",
+     "label": "5",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-vault/6",
+     "label": "6",
+     "scene": "Through a vault (animated)"
+    },
+    {
+     "step": "glyph-push/1",
+     "label": "1",
+     "scene": "One push, twelve jobs (animated)"
+    },
+    {
+     "step": "glyph-push/2",
+     "label": "2",
+     "scene": "One push, twelve jobs (animated)"
+    },
+    {
+     "step": "glyph-push/3",
+     "label": "3",
+     "scene": "One push, twelve jobs (animated)"
+    },
+    {
+     "step": "glyph-push/4",
+     "label": "4",
+     "scene": "One push, twelve jobs (animated)"
+    },
+    {
+     "step": "glyph-push/5",
+     "label": "5",
+     "scene": "One push, twelve jobs (animated)"
+    }
+   ]
+  },
+  "database": {
+   "title": "The database",
+   "steps": [
+    {
+     "step": "db-mandate/access-only",
+     "label": "access only",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/under-the-mandate",
+     "label": "under the mandate",
+     "scene": "A mandate as deep as the business logic"
+    },
+    {
+     "step": "db-mandate/the-line",
+     "label": "the line",
+     "scene": "A mandate as deep as the business logic"
+    }
+   ]
+  },
+  "licence": {
+   "title": "Licence to operate",
+   "steps": [
+    {
+     "step": "licence/granted",
+     "label": "granted",
+     "scene": "A licence that lapses when the reach changes"
+    },
+    {
+     "step": "licence/two-actions",
+     "label": "two actions",
+     "scene": "A licence that lapses when the reach changes"
+    },
+    {
+     "step": "licence/a-tool-is-connected",
+     "label": "a tool is connected",
+     "scene": "A licence that lapses when the reach changes"
+    },
+    {
+     "step": "licence/the-next-three",
+     "label": "the next three",
+     "scene": "A licence that lapses when the reach changes"
+    },
+    {
+     "step": "licence/it-happened-tonight",
+     "label": "it happened tonight",
+     "scene": "A licence that lapses when the reach changes"
+    }
+   ]
+  },
+  "findings": {
+   "title": "Findings (off)",
+   "steps": [
+    {
+     "step": "finding-f1/the-sentence",
+     "label": "the sentence",
+     "scene": "A sentence that reads as contained"
+    },
+    {
+     "step": "finding-f1/the-measured-reach",
+     "label": "the measured reach",
+     "scene": "A sentence that reads as contained"
+    },
+    {
+     "step": "finding-f1/closed-by-hand",
+     "label": "closed by hand",
+     "scene": "A sentence that reads as contained"
+    },
+    {
+     "step": "handover-h003/the-handover",
+     "label": "the handover",
+     "scene": "Blocked inside the harness"
+    }
+   ]
+  }
+ }
+}
