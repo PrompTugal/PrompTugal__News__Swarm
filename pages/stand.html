@@ -80,6 +80,7 @@ button.rec.on{animation:recpulse 1.2s ease-in-out infinite}@keyframes recpulse{5
 #deck.infodeck{align-content:start}.ig{display:grid;gap:10px;justify-items:center;text-align:center}.ig h2{margin:0;font:700 1.9em/1.15 var(--font-head)}.ig img{max-width:100%;max-height:calc(100vh - 330px);border-radius:14px;border:1px solid var(--line);box-shadow:0 10px 40px rgba(0,0,0,.4)}
 html.focus .ig img{max-height:calc(100vh - 170px)}.igwait{display:grid;place-items:center;width:min(900px,100%);aspect-ratio:16/9;border:1px dashed var(--line);border-radius:14px;color:var(--muted);animation:blink 1.6s ease-in-out infinite}
 @media (max-width:900px){#spend small{display:none}}
+.opt{display:inline-flex;align-items:center;gap:6px;min-height:44px}.opt input{width:22px;height:22px}
 </style>
 </head>
 <body data-nav="float">
@@ -95,7 +96,7 @@ html.focus .ig img{max-height:calc(100vh - 170px)}.igwait{display:grid;place-ite
    <div class="row"><button id="again" class="again" type="button">✎ Edit the words</button><button class="rec" id="rec">● Record</button><span id="recbar" hidden><b id="rect">0:00</b><i id="lvl"></i></span><span class="muted" id="recst">Ask a question, then let them answer out loud. Or type below.</span></div>
    <textarea id="text" placeholder="The words to tell as a story: a transcript appears here, or type it"></textarea>
    <div class="row"><input id="org" placeholder="Company or industry" style="flex:1;min-width:160px;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)"><input id="email" type="email" inputmode="email" autocomplete="off" placeholder="Email to send the deck to (optional, private)" style="flex:1;min-width:200px;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)"><input id="who" placeholder="Their first name (optional)" style="flex:1;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)">
-    <label class="muted"><input type="checkbox" id="consent"> they agree we show their words</label>
+    <label class="muted opt"><input type="checkbox" id="wantinfo" checked> ✨ also make the infographics</label><label class="muted opt"><input type="checkbox" id="consent"> 📮 OK to send to the team (nothing confidential, they agreed)</label>
     <button class="go" id="make">Make the story ▶</button></div>
   </div>
   <div id="wrap"><div id="deck" class="sdeck"><p class="empty">The deck builds here, scene by scene.</p></div><div id="cap"></div></div>
@@ -282,9 +283,16 @@ function show(story) {
   MODE = 'deck'; INFO = null; $('#modes').hidden = true;
   P = K.present($('#deck'), story, { caption: $('#cap'), dwell: 2600, onStep: (i, n) => { $('#n').textContent = `${i + 1} / ${n}`; const sl = $('#slider'); sl.max = n - 1; sl.value = i; sl.disabled = false; } });
 }
+// Dinis, ~09:00 UTC: the tick means "we can send it"; no tick, it stays on the tablet. Both modes can be chosen up front: the deck shows
+// as soon as it is there, and the infographics follow in the background; the send waits for both.
 function finished() {
-  $('#make').disabled = false; $('#replay').hidden = !K.replay; $('#save').disabled = false; $('#info').hidden = !IMAGER; say('Ready: swipe or slide through it, or press ✨ Infographics for the advanced version.');
-  saveLocal(); send(true);   // every deck is kept on this tablet and sent, sealed, to the team: the gotchas are worth keeping
+  $('#make').disabled = false; $('#replay').hidden = !K.replay; $('#info').hidden = !IMAGER; saveLocal();
+  if ($('#wantinfo').checked && IMAGER) { say('The deck is ready. The infographics are being drawn in the background: switch at the top when they are in.'); infographics(true); }
+  else { say('Ready: swipe or slide through it' + (IMAGER ? ', or press ✨ Infographics for the advanced version.' : '.')); afterAll(); }
+}
+function afterAll() {
+  if ($('#consent').checked) send(true);
+  else { $('#save').disabled = false; $('#save').textContent = '📮 Send to the team'; done(hop({ who: 'the stand', role: 'browser', where: 'this tablet', what: 'keeps the deck on this tablet only (no tick to send)' })); }
 }
 
 // ---------- the slider: every step of the deck, under a thumb
@@ -339,13 +347,14 @@ async function send(auto) {
   } catch (e) { done(h, { err: e.message }); }
 }
 $('#save').onclick = () => send(false);
-$('#consent').onchange = () => { if (SENT && STORY) { $('#save').disabled = false; $('#save').textContent = '📮 Send again (with consent)'; } };
+$('#consent').onchange = () => { if (STORY && !SENT) { $('#save').disabled = false; } };
+$('#save').addEventListener('click', () => { $('#consent').checked = true; }, { capture: true });   // pressing Send is the tick
 
 // ---------- advanced: the same story as infographics (Dinis, 08:50 UTC: "use Gemini ... send a detailed infographic description ...
 // the slide, the title, and then the infographic below ... it's okay to spend the money on this ... and also put the cost")
 let IPLAY = null, II = 0;
 const sceneText = (sc) => JSON.stringify(Object.fromEntries(Object.entries(sc).filter(([k]) => !['say', 'caption'].includes(k)))).slice(0, 1600);
-async function infographics() {
+async function infographics(auto) {
   if (!STORY || !IMAGER) return;
   if (INFO) return setMode('info');
   $('#info').disabled = true;
@@ -357,9 +366,9 @@ async function infographics() {
       { role: 'user', content: `${org ? 'For: ' + org + '\n' : ''}Slides:\n` + STORY.scenes.map((sc, i) => `${i + 1}. ${sceneText(sc)}`).join('\n') }], { max_tokens: 4000, response_format: { type: 'json_object' } });
     const raw = String(((d.choices || [])[0] || {}).message?.content || '').replace(/^```(json)?|```$/g, '');
     briefs = (JSON.parse(raw).briefs || []).map(String); done(h, { ...cost(d), what: `writes ${briefs.length} infographic briefs` }); stop();
-  } catch (e) { stop(); done(h, { err: e.message }); $('#info').disabled = false; return say('The briefs failed: ' + e.message, true); }
+  } catch (e) { stop(); done(h, { err: e.message }); $('#info').disabled = false; if (auto) afterAll(); return say('The briefs failed: ' + e.message, true); }
   INFO = STORY.scenes.map((sc, i) => ({ title: sc.title || sc.text || (sc.type === 'quote' ? '“' + (sc.text || '') + '”' : sc.kicker) || '', caption: sc.caption || '', desc: briefs[i] || sceneText(sc), img: null, usd: null, model: IMAGER, err: null }));
-  setMode('info'); infoGo(0);
+  if (auto) { $('#modes').hidden = false; $('#modes [data-m=info]').textContent = '✨ Infographics (drawing…)'; } else { setMode('info'); infoGo(0); }
   const g = hop({ who: 'the illustrator', role: 'model', where: 'OpenRouter, from this browser', model: IMAGER, what: `draws ${INFO.length} infographics, three at a time` });
   const stop2 = waiting(`Drawing ${INFO.length} infographics…`); let next = 0, made = 0, usd = 0, tok = 0;
   async function worker() { while (next < INFO.length) { const i = next++, x = INFO[i]; const t0 = performance.now();
@@ -368,10 +377,11 @@ async function infographics() {
       x.img = im && (im.image_url && im.image_url.url || im.url) || null; const c = cost(d); x.usd = c.usd; usd += c.usd || 0; tok += c.tokens || 0; spend(c.usd); x.ms = Math.round(performance.now() - t0);
       if (!x.img) x.err = 'no image came back'; made++;
     } catch (e) { x.err = e.message; }
-    if (MODE === 'info' && II === i) infoGo(i); g.what = `draws ${INFO.length} infographics: ${made} done`; paintHop(g); } }
+    if (MODE === 'info' && II === i) infoGo(i); g.what = `draws ${INFO.length} infographics: ${made} done`; paintHop(g); $('#modes [data-m=info]').textContent = `✨ Infographics (${made}/${INFO.length})`; } }
   await Promise.all([worker(), worker(), worker()]); stop2();
   g.usd = 0; done(g, { what: `draws ${made} of ${INFO.length} infographics`, tokens: tok }); g.usd = usd; paintHop(g); totals();
-  $('#info').disabled = false; say(`Infographics ready: ${made} of ${INFO.length}, $${usd.toFixed(4)}.`); saveLocal();
+  $('#info').disabled = false; $('#modes [data-m=info]').textContent = '✨ Infographics'; say(`Two decks ready: the deck, and ${made} of ${INFO.length} infographics ($${usd.toFixed(4)}). Switch at the top.`); saveLocal();
+  if (auto) afterAll();
 }
 function setMode(md) { MODE = md; $('#modes').hidden = !INFO; document.querySelectorAll('#modes button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.m === md)));
   if (md === 'deck') { $('#deck').classList.remove('infodeck'); P && P.goto(0); } else { $('#deck').classList.add('infodeck'); infoGo(0); } }
