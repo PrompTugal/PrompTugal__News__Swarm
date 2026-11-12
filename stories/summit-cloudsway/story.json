@@ -1,0 +1,179 @@
+{
+ "title": "Cloudsway and RiskMandate",
+ "id": "summit-cloudsway",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Cloudsway and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Cloudsway"
+  },
+  {
+   "type": "statement",
+   "text": "At the summit, the swarm's workflow ran live on Cloudsway's platform, and it worked.",
+   "kicker": "The summit",
+   "caption": "Our side's account of the summit, not a joint statement from Cloudsway.",
+   "say": [
+    "This is our account of the summit, told from our side.",
+    "The swarm's workflow ran live on Cloudsway's platform and worked.",
+    "The two sides are exploring an API/billing partnership."
+   ]
+  },
+  {
+   "type": "bullets",
+   "title": "Cloudsway: infrastructure for agents",
+   "kicker": "In their own words",
+   "items": [
+    "For teams building agents that need real-time information, secure execution and real-world outcomes",
+    "Search: real-time, source-backed web data (SmartSearch and Reader, 30+ languages)",
+    "ScaleBox: globally distributed sandboxes for agent-written code, files and workflows",
+    "Agent API: a managed agent layer built on Search and ScaleBox"
+   ],
+   "caption": "Three products, as described on Cloudsway's own pages.",
+   "source": "Cloudsway public pages",
+   "badge": "real",
+   "say": [
+    "Cloudsway describes itself as AI agent infrastructure.",
+    "Three products: Search, ScaleBox and Agent API."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "How the Agent API works",
+   "kicker": "One task in, one deliverable out",
+   "steps": [
+    "A task is given to the Agent API",
+    "It plans, with thread-based memory",
+    "It uses Search and ScaleBox",
+    "Search steps and tool calls stream out",
+    "It returns a deliverable: report, table, chart, JSON or file"
+   ],
+   "caption": "Agent API composes Search and ScaleBox, per Cloudsway's pages.",
+   "source": "Cloudsway public pages",
+   "badge": "real",
+   "say": [
+    "The Agent API composes Search and ScaleBox with planning and memory.",
+    "Streaming of search steps and tool calls makes a run observable."
+   ]
+  },
+  {
+   "type": "table",
+   "title": "Reach, product by product",
+   "kicker": "Our reading of the public pages",
+   "cols": [
+    "Product",
+    "What the pages say it does",
+    "What the pages do not say"
+   ],
+   "rows": [
+    [
+     "Search",
+     "Reaches live web data, in 30+ languages",
+     {
+      "text": "Which sources a given agent was meant to reach",
+      "tone": "gap"
+     }
+    ],
+    [
+     "ScaleBox",
+     "Runs agent-written code, calls tools and external APIs",
+     {
+      "text": "What a sandbox's network and credentials reach per tenant",
+      "tone": "gap"
+     }
+    ],
+    [
+     "Agent API",
+     "Plans, uses tools, returns a deliverable for a task",
+     {
+      "text": "The task is the mandate; that is our reading",
+      "tone": "ok"
+     }
+    ]
+   ],
+   "caption": "Our hypothesis, built from public pages only. Nothing of theirs was tested.",
+   "badge": "illustration",
+   "say": [
+    "This is our hypothesis, not Cloudsway's claim.",
+    "The sandbox is where the gap is measurable: one sandbox, one policy, the reach recorded."
+   ]
+  },
+  {
+   "type": "compare",
+   "title": "What we would do together",
+   "kicker": "RiskMandate's part, as a proposal",
+   "before": {
+    "label": "An agent run today",
+    "items": [
+     "A task goes in, a deliverable comes out",
+     "Search steps and tool calls stream",
+     "Reach is not stated on the public pages"
+    ]
+   },
+   "after": {
+    "label": "With a mandate and measured reach",
+    "items": [
+     "The task is written down as the mandate",
+     "The reach is measured against it",
+     "The run leaves a record of what the agent could reach"
+    ]
+   },
+   "caption": "Our suggestion for what we would do together, not a Cloudsway claim.",
+   "badge": "illustration",
+   "say": [
+    "RiskMandate measures reach against what each agent was asked to do.",
+    "Agents built on Cloudsway would carry a written mandate and a measured record."
+   ]
+  },
+  {
+   "type": "bullets",
+   "title": "Where things stand",
+   "kicker": "Next",
+   "items": [
+    "The workflow ran live on Cloudsway's platform and worked (our account)",
+    "The two sides are exploring an API/billing partnership",
+    "Our suggestion: a mandate and a measured reach on every run",
+    "Everything about Cloudsway here comes from its public pages"
+   ],
+   "caption": "Exploring, nothing more, and no terms are set out here.",
+   "say": [
+    "We are exploring an API/billing partnership, and that is all we say about it here.",
+    "The suggestion is ours, and nothing of Cloudsway's was tested."
+   ]
+  },
+  {
+   "type": "statement",
+   "text": "Every agent run on Cloudsway should carry a mandate and a measured reach.",
+   "kicker": "Our suggestion",
+   "caption": "What we would do together: the task as the mandate, the sandbox as where reach is measured.",
+   "say": [
+    "Reach is what Cloudsway gives agents.",
+    "A mandate and a measured reach make that reach something you can account for."
+   ]
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T11:24:31Z",
+ "partners": [
+  "cloudsway"
+ ],
+ "simulated": false
+}
