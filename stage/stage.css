@@ -213,3 +213,6 @@ html.focus #simflag { left: 116px !important }   /* in focus mode the badge move
 html.embed .app { grid-template-columns: 0 0 1fr 0 0 !important; grid-template-rows: 0 1fr auto }
 html.embed header, html.embed .pane, html.embed .handle { visibility: hidden; overflow: hidden; padding: 0; border: 0; min-height: 0 } html.embed .swpill, html.embed .swnav { display: none !important }
 html.embed #simflag { left: 12px !important }
+/* touch (tablets on the stand): 44 px targets, no page zoom; one finger pans the graph and two pinch it, inside the stage */
+html { touch-action: manipulation } #stage { touch-action: none } #card { touch-action: pan-y }
+@media (pointer: coarse) { .ctl button, footer button, header button, #modes button, .pk, .st { min-width: 44px; min-height: 44px } .ctl { gap: 6px } }

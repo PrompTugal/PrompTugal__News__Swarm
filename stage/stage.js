@@ -207,6 +207,16 @@
   }
   // play the whole story (Dinis 07:10: "a play that goes from the whole story ... from beginning to end"): leaves the pack for the
   // whole story, from the scene on screen, and plays on through every scene without stopping; Space pauses it
+  // touch (the stand's tablets, swarm.1.designer's walk): a swipe left or right on the stage is next or previous. On a card the
+  // whole stage swipes; on a graph, where one finger pans the graph, swipe on the caption or the step bar. Pinch stays inside
+  // the graph (d3's zoom), and the page itself never zooms away from the controls (touch-action, and iOS's gesture events).
+  { let sx = null, sy = 0, st0 = 0;
+    const onGraph = (e) => e.target.closest && e.target.closest('#svg') && $('#svg').style.display !== 'none';
+    addEventListener('touchstart', (e) => { if (e.touches.length !== 1 || onGraph(e) || (e.target.closest && e.target.closest('input, textarea, select, .pane, #box'))) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; st0 = performance.now(); }, { passive: true });
+    addEventListener('touchend', (e) => { if (sx == null) return; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; sx = null;
+      if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy) && performance.now() - st0 < 700) { if (dx < 0) next(); else prev(); } }, { passive: true });
+    ['gesturestart', 'gesturechange'].forEach((ev) => document.addEventListener(ev, (e) => e.preventDefault()));   // iOS: no page pinch
+  }
   function playAll() {
     const cur = STEPS[stepAt(t)], id = cur && cur.scene.id;
     if (PACK) { history.replaceState(null, '', location.pathname + (K.brisk ? '#brisk' : '#')); applyPack(null); }

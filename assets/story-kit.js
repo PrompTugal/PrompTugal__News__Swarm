@@ -11,7 +11,7 @@
    API
      StoryKit.PRIMITIVES                  { name: { description, fields, required, reveals(scene), render(scene) } }
      StoryKit.render(scene)               → html of one scene, every step hidden but the first ([data-r] > 0 get .off)
-     StoryKit.present(el, story, opts)    → { next, prev, play, stop, goto(i), state }   opts: { onStep(i, n, info), caption: el, keys: bool, dwell: ms }
+     StoryKit.present(el, story, opts)    → { next, prev, play, stop, goto(i), state }   opts: { onStep(i, n, info), caption: el, keys: bool, swipe: bool (default on), dwell: ms }
      StoryKit.load(id)                    → Promise<{ story, trail }>   (stories/<id>/story.json and trail.json, trail optional)
      StoryKit.STORY_TOOLS                 one JSON-schema tool per primitive: { name, description, parameters }
      StoryKit.openaiTools()               the same, as OpenAI/OpenRouter "tools" ({ type: 'function', function: {...} })
@@ -126,6 +126,12 @@
       else if (e.key === 'z' || e.key === 'Z') document.documentElement.classList.toggle('focus');
       else if (e.key === 'Home') goto(0); else if (e.key === 'End') goto(total - 1);
     });
+    if (opts.swipe !== false) {   // touch-first (the stand's tablets): swipe left or right on the deck is next or previous
+      let sx = null, sy = 0, t0 = 0;
+      el.addEventListener('touchstart', (e) => { if (e.touches.length !== 1 || (e.target.closest && e.target.closest('iframe'))) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; t0 = performance.now(); }, { passive: true });
+      el.addEventListener('touchend', (e) => { if (sx == null) return; const t = e.changedTouches[0], dx = t.clientX - sx, dy = t.clientY - sy; sx = null; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy) && performance.now() - t0 < 700) { stop(); dx < 0 ? next() : prev(); } }, { passive: true });
+      el.style.touchAction = 'pan-y';
+    }
     styleOnce();
     paint();
     return { next, prev, play, stop, goto, get state() { return { si, ri, index: index(), total, playing: !!timer }; } };
