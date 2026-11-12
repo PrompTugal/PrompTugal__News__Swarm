@@ -1,0 +1,124 @@
+{
+ "about": "The first SHarness evidence in this swarm: what an agent's process can do here before any policy (E01 probe), and six probes under one deny-all policy (E04 hello), with sharness-ai v0.2.0 from PyPI. Measured, not designed.",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "measured_at": "2026-11-12T01:37Z",
+ "where": "R1 Claude Code cloud, riskmandate-personal (swarm.1's container)",
+ "tool": "sharness-ai 0.2.0 (pip install sharness-ai==0.2.0; https://sharness.ai)",
+ "before": {
+  "what": "E01 probe: the grant, before any policy",
+  "uid": 0,
+  "euid": 0,
+  "capabilities": "all (000001fffeffffff)",
+  "no_new_privs": 0,
+  "seccomp": 0,
+  "landlock_abi": 7,
+  "namespaces": [
+   "cgroup",
+   "ipc",
+   "mnt",
+   "net",
+   "pid",
+   "pid_for_children",
+   "time",
+   "time_for_children",
+   "user",
+   "uts"
+  ],
+  "tools_reachable": [
+   "unshare",
+   "setpriv",
+   "strace",
+   "iptables",
+   "nft",
+   "useradd"
+  ],
+  "cwd_writable": true,
+  "network": "the whole internet through the session proxy (HTTPS_PROXY, https_proxy, NO_PROXY, no_proxy)"
+ },
+ "after": {
+  "what": "E04 hello: one child process under one policy",
+  "policy_id": "hello",
+  "policy_hash": "sha256:7db87b9392b257fd91594f0d990d3e25396a2a22c0ac52b3cfaf61b963f1534e",
+  "policy": {
+   "pbp": 1,
+   "id": "hello",
+   "layer": "invocation",
+   "notes": "sharness-ai hello: deny-all for one child process. Generated for this interpreter.",
+   "files": {
+    "read": [
+     "/bin",
+     "/etc",
+     "/lib",
+     "/lib64",
+     "/opt",
+     "/opt/sh-venv",
+     "/sbin",
+     "/tmp/claude-0/-home-user/d088286a-5fae-5247-aa46-ab7533a51778/scratchpad",
+     "/usr",
+     "/usr/local",
+     "/usr/local/bin"
+    ],
+    "write": [],
+    "exec": [
+     "/bin",
+     "/etc",
+     "/lib",
+     "/lib64",
+     "/opt",
+     "/opt/sh-venv",
+     "/sbin",
+     "/usr",
+     "/usr/local",
+     "/usr/local/bin"
+    ]
+   },
+   "network": "none",
+   "process": {
+    "no_new_privs": true,
+    "max_memory_mb": 128
+   }
+  },
+  "results": [
+   {
+    "probe": "read",
+    "expected": "allowed",
+    "got": "allowed",
+    "exit": 0
+   },
+   {
+    "probe": "write-tmp",
+    "expected": "refused",
+    "got": "refused (PermissionError: [Errno 13] Permission denied: '/tmp/sharness-ai-hello.tmp')",
+    "exit": 1
+   },
+   {
+    "probe": "write-cwd",
+    "expected": "refused",
+    "got": "refused (PermissionError: [Errno 13] Permission denied: 'sharness-ai-hello.tmp')",
+    "exit": 1
+   },
+   {
+    "probe": "net",
+    "expected": "refused",
+    "got": "refused (PermissionError: [Errno 13] Permission denied)",
+    "exit": 1
+   },
+   {
+    "probe": "memory",
+    "expected": "refused",
+    "got": "refused (MemoryError)",
+    "exit": 1
+   },
+   {
+    "probe": "hash",
+    "expected": "refused",
+    "got": "refused",
+    "exit": 125
+   }
+  ],
+  "held": 6,
+  "of": 6,
+  "failed": 0,
+  "not_covered": "Unix-domain sockets by path (no Landlock rule exists); the environment variables this process has (inherited by the child); UDP, unless the empty network namespace applied"
+ }
+}
