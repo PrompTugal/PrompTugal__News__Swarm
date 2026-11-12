@@ -554,6 +554,6 @@ if __name__ == '__main__':
            'by': BY, 'format': {'units': '[{id, kind, altitude, label, harnessed?, policy_hash?, key_fp?, code_sha256?}]', 'edges': '[{from, to, kind: runs|reads|writes|signs|allowed|refused}]',
                                 'timeline': '[{t_ms, unit, phase: start|attempt|allowed|refused|end, id?, target?, policy_row?, error?}]', 'keys': '[{role, alg, fp, private_key_path, created_at, destroyed_at}]'},
            'records': [{'experiment': n.split('-harness1-')[1].replace('.json', '').split('-')[0].upper().replace('E1E2', 'E1+E2'), 'file': 'harness/' + n} for n in files] + [{'experiment': 'E01+E04', 'file': 'harness/2026-11-12-swarm1-probe-and-hello.json', 'by': 'swarm.1.fringe@PrompTugal.dinis'}],
-           'units_code': 'harness/bin/', 'policies': 'harness/policies/', 'raw': 'harness/raw/ (the measured outputs these records are made from)', 'assembler': 'tools/harness1-assemble.py', 'session_keys_destroyed_at': '2026-11-12T01:53:24Z'}
+           'units_code': 'harness/bin/', 'policies': 'harness/policies/', 'raw': 'harness/raw/ (the measured outputs these records are made from)', 'assembler': 'tools/harness1-assemble.py', 'summary': 'harness/SUMMARY.md', 'session_keys_destroyed_at': '2026-11-12T01:53:24Z'}
     write('index.json', idx)
     print('\n'.join(files))

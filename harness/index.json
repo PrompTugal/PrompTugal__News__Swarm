@@ -66,5 +66,6 @@
  "policies": "harness/policies/",
  "raw": "harness/raw/ (the measured outputs these records are made from)",
  "assembler": "tools/harness1-assemble.py",
+ "summary": "harness/SUMMARY.md",
  "session_keys_destroyed_at": "2026-11-12T01:53:24Z"
 }
