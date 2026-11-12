@@ -45,6 +45,7 @@
 
   // ---------- data: a run, normalised to a graph
   async function loadRun(src) {
+    if (!src) return { nodes: [], links: [], byId: new Map(), timeline: [], T: 1, metrics: {}, run: {}, title: '', error: null, sim: false };
     if (runCache.has(src)) return runCache.get(src);
     let p;
     if (src.startsWith('sim:')) p = Promise.resolve(simulated(src.slice(4)));
@@ -155,13 +156,13 @@
     if (!S) return null;
     const sc = S.scene, mine = STEPS.filter((x) => x.si === S.si);
     const st = { scene: sc, si: S.si, k, i: S.i, p: clamp((time - S.s) / (S.e - S.s), 0, 1), mode: sc.mode || null, highlight: null, show: null, overlay: null, overlayP: 0,
-      anchors: sc.anchors || null, replay: null, assets: [], assetsP: 1, caption: sc.say || '', counter: null, owner: null, fail: null, failP: 0, bars: null, barsN: 0, barsP: 1, camera: sc.camera || 'fit', label: '' };
+      anchors: sc.anchors || null, replay: null, assets: [], assetsP: 1, caption: '', counter: null, owner: null, fail: null, failP: 0, bars: null, barsN: 0, barsP: 1, card: null, cardN: 0, cardP: 1, camera: sc.camera || 'fit', label: '' };
     for (const x of mine) {
       if (x.i > S.i) break;
       const p = x.i < S.i ? 1 : st.p, s = x.step;
       st.label = s.label || st.label;
       if (s.mode) st.mode = s.mode;
-      if (s.caption) st.caption = s.caption;
+      if (s.caption !== undefined) st.caption = s.caption;
       if (s.highlight !== undefined) st.highlight = s.highlight;
       if (s.show !== undefined) st.show = s.show;
       if (s.anchors !== undefined) st.anchors = s.anchors;
@@ -172,6 +173,7 @@
       if (s.counter) st.counter = { ...s.counter, p: ease(p) };
       if (s.fail !== undefined) { st.fail = s.fail; st.failP = ease(p); }
       if (s.owner !== undefined) st.owner = s.owner;
+      if (s.card !== undefined) { st.card = s.card; if (s.card) { st.cardN = s.card.upto != null ? s.card.upto : 99; st.cardP = x.i < S.i ? 1 : ease(p); } }
       if (s.bars) { st.bars = s.bars; st.barsN = s.bars.upto != null ? s.bars.upto : s.bars.items ? s.bars.items.length : 0; st.barsP = ease(p); }
     }
     if (st.replay == null && sc.replayFirst === false) st.replay = 1;
@@ -257,14 +259,14 @@
   }
 
   // ---------- render one frame
-  let shownScene = null, userZoomed = false, lastStepK = -1;
+  let shownScene = null, userZoomed = false, lastStepK = -1, modeOverride = null;
   async function ensureScene(st) {
     const sc = st.scene;
     if (shownScene === sc) return;
     shownScene = sc;
     const g = await loadRun(sc.run);
     if (shownScene !== sc) return;
-    G = g; lastLayoutKey = ''; focusId = null;
+    G = g; lastLayoutKey = ''; focusId = null; modeOverride = null;
     g.nodes.forEach((n) => { n.x = n.y = null; });
     if (sim) { sim.stop(); sim = null; }
     renderSide();
@@ -277,11 +279,14 @@
     if (!st) return;
     if (st.scene !== shownScene) { if (!pending) { pending = true; ensureScene(st).finally(() => { pending = false; }); } return; }
     if (!G) return;
-    const mode = st.mode && MODES[st.mode] && !Q.get('mode') ? st.mode : K.mode;
+    // the view: the presenter's choice for this scene (keys 1-5, the buttons) wins over the scene's, which wins over the default
+    const mode = modeOverride || (st.mode && MODES[st.mode] && !Q.get('mode') ? st.mode : K.mode);
     renderCaption(st, mode);
     // the camera follows the story: a new step refits (twice: as it starts, and once the layout settles), unless the presenter
     // zoomed by hand during this scene (0 or the fit button gives the camera back)
     if (st.k !== lastStepK) { const sameScene = lastStepK >= 0 && STEPS[lastStepK] && STEPS[lastStepK].si === st.si; lastStepK = st.k; if (!sameScene) userZoomed = false; if (!userZoomed && st.camera !== 'hold') { setTimeout(() => { if (!userZoomed) fit(); }, 350); setTimeout(() => { if (!userZoomed) fit(); }, 1500); } }
+    if (st.card) { drawCard(st); return; }
+    $('#card').style.display = 'none';
     if (st.bars) { drawBars(st); return; }
     d3.select('#bars').style('display', 'none');
     if (mode !== 'universe' || !window.STAGE_UNIVERSE) $('#svg').style.display = '';
@@ -414,6 +419,50 @@
     return { value: 0, label: '' };
   }
 
+  // ---------- cards: the stories that are not graphs. slide (lines, one more per step), gap (mandate, reach and the gap
+  // between them, from an evidence file), lights (probe results lit one by one). The data comes from the card's src.
+  const cardData = new Map();
+  function cardSrc(src) { if (!src) return null; if (!cardData.has(src)) { cardData.set(src, null); fetch(src).then((r) => r.json()).then((j) => { cardData.set(src, j); lastCardKey = ''; }).catch(() => cardData.set(src, { error: true })); } return cardData.get(src); }
+  const pick = (o, path) => path.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
+  let lastCardKey = '';
+  function drawCard(st) {
+    const el = $('#card'), c = st.card;
+    el.style.display = ''; $('#svg').style.display = 'none'; d3.select('#bars').style('display', 'none'); $('#counter').style.display = 'none';
+    if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide();
+    const data = cardSrc(c.src);
+    $('#simflag').style.display = c.idea ? '' : 'none'; if (c.idea) $('#simflag').textContent = 'IDEA · NOT A RUN';
+    const key = JSON.stringify(c) + st.cardN + (data ? 1 : 0);
+    if (key !== lastCardKey) {
+      lastCardKey = key;
+      if (c.kind === 'gap') {
+        const reach = c.reach || (data && pick(data, c.reachFrom || '') ) || [];
+        const items = Array.isArray(reach) ? reach : Object.entries(reach).map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`);
+        el.innerHTML = `<div class="gap"><svg viewBox="-300 -300 600 600"><circle class="reachc" r="250"/><circle class="gapring" r="250"/><circle class="mand" r="34"/><text class="mt" y="5">${esc(c.mandate || 'mandate')}</text></svg>
+          <ul class="ritems">${items.slice(0, 10).map((x, i) => `<li data-i="${i}">${esc(short(String(x), 70))}</li>`).join('')}</ul>
+          <div class="glabels"><span class="gl m">${esc(c.mandateLabel || 'Mandate: what it was asked to do')}</span><span class="gl r">${esc(c.reachLabel || 'Reach: what it could actually touch')}</span><span class="gl g">${esc(c.gapLabel || 'The gap: where things go wrong')}</span></div></div>`;
+      } else if (c.kind === 'lights') {
+        const res = (data && pick(data, c.from || 'after.results')) || [];
+        el.innerHTML = `<div class="lights"><h2>${esc(c.title || '')}</h2><div class="row">${res.map((r, i) => `<div class="light" data-i="${i}"><i></i><b>${esc(r.probe)}</b><small>expected ${esc(r.expected)}</small><span>${esc(String(r.got).split(' (')[0])}</span></div>`).join('')}</div>${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
+      } else {
+        el.innerHTML = `<div class="slide">${c.kicker ? `<p class="kicker">${esc(c.kicker)}</p>` : ''}${c.title ? `<h2>${esc(c.title)}</h2>` : ''}${(c.lines || []).map((l, i) => `<p class="line ${typeof l === 'object' && l.big ? 'big' : ''}" data-i="${i}">${esc(typeof l === 'object' ? l.text : l)}</p>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
+      }
+    }
+    // the reveal, every frame: items up to cardN, the last one at cardP
+    const n = st.cardN, p = st.cardP;
+    el.querySelectorAll('[data-i]').forEach((x) => { const i = +x.dataset.i, k = i < n - 1 ? 1 : i === n - 1 ? p : 0; x.style.opacity = k; x.style.transform = `translateY(${(1 - k) * 12}px)`; });
+    if (c.kind === 'gap') {   // stage 1: the mandate dot; 2: the reach circle grows; 3: the gap turns red
+      const g = el.querySelector('.gap'); if (!g) return;
+      const s1 = n >= 2 ? (n === 2 ? p : 1) : 0, s2 = n >= 3 ? (n === 3 ? p : 1) : 0;
+      g.querySelector('.reachc').setAttribute('r', 34 + 216 * s1); g.querySelector('.gapring').style.opacity = s2; g.querySelector('.gapring').setAttribute('r', 34 + 216 * s1);
+      g.querySelector('.gl.r').style.opacity = s1; g.querySelector('.gl.g').style.opacity = s2;
+      g.querySelectorAll('.ritems li').forEach((li, i, all) => { const k = clamp(s1 * all.length - i, 0, 1); li.style.opacity = k; li.style.transform = 'none'; });
+    }
+    if (c.kind === 'lights') {
+      const all = el.querySelectorAll('.light'), on = c.upto == null ? (st.cardP * all.length) : st.cardN === 99 ? all.length : st.cardN;
+      all.forEach((x, i) => { const k = clamp(on - i, 0, 1), r = (pick(data || {}, c.from || 'after.results') || [])[i]; x.style.opacity = 0.25 + 0.75 * k; x.classList.toggle('held', k > 0.5 && r && r.got.startsWith(r.expected)); x.classList.toggle('broke', k > 0.5 && r && !r.got.startsWith(r.expected)); x.style.transform = 'none'; });
+    }
+  }
+
   // the Runs repo's summary.json (every run that started with a push, added up), read once
   let SUMMARY = null, sumLoading = false;
   function loadSummary() { if (SUMMARY || sumLoading) return; sumLoading = true; fetch(RAW('summary.json'), { cache: 'no-store' }).then((r) => r.json()).then((j) => { SUMMARY = j; }).catch(() => { sumLoading = false; }); }
@@ -481,6 +530,7 @@
   }
   function renderSide() {
     if (!G) return;
+    if (!G.nodes.length && !G.error) { $('#cards').innerHTML = ''; $('#runmeta').innerHTML = '<p class="muted">No run on this scene: a card, with its source under it.</p>'; return; }
     const m = G.metrics || {}, r = G.run || {};
     const cards = G.sim ? [['simulated', 'no run file: an illustration']] : [
       [fmtN(G.nodes.length), 'units'], [fmtN(m.llm_calls || 0), 'model calls'], [m.valid_calls != null ? `${m.valid_calls}/${m.llm_calls}` : '–', 'valid'],
@@ -512,7 +562,7 @@
   }
   function showInfo(n) {
     const links = G.links.filter((l) => idOf(l.source) === n.id || idOf(l.target) === n.id).length;
-    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.sim ? ' · simulated' : ''}</small><br><small class="muted">double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
+    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
   }
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => el.classList.remove('on'), 2200); }
 
@@ -555,7 +605,7 @@
     else if (k === ' ' || k === 'k') { playing = !playing; stopAt = null; if (playing && t >= TOTAL - 0.01) t = 0; }
     else if (k === 'PageDown' || k === 'ArrowDown') sceneJump(1); else if (k === 'PageUp' || k === 'ArrowUp') sceneJump(-1);
     else if (k === 'Home') gotoScene(0); else if (k === 'End') gotoScene(SCENES.length - 1, true);
-    else if (/^[1-5]$/.test(k)) { K.mode = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); toast(MODES[K.mode].name); }
+    else if (/^[1-5]$/.test(k)) { K.mode = modeOverride = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); toast(MODES[K.mode].name); }
     else if (k === 'l' || k === 'L') { K.labels = !K.labels; applyPanes(); }
     else if (k === '+') { K.text = +(clamp(K.text + 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label + 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
     else if (k === '−' || k === '_') { K.text = +(clamp(K.text - 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label - 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
@@ -596,10 +646,10 @@
       store.set('hiddenAlts', [...extraHidden]); renderStory();
     });
     $('#modes').innerHTML = Object.entries(MODES).map(([k, m]) => `<button data-mode="${k}" title="${esc(m.name)} (${m.key})">${esc(m.name)}</button>`).join('');
-    $('#modes').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { K.mode = b.dataset.mode; applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); } });
+    $('#modes').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) { K.mode = modeOverride = b.dataset.mode; applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); } });
     $('#k-mode').innerHTML = Object.entries(MODES).map(([k, m]) => `<option value="${k}">${esc(m.name)}</option>`).join('');
     $('#k-theme').innerHTML = THEMES.map((x) => `<option>${x}</option>`).join('');
-    $('#k-mode').onchange = (e) => { K.mode = e.target.value; applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); };
+    $('#k-mode').onchange = (e) => { K.mode = modeOverride = e.target.value; applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); };
     $('#k-theme').onchange = (e) => { K.theme = e.target.value; applyPanes(); };
     for (const k of ['text', 'label', 'node', 'link']) $('#k-' + k).oninput = (e) => { K[k] = +e.target.value; applyPanes(); };
     $('#k-labels').onchange = (e) => { K.labels = e.target.checked; applyPanes(); };

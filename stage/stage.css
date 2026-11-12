@@ -68,3 +68,18 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* focus: the stage only (Z) */
 .focus .app { grid-template-columns: 0 0 1fr 0 0; grid-template-rows: 0 1fr 0 } .focus header, .focus footer, .focus .pane, .focus .handle { visibility: hidden; overflow: hidden; padding: 0; border: 0 }
 @media (max-width: 800px) { .app { grid-template-columns: 0 0 1fr 0 0 } .pane, .handle { display: none } #modes button { padding: 4px 5px } }
+/* cards: slide, gap, lights */
+#card { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 4% 8% 110px }
+#card .slide { max-width: 1000px } #card .kicker { font: 600 .85em var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent) }
+#card h2 { font: 700 calc(2.4em * var(--text, 1))/1.1 var(--font-head); margin: 0 0 22px } #card .line { font: 400 calc(1.45em * var(--text, 1))/1.35 var(--font); margin: 0 0 14px; transition: none }
+#card .line.big { font: 700 calc(2.2em * var(--text, 1))/1.15 var(--font-head); color: var(--reach) } #card .src { color: var(--muted); font: .8em var(--mono); margin-top: 22px }
+#card .gap { display: grid; grid-template-columns: minmax(280px, 520px) 1fr; gap: 30px; align-items: center; width: 100% }
+#card .gap svg { width: 100%; height: auto; overflow: visible } .reachc { fill: color-mix(in srgb, var(--accent) 10%, transparent); stroke: var(--accent); stroke-width: 2 }
+.gapring { fill: color-mix(in srgb, var(--bad) 22%, transparent); stroke: var(--bad); stroke-width: 3; opacity: 0 } .mand { fill: var(--alt-A1); stroke: var(--bg); stroke-width: 3 } .mt { fill: var(--bg); font: 700 14px var(--font-head); text-anchor: middle }
+#card .ritems { list-style: none; padding: 0; margin: 0; font: calc(1em * var(--text, 1)) var(--mono); color: var(--ink) } #card .ritems li { padding: 4px 0; border-bottom: 1px solid var(--line) }
+#card .glabels { grid-column: 1 / -1; display: flex; gap: 24px; justify-content: center; font: 600 calc(1.1em * var(--text, 1)) var(--font-head) } .gl.m { color: var(--alt-A1) } .gl.r { color: var(--accent); opacity: 0 } .gl.g { color: var(--bad); opacity: 0 }
+#card .lights { text-align: center; width: 100% } #card .lights .row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin: 26px 0 }
+.light { width: 128px; border: 1px solid var(--line); border-radius: 14px; padding: 16px 10px; background: var(--panel); display: flex; flex-direction: column; gap: 4px; align-items: center; transition: opacity .3s }
+.light i { width: 46px; height: 46px; border-radius: 50%; background: var(--dim); margin-bottom: 8px; transition: background .3s, box-shadow .3s }
+.light.held i { background: var(--ok); box-shadow: 0 0 24px var(--ok) } .light.broke i { background: var(--bad); box-shadow: 0 0 24px var(--bad) }
+.light b { font: 600 1.05em var(--font-head) } .light small { color: var(--muted) } .light span { font: .85em var(--mono) } #card .note { color: var(--muted); max-width: 900px; margin: 0 auto }

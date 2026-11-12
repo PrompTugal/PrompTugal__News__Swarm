@@ -2,8 +2,178 @@
  "about": "The stage's story, as data (stage/stage.js reads it). One scene tells one story; each step adds one thing and is cumulative. From Dinis's arc to storytelling.1 (12 Nov 2026, 01:18 UTC): the five altitudes; the same privileges; policies; runs that cannot reach the asset; the mesh against one agent per asset; scale; cost. Numbers come from the run files; scenes on sim: graphs are labelled SIMULATED on screen. storytelling.1 and swarm.1.designer may edit this file: keys are documented in stage/README.md.",
  "scenes": [
   {
+   "id": "opening",
+   "act": "1 · The problem",
+   "title": "The same work, two ways",
+   "say": "Open on the problem, then one number (audience.1's review, 01:39 UTC). Both numbers are r5b: the same 236k tokens.",
+   "steps": [
+    {
+     "label": "the question",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Agents at scale",
+      "title": "Everything an agent starts runs with the agent's keys.",
+      "lines": [
+       "Every loop, every model call, every line of code it runs.",
+       {
+        "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
+        "big": true
+       },
+       "And the cheap way can also be the safe way."
+      ],
+      "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
+     },
+     "caption": ""
+    },
+    {
+     "label": "what it runs",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Agents at scale",
+      "title": "Everything an agent starts runs with the agent's keys.",
+      "lines": [
+       "Every loop, every model call, every line of code it runs.",
+       {
+        "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
+        "big": true
+       },
+       "And the cheap way can also be the safe way."
+      ],
+      "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
+     }
+    },
+    {
+     "label": "the number",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Agents at scale",
+      "title": "Everything an agent starts runs with the agent's keys.",
+      "lines": [
+       "Every loop, every model call, every line of code it runs.",
+       {
+        "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
+        "big": true
+       },
+       "And the cheap way can also be the safe way."
+      ],
+      "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
+     }
+    },
+    {
+     "label": "the promise",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Agents at scale",
+      "title": "Everything an agent starts runs with the agent's keys.",
+      "lines": [
+       "Every loop, every model call, every line of code it runs.",
+       {
+        "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
+        "big": true
+       },
+       "And the cheap way can also be the safe way."
+      ],
+      "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
+     }
+    }
+   ]
+  },
+  {
+   "id": "gap",
+   "act": "1 · The problem",
+   "title": "Mandate, reach, gap",
+   "say": "Three words for the rest of the demo. Mandate: what a unit is asked to do. Reach: what its process can actually touch. The gap between them is where things go wrong.",
+   "cue": "Reach is measured: swarm.1's own container, before any policy (harness E01, 01:37 UTC).",
+   "steps": [
+    {
+     "label": "mandate",
+     "dur": 2,
+     "card": {
+      "kind": "gap",
+      "upto": 1,
+      "mandate": "one call",
+      "mandateLabel": "Mandate: one prompt in, one answer out",
+      "reach": [
+       "uid 0: root",
+       "capabilities: all",
+       "seccomp: off",
+       "no_new_privs: off",
+       "unshare, setpriv, strace, iptables, nft, useradd",
+       "the working directory: writable",
+       "network: the whole internet (session proxy)"
+      ]
+     },
+     "caption": "A model call's mandate: one prompt in, one answer out. No tools."
+    },
+    {
+     "label": "reach",
+     "dur": 3,
+     "card": {
+      "kind": "gap",
+      "upto": 2,
+      "mandate": "one call",
+      "mandateLabel": "Mandate: one prompt in, one answer out",
+      "reach": [
+       "uid 0: root",
+       "capabilities: all",
+       "seccomp: off",
+       "no_new_privs: off",
+       "unshare, setpriv, strace, iptables, nft, useradd",
+       "the working directory: writable",
+       "network: the whole internet (session proxy)"
+      ]
+     },
+     "caption": "The process it ran in could reach all of this. Measured, not assumed."
+    },
+    {
+     "label": "the gap",
+     "dur": 2.5,
+     "card": {
+      "kind": "gap",
+      "upto": 3,
+      "mandate": "one call",
+      "mandateLabel": "Mandate: one prompt in, one answer out",
+      "reach": [
+       "uid 0: root",
+       "capabilities: all",
+       "seccomp: off",
+       "no_new_privs: off",
+       "unshare, setpriv, strace, iptables, nft, useradd",
+       "the working directory: writable",
+       "network: the whole internet (session proxy)"
+      ]
+     },
+     "caption": "Reach minus mandate: the gap. Every incident lives there."
+    },
+    {
+     "label": "two ways to close it",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Closing the gap",
+      "title": "Two ways to close it",
+      "lines": [
+       "Shrink the reach: one policy per process (the harness).",
+       "Move the work where the reach never was: a GitHub Action, a model provider."
+      ],
+      "source": "stories/2026-11-12-0150-demo-packs.md"
+     },
+     "caption": ""
+    }
+   ]
+  },
+  {
    "id": "altitudes",
-   "act": "1 · Five altitudes",
+   "act": "2 · Five altitudes",
    "title": "One agent, five altitudes",
    "run": "20261111T2134-r4.json",
    "mode": "layers",
@@ -68,7 +238,7 @@
   },
   {
    "id": "swarm-of-loops",
-   "act": "1 · Five altitudes",
+   "act": "2 · Five altitudes",
    "title": "A swarm of loops",
    "run": "20261111T2257-r5b.json",
    "mode": "radial",
@@ -91,7 +261,7 @@
       "of": "peak",
       "label": "units running at once (peak)"
      },
-     "caption": "It fans out: 48 loops, 73 model calls, 96 units at once.",
+     "caption": "It fans out: 48 loops, 73 model calls, 96 units at once. 39 of the 73 answers were valid: we keep the bad ones too.",
      "show": null
     },
     {
@@ -108,7 +278,7 @@
   },
   {
    "id": "same-privileges",
-   "act": "2 · The same privileges",
+   "act": "3 · The same privileges",
    "title": "Everybody can reach everything",
    "run": "20261111T2134-r4.json",
    "mode": "force",
@@ -160,7 +330,7 @@
   },
   {
    "id": "policies",
-   "act": "3 · Policies",
+   "act": "4 · Policies",
    "title": "A policy on every unit",
    "run": "20261111T2134-r4.json",
    "mode": "force",
@@ -206,7 +376,7 @@
   },
   {
    "id": "elsewhere",
-   "act": "3 · Policies",
+   "act": "4 · Policies",
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
@@ -259,7 +429,7 @@
   },
   {
    "id": "mesh",
-   "act": "4 · The mesh",
+   "act": "5 · The mesh",
    "title": "Five agents, every one wired to everything",
    "run": "sim:mesh",
    "mode": "force",
@@ -300,7 +470,7 @@
   },
   {
    "id": "one-per-asset",
-   "act": "4 · The mesh",
+   "act": "5 · The mesh",
    "title": "One agent per asset",
    "run": "sim:policy",
    "mode": "force",
@@ -341,7 +511,7 @@
   },
   {
    "id": "scale",
-   "act": "5 · Scale",
+   "act": "6 · Scale",
    "title": "One push, twelve jobs at once",
    "run": "gh:20261111-2359-storm-scale-01",
    "mode": "tree",
@@ -384,7 +554,7 @@
   },
   {
    "id": "cost",
-   "act": "6 · Cost",
+   "act": "7 · Cost",
    "title": "The same tokens, four prices",
    "run": "20261111T2257-r5b.json",
    "say": "The big run again (73 calls, 236k tokens). What it cost, and what the same tokens would cost on each Claude model.",
@@ -510,6 +680,140 @@
      "caption": "What we paid: open-weight models on OpenRouter, for the loops that do not need the agent's brain."
     }
    ]
+  },
+  {
+   "id": "harness",
+   "act": "8 · The harness",
+   "title": "One process, one policy, six probes",
+   "say": "SHarness puts one child process under one deny-all policy. Six probes: read allowed; writing, the network, memory and the rest refused. Measured in swarm.1's container at 01:37 UTC.",
+   "steps": [
+    {
+     "label": "before",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Before: E01 probe",
+      "title": "An agent's process, before any policy",
+      "lines": [
+       "uid 0, every capability, no seccomp, no no_new_privs.",
+       "iptables, useradd and strace within reach.",
+       "The whole internet through the session proxy."
+      ],
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (before)"
+     }
+    },
+    {
+     "label": "six probes",
+     "dur": 4,
+     "card": {
+      "kind": "lights",
+      "title": "After: one child process under policy “hello” (deny-all)",
+      "src": "harness/2026-11-12-swarm1-probe-and-hello.json",
+      "from": "after.results",
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (after: held 6 of 6, failed 0)"
+     },
+     "caption": "Six probes, six held. Not a promise: a measurement."
+    },
+    {
+     "label": "not covered",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Said plainly",
+      "title": "What this policy does not cover yet",
+      "lines": [
+       "Unix-domain sockets by path (no Landlock rule exists); the environment variables the process inherits; UDP, unless the empty network namespace applied."
+      ],
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json (after.not_covered)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "pki",
+   "act": "9 · Keys on everything",
+   "title": "Who did what, provably",
+   "say": "Every packet, every model call and every result is signed by a key made for it. Two runners ran the same packet: their keys tell them apart.",
+   "steps": [
+    {
+     "label": "the packet",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "PKI on everything",
+      "title": "Signed at every step",
+      "lines": [
+       "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
+       "Each model call: signed by a key made for that call.",
+       "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
+       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+      ],
+      "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "each call",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "PKI on everything",
+      "title": "Signed at every step",
+      "lines": [
+       "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
+       "Each model call: signed by a key made for that call.",
+       "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
+       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+      ],
+      "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "the result",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "PKI on everything",
+      "title": "Signed at every step",
+      "lines": [
+       "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
+       "Each model call: signed by a key made for that call.",
+       "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
+       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+      ],
+      "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "the push",
+     "dur": 2,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "PKI on everything",
+      "title": "Signed at every step",
+      "lines": [
+       "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
+       "Each model call: signed by a key made for that call.",
+       "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
+       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+      ],
+      "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "in the graph",
+     "dur": 3,
+     "card": null,
+     "caption": "Every unit in this run has its own key: click any call to see it."
+    }
+   ],
+   "run": "s001-storm-six--swarm.1.fringe.json",
+   "mode": "radial"
   }
  ]
 }
