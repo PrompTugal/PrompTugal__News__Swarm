@@ -83,6 +83,7 @@ html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 .arrow{color:var(--dim);text-align:center;font-size:1.2rem;align-self:center}
 .empty{color:var(--muted);padding:30px 0}
 html.booth .modes a{padding:10px 16px;font-size:.95rem}html.booth .tools button{padding:10px 14px;min-height:44px}html.booth #slide{font-size:clamp(17px,2.1vw,40px)}html.booth.focus #slide{font-size:clamp(18px,2.4vw,44px)}
+@media (max-width:760px){#pn{right:auto;left:14px}}   /* the feedback pill has the bottom-right corner on a phone (swarm.1, review 8) */
 body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}body.embed{grid-template-rows:minmax(0,1fr)}
 @media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.cmp2{grid-template-columns:1fr}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}.ctr{font-size:3.6em}}
 </style>
@@ -132,8 +133,8 @@ const mins = (a, b) => Math.round((new Date(b) - new Date(a)) / 60000);
 const hopsOf = (trail) => (trail && (trail.hops || trail.nodes || trail.trail)) || [];
 
 async function load() {
+  if (window.StoryKit && StoryKit.load) { try { const D = await StoryKit.load(SID === 'sample' ? '_sample' : SID); if (D && D.story) return D; } catch (e) {} }   // swarm.1.dev's kit (fd66d65)
   if (SID === 'sample') return SAMPLE;
-  if (window.StoryKit && StoryKit.load) { try { return await StoryKit.load(SID); } catch (e) {} }
   const get = (f) => fetch(`../stories/${encodeURIComponent(SID)}/${f}`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
   const [story, trail] = await Promise.all([get('story.json'), get('trail.json')]);
   return { story, trail };
@@ -194,7 +195,7 @@ function present(D) {
   const s = D.story || {}; SC = s.scenes || s.slides || [];
   $('#main').innerHTML = `<section id="deck" aria-live="polite"><div id="slide"></div></section><div id="cap"></div><span id="pn"></span><div id="prog"><i></i></div>`;
   if (!SC.length) { $('#slide').innerHTML = `<p class="big">The deck has not landed yet.</p><p class="sub">The making-of is in Timeline, Graph and Delivery as it happens.</p>`; return; }
-  if (window.StoryKit && StoryKit.present && !s.sample) { try { kit = StoryKit.present($('#slide'), s, { onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); return; } catch (e) { kit = null; } }
+  kit = null; if (window.StoryKit && StoryKit.present) { try { kit = StoryKit.present($('#slide'), s, { caption: $('#cap'), keys: false, dwell: ATTRACT ? 3200 : 2600, onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); if (EMBED && kit.goto) kit.goto(0); return; } catch (e) { kit = null; } }
   si = 0; ri = 0; paint(EMBED);
 }
 
