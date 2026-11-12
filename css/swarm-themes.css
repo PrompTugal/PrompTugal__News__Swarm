@@ -1,0 +1,49 @@
+/* SwarmViews: the five modes, on a spectrum from today's flat view to the futuristic ones.
+   swarm.1.designer.fringe@PrompTugal.dinis, 12 November 2026 (WS-215). Every mode keeps the universe's altitude colours
+   (--p, --a4, --a3, --a2, --a1, --a0, --res), so a loop is violet and a call is green whichever way you look. */
+.sv{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--live:#ffe066;
+  --stage:color-mix(in srgb,var(--bg) 60%,var(--panel));--edge:var(--line);--edge-on:var(--ink);--lane:color-mix(in srgb,var(--ink) 3%,transparent);--sec:color-mix(in srgb,var(--a2) 7%,transparent);--font:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  position:relative;height:100%;min-height:360px;background:var(--stage);border-radius:10px;overflow:hidden;font-family:var(--font)}
+.sv-stage{position:absolute;inset:0}.sv-svg{width:100%;height:100%;display:block;touch-action:none;cursor:default;user-select:none}.sv-svg.grab{cursor:grabbing}
+.sv text{fill:var(--ink);font-size:11px;font-family:var(--font)}.sv .nl{fill:var(--muted);font-size:10px;pointer-events:none}.sv .nm{fill:var(--muted);font-size:9px;opacity:.85;pointer-events:none}
+.sv .hole{fill:var(--stage)}.sv .grid{stroke:color-mix(in srgb,var(--a3) 14%,transparent);stroke-width:.6}
+/* altitude guides and task sections: both clickable */
+.sv .lane{cursor:pointer}.sv .lane-band{fill:var(--lane)}.sv .lane-ring{fill:none;stroke:var(--line);stroke-dasharray:3 6}.sv .lane-l{fill:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase}
+.sv .lane:hover .lane-band,.sv .lane.on .lane-band{fill:color-mix(in srgb,var(--a3) 10%,transparent)}.sv .lane.on .lane-l{fill:var(--ink)}
+.sv .sec{cursor:zoom-in}.sv .sec rect,.sv .sec path{fill:var(--sec);stroke:color-mix(in srgb,var(--a2) 30%,transparent);stroke-dasharray:4 4}.sv .sec text{fill:var(--a2);font-size:11px;font-weight:600}
+.sv .sec:hover rect,.sv .sec:hover path,.sv .sec.on rect,.sv .sec.on path{fill:color-mix(in srgb,var(--a2) 16%,transparent);stroke:var(--a2)}
+/* edges and nodes */
+.sv .e{fill:none;stroke:var(--edge);stroke-width:1.1;transition:opacity .25s,stroke .25s}.sv .e.res{stroke-dasharray:2 4;opacity:.6}.sv .e.on{stroke:var(--edge-on);stroke-width:1.8;opacity:1}
+.sv .e.dim{opacity:.07}.sv .e.hidden,.sv .n.hidden{opacity:0;pointer-events:none}
+.sv .e.flow{stroke:var(--live);stroke-dasharray:5 7;animation:sv-flow .7s linear infinite;opacity:1}@keyframes sv-flow{to{stroke-dashoffset:-24}}
+.sv .n{cursor:pointer;transition:opacity .25s}.sv .n:focus{outline:none}.sv .n:focus-visible .sh{stroke:var(--ink);stroke-width:2.5}
+.sv .n.dim{opacity:.12}.sv .n.bad .sh:not(.ring){stroke:var(--bad);stroke-width:2.2}.sv .n.ok.a-A1 .sh{stroke:none}
+.sv .n.live .sh{stroke:var(--live);stroke-width:3}.sv .n.sel .sh{stroke:var(--ink);stroke-width:3}.sv .n.chain .sh{stroke:var(--ink);stroke-width:1.6}
+.sv .n:hover .sh{stroke:var(--ink);stroke-width:2}.sv .n .lat{fill:none;stroke:var(--live);stroke-width:2;opacity:.8}
+.sv-tip{position:absolute;z-index:3;max-width:230px;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12px;color:var(--ink);box-shadow:0 6px 20px #0008}
+.sv-tip b{display:block}.sv-tip span{color:var(--muted);display:block;font-size:11px}.sv-tip small{display:block;color:var(--muted);font-size:11px}
+.sv-3d-wait{display:grid;place-items:center;height:100%;color:var(--muted);padding:16px;text-align:center}.sv-stage canvas{display:block;cursor:grab}
+
+/* 1 · flat: today's view, as it is */
+
+/* 2 · blueprint: a schematic. A grid, outlined shapes, orthogonal wiring, monospace, the numbers on each unit */
+.sv[data-mode="blueprint"]{--stage:#06182a;--ink:#d8ecff;--muted:#7fa6c9;--line:#2a4f73;--edge:#3f6f9c;--edge-on:#d8ecff;--lane:#0b2238;--sec:#0e2a46;--font:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.sv[data-mode="blueprint"] .sh{fill-opacity:.12;stroke-width:1.5}.sv[data-mode="blueprint"] .sh:not(.ring){stroke:currentColor}
+.sv[data-mode="blueprint"] .n{color:var(--muted)}.sv[data-mode="blueprint"] .n.a-A3,.sv[data-mode="blueprint"] .n.a-A4,.sv[data-mode="blueprint"] .n.a-P{color:var(--ink)}
+.sv[data-mode="blueprint"] .n.a-A1{color:var(--a1)}.sv[data-mode="blueprint"] .n.a-A2{color:var(--a2)}.sv[data-mode="blueprint"] .n.a-A0{color:var(--a0)}.sv[data-mode="blueprint"] .n.bad{color:var(--bad)}
+.sv[data-mode="blueprint"] .lane-band{stroke:#1c3d5e;stroke-dasharray:6 4}.sv[data-mode="blueprint"] .e{stroke-width:1}
+
+/* 3 · heat: the data is the shape. Call size is tokens, colour is valid or not, the yellow arc is latency (a full ring is 20 s) */
+.sv[data-mode="heat"]{--stage:#0b0d10;--line:#23282e;--edge:#1d2328}
+.sv[data-mode="heat"] .e.tree{opacity:.45}.sv[data-mode="heat"] .n.a-A1 .sh{fill-opacity:.85}.sv[data-mode="heat"] .n.a-A0 .sh{fill-opacity:.35}
+
+/* 4 · neon: the futuristic one. Glow, curves, and the work flowing along the edges as it replays */
+.sv[data-mode="neon"]{--stage:radial-gradient(ellipse at 50% 30%,#0d1f3a 0%,#05070f 70%);--ink:#f0f7ff;--muted:#8aa0c8;--line:#1a2547;--edge:#25356b;--edge-on:#9fd8ff;--lane:transparent;--sec:color-mix(in srgb,#9b8cff 6%,transparent);--a3:#3fd0ff;--a2:#b38cff;--a1:#2bffb5;--a4:#ff6a3d;--p:#ffd23f;--res:#ff5fd2;--live:#fff36b;background:var(--stage)}
+.sv[data-mode="neon"] .nodes{filter:url(#sv-glow)}.sv[data-mode="neon"] .e.tree{stroke-opacity:.7}.sv[data-mode="neon"] .e.on{filter:url(#sv-glow)}
+.sv[data-mode="neon"] .n.live .sh{animation:sv-pulse .8s ease-in-out infinite alternate}@keyframes sv-pulse{to{stroke-width:6}}
+.sv[data-mode="neon"] .lane-l{fill:#5d74a8}.sv[data-mode="neon"] .lane-ring{stroke:#1e2b55}.sv[data-mode="neon"] .hole{fill:#05070f}
+
+/* 5 · 3D: drawn by three.js on a canvas; the stage only sets the space */
+.sv[data-mode="three"]{--stage:radial-gradient(ellipse at 50% 40%,#0b1a33 0%,#03050b 75%);background:var(--stage)}
+
+@media (prefers-reduced-motion:reduce){.sv .e.flow,.sv[data-mode="neon"] .n.live .sh{animation:none}}
