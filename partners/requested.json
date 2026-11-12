@@ -223,6 +223,106 @@
      "at": "2026-11-12T09:39Z"
     }
    ]
+  },
+  {
+   "slug": "oppy",
+   "name": "Oppy",
+   "kind": "sales",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T10:10Z"
+   },
+   "domain_note": "The site was given aloud as 'Opi1.com'. opi1.com and oppy1.com do not resolve; oppy.ai (a French CX platform) and oppy.com (a produce company) are other companies. oppyone.com ('OPPY, Be There When It Matters') matches the product described, so this brief uses it. Not yet confirmed by the company.",
+   "one_line": "A B2B platform for sales teams: it filters market signals in real time, matches them to the client's ideal customer profile, and drafts outreach for the moment a prospect is likely to buy.",
+   "site": "https://oppyone.com/",
+   "public": [
+    {
+     "fact": "Describes itself as identifying 'high-interest B2B leads through real-time signal analysis for context-driven outreach'.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "'Oppy continuously filters market signals in real time so you reach the right companies at the exact moment they need you'; every signal is matched against the client's ICP, geography, competitors and roles.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "Signals named on the site include hiring spikes, funding rounds, G2 intent, licence approvals, compliance deadlines, breach disclosures, CISO moves and new certifications.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "Its terms list the service as identifying companies that match the client's ICP using AI models, analysing market data, and creating draft prospecting messages with AI based on the detected intent signals.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "Plans: Starter Pack from €499 a month (unlimited leads, one workspace, CRM sync and enriched context); Custom for larger GTM orgs (intent data, API access, 3+ workspaces, custom agentic workflows).",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "Its privacy notice lists sub-processors for LLM access, embeddings, a proprietary model, EU hosting (Frankfurt), contact enrichment, LinkedIn and WhatsApp messaging, and workflow automation.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    },
+    {
+     "fact": "Operated by K AI SUPERINTELLIGENCE, S.L., Barcelona, Spain, under the GDPR and Spain's data protection law.",
+     "source": "https://oppyone.com/",
+     "read_at": "2026-11-12T10:24Z"
+    }
+   ],
+   "told": [
+    "Its agents analyse market signals together with the client's own data to judge whether a prospect is a good fit and whether it is the right moment to sell.",
+    "The company gave its name and site for publication when asked."
+   ],
+   "help": {
+    "pitch": "Oppy's agents read market signals and the client's own data, and draft outreach. RiskMandate would write down each agent's mandate (which data, which tools, which messages it may send), measure what its credentials actually reach (the CRM, enrichment providers, LinkedIn and WhatsApp messaging), and record the gap, as evidence Oppy can hand to its own customers.",
+    "mandate": [
+     "Its stated job: match signals to an ICP, judge timing, draft messages. A draft is a mandate to write, not to send."
+    ],
+    "reach": [
+     "CRM sync, enrichment of professional emails and phones, LinkedIn and WhatsApp messaging and workflow automation sit in the same product (its plans and privacy notice). What each agent's credentials can reach in a customer's CRM is unknown from public pages."
+    ],
+    "gap": [
+     "Unknown from public pages. The place to look: an agent that may draft but can reach a send path, and an agent deployed into a customer's environment holding that customer's data."
+    ]
+   },
+   "together": [
+    {
+     "title": "Lock down their own agents",
+     "text": "A written mandate per Oppy agent, its reach measured against it, and the gap recorded (Dinis's first point).",
+     "link": "https://gamma-ray.sgit.ai/lens/"
+    },
+    {
+     "title": "Evidence for their customers",
+     "text": "A record that shows customers a tight agentic workflow: what each agent may do with their CRM and data, and what it can actually reach (Dinis's second point).",
+     "link": "https://riskmandate.ai/"
+    },
+    {
+     "title": "Secure the agents they deploy into customers' environments",
+     "text": "Agents that run inside a customer's systems to collect data, each with a mandate and a measured reach (Dinis's third point).",
+     "link": "harness.html"
+    }
+   ],
+   "demos": [
+    [
+     "reach",
+     "send-button"
+    ],
+    [
+     "reach",
+     "same-privileges"
+    ],
+    [
+     "control",
+     "db-mandate"
+    ],
+    [
+     "trust",
+     "q-why"
+    ]
+   ]
   }
  ]
 }

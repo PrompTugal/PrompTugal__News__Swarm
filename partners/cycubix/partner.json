@@ -122,6 +122,7 @@
   "ConsentScan uses an agentic workflow.",
   "Both sides agreed the public company information can be published as a case study."
  ],
+ "domain_note": null,
  "xray": null,
  "help": {
   "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",

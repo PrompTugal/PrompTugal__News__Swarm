@@ -59,7 +59,7 @@ COMPANIES = {
 
 KIND_LABEL = {'coding': 'Coding agents', 'general-agent': 'General agents', 'customer-service': 'Customer service',
               'security': 'Security', 'platform': 'Agent platforms', 'legal': 'Legal', 'finance': 'Finance and insurance',
-              'infrastructure': 'Infrastructure for agents', 'governance': 'AI governance', 'other': 'Other'}
+              'infrastructure': 'Infrastructure for agents', 'governance': 'AI governance', 'sales': 'Sales and revenue', 'other': 'Other'}
 
 # Our demos, by the kind of agent they speak to: (theme, demo id, why it fits them). Deep links into the themes page
 # (the demo on the left, what to say on the right) and the stage scene itself.
@@ -344,7 +344,7 @@ def main():
         p = {'slug': slug, 'name': name, 'kind': r['kind'], 'kind_label': KIND_LABEL[r['kind']], 'one_line': r['one_line'],
              'made_by': BY, 'issue': 'WS-215', 'for': 'Dinis Cruz', 'built_at': r['public'][0]['read_at'], 'asked': r['asked'],
              'note': 'Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.',
-             'artefacts': arte, 'gamma_ray': [], 'facts': facts, 'told': r.get('told', []), 'xray': None,
+             'artefacts': arte, 'gamma_ray': [], 'facts': facts, 'told': r.get('told', []), 'domain_note': r.get('domain_note'), 'xray': None,
              'help': {'label': 'Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.', 'pitch': h['pitch'],
                       'mandate': [{'text': x} for x in h['mandate']], 'reach': [{'text': x} for x in h['reach']], 'gap': [{'text': x} for x in h['gap']]},
              'together': {'label': 'Our suggestions. Nothing here is agreed.', 'items': r['together'], 'offer': OFFER}, 'demos': demos}
