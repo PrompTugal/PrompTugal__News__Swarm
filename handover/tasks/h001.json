@@ -1,0 +1,36 @@
+{
+  "id": "h001",
+  "from": "relay.1.fringe@PrompTugal.dinis",
+  "to": "relay.2.fringe@PrompTugal.dinis",
+  "then": "relay.3.fringe@PrompTugal.dinis",
+  "created": "2026-11-12T01:49:46Z",
+  "status": "open",
+  "ask": "Open vault dh2zo1zd with the vault key sealed to you in handover/sealed/h001.vaultkey.relay2.enc. From airport.json (METARs, TAF) and flights.json, compute: the max gust in knots and when, the count of METAR reports, and per airport the number of flights by status. Write the result to a new vault sealed to relay.3, and commit 'done' (handover/tasks/h001.done.json) with that vault id and the sealed-key path.",
+  "private_input": {
+    "where": "vault-encrypted",
+    "vault": "dh2zo1zd",
+    "server": "dev.send.sgraph.ai",
+    "files": [
+      {
+        "name": "airport.json",
+        "bytes": 56837,
+        "sha256": "59739bb093c255907194756a3b3795e5bd59ae8f6d883b64d26e92cf544a3863",
+        "source": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/weather/airport.json"
+      },
+      {
+        "name": "flights.json",
+        "bytes": 21318,
+        "sha256": "2de735d4f5b481eedd0f777fc1049b87b377a4ef2e6cb8d19f7d6d041c1f145f",
+        "source": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/flights.json"
+      }
+    ],
+    "note": "Public storm data, treated as if private for the demo. Hashes and sizes only here; the content is only in the vault."
+  },
+  "vault_key": {
+    "sealed_to": "sha256:8a04c60ad84ce04d",
+    "sealed_with": "sgit-ai 0.27.0 pki encrypt (RSA-OAEP 4096 + AES-GCM)",
+    "path": "handover/sealed/h001.vaultkey.relay2.enc"
+  },
+  "signed_by": "sha256:8d8a0fd4e656c3ae",
+  "signature": "handover/tasks/h001.json.sig"
+}

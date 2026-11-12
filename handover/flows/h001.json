@@ -1,0 +1,89 @@
+{
+  "run": "h001",
+  "task": "handover/tasks/h001.json",
+  "outcome": "in progress",
+  "started": "2026-11-12T01:46:30Z",
+  "ended": null,
+  "keys": {
+    "relay.1.fringe@PrompTugal.dinis": "sha256:109bf8c471369d6b",
+    "relay.2.fringe@PrompTugal.dinis": "sha256:8a04c60ad84ce04d",
+    "relay.3.fringe@PrompTugal.dinis": null
+  },
+  "steps": [
+    {
+      "n": 1,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "fetches the public storm data (airport weather, flights) from the storm site's API",
+      "when": "2026-11-12T01:46:30Z",
+      "where": "network",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/",
+        "note": "HTTPS in transit"
+      }
+    },
+    {
+      "n": 2,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "holds the input on its own disk to build the vault (treated as private from here)",
+      "when": "2026-11-12T01:46:40Z",
+      "where": "memory-decrypted",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {}
+    },
+    {
+      "n": 3,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A1",
+      "what": "puts the input into a new sgit vault and pushes it (encrypted on the client, ciphertext only on the server)",
+      "when": "2026-11-12T01:46:55Z",
+      "where": "vault-encrypted",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "vault": "dh2zo1zd",
+        "server": "dev.send.sgraph.ai",
+        "commit": "obj-cas-imm-3858d815d7eb"
+      }
+    },
+    {
+      "n": 4,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "seals the vault key to relay.2's public key only; the plaintext key is shredded",
+      "when": "2026-11-12T01:49:10Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:8a04c60ad84ce04d",
+      "signed_by": null,
+      "ref": {
+        "path": "handover/sealed/h001.vaultkey.relay2.enc"
+      }
+    },
+    {
+      "n": 5,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "writes and signs the task file, commits it to Git (public, unencrypted)",
+      "when": "2026-11-12T01:50:05Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae",
+      "ref": {
+        "path": "handover/tasks/h001.json",
+        "signature": "handover/tasks/h001.json.sig"
+      }
+    }
+  ],
+  "published": null,
+  "private_input_in_git": false,
+  "note": "relay.1's hops. relay.2 and relay.3 append theirs (FORMAT.json); relay.3 closes the run."
+}
