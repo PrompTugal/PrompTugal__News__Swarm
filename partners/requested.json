@@ -537,6 +537,14 @@
      "flow",
      "scale"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-cloudsway",
+     "title": "Cloudsway and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T11:24Z"
+    }
    ]
   }
  ]
