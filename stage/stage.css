@@ -89,6 +89,8 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* reach as travelling pulses (swarm.1.designer): beads of light running from the unit to the asset, with a soft glow; their own keyframes so the other dashed edges keep theirs */
 .reachline:not(.cut) { stroke-dasharray: 1 13; stroke-linecap: round; filter: drop-shadow(0 0 2.5px var(--reach)); animation: reach-pulse 0.8s linear infinite } @keyframes reach-pulse { to { stroke-dashoffset: -14 } }
 .reachline.fail { animation-duration: .3s }
+/* a cut line is the policy saying no: dashed, still, dim teal (the control working), never red */
+.reachline.cut { stroke: color-mix(in srgb, var(--accent) 70%, var(--cut)) !important; stroke-dasharray: 3 7 !important; stroke-linecap: butt; filter: none; animation: none; stroke-opacity: .55 }
 .edge.k-reach { stroke-dasharray: 5 9; animation: flow 1.2s linear infinite } .edge.fail { animation-duration: .35s }
 .chip .anc { color: var(--accent); font-weight: 700 }
 #goto { position: fixed; inset: 8% 18%; z-index: 9; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 14px; padding: 16px 22px; overflow: auto; display: none }
