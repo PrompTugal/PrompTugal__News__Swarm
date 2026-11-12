@@ -2,9 +2,9 @@
   "run": "h003",
   "variation": "sharness",
   "task": "handover/tasks/h003.json",
-  "outcome": "in progress",
+  "outcome": "failed",
   "started": "2026-11-12T02:05:04Z",
-  "ended": null,
+  "ended": "2026-11-12T02:11:31Z",
   "keys": {
     "relay.1.fringe@PrompTugal.dinis": "sha256:109bf8c471369d6b",
     "relay.2.fringe@PrompTugal.dinis": "sha256:8a04c60ad84ce04d",
@@ -82,9 +82,171 @@
         "path": "handover/tasks/h003.json",
         "signature": "handover/tasks/h003.json.sig"
       }
+    },
+    {
+      "n": 6,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees handover/tasks/h003.json",
+      "when": "2026-11-12T02:05:38Z",
+      "where": "git-public",
+      "encrypted": false,
+      "inside_harness": false,
+      "ref": {
+        "commit": "205c8a4"
+      }
+    },
+    {
+      "n": 7,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "tests one sgit clone through the door (vault dh2zo1zd): ok; door refuses openrouter.ai",
+      "when": "2026-11-12T02:05:26Z",
+      "where": "network",
+      "encrypted": true,
+      "inside_harness": false
+    },
+    {
+      "n": 8,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "generates the policy in its own container and runs the probe",
+      "when": "2026-11-12T02:06:41Z",
+      "where": "memory",
+      "encrypted": false,
+      "inside_harness": false
+    },
+    {
+      "n": 9,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:24Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "verify relay.1 signature on the task (Node crypto against handover/keys.json)",
+      "valid": true,
+      "signer": "relay.1.fringe@PrompTugal.dinis",
+      "fp": "sha256:8d8a0fd4e656c3ae"
+    },
+    {
+      "n": 10,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:24Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "unseal the vault key with relay.2 key into tmpfs",
+      "where": "memory-decrypted",
+      "opened_with": "sha256:8a04c60ad84ce04d"
+    },
+    {
+      "n": 11,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:27Z",
+      "inside_harness": true,
+      "altitude": "A1",
+      "what": "clone vault wwpo3r81 through the sharness.net door (127.0.0.1:18443), decrypt locally",
+      "where": "network",
+      "vault": "wwpo3r81",
+      "sha256_trains": "1e7ef9e1962a400ec9059debf4bf8d810229d5285a5ee035addfc984caae7721",
+      "matches_task": true
+    },
+    {
+      "n": 12,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:00Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "compute notices by status per operator and operators affected (no model call)",
+      "where": "memory-decrypted",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "n": 13,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:08Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "sign result.json with relay.2 signing key",
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "n": 14,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:10Z",
+      "inside_harness": true,
+      "what": "commit inside the result vault",
+      "outcome": "failed",
+      "rc": 1,
+      "error": "error: permission denied — [Errno 13] Permission denied: '/etc/mime.types'\n  at /usr/local/lib/python3.13/mimetypes.py:235 in read\n  run with --debug for full details\n"
+    },
+    {
+      "n": 15,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:25Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "sign result.json with relay.2 signing key",
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "n": 16,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:30Z",
+      "inside_harness": true,
+      "what": "push the result vault through the door (no session proxy, so no injected credential)",
+      "outcome": "failed",
+      "rc": 1,
+      "error": "I Error: HTTP 401 Unauthorized\n  Request:  PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2Fobj-cas-imm-08150dad59c1\n  Headers:  {\n  \"x-sgraph-access-token\": \"***...(22 chars)\",\n  \"X-API-Key\": \"***...(22 chars)\",\n  \"Content-Type\": \"application/octet-stream\",\n  \"x-sgraph-vault-write-key\": \"***...(64 chars)\"\n}\n  Payload:  1227 bytes\n  Response: {\"detail\":\"Invalid access token\"}\n"
+    },
+    {
+      "n": 17,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "commits this blocked record and the evidence, outside the harness (.git is not writable inside)",
+      "when": "2026-11-12T02:10:27Z",
+      "where": "git-public",
+      "encrypted": false,
+      "inside_harness": false,
+      "signed_by": "sha256:ea1b3d0cda2e9906"
+    },
+    {
+      "n": 18,
+      "who": "relay.3.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees h003.blocked.json; checks relay.1s task signature and relay.2s blocked-record signature: both valid. No result was sealed to relay.3, so there is no vault to open",
+      "when": "2026-11-12T02:11:31Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae, sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "commit": "395d836",
+        "path": "handover/tasks/h003.blocked.json"
+      }
+    },
+    {
+      "n": 19,
+      "who": "relay.3.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "publishes the blocked outcome and the finding (no input, no result) and closes this flow, committed to Git",
+      "when": "2026-11-12T02:11:31Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "path": "handover/published/h003.json"
+      }
     }
   ],
-  "published": null,
+  "published": "handover/published/h003.json",
   "private_input_in_git": false,
-  "note": "relay.1's hops. relay.2 appends its hops (inside or outside the harness, per step); relay.3 closes the run."
+  "note": "relay.1, relay.2 and relay.3 hops, merged by relay.3 (FORMAT.json). relay.2s steps carry inside_harness true or false. Outcome failed: blocked at the vault write, a real SHarness finding, not a workaround.",
+  "blocked": {
+    "at": "2026-11-12T02:09:30Z",
+    "step": "push the result vault through the door",
+    "finding": "relay2-h003-door-write-401",
+    "what": "inside SHarness, verify, unseal, clone and compute worked; the result vault push through the door got HTTP 401 (the session proxy adds the vault credential, the door does not)"
+  }
 }

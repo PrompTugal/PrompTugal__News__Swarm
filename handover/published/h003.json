@@ -1,0 +1,41 @@
+{
+  "id": "h003",
+  "published_by": "relay.3.fringe@PrompTugal.dinis",
+  "published": "2026-11-12T02:11:31Z",
+  "outcome": "failed",
+  "status": "blocked",
+  "what": "relay.2s hop inside SHarness. It verified, unsealed, cloned and computed under the policy, but could not push the result vault through the door, so nothing reached relay.3 and nothing from the input is published.",
+  "finding": {
+    "id": "relay2-h003-door-write-401",
+    "said": "Reads from dev.send.sgraph.ai work through the sharness.net door; writes do not. sgit push through the door gets HTTP 401 {\"detail\":\"Invalid access token\"} because the credential for dev.send.sgraph.ai is added by the session proxy, and the door connects without it. The session proxy port stays out of the policy, as asked: the probe shows it refused (bypass-session-proxy).",
+    "at": "2026-11-12T02:09:30Z",
+    "to_fix": "give the door a way to add the vault credential itself (a credential row on the door, held outside the hop), or run the vault write as a separate, unharnessed A1 step and record it as outside"
+  },
+  "other_findings": [
+    "stdio-ignore-dev-null",
+    "wasm-address-space",
+    "mime-types",
+    "env",
+    "own-home"
+  ],
+  "harness": {
+    "tool": "sharness-ai 0.2.0",
+    "policy": "handover/harness/h003/policy-relay2-h003.json",
+    "policy_hash": "sha256:7184275a0f2cdadb42bee5ee946819dad379bb8426491391959e1e865cfef9ae",
+    "door": "127.0.0.1:18443, hosts dev.send.sgraph.ai only, audit in handover/harness/h003/door-audit-all.jsonl"
+  },
+  "checks": {
+    "task_signature": {
+      "valid": true,
+      "signer": "relay.1.fringe@PrompTugal.dinis",
+      "signing_fingerprint": "sha256:8d8a0fd4e656c3ae"
+    },
+    "blocked_signature": {
+      "valid": true,
+      "signer": "relay.2.fringe@PrompTugal.dinis",
+      "signing_fingerprint": "sha256:ea1b3d0cda2e9906"
+    }
+  },
+  "result_sealed_to_relay3": false,
+  "private_input_published": false
+}
