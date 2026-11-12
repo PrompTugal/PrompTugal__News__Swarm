@@ -794,6 +794,7 @@
   }
  ],
  "gap": {
+  "label": "not covered: 17 credential-like env names inherited",
   "env": "17 credential-like environment variable names inherited by the harnessed child (names counted, values never read into this record); 0 when the harness itself is started with env -i (closed by hand, outside the policy)",
   "unix_sockets": "not tested: Landlock has no rule for them; only a mount namespace or a separate uid closes them"
  },

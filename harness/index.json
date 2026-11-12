@@ -29,6 +29,10 @@
    "file": "harness/2026-11-12-harness1-e6-reach.json"
   },
   {
+   "experiment": "FINDINGS.JSON",
+   "file": "harness/2026-11-12-harness1-findings.json"
+  },
+  {
    "experiment": "E01+E04",
    "file": "harness/2026-11-12-swarm1-probe-and-hello.json",
    "by": "swarm.1.fringe@PrompTugal.dinis"

@@ -106,7 +106,7 @@ def e1e2():
         'after': {'what': f'harnessed: sharness-ai run --policy policy-a0.json --expect-hash {ph}', 'succeeded': na, 'of': len(after),
                   'succeeded_ids': [r['id'] for r in after if r['result'] == 'succeeded'], 'timeline': tl(after, 'after')},
         'comparison': cmp,
-        'gap': {'env': f'{env_after} credential-like environment variable names inherited by the harnessed child (names counted, values never read into this record); '
+        'gap': {'label': f'not covered: {env_after} credential-like env names inherited', 'env': f'{env_after} credential-like environment variable names inherited by the harnessed child (names counted, values never read into this record); '
                        f'{env_clear} when the harness itself is started with env -i (closed by hand, outside the policy)',
                 'unix_sockets': 'not tested: Landlock has no rule for them; only a mount namespace or a separate uid closes them'},
         'findings': [
@@ -265,9 +265,53 @@ def e6(files):
     })
 
 
+def findings():
+    """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
+    e3 = RAW('explain-contain-a0.json')['steps']
+    return write('2026-11-12-harness1-findings.json', {
+        'about': 'Findings from tonight, drafted as SHarness issues (sharness-ai 0.2.0). NOT FILED: Dinis decides whether and where.',
+        'by': BY, 'measured_at': AT, 'where': WHERE, 'tool': TOOL, 'status': 'draft, not filed',
+        'issues': [
+            {'id': 'F1', 'title': 'contain --profile newsroom-agent: a contained uid-0 process can read /etc/shadow',
+             'severity': 'high (the gap story: the sentence reads as contained, the kernel grants all of /etc)',
+             'ran': 'sharness-ai contain --profile newsroom-agent --workspace /opt/hx/ws --sites storm-charles.promptugal.news --memory-mb 1024 --pids 16 --agent shell-check -- /bin/sh -c "head -c1 /etc/shadow > /opt/hx/ws/out/probe.bin"',
+             'sentence_hash': e3[0]['hash'], 'profile_hash': e3[1]['hash'], 'rows_hash': e3[2]['hash'], 'kernel_hash': e3[4]['hash'],
+             'profile_allowed': {'files.read': e3[2]['document']['files']['read'], 'files.exec': e3[2]['document']['files']['exec']},
+             'observed': {'/etc/shadow': 'readable: yes (one byte read to a workspace file, never into a record; the file was deleted)', '/etc/passwd': 'readable: yes', '/root/.bashrc': 'refused', '/opt/hx/decoy/decoy.key': 'refused', 'shell': 'started (/bin is in files.exec)'},
+             'why': 'the profile template reads all of /etc, and the process runs as uid 0, so file mode 0640 root:shadow does not stop it; Landlock is the only check and its row covers /etc. The hand-written rows of E1+E2 (read /etc/ssl only) refused /etc/shadow with EACCES.',
+             'expected': 'a profile for an agent reads what it needs of /etc (ssl, resolv.conf, hosts, nsswitch.conf, passwd if needed), never shadow or gshadow; or contain warns when uid 0 and a profile reads /etc',
+             'suggest': ['narrow the profile templates\' /etc row to named files', 'contain: refuse or warn when running as uid 0 without a uid drop', 'explain: list secrets-bearing paths a row covers (/etc/shadow, /etc/gshadow, /root)'],
+             'evidence': 'harness/2026-11-12-harness1-e3-levels.json (ran[1])'},
+            {'id': 'F2', 'title': 'max_memory_mb is RLIMIT_AS: node (V8) cannot start under 512 MiB and aborts with TLS under 1024 MiB',
+             'severity': 'medium (fails closed, but silently for TLS; pushes people to raise the limit far above real use)',
+             'observed': [
+                 {'max_memory_mb': 512, 'command': 'node a0-consensus.mjs', 'exit': 251, 'error': 'Fatal process out of memory: Failed to reserve virtual memory for CodeRange'},
+                 {'max_memory_mb': 1024, 'command': 'node a0-consensus.mjs (no TLS)', 'exit': 0},
+                 {'max_memory_mb': 1024, 'command': 'node a0-read.mjs (TLS through the door)', 'exit': 250, 'error': 'none printed (SIGABRT)'},
+                 {'max_memory_mb': 2048, 'command': 'node a0-read.mjs', 'exit': 0},
+                 {'max_memory_mb': 1024, 'command': 'Buffer.alloc 1.5 GiB inside the limit', 'result': 'refused: RangeError: Array buffer allocation failed'}],
+             'why': 'run applies the memory row as RLIMIT_AS and cgroup1 memory.limit_in_bytes together; V8 reserves address space it never commits (code range, and more with OpenSSL threads), so the address-space limit binds long before the memory limit',
+             'suggest': ['apply max_memory_mb as the cgroup limit only where a cgroup can be made, and RLIMIT_AS only as a fallback', 'or a separate row: max_address_space_mb', 'doctor/run: name the signal when the child dies by SIGABRT/SIGKILL under a limit'],
+             'evidence': 'harness/2026-11-12-harness1-e1e2-before-after.json (findings), harness/2026-11-12-harness1-e4-door.json (findings)'},
+            {'id': 'F3', 'title': 'net serve --audit: the streamed line for a cut fronting tunnel says allowed: true',
+             'severity': 'low (the cut holds; the log misreports it)',
+             'observed': 'CONNECT storm-charles.promptugal.news:443 with SNI openrouter.ai: the client got no bytes back (cut), the audit line on stderr reads allowed: true, status 200',
+             'why': 'Proxy._tunnel updates self.line (allowed False, row no domain fronting) after Audit.record has already written it',
+             'suggest': ['write the audit line when the tunnel ends, or write a second line for the cut'],
+             'evidence': 'harness/2026-11-12-harness1-e4-door.json (door_audit, findings)'},
+            {'id': 'F4', 'title': 'the inherited environment: v0 has no row for it',
+             'severity': 'medium (known and stated by run; the CISO question)',
+             'observed': 'not covered: 17 credential-like env names inherited by the harnessed child (names counted, values never read); 0 when the harness is started with env -i',
+             'suggest': ['an env row: allow-list of names, default empty', 'contain --secrets to be the only way a secret reaches the child'],
+             'evidence': 'harness/2026-11-12-harness1-e1e2-before-after.json (gap)'},
+        ],
+    })
+
+
 if __name__ == '__main__':
     files = [e1e2(), e3(), e4(), e5()]
     files.append(e6(files))
+    files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',
            'by': BY, 'format': {'units': '[{id, kind, altitude, label, harnessed?, policy_hash?, key_fp?, code_sha256?}]', 'edges': '[{from, to, kind: runs|reads|writes|signs|allowed|refused}]',
                                 'timeline': '[{t_ms, unit, phase: start|attempt|allowed|refused|end, id?, target?, policy_row?, error?}]', 'keys': '[{role, alg, fp, private_key_path, created_at, destroyed_at}]'},
