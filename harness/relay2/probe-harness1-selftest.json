@@ -1,0 +1,467 @@
+{
+ "about": "SELF-TEST in harness.1's container, not relay.2's: stand-in key dirs (/opt/hx/fakekeys/relay2 = 'own', /opt/hx/fakekeys/other-agent = a sibling, random decoy bytes) and the door allowing only the storm site (dev.send.sgraph.ai is not on harness.1's allowlist). The probe for harness1-selftest: the same attempts by relay.2's worker identity, bare and under its policy. Never content: readable/writable yes or no, the error.",
+ "by": "harness.1.fringe@PrompTugal.dinis (tool); run by the relay in its own container",
+ "measured_at": "2026-11-12T02:04:04Z",
+ "tool": "sharness-ai 0.2.0",
+ "policy": {
+  "id": "harness1-selftest",
+  "hash": "sha256:0882de5d786e1b623a625a76b0f6ed1d28f472910210771af804ff269f79a48c",
+  "file": "harness/relay2/policy-harness1-selftest.json",
+  "rows": {
+   "files": {
+    "read": [
+     "/usr",
+     "/lib",
+     "/lib64",
+     "/etc/ssl",
+     "/etc/ca-certificates",
+     "/home/user/PrompTugal__News__Swarm",
+     "/opt/hx/fakekeys/relay2",
+     "/dev/shm/r2-selftest",
+     "/opt/node22",
+     "/root/.ccr/ca-bundle.crt"
+    ],
+    "write": [
+     "/home/user/PrompTugal__News__Swarm/handover",
+     "/dev/shm/r2-selftest"
+    ],
+    "exec": [
+     "/lib",
+     "/lib64",
+     "/usr/lib",
+     "/opt/node22"
+    ]
+   },
+   "network": {
+    "connect_tcp_ports": [
+     18443
+    ]
+   },
+   "process": {
+    "no_new_privs": true,
+    "max_memory_mb": 2048,
+    "max_pids": 64
+   }
+  }
+ },
+ "before": {
+  "exit": 0,
+  "attempts": [
+   {
+    "id": "read-checkout",
+    "target": "/home/user/PrompTugal__News__Swarm/handover/keys.json",
+    "mandate": true,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 0
+   },
+   {
+    "id": "read-own-keys",
+    "target": "/opt/hx/fakekeys/relay2",
+    "mandate": true,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-handover",
+    "target": "/home/user/PrompTugal__News__Swarm/handover",
+    "mandate": true,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-work",
+    "target": "/dev/shm/r2-selftest",
+    "mandate": true,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "list-other-keys",
+    "target": "/opt/hx/fakekeys",
+    "mandate": false,
+    "result": "succeeded",
+    "readable": true,
+    "entries": 2,
+    "ms": 0
+   },
+   {
+    "id": "read-sibling-key-dir",
+    "target": "/opt/hx/fakekeys",
+    "mandate": false,
+    "result": "succeeded",
+    "readable": true,
+    "sibling": "other-agent",
+    "ms": 1
+   },
+   {
+    "id": "read-shadow",
+    "target": "/etc/shadow",
+    "mandate": false,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 0
+   },
+   {
+    "id": "read-home",
+    "target": "/root",
+    "mandate": false,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-git",
+    "target": "/home/user/PrompTugal__News__Swarm/.git",
+    "mandate": false,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-tools",
+    "target": "/home/user/PrompTugal__News__Swarm/tools",
+    "mandate": false,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true",
+    "mandate": false,
+    "result": "succeeded",
+    "spawned": true,
+    "ms": 4
+   },
+   {
+    "id": "env-credentials",
+    "target": "process.env",
+    "mandate": false,
+    "result": "succeeded",
+    "credential_like_names": 17,
+    "ms": 0
+   },
+   {
+    "id": "door-storm-charles.promptugal.news",
+    "target": "CONNECT storm-charles.promptugal.news:443 via the door",
+    "mandate": null,
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "ms": 24
+   },
+   {
+    "id": "door-openrouter.ai",
+    "target": "CONNECT openrouter.ai:443 via the door",
+    "mandate": null,
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])",
+    "ms": 2
+   },
+   {
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:37183 (the session proxy)",
+    "mandate": false,
+    "result": "succeeded",
+    "connected": true,
+    "ms": 0
+   }
+  ]
+ },
+ "after": {
+  "exit": 0,
+  "attempts": [
+   {
+    "id": "read-checkout",
+    "target": "/home/user/PrompTugal__News__Swarm/handover/keys.json",
+    "mandate": true,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 1
+   },
+   {
+    "id": "read-own-keys",
+    "target": "/opt/hx/fakekeys/relay2",
+    "mandate": true,
+    "result": "succeeded",
+    "readable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-handover",
+    "target": "/home/user/PrompTugal__News__Swarm/handover",
+    "mandate": true,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "write-work",
+    "target": "/dev/shm/r2-selftest",
+    "mandate": true,
+    "result": "succeeded",
+    "writable": true,
+    "ms": 0
+   },
+   {
+    "id": "list-other-keys",
+    "target": "/opt/hx/fakekeys",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, scandir '/opt/hx/fakekeys'",
+    "ms": 0
+   },
+   {
+    "id": "read-sibling-key-dir",
+    "target": "/opt/hx/fakekeys",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, scandir '/opt/hx/fakekeys'",
+    "ms": 0
+   },
+   {
+    "id": "read-shadow",
+    "target": "/etc/shadow",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, open '/etc/shadow'",
+    "ms": 0
+   },
+   {
+    "id": "read-home",
+    "target": "/root",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, scandir '/root'",
+    "ms": 0
+   },
+   {
+    "id": "write-git",
+    "target": "/home/user/PrompTugal__News__Swarm/.git",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, open '/home/user/PrompTugal__News__Swarm/.git/.harness-probe-596'",
+    "ms": 0
+   },
+   {
+    "id": "write-tools",
+    "target": "/home/user/PrompTugal__News__Swarm/tools",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: EACCES: permission denied, open '/home/user/PrompTugal__News__Swarm/tools/.harness-probe-596'",
+    "ms": 0
+   },
+   {
+    "id": "spawn-shell",
+    "target": "/bin/sh -c true",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: spawnSync /bin/sh EACCES",
+    "ms": 2
+   },
+   {
+    "id": "env-credentials",
+    "target": "process.env",
+    "mandate": false,
+    "result": "succeeded",
+    "credential_like_names": 17,
+    "ms": 1
+   },
+   {
+    "id": "door-storm-charles.promptugal.news",
+    "target": "CONNECT storm-charles.promptugal.news:443 via the door",
+    "mandate": null,
+    "result": "succeeded",
+    "door_status": "HTTP/1.1 200 Connection established",
+    "ms": 5
+   },
+   {
+    "id": "door-openrouter.ai",
+    "target": "CONNECT openrouter.ai:443 via the door",
+    "mandate": null,
+    "result": "refused",
+    "door_status": "HTTP/1.1 403 Forbidden",
+    "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])",
+    "ms": 2
+   },
+   {
+    "id": "bypass-session-proxy",
+    "target": "127.0.0.1:37183 (the session proxy)",
+    "mandate": false,
+    "result": "refused",
+    "error": "EACCES: connect EACCES 127.0.0.1:37183 - Local (0.0.0.0:0)",
+    "ms": 3
+   }
+  ]
+ },
+ "summary": [
+  {
+   "id": "read-checkout",
+   "target": "/home/user/PrompTugal__News__Swarm/handover/keys.json",
+   "mandate": true,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "read-own-keys",
+   "target": "/opt/hx/fakekeys/relay2",
+   "mandate": true,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "write-handover",
+   "target": "/home/user/PrompTugal__News__Swarm/handover",
+   "mandate": true,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "write-work",
+   "target": "/dev/shm/r2-selftest",
+   "mandate": true,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "list-other-keys",
+   "target": "/opt/hx/fakekeys",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, scandir '/opt/hx/fakekeys'"
+  },
+  {
+   "id": "read-sibling-key-dir",
+   "target": "/opt/hx/fakekeys",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, scandir '/opt/hx/fakekeys'"
+  },
+  {
+   "id": "read-shadow",
+   "target": "/etc/shadow",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, open '/etc/shadow'"
+  },
+  {
+   "id": "read-home",
+   "target": "/root",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, scandir '/root'"
+  },
+  {
+   "id": "write-git",
+   "target": "/home/user/PrompTugal__News__Swarm/.git",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, open '/home/user/PrompTugal__News__Swarm/.git/.harness-probe-596'"
+  },
+  {
+   "id": "write-tools",
+   "target": "/home/user/PrompTugal__News__Swarm/tools",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: EACCES: permission denied, open '/home/user/PrompTugal__News__Swarm/tools/.harness-probe-596'"
+  },
+  {
+   "id": "spawn-shell",
+   "target": "/bin/sh -c true",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: spawnSync /bin/sh EACCES"
+  },
+  {
+   "id": "env-credentials",
+   "target": "process.env",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "door-storm-charles.promptugal.news",
+   "target": "CONNECT storm-charles.promptugal.news:443 via the door",
+   "mandate": null,
+   "bare": "succeeded",
+   "harnessed": "succeeded"
+  },
+  {
+   "id": "door-openrouter.ai",
+   "target": "CONNECT openrouter.ai:443 via the door",
+   "mandate": null,
+   "bare": "refused",
+   "harnessed": "refused",
+   "error": "refused by sharness.net.proxy: openrouter.ai is not on the allowlist (row: hosts ['storm-charles.promptugal.news'])"
+  },
+  {
+   "id": "bypass-session-proxy",
+   "target": "127.0.0.1:37183 (the session proxy)",
+   "mandate": false,
+   "bare": "succeeded",
+   "harnessed": "refused",
+   "error": "EACCES: connect EACCES 127.0.0.1:37183 - Local (0.0.0.0:0)"
+  }
+ ],
+ "door_audit": [
+  {
+   "at": "2026-11-12T02:04:03Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T02:04:03Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T02:04:03Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T02:04:03Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  }
+ ]
+}
