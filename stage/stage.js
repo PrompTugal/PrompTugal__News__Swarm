@@ -113,6 +113,12 @@
     applyPack(packFromUrl());
     // every real run is also a free scene: the replay, then each altitude in turn (from the left pane's Runs group)
     FREE = runIx.runs.map((r) => freeScene(r.file, r.title || r.file, r.rung));
+    // and every run that started with a push (the Runs repo's index, from raw.githubusercontent: never api.github.com on load)
+    fetch(RAW('index.json'), { cache: 'no-store' }).then((r) => r.json()).then((ix) => {
+      const seen = new Set();
+      for (const r of (ix.runs || []).slice().reverse()) { if (seen.has(r.request)) continue; seen.add(r.request); FREE.push(freeScene('gh:' + r.request, `${r.request} (${r.kind}, ${r.llm_calls} calls)`, 'push')); }
+      renderStory();
+    }).catch(() => {});
     layout();
     renderStory();
   }
