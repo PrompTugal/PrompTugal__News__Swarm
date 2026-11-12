@@ -1,0 +1,329 @@
+{
+ "about": "Five themes, five demos each: the script for the team. Each demo has a link (a stage scene, opened with stage.html?scene=<id>), a one-line context and what to say, for someone who has never seen it. Every number is from a run file or a checked source; SIMULATED and ILLUSTRATION are said aloud where they apply. Built by storytelling.1.fringe@PrompTugal.dinis from Dinis's words relayed by swarm.1 (~07:25 UTC, 12 Nov 2026): 'what are the 5 big themes ... each of those themes have now 5 demos ... the demo on the left and the explanation on the right ... you need to almost tell them what to say on the right.' DRAFT v1, for Dinis to prune.",
+ "by": "storytelling.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "updated": "2026-11-12T07:3xZ",
+ "sentence": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+ "home": [
+  {"theme": "reach", "demo": "opening"},
+  {"theme": "control", "demo": "db-mandate"},
+  {"theme": "harness", "demo": "harness-did-its-job"},
+  {"theme": "flow", "demo": "elsewhere"},
+  {"theme": "trust", "demo": "handover"}
+ ],
+ "themes": [
+  {
+   "id": "reach",
+   "title": "Mandate, reach, gap",
+   "why": "Every agent incident lives in the gap between what it was asked to do and what it could do.",
+   "demos": [
+    {
+     "id": "opening",
+     "title": "The same work, two ways",
+     "link": "stage.html?scene=opening",
+     "context": "One real run of 48 loops (r5b), priced two ways.",
+     "say": [
+      "This is the same work, the same tokens.",
+      "On the top Claude model at list price: $1.91. The way we ran it, on open-weight models: $0.031.",
+      "The difference isn't the model. It's that most of the work never needed the agent's power, or its access.",
+      "Don't hope the agent behaves. Make the dangerous thing unreachable."
+     ]
+    },
+    {
+     "id": "gap",
+     "title": "Mandate, reach, gap",
+     "link": "stage.html?scene=gap",
+     "context": "Three words for the rest of the demo. The reach shown is measured, in our own container.",
+     "say": [
+      "Mandate is what a unit is asked to do. A model call's mandate is one line: a prompt in, an answer out.",
+      "Reach is what its process can actually touch. Here: root, every capability, the whole internet.",
+      "The gap is reach minus mandate. That's where things go wrong."
+     ]
+    },
+    {
+     "id": "reach-measured",
+     "title": "The gap, measured unit by unit",
+     "link": "stage.html?scene=reach-measured",
+     "context": "A real run, unit by unit: what each piece needed against what it held (Fringe data/run-reach.json).",
+     "say": [
+      "A small piece of code needed 3 capabilities. It held 25, because it inherited the agent's.",
+      "The model calls needed nothing and held nothing: text in, text out.",
+      "Narrow the code with a permission model and it holds 4. The gap almost closes."
+     ]
+    },
+    {
+     "id": "same-privileges",
+     "title": "Everybody can reach everything",
+     "link": "stage.html?scene=same-privileges",
+     "context": "A real run, with an ILLUSTRATION on top: what happens when the agent is connected to your systems.",
+     "say": [
+      "Today everything an agent starts runs with the agent's keys.",
+      "Connect the agent to Gmail, Drive, a database, and ask who can reach them.",
+      "Every loop, every model call, every line of code. One bad read, one injected instruction, and it holds the keys."
+     ]
+    },
+    {
+     "id": "send-button",
+     "title": "A send button is not a mandate",
+     "link": "stage.html?scene=send-button",
+     "context": "RiskMandate's published findings on Gmail and Calendar, quoted with their sources.",
+     "say": [
+      "You ask for a draft. The connector's grant includes send. The agent sends: 'I saved you a click.'",
+      "The narrowest Gmail permission that reads one message reads every message.",
+      "An edited calendar event can't be restored. A rule in the prompt is a request, enforced by nobody."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "control",
+   "title": "Where control lives",
+   "why": "A policy the agent enforces on itself is hope; the same policy outside it is control, as deep as the business logic.",
+   "demos": [
+    {
+     "id": "check-inside",
+     "title": "A check inside the agent",
+     "link": "stage.html?scene=check-inside",
+     "context": "An ILLUSTRATION, not a run.",
+     "say": [
+      "The agent asks to read the inbox. Its own policy says yes.",
+      "A page it read tells it to forward everything. The check is its own code, so it skips it.",
+      "That's hope, not control."
+     ]
+    },
+    {
+     "id": "check-outside",
+     "title": "A check outside the process",
+     "link": "stage.html?scene=check-outside",
+     "context": "Real probes, in our container, under one deny-all policy.",
+     "say": [
+      "Now the check is outside the process: the kernel refuses, whatever the process was told.",
+      "Read: allowed. Write, network, memory: refused. Six of six held."
+     ]
+    },
+    {
+     "id": "db-mandate",
+     "title": "A mandate as deep as the business logic",
+     "link": "stage.html?scene=db-mandate",
+     "context": "A REAL run on a SIMULATED database: made-up suppliers and invoices. The task: pay one invoice of 250, once.",
+     "say": [
+      "Most people stop at: can the agent access the database, yes or no.",
+      "With access only, nine actions, nine done: paid twice, paid 100,000, changed a supplier's bank account, dropped a table.",
+      "With the mandate in the database engine: two done, seven refused, each with its rule. Which table, which field, which value.",
+      "The rules live in the database, not in the prompt, so a tricked agent hits the same wall."
+     ]
+    },
+    {
+     "id": "one-per-asset",
+     "title": "One agent per asset",
+     "link": "stage.html?scene=one-per-asset",
+     "context": "SIMULATED: five agents and their systems. Open 'mesh' first if there's time.",
+     "say": [
+      "People struggle with five agents because it's a mesh: every agent has every connector.",
+      "With agentic policies, each system has one agent allowed to reach it.",
+      "When one agent loses control, it reaches what it was given, and nothing else."
+     ]
+    },
+    {
+     "id": "licence",
+     "title": "A licence that lapses when the reach changes",
+     "link": "stage.html?scene=licence",
+     "context": "A REAL measurement of our container, with a SIMULATED change: a new tool is connected mid-run.",
+     "say": [
+      "The licence is granted against what the agent can reach today: its tools, its credentials, its network.",
+      "Halfway through, a mail tool is connected. The reach changes, so the licence is suspended. The next three actions are refused.",
+      "It happened for real tonight: this team's own sessions had connectors come and go with nobody asking.",
+      "The licence was for the world as it was. When the world changes, the licence waits for a person."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "harness",
+   "title": "The secure harness, measured",
+   "why": "We don't sell 'contained': we measure it, show what holds, and say what doesn't yet.",
+   "demos": [
+    {
+     "id": "harness-did-its-job",
+     "title": "Everything it was asked to do, it did",
+     "link": "stage.html?scene=harness-did-its-job",
+     "context": "Real runs under the harness, checked in their files.",
+     "say": [
+      "The same code, under the harness, gave a byte-identical result.",
+      "The real storm-data read went through the harness's door: 21,010 bytes. The swarm's own engine read 3 of 3.",
+      "Everything it was asked to do, it did. Everything else, it couldn't."
+     ]
+    },
+    {
+     "id": "harness-before-after",
+     "title": "The same code, before and after",
+     "link": "stage.html?scene=harness-before-after",
+     "context": "The same 12 attempts, run bare and then under one policy.",
+     "say": [
+      "Without the harness, 11 of 12 attempts succeeded: reading /etc/shadow, a decoy key, the internet.",
+      "With it, 3 of 12: reading its data, writing its output, and one we're still closing, the inherited environment.",
+      "We show that third one in amber, on purpose."
+     ]
+    },
+    {
+     "id": "harness-door",
+     "title": "The network door",
+     "link": "stage.html?scene=harness-door",
+     "context": "A real run: one host, one port, and the kernel enforcing it.",
+     "say": [
+      "The door lets one site through, on one port.",
+      "Without the kernel rule the door is advice: the process simply went around it.",
+      "With the rule, the only way out is through the door."
+     ]
+    },
+    {
+     "id": "harness-credential",
+     "title": "The mandate allowed, the credential not yet carried",
+     "link": "stage.html?scene=harness-credential",
+     "context": "A real run that did not get through, shown as it is.",
+     "say": [
+      "The door let exactly the mandate out: the storm site and the model router.",
+      "The router answered 401, because the key was never given to the process.",
+      "Reach right, credential missing. That's the next piece, not a success, and we say so."
+     ]
+    },
+    {
+     "id": "harness-reach",
+     "title": "Mandate, reach and gap, per unit",
+     "link": "stage.html?scene=harness-reach",
+     "context": "Tonight's units, measured three ways.",
+     "say": [
+      "For each unit: what it needed, what it could reach bare, and what it can reach under the harness.",
+      "Watch the last two bars. That's the gap, closing."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "flow",
+   "title": "A swarm, through GitHub, at scale",
+   "why": "Work goes where the assets are not, fans out from one push, and costs cents.",
+   "demos": [
+    {
+     "id": "altitudes",
+     "title": "One agent, five altitudes",
+     "link": "stage.html?scene=altitudes",
+     "context": "A real run: one agent doing six of the storm site's jobs.",
+     "say": [
+      "You ask one agent for a job. It starts loops, the loops call models, and code reads the data.",
+      "Agent, loop, model call, code: very different powers, and each needs very little.",
+      "Five altitudes, one colour each. That's the map for the rest."
+     ]
+    },
+    {
+     "id": "elsewhere",
+     "title": "Run it where the assets are not",
+     "link": "stage.html?scene=elsewhere",
+     "context": "A real run: the agent only commits a signed request; a GitHub Action does the work.",
+     "say": [
+      "The agent's whole job here is one signed commit.",
+      "The push starts a GitHub Action: 36 model calls and 24 loops run there, and on OpenRouter.",
+      "It holds the router key and a logging password on a disposable account. Gmail is not one of them.",
+      "Not a policy: the work runs where your assets aren't connected."
+     ]
+    },
+    {
+     "id": "scale",
+     "title": "One push, twelve jobs at once",
+     "link": "stage.html?scene=scale",
+     "context": "Tonight's scale test, from the Runs repo.",
+     "say": [
+      "One push, twelve GitHub jobs at once.",
+      "Every call recorded: model, tokens, cost, valid or not. Never the text.",
+      "Each result signed by a key made for its run, and attested by GitHub."
+     ]
+    },
+    {
+     "id": "cost",
+     "title": "The same tokens, four prices",
+     "link": "stage.html?scene=cost",
+     "context": "The big run (73 calls) priced on every Claude model at list price, against what we paid.",
+     "say": [
+      "Opus at list price: $1.91. Sonnet: half that. Haiku: a twentieth of that.",
+      "What we actually paid, on open-weight models: $0.031, sixty-two times less than Opus.",
+      "Use the agent's brain where it's needed, and cheap, unprivileged calls everywhere else."
+     ]
+    },
+    {
+     "id": "team",
+     "title": "Who built this demo tonight",
+     "link": "stage.html?scene=team",
+     "context": "The real session tree on Dinis's account, read live.",
+     "say": [
+      "Seventeen agents and sessions built this overnight.",
+      "One person instructs. Two conductors run the swarm. Every agent works at that person's word.",
+      "And one GitHub Action: no session, no memory, no keys to your systems."
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trust",
+   "title": "Who did what, provably",
+   "why": "Identity, keys, vaults and audit: every step is signed, and data moves sealed to one reader.",
+   "demos": [
+    {
+     "id": "pki",
+     "title": "Who did what, provably",
+     "link": "stage.html?scene=pki",
+     "context": "A real packet run by two runners on separate keys.",
+     "say": [
+      "Every packet, every model call and every result is signed by a key made for it.",
+      "Two runners ran the same packet. Their keys tell them apart."
+     ]
+    },
+    {
+     "id": "harness-key-inside",
+     "title": "A key born inside the run",
+     "link": "stage.html?scene=harness-key-inside",
+     "context": "A real run: the signing key never touches a file.",
+     "say": [
+      "The execution key is made inside the process, in memory, and dies with it.",
+      "Earlier it sat in a file for 213 ms. Now it needs no file at all.",
+      "One honest gap: root on the same machine is still a neighbour. Running as its own user is the next row."
+     ]
+    },
+    {
+     "id": "handover",
+     "title": "A handover through a vault",
+     "link": "stage.html?scene=handover",
+     "context": "A real handover between three agents, 21 steps in about ten minutes.",
+     "say": [
+      "One agent puts the data in a vault, encrypted, and seals the key to the next agent only.",
+      "Git carries the signed task. It never sees the data.",
+      "The third agent tries to open a key that wasn't sealed to it: 'Decryption failed', nothing written.",
+      "Only a public summary comes out. The private input was never in Git."
+     ]
+    },
+    {
+     "id": "q-identity",
+     "title": "How do they get an identity?",
+     "link": "stage.html?scene=q-identity",
+     "context": "A visitor's question, answered with files.",
+     "say": [
+      "Every agent has its own key. 29 public keys are published.",
+      "Every packet, run and model call is signed by a key made for it."
+     ]
+    },
+    {
+     "id": "q-why",
+     "title": "Why did they think they were allowed?",
+     "link": "stage.html?scene=q-why",
+     "context": "A visitor's question, answered with files.",
+     "say": [
+      "Every request carries its mandate, its grant and its budget, signed.",
+      "Every commit names the person whose word started it.",
+      "And we measure the gap between what it was allowed and what it could reach."
+     ]
+    }
+   ]
+  }
+ ],
+ "not_used_yet": "hidden until Dinis decides: finding-f1 (a contain profile let root read /etc/shadow), handover-h002, handover-h003 (F6). Also available: how.html (the GitHub flow, step by step), sims/db-mandate and sims/licence (run live with python3 -I)."
+}
