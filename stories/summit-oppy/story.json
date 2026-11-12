@@ -1,0 +1,209 @@
+{
+ "title": "Oppy and RiskMandate",
+ "id": "summit-oppy",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Oppy and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Oppy"
+  },
+  {
+   "type": "bullets",
+   "title": "What Oppy says it does",
+   "items": [
+    "Filters market signals in real time, matched to the client's ICP, geography, competitors and roles",
+    "Signals: hiring spikes, funding rounds, G2 intent, breach disclosures, CISO moves",
+    "Drafts prospecting messages with AI from detected intent",
+    "Starter Pack: CRM sync and enriched context",
+    "Sub-processors: LLM access, contact enrichment, LinkedIn and WhatsApp messaging, workflow automation"
+   ],
+   "kicker": "Starting point",
+   "badge": "real",
+   "caption": "All from Oppy's own pages: site, terms, privacy notice.",
+   "source": "Oppy public pages (site, terms, privacy notice)",
+   "say": [
+    "Everything on this slide is Oppy's own description of itself.",
+    "Note how much sits in one product: signals, drafting, CRM, enrichment, messaging."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "One product, from signal to message",
+   "steps": [
+    "Market signal detected",
+    "Matched to client's ICP",
+    "Outreach drafted by AI",
+    "CRM sync and contact enrichment",
+    "LinkedIn and WhatsApp messaging"
+   ],
+   "kicker": "The workflow",
+   "badge": "real",
+   "caption": "The steps are named on Oppy's pages. How they connect inside is not public.",
+   "source": "Oppy plans, terms and privacy notice",
+   "say": [
+    "This is the chain the three synergies hang on.",
+    "We only see the named pieces; how the agents are wired is not public."
+   ]
+  },
+  {
+   "type": "compare",
+   "title": "Synergy 1: lock down Oppy's own agents",
+   "before": {
+    "label": "Asked to do",
+    "items": [
+     "Match signals to an ICP",
+     "Judge timing",
+     "Draft messages: a mandate to write, not to send"
+    ]
+   },
+   "after": {
+    "label": "Can reach (to measure)",
+    "items": [
+     "CRM sync, enrichment, LinkedIn and WhatsApp messaging, workflow automation sit in the same product",
+     "What each agent's credentials reach in a customer's CRM: unknown from public pages"
+    ]
+   },
+   "kicker": "Our suggestion",
+   "badge": "illustration",
+   "caption": "Our hypothesis, not Oppy's claim. Built from public pages; nothing tested.",
+   "say": [
+    "We would write down each agent's mandate, then measure what its credentials actually reach.",
+    "The place to look: an agent that may draft but can reach a send path."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "Synergy 2: evidence for Oppy's customers",
+   "steps": [
+    "Write down each agent's mandate",
+    "Measure what its credentials reach",
+    "Record the gap",
+    "Oppy hands the evidence to its customers"
+   ],
+   "kicker": "Our suggestion",
+   "badge": "illustration",
+   "caption": "What we would do together: turn a tight agentic workflow into proof customers can hold.",
+   "say": [
+    "Customers are handing Oppy their CRM and their prospects' contact details.",
+    "Evidence of a tight workflow is something Oppy could show them, not just assert."
+   ]
+  },
+  {
+   "type": "graph",
+   "title": "Synergy 3: agents Oppy deploys into customers' environments",
+   "nodes": [
+    {
+     "id": "agent",
+     "label": "Agent deployed by Oppy",
+     "alt": "A3"
+    },
+    {
+     "id": "crm",
+     "label": "Customer's CRM and data",
+     "alt": "X"
+    },
+    {
+     "id": "enrich",
+     "label": "Contact enrichment",
+     "alt": "A0"
+    },
+    {
+     "id": "msg",
+     "label": "LinkedIn / WhatsApp messaging",
+     "alt": "A0"
+    }
+   ],
+   "edges": [
+    {
+     "from": "agent",
+     "to": "crm",
+     "label": "collects data"
+    },
+    {
+     "from": "agent",
+     "to": "enrich",
+     "label": "reach?"
+    },
+    {
+     "from": "agent",
+     "to": "msg",
+     "label": "reach?"
+    }
+   ],
+   "kicker": "Our suggestion",
+   "badge": "illustration",
+   "caption": "Illustration of what we would map. Which links exist is unknown from public pages.",
+   "say": [
+    "An agent sitting in a customer's environment holds that customer's data.",
+    "We would secure it by mandating and measuring it, so the question marks become answers."
+   ]
+  },
+  {
+   "type": "table",
+   "title": "Three synergies, each grounded in Oppy's own pages",
+   "cols": [
+    "Synergy (our suggestion)",
+    "Grounded in what Oppy says",
+    "What we would do"
+   ],
+   "rows": [
+    [
+     "1. Lock down Oppy's own agents",
+     "Drafted outreach; CRM sync; contact enrichment",
+     "Mandate vs reach, per agent"
+    ],
+    [
+     "2. Evidence for customers",
+     "LinkedIn and WhatsApp messaging; workflow automation",
+     "Hand over the recorded gap"
+    ],
+    [
+     "3. Secure deployed agents",
+     "Custom plan: API access, custom agentic workflows",
+     "Mandate and measure in the customer's environment"
+    ]
+   ],
+   "kicker": "Summary",
+   "badge": "illustration",
+   "caption": "Middle column is Oppy's public description; right column is our proposal.",
+   "say": [
+    "Three angles, one method: write the mandate, measure the reach, record the gap."
+   ]
+  },
+  {
+   "type": "statement",
+   "text": "An agent that may draft should be provably unable to send, and Oppy could be the one who proves it.",
+   "kicker": "Our suggestion",
+   "badge": "illustration",
+   "caption": "A hypothesis from public pages only. We would test it together.",
+   "say": [
+    "That is the offer in one line, and we would check it with Oppy, not claim it for them."
+   ]
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T10:26:21Z",
+ "partners": [
+  "oppy"
+ ],
+ "simulated": false
+}
