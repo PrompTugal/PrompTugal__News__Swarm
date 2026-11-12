@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en" data-theme="gravity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Demo Packs</title>
+<meta name="description" content="Short demo packs, one idea per step: mandate, reach and the gap; the secure harness; where the policy check lives; a key's life; where the data is encrypted; every run starts with a push. Real evidence where it exists, labelled as fact or idea.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.45 var(--font)}
+body{display:grid;grid-template-rows:auto 1fr auto;background:radial-gradient(ellipse at 50% 35%,var(--bg2) 0%,var(--bg) 70%) fixed}
+a{color:var(--accent)}
+header{display:flex;gap:14px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}header h1{margin:0;font:600 1.05rem var(--font-head)}header .muted{color:var(--muted);font-size:.85rem}
+#tabs{display:flex;gap:4px;flex-wrap:wrap;flex:1}#tabs button{font:inherit;font-size:.85rem;background:none;border:1px solid var(--line);color:var(--muted);border-radius:8px;padding:5px 10px;cursor:pointer}
+#tabs button[aria-pressed="true"]{color:var(--ink);border-color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 320px;min-height:0}
+#stage{position:relative;min-height:0}#svg{position:absolute;inset:0;width:100%;height:100%}
+#cap{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);width:min(1000px,92%);text-align:center;font:500 1.35rem/1.35 var(--font-head);padding:12px 20px;border-radius:14px;background:var(--panel);border:1px solid var(--line);backdrop-filter:var(--glass)}
+#cap small{display:block;margin-top:6px;font:500 .78rem var(--mono);color:var(--muted)}#cap small b{color:var(--accent2);font-weight:600}
+aside{border-left:1px solid var(--line);padding:12px 14px;overflow:auto}aside h2{font:600 .75rem var(--font-head);text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:12px 0 6px}
+aside h3{margin:0 0 4px;font:600 1.15rem var(--font-head)}aside p{margin:0 0 8px}details{border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:0 0 8px}summary{cursor:pointer;font-weight:600}
+.who{display:grid;gap:6px}.who div{font-size:.88rem}.who b{color:var(--accent2);font-weight:600;display:block;font-size:.75rem;text-transform:uppercase;letter-spacing:.06em}
+.leg{display:grid;grid-template-columns:28px 1fr;gap:6px 8px;align-items:center;font-size:.85rem}
+footer{display:flex;gap:6px;align-items:center;padding:8px 12px;border-top:1px solid var(--line)}footer button{font:inherit;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;min-width:42px}
+footer button.play{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:700}
+#steps{display:flex;gap:4px;flex:1;min-width:0}#steps button{flex:1 1 0;min-width:0;position:relative;overflow:hidden;text-align:left;font-size:.75rem;color:var(--muted);padding:5px 8px;white-space:nowrap;text-overflow:ellipsis}
+#steps button i{position:absolute;left:0;top:0;bottom:0;background:color-mix(in srgb,var(--accent) 22%,transparent);width:0}#steps button span{position:relative}#steps button.cur{border-color:var(--accent);color:var(--ink)}#steps button.done{color:var(--ink)}
+/* the drawing */
+#svg text{fill:var(--ink);font-family:var(--font)}#svg text.mono{font-family:var(--mono)}
+.s{opacity:0;transition:opacity var(--dur) ease var(--d),transform var(--dur) ease var(--d)}.s.on{opacity:1}.s.past{opacity:.22}
+.instant .s,.instant .s *{transition:none!important}
+.grow{transform:scale(.06);transform-box:fill-box;transform-origin:center;transition:transform var(--dur,2s) cubic-bezier(.2,.7,.2,1) var(--d,0s)}.s.on .grow{transform:scale(1)}
+.ln{fill:none;stroke:var(--muted);stroke-width:3;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1s ease var(--d)}.s.on .ln{stroke-dashoffset:0}
+.ok-ln{stroke:var(--ok)}.bad-ln{stroke:var(--bad)}.ask-ln{stroke:var(--accent)}.flow-ln{stroke:var(--accent);opacity:.7}
+.mandate{fill:var(--ok)}.reach{fill:color-mix(in srgb,var(--reach) 12%,transparent);stroke:var(--reach);stroke-width:3}.gap{fill:url(#hatch);fill-rule:evenodd}
+.cipher{fill:url(#ciph);stroke:var(--accent);stroke-width:2}.plain{fill:color-mix(in srgb,var(--warn) 16%,transparent);stroke:var(--warn);stroke-width:2;stroke-dasharray:6 5}
+.ephemeral .plain{animation:fadeout 4s ease 2s forwards}@keyframes fadeout{to{opacity:.25}}
+.life{fill:color-mix(in srgb,var(--accent2) 30%,transparent)}.made{fill:var(--accent2)}.sig{fill:var(--accent2)}
+.box{fill:color-mix(in srgb,var(--panel-solid) 70%,transparent);stroke:var(--line);stroke-width:2}.box.hot{stroke:var(--bad);stroke-width:3}
+.wall{fill:none;stroke:var(--ink);stroke-width:12;opacity:.85}.wall-v{fill:var(--ink);opacity:.85}.door{fill:var(--ok)}
+.asset{fill:color-mix(in srgb,var(--alt-X,#ff7fb0) 16%,transparent);stroke:var(--alt-X,#ff7fb0);stroke-width:3}
+.vaultbox{fill:color-mix(in srgb,var(--accent) 8%,transparent);stroke:var(--accent);stroke-width:2;stroke-dasharray:8 6}
+.lane{fill:color-mix(in srgb,var(--ink) 3%,transparent);stroke:var(--line)}.lane.vault-encrypted{fill:url(#ciph);opacity:.55}.lane.memory-decrypted{fill:color-mix(in srgb,var(--warn) 7%,transparent)}
+.netdot{fill:var(--muted)}.commit{fill:var(--accent2)}.job{fill:var(--alt-A3,#5ec2ff);opacity:.9}
+@media (max-width:900px){main{grid-template-columns:1fr;grid-template-rows:62vh auto}aside{border-left:0;border-top:1px solid var(--line)}#cap{font-size:1rem;bottom:8px}#steps button span{display:none}}
+body.focus header,body.focus aside{display:none}body.focus main{grid-template-columns:1fr}
+@media (prefers-reduced-motion:reduce){.s,.grow,.ln{transition:none!important}}
+</style>
+</head>
+<body>
+<header><h1>Demo Packs</h1><span class="muted">one idea per step · <a href="../stage.html">the stage</a> · <a href="views.html">five views</a> · <a href="../">live</a></span><div id="tabs"></div></header>
+<main><section id="stage"><svg id="svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid meet" role="img"></svg><div id="cap"></div></section>
+<aside><h3 id="ptitle"></h3><p id="pblurb" class="muted"></p>
+<details open><summary>What to say</summary><div class="who" id="who"></div></details>
+<details><summary>The visual language</summary><div class="leg" id="leg"></div></details>
+<details><summary>Keys</summary><p class="muted">→ / ← step (← lands on the end of the step before) · Space play · PageDown / PageUp pack · T theme · Z focus · F fullscreen</p></details>
+<p class="muted" style="font-size:.78rem">Independent of Web Summit. Model text is never stored. Real evidence is labelled <b>fact</b> with its source; anything illustrative says so.</p></aside></main>
+<footer><button id="prev" title="←">‹</button><button id="play" class="play" title="Space">▶</button><button id="next" title="→">›</button><div id="steps"></div></footer>
+<script src="../assets/packs.js"></script>
+<script>
+const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'], Q = new URLSearchParams(location.search);
+const F = {}; let P = 0, step = 0, playing = null;
+const packs = PACKS.list;
+async function facts() {
+  const get = (u) => fetch(u, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : null)).catch(() => null);
+  F.harness = await get('../harness/2026-11-12-swarm1-probe-and-hello.json');
+  F.packet = await get('../runs/s001-storm-six--swarm.1.fringe.json');
+  F.summary = await get('https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Swarm__Runs/dev/runs/summary.json');
+  // a real relay flow if one has landed; otherwise the proposed format's example, marked as an illustration on screen
+  const real = await get('../handover/flows/h001.json');
+  if (real) F.flow = { ...real, real: true }; else { const fm = await get('../handover/flows/FORMAT.json'); F.flow = fm && fm.example ? fm.example : null; }
+}
+function tabs() {
+  $('#tabs').innerHTML = packs.map((p, i) => `<button aria-pressed="${i === P}" data-i="${i}">${esc(p.title)}</button>`).join('');
+  $('#tabs').querySelectorAll('button').forEach((b) => (b.onclick = () => go(+b.dataset.i, 0, true)));
+}
+function side() {
+  const p = packs[P]; $('#ptitle').textContent = p.title; $('#pblurb').textContent = p.blurb;
+  $('#who').innerHTML = p.say ? Object.entries(p.say).map(([k, v]) => `<div><b>${esc(k)}</b>${esc(v)}</div>`).join('') : '<div class="muted">This pack sets the vocabulary; the others use it.</div>';
+}
+function legend() {
+  const m = (svg) => `<svg width="28" height="28" viewBox="-14 -14 28 28">${svg}</svg>`;
+  $('#leg').innerHTML = [[m('<circle r="7" class="mandate"/>'), 'mandate: allowed'], [m('<circle r="12" class="reach"/>'), 'reach: can touch'], [m('<rect x="-12" y="-9" width="24" height="18" class="gap" style="fill:url(#hatch)"/>'), 'the gap'],
+    [m('<rect x="-12" y="-9" width="24" height="18" rx="3" class="cipher" style="fill:url(#ciph)"/>'), 'encrypted'], [m('<rect x="-12" y="-9" width="24" height="18" rx="3" class="plain"/>'), 'decrypted, in memory'], [m('<path d="M-6,-9 H4 L8,-5 V9 H-6 Z" fill="none" stroke="var(--ink)" stroke-width="2"/>'), 'public'],
+    [m('<rect x="-12" y="-10" width="24" height="20" class="wall" style="stroke-width:4"/>'), 'harness wall'], [m('<path d="M-10,0 H8" stroke="var(--bad)" stroke-width="3"/><text x="9" y="5" style="fill:var(--bad);font-size:12px">✕</text>'), 'refused']].map(([a, b]) => a + `<span>${b}</span>`).join('');
+}
+function draw() { $('#svg').innerHTML = PACKS.DEFS + packs[P].draw(F); }
+// state at (step, built?): every element of an earlier step is on; this step's elements turn on and animate in
+function show(instant) {
+  const p = packs[P], st = p.steps[step] || {}, svg = $('#svg');
+  svg.classList.toggle('instant', !!instant);
+  svg.querySelectorAll('.s').forEach((g) => { const k = +g.dataset.step - 1, until = g.dataset.until != null ? +g.dataset.until - 1 : null; g.classList.toggle('on', k <= step); g.classList.toggle('past', until != null && step > until); });
+  if (instant) requestAnimationFrame(() => svg.classList.remove('instant'));
+  const t = st.tag; $('#cap').innerHTML = esc(st.cap || '') + (t ? `<small><b>${esc(t.kind)}</b>${t.src ? ' · ' + esc(t.src) : ''}</small>` : '');
+  $('#steps').innerHTML = p.steps.map((s, i) => `<button class="${i < step ? 'done' : i === step ? 'cur' : ''}" data-i="${i}"><i style="width:${i < step ? 100 : i === step ? 100 : 0}%"></i><span>${i + 1}. ${esc((s.cap || '').split(/[.:,]/)[0].slice(0, 40))}</span></button>`).join('');
+  $('#steps').querySelectorAll('button').forEach((b) => (b.onclick = () => go(P, +b.dataset.i, true)));
+  try { history.replaceState(null, '', `?pack=${p.id}&step=${step + 1}`); } catch {}
+}
+function go(pi, si, instant) {
+  const changed = pi !== P; P = pi; step = si;
+  if (changed || !$('#svg').childElementCount) { tabs(); side(); draw(); if (!instant) { step = Math.max(0, si); } }
+  if (!instant && step > 0) { /* show the step before at its built end, then let this one animate in */ const s = step; step = s - 1; show(true); requestAnimationFrame(() => requestAnimationFrame(() => { step = s; show(false); })); }
+  else show(!!instant && step > 0 ? true : false);
+  if (changed) document.querySelectorAll('#tabs button').forEach((b, i) => b.setAttribute('aria-pressed', i === P));
+}
+function next() { const p = packs[P]; if (step < p.steps.length - 1) go(P, step + 1, false); else if (P < packs.length - 1) go(P + 1, 0, false); }
+function prev() { if (step > 0) go(P, step - 1, true); else if (P > 0) go(P - 1, packs[P - 1].steps.length - 1, true); }
+function play() {
+  if (playing) { clearTimeout(playing); playing = null; $('#play').textContent = '▶'; return; }
+  $('#play').textContent = '❚❚'; const tick = () => { const p = packs[P], last = step >= p.steps.length - 1 && P >= packs.length - 1; if (last) { play(); return; } next(); playing = setTimeout(tick, ((packs[P].steps[step] || {}).dur || 1.2) * 1000 + 2200); }; playing = setTimeout(tick, 400);
+}
+$('#next').onclick = next; $('#prev').onclick = prev; $('#play').onclick = play;
+document.addEventListener('keydown', (e) => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return; const k = e.key;
+  if (k === 'ArrowRight') { e.preventDefault(); next(); } else if (k === 'ArrowLeft') { e.preventDefault(); prev(); } else if (k === ' ') { e.preventDefault(); play(); }
+  else if (k === 'PageDown') { e.preventDefault(); go(Math.min(packs.length - 1, P + 1), 0, true); } else if (k === 'PageUp') { e.preventDefault(); go(Math.max(0, P - 1), 0, true); }
+  else if (k === 't' || k === 'T') { const r = document.documentElement; r.dataset.theme = THEMES[(THEMES.indexOf(r.dataset.theme) + 1) % THEMES.length]; }
+  else if (k === 'z' || k === 'Z') document.body.classList.toggle('focus'); else if (k === 'f' || k === 'F') { document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.().catch(() => {}); }
+});
+(async () => {
+  if (Q.get('theme')) document.documentElement.dataset.theme = Q.get('theme');
+  await facts(); legend();
+  const pi = Math.max(0, packs.findIndex((p) => p.id === Q.get('pack'))), si = Math.max(0, (+Q.get('step') || 1) - 1);
+  P = -1; go(pi, Math.min(si, packs[pi].steps.length - 1), true);
+})();
+</script>
+</body>
+</html>

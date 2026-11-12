@@ -9,6 +9,7 @@
 :root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--live:#ffe066}
 /* the universe is dark; light only when asked */ :root[data-theme="light"]{--bg:#f6f8f7;--panel:#ffffff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86;--ok:#14936a;--bad:#d42f40;--live:#c99a00}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+a.cta{display:inline-block;background:var(--a3);color:#04100F;font-weight:700;text-decoration:none;border-radius:8px;padding:3px 10px;margin:2px 0}
 a{color:var(--a3)}header,footer{padding:14px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;color:var(--muted);max-width:70ch}
 main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 16px}
 @media (max-width:900px){main{grid-template-columns:1fr}
@@ -61,7 +62,7 @@ body.present .headline{margin-top:12px;padding:8px 16px}body.present .headline .
 <body>
 <header>
   <h1>The swarm, one real run at a time</h1>
-  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="pages/views.html">Five ways to see a run</a> · <a href="how.html">How the GitHub flow works</a> · <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
+  <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="stage.html" class="cta">Present the story ▶</a> · <a href="pages/packs.html">Demo packs</a> · <a href="pages/views.html">Five ways to see a run</a> · <a href="how.html">How the GitHub flow works</a> · <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
 </header>
 <section class="headline" id="headline" aria-label="Every run that started with a push, added up" hidden></section>
 <section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
