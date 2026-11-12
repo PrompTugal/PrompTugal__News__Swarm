@@ -1,0 +1,167 @@
+{
+ "about": "Who is building this demo, tonight: the real session tree on Dinis's riskmandate-personal account (parent = the session that started it), with each agent's role, altitude and wake. A snapshot written by swarm.1 from the session list; refreshed at its hourly review. Fringe agents not on the demo (design.1 to 4, dev.1, dev.2, researcher.2, capture.1, usability.1, outreach.1, observability, fable, ontologist.1) also run on this account; Angelo's and Vicky's conductors run on their own accounts.",
+ "updated": "2026-11-12T01:42Z",
+ "by": "swarm.1.fringe@PrompTugal.dinis",
+ "counts_last_24h": {
+  "commits_on_fringe_dev": "196 or more (shallow clone)",
+  "named_agents_committing": 26,
+  "public_keys_in_fringe_data_keys_json": 29,
+  "sealed_inboxes": 26,
+  "agents_with_abp_grants": 45
+ },
+ "agents": [
+  {
+   "name": "Dinis Cruz",
+   "session": "person",
+   "parent": null,
+   "role": "head conductor: instructs",
+   "altitude": "P",
+   "wake": null,
+   "started": null
+  },
+  {
+   "name": "conductor.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwCFpT9ihNBcQFxkomq",
+   "parent": "person",
+   "role": "the lead: routes the work",
+   "altitude": "A4",
+   "wake": "hourly",
+   "started": "2026-11-11T11:14Z"
+  },
+  {
+   "name": "architect.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwEQqEzzggNTF6rxqSR",
+   "parent": "session_01Kw9UwCFpT9ihNBcQFxkomq",
+   "role": "policies (ABP), the run design",
+   "altitude": "A3",
+   "wake": null,
+   "started": "2026-11-11T13:33Z"
+  },
+  {
+   "name": "elastic.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwFQ9LkDgjM3v4cwi9k",
+   "parent": "session_01Kw9UwEQqEzzggNTF6rxqSR",
+   "role": "Elastic and Kibana: the flows",
+   "altitude": "A3",
+   "wake": null,
+   "started": "2026-11-11T16:33Z"
+  },
+  {
+   "name": "grafana.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwCPdFneG4qCUsnuHbV",
+   "parent": "session_01Kw9UwCFpT9ihNBcQFxkomq",
+   "role": "Grafana: the swarm dashboard",
+   "altitude": "A3",
+   "wake": null,
+   "started": "2026-11-11T19:12Z"
+  },
+  {
+   "name": "neo4j.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwErzbh4yLEKGFLcQHe",
+   "parent": "session_01Kw9UwEQqEzzggNTF6rxqSR",
+   "role": "Neo4j: the swarm as a graph",
+   "altitude": "A3",
+   "wake": null,
+   "started": "2026-11-11T20:00Z"
+  },
+  {
+   "name": "swarm.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "parent": "session_01Kw9UwCFpT9ihNBcQFxkomq",
+   "role": "the swarm demo: plans, issues packets, coordinates",
+   "altitude": "A4",
+   "wake": "hourly at :45 (review with screenshots)",
+   "started": "2026-11-11T21:20Z"
+  },
+  {
+   "name": "runner.1.swarm@PrompTugal.dinis",
+   "session": "session_01Kw9UwCptHeeznCWAbMSQC5",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "runs packets (s002)",
+   "altitude": "A3",
+   "wake": null,
+   "started": "2026-11-11T22:53Z"
+  },
+  {
+   "name": "swarm.1.dev.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwFCZKpkLq9iapcyzSt",
+   "parent": "session_01Kw9UwEQqEzzggNTF6rxqSR",
+   "role": "the swarm's code: stage.html, check-run, summary",
+   "altitude": "A3",
+   "wake": "hourly at :28",
+   "started": "2026-11-11T23:42Z"
+  },
+  {
+   "name": "swarm.1.designer.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwCNvq4z94R3XVA2Lvm",
+   "parent": "session_01Kw9UwEQqEzzggNTF6rxqSR",
+   "role": "the swarm's pages: views, themes, 3D",
+   "altitude": "A3",
+   "wake": "hourly at :28",
+   "started": "2026-11-11T23:42Z"
+  },
+  {
+   "name": "storytelling.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwCdVBkvPFracQLidZu",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "the stories and the demo packs",
+   "altitude": "A3",
+   "wake": "hourly at :28",
+   "started": "2026-11-12T00:43Z"
+  },
+  {
+   "name": "harness.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwEJ6ftqZvGuZ71MoFz",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "agents under SHarness",
+   "altitude": "A3",
+   "wake": "hourly at :39",
+   "started": "2026-11-12T01:37Z"
+  },
+  {
+   "name": "audience.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwEqnB3nx2WMmjWDoye",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "the synthetic audience: engineer, investor, CISO",
+   "altitude": "A3",
+   "wake": "hourly at :39",
+   "started": "2026-11-12T01:37Z"
+  },
+  {
+   "name": "relay.1.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwFh848oDoySQUW2thv",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "handover: the requester (Git → vault)",
+   "altitude": "A3",
+   "wake": "hourly at :39",
+   "started": "2026-11-12T01:38Z"
+  },
+  {
+   "name": "relay.2.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwBvW6QLYPMDxmiacxW",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "handover: the worker (vault → work → vault)",
+   "altitude": "A3",
+   "wake": "hourly at :39",
+   "started": "2026-11-12T01:38Z"
+  },
+  {
+   "name": "relay.3.fringe@PrompTugal.dinis",
+   "session": "session_01Kw9UwBCB9ibNPNCC92HQC4",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "handover: the publisher (vault → public)",
+   "altitude": "A3",
+   "wake": "hourly at :39",
+   "started": "2026-11-12T01:38Z"
+  },
+  {
+   "name": "GitHub Actions: swarm run",
+   "session": "github:PrompTugal/PrompTugal__News__Swarm__Runs/run.yml",
+   "parent": "session_01Kw9UwFHqLAjKake7UEDjL3",
+   "role": "every run starts with a push: A0/A1/A2 jobs",
+   "altitude": "A0",
+   "wake": null,
+   "started": "2026-11-11T23:44Z"
+  }
+ ]
+}
