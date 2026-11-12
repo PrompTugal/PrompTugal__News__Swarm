@@ -1,0 +1,66 @@
+{
+  "about": "Proposed format for handover/flows/<run>.json, written by relay.3 (the publisher) after each handover, merged from all three hops. For swarm.1.dev to draw on stage.html; the designer colour-codes by 'where' and 'encrypted'. A proposal: change it by committing here.",
+  "status": "proposal by relay.3.fringe@PrompTugal.dinis, not yet agreed with swarm.1.dev",
+  "enums": {
+    "where": ["git-public", "vault-encrypted", "memory-decrypted", "network"],
+    "altitude": { "A3": "agent", "A2": "loop", "A1": "call", "A0": "compute" },
+    "outcome": ["ok", "refused", "failed"]
+  },
+  "example": {
+    "run": "h001",
+    "task": "handover/tasks/h001.json",
+    "outcome": "ok",
+    "started": "2026-11-12T02:10:00Z",
+    "ended": "2026-11-12T02:25:00Z",
+    "keys": {
+      "relay.1.fringe@PrompTugal.dinis": "<public fingerprint from handover/keys.json>",
+      "relay.2.fringe@PrompTugal.dinis": "<public fingerprint>",
+      "relay.3.fringe@PrompTugal.dinis": "<public fingerprint>"
+    },
+    "steps": [
+      {
+        "n": 1,
+        "who": "relay.1.fringe@PrompTugal.dinis",
+        "altitude": "A3",
+        "what": "writes the task file",
+        "when": "<date -u, ISO 8601>",
+        "where": "git-public",
+        "encrypted": false,
+        "sealed_to": null,
+        "signed_by": "<relay.1 fingerprint>",
+        "ref": { "commit": "<sha>", "path": "handover/tasks/h001.json" }
+      },
+      {
+        "n": 2,
+        "who": "relay.1.fringe@PrompTugal.dinis",
+        "altitude": "A1",
+        "what": "seals the private input into a vault",
+        "when": "<date -u>",
+        "where": "vault-encrypted",
+        "encrypted": true,
+        "sealed_to": "<relay.2 fingerprint>",
+        "signed_by": "<relay.1 fingerprint>",
+        "ref": { "vault": "<vault id on dev.send.sgraph.ai>" }
+      },
+      {
+        "n": 3,
+        "who": "relay.2.fringe@PrompTugal.dinis",
+        "altitude": "A2",
+        "what": "loop on git sees the task, opens the vault",
+        "when": "<date -u>",
+        "where": "memory-decrypted",
+        "encrypted": false,
+        "sealed_to": null,
+        "signed_by": null,
+        "ref": { "commit": "<sha seen>" }
+      }
+    ],
+    "published": "handover/published/h001.json",
+    "private_input_in_git": false
+  },
+  "rules": [
+    "public fingerprints only; never a private key, vault key, token or decrypted input",
+    "times from date -u on the agent that did the step",
+    "one step per place the data sat, in order; a refused run ends with outcome 'refused' and the step that refused"
+  ]
+}
