@@ -67,7 +67,7 @@ body.present .headline{margin-top:12px;padding:8px 16px}body.present .headline .
 <section class="headline" id="headline" aria-label="Every run that started with a push, added up" hidden></section>
 <section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
 <li><b>The ladder</b>: from me → Claude → a task, up to a swarm of loops on many models. <em id="nruns">Live below: real runs.</em></li>
-<li><b>Sessions across accounts</b>: Dinis's sessions and Angelo's run the same signed packets; results in GitHub and in a vault. <em>Next.</em></li>
+<li><b>Sessions across accounts</b>: sessions on two of Dinis's accounts (Angelo's when he's back) run the same signed packets; results in GitHub and in a vault. <em>Next.</em></li>
 <li><b>Clouds</b>: swarm.cloudflare, swarm.aws, swarm.gcp and swarm.netlify run the storm site's scheduled work. <em>Next.</em></li>
 <li><b>Where the enterprise looks</b>: the same flows in Elastic and Kibana, Grafana and Neo4j. <em>Next.</em></li>
 </ol></section>
@@ -97,8 +97,8 @@ const PLANNED = [
   { id: 'r8', title: '→ everybody', story: 'Every person\'s conductor joins; one swarm, many agents, hundreds of loops, thousands of calls.' },
 ];
 const CAPS = [
-  { id: 'github', label: 'GitHub (push to dev)', on: true, real: true }, { id: 'vault', label: 'Vault (sgit)', on: false, real: false },
-  { id: 'secret', label: 'Secret: OpenRouter key (proxy)', on: true, real: true }, { id: 'anthropic', label: 'Anthropic (the agent\'s brain)', on: true, real: true },
+  { id: 'github', label: 'GitHub (push to dev)', short: 'GitHub', on: true, real: true }, { id: 'vault', label: 'Vault (sgit)', on: false, real: false },
+  { id: 'secret', label: 'Secret: OpenRouter key (proxy)', short: 'OpenRouter key', on: true, real: true }, { id: 'anthropic', label: 'Anthropic (the agent\'s brain)', short: 'Anthropic', on: true, real: true },
   { id: 'elastic', label: 'Elastic (flows)', on: false, real: false },
   { id: 'cloudflare', label: 'swarm.cloudflare', on: false, real: false, env: true }, { id: 'aws', label: 'swarm.aws', on: false, real: false, env: true },
   { id: 'gcp', label: 'swarm.gcp', on: false, real: false, env: true }, { id: 'netlify', label: 'swarm.netlify', on: false, real: false, env: true },
@@ -120,7 +120,7 @@ function shape(alt, r) {
 function withCaps(run) {
   const seen = new Set(), nodes = run.nodes.filter((n) => !seen.has(n.id) && seen.add(n.id)).map((n) => ({ ...n })), edges = run.edges.map((e) => ({ ...e }));
   for (const c of CAPS.filter((c) => c.on)) {
-    const id = 'cap:' + c.id; nodes.push({ id, altitude: c.person ? 'P' : c.env ? 'E' : 'C', label: c.label, planned: !c.real, cap: true });
+    const id = 'cap:' + c.id; nodes.push({ id, altitude: c.person ? 'P' : c.env ? 'E' : 'C', label: c.short || c.label, planned: !c.real, cap: true });
     const hub = nodes.some((n) => n.id === 'runner') ? 'runner' : 'swarm.1'; edges.push({ from: c.person ? id : hub, to: c.person ? hub : id, kind: c.person ? 'asks' : 'holds', planned: !c.real });
   }
   return { nodes, edges };
