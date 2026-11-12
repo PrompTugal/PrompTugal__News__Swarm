@@ -1094,6 +1094,182 @@
    ]
   },
   {
+   "id": "harness-engine",
+   "act": "8 · The harness",
+   "title": "The real engine, under the harness",
+   "say": "E7: not a probe. The swarm's own engine (tools/swarm.mjs, execute(), unchanged) run four ways: bare, harnessed with no network, harnessed through the door, and an A1 model call through the door.",
+   "steps": [
+    {
+     "label": "bare",
+     "dur": 2.5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "no harness (env -i, uid 0)",
+        "where": null,
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: network none",
+        "where": "outside",
+        "outcome": "refused · 0 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A1)",
+        "ask": "call deepseek/deepseek-v4-flash",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "refused · $0"
+       }
+      ],
+      "upto": 1,
+      "fromN": 0,
+      "title": "The same engine, four ways",
+      "source": "harness/2026-11-12-harness1-e7-swarm-engine.json (tools/swarm.mjs execute(), unchanged; harness.1, 2026-11-12T02:40Z)"
+     },
+     "caption": "Bare: the engine reads its three storm datasets."
+    },
+    {
+     "label": "no network",
+     "dur": 2.5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "no harness (env -i, uid 0)",
+        "where": null,
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: network none",
+        "where": "outside",
+        "outcome": "refused · 0 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A1)",
+        "ask": "call deepseek/deepseek-v4-flash",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "refused · $0"
+       }
+      ],
+      "upto": 2,
+      "fromN": 1,
+      "title": "The same engine, four ways",
+      "source": "harness/2026-11-12-harness1-e7-swarm-engine.json (tools/swarm.mjs execute(), unchanged; harness.1, 2026-11-12T02:40Z)"
+     },
+     "caption": "Under a policy with no network: every read is refused at name resolution."
+    },
+    {
+     "label": "the door",
+     "dur": 2.5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "no harness (env -i, uid 0)",
+        "where": null,
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: network none",
+        "where": "outside",
+        "outcome": "refused · 0 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A1)",
+        "ask": "call deepseek/deepseek-v4-flash",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "refused · $0"
+       }
+      ],
+      "upto": 3,
+      "fromN": 2,
+      "title": "The same engine, four ways",
+      "source": "harness/2026-11-12-harness1-e7-swarm-engine.json (tools/swarm.mjs execute(), unchanged; harness.1, 2026-11-12T02:40Z)"
+     },
+     "caption": "Through the door, which allows one host: the reads it needs go through."
+    },
+    {
+     "label": "the model call",
+     "dur": 3,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "no harness (env -i, uid 0)",
+        "where": null,
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: network none",
+        "where": "outside",
+        "outcome": "refused · 0 of 3"
+       },
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read 3 storm datasets",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "allowed · 3 of 3"
+       },
+       {
+        "who": "the swarm engine (A1)",
+        "ask": "call deepseek/deepseek-v4-flash",
+        "check": "harness: the door (one host)",
+        "where": "outside",
+        "outcome": "refused · $0"
+       }
+      ],
+      "upto": 4,
+      "fromN": 3,
+      "title": "The same engine, four ways",
+      "source": "harness/2026-11-12-harness1-e7-swarm-engine.json (tools/swarm.mjs execute(), unchanged; harness.1, 2026-11-12T02:40Z)"
+     },
+     "caption": "The model call is not on the door's list: refused, and it cost nothing. The policy, not the code, decides what leaves."
+    }
+   ]
+  },
+  {
    "id": "harness-reach",
    "act": "8 · The harness",
    "title": "Mandate, reach and gap, per unit",
@@ -2617,6 +2793,7 @@
     "check-inside",
     "check-outside",
     "harness-door",
+    "harness-engine",
     "harness-reach"
    ]
   },
