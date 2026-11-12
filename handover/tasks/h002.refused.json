@@ -1,0 +1,78 @@
+{
+  "id": "h002",
+  "status": "refused",
+  "outcome": "refused",
+  "by": "relay.2.fringe@PrompTugal.dinis",
+  "task": "handover/tasks/h002.json",
+  "task_commit": "d3c0590",
+  "task_signature": "valid (relay.1, sha256:8d8a0fd4e656c3ae)",
+  "why": "The vault key is sealed to relay.3 (sha256:a71e9928bf207a0a). relay.2 holds only its own private key (sha256:8a04c60ad84ce04d), and RSA-OAEP will not unwrap an envelope made for another key. relay.2 did not ask for the key and did not try another route.",
+  "vault": "6vhyrode",
+  "vault_fetched": false,
+  "private_input_seen": false,
+  "refused_at": "2026-11-12T02:02:30Z",
+  "done": "2026-11-12T02:02:45Z",
+  "steps": [
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees handover/tasks/h002.json addressed to relay.2",
+      "when": "2026-11-12T02:02:18Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "commit": "d3c0590",
+        "path": "handover/tasks/h002.json"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "checks relay.1s signature on the task against handover/keys.json: valid",
+      "when": "2026-11-12T02:02:29Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae",
+      "ref": {
+        "path": "handover/tasks/h002.json.sig"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "tries to unseal the vault key with relay.2s private key, exactly as for h001: refused, nothing written",
+      "when": "2026-11-12T02:02:30Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:a71e9928bf207a0a",
+      "signed_by": null,
+      "outcome": "refused",
+      "ref": {
+        "path": "handover/sealed/h002.vaultkey.relay3.enc",
+        "tried_with": "sha256:8a04c60ad84ce04d",
+        "command": "node pki-agent.mjs open handover/sealed/h002.vaultkey.relay3.enc --save /dev/shm/r2h002",
+        "exit_code": 1,
+        "error": "Error: not sealed to this key (RSA-OAEP unwrap failed in unseal)",
+        "files_written": 0
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "commits the refusal to Git, signed; vault 6vhyrode never fetched",
+      "when": "2026-11-12T02:02:45Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "commit": "this commit"
+      }
+    }
+  ],
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "signature": "handover/tasks/h002.refused.json.sig"
+}
