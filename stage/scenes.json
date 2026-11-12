@@ -364,7 +364,7 @@
      "overlay": "all",
      "counter": {
       "of": "reach",
-      "label": "units the agent started that can reach them"
+      "label": "of the run's {total} units can reach them: the agent and all it started"
      },
      "caption": "Who can reach them? Every loop, every model call, every line of code. Everybody."
     },

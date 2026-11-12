@@ -460,7 +460,7 @@
         : short(String(n.label).replace(/\.fringe@PrompTugal\.\w+$|@PrompTugal\.\w+$/, '').replace(/^commit ([0-9a-f]{7})[0-9a-f]+$/, 'commit $1'), ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26))); // the full name stays in the node's title
     // counter
     const c = $('#counter');
-    if (st.counter) { c.style.display = ''; const v = counterValue(g, st); const shown = Math.round(v.value * st.counter.p), lab = st.counter.label || v.label; c.innerHTML = `<b>${fmtN(shown)}</b><span>${esc(shown === 1 ? lab.replace(/^units\b/, 'unit').replace(/^results\b/, 'result').replace(/^connections\b/, 'connection') : lab)}</span>`; }
+    if (st.counter) { c.style.display = ''; const v = counterValue(g, st); const shown = Math.round(v.value * st.counter.p), lab = (st.counter.label || v.label).replace('{total}', fmtN(G ? G.nodes.length : 0)); c.innerHTML = `<b>${fmtN(shown)}</b><span>${esc(shown === 1 ? lab.replace(/^units\b/, 'unit').replace(/^results\b/, 'result').replace(/^connections\b/, 'connection') : lab)}</span>`; }
     else c.style.display = 'none';
     const simOn = g.sim || g.nodes.some((n) => n.sim && visibleOf(n, st) > 0);
     badge(st.idea ? ['idea', 'ILLUSTRATION · WHAT COULD HAPPEN'] : g.sim ? ['sim', 'SIMULATED'] : simOn ? ['sim', 'REAL RUN · SIMULATED ASSETS'] : ['real', 'REAL RUN · ' + (st.scene.run || '').replace(/^gh:/, 'Runs repo ').replace(/^agents:/, '')]);
