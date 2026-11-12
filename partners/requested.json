@@ -546,6 +546,110 @@
      "at": "2026-11-12T11:24Z"
     }
    ]
+  },
+  {
+   "slug": "eigenoid",
+   "name": "Eigenoid",
+   "kind": "governance",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T11:30Z"
+   },
+   "domain_note": "No domain was given. eigenoid.com (Eigenoid, Tallinn; agent-to-agent discovery and connection) is the only live match found; eigenoid.ai, .io, .co and others do not resolve. Not yet confirmed by the company.",
+   "one_line": "Lets one team's AI agent find and consult the specialist agent of the team that owns an answer, through a registry where discovery grants no access and the owning team decides what is shared.",
+   "site": "https://eigenoid.com/",
+   "public": [
+    {
+     "fact": "'When one team's AI agent needs an answer another team owns, it asks that team's agent'; people step in only for questions that need a human.",
+     "source": "https://eigenoid.com/",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "One registry lists agents wherever they run (AWS, Google Cloud, Microsoft Azure, on-premises), each with its owner, team, environment and status.",
+     "source": "https://eigenoid.com/",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "Control: 'Finding an agent grants no access'; the owning team sets what is shared and what needs sign-off; every exchange is recorded.",
+     "source": "https://eigenoid.com/",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "Eigenoid Connect is a hosted service with a public agent registry and token access; Eigenoid Enterprise is self-hosted, with an internal registry, access controls and compliance evidence reports for reviewers and auditors.",
+     "source": "https://eigenoid.com/llms.txt",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "Enterprise can record identity, authorization decisions, policy versions, delegation and human approvals.",
+     "source": "https://eigenoid.com/security",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "Its security page says: 'Connecting agents does not contain their runtimes'; the endpoints' tools, permissions and security remain part of the boundary.",
+     "source": "https://eigenoid.com/security",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "A governance readiness review: 45 minutes on one workflow where two agents share context, with a one-page gap report mapped to EU AI Act Articles 9, 12, 14, 15, 17, 19, 26 and 72. It says it does not certify compliance.",
+     "source": "https://eigenoid.com/enterprise/readiness-review",
+     "read_at": "2026-11-12T11:34Z"
+    },
+    {
+     "fact": "It publishes the limits of its evidence (as of 6 September 2026): implementation findings, not an independent security audit; no external user has yet validated a substantive Connect task.",
+     "source": "https://eigenoid.com/security",
+     "read_at": "2026-11-12T11:34Z"
+    }
+   ],
+   "told": [
+    "Dinis sees going to market together as partners, Eigenoid and RiskMandate."
+   ],
+   "help": {
+    "pitch": "Eigenoid governs what passes between agents: who may ask, what the owning team shares, and a record of each exchange. Its own security page draws the line: 'Connecting agents does not contain their runtimes.' That line is where RiskMandate works: for each agent on either side, its written mandate, what its credentials and tools actually reach, and the gap. Together, the exchange and the endpoints are both evidenced.",
+    "mandate": [
+     "Each specialist agent's listing says what it answers and what its team allows it to share: a mandate, written by the owning team."
+    ],
+    "reach": [
+     "Agents run on AWS, Google Cloud, Azure and on-premises with their own tools and permissions; the endpoints 'remain part of the boundary' (its words). What each one can reach is outside what the registry records."
+    ],
+    "gap": [
+     "Between what an agent is allowed to share through Eigenoid and what its runtime could reach and send by other paths: unknown from public pages, and measurable per agent."
+    ]
+   },
+   "together": [
+    {
+     "title": "A joint offer: the exchange and the endpoints",
+     "text": "Eigenoid records who asked, what was shared and under which policy; RiskMandate measures what each agent at either end can reach. One evidence pack for a reviewer. Our suggestion, from what Eigenoid publishes.",
+     "link": "https://eigenoid.com/enterprise"
+    },
+    {
+     "title": "Their readiness review plus our measurement",
+     "text": "Its 45-minute review of one two-agent workflow, with RiskMandate's mandate, reach and gap for the same two agents added to the gap report.",
+     "link": "https://eigenoid.com/enterprise/readiness-review"
+    },
+    {
+     "title": "Field-log material",
+     "text": "Its articles on coding agents and Article 72 sit beside our harness runs: a shared write-up of one workflow, run and measured.",
+     "link": "https://eigenoid.com/blog"
+    }
+   ],
+   "demos": [
+    [
+     "reach",
+     "gap"
+    ],
+    [
+     "harness",
+     "harness-reach"
+    ],
+    [
+     "trust",
+     "handover"
+    ],
+    [
+     "control",
+     "one-per-asset"
+    ]
+   ]
   }
  ]
 }

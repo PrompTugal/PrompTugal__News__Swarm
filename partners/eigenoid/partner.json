@@ -1,0 +1,314 @@
+{
+ "slug": "eigenoid",
+ "name": "Eigenoid",
+ "kind": "governance",
+ "kind_label": "AI governance",
+ "one_line": "Lets one team's AI agent find and consult the specialist agent of the team that owns an answer, through a registry where discovery grants no access and the owning team decides what is shared.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T11:34Z",
+ "asked": {
+  "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T11:30Z"
+ },
+ "note": "Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.",
+ "artefacts": [
+  {
+   "kind": "brief",
+   "title": "This partner brief: Eigenoid",
+   "url": "#know",
+   "note": "asked for by name at the summit, 2026-11-12T11:30Z",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T11:34Z"
+  },
+  {
+   "kind": "site",
+   "title": "Their own site: eigenoid.com",
+   "url": "https://eigenoid.com/",
+   "note": "read by hand for this brief",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T11:34Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "'When one team's AI agent needs an answer another team owns, it asks that team's agent'; people step in only for questions that need a human.",
+   "quote": "",
+   "source": "https://eigenoid.com/",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "One registry lists agents wherever they run (AWS, Google Cloud, Microsoft Azure, on-premises), each with its owner, team, environment and status.",
+   "quote": "",
+   "source": "https://eigenoid.com/",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Control: 'Finding an agent grants no access'; the owning team sets what is shared and what needs sign-off; every exchange is recorded.",
+   "quote": "",
+   "source": "https://eigenoid.com/",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Eigenoid Connect is a hosted service with a public agent registry and token access; Eigenoid Enterprise is self-hosted, with an internal registry, access controls and compliance evidence reports for reviewers and auditors.",
+   "quote": "",
+   "source": "https://eigenoid.com/llms.txt",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/llms.txt"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Enterprise can record identity, authorization decisions, policy versions, delegation and human approvals.",
+   "quote": "",
+   "source": "https://eigenoid.com/security",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/security"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Its security page says: 'Connecting agents does not contain their runtimes'; the endpoints' tools, permissions and security remain part of the boundary.",
+   "quote": "",
+   "source": "https://eigenoid.com/security",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/security"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "A governance readiness review: 45 minutes on one workflow where two agents share context, with a one-page gap report mapped to EU AI Act Articles 9, 12, 14, 15, 17, 19, 26 and 72. It says it does not certify compliance.",
+   "quote": "",
+   "source": "https://eigenoid.com/enterprise/readiness-review",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/enterprise/readiness-review"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "It publishes the limits of its evidence (as of 6 September 2026): implementation findings, not an independent security audit; no external user has yet validated a substantive Connect task.",
+   "quote": "",
+   "source": "https://eigenoid.com/security",
+   "read_at": "2026-11-12T11:34Z",
+   "via": "https://eigenoid.com/security"
+  }
+ ],
+ "told": [
+  "Dinis sees going to market together as partners, Eigenoid and RiskMandate."
+ ],
+ "domain_note": "No domain was given. eigenoid.com (Eigenoid, Tallinn; agent-to-agent discovery and connection) is the only live match found; eigenoid.ai, .io, .co and others do not resolve. Not yet confirmed by the company.",
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "Eigenoid governs what passes between agents: who may ask, what the owning team shares, and a record of each exchange. Its own security page draws the line: 'Connecting agents does not contain their runtimes.' That line is where RiskMandate works: for each agent on either side, its written mandate, what its credentials and tools actually reach, and the gap. Together, the exchange and the endpoints are both evidenced.",
+  "mandate": [
+   {
+    "text": "Each specialist agent's listing says what it answers and what its team allows it to share: a mandate, written by the owning team."
+   }
+  ],
+  "reach": [
+   {
+    "text": "Agents run on AWS, Google Cloud, Azure and on-premises with their own tools and permissions; the endpoints 'remain part of the boundary' (its words). What each one can reach is outside what the registry records."
+   }
+  ],
+  "gap": [
+   {
+    "text": "Between what an agent is allowed to share through Eigenoid and what its runtime could reach and send by other paths: unknown from public pages, and measurable per agent."
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "A joint offer: the exchange and the endpoints",
+    "text": "Eigenoid records who asked, what was shared and under which policy; RiskMandate measures what each agent at either end can reach. One evidence pack for a reviewer. Our suggestion, from what Eigenoid publishes.",
+    "link": "https://eigenoid.com/enterprise"
+   },
+   {
+    "title": "Their readiness review plus our measurement",
+    "text": "Its 45-minute review of one two-agent workflow, with RiskMandate's mandate, reach and gap for the same two agents added to the gap report.",
+    "link": "https://eigenoid.com/enterprise/readiness-review"
+   },
+   {
+    "title": "Field-log material",
+    "text": "Its articles on coding agents and Article 72 sit beside our harness runs: a shared write-up of one workflow, run and measured.",
+    "link": "https://eigenoid.com/blog"
+   }
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+  }
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Three words for the rest of the demo. The reach shown is measured, in our own container.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Mandate, reach and gap, per unit",
+   "theme": "harness",
+   "demo": "harness-reach",
+   "why": "Tonight's units, measured three ways.",
+   "present": "theme.html?t=harness&d=harness-reach",
+   "stage": "../stage.html?scene=harness-reach"
+  },
+  {
+   "title": "A handover through a vault",
+   "theme": "trust",
+   "demo": "handover",
+   "why": "A real handover between three agents, 21 steps in about ten minutes.",
+   "present": "theme.html?t=trust&d=handover",
+   "stage": "../stage.html?scene=handover"
+  },
+  {
+   "title": "One agent per asset",
+   "theme": "control",
+   "demo": "one-per-asset",
+   "why": "SIMULATED: five agents and their systems. Open 'mesh' first if there's time.",
+   "present": "theme.html?t=control&d=one-per-asset",
+   "stage": "../stage.html?scene=one-per-asset"
+  }
+ ],
+ "deck": {
+  "id": "partner-eigenoid",
+  "title": "Eigenoid: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T11:34Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Eigenoid",
+    "sub": "Lets one team's AI agent find and consult the specialist agent of the team that owns an answer, through a registry where discovery grants no access and the…",
+    "caption": "What we have on Eigenoid, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "'When one team's AI agent needs an answer another team owns, it asks that team's agent'; people step in only for questions that need a…",
+     "One registry lists agents wherever they run (AWS, Google Cloud, Microsoft Azure, on-premises), each with its owner, team, environment and…",
+     "Control: 'Finding an agent grants no access'; the owning team sets what is shared and what needs sign-off; every exchange is recorded.",
+     "Eigenoid Connect is a hosted service with a public agent registry and token access; Eigenoid Enterprise is self-hosted, with an internal…",
+     "Enterprise can record identity, authorization decisions, policy versions, delegation and human approvals."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "unknown from public pages, and measurable per agent."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "A joint offer: the exchange and the endpoints",
+     "Their readiness review plus our measurement",
+     "Field-log material"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach, gap",
+    "step": "gap/two-ways-to-close-it",
+    "caption": "Three words for the rest of the demo. The reach shown is measured, in our own container."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · the summit promotion",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
+     "Write to agent@riskmandate.ai."
+    ]
+   }
+  ]
+ }
+}
