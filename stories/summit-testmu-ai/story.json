@@ -1,0 +1,163 @@
+{
+ "title": "TestMu AI and RiskMandate",
+ "id": "summit-testmu-ai",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "TestMu AI and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For TestMu AI"
+  },
+  {
+   "type": "bullets",
+   "title": "TestMu AI grades what an agent actually did",
+   "kicker": "What they do",
+   "items": [
+    "Agent Assurance tests agents that act: tool calls, file writes, API calls",
+    "Rook CLI finds the agent, writes functional and adversarial scenarios, runs them live",
+    "Each criterion graded from evidence: Pass, Fail, Unable to Verify",
+    "Unable to Verify is counted separately, not hidden in a pass",
+    "The agent's own reply is the weakest signal"
+   ],
+   "caption": "From their own public pages: a verdict built on recorded effects, not on what the agent says.",
+   "say": [
+    "TestMu AI, formerly LambdaTest, grades agents on what they changed, not on what they say they did.",
+    "Recorded tool calls, command output, exit status and changed files carry the verdict."
+   ],
+   "badge": "real",
+   "source": "TestMu AI public pages (Agent Assurance, Rook CLI)"
+  },
+  {
+   "type": "statement",
+   "text": "\"Rook does not sandbox or roll back the agent under test. Refunds, emails, tickets, database updates, and filesystem writes happen in the target environment.\"",
+   "kicker": "Their documentation names the seam",
+   "caption": "Quoted from TestMu AI's Rook documentation. The actions are real. This is where a mandate and a harness fit.",
+   "say": [
+    "This is their own sentence, and it is honest: the test run has real effects.",
+    "Proof arrives after the action. Something has to define and enforce what the agent may do before it acts. That is the harness."
+   ],
+   "badge": "real",
+   "source": "TestMu AI documentation, Rook"
+  },
+  {
+   "type": "flow",
+   "title": "Policy, then enforcement, then proof",
+   "kicker": "Our suggestion",
+   "steps": [
+    "Policy: RiskMandate sets what the agent may do",
+    "Enforcement: our harness holds the agent to it",
+    "Proof: Rook grades what the agent actually did"
+   ],
+   "caption": "What we would do together: our hypothesis, built from public pages only.",
+   "say": [
+    "Three steps, each owned by the right party: we set and enforce the limits, they prove what happened.",
+    "Nothing of theirs was tested; this is a hypothesis."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "table",
+   "title": "Two halves of one record",
+   "kicker": "Claim, proof, mandate, reach",
+   "cols": [
+    "Question",
+    "TestMu AI (their pages)",
+    "RiskMandate (our part)"
+   ],
+   "rows": [
+    [
+     "What is graded or defined?",
+     "Observed effects: tool calls, file changes, API calls",
+     "Mandate: what the agent may do"
+    ],
+    [
+     "What is the gap?",
+     "Claim versus proof: 'Unable to Verify'",
+     "Mandate versus reach"
+    ],
+    [
+     "What does it cover?",
+     "What happened in the target environment",
+     "What the agent could have reached beyond those effects"
+    ]
+   ],
+   "caption": "Their gap is between claim and proof; ours is between mandate and reach. Our hypothesis, not their claim.",
+   "say": [
+    "Unable to Verify marks where proof runs out.",
+    "Reach marks where the mandate and the agent's actual access part ways. Together they make one record."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "compare",
+   "title": "A pilot: one of our agents, two reports",
+   "kicker": "Proposed pilot",
+   "before": {
+    "label": "Rook run",
+    "items": [
+     "Rook CLI run against one of our agents",
+     "Functional and adversarial scenarios",
+     "Pass, Fail and Unable to Verify counted separately"
+    ]
+   },
+   "after": {
+    "label": "ABP run report",
+    "items": [
+     "The same agent's ABP run report",
+     "What the mandate allowed and what the harness enforced",
+     "Set beside the Rook verdicts"
+    ]
+   },
+   "caption": "What we would do together: no results yet; the pilot is how we would find out.",
+   "say": [
+    "One agent of ours, run through Rook, with its ABP run report beside it.",
+    "We read the two side by side to see what each one shows that the other does not."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "title": "Two ways the pieces connect",
+   "kicker": "What we would do together",
+   "items": [
+    "Our ABP policies become Rook criteria: what the agent may do, graded from evidence",
+    "Rook's verdicts become evidence in mandate reports",
+    "Claim, proof, mandate and reach in one record"
+   ],
+   "caption": "Our hypothesis, not their claim: policy flows into their grading, their verdicts flow back into our reports.",
+   "say": [
+    "Rook already writes criteria for an agent; an ABP policy states what the agent may do, so the policy can be the criteria.",
+    "Their verdicts then give our reports the proof of what really happened."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "statement",
+   "text": "Rook proves what the agent did. A mandate and a harness decide what it may do. Together: policy, then enforcement, then proof.",
+   "kicker": "The point",
+   "caption": "Our suggestion, built from public pages only.",
+   "say": [
+    "Because the actions are real, the limit has to come before the grade."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "statement",
+   "kicker": "Next step",
+   "text": "A pilot: Rook run against one of our agents, beside its ABP run report.",
+   "caption": "agent@riskmandate.ai",
+   "say": [
+    "Start small: one agent, one Rook run, one mandate report, side by side.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T15:13:24Z",
+ "partners": [
+  "testmu-ai"
+ ],
+ "simulated": false
+}

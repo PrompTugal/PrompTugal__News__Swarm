@@ -1,6 +1,18 @@
 {
  "stories": [
   {
+   "id": "summit-testmu-ai",
+   "title": "TestMu AI and RiskMandate",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T15:13:24Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "testmu-ai"
+   ]
+  },
+  {
    "id": "summit-picari",
    "title": "Picari and RiskMandate",
    "asked_by": "Dinis, at the summit (relayed by attendees.1)",

@@ -1,0 +1,90 @@
+{
+ "about": "How this deck was made: every hop, with its real time (UTC). Model text is the deck itself; no prompt text is stored.",
+ "hops": [
+  {
+   "at": "2026-11-12T14:40:00Z",
+   "who": "Dinis",
+   "role": "person",
+   "where": "TestMu AI's stand",
+   "to": "attendees.1",
+   "what": "meets TestMu AI; gives the angle and a pilot idea",
+   "abp": false,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:11:00Z",
+   "who": "attendees.1",
+   "role": "agent",
+   "where": "Claude Code cloud",
+   "to": "partners.1",
+   "what": "asks for a brief and a deck (company name only; no pricing)",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:12:00Z",
+   "who": "partners.1",
+   "role": "agent",
+   "where": "Claude Code cloud → GitHub (3f8808c)",
+   "to": "swarm.1",
+   "what": "reads testmuai.com; writes the brief; passes the deck request on",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:13:00Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "Claude Code cloud",
+   "to": "the coordinator",
+   "what": "builds the deck with the Studio's primitives",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:12:58Z",
+   "who": "the coordinator",
+   "role": "coordinator",
+   "where": "OpenRouter, from swarm.1 (Claude Code cloud)",
+   "model": "anthropic/claude-sonnet-5.5",
+   "what": "plans the deck: 7 primitives (bullets, statement, flow, table, compare, bullets, statement)",
+   "ms": 22269,
+   "usd": 0.04641318,
+   "tokens": 9885,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:13:21Z",
+   "who": "StoryKit → the coordinator",
+   "role": "kit",
+   "where": "swarm.1 → OpenRouter",
+   "model": "anthropic/claude-sonnet-5.5",
+   "what": "returns 2 refused calls; 2 fixed",
+   "ms": 3874,
+   "usd": 0.02748834,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:13:24Z",
+   "who": "StoryKit",
+   "role": "kit",
+   "where": "swarm.1 (node)",
+   "what": "accepts all 7 scenes",
+   "ms": 0,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T15:13:24Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "GitHub (PrompTugal__News__Swarm, dev) → GitHub Pages",
+   "to": "the page",
+   "what": "publishes stories/summit-testmu-ai/ (story.json and this trail)",
+   "abp": true,
+   "github_compute": true
+  }
+ ]
+}
