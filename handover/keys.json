@@ -32,6 +32,22 @@
         "fingerprint": "sha256:8a04c60ad84ce04d",
         "signing_fingerprint": "sha256:ea1b3d0cda2e9906"
       }
+    },
+    {
+      "id": "relay.3.fringe-dinis",
+      "agent": "relay.3.fringe@PrompTugal.dinis",
+      "role": "the publisher: opens the result vault sealed to it, checks relay.1 and relay.2 signatures, publishes a public summary and the flow",
+      "how": "pki-agent.mjs keygen --session (sha256 fcb28a1c...02ab), 2026-11-12T01:46:43Z, in its own session. A session key: it ends with the session.",
+      "added": "2026-11-12",
+      "status": "active",
+      "bundle": {
+        "v": 1,
+        "label": "relay.3.fringe@PrompTugal.dinis",
+        "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAm1uAqNWgw6HCHJtWGjss\niSMaarDnT7zf/gtVFXxt+0ADVZyxOgxrMw4B4R53RkGR3i4W1o7b8Km8iBhqhzy/\nh4+O6qp49SA7c8BVIHMbiRmicN1FkE3xHGj9mZrhZZPEf74Cb8kl/418axfvzZ9A\nlK5qACjoOcmtccEbVoDew0MjR8yqCbn86s5IxOooh6XW9wUCFbBNmhPEL8sUCSFk\n3Yat3T/Adjun86gDchGonAD0E9Sy6jwFXgl4CgRE5uQFH42nk2QR/VOoAXcuOSpu\neva0bvShOMKU8vyl2JVAKMR+xFjuAkyc1PicOCuFMIootBiI86/DjQUXACR7CkSt\nAyI3LXqgLpg148mOGukJ/2Ow+doa0kp1bJK1tvuRtiwFqlxCFRO/YQOR06c9fiE3\nbcMIJyuDSp04J2zgIZjrocmCyq/kv/wU40Bh1IFhs+sXPo5CdrLIBqZowqwOD1pB\nc9KMsgdUnR7YO/S4j05fO0wwCM4G4v0wEYPD2pwddNy4Rm9zAMvRrvkSbgLiGeDb\n7cy/42im037h9waSVNcsMLNdljlVwGro87j29d19BZr9fdjqqCEi49WHExOkkPOD\nm532x13CWMPezB7zy6Bl4gMenuwEqzChQTTgJEDexUWEHS/X0nGnI/XskbOh5aQC\ng74R7BUYy1MYXKw3/iVhDtcCAwEAAQ==\n-----END PUBLIC KEY-----",
+        "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEwNboXegO9Ld4/Bq+D+IVRAgQo5pa\nSYpNeVnS7BqbYJLy6Q4z4DsqEyxG8r99idA0NQbDLcoiLncrMZqNOUYKow==\n-----END PUBLIC KEY-----",
+        "fingerprint": "sha256:a71e9928bf207a0a",
+        "signing_fingerprint": "sha256:5f51ff29c20ec8eb"
+      }
     }
   ]
 }
