@@ -273,7 +273,7 @@
   }
 
   // ---------- render one frame
-  let shownScene = null, userZoomed = false, lastStepK = -1, modeOverride = null;
+  let shownScene = null, userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
   async function ensureScene(st) {
     const sc = st.scene;
     if (shownScene === sc) return;
@@ -281,6 +281,7 @@
     const g = await loadRun(sc.run);
     if (shownScene !== sc) return;
     G = g; lastLayoutKey = ''; focusId = null; modeOverride = null;
+    document.querySelectorAll('#story details').forEach((d) => { d.open = d.dataset.act === (sc.act || ''); });   // the current act open, the rest folded
     g.nodes.forEach((n) => { n.x = n.y = null; });
     if (sim) { sim.stop(); sim = null; }
     renderSide();
@@ -295,6 +296,7 @@
     if (!G) return;
     // the view: the presenter's choice for this scene (keys 1-5, the buttons) wins over the scene's, which wins over the default
     const mode = modeOverride || (st.mode && MODES[st.mode] && !Q.get('mode') ? st.mode : K.mode);
+    curMode = mode;
     renderCaption(st, mode);
     // the camera follows the story: a new step refits (twice: as it starts, and once the layout settles), unless the presenter
     // zoomed by hand during this scene (0 or the fit button gives the camera back)
@@ -377,7 +379,7 @@
     const k = d3.zoomTransform(svg.node()).k, few = g.nodes.length < 60;
     const lab = K.labels ? g.nodes.filter((n) => visibleOf(n, st) > 0.5 && dimOf(n, st) > 0.5 && (few || k > 1.6 || ['P', 'A4', 'A3', 'M', 'X', 'E', 'C'].includes(n.alt) || n.id === focusId)) : [];
     const boostTok = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--label-boost')) || 1;
-    const under = (n) => K.mode === 'layers' && !['P', 'A4', 'A3', 'X', 'M', 'T'].includes(n.alt);
+    const under = (n) => curMode === 'layers' && !['P', 'A4', 'A3', 'X', 'M', 'T'].includes(n.alt);
     // crowded (more than 24): only the big units keep a label until the presenter zooms in, so the picture stays clean
     const BIG = ['P', 'A4', 'A3', 'X', 'M', 'E', 'C'], labs = lab.length > 24 && !userZoomed ? lab.filter((n) => BIG.includes(n.alt) || n.id === focusId) : lab;
     const sparse = boostTok * (labs.length <= 8 ? 2.2 : labs.length <= 12 ? 1.8 : labs.length <= 16 ? 1.4 : 1);
@@ -390,7 +392,8 @@
       .attr('text-anchor', (n) => (under(n) ? 'middle' : 'start')).style('stroke-width', 3 / k + 'px')
       .style('font-size', (n) => ((['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label * sparse) / k + 'px')
       .classed('big', (n) => ['P', 'A4', 'A3', 'X', 'M'].includes(n.alt))
-      .text((n) => short(String(n.label).replace(/\.fringe@PrompTugal\.\w+$|@PrompTugal\.\w+$/, ''), ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26)); // the full name stays in the node's title
+      .text((n) => (n.alt === 'A1' && k < 2.5 && n.id !== focusId && /#\d+$/.test(n.label) ? n.label.match(/#\d+$/)[0]   // calls: "#1" until zoomed (the model is on its loop)
+        : short(String(n.label).replace(/\.fringe@PrompTugal\.\w+$|@PrompTugal\.\w+$/, ''), ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26))); // the full name stays in the node's title
     // counter
     const c = $('#counter');
     if (st.counter) { c.style.display = ''; const v = counterValue(g, st); const shown = Math.round(v.value * st.counter.p), lab = st.counter.label || v.label; c.innerHTML = `<b>${fmtN(shown)}</b><span>${esc(shown === 1 ? lab.replace(/^units\b/, 'unit').replace(/^results\b/, 'result').replace(/^connections\b/, 'connection') : lab)}</span>`; }
@@ -471,7 +474,13 @@
     }
     // the reveal, every frame: items up to cardN, the last one at cardP
     const n = st.cardN, p = st.cardP;
-    el.querySelectorAll('[data-i]').forEach((x) => { const i = +x.dataset.i, k = i < n - 1 ? 1 : i === n - 1 ? p : 0; x.style.opacity = k; x.style.transform = `translateY(${(1 - k) * 12}px)`; });
+    el.querySelectorAll('[data-i]').forEach((x) => {
+      const i = +x.dataset.i, k = i < n - 1 ? 1 : i === n - 1 ? p : 0; x.style.opacity = k; x.style.transform = `translateY(${(1 - k) * 12}px)`;
+      if (x.classList.contains('big')) {   // the numbers in a big line count up as it comes in
+        if (x.dataset.t == null) x.dataset.t = x.textContent;
+        x.textContent = x.dataset.t.replace(/\d[\d,]*(\.\d+)?/g, (m) => { const v = parseFloat(m.replace(/,/g, '')), dec = (m.split('.')[1] || '').length; return (v * clamp(k * 1.15, 0, 1)).toLocaleString('en-GB', { minimumFractionDigits: dec, maximumFractionDigits: dec }); });
+      }
+    });
     if (c.kind === 'gap') {   // stage 1: the mandate dot; 2: the reach circle grows; 3: the gap turns red
       const g = el.querySelector('.gap'); if (!g) return;
       const s1 = n >= 2 ? (n === 2 ? p : 1) : 0, s2 = n >= 3 ? (n === 3 ? p : 1) : 0;
@@ -547,8 +556,8 @@
   // ---------- panes, controls, captions
   function renderStory() {
     const acts = []; SCENES.forEach((s, si) => { if (s.free) return; let a = acts.find((x) => x.name === (s.act || '')); if (!a) acts.push(a = { name: s.act || '', scenes: [] }); a.scenes.push({ s, si }); });
-    const open = store.get('openActs', null);
-    $('#story').innerHTML = acts.map((a, ai) => `<details ${open == null || open.includes(a.name) ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
+    const curAct = STEPS[stepAt(t)] ? STEPS[stepAt(t)].scene.act : acts[0] && acts[0].name;
+    $('#story').innerHTML = acts.map((a, ai) => `<details ${a.name === curAct ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
     $('#runs').innerHTML = FREE.map((s, i) => `<button class="sc" data-free="${i}"><b>${esc(s.title)}</b></button>`).join('');
     const ARROW = { left: '←', right: '→', top: '↑', bottom: '↓', middle: '↔', center: '◎' };
     $('#legend').innerHTML = ALT.filter((a) => a !== '?').map((a) => { const an = (K.userAnchors || {})[a]; return `<button class="chip ${extraHidden.has(a) ? 'off' : ''}" data-alt="${a}" title="click: show or hide · shift-click: only this · alt-click or right-click: anchor it left, right, top, bottom (force view)"><i style="background:var(--alt-${a})"></i>${esc(ALT_NAME[a])}${an ? ` <b class="anc">${ARROW[an] || an}</b>` : ''}</button>`; }).join('');
@@ -597,7 +606,7 @@
     root.style.setProperty('--lw', (K.hideL ? 0 : K.left) + 'px');
     root.style.setProperty('--rw', (K.hideR ? 0 : K.right) + 'px');
     root.classList.toggle('hideL', K.hideL); root.classList.toggle('hideR', K.hideR);
-    root.style.setProperty('--text', K.text);
+    root.style.setProperty('--text', K.text); root.style.setProperty('--label-scale', K.label); root.style.setProperty('--node-scale', K.node); root.style.setProperty('--labels', K.labels ? 1 : 0);
     root.dataset.theme = K.theme;
     $('#k-mode').value = K.mode; $('#k-theme').value = K.theme;
     for (const k of ['text', 'label', 'node', 'link']) { const el = $('#k-' + k); if (el) el.value = K[k]; }
@@ -620,7 +629,7 @@
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
     ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–5', 'view: top-down, tree, radial, force, 3D'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
-    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['S', 'speed'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
+    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
   ];
   const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'];
   function onKey(e) {
@@ -639,7 +648,7 @@
     else if (k === 'a' || k === 'A') { K.anchors = !K.anchors; applyPanes(); lastLayoutKey = ''; toast('anchors ' + (K.anchors ? 'on' : 'off')); }
     else if (k === 'z' || k === 'Z') focusMode(); else if (k === 'q' || k === 'Q') { K.hideL = !K.hideL; applyPanes(); lastLayoutKey = ''; } else if (k === 'e' || k === 'E') { K.hideR = !K.hideR; applyPanes(); lastLayoutKey = ''; }
     else if (k === 't' || k === 'T') { K.theme = THEMES[(THEMES.indexOf(K.theme) + 1) % THEMES.length]; applyPanes(); toast('theme: ' + K.theme); }
-    else if (k === 's' || k === 'S') { const R = [0.5, 1, 1.5, 2, 4]; K.rate = R[(R.indexOf(K.rate) + 1) % R.length]; saveK(); }
+    else if (k === 's' || k === 'S') { const R = [0.5, 1, 2, 5, 20], i = R.indexOf(K.rate); K.rate = R[(i < 0 ? 1 : i + (k === 'S' ? R.length - 1 : 1)) % R.length]; saveK(); toast('speed ' + K.rate + '×'); }
     else if (k === 'h' || k === 'H') { K.auto = !K.auto; applyPanes(); toast('auto-advance ' + (K.auto ? 'on' : 'off')); }
     else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
     else if (k === '?') $('#help').toggleAttribute('open');
@@ -670,9 +679,13 @@
     $('#helpbtn').onclick = () => $('#help').toggleAttribute('open');
     $('#tglL').onclick = () => { K.hideL = !K.hideL; applyPanes(); lastLayoutKey = ''; };
     $('#tglR').onclick = () => { K.hideR = !K.hideR; applyPanes(); lastLayoutKey = ''; };
-    $('#steps').addEventListener('click', (e) => { const b = e.target.closest('.st'); if (!b) return; const S = STEPS[+b.dataset.k]; t = S.s; stopAt = S.e - 1e-3; playing = true; });
+    // the step bars: a click plays that step; a drag scrubs through the scene (the presenter's hand on the clock)
+    let scrub = null;
+    const scrubTo = (e) => { const b = document.elementFromPoint(e.clientX, $('#steps').getBoundingClientRect().top + 8); const st = b && b.closest && b.closest('.st'); if (!st) return; const S = STEPS[+st.dataset.k], r = st.getBoundingClientRect(); t = S.s + clamp((e.clientX - r.left) / r.width, 0, 0.999) * (S.e - S.s); playing = false; stopAt = null; };
+    $('#steps').addEventListener('pointerdown', (e) => { scrub = { x: e.clientX, moved: false }; $('#steps').setPointerCapture(e.pointerId); });
+    $('#steps').addEventListener('pointermove', (e) => { if (!scrub) return; if (Math.abs(e.clientX - scrub.x) > 4) scrub.moved = true; if (scrub.moved) scrubTo(e); });
+    $('#steps').addEventListener('pointerup', (e) => { const was = scrub; scrub = null; if (was && !was.moved) { const b = e.target.closest('.st'); if (!b) return; const S = STEPS[+b.dataset.k]; t = S.s; stopAt = S.e - 1e-3; playing = true; } });
     $('#story').addEventListener('click', (e) => { const b = e.target.closest('.sc'); if (b) { gotoScene(+b.dataset.si); next(); } });
-    $('#story').addEventListener('toggle', () => store.set('openActs', [...document.querySelectorAll('#story details[open]')].map((d) => d.dataset.act)), true);
     $('#runs').addEventListener('click', (e) => { const b = e.target.closest('.sc'); if (b) playScene(FREE[+b.dataset.free]); });
     const cycleAnchor = (a) => { const order = [undefined, 'left', 'right', 'top', 'bottom', 'center']; const u = K.userAnchors || (K.userAnchors = {}); const nx = order[(order.indexOf(u[a]) + 1) % order.length]; if (nx) u[a] = nx; else delete u[a]; K.anchors = true; applyPanes(); lastLayoutKey = ''; renderStory(); userZoomed = false; setTimeout(() => fit(), 600); setTimeout(() => fit(), 1800); toast(`${ALT_NAME[a]}: ${nx ? 'anchored ' + nx : 'free'}${(st0() || {}).mode !== 'force' && modeOverride !== 'force' ? ' (anchors act in the force view: 4)' : ''}`); };
     const st0 = () => stateAt(t);
