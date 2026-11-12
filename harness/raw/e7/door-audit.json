@@ -1,0 +1,98 @@
+[
+ {
+  "at": "2026-11-12T02:40:43Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "storm-charles.promptugal.news:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "storm-charles.promptugal.news:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": false,
+  "status": 403,
+  "reason": "openrouter.ai is not on the allowlist",
+  "row": "hosts ['storm-charles.promptugal.news']"
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": false,
+  "status": 403,
+  "reason": "openrouter.ai is not on the allowlist",
+  "row": "hosts ['storm-charles.promptugal.news']"
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "storm-charles.promptugal.news:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": false,
+  "status": 403,
+  "reason": "openrouter.ai is not on the allowlist",
+  "row": "hosts ['storm-charles.promptugal.news']"
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": false,
+  "status": 403,
+  "reason": "openrouter.ai is not on the allowlist",
+  "row": "hosts ['storm-charles.promptugal.news']"
+ },
+ {
+  "at": "2026-11-12T02:40:57Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": false,
+  "status": 403,
+  "reason": "openrouter.ai is not on the allowlist",
+  "row": "hosts ['storm-charles.promptugal.news']"
+ }
+]

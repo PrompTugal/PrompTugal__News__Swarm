@@ -1,0 +1,38 @@
+{
+ "pbp": 1,
+ "id": "swarm-door",
+ "layer": "invocation",
+ "notes": "harness.1.fringe E7: as swarm-a0-offline, but TCP to the sharness.net door on 127.0.0.1:18443 (hosts: the storm site only). Node fetch uses it with NODE_USE_ENV_PROXY=1.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/home/user/PrompTugal__News__Swarm/tools",
+   "/home/user/PrompTugal__News__Swarm/harness/bin",
+   "/opt/hx/ws",
+   "/root/.ccr/ca-bundle.crt"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": {
+  "connect_tcp_ports": [
+   18443
+  ]
+ },
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 16384,
+  "max_pids": 16
+ }
+}

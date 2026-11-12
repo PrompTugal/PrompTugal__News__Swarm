@@ -1,0 +1,648 @@
+{
+ "about": "E7: the swarm's own engine, not a probe. execute() from tools/swarm.mjs, unchanged, driven per task (harness/bin/swarm-unit.mjs): three A0 reads of the storm site, then one A1 call. Bare, then under a policy with no network (the reads are refused), then through the door with only the storm site allowed (the reads pass, the A1 call to openrouter.ai is refused by the door and costs 0). Timelines are the engine's own (t in ms).",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E7",
+ "measured_at": "2026-11-12T02:40Z",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "code": {
+  "engine": "tools/swarm.mjs",
+  "engine_sha256": "8de051dca495637e549f0e78b944b09d8b15ce75f26a0f0b97963ea24f375c20",
+  "router": "tools/llm.mjs",
+  "router_sha256": "a2f0959b91af2555f3e162a9a76c280d734b3a80c0ed5dedd56c7aa5593eee9e",
+  "driver": "harness/bin/swarm-unit.mjs",
+  "driver_sha256": "9b453b37bf653cc92082819e84980faa2879ea8b9214bb4445c3b9c416ee5a54"
+ },
+ "units": [
+  {
+   "id": "harness1",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "harness.1.fringe@PrompTugal.dinis",
+   "harnessed": false
+  },
+  {
+   "id": "runner",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "the engine's runner (execute())",
+   "harnessed": null
+  },
+  {
+   "id": "runner/read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read a storm dataset (fetch)",
+   "harnessed": null
+  },
+  {
+   "id": "runner/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash via tools/llm.mjs",
+   "harnessed": true
+  },
+  {
+   "id": "door",
+   "kind": "harness",
+   "altitude": "H",
+   "label": "sharness.net door (storm site only)"
+  },
+  {
+   "id": "storm",
+   "kind": "site",
+   "altitude": "D",
+   "label": "storm-charles.promptugal.news"
+  },
+  {
+   "id": "openrouter",
+   "kind": "provider",
+   "altitude": "M",
+   "label": "openrouter.ai (never reached)"
+  }
+ ],
+ "edges": [
+  {
+   "from": "harness1",
+   "to": "runner",
+   "kind": "runs"
+  },
+  {
+   "from": "runner",
+   "to": "runner/read",
+   "kind": "runs"
+  },
+  {
+   "from": "runner/read",
+   "to": "door",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "storm",
+   "kind": "allowed"
+  },
+  {
+   "from": "runner",
+   "to": "runner/call:deepseek-v4-flash#1",
+   "kind": "calls"
+  },
+  {
+   "from": "runner/call:deepseek-v4-flash#1",
+   "to": "door",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "openrouter",
+   "kind": "refused"
+  }
+ ],
+ "policies": [
+  {
+   "id": "swarm-a0-offline",
+   "hash": "sha256:a4e8169e029f8687a5864631f8762e06351de2f00f1daf36440c70e92a08d9d0",
+   "file": "harness/policies/policy-swarm-offline.json",
+   "rows": {
+    "files": {
+     "read": [
+      "/usr",
+      "/lib",
+      "/lib64",
+      "/etc/ssl",
+      "/opt/node22",
+      "/home/user/PrompTugal__News__Swarm/tools",
+      "/home/user/PrompTugal__News__Swarm/harness/bin",
+      "/opt/hx/ws",
+      "/root/.ccr/ca-bundle.crt"
+     ],
+     "write": [
+      "/opt/hx/ws/out"
+     ],
+     "exec": [
+      "/opt/node22",
+      "/lib",
+      "/lib64",
+      "/usr/lib"
+     ]
+    },
+    "network": "none",
+    "process": {
+     "no_new_privs": true,
+     "max_memory_mb": 16384,
+     "max_pids": 16
+    }
+   }
+  },
+  {
+   "id": "swarm-door",
+   "hash": "sha256:08a1905eb59352fa0641ca109a6a3c0f3b952a95f90585e6a90f41106e8ee101",
+   "file": "harness/policies/policy-swarm-door.json",
+   "rows": {
+    "files": {
+     "read": [
+      "/usr",
+      "/lib",
+      "/lib64",
+      "/etc/ssl",
+      "/opt/node22",
+      "/home/user/PrompTugal__News__Swarm/tools",
+      "/home/user/PrompTugal__News__Swarm/harness/bin",
+      "/opt/hx/ws",
+      "/root/.ccr/ca-bundle.crt"
+     ],
+     "write": [
+      "/opt/hx/ws/out"
+     ],
+     "exec": [
+      "/opt/node22",
+      "/lib",
+      "/lib64",
+      "/usr/lib"
+     ]
+    },
+    "network": {
+     "connect_tcp_ports": [
+      18443
+     ]
+    },
+    "process": {
+     "no_new_privs": true,
+     "max_memory_mb": 16384,
+     "max_pids": 16
+    }
+   }
+  }
+ ],
+ "runs": [
+  {
+   "id": "a0-bare",
+   "what": "unharnessed: env -i, the engine as uid 0",
+   "harnessed": false,
+   "tasks": [
+    {
+     "task": "warnings",
+     "ok": true,
+     "bytes": 20811,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 119,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 20811
+      },
+      {
+       "t_ms": 119,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    },
+    {
+     "task": "transport",
+     "ok": true,
+     "bytes": 18991,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 63,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 18991
+      },
+      {
+       "t_ms": 63,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    },
+    {
+     "task": "stations",
+     "ok": true,
+     "bytes": 85917,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 102,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 85917
+      },
+      {
+       "t_ms": 102,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a0-offline",
+   "what": "harnessed, network none: sharness-ai run --policy policy-swarm-offline.json --expect-hash sha256:a4e8169e029f8687a5864631f8762e06351de2f00f1daf36440c70e92a08d9d0",
+   "harnessed": true,
+   "policy_hash": "sha256:a4e8169e029f8687a5864631f8762e06351de2f00f1daf36440c70e92a08d9d0",
+   "tasks": [
+    {
+     "task": "warnings",
+     "ok": false,
+     "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news",
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "attempt",
+       "target": "storm-charles.promptugal.news/warnings"
+      },
+      {
+       "t_ms": 54,
+       "unit": "runner/read",
+       "phase": "refused",
+       "policy_row": "network: none (an empty network namespace: no resolver, no route)",
+       "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news"
+      },
+      {
+       "t_ms": 54,
+       "unit": "runner",
+       "phase": "end",
+       "error": "execute() threw at its first read"
+      }
+     ]
+    },
+    {
+     "task": "transport",
+     "ok": false,
+     "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news",
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "attempt",
+       "target": "storm-charles.promptugal.news/transport"
+      },
+      {
+       "t_ms": 3,
+       "unit": "runner/read",
+       "phase": "refused",
+       "policy_row": "network: none (an empty network namespace: no resolver, no route)",
+       "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news"
+      },
+      {
+       "t_ms": 3,
+       "unit": "runner",
+       "phase": "end",
+       "error": "execute() threw at its first read"
+      }
+     ]
+    },
+    {
+     "task": "stations",
+     "ok": false,
+     "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news",
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "attempt",
+       "target": "storm-charles.promptugal.news/stations"
+      },
+      {
+       "t_ms": 2,
+       "unit": "runner/read",
+       "phase": "refused",
+       "policy_row": "network: none (an empty network namespace: no resolver, no route)",
+       "error": "EAI_AGAIN: getaddrinfo EAI_AGAIN storm-charles.promptugal.news"
+      },
+      {
+       "t_ms": 2,
+       "unit": "runner",
+       "phase": "end",
+       "error": "execute() threw at its first read"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a0-door",
+   "what": "harnessed, the door only (NODE_USE_ENV_PROXY=1, HTTPS_PROXY=https_proxy=the door): --expect-hash sha256:08a1905eb59352fa0641ca109a6a3c0f3b952a95f90585e6a90f41106e8ee101",
+   "harnessed": true,
+   "policy_hash": "sha256:08a1905eb59352fa0641ca109a6a3c0f3b952a95f90585e6a90f41106e8ee101",
+   "tasks": [
+    {
+     "task": "warnings",
+     "ok": true,
+     "bytes": 20811,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 118,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 20811
+      },
+      {
+       "t_ms": 118,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    },
+    {
+     "task": "transport",
+     "ok": true,
+     "bytes": 18991,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 38,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 18991
+      },
+      {
+       "t_ms": 38,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    },
+    {
+     "task": "stations",
+     "ok": true,
+     "bytes": 85917,
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 23,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 85917
+      },
+      {
+       "t_ms": 23,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "a1-door",
+   "what": "harnessed, the door only, the A1 call: the read passes, the model call is refused by the door",
+   "harnessed": true,
+   "policy_hash": "sha256:08a1905eb59352fa0641ca109a6a3c0f3b952a95f90585e6a90f41106e8ee101",
+   "tasks": [
+    {
+     "task": "warnings",
+     "ok": true,
+     "calls": [
+      {
+       "unit": "runner/call:deepseek-v4-flash#1",
+       "model": "deepseek/deepseek-v4-flash",
+       "status": "error",
+       "valid": false,
+       "tokens_in": 0,
+       "tokens_out": 0,
+       "cost_usd": 0,
+       "latency_ms": 5,
+       "answer_chars": 0
+      }
+     ],
+     "timeline": [
+      {
+       "t_ms": 0,
+       "unit": "runner",
+       "phase": "start"
+      },
+      {
+       "t_ms": 0,
+       "unit": "runner/read",
+       "phase": "start"
+      },
+      {
+       "t_ms": 99,
+       "unit": "runner/read",
+       "phase": "end",
+       "ok": true,
+       "bytes": 20811
+      },
+      {
+       "t_ms": 100,
+       "unit": "runner/call:deepseek-v4-flash#1",
+       "phase": "start"
+      },
+      {
+       "t_ms": 115,
+       "unit": "runner/call:deepseek-v4-flash#1",
+       "phase": "refused",
+       "valid": false,
+       "cost_usd": 0,
+       "policy_row": "door row hosts ['storm-charles.promptugal.news'] (openrouter.ai: 403, 5 CONNECTs: credit, key, call)",
+       "error": "fetch failed"
+      },
+      {
+       "t_ms": 115,
+       "unit": "runner",
+       "phase": "end"
+      }
+     ]
+    }
+   ],
+   "ledger": "one line in the run's workspace ledger (LLM_LEDGER_DIR=/opt/hx/ws/out/ledger): status error, cost_usd 0, tokens 0, \"fetch failed\"; not committed"
+  }
+ ],
+ "summary": {
+  "a0_reads": {
+   "bare": "3 of 3",
+   "offline": "0 of 3 (refused)",
+   "door": "3 of 3"
+  },
+  "a1_call": {
+   "harnessed_door": "refused by the door (openrouter.ai not on its hosts), cost 0 USD",
+   "bare": "not run: an unharnessed call spends credit, and the point is shown without it"
+  }
+ },
+ "door_audit": [
+  {
+   "at": "2026-11-12T02:40:43Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  },
+  {
+   "at": "2026-11-12T02:40:57Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": false,
+   "status": 403,
+   "reason": "openrouter.ai is not on the allowlist",
+   "row": "hosts ['storm-charles.promptugal.news']"
+  }
+ ],
+ "findings": [
+  "The engine needed no change to run inside: the door is reached through the environment (NODE_USE_ENV_PROXY=1 and both proxy spellings), and the kernel row makes the door the only way out.",
+  "Offline, the refusal is at name resolution (EAI_AGAIN): the empty network namespace has no resolver, so no packet is sent. The engine throws at its first read and its own timeline is lost; the record keeps the driver's clock.",
+  "The router (tools/llm.mjs) degrades cleanly: credit() returns not-ok, the call is ledgered as error with 0 tokens and 0 USD, and the run ends with valid: false.",
+  "undici (fetch) needs 16384 MiB of address space here (F2, second cause)."
+ ]
+}

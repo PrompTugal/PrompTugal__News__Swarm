@@ -266,6 +266,59 @@ def e6(files):
     })
 
 
+def e7():
+    """The swarm's own engine (tools/swarm.mjs execute(), unchanged), not a probe: its A0 reads and an A1 call, bare and harnessed."""
+    runs = {k: RAW(f'e7/{k}.json') for k in ('a0-bare', 'a0-offline', 'a0-door', 'a1-door')}
+    po, pd = POL('policy-swarm-offline.json'), POL('policy-swarm-door.json')
+    ho, hd = phash(os.path.join(H, 'policies', 'policy-swarm-offline.json')), phash(os.path.join(H, 'policies', 'policy-swarm-door.json'))
+    audit = RAW('e7/door-audit.json')
+    def tl(run, label):   # the engine's own timeline (t = ms since the run began); a refused read has none: the engine threw
+        return [{'t_ms': e['t'], 'unit': e['unit'], 'phase': e['phase'], **{k: v for k, v in e.items() if k not in ('t', 'unit', 'phase')}} for e in run.get('timeline', [])] if run['ok'] else \
+               [{'t_ms': 0, 'unit': 'runner', 'phase': 'start'}, {'t_ms': 0, 'unit': 'runner/read', 'phase': 'attempt', 'target': f"storm-charles.promptugal.news/{run['task']}"},
+                {'t_ms': run['wall_ms'], 'unit': 'runner/read', 'phase': 'refused', 'policy_row': 'network: none (an empty network namespace: no resolver, no route)', 'error': run['error']},
+                {'t_ms': run['wall_ms'], 'unit': 'runner', 'phase': 'end', 'error': 'execute() threw at its first read'}]
+    a1 = runs['a1-door'][0]; a1tl = tl(a1, 'a1')
+    for e in a1tl:
+        if e['unit'].startswith('runner/call') and e['phase'] == 'end':
+            e.update(phase='refused', policy_row="door row hosts ['storm-charles.promptugal.news'] (openrouter.ai: 403, 5 CONNECTs: credit, key, call)", error='fetch failed')
+    rows = lambda p: {'files': p['files'], 'network': p['network'], 'process': p['process']}
+    return write('2026-11-12-harness1-e7-swarm-engine.json', {
+        'about': 'E7: the swarm\'s own engine, not a probe. execute() from tools/swarm.mjs, unchanged, driven per task (harness/bin/swarm-unit.mjs): three A0 reads of the storm site, then one A1 call. Bare, then under a policy with no network (the reads are refused), then through the door with only the storm site allowed (the reads pass, the A1 call to openrouter.ai is refused by the door and costs 0). Timelines are the engine\'s own (t in ms).',
+        'by': BY, 'experiment': 'E7', 'measured_at': '2026-11-12T02:40Z', 'where': WHERE, 'tool': TOOL,
+        'code': {'engine': 'tools/swarm.mjs', 'engine_sha256': sha_file(os.path.join(ROOT, 'tools', 'swarm.mjs')), 'router': 'tools/llm.mjs', 'router_sha256': sha_file(os.path.join(ROOT, 'tools', 'llm.mjs')), 'driver': 'harness/bin/swarm-unit.mjs', 'driver_sha256': sha_file(os.path.join(H, 'bin', 'swarm-unit.mjs'))},
+        'units': [
+            {'id': 'harness1', 'kind': 'agent', 'altitude': 'A3', 'label': BY, 'harnessed': False},
+            {'id': 'runner', 'kind': 'agent', 'altitude': 'A3', 'label': 'the engine\'s runner (execute())', 'harnessed': None},
+            {'id': 'runner/read', 'kind': 'compute', 'altitude': 'A0', 'label': 'read a storm dataset (fetch)', 'harnessed': None},
+            {'id': 'runner/call:deepseek-v4-flash#1', 'kind': 'llm-call', 'altitude': 'A1', 'label': 'deepseek-v4-flash via tools/llm.mjs', 'harnessed': True},
+            {'id': 'door', 'kind': 'harness', 'altitude': 'H', 'label': 'sharness.net door (storm site only)'},
+            {'id': 'storm', 'kind': 'site', 'altitude': 'D', 'label': 'storm-charles.promptugal.news'},
+            {'id': 'openrouter', 'kind': 'provider', 'altitude': 'M', 'label': 'openrouter.ai (never reached)'},
+        ],
+        'edges': [{'from': 'harness1', 'to': 'runner', 'kind': 'runs'}, {'from': 'runner', 'to': 'runner/read', 'kind': 'runs'}, {'from': 'runner/read', 'to': 'door', 'kind': 'allowed'}, {'from': 'door', 'to': 'storm', 'kind': 'allowed'},
+                  {'from': 'runner', 'to': 'runner/call:deepseek-v4-flash#1', 'kind': 'calls'}, {'from': 'runner/call:deepseek-v4-flash#1', 'to': 'door', 'kind': 'allowed'}, {'from': 'door', 'to': 'openrouter', 'kind': 'refused'}],
+        'policies': [{'id': po['id'], 'hash': ho, 'file': 'harness/policies/policy-swarm-offline.json', 'rows': rows(po)}, {'id': pd['id'], 'hash': hd, 'file': 'harness/policies/policy-swarm-door.json', 'rows': rows(pd)}],
+        'runs': [
+            {'id': 'a0-bare', 'what': 'unharnessed: env -i, the engine as uid 0', 'harnessed': False,
+             'tasks': [{'task': r['task'], 'ok': r['ok'], 'bytes': next((e.get('bytes') for e in r.get('timeline', []) if e.get('bytes')), None), 'timeline': tl(r, 'bare')} for r in runs['a0-bare']]},
+            {'id': 'a0-offline', 'what': f'harnessed, network none: sharness-ai run --policy policy-swarm-offline.json --expect-hash {ho}', 'harnessed': True, 'policy_hash': ho,
+             'tasks': [{'task': r['task'], 'ok': r['ok'], 'error': r.get('error'), 'timeline': tl(r, 'offline')} for r in runs['a0-offline']]},
+            {'id': 'a0-door', 'what': f'harnessed, the door only (NODE_USE_ENV_PROXY=1, HTTPS_PROXY=https_proxy=the door): --expect-hash {hd}', 'harnessed': True, 'policy_hash': hd,
+             'tasks': [{'task': r['task'], 'ok': r['ok'], 'bytes': next((e.get('bytes') for e in r.get('timeline', []) if e.get('bytes')), None), 'timeline': tl(r, 'door')} for r in runs['a0-door']]},
+            {'id': 'a1-door', 'what': 'harnessed, the door only, the A1 call: the read passes, the model call is refused by the door', 'harnessed': True, 'policy_hash': hd,
+             'tasks': [{'task': a1['task'], 'ok': a1['ok'], 'calls': a1['calls'], 'timeline': a1tl}],
+             'ledger': 'one line in the run\'s workspace ledger (LLM_LEDGER_DIR=/opt/hx/ws/out/ledger): status error, cost_usd 0, tokens 0, "fetch failed"; not committed'},
+        ],
+        'summary': {'a0_reads': {'bare': f"{sum(r['ok'] for r in runs['a0-bare'])} of 3", 'offline': f"{sum(r['ok'] for r in runs['a0-offline'])} of 3 (refused)", 'door': f"{sum(r['ok'] for r in runs['a0-door'])} of 3"},
+                    'a1_call': {'harnessed_door': 'refused by the door (openrouter.ai not on its hosts), cost 0 USD', 'bare': 'not run: an unharnessed call spends credit, and the point is shown without it'}},
+        'door_audit': audit,
+        'findings': ['The engine needed no change to run inside: the door is reached through the environment (NODE_USE_ENV_PROXY=1 and both proxy spellings), and the kernel row makes the door the only way out.',
+                     'Offline, the refusal is at name resolution (EAI_AGAIN): the empty network namespace has no resolver, so no packet is sent. The engine throws at its first read and its own timeline is lost; the record keeps the driver\'s clock.',
+                     'The router (tools/llm.mjs) degrades cleanly: credit() returns not-ok, the call is ledgered as error with 0 tokens and 0 USD, and the run ends with valid: false.',
+                     'undici (fetch) needs 16384 MiB of address space here (F2, second cause).'],
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -331,13 +384,13 @@ def findings():
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5()]
+    files = [e1e2(), e3(), e4(), e5(), e7()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',
            'by': BY, 'format': {'units': '[{id, kind, altitude, label, harnessed?, policy_hash?, key_fp?, code_sha256?}]', 'edges': '[{from, to, kind: runs|reads|writes|signs|allowed|refused}]',
                                 'timeline': '[{t_ms, unit, phase: start|attempt|allowed|refused|end, id?, target?, policy_row?, error?}]', 'keys': '[{role, alg, fp, private_key_path, created_at, destroyed_at}]'},
-           'records': [{'experiment': n.split('-harness1-')[1].split('-')[0].upper().replace('E1E2', 'E1+E2'), 'file': 'harness/' + n} for n in files] + [{'experiment': 'E01+E04', 'file': 'harness/2026-11-12-swarm1-probe-and-hello.json', 'by': 'swarm.1.fringe@PrompTugal.dinis'}],
+           'records': [{'experiment': n.split('-harness1-')[1].replace('.json', '').split('-')[0].upper().replace('E1E2', 'E1+E2'), 'file': 'harness/' + n} for n in files] + [{'experiment': 'E01+E04', 'file': 'harness/2026-11-12-swarm1-probe-and-hello.json', 'by': 'swarm.1.fringe@PrompTugal.dinis'}],
            'units_code': 'harness/bin/', 'policies': 'harness/policies/', 'raw': 'harness/raw/ (the measured outputs these records are made from)', 'assembler': 'tools/harness1-assemble.py', 'session_keys_destroyed_at': '2026-11-12T01:53:24Z'}
     write('index.json', idx)
     print('\n'.join(files))

@@ -1,0 +1,34 @@
+{
+ "pbp": 1,
+ "id": "swarm-a0-offline",
+ "layer": "invocation",
+ "notes": "harness.1.fringe E7: the swarm engine (tools/swarm.mjs) read-only, its workspace out/ writable, no network. 16384 MB of address space: undici (fetch) instantiates Wasm (F2).",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/home/user/PrompTugal__News__Swarm/tools",
+   "/home/user/PrompTugal__News__Swarm/harness/bin",
+   "/opt/hx/ws",
+   "/root/.ccr/ca-bundle.crt"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": "none",
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 16384,
+  "max_pids": 16
+ }
+}
