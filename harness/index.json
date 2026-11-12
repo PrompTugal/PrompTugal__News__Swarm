@@ -33,6 +33,10 @@
    "file": "harness/2026-11-12-harness1-e8-swarm-loops.json"
   },
   {
+   "experiment": "E9",
+   "file": "harness/2026-11-12-harness1-e9-key-born-inside.json"
+  },
+  {
    "experiment": "E6",
    "file": "harness/2026-11-12-harness1-e6-reach.json"
   },

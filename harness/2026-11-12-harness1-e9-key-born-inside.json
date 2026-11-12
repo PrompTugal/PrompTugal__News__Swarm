@@ -1,0 +1,261 @@
+{
+ "about": "E9: E5 again with its two gaps closed. The execution key is generated inside the harnessed process (no file, no key row in the policy: the same policy-a0 as E1) and dies with it; the child starts with env -i. A root neighbour (the orchestrator) then looks for the key while the child is alive. All chain checks pass; what remains is that uid 0 next door can open /proc/<pid>/mem.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E9",
+ "measured_at": "2026-11-12T03:44Z",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "units": [
+  {
+   "id": "operator",
+   "kind": "key",
+   "altitude": "K",
+   "label": "operator key (harness.1, A3)",
+   "key_fp": "sha256:1946681da7ea1f4f"
+  },
+  {
+   "id": "code",
+   "kind": "artifact",
+   "altitude": "C",
+   "label": "hx/bin/a0-consensus-born.mjs",
+   "sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12"
+  },
+  {
+   "id": "policy",
+   "kind": "policy",
+   "altitude": "P2",
+   "label": "policy-a0 (no key row)",
+   "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+  },
+  {
+   "id": "a0-consensus",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "the A0 compute, key born inside, env -i",
+   "harnessed": true,
+   "policy_hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+   "key_fp": "sha256:2891ee6077047958"
+  },
+  {
+   "id": "exec-key",
+   "kind": "key",
+   "altitude": "K",
+   "label": "execution key, born inside",
+   "key_fp": "sha256:2891ee6077047958"
+  },
+  {
+   "id": "output",
+   "kind": "artifact",
+   "altitude": "O",
+   "label": "out/summary.json",
+   "sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1"
+  },
+  {
+   "id": "neighbour",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "a uid-0 process next door (the orchestrator)",
+   "harnessed": false
+  }
+ ],
+ "edges": [
+  {
+   "from": "operator",
+   "to": "code",
+   "kind": "signs"
+  },
+  {
+   "from": "operator",
+   "to": "policy",
+   "kind": "signs"
+  },
+  {
+   "from": "a0-consensus",
+   "to": "exec-key",
+   "kind": "makes"
+  },
+  {
+   "from": "exec-key",
+   "to": "output",
+   "kind": "signs"
+  },
+  {
+   "from": "operator",
+   "to": "exec-key",
+   "kind": "signs",
+   "note": "attestation after the run: this key, this pid, this policy, this code, this output"
+  },
+  {
+   "from": "neighbour",
+   "to": "a0-consensus",
+   "kind": "allowed",
+   "note": "/proc/<pid>/mem opened (0 bytes read)"
+  }
+ ],
+ "chain": {
+  "code": {
+   "file": "hx/bin/a0-consensus-born.mjs",
+   "sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12",
+   "sig_by": "sha256:1946681da7ea1f4f"
+  },
+  "policy": {
+   "file": "opt/hx/policy-a0.json",
+   "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+   "sig_by": "sha256:1946681da7ea1f4f"
+  },
+  "policy_hash_check": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "attestation": {
+   "exec_fp": "sha256:2891ee6077047958",
+   "pid": 264,
+   "code_sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12",
+   "policy_hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+   "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+   "observed": "started by the operator under the policy, key born inside, process exited 0",
+   "sig_by": "sha256:1946681da7ea1f4f"
+  },
+  "output": {
+   "sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+   "sig_by": "sha256:2891ee6077047958",
+   "signed_at": "2026-11-12T03:44:53.228Z"
+  }
+ },
+ "checks": {
+  "code_signed": true,
+  "policy_signed": true,
+  "output_signed_by_born_key": true,
+  "output_bytes_match": true,
+  "attestation_signed": true,
+  "policy_hash_seen_equals_signed": true,
+  "tamper_detected": true,
+  "no_key_file_written": true,
+  "env_credential_names_in_child": 0
+ },
+ "keys": [
+  {
+   "role": "operator (harness.1, A3)",
+   "alg": "ed25519",
+   "fp": "sha256:1946681da7ea1f4f",
+   "pub": "MCowBQYDK2VwAyEA7J49HSED1yUISYMS3HIQqjanAtVQfhRwYykkhEmSN1M=",
+   "private_key_path": "memory of the orchestrator only (never serialised)",
+   "created_at": "2026-11-12T03:44:52.941Z",
+   "destroyed_at": "2026-11-12T03:44:54.773Z",
+   "destroyed_how": "dropped at orchestrator exit"
+  },
+  {
+   "role": "execution, born inside the harnessed process (A0)",
+   "alg": "ed25519",
+   "fp": "sha256:2891ee6077047958",
+   "pub": "MCowBQYDK2VwAyEAbYMGEnZbEQU1XCKdTr1LqAlIr+G5nu6cDKapLetwOGA=",
+   "private_key_path": "memory of the harnessed process only: no file, no key row in the policy",
+   "created_at": "2026-11-12T03:44:53.226Z",
+   "destroyed_at": "2026-11-12T03:44:54.729Z",
+   "destroyed_how": "died with the process (never serialised)"
+  }
+ ],
+ "neighbour": {
+  "new_files": [
+   "ws/out/summary.born.json"
+  ],
+  "key_like_files": 0,
+  "proc_mem": {
+   "path": "/proc/264/mem",
+   "open": "yes (opened, 0 bytes read)"
+  }
+ },
+ "child_env": {
+  "names": 4,
+  "credential_like": 0
+ },
+ "timeline": [
+  {
+   "t_ms": 3,
+   "unit": "operator",
+   "phase": "key",
+   "fp": "sha256:1946681da7ea1f4f"
+  },
+  {
+   "t_ms": 4,
+   "unit": "code",
+   "phase": "signed",
+   "sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12"
+  },
+  {
+   "t_ms": 121,
+   "unit": "policy",
+   "phase": "signed",
+   "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+  },
+  {
+   "t_ms": 139,
+   "unit": "a0-consensus",
+   "phase": "start",
+   "harnessed": true,
+   "env": "env -i (PATH only)"
+  },
+  {
+   "t_ms": 357,
+   "unit": "exec-key",
+   "phase": "born-inside",
+   "fp": "sha256:2891ee6077047958",
+   "pid": 264
+  },
+  {
+   "t_ms": 371,
+   "unit": "neighbour",
+   "phase": "looked",
+   "new_files": [
+    "ws/out/summary.born.json"
+   ],
+   "key_like_files": 0,
+   "proc_mem": "yes (opened, 0 bytes read)"
+  },
+  {
+   "t_ms": 1830,
+   "unit": "a0-consensus",
+   "phase": "end",
+   "exit": 0
+  },
+  {
+   "t_ms": 1830,
+   "unit": "exec-key",
+   "phase": "died with the process",
+   "at": "2026-11-12T03:44:54.729Z"
+  },
+  {
+   "t_ms": 1832,
+   "unit": "operator",
+   "phase": "attested",
+   "exec_fp": "sha256:2891ee6077047958"
+  },
+  {
+   "t_ms": 1833,
+   "unit": "verifier",
+   "phase": "verified"
+  }
+ ],
+ "before_after": {
+  "execution_key_on_disk": {
+   "E5": "/opt/hx/keys/exec.pem, 213 ms, readable by any uid-0 process",
+   "E9": "never: born in the process, no key-like file appeared anywhere the neighbour looked (/opt/hx/ws, /dev/shm, /tmp, /opt/hx/keys)"
+  },
+  "policy_key_row": {
+   "E5": "files.read /opt/hx/keys/exec.pem",
+   "E9": "none: the same policy-a0 as E1 (sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334)"
+  },
+  "credential_like_env_names_in_child": {
+   "E5": 17,
+   "E9": 0
+  },
+  "binding": {
+   "E5": "certificate issued before the run (the key existed first)",
+   "E9": "attestation signed after the run, from what the operator observed (it started the process under the policy; the process reported the hash it ran under)"
+  }
+ },
+ "gap": [
+  "uid 0 next door can open /proc/<pid>/mem of the harnessed process (measured: opened, 0 bytes read): a key in memory is safe from files, not from a root neighbour. A separate uid for the harnessed process, or ptrace restrictions (yama ptrace_scope 3), would close it.",
+  "the key lived 1.5 s here only because the unit waits for the neighbour test; without the wait it lives for the signature."
+ ],
+ "notes": [
+  "first attempt refused: the unit was in the repository, which policy-a0 does not read (EACCES, nothing ran). The unit was copied to /opt/hx/bin (same bytes, same sha256) and run there."
+ ]
+}

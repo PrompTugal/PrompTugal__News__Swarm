@@ -354,6 +354,39 @@ def e8():
     })
 
 
+def e9():
+    """E5 with its two gaps closed: the execution key is born inside the harnessed process; the child's environment is empty."""
+    d = RAW('pki2.json'); e5 = RAW('pki.json')
+    ph = phash(os.path.join(H, 'policies', 'policy-a0.json'))
+    return write('2026-11-12-harness1-e9-key-born-inside.json', {
+        'about': 'E9: E5 again with its two gaps closed. The execution key is generated inside the harnessed process (no file, no key row in the policy: the same policy-a0 as E1) and dies with it; the child starts with env -i. A root neighbour (the orchestrator) then looks for the key while the child is alive. All chain checks pass; what remains is that uid 0 next door can open /proc/<pid>/mem.',
+        'by': BY, 'experiment': 'E9', 'measured_at': '2026-11-12T03:44Z', 'where': WHERE, 'tool': TOOL,
+        'units': [
+            {'id': 'operator', 'kind': 'key', 'altitude': 'K', 'label': 'operator key (harness.1, A3)', 'key_fp': d['keys'][0]['fp']},
+            {'id': 'code', 'kind': 'artifact', 'altitude': 'C', 'label': d['code']['file'], 'sha256': d['code']['sha256']},
+            {'id': 'policy', 'kind': 'policy', 'altitude': 'P2', 'label': 'policy-a0 (no key row)', 'hash': d['policy']['hash']},
+            {'id': 'a0-consensus', 'kind': 'compute', 'altitude': 'A0', 'label': 'the A0 compute, key born inside, env -i', 'harnessed': True, 'policy_hash': d['policy']['hash'], 'key_fp': d['keys'][1]['fp']},
+            {'id': 'exec-key', 'kind': 'key', 'altitude': 'K', 'label': 'execution key, born inside', 'key_fp': d['keys'][1]['fp']},
+            {'id': 'output', 'kind': 'artifact', 'altitude': 'O', 'label': 'out/summary.json', 'sha256': d['output']['sha256']},
+            {'id': 'neighbour', 'kind': 'agent', 'altitude': 'A3', 'label': 'a uid-0 process next door (the orchestrator)', 'harnessed': False},
+        ],
+        'edges': [{'from': 'operator', 'to': 'code', 'kind': 'signs'}, {'from': 'operator', 'to': 'policy', 'kind': 'signs'}, {'from': 'a0-consensus', 'to': 'exec-key', 'kind': 'makes'},
+                  {'from': 'exec-key', 'to': 'output', 'kind': 'signs'}, {'from': 'operator', 'to': 'exec-key', 'kind': 'signs', 'note': 'attestation after the run: this key, this pid, this policy, this code, this output'},
+                  {'from': 'neighbour', 'to': 'a0-consensus', 'kind': 'allowed', 'note': '/proc/<pid>/mem opened (0 bytes read)'}],
+        'chain': {'code': d['code'], 'policy': d['policy'], 'policy_hash_check': ph, 'attestation': d['attestation'], 'output': d['output']},
+        'checks': d['checks'], 'keys': d['keys'], 'neighbour': d['neighbour'], 'child_env': d['child_env'], 'timeline': d['timeline'],
+        'before_after': {
+            'execution_key_on_disk': {'E5': '/opt/hx/keys/exec.pem, 213 ms, readable by any uid-0 process', 'E9': 'never: born in the process, no key-like file appeared anywhere the neighbour looked (/opt/hx/ws, /dev/shm, /tmp, /opt/hx/keys)'},
+            'policy_key_row': {'E5': 'files.read /opt/hx/keys/exec.pem', 'E9': 'none: the same policy-a0 as E1 (' + ph + ')'},
+            'credential_like_env_names_in_child': {'E5': 17, 'E9': d['child_env']['credential_like']},
+            'binding': {'E5': 'certificate issued before the run (the key existed first)', 'E9': 'attestation signed after the run, from what the operator observed (it started the process under the policy; the process reported the hash it ran under)'},
+        },
+        'gap': ['uid 0 next door can open /proc/<pid>/mem of the harnessed process (measured: opened, 0 bytes read): a key in memory is safe from files, not from a root neighbour. A separate uid for the harnessed process, or ptrace restrictions (yama ptrace_scope 3), would close it.',
+                'the key lived 1.5 s here only because the unit waits for the neighbour test; without the wait it lives for the signature.'],
+        'notes': ['first attempt refused: the unit was in the repository, which policy-a0 does not read (EACCES, nothing ran). The unit was copied to /opt/hx/bin (same bytes, same sha256) and run there.'],
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -425,7 +458,7 @@ def findings():
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5(), e7(), e8()]
+    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',

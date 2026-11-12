@@ -1,0 +1,141 @@
+{
+ "code": {
+  "file": "hx/bin/a0-consensus-born.mjs",
+  "sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12",
+  "sig_by": "sha256:1946681da7ea1f4f"
+ },
+ "policy": {
+  "file": "opt/hx/policy-a0.json",
+  "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "sig_by": "sha256:1946681da7ea1f4f"
+ },
+ "attestation": {
+  "exec_fp": "sha256:2891ee6077047958",
+  "pid": 264,
+  "code_sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12",
+  "policy_hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+  "observed": "started by the operator under the policy, key born inside, process exited 0",
+  "sig_by": "sha256:1946681da7ea1f4f"
+ },
+ "output": {
+  "sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+  "sig_by": "sha256:2891ee6077047958",
+  "signed_at": "2026-11-12T03:44:53.228Z"
+ },
+ "child_env": {
+  "names": 4,
+  "credential_like": 0
+ },
+ "keys": [
+  {
+   "role": "operator (harness.1, A3)",
+   "alg": "ed25519",
+   "fp": "sha256:1946681da7ea1f4f",
+   "pub": "MCowBQYDK2VwAyEA7J49HSED1yUISYMS3HIQqjanAtVQfhRwYykkhEmSN1M=",
+   "private_key_path": "memory of the orchestrator only (never serialised)",
+   "created_at": "2026-11-12T03:44:52.941Z",
+   "destroyed_at": "2026-11-12T03:44:54.773Z",
+   "destroyed_how": "dropped at orchestrator exit"
+  },
+  {
+   "role": "execution, born inside the harnessed process (A0)",
+   "alg": "ed25519",
+   "fp": "sha256:2891ee6077047958",
+   "pub": "MCowBQYDK2VwAyEAbYMGEnZbEQU1XCKdTr1LqAlIr+G5nu6cDKapLetwOGA=",
+   "private_key_path": "memory of the harnessed process only: no file, no key row in the policy",
+   "created_at": "2026-11-12T03:44:53.226Z",
+   "destroyed_at": "2026-11-12T03:44:54.729Z",
+   "destroyed_how": "died with the process (never serialised)"
+  }
+ ],
+ "neighbour": {
+  "new_files": [
+   "ws/out/summary.born.json"
+  ],
+  "key_like_files": 0,
+  "proc_mem": {
+   "path": "/proc/264/mem",
+   "open": "yes (opened, 0 bytes read)"
+  }
+ },
+ "unit_exit": 0,
+ "checks": {
+  "code_signed": true,
+  "policy_signed": true,
+  "output_signed_by_born_key": true,
+  "output_bytes_match": true,
+  "attestation_signed": true,
+  "policy_hash_seen_equals_signed": true,
+  "tamper_detected": true,
+  "no_key_file_written": true,
+  "env_credential_names_in_child": 0
+ },
+ "timeline": [
+  {
+   "t_ms": 3,
+   "unit": "operator",
+   "phase": "key",
+   "fp": "sha256:1946681da7ea1f4f"
+  },
+  {
+   "t_ms": 4,
+   "unit": "code",
+   "phase": "signed",
+   "sha256": "99f1d3bb802a84c82ae74e8cd130f4b7dd7f28f126eb272e48de4f6ea0646a12"
+  },
+  {
+   "t_ms": 121,
+   "unit": "policy",
+   "phase": "signed",
+   "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+  },
+  {
+   "t_ms": 139,
+   "unit": "a0-consensus",
+   "phase": "start",
+   "harnessed": true,
+   "env": "env -i (PATH only)"
+  },
+  {
+   "t_ms": 357,
+   "unit": "exec-key",
+   "phase": "born-inside",
+   "fp": "sha256:2891ee6077047958",
+   "pid": 264
+  },
+  {
+   "t_ms": 371,
+   "unit": "neighbour",
+   "phase": "looked",
+   "new_files": [
+    "ws/out/summary.born.json"
+   ],
+   "key_like_files": 0,
+   "proc_mem": "yes (opened, 0 bytes read)"
+  },
+  {
+   "t_ms": 1830,
+   "unit": "a0-consensus",
+   "phase": "end",
+   "exit": 0
+  },
+  {
+   "t_ms": 1830,
+   "unit": "exec-key",
+   "phase": "died with the process",
+   "at": "2026-11-12T03:44:54.729Z"
+  },
+  {
+   "t_ms": 1832,
+   "unit": "operator",
+   "phase": "attested",
+   "exec_fp": "sha256:2891ee6077047958"
+  },
+  {
+   "t_ms": 1833,
+   "unit": "verifier",
+   "phase": "verified"
+  }
+ ]
+}
