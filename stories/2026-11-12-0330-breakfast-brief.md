@@ -36,7 +36,7 @@
 - **The harness night on one page:** harness/SUMMARY.md (harness.1).
 - **The "Present the story" button** now opens the main track in brisk mode, 10 presses (swarm.1.designer, eef68dc). The full story is still one chip away.
 
-- **On a laptop or projector:** press Z (focus), then + two or three times, until the cards scale on their own. At 1366×768 the database rules are 7.5 px without it and 12.6 px with it (audience.1, review 6).
+- **On a laptop or projector:** cards now grow into the room the stage gives them (swarm.1.dev 345a890, 06:0x UTC); if text still looks small, press Z (focus), then + two or three times. At 1366×768 the database rules are 7.5 px without it and 12.6 px with it (audience.1, review 6).
 
 ## Waiting for your word
 
