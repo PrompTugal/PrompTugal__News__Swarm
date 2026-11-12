@@ -23,6 +23,37 @@
  },
  "partners": [
   {
+   "slug": "adios",
+   "name": "Adios",
+   "kind": "infrastructure",
+   "kind_label": "Infrastructure for agents",
+   "one_line": "An AI cloud platform: AI agents work in a scoped, isolated workspace on a project's source, and Adios builds, previews and hosts the result, without giving the agent the platform.",
+   "has": [
+    "met",
+    "story"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T11:45Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://www.adios.dev/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T12:09Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-adios",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T12:10Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 8
+  },
+  {
    "slug": "eigenoid",
    "name": "Eigenoid",
    "kind": "governance",
@@ -228,29 +259,6 @@
     }
    ],
    "material": 6
-  },
-  {
-   "slug": "adios",
-   "name": "Adios",
-   "kind": "infrastructure",
-   "kind_label": "Infrastructure for agents",
-   "one_line": "An AI cloud platform: AI agents work in a scoped, isolated workspace on a project's source, and Adios builds, previews and hosts the result, without giving the agent the platform.",
-   "has": [
-    "met"
-   ],
-   "products": [],
-   "codes": [],
-   "asked_at": "2026-11-12T11:45Z",
-   "artefacts": [
-    {
-     "kind": "site",
-     "url": "https://www.adios.dev/",
-     "read_on": "2026-11-12",
-     "fetched_at": "2026-11-12T12:09Z",
-     "source": "their own site, read by hand"
-    }
-   ],
-   "material": 8
   },
   {
    "slug": "replit",

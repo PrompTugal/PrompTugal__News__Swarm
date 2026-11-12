@@ -761,6 +761,14 @@
      "control",
      "one-per-asset"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-adios",
+     "title": "Adios and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T12:10Z"
+    }
    ]
   }
  ]
