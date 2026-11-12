@@ -177,3 +177,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 @media (max-width: 1440px) and (max-height: 860px) { #card { font-size: 74% } }
 /* each hop's card stays inside its grid area; its text ellipsizes there, the full text on hover or click (audience.1, review 4) */
 #card .flow .fs { min-width: 0; max-width: 100%; overflow: hidden; box-sizing: border-box } #card .flow .fr { overflow: hidden }
+/* a card's long note waits behind a toggle (Dinis: hide things, let them fade in); opened, it fades in */
+#card details.note { margin-top: 10px; color: var(--muted) } #card details.note summary { cursor: pointer; font: 600 .85em var(--font-head); letter-spacing: .04em; text-transform: uppercase; color: var(--accent); list-style: none }
+#card details.note summary::-webkit-details-marker { display: none } #card details.note summary::before { content: '▸ ' } #card details.note[open] summary::before { content: '▾ ' }
+#card details.note[open] p { animation: notefade .4s ease } @keyframes notefade { from { opacity: 0; transform: translateY(6px) } to { opacity: 1; transform: none } }
