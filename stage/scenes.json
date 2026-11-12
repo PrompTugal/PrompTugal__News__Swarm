@@ -178,7 +178,7 @@
    "id": "reach-measured",
    "act": "1 · The problem",
    "title": "The gap, measured unit by unit",
-   "say": "architect.1 measured one real run unit by unit: what each needed, in capability primitives, against what its process held. A process inherits its parent's whole reach.",
+   "say": "architect.1 measured one real run, unit by unit: what each needed against what its process held, counted in capabilities (abp.sgit.ai's capability primitives). Each number is a kind of thing it could do: read a file, reach the internet, use a key. A process inherits its parent's whole reach.",
    "steps": [
     {
      "label": "needed against held",
@@ -186,10 +186,10 @@
      "card": {
       "kind": "needheld",
       "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "The agent needed 14 and held 25. The code needed 3 and held 25: it inherits the agent's reach."
+     "caption": "The agent needed 14 capabilities and held 25. The code needed 3 capabilities and held 25: it inherits the agent's reach."
     },
     {
      "label": "only the calls",
@@ -200,10 +200,10 @@
       "mark": [
        3
       ],
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "Only the model calls were at their altitude: text in, text out. A gap of 0."
+     "caption": "Only the model calls were at their altitude: text in, text out. 0 capabilities needed, 0 held."
     },
     {
      "label": "narrowed",
@@ -215,10 +215,10 @@
        5
       ],
       "note": "answer",
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "The same code, narrowed with Node's permission model: it holds 4. The gap goes from 22 to 1."
+     "caption": "The same code, narrowed with Node's permission model: it holds 4 capabilities. The gap goes from 22 to 1."
     }
    ]
   },
@@ -511,7 +511,7 @@
    "id": "db-mandate",
    "act": "4 · Policies",
    "title": "A mandate as deep as the business logic",
-   "say": "A real run on a simulated database (storytelling.1, 01:59 UTC). The mandate: pay invoice INV-002, 250, once. Nine actions, run twice: with access only, then under the mandate, enforced by the database engine (tables, fields, statements, values), not by the agent's instructions.",
+   "say": "A real run, on a simulated database: made-up suppliers and invoices (storytelling.1, 01:59 UTC). The mandate: pay invoice INV-002, 250, once. Nine actions, run twice: with access only, then under the mandate, enforced by the database engine (tables, fields, statements, values), not by the agent's instructions.",
    "cue": "Access says yes or no to the database. A mandate says which table, which field and which value.",
    "steps": [
     {
@@ -532,9 +532,9 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "sims/db-mandate/result.json (real run, simulated data)"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
      },
-     "caption": "With access only: 9 of 9 done. Four payments totalling 100,410; a supplier's IBAN changed; the payments table dropped."
+     "caption": "A real run, on a simulated database: made-up suppliers and invoices. With access only: 9 of 9 done. Four payments totalling 100,410; a supplier's IBAN changed; the payments table dropped."
     },
     {
      "label": "under the mandate",
@@ -554,7 +554,7 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "sims/db-mandate/result.json (real run, simulated data)"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
      },
      "caption": "Under the mandate: 2 done, 7 refused, each by its rule. One payment of 250; nothing else touched."
     },
@@ -576,7 +576,7 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "sims/db-mandate/result.json (real run, simulated data)"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
      },
      "caption": "Access says yes or no to the database. A mandate says which table, which field and which value."
     }
@@ -588,7 +588,7 @@
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
-   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action holds OPEN_ROUTER_KEY and ELASTIC_CLOUD (its run step) and reads its own repository; a separate job writes and attests the result (Runs .github/workflows/run.yml).",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD, which today is the Elastic deployment's superuser password (after the demo it becomes a write-only key for swarm-*: architect.1's design, §4). It reads its own repository; a separate job writes and attests the result (Runs .github/workflows/run.yml).",
    "steps": [
     {
      "label": "a signed request",
@@ -609,7 +609,7 @@
       "C",
       "E"
      ],
-     "caption": "The push starts a GitHub Action. It holds the model router's key and a key to write its own logs. Gmail is not one of them."
+     "caption": "The push starts a GitHub Action. It holds the model router's key and, today, the Elastic deployment's password (after the demo: a write-only key). Gmail is not one of them."
     },
     {
      "label": "the work runs there",
@@ -1657,6 +1657,7 @@
        "network",
        "inside-harness",
        "memory-decrypted",
+       "disk-plaintext",
        "vault-encrypted",
        "git-public"
       ],
@@ -2098,10 +2099,10 @@
      "card": {
       "kind": "needheld",
       "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "The agent needed 14 and held 25. The code needed 3 and held 25: it inherits the agent's reach."
+     "caption": "The agent needed 14 capabilities and held 25. The code needed 3 capabilities and held 25: it inherits the agent's reach."
     },
     {
      "label": "only the calls",
@@ -2112,10 +2113,10 @@
       "mark": [
        3
       ],
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "Only the model calls were at their altitude: text in, text out. A gap of 0."
+     "caption": "Only the model calls were at their altitude: text in, text out. 0 capabilities needed, 0 held."
     },
     {
      "label": "narrowed",
@@ -2127,10 +2128,10 @@
        5
       ],
       "note": "answer",
-      "title": "What each unit needed, and what it held",
+      "title": "Capabilities each unit needed, and held",
       "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
      },
-     "caption": "The same code, narrowed with Node's permission model: it holds 4. The gap goes from 22 to 1."
+     "caption": "The same code, narrowed with Node's permission model: it holds 4 capabilities. The gap goes from 22 to 1."
     }
    ]
   },
@@ -2704,7 +2705,7 @@
  ],
  "packs": {
   "main": {
-   "title": "Main track (9)",
+   "title": "Main track (9 + close)",
    "about": "storytelling.1's proposed running order: 9 scenes, ending on the sentence; Dinis decides",
    "scenes": [
     "opening",

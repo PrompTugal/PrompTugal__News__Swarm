@@ -148,6 +148,11 @@
         { label: 'code', dur: 1.5, highlight: ['A0', 'D'], caption: 'The code (A0): reads the public data. It holds no keys.' },
         { label: 'all of it', dur: 1.5, caption: 'All of it, by altitude.' }] };
   }
+  function actName(sc) {   // inside a pack the acts are numbered 1..n in the pack's own order
+    if (!PACK) return sc.act || '';
+    const order = []; SCENES.forEach((x) => { const a = x.act || ''; if (!order.includes(a)) order.push(a); });
+    return (order.indexOf(sc.act || '') + 1) + ' · ' + String(sc.act || '').replace(/^\d+\s*·\s*/, '');
+  }
   function layout() {   // the flattened clock: steps back to back
     STEPS = []; let at = 0;
     SCENES.forEach((sc, si) => sc.steps.forEach((st, i) => { STEPS.push({ scene: sc, si, i, s: at, e: at + st.dur, step: st }); at += st.dur; }));
@@ -311,7 +316,7 @@
     const g = await loadRun(sc.run);
     if (shownScene !== sc) return;
     G = g; lastLayoutKey = ''; focusId = null; modeOverride = null;
-    document.querySelectorAll('#story details').forEach((d) => { d.open = d.dataset.act === (sc.act || ''); });   // the current act open, the rest folded
+    document.querySelectorAll('#story details').forEach((d) => { d.open = d.dataset.act === actName(sc); });   // the current act open, the rest folded
     g.nodes.forEach((n) => { n.x = n.y = null; });
     if (sim) { sim.stop(); sim = null; }
     renderSide();
@@ -505,11 +510,27 @@
         const rows = c.rows || (c.fromActions && data ? (pick(data, c.fromActions) || []).map((r) => ({ who: c.who, ask: r.action, check: (c.policy || 'the licence') + ' · reach ' + String(r.fp || '').slice(7, 15), outcome: String(r.got).split(':')[0] })) : null) || (M ? src.slice(0, c.max || 12).map((r) => ({ who: M.who ? pick(r, M.who) : c.who, ask: [M.askPrefix || '', pick(r, M.ask)].join(''), check: M.check ? pick(r, M.check) || c.policy : c.policy, outcome: M.outcome ? (pick(r, M.outcome) === true ? 'allowed' : pick(r, M.outcome) === false ? 'refused' : String(pick(r, M.outcome))) : '', where: c.where })) : src.map((r) => ({ who: c.who || 'the child process', ask: r.probe, check: c.policy || 'policy', outcome: String(r.got).split(' (')[0], expected: r.expected })));
         el.innerHTML = `<div class="check"><h2>${esc(c.title || '')}</h2><div class="ck-head"><span>asks</span><span>the check</span><span>outcome</span></div>${rows.map((r, i) => `<div class="ck" data-i="${i}"><span class="ask"><small>${esc(r.who || '')}</small>${esc(r.ask)}</span><span class="arrow">→</span><span class="gate ${r.where === 'inside' ? 'inside' : ''}">${esc(r.check)}${r.where ? `<small>${esc(r.where === 'inside' ? 'inside the agent' : 'outside the agent')}</small>` : ''}</span><span class="arrow">→</span><span class="out ${/allow/.test(r.outcome) || r.outcome === 'done' ? 'ok' : /refus|denied|block/.test(r.outcome) ? 'no' : 'skip'}">${esc(r.outcome)}</span></div>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
       } else if (c.kind === 'flow') {   // where the data is, step by step: network, in memory (decrypted), vault (encrypted), Git (public)
-        const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'vault-encrypted', 'git-public'];
-        const NAMES = { network: 'network', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public', 'inside-harness': 'inside the harness' };
+        const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'disk-plaintext', 'vault-encrypted', 'git-public'];
+        const NAMES = { network: 'network', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public', 'inside-harness': 'inside the harness', 'disk-plaintext': 'disk · plaintext' };
         const laneOf = (s2) => (s2.where === 'memory' ? 'memory-decrypted' : s2.where || (s2.inside_harness ? 'inside-harness' : 'memory-decrypted'));
         const who = (w) => String(w || '').replace(/\.fringe@PrompTugal\.\w+$/, '');
         el.innerHTML = `<div class="flow"><h2>${esc(c.title || (data && data.run) || '')}</h2><div class="fl-head" style="grid-template-columns:36px repeat(${LANES.length},1fr)"><span></span>${LANES.map((l) => `<span class="l-${l}">${esc(NAMES[l] || l)}</span>`).join('')}</div><div class="fl-body">${steps.map((s2, i) => { const ln = laneOf(s2), col = LANES.indexOf(ln) + 2, refused = /^REFUSED/i.test(s2.what || '') || s2.outcome === 'refused', failed = s2.outcome === 'failed'; return `<div class="fr ${(c.mark || []).includes(s2.n) ? 'mark' : ''}" data-i="${i}" style="grid-template-columns:36px repeat(${LANES.length},1fr)"><span class="fn">${s2.n || i + 1}</span><div class="fs l-${ln} ${refused ? 'refused' : ''} ${failed ? 'failed' : ''}" style="grid-column:${col}"><b>${esc(who(s2.who))}</b> <small class="alt">${esc(s2.altitude || '')}</small> ${s2.encrypted ? '<i title="encrypted">🔒</i>' : ''}<span>${failed ? '<b class="fail-tag">FAILED</b> ' : ''}${esc(short(s2.what || '', 80))}</span>${s2.sealed_to ? `<small class="fp">sealed to ${esc(String(s2.sealed_to).slice(0, 23))}</small>` : ''}</div></div>`; }).join('')}</div>${data ? `<p class="src">${esc(c.src)} · ${esc(data.outcome || '')}${data.private_input_in_git === false ? ' · private input in Git: never' : ''}</p>` : '<p class="src">loading…</p>'}</div>`;
+      } else if (c.kind === 'glyph') {
+        el.innerHTML = `<iframe class="glyph" title="${esc(c.name)}" src="pages/packs.html?pack=${encodeURIComponent(c.name)}&step=${st.cardN}&embed=1&cap=${c.cap ? 1 : 0}"></iframe>`;
+        glyphStep = null;
+      } else if (c.kind === 'compare') {   // the same attempts, before and after: phase "before" lights the first column, "after" the second
+        let rows = (data && pick(data, c.from || 'comparison')) || [];
+        if (c.before && data) { const A = pick(data, c.before) || [], B = pick(data, c.after) || []; rows = A.map((a, i) => ({ id: a[c.idKey || 'action'], what: a[c.whatKey || 'kind'], unharnessed: a[c.gotKey || 'got'], harnessed: (B[i] || {})[c.gotKey || 'got'], refused_by: /refus/.test((B[i] || {})[c.gotKey || 'got']) ? (B[i] || {})[c.whyKey || 'why'] : '' })); }
+        const same = data && pick(data, c.same || 'compute');
+        const ok = (v) => /succeed|allow|done/.test(String(v));
+        el.innerHTML = `<div class="cmp"><h2>${esc(c.title || '')}</h2>${c.end && data ? `<div class="ends">${['before', 'after'].map((w) => { const e = pick(data, c.end[w]) || {}; return `<div class="end e-${w}" data-col="${w === 'before' ? 'b' : 'a'}"><b>${esc(c.end[w + 'Label'] || w)}</b>${Object.entries(e).map(([k, v]) => `<span>${esc(k.replace(/_/g, ' '))}: <i>${esc(v)}</i></span>`).join('')}</div>`; }).join('')}</div>` : ''}${same && same.unharnessed ? `<p class="same">Same code, same output: sha256 <b>${esc(String(same.unharnessed.output_sha256).slice(0, 16))}…</b> ${same.same_output ? 'both times' : '(different!)'}</p>` : ''}<div class="cm-head"><span>the attempt</span><span>${esc(c.beforeLabel || 'unharnessed')}</span><span>${esc(c.afterLabel || 'harnessed')}</span><span>refused by</span></div>${rows.map((r, i) => `<div class="cm" data-i="${i}"><span class="what"><b>${esc(r.id)}</b><small>${esc(r.what || '')}</small></span><span class="b ${ok(r.unharnessed) ? 'ok' : 'no'}" data-col="b">${ok(r.unharnessed) ? '✓ done' : '✗ refused'}</span><span class="a ${ok(r.harnessed) ? (/GAP/.test(r.what || '') ? 'gp' : /mandate/.test(r.what || '') ? 'ok' : 'gp') : 'no'}" data-col="a">${ok(r.harnessed) ? '✓ done' : '✗ refused'}</span><span class="rb">${esc(r.refused_by || '')}</span></div>`).join('')}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
+      } else if (c.kind === 'keys') {   // keys and how long each one lived
+        const keys = (data && pick(data, c.from || 'keys')) || [];
+        el.innerHTML = `<div class="kys"><h2>${esc(c.title || '')}</h2>${keys.map((k, i) => { const life = k.created_at && k.destroyed_at ? Date.parse(k.destroyed_at) - Date.parse(k.created_at) : null; return `<div class="ky" data-i="${i}"><span class="kr"><b>${esc(k.role)}</b><small>${esc(k.alg || '')} · ${esc(k.fp || '')}</small></span><span class="kl">${life != null ? `lived <b>${life.toLocaleString('en-GB')} ms</b>` : 'lifetime not recorded'}</span><span class="kw"><small>${esc(k.private_key_path || '')}</small>${k.destroyed_how ? `<small>${esc(k.destroyed_how)}</small>` : ''}</span></div>`; }).join('')}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
+      } else if (c.kind === 'needheld') {
+        const units = (data && pick(data, c.from || 'units')) || [], len = (v) => (Array.isArray(v) ? v.length : +v || 0);
+        const max = Math.max(1, ...units.map((u) => len(u[c.held || 'held'])));
+        el.innerHTML = `<div class="nh"><h2>${esc(c.title || '')}</h2><div class="nh-head"><span></span><span><i class="need"></i>needed</span><span><i class="held"></i>${esc(c.heldLabel || 'held')}${c.held2 ? ` <i class="held2"></i>${esc(c.held2Label || 'harnessed')}` : ''}</span><span>gap</span></div>${units.map((u, i) => { const nd = len(u[c.need || 'needs']), hd = len(u[c.held || 'held']), h2 = c.held2 ? len(u[c.held2]) : null, last = h2 != null ? h2 : hd; return `<div class="nh-row ${(c.mark || []).includes(i) ? 'mark' : ''}" data-i="${i}"><span class="nl"><b>${esc(u[c.label || 'unit'])}</b><small>${esc(u.altitude || '')}</small></span><span class="bars"><i class="need" style="width:${(100 * nd) / max}%"></i><i class="held" style="width:${(100 * hd) / max}%"></i>${h2 != null ? `<i class="held2" style="width:${(100 * h2) / max}%"></i>` : ''}</span><span class="nums">${nd} / ${hd}${h2 != null ? ' → ' + h2 : ''}</span><span class="gapn ${last - nd > 5 ? 'big' : last - nd > 0 ? 'some' : 'none'}">${last - nd}</span></div>`; }).join('')}${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
       } else if (c.kind === 'lights') {
         const res = (data && pick(data, c.from || 'after.results')) || [];
         el.innerHTML = `<div class="lights"><h2>${esc(c.title || '')}</h2><div class="row">${res.map((r, i) => `<div class="light" data-i="${i}"><i></i><b>${esc(r.probe)}</b><small>expected ${esc(r.expected)}</small><span>${esc(String(r.got).split(' (')[0])}</span></div>`).join('')}</div>${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
@@ -666,8 +687,8 @@
 
   // ---------- panes, controls, captions
   function renderStory() {
-    const acts = []; SCENES.forEach((s, si) => { if (s.free) return; let a = acts.find((x) => x.name === (s.act || '')); if (!a) acts.push(a = { name: s.act || '', scenes: [] }); a.scenes.push({ s, si }); });
-    const curAct = STEPS[stepAt(t)] ? STEPS[stepAt(t)].scene.act : acts[0] && acts[0].name;
+    const acts = []; SCENES.forEach((s, si) => { if (s.free) return; let a = acts.find((x) => x.name === actName(s)); if (!a) acts.push(a = { name: actName(s), scenes: [] }); a.scenes.push({ s, si }); });
+    const curAct = STEPS[stepAt(t)] ? actName(STEPS[stepAt(t)].scene) : acts[0] && acts[0].name;
     const packs = Object.entries(PACKS);
     $('#packs').innerHTML = packs.length ? `<a class="pk ${PACK ? '' : 'cur'}" href="#">the whole story</a>` + packs.filter(([k, v]) => !v.hidden || PACK === k).map(([k, v]) => `<a class="pk ${PACK === k ? 'cur' : ''}" href="#pack=${esc(k)}" title="${esc(v.about || '')}">${esc(v.title || k)}</a>`).join('') : '';
     $('#story').innerHTML = acts.map((a, ai) => `<details ${a.name === curAct ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
@@ -696,7 +717,7 @@
     $('#rate').textContent = K.rate + '×';
     if (!st) { $('#where').textContent = 'no scenes'; return; }
     const mine = STEPS.filter((x) => x.si === st.si);
-    $('#where').innerHTML = `<b>${esc(st.scene.act || '')}</b> · ${esc(st.scene.title)} <small>${st.si + 1}/${SCENES.length}</small>`;
+    $('#where').innerHTML = `<b>${esc(actName(st.scene))}</b> · ${esc(st.scene.title)} <small>${st.si + 1}/${SCENES.length}</small>`;
     $('#steps').innerHTML = mine.map((x) => { const cur = x.i === st.i, done = x.i < st.i || (cur && st.p >= 0.999); return `<button class="st ${cur ? 'cur' : ''} ${done ? 'done' : ''}" data-k="${STEPS.indexOf(x)}" title="${esc(x.step.label || '')}"><i style="width:${cur ? st.p * 100 : done ? 100 : 0}%"></i><span>${esc(x.step.label || 'step ' + (x.i + 1))}</span></button>`; }).join('');
     document.querySelectorAll('#story .sc').forEach((b) => b.classList.toggle('cur', +b.dataset.si === st.si));
   }
