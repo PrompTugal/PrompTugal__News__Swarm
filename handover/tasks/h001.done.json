@@ -1,0 +1,144 @@
+{
+  "id": "h001",
+  "status": "done",
+  "by": "relay.2.fringe@PrompTugal.dinis",
+  "task": "handover/tasks/h001.json",
+  "task_commit": "8d4ae2b",
+  "task_signature": "valid (relay.1, sha256:8d8a0fd4e656c3ae)",
+  "inputs_verified": {
+    "airport.json": "sha256 match",
+    "flights.json": "sha256 match"
+  },
+  "result": "handover/results/h001.json",
+  "result_vault": "i9252nlf",
+  "sealed_key": "handover/sealed/h001.resultkey.relay3.enc",
+  "done": "2026-11-12T01:55:20Z",
+  "steps": [
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git (fetch every 20 s) sees handover/tasks/h001.json addressed to relay.2",
+      "when": "2026-11-12T01:50:24Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "commit": "8d4ae2b",
+        "path": "handover/tasks/h001.json"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "checks relay.1s signature on the task against handover/keys.json: valid",
+      "when": "2026-11-12T01:50:32Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae",
+      "ref": {
+        "path": "handover/tasks/h001.json.sig"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "unseals the input vault key with relay.2s private key (pki-agent.mjs open), into tmpfs only, 0600",
+      "when": "2026-11-12T01:53:21Z",
+      "where": "memory-decrypted",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "path": "handover/sealed/h001.vaultkey.relay2.enc",
+        "opened_with": "sha256:8a04c60ad84ce04d"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A1",
+      "what": "clones vault dh2zo1zd from dev.send.sgraph.ai (ciphertext over the network), decrypts locally; both sha256 match the task",
+      "when": "2026-11-12T01:53:25Z",
+      "where": "network",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "vault": "dh2zo1zd"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "computes max gust, METAR count, flights by status per airport (no model call: plain code was enough)",
+      "when": "2026-11-12T01:53:51Z",
+      "where": "memory-decrypted",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "result_sha256": "760603681f5dde11f5e9e005f092c186b510aa6449b3a096e8118c93855354e4"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "signs result.json with relay.2s signing key",
+      "when": "2026-11-12T01:54:00Z",
+      "where": "memory-decrypted",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "path": "result.json.sig (inside the vault)"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A1",
+      "what": "creates vault i9252nlf and pushes result.json + result.json.sig (encrypted before it leaves); a fresh clone round-trips the same sha256",
+      "when": "2026-11-12T01:54:27Z",
+      "where": "vault-encrypted",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "vault": "i9252nlf",
+        "server": "dev.send.sgraph.ai"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "seals the result vault key to relay.3s public key (sgit pki encrypt)",
+      "when": "2026-11-12T01:54:55Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:a71e9928bf207a0a",
+      "signed_by": "sha256:ea1b3d0cda2e9906 (detached .sig)",
+      "ref": {
+        "path": "handover/sealed/h001.resultkey.relay3.enc"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "commits done to Git: handover/tasks/h001.done.json and handover/results/h001.json, both signed",
+      "when": "2026-11-12T01:55:20Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "commit": "this commit"
+      }
+    }
+  ],
+  "notes": [
+    "A first result vault (a4rbttp2) was discarded unused: its passphrase showed in relay.2s own session log, so a fresh vault was made; a4rbttp2 never held the result.",
+    "Decrypted input and the vault keys lived only in tmpfs (/dev/shm, 0600) in relay.2s container and are deleted after this commit."
+  ],
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "signature": "handover/tasks/h001.done.json.sig"
+}

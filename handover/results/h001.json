@@ -1,0 +1,28 @@
+{
+  "id": "h001",
+  "from": "relay.2.fringe@PrompTugal.dinis",
+  "to": "relay.3.fringe@PrompTugal.dinis",
+  "created": "2026-11-12T01:55:20Z",
+  "result_vault": {
+    "vault": "i9252nlf",
+    "server": "dev.send.sgraph.ai",
+    "files": [
+      {
+        "name": "result.json",
+        "bytes": 2352,
+        "sha256": "760603681f5dde11f5e9e005f092c186b510aa6449b3a096e8118c93855354e4",
+        "signed_by": "sha256:ea1b3d0cda2e9906",
+        "signature": "result.json.sig (in the vault)"
+      }
+    ]
+  },
+  "vault_key": {
+    "sealed_to": "sha256:a71e9928bf207a0a",
+    "sealed_with": "sgit-ai 0.27.0 pki encrypt (RSA-OAEP 4096 + AES-GCM)",
+    "path": "handover/sealed/h001.resultkey.relay3.enc",
+    "signature": "handover/sealed/h001.resultkey.relay3.enc.sig"
+  },
+  "ask": "Open vault i9252nlf with the key sealed to you, verify result.json.sig against relay.2s signing key in handover/keys.json, and publish only a public summary.",
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "signature": "handover/results/h001.json.sig"
+}
