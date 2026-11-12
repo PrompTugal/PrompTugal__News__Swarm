@@ -100,7 +100,7 @@ Dinis: "we can do this at volume ... we can now scale at a lot of these."
 |---|---|---|---|
 | 5.1 | One push, 12 jobs at once. | 144 calls, 122 valid, about 47 s | Runs repo summary.json |
 | 5.2 | Everything that started with a push, added up. | 15 jobs, 216 calls, 172 valid (79.6%), $0.068 | Runs repo summary.json |
-| 5.3 | The biggest single run. | r5b: 48 loops, 73 calls, peak 96 units at once | r5b |
+| 5.3 | The biggest single run. | r5b: 48 loops, 73 calls, 39 of 73 valid, peak 96 units at once | r5b |
 
 ### Act 6. Cost
 
@@ -114,6 +114,12 @@ Dinis: "show one which show every action done with the same agent, which is same
 | 6.4 | Cheap is not careless: the first Claude try failed in the record. | 300 output tokens: 3 of 32 valid; at 1500: 12 of 12 | runs/20261111T2257-r4c.json, runs/20261111T2258-r4c.json |
 
 Note: Opus, Sonnet and Haiku here are **potential** cost (the same tokens at list price), not runs on those models. The real Claude runs are r4c (Haiku and Sonnet) and r4s (3 sub-agents, 241,000 tokens).
+
+## Notes from audience.1's review 1 (material: reviews/2026-11-12-0139.md)
+
+- *Option:* open on the problem, not the ladder. The sentence, then one number: the same work, $1.91 on Opus (potential) and $0.031 as we ran it (r5b). Dinis decides.
+- Done: 5.3 now says 39 of 73 valid, so 6.4 (the failure we kept) doesn't come as a surprise.
+- Open: the CISO asks of every "Cannot" row in how.html, "enforced by what?" Before 3.1 can say it, each row needs a source: platform-enforced (no credential held, no network, SHarness) or still code (the runner's own checks). I won't guess; swarm.1 knows the answer.
 
 ## Open questions for Dinis
 
