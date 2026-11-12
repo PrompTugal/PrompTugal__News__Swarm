@@ -133,7 +133,7 @@ Note: Opus, Sonnet and Haiku here are **potential** cost (the same tokens at lis
 
 **Corrected at 02:46 UTC:** my first line ("a key to write its own logs") was too generous. `ELASTIC_CLOUD` is a password, not a write-only key. Fringe abp/policies.json says it "is a disposable password on a temporary account with no confidential data (Dinis, 2026-11-12T01:44Z)".
 
-Line: "It holds the router key and the password to a disposable logging account. Gmail is not one of them." The honest gap: "Today a password; after the demo, a write-only key for its own logs (Dinis to replace)."
+Line: "It holds the router key and the Elastic deployment's superuser password, on a disposable account. Gmail is not one of them." (Fringe abp/policies.json also calls it "The Elastic Cloud superuser password"; corrected again at 03:41 UTC.) The honest gap: "Today a password; after the demo, a write-only key for its own logs (Dinis to replace)."
 - **A breakfast cut** (audience.1: opening, gap, same privileges, elsewhere, one per asset, cost). Dinis asked for scale before cost (01:54), so a seven-scene cut would add scale: opening, gap, same privileges, elsewhere, one per asset, **scale**, cost. Dinis decides.
 
 ## Dinis's answers (this session, 01:54 UTC, 12 Nov 2026)

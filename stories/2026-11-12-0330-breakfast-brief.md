@@ -20,7 +20,7 @@
 | reach-measured | the agent needed 14 and held 25; code needed 3 and held 25, narrowed to 4 | Fringe data/run-reach.json |
 | send-button | (quotes) | riskmandate.ai, four URLs |
 | db-mandate | access: 100,410 paid; mandate: 250 | sims/db-mandate/result.json (real run, simulated data) |
-| elsewhere | 36 calls, 24 loops; holds the router key and a disposable logging password | Runs repo index.json; run.yml; Fringe abp/policies.json |
+| elsewhere | 36 calls, 24 loops; holds the router key and the Elastic deployment's superuser password, on a disposable account | Runs repo index.json; run.yml; Fringe abp/policies.json ("The Elastic Cloud superuser password"; "a disposable password on a temporary account with no confidential data") |
 | scale | 12 jobs, 144 calls, 122 valid | Runs repo summary.json |
 | cost | Opus 62× OpenRouter; Haiku 40× less than Opus | r5b: 1.907/0.0308; 1.907/0.0477 |
 
@@ -31,5 +31,5 @@
 1. **Default:** should the stage open on the main track or the whole story?
 2. **F1** (a `contain` profile let root read /etc/shadow; drafted, not filed): show it, or keep it off?
 3. **F6/h003** (the harness blocked the honest vault write: 401): show it, or keep it off?
-4. **After the demo:** replace the Runs repo's ELASTIC_CLOUD password with a write-only key (the stage says so).
+4. **After the demo:** replace the Runs repo's ELASTIC_CLOUD (today the Elastic deployment's superuser password, on a disposable account) with a write-only key for swarm-* (the stage says so).
 5. **Later:** try Gmail drafts live, at your word.
