@@ -6,6 +6,7 @@
 <title>Story Studio</title>
 <meta name="description" content="At the stand: say a story out loud, and watch the swarm turn it into a deck from its own primitives, with every step of how it was made, timed. A simulation, in the browser.">
 <link rel="stylesheet" href="../stage/themes.css">
+<link rel="stylesheet" href="../css/story.css">
 <style>
 /* The stand's story studio (Dinis, 12 Nov 2026 ~07:35 UTC: "record an audio, have the audio transcript ... then see the actual
    creation happening in front of me ... the creation is part of the exercise ... Sonnet as a coordinator ... good enough primitives").
@@ -42,9 +43,32 @@ aside h2{margin:0;padding:12px 16px 4px;font:600 .75rem var(--font-head);letter-
 .bad{color:var(--warn)}.ok{color:var(--ok)}
 .sk-title{font-size:2.6em;margin:0}.big{font-size:1.7em;font-weight:600}.k{font:600 .78em var(--mono);letter-spacing:.12em;color:var(--accent);text-transform:uppercase}
 @media (max-width:900px){main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 34vh}aside{border-left:0;border-top:1px solid var(--line)}}
+
+/* ---- the shared UI (swarm.1.designer, at swarm.1's ask): the stage's pill, story.html's deck, tablet-first ---- */
+a{color:var(--accent)}header{padding-left:110px}
+#wrap{grid-template-rows:minmax(0,1fr) auto;grid-template-columns:minmax(0,1fr)}#deck{min-width:0}html.focus #deck{padding-top:64px}#cap{position:static;transform:none;margin:0 auto 10px;align-self:end}header h1{font-size:1.2rem}
+#deck{display:grid;align-content:center;justify-items:stretch;padding:3vh 4vw 16px;font-size:clamp(15px,1.55vw,30px)}
+#deck>*{width:100%;max-width:1400px;justify-self:center}#deck .empty{align-self:center;font-size:1.15rem}
+#deck.sdeck>.k,#deck.sdeck>h2,#deck.sdeck>p{max-width:1400px}
+#cap{background:var(--panel);backdrop-filter:var(--glass);width:max-content;max-width:min(900px,92%);font-size:1.15rem}
+#ctl{gap:6px}#ctl button{min-width:44px}
+#hops li{padding:10px 0 12px 26px}#hops .w{font-size:.92rem}#tot{font-size:.85rem;color:var(--ink)}
+#tot{background:color-mix(in srgb,var(--accent) 7%,transparent)}
+.again{display:none}
+body.has-deck #ask textarea,body.has-deck #ask .row:not(:first-child),body.has-deck #rec,body.has-deck #recst{display:none}
+body.has-deck .again{display:inline-block}body.has-deck.asking #ask textarea,body.has-deck.asking #ask .row{display:flex}body.has-deck.asking #ask textarea{display:block}body.has-deck.asking #rec,body.has-deck.asking #recst{display:inline-block}
+body.has-deck #ask{padding:8px 18px}
+html.focus header,html.focus #ask,html.focus aside,html.focus #ctl{display:none}html.focus main{grid-template-columns:1fr;grid-template-rows:1fr}
+html.focus #deck{font-size:clamp(16px,2.05vw,40px)}
+html.focus .exitf{display:block}.exitf{display:none;position:fixed;right:14px;top:10px;z-index:60}
+html.inframe #lock{display:none}
+@media (max-width:1180px){main{grid-template-columns:minmax(0,1fr) 320px}}
+@media (max-width:900px){main{grid-template-columns:1fr;grid-template-rows:minmax(0,1fr) 34vh}#deck{padding:3vh 18px 90px}header{padding-left:96px}}
+@media (max-width:900px) and (orientation:landscape){main{grid-template-columns:minmax(0,1fr) 280px;grid-template-rows:1fr}aside{border-left:1px solid var(--line);border-top:0}}
+@media (max-width:760px){html,body{height:auto}body{display:block;overflow:auto}main{display:block}#left{display:block}#wrap{height:66vh}#deck{height:100%;padding:2vh 16px 10px}aside{border-left:0;border-top:1px solid var(--line);max-height:60vh}#hops{max-height:44vh}header{gap:6px 8px}header .tag{font-size:.6rem}header .sp{display:none}#coord{max-width:130px;font-size:.8rem}#ctl .n{margin-left:0}#ctl{flex-wrap:wrap;padding-right:96px}#save{flex:1}}
 </style>
 </head>
-<body>
+<body data-nav="float">
 <header>
  <h1>Story Studio</h1><span class="tag">SIMULATION · MADE LIVE</span><span class="sp"></span>
  <select id="coord" aria-label="Coordinator model" title="The coordinator: it may only call the story primitives"></select>
@@ -53,14 +77,14 @@ aside h2{margin:0;padding:12px 16px 4px;font:600 .75rem var(--font-head);letter-
 <main>
  <section id="left">
   <div id="ask">
-   <div class="row"><button class="rec" id="rec">● Record</button><span class="muted" id="recst">Ask a question, then let them answer out loud. Or type below.</span></div>
+   <div class="row"><button id="again" class="again" type="button">✎ New story</button><button class="rec" id="rec">● Record</button><span class="muted" id="recst">Ask a question, then let them answer out loud. Or type below.</span></div>
    <textarea id="text" placeholder="The words to tell as a story: a transcript appears here, or type it"></textarea>
    <div class="row"><input id="who" placeholder="Whose words? (first name, optional)" style="flex:1;min-height:44px;font:inherit;padding:8px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.22);color:var(--ink)">
     <label class="muted"><input type="checkbox" id="consent"> they agree we show their words</label>
     <button class="go" id="make">Make the story ▶</button></div>
   </div>
-  <div id="wrap"><div id="deck"><p class="empty">The deck builds here, scene by scene.</p></div><div id="cap"></div></div>
-  <div id="ctl"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button><button id="play">▶ Play</button>
+  <div id="wrap"><div id="deck" class="sdeck"><p class="empty">The deck builds here, scene by scene.</p></div><div id="cap"></div></div>
+  <div id="ctl"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button><button id="play">▶ Play</button><button id="focus" title="The deck alone (Z)">⛶ Focus</button>
    <button id="save" disabled title="Send the story and how it was made to swarm.1, sealed, to publish">Send to the site</button><span class="n" id="n"></span></div>
  </section>
  <aside><h2>How it is being made</h2><ol id="hops"></ol><div id="tot">Nothing yet.</div></aside>
@@ -205,6 +229,30 @@ $('#save').onclick = async () => {
   } catch (e) { done(h, { err: e.message }); }
 };
 </script>
+<button class="exitf" id="exitf" type="button">✕ Leave focus</button>
+<script>
+// the shared UI's small behaviours, apart from the Studio's own script (swarm.1.designer)
+(function () {
+  const $ = (s) => document.querySelector(s), html = document.documentElement;
+  if (window.self !== window.top) html.classList.add('inframe');   // a preview on the hub: no lock over it
+  const deck = $('#deck'), mark = () => document.body.classList.toggle('has-deck', !deck.querySelector('.empty') && deck.children.length > 0);
+  // a scene always fits its frame: step the type down until nothing scrolls (a 5-rung ladder on a tablet)
+  let fitting = false;
+  const fit = () => { if (fitting) return; fitting = true; deck.style.fontSize = ''; let f = parseFloat(getComputedStyle(deck).fontSize), k = 0;
+    while (deck.scrollHeight > deck.clientHeight + 2 && f > 11 && k++ < 24) { f *= 0.94; deck.style.fontSize = f + 'px'; } fitting = false; };
+  new MutationObserver(() => { mark(); requestAnimationFrame(fit); }).observe(deck, { childList: true, subtree: true }); mark();
+  addEventListener('resize', () => requestAnimationFrame(fit));
+  $('#again').onclick = () => document.body.classList.toggle('asking');
+  $('#make').addEventListener('click', () => document.body.classList.remove('asking'));
+  const foc = () => { html.classList.toggle('focus'); dispatchEvent(new Event('resize')); };
+  $('#focus').onclick = foc; $('#exitf').onclick = foc;
+  document.addEventListener('keydown', (e) => { if (/input|textarea|select/i.test(e.target.tagName) || e.metaKey || e.ctrlKey) return; if (e.key === 'z' || e.key === 'Z') foc(); else if (e.key === 'Escape') html.classList.remove('focus'); });
+  // swipe on the deck: next and previous
+  let sx = null, sy = null; deck.addEventListener('touchstart', (e) => { if (e.touches.length !== 1) return (sx = null); sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) $(dx < 0 ? '#next' : '#prev').click(); }, { passive: true });
+})();
+</script>
 <script src="../assets/nav.js"></script>
+<script src="../assets/booth.js" data-idle="off"></script>
 </body>
 </html>

@@ -32,7 +32,8 @@ html.booth button,html.booth .seg button{min-height:44px}
   // full screen on the first touch (a gesture is required); iPad Safari may refuse, which is fine
   const fs = () => { const el = document.documentElement, f = el.requestFullscreen || el.webkitRequestFullscreen; if (f && !document.fullscreenElement) try { const p = f.call(el); p && p.catch && p.catch(() => {}); } catch (e) {} };
   addEventListener('pointerdown', fs, { once: true, capture: true });
-  // the idle timer
+  // the idle timer (off on pages that ask for it, e.g. the Studio: a visitor may speak for a minute without touching)
+  if (document.currentScript && document.currentScript.dataset.idle === 'off') { window.SwarmBooth = { on: true, home }; return; }
   let t = null; const IDLE = +(q.get('idle') || 60) * 1000;
   const go = () => { location.href = root + 'pages/story.html?attract=1&booth=1&m=present'; };
   const arm = () => { clearTimeout(t); t = setTimeout(go, IDLE); };

@@ -6,6 +6,7 @@
 <title>Swarm Story</title>
 <meta name="description" content="One story made live by the swarm: the deck, and how it was made, hop by hop: timeline, graph and delivery.">
 <link rel="stylesheet" href="../stage/themes.css">
+<link rel="stylesheet" href="../css/story.css">
 <style>
 /* story.html: one story in four modes (Dinis, 07:35 UTC: "the creation of this is as important as the final deck").
    swarm.1.designer.fringe@PrompTugal.dinis, WS-215. Look and tokens: the stage's (stage/themes.css). Primitives render
@@ -24,30 +25,12 @@ header h1 small{display:block;font:400 .78rem var(--font);color:var(--muted);mar
 .flag{font:700 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:5px 7px;border:1px solid var(--warn);color:var(--warn)}
 .flag.real{border-color:var(--ok);color:var(--ok)}
 main{position:relative;min-height:0;overflow:auto}
-html.focus header{display:none}html.focus body{grid-template-rows:minmax(0,1fr)}
+html.focus header{display:none}html.focus #deck{padding-top:64px}html.focus body{grid-template-rows:minmax(0,1fr)}
 
 /* ---- Present: the deck, at stage size ---- */
 #deck{position:absolute;inset:0;display:grid;place-items:center;padding:4vh 6vw 90px}
-#slide{width:min(1400px,100%);max-height:100%;font-size:clamp(15px,1.75vw,34px)}
+#slide{width:min(1400px,100%);max-height:100%;overflow:hidden;font-size:clamp(15px,1.75vw,34px)}
 html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
-#slide .k{font:700 .62em/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9em}
-#slide h2{margin:0 0 .6em;font:700 2.1em/1.12 var(--font-head);letter-spacing:-.01em}
-#slide .sub{color:var(--muted);font-size:1.15em;margin:0}
-#slide .big{font:600 2.3em/1.2 var(--font-head);margin:0;max-width:26ch}
-#slide ul{margin:0;padding:0;list-style:none;display:grid;gap:.55em}
-#slide li{padding:.55em .8em;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 10px 10px 0;font-size:1.15em}
-#slide blockquote{margin:0;font:500 1.8em/1.3 var(--font-head);border-left:4px solid var(--accent2);padding-left:.8em}
-#slide blockquote cite{display:block;margin-top:.7em;font:400 .5em var(--font);color:var(--muted);font-style:normal}
-.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2em}.cmp2>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1em 1.2em}
-.cmp2 h3{margin:0 0 .5em;font:700 .8em var(--mono);letter-spacing:.1em;text-transform:uppercase}.cmp2 .b h3{color:var(--warn)}.cmp2 .a h3{color:var(--accent)}
-.cmp2 p{margin:.3em 0;font-size:1.1em}
-.lad{display:grid;gap:.4em}.lad>div{display:grid;grid-template-columns:4.5em 1fr;align-items:center;gap:.8em;padding:.5em .8em;background:var(--panel);border:1px solid var(--line);border-radius:10px}
-.lad b{font:700 1.1em var(--mono);color:var(--accent)}.lad span{font-size:1.1em}.lad small{display:block;color:var(--muted);font-size:.8em}
-.flw{display:flex;flex-wrap:wrap;align-items:center;gap:.5em}.flw>div{padding:.7em 1em;background:var(--panel);border:1px solid var(--line);border-radius:12px;font:600 1.1em var(--font-head)}.flw i{color:var(--muted);font-style:normal;font-size:1.4em}
-.ctr{font:700 5.5em/1 var(--font-head);color:var(--accent);font-variant-numeric:tabular-nums}.ctr small{font-size:.3em;color:var(--muted);margin-left:.3em}
-.tbl{width:100%;border-collapse:collapse;font-size:1.05em}.tbl th{text-align:left;font:700 .7em var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.4em .6em;border-bottom:1px solid var(--line)}.tbl td{padding:.5em .6em;border-bottom:1px solid var(--line)}
-.emb{position:relative;aspect-ratio:16/9;width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden}.emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-[data-r]{transition:opacity .4s,transform .4s}[data-r].off{opacity:0;transform:translateY(.4em)}
 #cap{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);max-width:min(900px,90%);width:max-content;text-align:center;font:500 1.15rem/1.35 var(--font-head);padding:10px 18px;border-radius:12px;background:var(--panel);backdrop-filter:var(--glass);border:1px solid var(--line)}
 #cap:empty{display:none}
 #prog{position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--line)}#prog i{display:block;height:100%;background:var(--accent);transition:width .3s}
@@ -85,7 +68,7 @@ html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 html.booth .modes a{padding:10px 16px;font-size:.95rem}html.booth .tools button{padding:10px 14px;min-height:44px}html.booth #slide{font-size:clamp(17px,2.1vw,40px)}html.booth.focus #slide{font-size:clamp(18px,2.4vw,44px)}
 @media (max-width:760px){#pn{right:auto;left:14px}}   /* the feedback pill has the bottom-right corner on a phone (swarm.1, review 8) */
 body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}body.embed{grid-template-rows:minmax(0,1fr)}
-@media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.cmp2{grid-template-columns:1fr}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}.ctr{font-size:3.6em}}
+@media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}}
 </style>
 </head>
 <body data-nav="float">
@@ -193,7 +176,7 @@ async function nextStory() { const l = await storyIds(), k = (l.indexOf(SID) + 1
 function stop() { clearInterval(timer); timer = null; const b = $('#play'); if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = '▶ Play all'; } }
 function present(D) {
   const s = D.story || {}; SC = s.scenes || s.slides || [];
-  $('#main').innerHTML = `<section id="deck" aria-live="polite"><div id="slide"></div></section><div id="cap"></div><span id="pn"></span><div id="prog"><i></i></div>`;
+  $('#main').innerHTML = `<section id="deck" aria-live="polite"><div id="slide" class="sdeck"></div></section><div id="cap"></div><span id="pn"></span><div id="prog"><i></i></div>`;
   if (!SC.length) { $('#slide').innerHTML = `<p class="big">The deck has not landed yet.</p><p class="sub">The making-of is in Timeline, Graph and Delivery as it happens.</p>`; return; }
   kit = null; if (window.StoryKit && StoryKit.present) { try { kit = StoryKit.present($('#slide'), s, { caption: $('#cap'), keys: false, dwell: ATTRACT ? 3200 : 2600, onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); if (EMBED && kit.goto) kit.goto(0); return; } catch (e) { kit = null; } }
   si = 0; ri = 0; paint(EMBED);
@@ -242,6 +225,12 @@ function delivery(D) {
   $('#main').innerHTML = `<section class="pane"><p class="lead">What each hop delivered, in order, with its hash and commit. Model text is never stored: only its length and sha256. ${D.story && D.story.sample ? '<b style="color:var(--warn)">This is the sample: the hashes are placeholders.</b>' : ''}</p><div class="dl">${H.map(card).join('')}</div></section>`;
 }
 
+// a scene always fits the screen: step the type down until nothing scrolls (tablets, phones)
+let fitting = false;
+function fit() { const d = $('#deck'), sl = $('#slide'); if (!d || !sl || fitting) return; fitting = true; sl.style.fontSize = ''; let f = parseFloat(getComputedStyle(sl).fontSize), k = 0;
+  while ((d.scrollHeight > d.clientHeight + 2 || sl.scrollHeight > sl.clientHeight + 2) && f > 11 && k++ < 24) { f *= 0.94; sl.style.fontSize = f + 'px'; } fitting = false; }
+new MutationObserver(() => requestAnimationFrame(fit)).observe(document.getElementById('main'), { childList: true, subtree: true });
+addEventListener('resize', () => requestAnimationFrame(fit));
 function draw() { ({ present, timeline, graph, delivery })[MODE](DATA); }
 let DATA = null;
 document.addEventListener('keydown', (e) => {

@@ -14,6 +14,7 @@
     ['index.html', 'Home', 'The main areas'],
     ['stage.html#pack=main&brisk', 'Present the story', 'Nine scenes, one press each'],
     ['pages/stories.html', 'Stories', 'Made live: the deck, and how it was made'],
+    ['pages/stand.html', 'Studio', 'Tell us your story: watch it being made'],
     ['pages/partners.html', 'Partners', 'Every company we have something on, with a mini deck'],
     ['pages/theme.html', 'Themes', 'Five themes, five demos each, with what to say'],
     ['pages/packs.html', 'Demo packs', 'One idea per step'],

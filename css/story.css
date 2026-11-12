@@ -1,0 +1,23 @@
+/* The deck's look, shared by story.html and the Story Studio (stand.html): the StoryKit's markup (swarm.1.dev's assets/story-kit.js)
+   in the stage's tokens (stage/themes.css). swarm.1.designer.fringe@PrompTugal.dinis, WS-215. Put class="sdeck" on the element the kit renders into. */
+.sdeck .sk-title{font-size:2.8em;margin:0 0 .3em}
+.sdeck .sk-graph{width:100%;max-height:58vh}
+.sdeck .k{font:700 .62em/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.9em}
+.sdeck h2{margin:0 0 .6em;font:700 2.1em/1.12 var(--font-head);letter-spacing:-.01em}
+.sdeck .sub{color:var(--muted);font-size:1.15em;margin:0}
+.sdeck .big{font:600 2.3em/1.2 var(--font-head);margin:0;max-width:26ch}
+.sdeck ul{margin:0;padding:0;list-style:none;display:grid;gap:.55em}
+.sdeck li{padding:.55em .8em;border-left:3px solid var(--accent);background:var(--panel);border-radius:0 10px 10px 0;font-size:1.15em}
+.sdeck blockquote{margin:0;font:500 1.8em/1.3 var(--font-head);border-left:4px solid var(--accent2);padding-left:.8em}
+.sdeck blockquote cite{display:block;margin-top:.7em;font:400 .5em var(--font);color:var(--muted);font-style:normal}
+.sdeck .cmp2{display:grid;grid-template-columns:1fr 1fr;gap:1.2em}.sdeck .cmp2>div{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:1em 1.2em}
+.sdeck .cmp2 h3{margin:0 0 .5em;font:700 .8em var(--mono);letter-spacing:.1em;text-transform:uppercase}.sdeck .cmp2 .b h3{color:var(--warn)}.sdeck .cmp2 .a h3{color:var(--accent)}
+.sdeck .cmp2 p{margin:.3em 0;font-size:1.1em}
+.sdeck .lad{display:grid;gap:.4em}.sdeck .lad>div{display:grid;grid-template-columns:4.5em 1fr;align-items:center;gap:.8em;padding:.5em .8em;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.sdeck .lad b{font:700 1.1em var(--mono);color:var(--accent)}.sdeck .lad span{font-size:1.1em}.sdeck .lad small{display:block;color:var(--muted);font-size:.8em}
+.sdeck .flw{display:flex;flex-wrap:wrap;align-items:center;gap:.5em}.sdeck .flw>div{padding:.7em 1em;background:var(--panel);border:1px solid var(--line);border-radius:12px;font:600 1.1em var(--font-head)}.sdeck .flw i{color:var(--muted);font-style:normal;font-size:1.4em}
+.sdeck .ctr{font:700 5.5em/1 var(--font-head);color:var(--accent);font-variant-numeric:tabular-nums}.sdeck .ctr small{font-size:.3em;color:var(--muted);margin-left:.3em}
+.sdeck .tbl{width:100%;border-collapse:collapse;font-size:1.05em}.sdeck .tbl th{text-align:left;font:700 .7em var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:.4em .6em;border-bottom:1px solid var(--line)}.sdeck .tbl td{padding:.5em .6em;border-bottom:1px solid var(--line)}
+.sdeck .emb{position:relative;aspect-ratio:16/9;width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden}.sdeck .emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.sdeck [data-r]{transition:opacity .4s,transform .4s}.sdeck [data-r].off{opacity:0;transform:translateY(.4em)}
+@media (max-width:760px){.sdeck .cmp2{grid-template-columns:1fr}.sdeck .ctr{font-size:3.6em}.sdeck .lad>div{grid-template-columns:3.4em 1fr}}
