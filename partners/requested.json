@@ -888,6 +888,106 @@
      "at": "2026-11-12T13:14Z"
     }
    ]
+  },
+  {
+   "slug": "testmu-ai",
+   "name": "TestMu AI",
+   "kind": "coding",
+   "asked": {
+    "by": "Dinis, at their stand at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T14:40Z"
+   },
+   "one_line": "An agentic AI quality engineering platform (formerly LambdaTest). Its Agent Assurance and Rook CLI test AI agents that act, and grade them on what they actually changed, not on what they say they did.",
+   "site": "https://www.testmuai.com/",
+   "public": [
+    {
+     "fact": "TestMu AI (formerly LambdaTest; legal entity LambdaTest, Inc.; renamed 12 January 2026) is an agentic AI quality engineering platform that 'assures AI deployments across the enterprise and the real world'.",
+     "source": "https://www.testmuai.com/llms.txt",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "Agent Assurance tests how AI agents that act (call tools, write files, hit APIs) actually behave, including coding, workflow, back-office and multi-agent systems.",
+     "source": "https://www.testmuai.com/llms.txt",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "Rook CLI reads the codebase to find the agent, writes functional and adversarial scenarios, runs them against the live agent, and grades each criterion from evidence: Pass, Fail and Unable to Verify are counted separately.",
+     "source": "https://www.testmuai.com/llms.txt",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "'Agent Assurance does not grade the agent on what it says it did': recorded tool calls, command output, exit status, changed files, artifacts and read-only verification carry the verdict; the agent's own reply is the weakest signal.",
+     "source": "https://www.testmuai.com/support/docs/agent-assurance-overview.md",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "Its documentation says: 'Rook does not sandbox or roll back the agent under test. Refunds, emails, tickets, database updates, and filesystem writes happen in the target environment.'",
+     "source": "https://www.testmuai.com/support/docs/agent-assurance-overview.md",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "Self-serve, with a 14-day free trial for new organisations; Rook's public release repository is on GitHub with sample agents that have real defects to find.",
+     "source": "https://www.testmuai.com/llms.txt",
+     "read_at": "2026-11-12T15:11Z"
+    },
+    {
+     "fact": "It lists SOC 2 Type II and ISO 27001 certifications, offices in San Francisco, Noida, Bengaluru and Dubai, and a Leader position in the 2026 Gartner Magic Quadrant for Agentic Software Quality Assurance Platforms.",
+     "source": "https://www.testmuai.com/llms.txt",
+     "read_at": "2026-11-12T15:11Z"
+    }
+   ],
+   "told": [
+    "Agent Assurance became generally available in late October 2026 and reports an 'assurance gap' for results it could not verify (relayed from its press release; not yet read by us).",
+    "Rook plugs into CI: GitHub Actions, Jenkins, Argo CD (relayed; not yet read by us).",
+    "Its CEO spoke at the summit on 11 November: 'When AI verifies AI'."
+   ],
+   "help": {
+    "pitch": "TestMu AI proves what an agent did. RiskMandate defines and measures what an agent may do (its mandate and its reach), and our harness enforces it (ABP policies, run reports). Together: policy, then enforcement, then proof. Its own documentation names the seam: Rook does not sandbox the agent under test, so the actions are real. A mandate and a harness are what make that safe.",
+    "mandate": [
+     "Rook writes scenarios and criteria for an agent; an ABP policy states what the agent may do. Our policies could be Rook's criteria."
+    ],
+    "reach": [
+     "Rook grades observed effects (tool calls, file changes, API calls) in the target environment. What the agent could have reached beyond those effects is what RiskMandate measures."
+    ],
+    "gap": [
+     "Its 'Unable to Verify' (and the assurance gap it reports) is the gap between claim and proof; ours is the gap between mandate and reach. Two halves of one record."
+    ]
+   },
+   "together": [
+    {
+     "title": "A joint pilot",
+     "text": "Run Rook against one of our own agents, under its ABP policy, and set Rook's verdicts beside our run report: what it was allowed to do, what it could reach, what it provably did.",
+     "link": "harness.html"
+    },
+    {
+     "title": "Their verification as evidence in mandate reports",
+     "text": "Rook's Pass, Fail and Unable to Verify, with its evidence, attached to RiskMandate's record for the same agent.",
+     "link": "https://www.testmuai.com/support/docs/agent-assurance-overview.md"
+    },
+    {
+     "title": "Our policies as Rook test criteria",
+     "text": "An ABP policy turned into the criteria Rook grades against.",
+     "link": "https://www.testmuai.com/rook-cli/"
+    }
+   ],
+   "demos": [
+    [
+     "harness",
+     "harness-before-after"
+    ],
+    [
+     "harness",
+     "harness-did-its-job"
+    ],
+    [
+     "control",
+     "check-outside"
+    ],
+    [
+     "trust",
+     "q-why"
+    ]
+   ]
   }
  ]
 }

@@ -1,0 +1,306 @@
+{
+ "slug": "testmu-ai",
+ "name": "TestMu AI",
+ "kind": "coding",
+ "kind_label": "Coding agents",
+ "one_line": "An agentic AI quality engineering platform (formerly LambdaTest). Its Agent Assurance and Rook CLI test AI agents that act, and grade them on what they actually changed, not on what they say they did.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T15:11Z",
+ "asked": {
+  "by": "Dinis, at their stand at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T14:40Z"
+ },
+ "note": "Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.",
+ "artefacts": [
+  {
+   "kind": "brief",
+   "title": "This partner brief: TestMu AI",
+   "url": "#know",
+   "note": "asked for by name at the summit, 2026-11-12T14:40Z",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T15:11Z"
+  },
+  {
+   "kind": "site",
+   "title": "Their own site: testmuai.com",
+   "url": "https://www.testmuai.com/",
+   "note": "read by hand for this brief",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T15:11Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "TestMu AI (formerly LambdaTest; legal entity LambdaTest, Inc.; renamed 12 January 2026) is an agentic AI quality engineering platform that 'assures AI deployments across the enterprise and the real world'.",
+   "quote": "",
+   "source": "https://www.testmuai.com/llms.txt",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/llms.txt"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Agent Assurance tests how AI agents that act (call tools, write files, hit APIs) actually behave, including coding, workflow, back-office and multi-agent systems.",
+   "quote": "",
+   "source": "https://www.testmuai.com/llms.txt",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/llms.txt"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Rook CLI reads the codebase to find the agent, writes functional and adversarial scenarios, runs them against the live agent, and grades each criterion from evidence: Pass, Fail and Unable to Verify are counted separately.",
+   "quote": "",
+   "source": "https://www.testmuai.com/llms.txt",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/llms.txt"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "'Agent Assurance does not grade the agent on what it says it did': recorded tool calls, command output, exit status, changed files, artifacts and read-only verification carry the verdict; the agent's own reply is the weakest signal.",
+   "quote": "",
+   "source": "https://www.testmuai.com/support/docs/agent-assurance-overview.md",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/support/docs/agent-assurance-overview.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Its documentation says: 'Rook does not sandbox or roll back the agent under test. Refunds, emails, tickets, database updates, and filesystem writes happen in the target environment.'",
+   "quote": "",
+   "source": "https://www.testmuai.com/support/docs/agent-assurance-overview.md",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/support/docs/agent-assurance-overview.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Self-serve, with a 14-day free trial for new organisations; Rook's public release repository is on GitHub with sample agents that have real defects to find.",
+   "quote": "",
+   "source": "https://www.testmuai.com/llms.txt",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/llms.txt"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "It lists SOC 2 Type II and ISO 27001 certifications, offices in San Francisco, Noida, Bengaluru and Dubai, and a Leader position in the 2026 Gartner Magic Quadrant for Agentic Software Quality Assurance Platforms.",
+   "quote": "",
+   "source": "https://www.testmuai.com/llms.txt",
+   "read_at": "2026-11-12T15:11Z",
+   "via": "https://www.testmuai.com/llms.txt"
+  }
+ ],
+ "told": [
+  "Agent Assurance became generally available in late October 2026 and reports an 'assurance gap' for results it could not verify (relayed from its press release; not yet read by us).",
+  "Rook plugs into CI: GitHub Actions, Jenkins, Argo CD (relayed; not yet read by us).",
+  "Its CEO spoke at the summit on 11 November: 'When AI verifies AI'."
+ ],
+ "domain_note": null,
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "TestMu AI proves what an agent did. RiskMandate defines and measures what an agent may do (its mandate and its reach), and our harness enforces it (ABP policies, run reports). Together: policy, then enforcement, then proof. Its own documentation names the seam: Rook does not sandbox the agent under test, so the actions are real. A mandate and a harness are what make that safe.",
+  "mandate": [
+   {
+    "text": "Rook writes scenarios and criteria for an agent; an ABP policy states what the agent may do. Our policies could be Rook's criteria."
+   }
+  ],
+  "reach": [
+   {
+    "text": "Rook grades observed effects (tool calls, file changes, API calls) in the target environment. What the agent could have reached beyond those effects is what RiskMandate measures."
+   }
+  ],
+  "gap": [
+   {
+    "text": "Its 'Unable to Verify' (and the assurance gap it reports) is the gap between claim and proof; ours is the gap between mandate and reach. Two halves of one record."
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "A joint pilot",
+    "text": "Run Rook against one of our own agents, under its ABP policy, and set Rook's verdicts beside our run report: what it was allowed to do, what it could reach, what it provably did.",
+    "link": "harness.html"
+   },
+   {
+    "title": "Their verification as evidence in mandate reports",
+    "text": "Rook's Pass, Fail and Unable to Verify, with its evidence, attached to RiskMandate's record for the same agent.",
+    "link": "https://www.testmuai.com/support/docs/agent-assurance-overview.md"
+   },
+   {
+    "title": "Our policies as Rook test criteria",
+    "text": "An ABP policy turned into the criteria Rook grades against.",
+    "link": "https://www.testmuai.com/rook-cli/"
+   }
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+  }
+ },
+ "demos": [
+  {
+   "title": "The same code, before and after the harness",
+   "theme": "harness",
+   "demo": "harness-before-after",
+   "why": "The same 12 attempts, run bare and then under one policy.",
+   "present": "theme.html?t=harness&d=harness-before-after",
+   "stage": "../stage.html?scene=harness-before-after"
+  },
+  {
+   "title": "Everything it was asked to do, it did",
+   "theme": "harness",
+   "demo": "harness-did-its-job",
+   "why": "Real runs under the harness, checked in their files.",
+   "present": "theme.html?t=harness&d=harness-did-its-job",
+   "stage": "../stage.html?scene=harness-did-its-job"
+  },
+  {
+   "title": "A check outside the process",
+   "theme": "control",
+   "demo": "check-outside",
+   "why": "Real probes, in our container, under one deny-all policy.",
+   "present": "theme.html?t=control&d=check-outside",
+   "stage": "../stage.html?scene=check-outside"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-testmu-ai",
+  "title": "TestMu AI: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T15:11Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "TestMu AI",
+    "sub": "An agentic AI quality engineering platform (formerly LambdaTest). Its Agent Assurance and Rook CLI test AI agents that act, and grade them on what they…",
+    "caption": "What we have on TestMu AI, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "TestMu AI (formerly LambdaTest; legal entity LambdaTest, Inc.; renamed 12 January 2026) is an agentic AI quality engineering platform that…",
+     "Agent Assurance tests how AI agents that act (call tools, write files, hit APIs) actually behave, including coding, workflow, back-office…",
+     "Rook CLI reads the codebase to find the agent, writes functional and adversarial scenarios, runs them against the live agent, and grades…",
+     "'Agent Assurance does not grade the agent on what it says it did': recorded tool calls, command output, exit status, changed files…",
+     "Its documentation says: 'Rook does not sandbox or roll back the agent under test. Refunds, emails, tickets, database updates, and…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "Its 'Unable to Verify' (and the assurance gap it reports) is the gap between claim and proof; ours is the gap between…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "A joint pilot",
+     "Their verification as evidence in mandate reports",
+     "Our policies as Rook test criteria"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "The same code, before and after the harness",
+    "step": "harness-before-after/same-output",
+    "caption": "The same 12 attempts, run bare and then under one policy."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · the summit promotion",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
+     "Write to agent@riskmandate.ai."
+    ]
+   }
+  ]
+ }
+}
