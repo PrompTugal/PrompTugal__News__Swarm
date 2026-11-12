@@ -87,7 +87,7 @@ html.inframe #lock{display:none}
   <div id="ctl"><button id="prev" aria-label="Previous">‹</button><button id="next" aria-label="Next">›</button><button id="play">▶ Play</button><button id="focus" title="The deck alone (Z)">⛶ Focus</button>
    <button id="save" disabled title="Send the story and how it was made to swarm.1, sealed, to publish">Send to the site</button><span class="n" id="n"></span></div>
  </section>
- <aside><h2>How it is being made</h2><ol id="hops"></ol><div id="tot">Nothing yet.</div></aside>
+ <aside><h2>How it is being made <button id="replay" hidden style="min-height:32px;padding:2px 10px;font-size:.75rem;margin-left:8px">▶ Replay in 10 s</button></h2><ol id="hops"></ol><div id="rp" hidden style="min-height:0;overflow:hidden"></div><div id="tot">Nothing yet.</div></aside>
 </main>
 <div id="lock"><div class="card"><b>Unlock the stand's key</b><p class="muted" id="lockst">checking…</p>
  <input id="pass" type="password" placeholder="Passphrase" autocomplete="current-password"><button class="go" id="unlock">Unlock</button>
@@ -209,9 +209,13 @@ $('#make').onclick = async () => {
   if (!story.scenes.length) { $('#make').disabled = false; return; }
   STORY = story; const r = hop({ who: 'the deck', role: 'site', where: 'this browser', what: 'builds on screen, scene by scene' });
   P = K.present($('#deck'), STORY, { caption: $('#cap'), dwell: 2400, onStep: (i, n) => ($('#n').textContent = `${i + 1} / ${n}`) });
-  const tick = setInterval(() => { if (!P.next()) { clearInterval(tick); done(r, { what: `${STORY.scenes.length} scenes, built and shown` }); $('#save').disabled = !$('#consent').checked; $('#make').disabled = false; } }, 1100);
+  const tick = setInterval(() => { if (!P.next()) { clearInterval(tick); done(r, { what: `${STORY.scenes.length} scenes, built and shown` }); $('#save').disabled = !$('#consent').checked; $('#make').disabled = false; $('#replay').hidden = !K.replay; } }, 1100);
 };
 $('#consent').onchange = () => ($('#save').disabled = !STORY || !$('#consent').checked);
+$('#replay').onclick = () => {
+  const rp = $('#rp'), on = rp.hidden; rp.hidden = !on; $('#hops').hidden = on; $('#replay').textContent = on ? '☰ The list' : '▶ Replay in 10 s';
+  if (on) { rp.innerHTML = ''; K.replay(rp, { hops: HOPS.map(({ el, t0, ...x }) => x) }, { seconds: 10, autoplay: true }); }
+};
 $('#prev').onclick = () => P && P.prev(); $('#next').onclick = () => P && P.next(); $('#play').onclick = () => P && P.play();
 
 // ---------- publish: the story and its trail, sealed to swarm.1's lane (the same lane as the feedback button)
