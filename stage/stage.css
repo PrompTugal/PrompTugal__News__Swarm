@@ -149,3 +149,4 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
    (it outlives the process), still not red: it is a finding, not harm (swarm.1.designer) */
 .l-disk-plaintext { color: var(--disk, #ff8a3d) }
 .fs.l-disk-plaintext { border-color: var(--disk, #ff8a3d); border-width: 2px; background: color-mix(in srgb, var(--disk, #ff8a3d) 8%, var(--panel-solid)) }
+#card .flow .fs.open span { white-space: normal } #card .flow .fs { cursor: pointer }

@@ -532,7 +532,9 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json",
+      "badge": "REAL RUN · SIMULATED DATABASE · sims/db-mandate/result.json",
+      "badgeKind": "sim"
      },
      "caption": "A real run, on a simulated database: made-up suppliers and invoices. With access only: 9 of 9 done. Four payments totalling 100,410; a supplier's IBAN changed; the payments table dropped."
     },
@@ -554,7 +556,9 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json",
+      "badge": "REAL RUN · SIMULATED DATABASE · sims/db-mandate/result.json",
+      "badgeKind": "sim"
      },
      "caption": "Under the mandate: 2 done, 7 refused, each by its rule. One payment of 250; nothing else touched."
     },
@@ -576,7 +580,9 @@
        "afterLabel": "under the mandate"
       },
       "title": "Pay INV-002, 250, once",
-      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json"
+      "source": "REAL RUN, SIMULATED DATA · sims/db-mandate/result.json",
+      "badge": "REAL RUN · SIMULATED DATABASE · sims/db-mandate/result.json",
+      "badgeKind": "sim"
      },
      "caption": "Access says yes or no to the database. A mandate says which table, which field and which value."
     }
@@ -588,7 +594,7 @@
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
-   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD, which today is the Elastic deployment's superuser password (after the demo it becomes a write-only key for swarm-*: architect.1's design, §4). It reads its own repository; a separate job writes and attests the result (Runs .github/workflows/run.yml).",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD: 'a disposable password on a temporary account with no confidential data' (Fringe abp/policies.json, Dinis 01:44 UTC); after the demo it becomes a write-only key for swarm-* (architect.1's design §4). A separate job writes and attests the result.",
    "steps": [
     {
      "label": "a signed request",
@@ -609,7 +615,19 @@
       "C",
       "E"
      ],
-     "caption": "The push starts a GitHub Action. It holds the model router's key and, today, the Elastic deployment's password (after the demo: a write-only key). Gmail is not one of them."
+     "caption": "The push starts a GitHub Action. It holds the router key and the password to a disposable logging account (no confidential data). Gmail is not one of them."
+    },
+    {
+     "label": "the honest gap",
+     "dur": 2.5,
+     "show": [
+      "P",
+      "A3",
+      "C",
+      "E"
+     ],
+     "idea": false,
+     "caption": "Said plainly: today a password; after the demo, a write-only key for its own logs (Dinis to replace)."
     },
     {
      "label": "the work runs there",
@@ -1270,6 +1288,57 @@
    ]
   },
   {
+   "id": "harness-loops",
+   "act": "8 · The harness",
+   "title": "Loops that retry, under the harness",
+   "say": "E8: the same engine with loops: 2 datasets × 2 models, 3 tries each. Every read passes the door; every model call is refused at it: 12 of 12, 0 tokens, $0.",
+   "cue": "The loop retries as it was written to. The policy decides that no try leaves.",
+   "steps": [
+    {
+     "label": "four loops",
+     "dur": 6,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "A2 loop",
+        "ask": "warnings · deepseek-v4-flash: read, then 3 tries",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "3 of 3 tries refused"
+       },
+       {
+        "who": "A2 loop",
+        "ask": "warnings · mistral-small-2603: read, then 3 tries",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "3 of 3 tries refused"
+       },
+       {
+        "who": "A2 loop",
+        "ask": "transport · deepseek-v4-flash: read, then 3 tries",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "3 of 3 tries refused"
+       },
+       {
+        "who": "A2 loop",
+        "ask": "transport · mistral-small-2603: read, then 3 tries",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "3 of 3 tries refused"
+       }
+      ],
+      "upto": 4,
+      "fromN": 0,
+      "title": "Four loops, three tries each",
+      "source": "harness/2026-11-12-harness1-e8-swarm-loops.json (tools/swarm.mjs, loop: true, tries: 3; 12 calls, 12 refused, $0)"
+     },
+     "caption": "The loop retries as it was written to. The policy decides that no try leaves."
+    }
+   ]
+  },
+  {
    "id": "harness-reach",
    "act": "8 · The harness",
    "title": "Mandate, reach and gap, per unit",
@@ -1477,32 +1546,45 @@
    "say": "The real session tree on Dinis's account: every agent that built this demo, who started it, and when (swarm.1's data/agents.json). Each agent's size is its commits in the last 24 hours, from the git logs (data/agent-activity.json). The scene reads both again every minute.",
    "steps": [
     {
-     "label": "Dinis",
-     "dur": 1.5,
-     "show": [
-      "P"
+     "label": "everyone, faint",
+     "dur": 2,
+     "highlight": [
+      "__none__"
      ],
-     "caption": "One person."
+     "caption": "17 agents and sessions built this demo. Each one, in its place."
     },
     {
-     "label": "the conductor",
+     "label": "Dinis",
+     "dur": 1.5,
+     "highlight": [
+      "P"
+     ],
+     "caption": "One person: only he instructs."
+    },
+    {
+     "label": "the conductors",
      "dur": 2,
-     "show": [
+     "highlight": [
       "P",
       "A4"
      ],
      "caption": "Two conductors (A4): the Fringe's lead, and swarm.1 for the swarm."
     },
     {
-     "label": "the day, replayed",
-     "dur": 6,
-     "show": null,
-     "replay": true,
+     "label": "the agents",
+     "dur": 2.5,
+     "highlight": null,
      "counter": {
       "of": "commits",
-      "label": "commits by the agents on screen, last 24 h"
+      "label": "commits by these agents, last 24 h"
      },
-     "caption": "Every agent as it started, from 11:14 UTC yesterday to tonight, each at its person's word. The bigger the circle, the more it committed."
+     "caption": "Every agent at its person's word. The bigger the circle, the more it committed."
+    },
+    {
+     "label": "the day, replayed",
+     "dur": 6,
+     "replay": true,
+     "caption": "And as they started, from 11:14 UTC yesterday to tonight."
     },
     {
      "label": "and the Action",
@@ -1510,7 +1592,7 @@
      "highlight": [
       "A0"
      ],
-     "caption": "And one GitHub Action: no session, no memory, no keys to your systems. It just runs what a signed push asks."
+     "caption": "And one GitHub Action: no session, no memory, no keys to your systems. It runs what a signed push asks."
     }
    ]
   },
@@ -1687,13 +1769,13 @@
       "lines": [
        "Every agent makes its own key, in its own session; only the public half is published.",
        {
-        "text": "29 public keys in the Fringe's data/keys.json",
+        "text": "29 public keys · 893 commits named by their agent in 24 h",
         "big": true
        },
        "Every packet, every model call and every result is signed by a key made for it.",
        "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
       ],
-      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+      "source": "PrompTugal__News__Fringe data/keys.json (29 keys, 03:0x UTC) · data/agent-activity.json (git logs) · runs/s001 and s002"
      }
     },
     {
@@ -1707,13 +1789,13 @@
       "lines": [
        "Every agent makes its own key, in its own session; only the public half is published.",
        {
-        "text": "29 public keys in the Fringe's data/keys.json",
+        "text": "29 public keys · 893 commits named by their agent in 24 h",
         "big": true
        },
        "Every packet, every model call and every result is signed by a key made for it.",
        "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
       ],
-      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+      "source": "PrompTugal__News__Fringe data/keys.json (29 keys, 03:0x UTC) · data/agent-activity.json (git logs) · runs/s001 and s002"
      }
     },
     {
@@ -1727,13 +1809,13 @@
       "lines": [
        "Every agent makes its own key, in its own session; only the public half is published.",
        {
-        "text": "29 public keys in the Fringe's data/keys.json",
+        "text": "29 public keys · 893 commits named by their agent in 24 h",
         "big": true
        },
        "Every packet, every model call and every result is signed by a key made for it.",
        "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
       ],
-      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+      "source": "PrompTugal__News__Fringe data/keys.json (29 keys, 03:0x UTC) · data/agent-activity.json (git logs) · runs/s001 and s002"
      }
     },
     {
@@ -1747,13 +1829,13 @@
       "lines": [
        "Every agent makes its own key, in its own session; only the public half is published.",
        {
-        "text": "29 public keys in the Fringe's data/keys.json",
+        "text": "29 public keys · 893 commits named by their agent in 24 h",
         "big": true
        },
        "Every packet, every model call and every result is signed by a key made for it.",
        "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
       ],
-      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+      "source": "PrompTugal__News__Fringe data/keys.json (29 keys, 03:0x UTC) · data/agent-activity.json (git logs) · runs/s001 and s002"
      }
     }
    ]
@@ -2787,15 +2869,15 @@
    "title": "The harness",
    "about": "mandate, reach, gap; the probes; where the check runs",
    "scenes": [
-    "gap",
-    "reach-measured",
     "harness",
     "harness-before-after",
     "check-inside",
     "check-outside",
     "harness-door",
     "harness-engine",
-    "harness-reach"
+    "harness-loops",
+    "harness-reach",
+    "reach-measured"
    ]
   },
   "pki": {
