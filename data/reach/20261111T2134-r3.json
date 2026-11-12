@@ -17,7 +17,8 @@
     "task",
     "swarm.1/read:warnings",
     "consensus:warnings"
-   ]
+   ],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -30,7 +31,8 @@
     "task",
     "swarm.1/read:warnings",
     "consensus:warnings"
-   ]
+   ],
+   "sim": true
   }
  ],
  "units": [
@@ -125,6 +127,80 @@
    "via": [
     "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "task",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "task",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1/read:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1/read:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "isolated"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [

@@ -20,7 +20,8 @@
     "sub:transport/read",
     "sub:tides",
     "sub:tides/read"
-   ]
+   ],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -36,7 +37,8 @@
     "sub:transport/read",
     "sub:tides",
     "sub:tides/read"
-   ]
+   ],
+   "sim": true
   }
  ],
  "units": [
@@ -160,6 +162,116 @@
    "via": [
     "text in, text out at the provider"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:warnings/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:warnings/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:transport/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:transport/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:tides/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "sub:tides/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "isolated"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [

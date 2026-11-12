@@ -161,7 +161,8 @@
   function stepId(sc, st, i) { return sc.id + '/' + (st.id || slug(st.label) || String(i + 1)); }
   // #...&step=<id or n>: open on that step (an id from stepId, or 1..n inside the pack); &embed: the stage alone, for an iframe
   const hashParam = (k) => { const m = new RegExp('[#&]' + k + '(?:=([^&]*))?(?:&|$)').exec(location.hash); return m ? (m[1] != null ? decodeURIComponent(m[1]) : '') : null; };
-  function stepFromUrl() { const v = hashParam('step'); if (v == null || v === '') return -1; if (/^\d+$/.test(v)) return clamp(+v - 1, 0, STEPS.length - 1); return STEPS.findIndex((x) => x.sid === v || x.sid === v.replace(/^\//, '')); }
+  function stepFromUrl() { const sc = hashParam('scene'); if (sc) { const k = STEPS.findIndex((x) => x.scene.id === sc); if (k >= 0) return k; }
+    const v = hashParam('step'); if (v == null || v === '') return -1; if (/^\d+$/.test(v)) return clamp(+v - 1, 0, STEPS.length - 1); return STEPS.findIndex((x) => x.sid === v || x.sid === v.replace(/^\//, '')); }
   function embedFromUrl() { document.documentElement.classList.toggle('embed', hashParam('embed') != null); }
   function layout() {   // the flattened clock: steps back to back
     STEPS = []; let at = 0;

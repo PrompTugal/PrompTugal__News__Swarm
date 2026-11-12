@@ -69,7 +69,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -134,7 +135,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": true
   }
  ],
  "units": [
@@ -1265,6 +1267,704 @@
    "via": [
     "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "task",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "task",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/read:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/read:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603/read:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603/read:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct/read:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/read:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/read:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603/read:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603/read:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct/read:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash/read:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash/read:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/read:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/read:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603/read:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603/read:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct/read:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash/read:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash/read:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/read:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/read:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603/read:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603/read:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct/read:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash/read:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash/read:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/read:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/read:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603/read:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603/read:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct/read:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash/read:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash/read:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/read:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/read:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603/read:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603/read:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct/read:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "isolated"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "swarm.1",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [

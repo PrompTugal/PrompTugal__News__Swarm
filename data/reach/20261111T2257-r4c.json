@@ -44,7 +44,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -84,7 +85,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": true
   }
  ],
  "units": [
@@ -810,6 +812,404 @@
    "via": [
     "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "runner",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-haiku-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-haiku-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-haiku-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-haiku-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-sonnet-5.5",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-sonnet-5.5",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-sonnet-5.5/read",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:claude-sonnet-5.5/read",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:gmail",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:calendar",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:gmail",
+   "via": "owner",
+   "policy": "isolated"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:calendar",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [

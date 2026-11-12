@@ -1,0 +1,28 @@
+{
+ "id": "_sample",
+ "title": "What is an agent behaviour policy?",
+ "asked_by": "Dinis Cruz",
+ "answered_by": "a sample: invented to build against",
+ "at": "2026-11-12T08:00:00Z",
+ "sample": true,
+ "scenes": [
+  { "type": "title", "kicker": "Sample story", "title": "What is an agent behaviour policy?", "sub": "A sample deck, built only from StoryKit's primitives.", "caption": "A sample, to build the pages against. Its facts come from tonight's stage.", "say": ["Every scene here is one primitive and its fields; nothing else is allowed."] },
+  { "type": "statement", "text": "Everything an agent starts runs with the agent's keys.", "caption": "Every loop, every model call, every line of code it runs." },
+  { "type": "ladder", "title": "Five altitudes", "levels": [
+    { "id": "A4", "label": "A swarm", "note": "many agents, one conductor per person" },
+    { "id": "A3", "label": "An agent", "note": "memory, tools, its own wake" },
+    { "id": "A2", "label": "A loop", "note": "read, ask, check, retry" },
+    { "id": "A1", "label": "A model call", "note": "text in, text out" },
+    { "id": "A0", "label": "Code", "note": "reads the public data" } ], "caption": "Each altitude needs less than the one above it." },
+  { "type": "compare", "title": "The same code, before and after the harness", "before": { "label": "Without a policy", "items": ["11 of 12 attempts succeed", "it reads /etc/shadow, a key, the home directory"] }, "after": { "label": "Under one policy", "items": ["its mandate: read its data, write its summary", "the same output, byte for byte"] }, "caption": "The work did not need the reach." },
+  { "type": "table", "title": "Pay INV-002, 250, once", "cols": ["attempt", "with access", "under the mandate"], "rows": [
+    ["pay INV-002, 250.00", "done", "done"], ["pay INV-002 again", "done", "refused"], ["drop the payments table", "done", "refused"] ], "caption": "Access says yes or no. A mandate says which table, which field and which value." },
+  { "type": "graph", "title": "Who can reach the asset", "nodes": [
+    { "id": "p", "label": "a person", "alt": "P" }, { "id": "a", "label": "the agent", "alt": "A3" }, { "id": "l", "label": "a loop", "alt": "A2" }, { "id": "c", "label": "code", "alt": "A0" }, { "id": "x", "label": "the mailbox", "alt": "X" } ],
+    "edges": [ { "from": "p", "to": "a" }, { "from": "a", "to": "l" }, { "from": "l", "to": "c" }, { "from": "a", "to": "x", "label": "needs it" } ], "caption": "With a policy, only the agent that needs the mailbox reaches it." },
+  { "type": "counter", "value": 12, "unit": "of 12", "label": "model calls refused at the door, in the loops under the harness (E8)", "caption": "The loop retries as it was written to. The policy decides that no try leaves." },
+  { "type": "flow", "title": "How this story was made", "steps": ["a question", "a voice memo", "a brief", "story.json", "this page"], "caption": "Timeline, Graph and Delivery show each hop." },
+  { "type": "embed", "title": "The live stage", "pack": "main", "step": "elsewhere/the-honest-gap", "caption": "Any stage step, by its stable id." },
+  { "type": "quote", "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.", "who": "Dinis Cruz, agreed 01:54 UTC", "caption": "The sentence." }
+ ]
+}

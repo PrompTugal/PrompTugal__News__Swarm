@@ -32,7 +32,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": false
   },
   {
    "id": "asset:gmail",
@@ -40,7 +41,8 @@
    "kind": "mailbox",
    "real": false,
    "connected": false,
-   "held_by": []
+   "held_by": [],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -48,7 +50,8 @@
    "kind": "calendar",
    "real": false,
    "connected": false,
-   "held_by": []
+   "held_by": [],
+   "sim": true
   }
  ],
  "units": [
@@ -487,6 +490,134 @@
    "via": [
     "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "action",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:warnings",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:warnings/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:forecast",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:forecast/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:stations",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:stations/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:tides",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:tides/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:transport",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:transport/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:flights",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner:flights/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:elastic",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:elastic",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [

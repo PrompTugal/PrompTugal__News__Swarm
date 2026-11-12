@@ -44,7 +44,19 @@ function reachOf(run, where) {
   for (const u of units) for (const a of u.reaches) assets.find((x) => x.id === a).held_by.push(u.id);
   const connected = assets.filter((a) => a.held_by.length).map((a) => a.id);
   const everything = units.filter((u) => connected.length && connected.every((a) => u.reaches.includes(a))).map((u) => u.id);
-  return { assets, units, reaches_everything: everything };
+  // swarm.1.designer's rows for views: one per (unit, asset, policy), so "everybody" can be toggled against "with a policy".
+  //  all: every unit that inherits the reach (the table above); policy: only the unit that needs it (the agent for its
+  //  connectors; the step's root process, 'runner', for the log store); isolated: the work moved to where the asset is not
+  //  connected (on Actions nobody reaches Gmail or Calendar; in a session the agent keeps its own connectors).
+  const reach = [];
+  const root = units.find((u) => u.id === 'runner') || units.find((u) => u.altitude === 'E');
+  const agent = units.find((u) => u.altitude === 'A3');
+  for (const u of units) for (const a of u.reaches) reach.push({ unit: u.id, asset: a, via: 'inherited', policy: 'all' });
+  for (const a of assets.filter((x) => x.held_by.length)) {
+    const owner = a.id === 'asset:elastic' ? root : agent;
+    if (owner) { reach.push({ unit: owner.id, asset: a.id, via: 'owner', policy: 'policy' }); reach.push({ unit: owner.id, asset: a.id, via: 'owner', policy: 'isolated' }); }
+  }
+  return { assets: assets.map((a) => ({ ...a, sim: !a.real })), units, reach, reaches_everything: everything };
 }
 
 const index = [];

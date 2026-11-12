@@ -1,6 +1,6 @@
 {
  "about": "which unit can reach which asset, per run (tools/reach.mjs)",
- "generated_at": "2026-11-12T07:32:10.964Z",
+ "generated_at": "2026-11-12T07:45:40.017Z",
  "runs": [
   {
    "run": "20261111T2134-r0",

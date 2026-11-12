@@ -68,7 +68,8 @@
     "consensus:tides",
     "consensus:transport",
     "consensus:flights"
-   ]
+   ],
+   "sim": false
   },
   {
    "id": "asset:gmail",
@@ -76,7 +77,8 @@
    "kind": "mailbox",
    "real": false,
    "connected": false,
-   "held_by": []
+   "held_by": [],
+   "sim": true
   },
   {
    "id": "asset:calendar",
@@ -84,7 +86,8 @@
    "kind": "calendar",
    "real": false,
    "connected": false,
-   "held_by": []
+   "held_by": [],
+   "sim": true
   }
  ],
  "units": [
@@ -1135,6 +1138,350 @@
    "via": [
     "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
    ]
+  }
+ ],
+ "reach": [
+  {
+   "unit": "action",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:warnings:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:forecast:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:stations:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:tides:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:transport:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:deepseek-v4-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:mistral-small-2603/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:llama-3.3-70b-instruct/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "loop:flights:qwen3.7-flash/read",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:warnings",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:forecast",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:stations",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:tides",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:transport",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "consensus:flights",
+   "asset": "asset:elastic",
+   "via": "inherited",
+   "policy": "all"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:elastic",
+   "via": "owner",
+   "policy": "policy"
+  },
+  {
+   "unit": "runner",
+   "asset": "asset:elastic",
+   "via": "owner",
+   "policy": "isolated"
   }
  ],
  "reaches_everything": [
