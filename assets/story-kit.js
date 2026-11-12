@@ -12,6 +12,7 @@
      StoryKit.PRIMITIVES                  { name: { description, fields, required, reveals(scene), render(scene) } }
      StoryKit.render(scene)               → html of one scene, every step hidden but the first ([data-r] > 0 get .off)
      StoryKit.present(el, story, opts)    → { next, prev, play, stop, goto(i), state }   opts: { onStep(i, n, info), caption: el, keys: bool, swipe: bool (default on), dwell: ms }
+     StoryKit.replay(el, trail, opts)     → { play, stop, seek(p), state }   the making-of at real gaps scaled to opts.seconds (10)
      StoryKit.load(id)                    → Promise<{ story, trail }>   (stories/<id>/story.json and trail.json, trail optional)
      StoryKit.STORY_TOOLS                 one JSON-schema tool per primitive: { name, description, parameters }
      StoryKit.openaiTools()               the same, as OpenAI/OpenRouter "tools" ({ type: 'function', function: {...} })
@@ -23,6 +24,7 @@
   const ALT = ['P', 'A4', 'A3', 'A2', 'A1', 'A0', 'C', 'E', 'M', 'D', 'X', 'T'];
   const S = (max) => ({ type: 'string', maxLength: max });
   const LIST = (item, max) => ({ type: 'array', items: item, maxItems: max });
+  const CELL = { anyOf: [S(80), { type: 'object', properties: { text: S(80), tone: { type: 'string', enum: ['ok', 'cut', 'gap', 'harm'] } }, required: ['text'], additionalProperties: false }] };
   const COMMON = { kicker: S(60), caption: S(240), say: LIST(S(400), 6) };   // every scene: a kicker, the caption on screen, what to say
   const HEAD = (sc) => (sc.kicker ? `<div class="k">${esc(sc.kicker)}</div>` : '') + (sc.title ? `<h2>${esc(sc.title)}</h2>` : '');
 
@@ -58,9 +60,9 @@
     counter: { description: 'One number that counts up, with what it counts.',
       fields: { value: { type: 'number' }, unit: S(20), label: S(120) }, required: ['value', 'label'],
       render: (sc) => `${sc.kicker ? `<div class="k">${esc(sc.kicker)}</div>` : ''}<p class="sub">${esc(sc.label)}</p><div class="ctr" data-to="${+sc.value || 0}">0<small>${esc(sc.unit || '')}</small></div>` },
-    table: { description: 'A small table (e.g. attempt / with access / under the mandate), rows arriving one by one.',
-      fields: { title: S(90), cols: LIST(S(30), 5), rows: LIST(LIST(S(80), 5), 10) }, required: ['cols', 'rows'], reveals: (sc) => (sc.rows || []).length,
-      render: (sc) => `${HEAD(sc)}<table class="tbl"><thead><tr>${(sc.cols || []).map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(sc.rows || []).map((r, j) => `<tr data-r="${j}">${r.map((c) => `<td class="${/^(refused|denied|blocked)/i.test(c) ? 'no' : /^(done|allowed|ok)/i.test(c) ? 'ok' : ''}">${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table>` },
+    table: { description: 'A small table (e.g. attempt / with access / under the mandate), rows arriving one by one. A cell is text, or {text, tone}: tone "ok" = the work the mandate allows, "cut" = a control refused it, "gap" = it happened and should not have, "harm" = real harm only.',
+      fields: { title: S(90), cols: LIST(S(30), 5), rows: LIST(LIST(CELL, 5), 10) }, required: ['cols', 'rows'], reveals: (sc) => (sc.rows || []).length,
+      render: (sc) => `${HEAD(sc)}<table class="tbl"><thead><tr>${(sc.cols || []).map((c) => `<th>${esc(c)}</th>`).join('')}</tr></thead><tbody>${(sc.rows || []).map((r, j) => `<tr data-r="${j}">${r.map((c) => { const t = typeof c === 'object' && c ? c : { text: c }; return `<td${t.tone ? ` class="tone-${esc(t.tone)}"` : ''}>${esc(t.text)}</td>`; }).join('')}</tr>`).join('')}</tbody></table>` },
     embed: { description: 'A scene of the live stage, by its stable step id (stage/step-ids.json, e.g. "elsewhere/the-honest-gap").',
       fields: { title: S(90), step: { type: 'string', pattern: '^[a-z0-9-]+/[a-z0-9-]+$', maxLength: 80 }, pack: { type: 'string', pattern: '^[a-z0-9-]+$', maxLength: 30 } },
       required: ['step'],
@@ -144,6 +146,7 @@
   const openaiTools = () => STORY_TOOLS.map((t) => ({ type: 'function', function: t }));
 
   function check(v, sch, path, errs) {
+    if (sch.anyOf) { for (const alt of sch.anyOf) { const e = []; check(v, alt, path, e); if (!e.length) return; } return errs.push(path + ': ' + sch.anyOf.map((a) => (a.type === 'object' ? '{' + Object.keys(a.properties).join(', ') + '}' : 'a ' + a.type)).join(' or ')); }
     if (sch.type === 'string') { if (typeof v !== 'string') return errs.push(path + ': a string'); if (sch.maxLength && v.length > sch.maxLength) errs.push(`${path}: at most ${sch.maxLength} characters`); if (sch.enum && !sch.enum.includes(v)) errs.push(`${path}: one of ${sch.enum.join(', ')}`); if (sch.pattern && !new RegExp(sch.pattern).test(v)) errs.push(`${path}: does not match ${sch.pattern}`); return; }
     if (sch.type === 'number') { if (typeof v !== 'number' || !isFinite(v)) errs.push(path + ': a number'); return; }
     if (sch.type === 'array') { if (!Array.isArray(v)) return errs.push(path + ': a list'); if (sch.maxItems && v.length > sch.maxItems) errs.push(`${path}: at most ${sch.maxItems} items`); v.forEach((x, i) => check(x, sch.items, `${path}[${i}]`, errs)); return; }
@@ -178,6 +181,73 @@
     return { story, errors: errors.concat(v.errors) };
   }
 
+  // ---------- the making-of, replayed (after Silvio's X-Ray: real timings scaled to a few seconds; swarm.1, 08:00)
+  // StoryKit.replay(el, trail, { seconds: 10, loop: false, onHop(i, hop) }) → { play, stop, seek(p 0..1), get state }
+  // One node per actor (who and to), in rows by role; each hop lights its actor at its real time, scaled, and sends one
+  // particle along the edge to `to`. Transform and opacity only; at most 6 particles at once; prefers-reduced-motion
+  // shows the end at once. No network: the trail is given.
+  const ROLE_ROW = ['person', 'conductor', 'lead', 'agent', 'model', 'compute', 'page'];
+  const ROLE_COL = { person: 'var(--alt-P)', conductor: 'var(--alt-A4)', lead: 'var(--alt-A4)', agent: 'var(--alt-A3)', model: 'var(--alt-A1)', compute: 'var(--alt-A0)', page: 'var(--accent)' };
+  function replay(el, trail, opts = {}) {
+    const hops = ((trail && (trail.hops || trail.nodes)) || []).filter((h) => h && h.at).slice().sort((a, b) => Date.parse(a.at) - Date.parse(b.at));
+    const secs = Math.max(2, opts.seconds || 10), t0 = hops.length ? Date.parse(hops[0].at) : 0, span = hops.length ? Math.max(1, Date.parse(hops[hops.length - 1].at) - t0) : 1;
+    const when = hops.map((h) => (0.04 + 0.92 * (Date.parse(h.at) - t0) / span) * secs * 1000);   // ms into the replay
+    const role = {}; hops.forEach((h) => { if (h.who && !role[h.who]) role[h.who] = h.role || 'agent'; if (h.to && !role[h.to]) role[h.to] = 'agent'; });
+    hops.forEach((h) => { if (h.to && role[h.to] === 'agent') { const as = hops.find((x) => x.who === h.to); if (as && as.role) role[h.to] = as.role; } });
+    const actors = Object.keys(role), rows = ROLE_ROW.filter((r) => actors.some((a) => role[a] === r)).concat(actors.some((a) => !ROLE_ROW.includes(role[a])) ? ['other'] : []);
+    const rowOf = (a) => (ROLE_ROW.includes(role[a]) ? rows.indexOf(role[a]) : rows.length - 1);
+    const W = 1000, H = Math.max(220, 90 + rows.length * 80), pos = {};
+    rows.forEach((r, ri) => { const inRow = actors.filter((a) => rowOf(a) === ri); inRow.forEach((a, j) => { pos[a] = { x: (W * (j + 1)) / (inRow.length + 1), y: 50 + (ri * (H - 110)) / Math.max(1, rows.length - 1) }; }); });
+    const edges = []; hops.forEach((h, i) => { if (h.to && pos[h.to] && pos[h.who]) edges.push({ i, from: h.who, to: h.to }); });
+    el.innerHTML = `<div class="storykit sk-replay"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="how this story was made, replayed">
+      ${edges.map((e) => `<line class="sk-re" data-i="${e.i}" x1="${pos[e.from].x}" y1="${pos[e.from].y}" x2="${pos[e.to].x}" y2="${pos[e.to].y}"/>`).join('')}
+      ${actors.map((a) => `<g class="sk-ra" data-a="${esc(a)}" transform="translate(${pos[a].x},${pos[a].y})"><circle r="14" style="fill:${ROLE_COL[role[a]] || 'var(--alt-A2)'}"/><text y="34">${esc(a)}</text></g>`).join('')}
+      <g class="sk-parts"></g></svg><div class="sk-rcap"><b class="sk-rt"></b> <span class="sk-rw"></span></div><div class="sk-rbar"><i></i></div></div>`;
+    styleOnce(); replayStyleOnce();
+    const svg = el.querySelector('svg'), parts = el.querySelector('.sk-parts'), cap = el.querySelector('.sk-rw'), clk = el.querySelector('.sk-rt'), bar = el.querySelector('.sk-rbar i');
+    const hm = (t) => new Date(t).toISOString().slice(11, 16);
+    let ms = 0, raf = null, last = 0, shown = -1, live = 0;
+    function draw(full) {
+      let k = -1; for (let i = 0; i < hops.length; i++) if (when[i] <= ms) k = i;
+      svg.querySelectorAll('.sk-ra').forEach((g) => { const a = g.dataset.a, on = hops.some((h, i) => i <= k && (h.who === a || h.to === a)); g.classList.toggle('on', on); });
+      svg.querySelectorAll('.sk-re').forEach((l) => l.classList.toggle('on', +l.dataset.i <= k));
+      if (k !== shown) {
+        for (let i = Math.max(0, shown + 1); i <= k; i++) {
+          const h = hops[i]; if (opts.onHop) opts.onHop(i, h);
+          if (!full && h.to && pos[h.to] && pos[h.who] && live < 6) particle(pos[h.who], pos[h.to], ROLE_COL[role[h.who]]);
+        }
+        shown = k;
+        const h = hops[k]; clk.textContent = h ? hm(h.at) + ' UTC' : ''; cap.textContent = h ? `${h.who}${h.to ? ' → ' + h.to : ''}: ${h.what || ''}${h.model ? ' · ' + h.model : ''}${h.usd != null ? ' · $' + h.usd : ''}` : '';
+      }
+      bar.style.transform = `scaleX(${Math.min(1, ms / (secs * 1000))})`;
+    }
+    function particle(a, b, colour) {   // one dot along the edge, by CSS transform only
+      live++; const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle'); c.setAttribute('r', '6'); c.setAttribute('class', 'sk-p'); c.style.fill = colour || 'var(--accent)';
+      c.style.transform = `translate(${a.x}px, ${a.y}px)`; parts.appendChild(c);
+      requestAnimationFrame(() => requestAnimationFrame(() => { c.style.transform = `translate(${b.x}px, ${b.y}px)`; c.style.opacity = '0.2'; }));
+      setTimeout(() => { c.remove(); live--; }, 900);
+    }
+    function frame(t) { ms += t - last; last = t; if (ms >= secs * 1000) { ms = secs * 1000; draw(); if (opts.loop) { setTimeout(() => { if (raf !== null) { seek(0); play(); } }, 2500); } raf = null; return; } draw(); raf = requestAnimationFrame(frame); }
+    function play() { if (raf) return; if (ms >= secs * 1000) seek(0); last = performance.now(); raf = requestAnimationFrame(frame); }
+    function stop() { if (raf) cancelAnimationFrame(raf); raf = null; }
+    function seek(p) { stop(); ms = clamp(+p || 0, 0, 1) * secs * 1000; shown = -1; svg.querySelectorAll('.sk-ra, .sk-re').forEach((x) => x.classList.remove('on')); draw(true); }
+    const reduced = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduced) seek(1); else if (opts.autoplay !== false) play(); else seek(0);
+    return { play, stop, seek, get state() { return { ms, seconds: secs, hop: shown, hops: hops.length, playing: !!raf }; } };
+  }
+  function replayStyleOnce() {
+    if (document.getElementById('storykit-replay-style')) return;
+    const st = document.createElement('style'); st.id = 'storykit-replay-style';
+    st.textContent = `
+:where(.sk-replay) { position: relative } :where(.sk-replay svg) { width: 100%; max-height: 70vh; display: block }
+:where(.sk-replay .sk-ra) { opacity: .25; transition: opacity .4s } :where(.sk-replay .sk-ra.on) { opacity: 1 } :where(.sk-replay .sk-ra text) { fill: var(--ink, #e8f1ef); font-size: 15px; text-anchor: middle }
+:where(.sk-replay .sk-re) { stroke: var(--muted, #9fb3af); stroke-width: 1.5; opacity: 0; transition: opacity .4s } :where(.sk-replay .sk-re.on) { opacity: .7 }
+:where(.sk-replay .sk-p) { transition: transform .8s ease-in-out, opacity .8s; will-change: transform }
+:where(.sk-replay .sk-rcap) { margin-top: .4em; font-size: 1.05em; min-height: 1.5em } :where(.sk-replay .sk-rt) { font-family: var(--mono, monospace); color: var(--accent, #4fd1a5) }
+:where(.sk-replay .sk-rbar) { height: 3px; background: var(--line, #24403b); margin-top: .5em } :where(.sk-replay .sk-rbar i) { display: block; height: 100%; background: var(--accent, #4fd1a5); transform-origin: 0 50%; transform: scaleX(0) }`;
+    document.head.appendChild(st);
+  }
+
   // ---------- files
   const ROOT = (() => { try { const s = document.currentScript && document.currentScript.src; return s ? s.replace(/assets\/story-kit\.js.*$/, '') : '../'; } catch (e) { return '../'; } })();
   async function load(id) {
@@ -202,13 +272,13 @@
 :where(.storykit) :where(.lad > div) { display: grid; grid-template-columns: 4em 1fr; gap: .8em; align-items: baseline; padding: .4em .6em; border-left: 4px solid var(--c, var(--accent)); margin: .3em 0 } :where(.storykit .lad small) { display: block; color: var(--muted, #9fb3af) }
 :where(.storykit) :where(.flw) { display: flex; flex-wrap: wrap; align-items: center; gap: .6em } :where(.storykit .flw > div) { border: 1px solid var(--accent, #4fd1a5); border-radius: 10px; padding: .5em .8em } :where(.storykit .flw > i) { font-style: normal; color: var(--muted, #9fb3af) }
 :where(.storykit) :where(.ctr) { font: 700 4.5em var(--font-head, inherit); color: var(--accent, #4fd1a5) } :where(.storykit .ctr small) { font-size: .35em; margin-left: .3em; color: var(--muted, #9fb3af) }
-:where(.storykit) :where(.tbl) { border-collapse: collapse; width: 100% } :where(.storykit .tbl) :where(th, td) { text-align: left; padding: .35em .6em; border-bottom: 1px solid var(--line, #24403b) } :where(.storykit .tbl td.ok) { color: var(--ok, #4fd1a5) } :where(.storykit .tbl td.no) { color: var(--accent, #5ec2ff) }
+:where(.storykit) :where(.tbl) { border-collapse: collapse; width: 100% } :where(.storykit .tbl) :where(th, td) { text-align: left; padding: .35em .6em; border-bottom: 1px solid var(--line, #24403b) } :where(.storykit .tbl td.tone-ok) { color: var(--ok, #4fd1a5) } :where(.storykit .tbl td.tone-cut) { color: var(--accent, #5ec2ff) } :where(.storykit .tbl td.tone-gap) { color: var(--warn, #f2c14e) } :where(.storykit .tbl td.tone-harm) { color: var(--bad, #ff6b6b) }
 :where(.storykit) :where(.emb iframe) { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line, #24403b); border-radius: 10px }
 :where(.storykit) :where(.sk-graph) { width: 100%; max-height: 60vh } :where(.storykit .sk-graph line) { stroke: var(--muted, #9fb3af); stroke-width: 1.4 } :where(.storykit .sk-graph text) { fill: var(--ink, #e8f1ef); font-size: 13px; text-anchor: middle } :where(.storykit .sk-graph .el) { fill: var(--muted, #9fb3af); font-size: 11px }`;
     document.head.appendChild(st);
   }
 
-  const KIT = { PRIMITIVES, render, present, load, STORY_TOOLS, openaiTools, validate, fromToolCalls, reveals, version: '1' };
+  const KIT = { PRIMITIVES, render, present, replay, load, STORY_TOOLS, openaiTools, validate, fromToolCalls, reveals, version: '1' };
   if (typeof window !== 'undefined') window.StoryKit = KIT;
   if (typeof module !== 'undefined' && module.exports) module.exports = KIT;   // node: tools can validate a story
 })();
