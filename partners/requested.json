@@ -649,6 +649,14 @@
      "control",
      "one-per-asset"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-eigenoid",
+     "title": "Eigenoid and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T11:35Z"
+    }
    ]
   }
  ]

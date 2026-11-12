@@ -23,6 +23,37 @@
  },
  "partners": [
   {
+   "slug": "eigenoid",
+   "name": "Eigenoid",
+   "kind": "governance",
+   "kind_label": "AI governance",
+   "one_line": "Lets one team's AI agent find and consult the specialist agent of the team that owns an answer, through a registry where discovery grants no access and the owning team decides what is shared.",
+   "has": [
+    "met",
+    "story"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T11:30Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://eigenoid.com/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T11:34Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-eigenoid",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T11:35Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 8
+  },
+  {
    "slug": "cloudsway",
    "name": "Cloudsway",
    "kind": "infrastructure",
@@ -197,29 +228,6 @@
     }
    ],
    "material": 6
-  },
-  {
-   "slug": "eigenoid",
-   "name": "Eigenoid",
-   "kind": "governance",
-   "kind_label": "AI governance",
-   "one_line": "Lets one team's AI agent find and consult the specialist agent of the team that owns an answer, through a registry where discovery grants no access and the owning team decides what is shared.",
-   "has": [
-    "met"
-   ],
-   "products": [],
-   "codes": [],
-   "asked_at": "2026-11-12T11:30Z",
-   "artefacts": [
-    {
-     "kind": "site",
-     "url": "https://eigenoid.com/",
-     "read_on": "2026-11-12",
-     "fetched_at": "2026-11-12T11:34Z",
-     "source": "their own site, read by hand"
-    }
-   ],
-   "material": 8
   },
   {
    "slug": "replit",
