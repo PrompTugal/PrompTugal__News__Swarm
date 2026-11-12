@@ -201,3 +201,11 @@ html.focus #card .cm .rb { font-size: .98em }   /* the "refused by" rules: the c
 @media (max-height: 860px) { #card .gap .glabels { margin-top: 4px } }
 header h1 { padding-left: 96px }   /* room for the common navigation pill (assets/nav.js), which stays in focus mode */
 html.focus #simflag { left: 116px !important }   /* in focus mode the badge moves right of the navigation pill */
+/* a card's source waits behind "▸ source" (Dinis 07:10: no raw file names under the stage); opened, it fades in */
+#card details.src { margin-top: 12px; font: .78em var(--mono); color: var(--muted) } #card details.src summary { cursor: pointer; list-style: none; letter-spacing: .06em; text-transform: uppercase; opacity: .7 }
+#card details.src summary::-webkit-details-marker { display: none } #card details.src summary::before { content: '▸ ' } #card details.src[open] summary::before { content: '▾ ' }
+#card details.src[open] span { display: block; margin-top: 4px; animation: notefade .4s ease }
+/* the pack chips: one size, two columns, every one whole (Dinis 07:10: "it'd be better if they all have the same size") */
+#packs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px } #packs .pk { display: flex; align-items: center; justify-content: center; text-align: center; white-space: normal; line-height: 1.2; padding: 3px 6px; border-radius: 8px; min-height: 2.1em }
+#playall { font-size: .8em; white-space: nowrap }
+#card details.src { border: 0; background: none; box-shadow: none; padding: 0; width: auto; max-width: none }   /* a quiet line, not a box */
