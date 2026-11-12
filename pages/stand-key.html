@@ -22,7 +22,7 @@ button.alt{background:transparent;color:var(--ink);border-color:var(--line)}
 <body>
 <main>
  <h1>The stand's key</h1>
- <p class="muted">For the stand device only. Paste the disposable OpenRouter key and choose a passphrase. The key is encrypted <b>in this browser</b> and kept here as ciphertext; it is never sent anywhere except to openrouter.ai when the stand calls a model. Do not paste it into a chat.</p>
+ <p class="muted">For the stand device only. Paste the disposable OpenRouter key. It is encrypted <b>in this browser</b> (no passphrase: these are trusted devices) and kept here as ciphertext; it is never sent anywhere except to openrouter.ai when the stand calls a model. Do not paste it into a chat.</p>
 
  <div class="card" id="state-card"><b>On this device:</b> <span id="state">checking…</span>
   <div><button class="alt" id="test" hidden>Unlock and check the credit</button><button class="alt" id="forget" hidden>Forget it on this device</button></div>
@@ -30,14 +30,14 @@ button.alt{background:transparent;color:var(--ink);border-color:var(--line)}
 
  <div class="card">
   <label for="k">The OpenRouter key</label><input id="k" type="password" autocomplete="off" spellcheck="false" placeholder="sk-or-v1-…">
-  <label for="p">A passphrase (10+ characters)</label><input id="p" type="password" autocomplete="new-password">
+  <input id="p" type="hidden" value="">
   <button id="seal">Encrypt and keep on this device</button>
   <p id="out" class="muted" aria-live="polite"></p>
  </div>
 
  <div class="card" id="share" hidden>
-  <b>To use it on another device too</b> (optional): this ciphertext is safe to put on the site as <code>data/stand-key.json</code>; without the passphrase it is useless. Copy it and give it to swarm.1, which commits it.
-  <textarea id="blob" readonly></textarea><button class="alt" id="copy">Copy</button>
+  <b>To use it on another device too</b> (optional): this ciphertext is safe to put on the site as <code>data/stand-key.json</code>; without the passphrase it is useless. Press <b>Put it on the site</b>: it goes, sealed, to swarm.1, which publishes it as data/stand-key.json so every tablet opens the Studio with no setup.
+  <textarea id="blob" readonly></textarea><button id="tosite">Put it on the site</button> <button class="alt" id="copy">Copy</button><p id="site-out" class="muted" aria-live="polite"></p>
  </div>
 </main>
 <script type="module">
@@ -58,7 +58,7 @@ $('seal').onclick = async () => {
   } catch (e) { $('out').innerHTML = `<span class="bad">${e.message}</span>`; }
 };
 $('test').onclick = async () => {
-  const pass = $('p').value || prompt('Passphrase'); if (!pass) return;
+  const pass = '';
   try { const f = await findBlob('../'); const k = await openKey(f.blob, pass); const c = await credit(k);
     $('test-out').innerHTML = `<span class="ok">Unlocked.</span> Credit: ${c.remaining != null ? '$' + Number(c.remaining).toFixed(2) + ' left' : 'no limit set'}${c.limit != null ? ' of $' + c.limit : ''}; used $${Number(c.used || 0).toFixed(4)}.`;
   } catch (e) { $('test-out').innerHTML = `<span class="bad">${e.message}</span>`; }

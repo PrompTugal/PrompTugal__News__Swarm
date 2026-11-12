@@ -7,6 +7,9 @@ const te = new TextEncoder(), td = new TextDecoder();
 const b64 = (u8) => btoa(String.fromCharCode(...new Uint8Array(u8)));
 const unb64 = (s) => Uint8Array.from(atob(s), (c) => c.charCodeAt(0));
 const ROUNDS = 600000, LS = 'swarm-stand-key/v1';
+// Dinis, 12 Nov ~08:35 UTC: "remove the pass key ... all these are trusted devices". The default passphrase is this page's own:
+// the key is obfuscated (not readable by a scanner or a casual reader of the site), not secret from someone who reads this file.
+export const BUILTIN = 'swarm.promptugal.news/stand/v1 trusted devices';
 
 async function derive(pass, salt) {
   const base = await crypto.subtle.importKey('raw', te.encode(pass), 'PBKDF2', false, ['deriveKey']);
@@ -14,13 +17,14 @@ async function derive(pass, salt) {
 }
 export async function sealKey(apiKey, pass) {
   if (!/^sk-or-/.test(apiKey)) throw new Error('that does not look like an OpenRouter key (sk-or-…)');
-  if (String(pass).length < 10) throw new Error('use a passphrase of at least 10 characters');
+  pass = pass || BUILTIN;
   const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
   const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, await derive(pass, salt), te.encode(apiKey));
   return { v: 1, kind: 'swarm-stand-key/v1', kdf: 'PBKDF2-SHA-256', rounds: ROUNDS, cipher: 'AES-256-GCM', salt: b64(salt), iv: b64(iv), ct: b64(ct),
     hint: apiKey.slice(0, 8) + '…' + apiKey.slice(-4), sealed_at: new Date().toISOString().slice(0, 16) + 'Z' };
 }
 export async function openKey(blob, pass) {
+  pass = pass || BUILTIN;
   try { return td.decode(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(blob.iv) }, await derive(pass, unb64(blob.salt)), unb64(blob.ct))); }
   catch { throw new Error('wrong passphrase'); }
 }
@@ -40,3 +44,5 @@ export async function credit(apiKey) {
   const d = (await r.json()).data || {};
   return { limit: d.limit, used: d.usage, remaining: d.limit_remaining ?? (d.limit != null ? d.limit - d.usage : null), label: d.label };
 }
+// no passphrase on the trusted devices: the site's or this device's key, opened with the built-in passphrase
+export async function autoKey(base = '/') { const f = await findBlob(base); if (!f) return null; try { return { key: await openKey(f.blob), blob: f.blob, from: f.from }; } catch { return null; } }
