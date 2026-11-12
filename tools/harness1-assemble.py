@@ -319,6 +319,41 @@ def e7():
     })
 
 
+def e8():
+    """The same engine as E7 on A2 loops (read, ask, check, retry up to 3), through the door: every retry is refused, nothing spent."""
+    runs = RAW('e7/a2-loop-door.json'); audit = RAW('e7/a2-loop-door-audit.json')
+    pd = POL('policy-swarm-door.json'); hd = phash(os.path.join(H, 'policies', 'policy-swarm-door.json'))
+    calls = [c for r in runs for c in r.get('calls', [])]
+    def tl(r):
+        out = []
+        for e in r['timeline']:
+            x = {'t_ms': e['t'], 'unit': e['unit'], 'phase': e['phase'], **{k: v for k, v in e.items() if k not in ('t', 'unit', 'phase')}}
+            if '/call:' in e['unit'] and e['phase'] == 'end':
+                x.update(phase='refused', policy_row="door row hosts ['storm-charles.promptugal.news'] (openrouter.ai: 403)", error='fetch failed')
+            out.append(x)
+        return out
+    loops = sorted({n['id'] for r in runs for n in r['nodes'] if n['altitude'] == 'A2'})
+    return write('2026-11-12-harness1-e8-swarm-loops.json', {
+        'about': 'E8: the swarm engine (tools/swarm.mjs execute(), unchanged) on A2 loops: for each of 2 storm datasets and 2 models, read, ask, check, retry up to 3 times. Under the door policy with only the storm site allowed, every read passes and every model call is refused by the door: 12 attempts, 0 tokens, 0 USD. The loop does what it is written to do (retry until valid or out of tries); the policy decides that no try leaves.',
+        'by': BY, 'experiment': 'E8', 'measured_at': '2026-11-12T02:46Z', 'where': WHERE, 'tool': TOOL,
+        'code': {'engine': 'tools/swarm.mjs', 'engine_sha256': sha_file(os.path.join(ROOT, 'tools', 'swarm.mjs')), 'driver': 'harness/bin/swarm-loop.mjs', 'driver_sha256': sha_file(os.path.join(H, 'bin', 'swarm-loop.mjs'))},
+        'units': [{'id': 'runner', 'kind': 'agent', 'altitude': 'A3', 'label': "the engine's runner", 'harnessed': True, 'policy_hash': hd}]
+                 + [{'id': l, 'kind': 'loop', 'altitude': 'A2', 'label': l.replace('loop:', ''), 'harnessed': True} for l in loops]
+                 + [{'id': 'door', 'kind': 'harness', 'altitude': 'H', 'label': 'sharness.net door (storm site only)'}, {'id': 'openrouter', 'kind': 'provider', 'altitude': 'M', 'label': 'openrouter.ai (never reached)'}],
+        'edges': [{'from': 'runner', 'to': l, 'kind': 'starts'} for l in loops] + [{'from': l, 'to': 'door', 'kind': 'allowed', 'note': 'the read'} for l in loops]
+                 + [{'from': 'door', 'to': 'openrouter', 'kind': 'refused', 'note': '12 model calls'}],
+        'policy': {'id': pd['id'], 'hash': hd, 'file': 'harness/policies/policy-swarm-door.json'},
+        'runs': [{'task': r['task'], 'ok': r['ok'], 'wall_ms': r['wall_ms'], 'calls': r['calls'], 'timeline': tl(r)} for r in runs],
+        'summary': {'loops': len(loops), 'tries_per_loop': 3, 'model_calls': len(calls), 'refused': sum(c['status'] == 'error' for c in calls), 'valid': sum(bool(c['valid']) for c in calls),
+                    'tokens': sum((c['tokens_in'] or 0) + (c['tokens_out'] or 0) for c in calls), 'cost_usd': round(sum(c['cost_usd'] or 0 for c in calls), 6),
+                    'door_connects': len(audit), 'door_refused': sum(not d['allowed'] for d in audit), 'door_allowed': sum(d['allowed'] for d in audit),
+                    'note': 'CONNECTs are tunnels, not requests: fetch keeps a tunnel open and reuses it (the reads), and the router also asks for credit before calling'},
+        'door_audit': audit,
+        'findings': ['A retry loop under a policy retries into the same refusal: 3 tries per loop, each ledgered as error at 0 USD, then the loop stops (tries exhausted) and consensus is "unknown". Nothing in the loop had to know about the harness.',
+                     'F8: two of the door\'s streamed audit lines were written onto one physical line (concurrent tunnels); the file is not strictly one JSON object per line.'],
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -379,12 +414,18 @@ def findings():
              'observed': ['Node spawn with stdio "ignore" opens /dev/null for writing: EACCES (fixed in the worker with pipes; policy not widened)', 'sgit commit reads /etc/mime.types (fixed with --extra-read for that one file)', 'Node fetch ignores HTTPS_PROXY, goes direct, and the kernel refuses it: pki-agent reports the sender as unchecked and continues'],
              'suggest': ['profiles: a /dev/null write row by default (it is a sink, not a channel)', 'explain/doctor: list the system files a run tried and was refused, so the next policy can name them'],
              'evidence': 'handover/tasks/h003.blocked.json (other_findings)'},
+            {'id': 'F8', 'title': 'net serve --audit: concurrent tunnels interleave audit lines',
+             'severity': 'low (the decisions hold; a strict JSONL reader fails)',
+             'observed': 'E8: 22 audit records from parallel loops, 2 physical lines each held 2 JSON objects; json.loads per line fails ("Extra data")',
+             'why': 'the proxy\'s handler threads write to stderr without a lock or one write per line',
+             'suggest': ['one locked write per record (record + newline in a single write)'],
+             'evidence': 'harness/2026-11-12-harness1-e8-swarm-loops.json; the raw stream is not committed, the parsed records are'},
         ],
     })
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5(), e7()]
+    files = [e1e2(), e3(), e4(), e5(), e7(), e8()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',

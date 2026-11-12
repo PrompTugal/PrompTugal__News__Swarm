@@ -157,6 +157,17 @@
     "explain/doctor: list the system files a run tried and was refused, so the next policy can name them"
    ],
    "evidence": "handover/tasks/h003.blocked.json (other_findings)"
+  },
+  {
+   "id": "F8",
+   "title": "net serve --audit: concurrent tunnels interleave audit lines",
+   "severity": "low (the decisions hold; a strict JSONL reader fails)",
+   "observed": "E8: 22 audit records from parallel loops, 2 physical lines each held 2 JSON objects; json.loads per line fails (\"Extra data\")",
+   "why": "the proxy's handler threads write to stderr without a lock or one write per line",
+   "suggest": [
+    "one locked write per record (record + newline in a single write)"
+   ],
+   "evidence": "harness/2026-11-12-harness1-e8-swarm-loops.json; the raw stream is not committed, the parsed records are"
   }
  ]
 }
