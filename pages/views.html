@@ -24,7 +24,7 @@ main{display:grid;grid-template-columns:200px minmax(0,1fr) 320px;gap:12px;paddi
 .secs button[aria-pressed="true"]{background:color-mix(in srgb,var(--a2) 20%,transparent)}
 #stage{min-width:0;position:relative}.zoom{position:absolute;right:10px;bottom:10px;z-index:2;display:flex;flex-direction:column;gap:4px}.zoom button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:1rem;cursor:pointer}
 .how{position:absolute;left:10px;bottom:10px;z-index:2;max-width:min(520px,70%);font-size:.78rem;color:var(--muted);background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:8px;padding:6px 9px}
-.how{transition:opacity .8s}.how.gone{opacity:0;pointer-events:none}
+.how{transition:opacity .8s;cursor:pointer;top:10px;bottom:auto!important}.how.gone{opacity:0;pointer-events:none}
 .det h3{margin:0 0 2px;font-size:1.05rem;word-break:break-word}.det .alt{color:var(--muted);font-size:.8rem;margin:0 0 8px}.det p{margin:0 0 8px;font-size:.88rem}
 .det dl{display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:.8rem;margin:0 0 10px}.det dt{color:var(--muted)}.det dd{margin:0;word-break:break-all}
 .crumbs{display:flex;flex-wrap:wrap;gap:4px;align-items:center;font-size:.78rem;margin:0 0 10px}.crumbs i{color:var(--muted);font-style:normal}
@@ -91,7 +91,7 @@ function controls() {
   seg($('#layouts'), LAYOUTS, S.layout, (l) => { S.layout = l; view.setLayout(l); controls(); sync(); });
   $('#layouts').style.opacity = S.mode === 'three' || S.mode === 'orbit' ? .4 : 1;
   // the mode's one-line explanation shows, then fades so it never hides the bottom row
-  const how = $('#how'); how.textContent = MODES.find((m) => m[0] === S.mode)[2]; how.classList.remove('gone'); clearTimeout(how._t); how._t = setTimeout(() => how.classList.add('gone'), 6000);
+  const how = $('#how'); how.textContent = MODES.find((m) => m[0] === S.mode)[2]; how.classList.remove('gone'); clearTimeout(how._t); how._t = setTimeout(() => how.classList.add('gone'), 3500); how.onclick = () => how.classList.add('gone');   // top of the stage, clear of the data row; click or 3.5 s to dismiss
 }
 function swatch(alt) { const c = { P: '--p', A4: '--a4', A3: '--a3', A2: '--a2', A1: '--a1', A0: '--a0' }[alt] || '--res'; return `var(${c})`; }
 function rail() {

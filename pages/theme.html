@@ -53,7 +53,9 @@ function show(k) {
   const src = '../' + d.link; $('#open').href = src; $('#prev').disabled = i === 0; $('#next').disabled = i === T.demos.length - 1;
   const fr = $('#fr'); fr.src = src;
   // the stage inside: give it the whole frame (its focus mode), so the demo reads at its largest
-  fr.onload = () => { try { const doc = fr.contentDocument; if (/stage\.html/.test(src)) { doc.documentElement.classList.add('focus'); fr.contentWindow.dispatchEvent(new Event('resize')); } } catch (e) { /* another origin: show it as it is */ } };
+  fr.onload = () => { try { const doc = fr.contentDocument; if (/stage\.html/.test(src)) { doc.documentElement.classList.add('focus'); fr.contentWindow.dispatchEvent(new Event('resize'));
+      // a demo never opens on an empty table: if its first step hasn't played, play it (swarm.1's review, 07:33)
+      setTimeout(() => { try { const rows = [...doc.querySelectorAll('#card [data-i]')]; if (rows.length && rows.every((r) => +fr.contentWindow.getComputedStyle(r).opacity < 0.05) && fr.contentWindow.STAGE) fr.contentWindow.STAGE.next(); } catch (e) {} }, 900); } } catch (e) { /* another origin: show it as it is */ } };
   route();
 }
 function load(id) {
