@@ -49,6 +49,12 @@ body.present header,body.present .demos,body.present footer,body.present .panel[
 body.present{font-size:19px}body.present main{grid-template-columns:1fr;padding-top:12px}body.present .panel[aria-label="Rungs"]>h2{display:none}
 body.present #rungs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}body.present #rungs .rung{flex:0 0 220px;margin:0}body.present #rungs h2,body.present #rungs p,body.present #rungs .rung[disabled],body.present #checknow{display:none}
 body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.present .tl .lane{font-size:15px}body.present .tl .ph{font-size:13px}body.present svg .lbl{font-size:13px}
+.headline{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 14%,var(--panel)),var(--panel))}
+.headline .big{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:1.15rem;font-weight:600;margin:0}.headline .big span{white-space:nowrap}.headline .big i{font-style:normal;color:var(--muted);font-weight:400;font-size:.8em}
+.headline .sub{color:var(--muted);font-size:.8rem;margin:4px 0 0}.headline .sub b{color:var(--ink)}
+.batches{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px}.batch{flex:0 0 auto;min-width:150px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.78rem;color:var(--muted);text-decoration:none;background:var(--panel)}.batch b{display:block;color:var(--ink);font-size:.9rem}
+.batch .jobs{display:flex;gap:2px;margin:4px 0}.batch .jobs i{width:8px;height:8px;border-radius:2px;background:var(--a3)}
+body.present .headline{margin-top:12px}body.present .headline .big{font-size:1.35rem}
 .demos{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a3) 14%,var(--panel)),var(--panel))}.demos h2{margin:0 0 6px;font-size:1rem}.demos ol{margin:0;padding-left:20px}.demos em{color:var(--muted);font-style:normal}
 </style>
 </head>
@@ -57,6 +63,7 @@ body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.p
   <h1>The swarm, one real run at a time</h1>
   <p>Start with one person asking one agent. Then add compute, one model call, many models, loops, and a swarm of loops. Every rung is a real run on the storm site's scheduled work, recorded as JSON and replayed here. <a href="how.html">How the GitHub flow works</a> · <a href="MAP.md">The map</a> · <a href="runs/index.json">the runs as JSON</a></p>
 </header>
+<section class="headline" id="headline" aria-label="Every run that started with a push, added up" hidden></section>
 <section class="demos" aria-label="Tomorrow's demos"><h2>Thursday 12 November: the demos</h2><ol>
 <li><b>The ladder</b>: from me → Claude → a task, up to a swarm of loops on many models. <em id="nruns">Live below: real runs.</em></li>
 <li><b>Sessions across accounts</b>: Dinis's sessions and Angelo's run the same signed packets; results in GitHub and in a vault. <em>Next.</em></li>
@@ -283,11 +290,24 @@ async function pollActions(ref = 'dev', announce = true, first = false) {
     $('#live').textContent = (first ? 'from GitHub Actions: ' : 'new from GitHub Actions: ') + got.map((r) => r.request).join(', '); load((hit || got[got.length - 1]).id);
   } catch (e) { /* no runs yet, or GitHub unreachable */ }
 }
+// the headline: every run that started with a push, added up (runs/summary.json in the Runs repo), and one chip per push (a batch of jobs)
+async function headline() {
+  try {
+    const j = await (await fetch(RAW('dev') + 'summary.json', { cache: 'no-store' })).json(), t = j.totals, u = t.units || {}, el = $('#headline');
+    const n = (x) => Number(x || 0).toLocaleString(), usd = (x) => '$' + Number(x || 0).toFixed(Number(x) < 1 ? 3 : 2), sec = (ms) => Math.round(ms / 1000) + ' s';
+    const big = [[n(t.requests) + ' requests', 'signed'], [n(t.workflow_runs) + ' pushes', ''], [n(t.jobs) + ' jobs', t.peak_jobs_at_once + ' at once at peak'], [n(u.A2) + ' loops', 'A2'], [n(t.calls) + ' LLM calls', 'A1, ' + t.valid_pct + '% valid'], [n(u.A0) + ' compute', 'A0'], [usd(t.openrouter_usd), 'spent'], [usd((t.potential_claude_usd || {})['claude-sonnet-5.5']), 'same tokens on Claude Sonnet']];
+    const batches = [...(j.by_workflow_run || [])].sort((a, b) => String(b.first_start).localeCompare(String(a.first_start))); // newest first
+    el.innerHTML = `<p class="big">${big.map(([a, b]) => `<span>${a}${b ? ` <i>${esc(b)}</i>` : ''}</span>`).join('')}</p>`
+      + `<p class="sub">Every run that started with a push to <a href="https://github.com/${RUNS_REPO}">${esc(RUNS_REPO.split('/')[1])}</a>, added up: <b>${n(t.tokens_in + t.tokens_out)}</b> tokens on ${(t.models || []).length} open-weight models, from ${esc(String(t.first_start).slice(11, 16))} to ${esc(String(t.last_end).slice(11, 16))} UTC. Updated ${esc(String(j.updated).replace('T', ' ').replace('Z', ' UTC'))}. Not measured: ${esc(j.not_measured || '')}</p>`
+      + (batches.length ? `<div class="batches" aria-label="One push, many jobs">${batches.map((b) => `<a class="batch" href="${esc(b.run_url)}" title="${esc((b.requests || []).join(', '))}"><b>1 push → ${b.jobs} job${b.jobs === 1 ? '' : 's'}</b><span class="jobs">${'<i></i>'.repeat(Math.min(b.jobs, 24))}</span>${n(b.calls)} calls · ${usd(b.openrouter_usd)} · ${sec(b.span_ms)}<br>${esc(String(b.first_start).slice(11, 16))} UTC · ${esc(String(b.commit).slice(0, 7))}</a>`).join('')}</div>` : '');
+    el.hidden = false;
+  } catch (e) { /* no summary yet, or GitHub unreachable: the band stays hidden */ }
+}
 async function checkNow() {
   $('#live').textContent = 'asking GitHub for the latest commit…';
   try { const c = await (await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`)).json(); await pollActions(c.sha, false); } catch (e) { $('#live').textContent = 'GitHub did not answer'; }
 }
-poll(true).then(() => pollActions('dev', true, true)); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000);
+poll(true).then(() => pollActions('dev', true, true)); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000); headline(); setInterval(headline, 30000);
 </script>
 </body>
 </html>
