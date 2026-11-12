@@ -785,7 +785,7 @@
      "dur": 2.5,
      "counter": {
       "of": "summary.jobs",
-      "label": "results, each signed and attested by GitHub"
+      "label": "results from pushes, all of tonight, each signed and attested by GitHub"
      },
      "caption": "Each result signed by a key made for its run, and attested by GitHub."
     }
