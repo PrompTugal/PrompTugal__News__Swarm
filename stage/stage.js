@@ -49,6 +49,7 @@
     if (runCache.has(src)) return runCache.get(src);
     let p;
     if (src.startsWith('sim:')) p = Promise.resolve(simulated(src.slice(4)));
+    else if (src.startsWith('agents:')) p = fetch(src.slice(7), { cache: 'no-store' }).then((r) => r.json()).then(agentsGraph);
     else if (src.startsWith('gh:')) p = fetch(RAW(src.slice(3) + '/result.json'), { cache: 'no-store' }).then((r) => r.json()).then((j) => ({ ...j.body, signed_by: j.by && j.by.fp, source: 'github' }));
     else p = fetch('runs/' + src).then((r) => r.json());
     p = p.then(normalise).catch((e) => ({ error: String(e.message || e), nodes: [], links: [], byId: new Map(), timeline: [], T: 1, metrics: {} }));
@@ -71,6 +72,18 @@
     for (const l of links) if (!parent.has(l.target) && l.target !== l.source && altIx(byId.get(l.source).alt) <= altIx(byId.get(l.target).alt) && !ancestor(l.source, l.target)) parent.set(l.target, l.source);
     for (const n of nodes) n.parent = parent.get(n.id) || null;
     return { run: r, title: r.title || r.id, nodes, links, byId, timeline: tl, T, metrics: r.metrics || {}, sim: !!r.sim, error: null };
+  }
+
+  // data/agents.json (swarm.1's snapshot of the real session tree): agents become nodes, parent sessions become edges, and
+  // each agent's start time becomes its timeline, so a replay shows the team being built over the day
+  function agentsGraph(j) {
+    const A = j.agents || [], id = (a) => a.session || a.name, t = (a) => (a.started ? Date.parse(a.started) : NaN);
+    const ts = A.map(t).filter(Number.isFinite), t0 = ts.length ? Math.min(...ts) : 0;
+    const nodes = A.map((a) => ({ id: id(a), kind: a.altitude === 'P' ? 'person' : a.altitude === 'A0' ? 'compute' : 'agent', altitude: a.altitude || 'A3', label: a.name, role: a.role, wake: a.wake, started: a.started }));
+    const ids = new Set(nodes.map((n) => n.id));
+    const edges = A.filter((a) => a.parent && ids.has(a.parent)).map((a) => ({ from: a.parent, to: id(a), kind: 'starts' }));
+    const timeline = A.filter((a) => Number.isFinite(t(a))).map((a) => ({ t: (t(a) - t0) / 1000, unit: id(a), phase: 'start' }));
+    return { id: 'agents', title: 'Who is building this demo tonight', story: j.about, nodes, edges, timeline, metrics: {}, environment: { label: 'the session tree, ' + (j.updated || '') }, counts: j.counts_last_24h };
   }
 
   // simulated graphs, for the stories the runs cannot show (Dinis, 01:18: "it's okay ... a couple simulated scenarios"):
@@ -532,7 +545,7 @@
     if (!G) return;
     if (!G.nodes.length && !G.error) { $('#cards').innerHTML = ''; $('#runmeta').innerHTML = '<p class="muted">No run on this scene: a card, with its source under it.</p>'; return; }
     const m = G.metrics || {}, r = G.run || {};
-    const cards = G.sim ? [['simulated', 'no run file: an illustration']] : [
+    const cards = G.sim ? [['simulated', 'no run file: an illustration']] : r.counts ? [[fmtN(G.nodes.length), 'agents and sessions'], ...Object.entries(r.counts).map(([k, v]) => [String(v), k.replace(/_/g, ' ')])] : [
       [fmtN(G.nodes.length), 'units'], [fmtN(m.llm_calls || 0), 'model calls'], [m.valid_calls != null ? `${m.valid_calls}/${m.llm_calls}` : '–', 'valid'],
       [m.peak_concurrency != null ? fmtN(m.peak_concurrency) : '–', 'at once (peak)'], [m.openrouter_usd != null ? '$' + m.openrouter_usd : '–', 'paid (OpenRouter)'],
       [m.potential_claude_usd ? '$' + m.potential_claude_usd['claude-sonnet-5.5'] : '–', 'same tokens on Sonnet'], [r.wall_ms ? (r.wall_ms / 1000).toFixed(1) + ' s' : '–', 'wall time']];
@@ -562,7 +575,7 @@
   }
   function showInfo(n) {
     const links = G.links.filter((l) => idOf(l.source) === n.id || idOf(l.target) === n.id).length;
-    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
+    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.role ? '<br>' + esc(n.role) : ''}${n.started ? ' · started ' + esc(n.started) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
   }
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => el.classList.remove('on'), 2200); }
 

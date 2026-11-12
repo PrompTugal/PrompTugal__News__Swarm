@@ -814,6 +814,52 @@
    ],
    "run": "s001-storm-six--swarm.1.fringe.json",
    "mode": "radial"
+  },
+  {
+   "id": "team",
+   "act": "10 · Who built this",
+   "title": "Who is building this demo tonight",
+   "run": "agents:data/agents.json",
+   "mode": "tree",
+   "say": "The real session tree on Dinis's account: every agent that built this demo, who started it, and when. swarm.1's snapshot (data/agents.json).",
+   "steps": [
+    {
+     "label": "Dinis",
+     "dur": 1.5,
+     "show": [
+      "P"
+     ],
+     "caption": "One person."
+    },
+    {
+     "label": "the conductor",
+     "dur": 2,
+     "show": [
+      "P",
+      "A4"
+     ],
+     "caption": "Two conductors (A4): the Fringe's lead, and swarm.1 for the swarm."
+    },
+    {
+     "label": "the day, replayed",
+     "dur": 6,
+     "show": null,
+     "replay": true,
+     "counter": {
+      "of": "units",
+      "label": "agents and sessions on screen"
+     },
+     "caption": "Every agent as it started, from 11:14 UTC yesterday to tonight: each one at its person's word."
+    },
+    {
+     "label": "and the Action",
+     "dur": 2,
+     "highlight": [
+      "A0"
+     ],
+     "caption": "And one GitHub Action: no session, no memory, no keys to your systems. It just runs what a signed push asks."
+    }
+   ]
   }
  ]
 }
