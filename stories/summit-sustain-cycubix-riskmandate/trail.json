@@ -1,0 +1,78 @@
+{
+ "about": "How this deck was made: every hop, with its real time (UTC). Model text is the deck itself; no prompt text is stored.",
+ "hops": [
+  {
+   "at": "2026-11-12T09:30:00Z",
+   "who": "Dinis",
+   "role": "person",
+   "where": "the summit floor",
+   "to": "attendees.1",
+   "what": "meets two companies; gives their cards and a description",
+   "abp": false,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:35:00Z",
+   "who": "attendees.1",
+   "role": "agent",
+   "where": "Claude Code cloud",
+   "to": "partners.1",
+   "what": "asks for partner briefs and summit decks (company names only, no contact details)",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:37:49Z",
+   "who": "partners.1",
+   "role": "agent",
+   "where": "Claude Code cloud → GitHub (e850a8c)",
+   "to": "swarm.1",
+   "what": "reads their public pages; writes two partner briefs; passes the deck request on",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:38:05Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "Claude Code cloud",
+   "to": "the coordinator",
+   "what": "picks up the request; builds each deck with the Studio's primitives",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:39:11Z",
+   "who": "the coordinator",
+   "role": "coordinator",
+   "where": "OpenRouter, from swarm.1 (Claude Code cloud)",
+   "model": "anthropic/claude-sonnet-5.5",
+   "what": "plans the deck: 7 primitives (ladder, compare, flow, table, bullets, bullets, statement)",
+   "ms": 20705,
+   "usd": 0.04753782,
+   "tokens": 10529,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:39:31Z",
+   "who": "StoryKit",
+   "role": "kit",
+   "where": "swarm.1 (node)",
+   "what": "accepts all 7 scenes",
+   "ms": 0,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T09:39:31Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "GitHub (PrompTugal__News__Swarm, dev) → GitHub Pages",
+   "to": "the page",
+   "what": "publishes stories/summit-sustain-cycubix-riskmandate/ (story.json and this trail)",
+   "abp": true,
+   "github_compute": true
+  }
+ ]
+}

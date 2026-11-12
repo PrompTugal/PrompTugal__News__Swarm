@@ -1,0 +1,41 @@
+{
+ "stories": [
+  {
+   "id": "summit-sustain-cycubix-riskmandate",
+   "title": "Three layers of one gap",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T09:39:31Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "sustain-nobility",
+    "cycubix"
+   ]
+  },
+  {
+   "id": "summit-sustain-nobility",
+   "title": "Sustain-Nobility: a story made at the summit",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T09:39:28Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "sustain-nobility"
+   ]
+  },
+  {
+   "id": "summit-cycubix",
+   "title": "Cycubix: a story made at the summit",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T09:39:27Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "cycubix"
+   ]
+  }
+ ]
+}

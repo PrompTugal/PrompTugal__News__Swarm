@@ -1,0 +1,180 @@
+{
+ "title": "Sustain-Nobility: a story made at the summit",
+ "id": "summit-sustain-nobility",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Sustain-Nobility",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Sustain-Nobility"
+  },
+  {
+   "type": "statement",
+   "kicker": "The angle",
+   "text": "Governance is only worth what you can demonstrate.",
+   "caption": "Sustain-Nobility's own test: not \"we think our AI is governed\", but \"we can demonstrate it\".",
+   "say": [
+    "Everything in this story hangs on one idea: demonstrable governance.",
+    "It comes from Sustain-Nobility's own public wording."
+   ],
+   "badge": "real",
+   "source": "Sustain-Nobility public pages"
+  },
+  {
+   "type": "bullets",
+   "kicker": "What Sustain-Nobility does",
+   "title": "An AI Governance Readiness Check",
+   "items": [
+    "Assesses governance maturity and identifies risks",
+    "Produces 'practical, defensible outputs in days instead of months'",
+    "For SMEs using AI but unsure about the risks",
+    "For partners supporting hundreds of SMEs with one scalable tool",
+    "Looks at accountability, oversight, monitoring and evidence readiness"
+   ],
+   "caption": "What the check is and who it serves, from their own pages.",
+   "say": [
+    "Two audiences: SMEs directly, and the advisors, law firms and partners who support them.",
+    "The focus on evidence readiness is what matters for us."
+   ],
+   "badge": "real",
+   "source": "Sustain-Nobility public pages"
+  },
+  {
+   "type": "table",
+   "kicker": "How it is offered",
+   "title": "Three plans, one route to evidence",
+   "cols": [
+    "Plan",
+    "What it includes"
+   ],
+   "rows": [
+    [
+     "Essentials",
+     "10-minute assessment, governance score, initial executive snapshot"
+    ],
+    [
+     "Professional",
+     "Adds a 30-minute review call and an initial executive board report"
+    ],
+    [
+     "Partner Licensing",
+     "Custom, for firms that monitor AI governance across clients"
+    ]
+   ],
+   "caption": "The plans as publicly described.",
+   "say": [
+    "A score, a snapshot, a board report: outputs a board can hold.",
+    "Partner Licensing is the scale route for firms with many clients."
+   ],
+   "badge": "real",
+   "source": "Sustain-Nobility public pages"
+  },
+  {
+   "type": "compare",
+   "kicker": "Their stated shift",
+   "title": "From belief to demonstration",
+   "before": {
+    "label": "Before",
+    "items": [
+     "'We think our AI is governed'"
+    ]
+   },
+   "after": {
+    "label": "After",
+    "items": [
+     "'We can demonstrate our AI is governed operationally and defensibly'",
+     "Accountability, oversight, monitoring, evidence readiness"
+    ]
+   },
+   "caption": "The shift the check says it aims to deliver.",
+   "say": [
+    "This is their promise in their words.",
+    "The word that matters is 'demonstrate'."
+   ],
+   "badge": "real",
+   "source": "Sustain-Nobility public pages"
+  },
+  {
+   "type": "flow",
+   "kicker": "What we would do together",
+   "title": "Mandate, reach, gap, per agent",
+   "steps": [
+    "Mandate: what each AI system is for, and who answers",
+    "Reach: what the agent can access (credentials, tools, data)",
+    "Gap: the difference, measured per agent",
+    "Evidence: a read-only written record"
+   ],
+   "caption": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+   "say": [
+    "A readiness check states the mandate in writing.",
+    "Their public pages do not say how agent reach is measured: that is where RiskMandate's measurement would fit."
+   ],
+   "badge": "illustration",
+   "source": "RiskMandate hypothesis"
+  },
+  {
+   "type": "compare",
+   "kicker": "Where the two fit",
+   "title": "Assessment asks for evidence; we produce it",
+   "before": {
+    "label": "Sustain-Nobility (their pages)",
+    "items": [
+     "Assesses whether governance can be demonstrated",
+     "Score, snapshot and board report",
+     "Asks for evidence"
+    ]
+   },
+   "after": {
+    "label": "With RiskMandate (our hypothesis)",
+    "items": [
+     "Measures per agent: asked to do, can reach, the gap",
+     "Read-only",
+     "Evidence as a written record"
+    ]
+   },
+   "caption": "Our hypothesis, not their claim. Nothing of theirs was tested.",
+   "say": [
+    "Their assessment and our measurement are complementary, not competing.",
+    "For agentic AI, the mandate-to-reach gap is the demonstration."
+   ],
+   "badge": "illustration",
+   "source": "RiskMandate hypothesis from public pages"
+  },
+  {
+   "type": "statement",
+   "kicker": "The point",
+   "text": "From \"we think\" to \"we can demonstrate\": for agents, the proof is the gap between mandate and reach.",
+   "caption": "Our hypothesis, built from public pages only.",
+   "say": [
+    "Sustain-Nobility sets the standard of demonstration.",
+    "Measuring the gap per agent is what we would add, together."
+   ],
+   "badge": "illustration",
+   "source": "RiskMandate hypothesis"
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T09:39:28Z",
+ "partners": [
+  "sustain-nobility"
+ ],
+ "simulated": false
+}

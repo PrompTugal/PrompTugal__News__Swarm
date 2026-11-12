@@ -1,0 +1,205 @@
+{
+ "title": "Cycubix: a story made at the summit",
+ "id": "summit-cycubix",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Cycubix",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Cycubix"
+  },
+  {
+   "type": "statement",
+   "kicker": "The angle",
+   "text": "A website says one thing and does another. An AI agent is asked one thing and can reach another.",
+   "caption": "Two gaps with the same shape: what is said or asked, against what actually happens or is reachable.",
+   "say": [
+    "Cycubix built ConsentScan to measure the first gap.",
+    "RiskMandate measures the second."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "flow",
+   "kicker": "What ConsentScan does",
+   "title": "A scan, step by step",
+   "steps": [
+    "Load the site like a first-time EU visitor",
+    "Record what fires before consent",
+    "Click Reject",
+    "Check whether trackers keep firing",
+    "Grade A to F"
+   ],
+   "caption": "One free scan, no sign-up, about 4 minutes. Cycubix Ltd, Dublin.",
+   "say": [
+    "The banner is what the site says. The trackers are what it does.",
+    "ConsentScan began as a check Cycubix ran in its ISO 27001, GDPR and security engagements."
+   ],
+   "source": "Cycubix and ConsentScan public pages",
+   "badge": "real"
+  },
+  {
+   "type": "table",
+   "kicker": "The gap, measured",
+   "title": "EU Consent Index, 2 Nov 2026",
+   "cols": [
+    "Finding",
+    "Result"
+   ],
+   "rows": [
+    [
+     "Websites tested",
+     "160 leading sites, eight EU countries"
+    ],
+    [
+     {
+      "text": "Loaded trackers or non-essential cookies before consent",
+      "tone": "gap"
+     },
+     {
+      "text": "69%",
+      "tone": "gap"
+     }
+    ],
+    [
+     {
+      "text": "Kept tracking after Reject, where a Reject click could be completed",
+      "tone": "gap"
+     },
+     {
+      "text": "58%",
+      "tone": "gap"
+     }
+    ]
+   ],
+   "caption": "Cycubix's own published figures. The gap between saying and doing is common.",
+   "say": [
+    "Once you measure the gap, it is large.",
+    "These are Cycubix's numbers, not ours."
+   ],
+   "source": "Cycubix, EU Consent Index, 2 Nov 2026",
+   "badge": "real"
+  },
+  {
+   "type": "devices",
+   "kicker": "Where an agent enters",
+   "title": "ConsentScan Pro adds an MCP server",
+   "devices": [
+    {
+     "id": "client",
+     "kind": "laptop",
+     "label": "MCP client",
+     "runs": [
+      "Claude",
+      "Cursor",
+      "any MCP client"
+     ]
+    },
+    {
+     "id": "mcp",
+     "kind": "cloud",
+     "label": "ConsentScan MCP server",
+     "runs": [
+      "Run scans"
+     ],
+     "holds": [
+      "Credentials: reach unknown"
+     ]
+    }
+   ],
+   "links": [
+    {
+     "from": "client",
+     "to": "mcp",
+     "label": "asks it to run scans",
+     "tone": "ok"
+    }
+   ],
+   "caption": "Pro is €39 a month: 3 monitored domains and an MCP server. What its credentials reach beyond scanning is unknown from public pages.",
+   "say": [
+    "An outside agent now holds a tool.",
+    "The question is how far that tool reaches."
+   ],
+   "source": "ConsentScan public pricing page",
+   "badge": "real"
+  },
+  {
+   "type": "compare",
+   "kicker": "The same shape",
+   "title": "Two gaps, one method",
+   "before": {
+    "label": "ConsentScan",
+    "items": [
+     "Says: the consent banner",
+     "Does: the trackers that fire",
+     "Output: a grade, A to F"
+    ]
+   },
+   "after": {
+    "label": "RiskMandate",
+    "items": [
+     "Asked: the agent's mandate",
+     "Does: what it can reach",
+     "Output: the recorded gap"
+    ]
+   },
+   "caption": "'Installed, not blocking' is Cycubix's phrase for consent platforms. An agent policy that exists but is not enforced has the same shape.",
+   "say": [
+    "Same question, different subject.",
+    "The phrase 'installed, not blocking' fits both."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "flow",
+   "kicker": "What we would do together",
+   "title": "RiskMandate on ConsentScan's agentic workflow",
+   "steps": [
+    "Write the mandate: load, record cookies, Reject, grade",
+    "Measure the reach of the scanner and MCP credentials",
+    "Record the gap"
+   ],
+   "caption": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+   "say": [
+    "The scanner's job is narrow, so the mandate is writable.",
+    "A narrow mandate makes the gap measurable. Today it is unknown from public pages."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "statement",
+   "kicker": "The point",
+   "text": "ConsentScan checks what a site says against what it does. We would check what an agent is asked to do against what it can reach.",
+   "caption": "Starting with ConsentScan's own scanner and MCP server, as a hypothesis built from public pages only.",
+   "say": [
+    "Cycubix already knows how to measure a gap.",
+    "We would measure this one with them."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T09:39:27Z",
+ "partners": [
+  "cycubix"
+ ],
+ "simulated": false
+}

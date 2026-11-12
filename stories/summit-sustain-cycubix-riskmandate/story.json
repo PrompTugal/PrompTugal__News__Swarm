@@ -1,0 +1,206 @@
+{
+ "title": "Three layers of one gap",
+ "id": "summit-sustain-cycubix-riskmandate",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Three layers of one gap",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Sustain-Nobility + Cycubix"
+  },
+  {
+   "type": "ladder",
+   "kicker": "Three layers of one gap",
+   "title": "One gap, seen at three layers",
+   "levels": [
+    {
+     "id": "1",
+     "label": "Governance: can it be demonstrated?",
+     "note": "Sustain-Nobility: from 'we think' to 'we can demonstrate'"
+    },
+    {
+     "id": "2",
+     "label": "Agents: asked to do vs able to reach",
+     "note": "RiskMandate: mandate, reach and the gap, per agent"
+    },
+    {
+     "id": "3",
+     "label": "Websites: what is said vs what is done",
+     "note": "ConsentScan: the banner against the trackers that fire"
+    }
+   ],
+   "caption": "Each layer measures a distance between a claim and reality.",
+   "say": [
+    "Three companies, three layers, one shape: a promise on one side, behaviour on the other.",
+    "Two are from their own public pages; RiskMandate's part is what we would do together."
+   ],
+   "source": "Sustain-Nobility and Cycubix public pages; RiskMandate hypothesis",
+   "badge": "illustration"
+  },
+  {
+   "type": "compare",
+   "kicker": "Sustain-Nobility",
+   "title": "Governance that can be demonstrated",
+   "before": {
+    "label": "Where many SMEs start",
+    "items": [
+     "'We think our AI is governed'",
+     "Using AI, unsure about the risks"
+    ]
+   },
+   "after": {
+    "label": "Where the check aims",
+    "items": [
+     "'We can demonstrate our AI is governed operationally and defensibly'",
+     "Accountability, oversight, monitoring, evidence readiness",
+     "A governance score, an executive snapshot, a board report"
+    ]
+   },
+   "caption": "Their words: practical, defensible outputs in days instead of months.",
+   "say": [
+    "Sustain-Nobility's check moves an organisation from belief to demonstration.",
+    "It serves SMEs, and partners supporting hundreds of SMEs with one tool."
+   ],
+   "source": "Sustain-Nobility public pages",
+   "badge": "real"
+  },
+  {
+   "type": "flow",
+   "kicker": "ConsentScan (Cycubix)",
+   "title": "What a site says against what it does",
+   "steps": [
+    "Load the site like a first-time EU visitor",
+    "Record what fires before consent",
+    "Click Reject",
+    "Check whether trackers keep firing",
+    "Grade A to F"
+   ],
+   "caption": "Its EU Consent Index: of 160 sites, 69% loaded trackers or non-essential cookies before consent; 58% kept tracking after Reject (where Reject could be completed).",
+   "say": [
+    "A free scan, about 4 minutes, no sign-up.",
+    "The index shows the gap between banner and behaviour is common."
+   ],
+   "source": "Cycubix / ConsentScan public pages, EU Consent Index (2 Nov 2026)",
+   "badge": "real"
+  },
+  {
+   "type": "table",
+   "kicker": "The same shape",
+   "title": "Claim, reality, and the measured gap",
+   "cols": [
+    "Layer",
+    "What is stated",
+    "What is checked",
+    "Gap"
+   ],
+   "rows": [
+    [
+     "Governance (Sustain-Nobility)",
+     "'We think our AI is governed'",
+     "Accountability, oversight, monitoring, evidence",
+     {
+      "text": "Belief vs demonstration",
+      "tone": "gap"
+     }
+    ],
+    [
+     "Agents (RiskMandate, our hypothesis)",
+     "What each agent is asked to do",
+     "What it can reach: credentials, tools, data",
+     {
+      "text": "Mandate vs reach, per agent",
+      "tone": "gap"
+     }
+    ],
+    [
+     "Websites (ConsentScan)",
+     "The consent banner",
+     "Trackers that fire, before and after Reject",
+     {
+      "text": "Says vs does",
+      "tone": "gap"
+     }
+    ]
+   ],
+   "caption": "RiskMandate's row is our hypothesis from public pages; nothing of theirs was tested.",
+   "say": [
+    "Lay the three side by side and the structure repeats.",
+    "Cycubix's phrase 'installed, not blocking' has the same shape as an agent policy that exists but is not enforced."
+   ],
+   "source": "Public pages of both companies; RiskMandate hypothesis",
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "What we could do together",
+   "title": "With Sustain-Nobility",
+   "items": [
+    "Mandate: a readiness check already writes down what each AI system is for and who is accountable",
+    "Reach: public pages do not say how agents' credentials, tools and data are measured: unknown",
+    "Gap: measured per agent, read-only, as a written record",
+    "Their assessments ask for evidence; we would produce it"
+   ],
+   "caption": "Our hypothesis, not their claim. Built from public pages only.",
+   "say": [
+    "This is what we would do together, not something Sustain-Nobility says.",
+    "The gap between mandate and reach would be the demonstration for agentic AI."
+   ],
+   "source": "RiskMandate hypothesis from Sustain-Nobility public pages",
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "What we could do together",
+   "title": "With Cycubix and ConsentScan",
+   "items": [
+    "Mandate: the scanner's job is narrow and writable: load a site, record cookies, click Reject, grade",
+    "Reach: the MCP server lets Claude, Cursor or any MCP client run scans; what its credentials reach beyond scanning is unknown",
+    "Gap: unknown from public pages, but a narrow mandate makes it measurable",
+    "We would write the mandate, measure the reach, record the gap"
+   ],
+   "caption": "Our hypothesis, not their claim. Nothing of theirs was tested.",
+   "say": [
+    "ConsentScan's MCP server is an outside agent with a tool: a clean place to start.",
+    "The unknowns are the point: we would measure them, not assume them."
+   ],
+   "source": "RiskMandate hypothesis from Cycubix public pages",
+   "badge": "illustration"
+  },
+  {
+   "type": "statement",
+   "kicker": "Together",
+   "text": "Governance you can demonstrate, agents measured against their mandate, sites measured against their word: one gap, three layers, measured.",
+   "caption": "Three layers, one habit: write down the claim, then measure the distance.",
+   "say": [
+    "From 'we think' to 'we can demonstrate' needs a measurement at every layer.",
+    "That is the joint story we would like to build."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T09:39:31Z",
+ "partners": [
+  "sustain-nobility",
+  "cycubix"
+ ],
+ "simulated": false
+}
