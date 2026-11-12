@@ -13,6 +13,7 @@
      StoryKit.render(scene)               → html of one scene, every step hidden but the first ([data-r] > 0 get .off)
      StoryKit.present(el, story, opts)    → { next, prev, play, stop, goto(i), state }   opts: { onStep(i, n, info), caption: el, keys: bool, swipe: bool (default on), dwell: ms }
      StoryKit.replay(el, trail, opts)     → { play, stop, seek(p), state }   the making-of at real gaps scaled to opts.seconds (10)
+     StoryKit.badgeOf(story)              → { kind: real|simulated|illustration|mixed|sample, label } from the scenes' badges, or null
      StoryKit.load(id)                    → Promise<{ story, trail }>   (stories/<id>/story.json and trail.json, trail optional)
      StoryKit.STORY_TOOLS                 one JSON-schema tool per primitive: { name, description, parameters }
      StoryKit.openaiTools()               the same, as OpenAI/OpenRouter "tools" ({ type: 'function', function: {...} })
@@ -307,7 +308,16 @@
     document.head.appendChild(st);
   }
 
-  const KIT = { PRIMITIVES, render, present, replay, load, STORY_TOOLS, openaiTools, validate, fromToolCalls, reveals, version: '1' };
+  // the header's badge, from the scenes (storytelling.1, 09:07: a deck that mixes SIMULATED and ILLUSTRATION scenes must not say REAL)
+  function badgeOf(story) {
+    if (!story) return null; if (story.sample) return { kind: 'sample', label: 'SAMPLE · INVENTED' };
+    const order = ['real', 'simulated', 'illustration'], names = { real: 'REAL', simulated: 'SIMULATED', illustration: 'ILLUSTRATION' };
+    const kinds = order.filter((k) => (story.scenes || []).some((sc) => sc.badge === k));
+    if (!kinds.length) return story.simulated ? { kind: 'simulated', label: 'SIMULATED' } : null;   // no scene says: the page says nothing
+    if (kinds.length === 1) return { kind: kinds[0], label: names[kinds[0]] };
+    return { kind: 'mixed', label: kinds.map((k) => names[k]).join(' · '), kinds };
+  }
+  const KIT = { PRIMITIVES, render, present, replay, load, badgeOf, STORY_TOOLS, openaiTools, validate, fromToolCalls, reveals, version: '1' };
   if (typeof window !== 'undefined') window.StoryKit = KIT;
   if (typeof module !== 'undefined' && module.exports) module.exports = KIT;   // node: tools can validate a story
 })();
