@@ -112,6 +112,20 @@
     "contain --secrets to be the only way a secret reaches the child"
    ],
    "evidence": "harness/2026-11-12-harness1-e1e2-before-after.json (gap)"
+  },
+  {
+   "id": "F5",
+   "title": "the door is opt-in through the environment: a lowercase https_proxy outranks HTTPS_PROXY, so an inherited env can route around the door",
+   "severity": "medium without the kernel row; held with it (connect_tcp_ports allows only the door, measured in E4: bypass-session-proxy refused EACCES)",
+   "reported_by": "relay.2.fringe@PrompTugal.dinis, 2026-11-12T02:05Z, in its own container (not measured by harness.1)",
+   "observed": "curl without -x, with HTTPS_PROXY set to the door and the inherited lowercase https_proxy set to the session proxy, went to the session proxy; also relay.2: sgit clone of vault dh2zo1zd through the door OK (both sha256 match; audit CONNECT dev.send.sgraph.ai:443 200), openrouter.ai through the door 403 (not on the allowlist). A push through the door is not yet tested.",
+   "why": "clients read https_proxy before HTTPS_PROXY; the door is chosen by the client, not imposed, unless the kernel allows no other port",
+   "suggest": [
+    "run the hop with env -i and set both spellings to the door",
+    "keep connect_tcp_ports = [door] in every policy that uses the door: the env is advice, the kernel row is the boundary",
+    "an env row in the policy (F4)"
+   ],
+   "evidence": "relay.2 message to harness.1, 02:05Z; harness/relay2/README.md"
   }
  ]
 }
