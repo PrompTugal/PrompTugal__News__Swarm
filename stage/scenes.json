@@ -951,6 +951,23 @@
       ],
       "source": "harness/2026-11-12-swarm1-probe-and-hello.json (after.not_covered)"
      }
+    },
+    {
+     "label": "closed since",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Through the night",
+      "title": "Closed since, and still open",
+      "lines": [
+       "Closed: the inherited environment. E9 starts the process with env -i: 0 credential-like names.",
+       "Closed: the key file. E9's execution key is born inside the process and never touches disk.",
+       "Still open: Unix sockets by path and UDP (this list), and, new from E9, uid 0 next door can open /proc/<pid>/mem."
+      ],
+      "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (before_after, neighbour, gap; 03:44 UTC)"
+     },
+     "caption": "Two gaps closed during the night. One new, found by the same test, and named."
     }
    ]
   },

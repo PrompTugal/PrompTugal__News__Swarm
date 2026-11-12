@@ -30,7 +30,8 @@
   const ALT_R = { P: 11, A4: 13, T: 7, A3: 12, A2: 8, A1: 5.5, A0: 4.5, M: 10, D: 7, X: 12, C: 7, E: 9 };
 
   // ---------- knobs (kept per viewer)
-  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false, userAnchors: {}, vmode: 'neon', vlayout: 'down' }, store.get('knobs', {}));
+  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false, brisk: false, userAnchors: {}, vmode: 'neon', vlayout: 'down' }, store.get('knobs', {}));
+  if (/[#&?]brisk\b/.test(location.hash + '&' + location.search)) K.brisk = true;   // stage.html#pack=main&brisk
   if (Q.get('mode')) K.mode = Q.get('mode');
   if (Q.get('theme')) K.theme = Q.get('theme');
   const saveK = () => store.set('knobs', K);
@@ -161,9 +162,18 @@
   function stepAt(time) { for (let k = 0; k < STEPS.length; k++) if (time < STEPS[k].e - 1e-6) return k; return STEPS.length - 1; }
 
   // ---------- the clock (the talk player's semantics)
+  // brisk (swarm.1, 03:45: a short talk wants one press per scene): → plays the scene through, every step in turn, and holds on its end;
+  // ← lands on the END of the previous scene. Key B, or #...&brisk in the URL.
+  const sceneEnd = (si) => STEPS.filter((x) => x.si === si).pop();
   function next() {
     if (!STEPS.length) return;
     const k = stepAt(t), S = STEPS[k];
+    if (K.brisk) {
+      const E = sceneEnd(S.si);
+      if (t < E.e - 0.02) { if (t <= S.s + 0.02) t = S.s; stopAt = E.e - 1e-3; playing = true; }   // play on to this scene's end
+      else { const N = STEPS.find((x) => x.si > S.si); if (N) { t = N.s; stopAt = sceneEnd(N.si).e - 1e-3; playing = true; } }
+      return;
+    }
     if (t <= S.s + 0.02) { t = S.s; stopAt = S.e - 1e-3; playing = true; }        // at a step's start: play it, hold on its end
     else if (t < S.e - 0.02) { t = S.e - 1e-3; playing = false; stopAt = null; }  // mid-step: finish it (its built frame)
     else if (k + 1 < STEPS.length) { t = STEPS[k + 1].s; stopAt = STEPS[k + 1].e - 1e-3; playing = true; }
@@ -172,6 +182,7 @@
     if (!STEPS.length) return;
     const k = stepAt(t);
     playing = false; stopAt = null;
+    if (K.brisk) { const P = [...STEPS].reverse().find((x) => x.si < STEPS[k].si); t = P ? P.e - 1e-3 : 0; return; }
     const S = STEPS[k];
     if (t > S.s + 0.15) t = k > 0 ? STEPS[k - 1].e - 1e-3 : 0;          // within a step: back to where it began (the step before, built)
     else if (k > 0 && STEPS[k - 1].si !== S.si) t = STEPS[k - 1].e - 1e-3;   // at a scene's start: the END of the previous scene
@@ -803,7 +814,7 @@
     root.dataset.theme = K.theme;
     $('#k-mode').value = K.mode; $('#k-theme').value = K.theme;
     for (const k of ['text', 'label', 'node', 'link']) { const el = $('#k-' + k); if (el) el.value = K[k]; }
-    $('#k-labels').checked = K.labels; $('#k-anchors').checked = K.anchors; $('#k-auto').checked = K.auto;
+    $('#k-labels').checked = K.labels; $('#k-anchors').checked = K.anchors; $('#k-auto').checked = K.auto; if ($('#k-brisk')) $('#k-brisk').checked = K.brisk;
     saveK();
   }
   function resizer(el, side) {
@@ -822,7 +833,7 @@
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
     ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–6', 'view: top-down, tree, radial, force, 3D, the designer\'s views'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
-    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'], ['double-click a unit', 'zoom to it and everything it started (0 to come back)'], ['click a unit', 'open its box'],
+    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['B', 'brisk: one press of → plays a whole scene; ← to the end of the one before (or #...&brisk)'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'], ['double-click a unit', 'zoom to it and everything it started (0 to come back)'], ['click a unit', 'open its box'],
   ];
   const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'];
   function onKey(e) {
@@ -843,6 +854,7 @@
     else if (k === 't' || k === 'T') { K.theme = THEMES[(THEMES.indexOf(K.theme) + 1) % THEMES.length]; applyPanes(); toast('theme: ' + K.theme); }
     else if (k === 's' || k === 'S') { const R = [0.5, 1, 2, 5, 20], i = R.indexOf(K.rate); K.rate = R[(i < 0 ? 1 : i + (k === 'S' ? R.length - 1 : 1)) % R.length]; saveK(); toast('speed ' + K.rate + '×'); }
     else if (k === 'h' || k === 'H') { K.auto = !K.auto; applyPanes(); toast('auto-advance ' + (K.auto ? 'on' : 'off')); }
+    else if (k === 'b' || k === 'B') { K.brisk = !K.brisk; applyPanes(); toast(K.brisk ? 'brisk: one press plays a whole scene' : 'step by step'); }
     else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
     else if (k === '?') $('#help').toggleAttribute('open');
     else if (k === 'g' || k === 'G') openGoto();
@@ -900,6 +912,7 @@
     $('#k-labels').onchange = (e) => { K.labels = e.target.checked; applyPanes(); };
     $('#k-anchors').onchange = (e) => { K.anchors = e.target.checked; applyPanes(); lastLayoutKey = ''; };
     $('#k-auto').onchange = (e) => { K.auto = e.target.checked; applyPanes(); };
+    if ($('#k-brisk')) $('#k-brisk').onchange = (e) => { K.brisk = e.target.checked; applyPanes(); };
     $('#vpick').innerHTML = `<select id="v-mode" title="the designer's mode">${['flat', 'blueprint', 'heat', 'neon', 'orbit', 'three'].map((m) => `<option ${m === K.vmode ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="v-layout" title="layout">${['down', 'right', 'radial', 'tree'].map((m) => `<option ${m === K.vlayout ? 'selected' : ''}>${m}</option>`).join('')}</select>`;
     $('#v-mode').onchange = (e) => { K.vmode = e.target.value; saveK(); }; $('#v-layout').onchange = (e) => { K.vlayout = e.target.value; saveK(); };
     $('#k-reset').onclick = () => { store.set('knobs', {}); store.set('hiddenAlts', []); location.reload(); };
