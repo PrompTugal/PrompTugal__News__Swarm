@@ -518,6 +518,20 @@
   function cardSrc(src) { if (!src) return null; if (!cardData.has(src)) { cardData.set(src, null); fetch(src).then((r) => r.json()).then((j) => { cardData.set(src, j); lastCardKey = ''; }).catch(() => cardData.set(src, { error: true })); } return cardData.get(src); }
   const pick = (o, path) => path.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
   let lastCardKey = '', glyphStep = null;
+  // a card grows into the room the stage gives it (audience.1, 05:46: in focus mode at 1366x768 a table's text was 7.5 px):
+  // its content is zoomed up, never down, to at most 1.8x, until it would overflow; again on every resize (focus, panes)
+  function growCard() {
+    const el = $('#card'), x = el && el.firstElementChild;
+    if (!x || el.style.display === 'none' || x.tagName === 'IFRAME' || x.querySelector('iframe') || /nogrow/.test(location.hash)) return;
+    const cs = getComputedStyle(el), aw = el.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight), ah = el.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+    x.style.zoom = '1'; const h = x.scrollHeight; if (!h || aw <= 0 || ah <= 0) return;
+    let z = clamp(Math.floor((ah / h) * 0.97 * 20) / 20, 1, 1.8);
+    const fits = () => el.scrollHeight <= el.clientHeight + 1 && el.scrollWidth <= el.clientWidth + 1 && x.scrollWidth <= aw + 2;
+    for (let i = 0; i < 16 && z > 1; i++) { x.style.zoom = String(z); if (fits()) break; z = Math.max(1, Math.round((z - 0.05) * 100) / 100); }
+    x.style.zoom = String(z);
+  }
+  { const watch = () => { const el = $('#card'); if (el && window.ResizeObserver) new ResizeObserver(() => requestAnimationFrame(growCard)).observe(el); };
+    if (document.readyState === 'complete') watch(); else addEventListener('load', watch); }
   function drawCard(st) {
     const el = $('#card'), c = st.card;
     el.style.display = ''; $('#svg').style.display = 'none'; d3.select('#bars').style('display', 'none'); $('#counter').style.display = 'none';
@@ -526,7 +540,7 @@
     badge(c.badge ? [c.badgeKind || 'sim', c.badge] : c.idea ? ['idea', 'ILLUSTRATION · NOT A RUN'] : c.src || c.source ? ['real', 'REAL · ' + short(c.source || c.src, 70)] : null);
     const key = c.kind === 'glyph' ? 'glyph|' + c.name + '|' + st.si : JSON.stringify(c) + st.cardN + (data ? 1 : 0);
     if (key !== lastCardKey) {
-      lastCardKey = key;
+      lastCardKey = key; requestAnimationFrame(growCard); setTimeout(growCard, 700);   // again once big numbers have counted up
       if (c.kind === 'gap') {
         const reach = c.reach || (data && pick(data, c.reachFrom || '') ) || [];
         const items = Array.isArray(reach) ? reach : Object.entries(reach).map(([k, v]) => `${k}: ${typeof v === 'object' ? JSON.stringify(v) : v}`);
