@@ -49,7 +49,7 @@
     if (runCache.has(src)) return runCache.get(src);
     let p;
     if (src.startsWith('sim:')) p = Promise.resolve(simulated(src.slice(4)));
-    else if (src.startsWith('agents:')) p = fetch(src.slice(7), { cache: 'no-store' }).then((r) => r.json()).then(agentsGraph);
+    else if (src.startsWith('agents:')) p = Promise.all([fetch(src.slice(7), { cache: 'no-store' }).then((r) => r.json()), fetch('data/agent-activity.json', { cache: 'no-store' }).then((r) => r.json()).catch(() => null)]).then(([a, act]) => agentsGraph(a, act));
     else if (src.startsWith('gh:')) p = fetch(RAW(src.slice(3) + '/result.json'), { cache: 'no-store' }).then((r) => r.json()).then((j) => ({ ...j.body, signed_by: j.by && j.by.fp, source: 'github' }));
     else p = fetch('runs/' + src).then((r) => r.json());
     p = p.then(normalise).catch((e) => ({ error: String(e.message || e), nodes: [], links: [], byId: new Map(), timeline: [], T: 1, metrics: {} }));
@@ -76,14 +76,18 @@
 
   // data/agents.json (swarm.1's snapshot of the real session tree): agents become nodes, parent sessions become edges, and
   // each agent's start time becomes its timeline, so a replay shows the team being built over the day
-  function agentsGraph(j) {
+  function agentsGraph(j, act) {
     const A = j.agents || [], id = (a) => a.session || a.name, t = (a) => (a.started ? Date.parse(a.started) : NaN);
     const ts = A.map(t).filter(Number.isFinite), t0 = ts.length ? Math.min(...ts) : 0;
     const nodes = A.map((a) => ({ id: id(a), kind: a.altitude === 'P' ? 'person' : a.altitude === 'A0' ? 'compute' : 'agent', altitude: a.altitude || 'A3', label: a.name, role: a.role, wake: a.wake, started: a.started }));
     const ids = new Set(nodes.map((n) => n.id));
     const edges = A.filter((a) => a.parent && ids.has(a.parent)).map((a) => ({ from: a.parent, to: id(a), kind: 'starts' }));
     const timeline = A.filter((a) => Number.isFinite(t(a))).map((a) => ({ t: (t(a) - t0) / 1000, unit: id(a), phase: 'start' }));
-    return { id: 'agents', title: 'Who is building this demo tonight', story: j.about, nodes, edges, timeline, metrics: {}, environment: { label: 'the session tree, ' + (j.updated || '') }, counts: j.counts_last_24h };
+    // commits per agent (data/agent-activity.json, from the git logs): each node's size and its counter
+    const A2 = new Map(((act && act.agents) || []).map((x) => [x.agent, x]));
+    for (const n of nodes) { const x = A2.get(n.label); if (x) { n.commits = x.commits; n.lastCommit = x.last; } }
+    const counts = act ? { commits_24h: act.commits, named_by_agent: act.named, agents_committing: act.agents_named, read_at: act.updated } : j.counts_last_24h;
+    return { id: 'agents', title: 'Who is building this demo tonight', story: j.about, nodes, edges, timeline, metrics: {}, environment: { label: 'the session tree, ' + (j.updated || '') + (act ? ' · commits from the git logs, ' + act.updated : '') }, counts };
   }
 
   // simulated graphs, for the stories the runs cannot show (Dinis, 01:18: "it's okay ... a couple simulated scenarios"):
@@ -122,6 +126,13 @@
     if (typeof renderStory === 'function' && $('#story')) renderStory();
   }
   addEventListener('hashchange', () => applyPack(packFromUrl()));
+  setInterval(async () => {
+    const sc = shownScene; if (!sc || !sc.run || !sc.run.startsWith('agents:') || !G) return;
+    runCache.delete(sc.run); const g = await loadRun(sc.run); if (shownScene !== sc || g.error) return;
+    const old = new Map(G.nodes.map((n) => [n.id, n])); g.nodes.forEach((n) => { const o = old.get(n.id); if (o) { n.x = o.x; n.y = o.y; } });
+    const grew = g.nodes.length !== G.nodes.length || g.nodes.some((n) => (old.get(n.id) || {}).commits !== n.commits);
+    G = g; lastLayoutKey = ''; renderSide(); if (grew) toast('live: the session tree and commits, read again');
+  }, 60000);
   function freeScene(src, title, rung) {
     return { id: 'run:' + src, act: 'Runs', title: (rung ? rung + ' · ' : '') + title, run: src, free: true, say: 'One real run, replayed as it happened: every unit appears when it started and goes quiet when it ended.',
       steps: [{ label: 'the run, replayed', dur: 6, replay: true, caption: 'Replayed from the run file: each unit appears when it started.' },
@@ -271,7 +282,7 @@
       .alphaDecay(0.03)
       .on('tick', () => g.nodes.forEach((n) => { n.tx = n.x; n.ty = n.y; }));
   }
-  const r = (n) => (ALT_R[n.alt] || 6) * K.node;
+  const r = (n) => (ALT_R[n.alt] || 6) * K.node * (n.commits ? 1 + Math.log10(1 + n.commits) * 0.6 : 1);   // an agent grows with its commits
 
   // assets added by a step (the "who can reach it" stories): nodes on the right, sim-marked
   function withAssets(g, names) {
@@ -286,7 +297,7 @@
   }
 
   // ---------- render one frame
-  var shownScene = null; let userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
+  var shownScene = null; let lastReplayFit = 0, userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
   async function ensureScene(st) {
     const sc = st.scene;
     if (shownScene === sc) return;
@@ -313,6 +324,8 @@
     renderCaption(st, mode);
     // the camera follows the story: a new step refits (twice: as it starts, and once the layout settles), unless the presenter
     // zoomed by hand during this scene (0 or the fit button gives the camera back)
+    // during a replay the picture grows: the camera follows it about once a second (unless the presenter zoomed)
+    if (st.replay != null && st.replay < 1 && playing && !userZoomed && performance.now() - lastReplayFit > 1000) { lastReplayFit = performance.now(); fit(); }
     if (st.k !== lastStepK) { const sameScene = lastStepK >= 0 && STEPS[lastStepK] && STEPS[lastStepK].si === st.si; lastStepK = st.k; if (!sameScene) userZoomed = false; if (!userZoomed && st.camera !== 'hold') { setTimeout(() => { if (!userZoomed) fit(); }, 350); setTimeout(() => { if (!userZoomed) fit(); }, 1500); } }
     if (st.card) { hideViews(); drawCard(st); return; }
     $('#card').style.display = 'none';
@@ -452,6 +465,7 @@
     const c = st.counter;
     if (c.of === 'reach') return { value: (st._reach && st._reach.units) || 0, label: 'units that can reach the assets' };
     if (c.of === 'units') return { value: g.nodes.filter((n) => n.alt !== 'X' && visibleOf(n, st) > 0.5).length, label: 'units on screen' };
+    if (c.of === 'commits') return { value: g.nodes.filter((n) => visibleOf(n, st) > 0.5).reduce((s2, n) => s2 + (n.commits || 0), 0), label: 'commits by the agents on screen, last 24 h' };
     if (c.of === 'calls') return { value: g.metrics.llm_calls || 0, label: 'model calls in this run' };
     if (c.of === 'peak') return { value: g.metrics.peak_concurrency || 0, label: 'units at once (peak)' };
     if (c.of === 'value') return { value: c.value || 0, label: c.label || '' };
@@ -626,7 +640,7 @@
     if (!G || !svg) return;
     const ns = (drawn || G).nodes.filter((n) => n.x != null && !(drawn && drawn.nodes.includes(n) && gNodes.selectAll('g.n').filter((d) => d === n).style('display') === 'none'));
     if (!ns.length) return;
-    const pad = 40; let x0 = d3.min(ns, (n) => n.x) - pad, x1 = d3.max(ns, (n) => n.x) + pad + 80, y0 = d3.min(ns, (n) => n.y) - pad, y1 = d3.max(ns, (n) => n.y) + pad + ($("#caption").textContent ? 90 : 0);
+    const pad = 40; let x0 = d3.min(ns, (n) => n.x) - pad, x1 = d3.max(ns, (n) => n.x) + pad + 80, y0 = d3.min(ns, (n) => n.y) - pad - ($('#counter').style.display !== 'none' ? 80 : 0), y1 = d3.max(ns, (n) => n.y) + pad + ($("#caption").textContent ? 90 : 0);
     // big labels must fit too: take their real box (in graph coordinates) into the frame
     try { const b = gLabels.node().getBBox(); if (b.width) { x0 = Math.min(x0, b.x - 16); x1 = Math.max(x1, b.x + b.width + 16); y0 = Math.min(y0, b.y - 16); y1 = Math.max(y1, b.y + b.height + 16 + ($("#caption").textContent ? 90 : 0)); } } catch (e) { /* no labels yet */ }
     const k = clamp(Math.min(W / (x1 - x0), H / (y1 - y0)), 0.15, 2.5);
@@ -697,6 +711,7 @@
     row('what it is', `${n.label} · ${ALT_NAME[n.alt] || n.alt} · ${n.kind}`);
     if (HOLDS[n.alt]) { row('its mandate', HOLDS[n.alt][0], 'how.html, Who holds what'); row('what it cannot do', HOLDS[n.alt][1], 'how.html'); }
     if (n.role) row('role', n.role, 'data/agents.json');
+    if (n.commits) row('commits, last 24 h', `${n.commits} (last at ${n.lastCommit})`, 'data/agent-activity.json, from the git logs');
     if (r.environment) row('where it ran', [r.environment.label, r.environment.account].filter(Boolean).join(' · '), 'the run file');
     if (n.env) row('environment', [n.env, n.account].filter(Boolean).join(' · '));
     let pk = null;
@@ -728,7 +743,7 @@
   }
   function showInfo(n) {
     const links = G.links.filter((l) => idOf(l.source) === n.id || idOf(l.target) === n.id).length;
-    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.role ? '<br>' + esc(n.role) : ''}${n.started ? ' · started ' + esc(n.started) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">click: open its box · double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
+    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.role ? '<br>' + esc(n.role) : ''}${n.started ? ' · started ' + esc(n.started) : ''}${n.commits ? ' · ' + n.commits + ' commits in 24 h' : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">click: open its box · double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
   }
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => el.classList.remove('on'), 2200); }
 

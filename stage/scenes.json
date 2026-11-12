@@ -1229,7 +1229,7 @@
    "title": "Who is building this demo tonight",
    "run": "agents:data/agents.json",
    "mode": "tree",
-   "say": "The real session tree on Dinis's account: every agent that built this demo, who started it, and when. swarm.1's snapshot (data/agents.json).",
+   "say": "The real session tree on Dinis's account: every agent that built this demo, who started it, and when (swarm.1's data/agents.json). Each agent's size is its commits in the last 24 hours, from the git logs (data/agent-activity.json). The scene reads both again every minute.",
    "steps": [
     {
      "label": "Dinis",
@@ -1254,10 +1254,10 @@
      "show": null,
      "replay": true,
      "counter": {
-      "of": "units",
-      "label": "agents and sessions on screen"
+      "of": "commits",
+      "label": "commits by the agents on screen, last 24 h"
      },
-     "caption": "Every agent as it started, from 11:14 UTC yesterday to tonight: each one at its person's word."
+     "caption": "Every agent as it started, from 11:14 UTC yesterday to tonight, each at its person's word. The bigger the circle, the more it committed."
     },
     {
      "label": "and the Action",
