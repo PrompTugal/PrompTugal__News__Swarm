@@ -30,7 +30,7 @@
   const ALT_R = { P: 11, A4: 13, T: 7, A3: 12, A2: 8, A1: 5.5, A0: 4.5, M: 10, D: 7, X: 12, C: 7, E: 9 };
 
   // ---------- knobs (kept per viewer)
-  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false, userAnchors: {} }, store.get('knobs', {}));
+  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false, userAnchors: {}, vmode: 'neon', vlayout: 'down' }, store.get('knobs', {}));
   if (Q.get('mode')) K.mode = Q.get('mode');
   if (Q.get('theme')) K.theme = Q.get('theme');
   const saveK = () => store.set('knobs', K);
@@ -228,6 +228,7 @@
     radial: { name: 'Radial', key: '3', place: placeRadial },
     force: { name: 'Force', key: '4', place: placeForce },
     universe: { name: '3D universe', key: '5', place: null },   // stage/universe.js plugs in here (window.STAGE_UNIVERSE)
+    views: { name: 'Designer', key: '6', place: null },         // swarm.1.designer's assets/swarm-views.js: its five modes and four layouts
   };
   function visibleAlts(nodes) { return ALT.filter((a) => nodes.some((n) => n.alt === a)); }
   function placeLayers(g) {   // X-Ray's top-down: one band per altitude; children under their parents
@@ -312,12 +313,13 @@
     // the camera follows the story: a new step refits (twice: as it starts, and once the layout settles), unless the presenter
     // zoomed by hand during this scene (0 or the fit button gives the camera back)
     if (st.k !== lastStepK) { const sameScene = lastStepK >= 0 && STEPS[lastStepK] && STEPS[lastStepK].si === st.si; lastStepK = st.k; if (!sameScene) userZoomed = false; if (!userZoomed && st.camera !== 'hold') { setTimeout(() => { if (!userZoomed) fit(); }, 350); setTimeout(() => { if (!userZoomed) fit(); }, 1500); } }
-    if (st.card) { drawCard(st); return; }
+    if (st.card) { hideViews(); drawCard(st); return; }
     $('#card').style.display = 'none';
-    if (st.bars) { drawBars(st); return; }
+    if (st.bars) { hideViews(); drawBars(st); return; }
     d3.select('#bars').style('display', 'none');
     if (mode !== 'universe' || !window.STAGE_UNIVERSE) $('#svg').style.display = '';
     const g = withAssets(G, st.assets);
+    if (mode === 'views') { drawViews(st); return; } else hideViews();
     if (mode === 'universe') {
       if (window.STAGE_UNIVERSE) { $('#svg').style.display = 'none'; window.STAGE_UNIVERSE.render(g, st, { K, ALT, altIx, r, color, visible: (n) => visibleOf(n, st) }); return; }
       // the 3D mode is not loaded yet: load it once, draw the flat view meanwhile
@@ -543,6 +545,32 @@
     el.append('p').attr('class', 'note').text(`${G.title}: ${fmtN((m.tokens_in || 0) + (m.tokens_out || 0))} tokens, ${m.llm_calls || 0} calls. The Claude prices are list prices for the same tokens (the run file's potential_claude_usd); OpenRouter is what was paid.`);
   }
 
+  // ---------- the designer's views (assets/swarm-views.js + css/swarm-themes.css), loaded the first time they are chosen.
+  // The stage's clock drives them: setTime during a replay (held at the built end), highlight from the step.
+  let SV = null, svRun = null, svT = undefined, svHi = undefined, svLoading = false, svKey = '';
+  function loadViews() {
+    if (window.SwarmViews || svLoading) return; svLoading = true;
+    const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = 'css/swarm-themes.css'; document.head.appendChild(l);
+    const s2 = document.createElement('script'); s2.src = 'assets/swarm-views.js'; s2.onerror = () => { svLoading = false; toast("The designer's views did not load."); }; document.body.appendChild(s2);
+  }
+  function drawViews(st) {
+    const el = $('#views');
+    $('#svg').style.display = 'none'; if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide(); el.style.display = ''; $('#vpick').style.display = '';
+    if (!window.SwarmViews) { loadViews(); return; }
+    const key = st.si + '|' + K.vmode + '|' + K.vlayout;
+    if (!SV || svRun !== G.run || svKey !== key) {
+      if (SV && svRun === G.run) { SV.setMode(K.vmode); SV.setLayout(K.vlayout); }
+      else { if (SV) SV.destroy(); SV = window.SwarmViews.render(el, G.run, { mode: K.vmode, layout: K.vlayout }); SV.on('select', (n) => { if (n) { const mine = G.byId.get(n.id); if (mine) openBox(mine, null); } }); svT = undefined; svHi = undefined; }
+      svRun = G.run; svKey = key;
+    }
+    const tt = st.replay != null && st.replay < 1 ? st.replay * G.T : null;
+    if (tt !== svT && (tt == null || svT == null || Math.abs(tt - svT) > 30)) { svT = tt; SV.setTime(tt); }
+    const hi = st.highlight ? st.highlight.filter((a) => /^A[0-4]$|^P$/.test(a)).join(',') || null : null;
+    if (hi !== svHi) { svHi = hi; SV.highlight(hi); }
+    $('#simflag').style.display = 'none'; $('#counter').style.display = 'none';
+  }
+  function hideViews() { $('#views').style.display = 'none'; $('#vpick').style.display = 'none'; }
+
   // ---------- 3D: stage/universe.js, loaded the first time the mode is asked for
   let uniLoading = false;
   function loadUniverse() {
@@ -560,6 +588,7 @@
 
   // ---------- camera
   function fit(instant) {
+    if (curMode === 'views' && SV) { SV.fit(); return; }
     if (!G || !svg) return;
     const ns = (drawn || G).nodes.filter((n) => n.x != null && !(drawn && drawn.nodes.includes(n) && gNodes.selectAll('g.n').filter((d) => d === n).style('display') === 'none'));
     if (!ns.length) return;
@@ -571,7 +600,7 @@
     (instant ? svg : svg.transition().duration(600)).call(zoom.transform, tr);
     userZoomed = false;
   }
-  function zoomBy(f) { svg.transition().duration(250).call(zoom.scaleBy, f); }
+  function zoomBy(f) { if (curMode === 'views' && SV) { SV.zoom(1 / f); return; } svg.transition().duration(250).call(zoom.scaleBy, f); }
 
   // ---------- panes, controls, captions
   function renderStory() {
@@ -696,7 +725,7 @@
   // ---------- keys (the player's map, plus the stage's own)
   const KEYS = [
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
-    ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–5', 'view: top-down, tree, radial, force, 3D'],
+    ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–6', 'view: top-down, tree, radial, force, 3D, the designer\'s views'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
     ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
   ];
@@ -708,7 +737,7 @@
     else if (k === ' ' || k === 'k') { playing = !playing; stopAt = null; if (playing && t >= TOTAL - 0.01) t = 0; }
     else if (k === 'PageDown' || k === 'ArrowDown') sceneJump(1); else if (k === 'PageUp' || k === 'ArrowUp') sceneJump(-1);
     else if (k === 'Home') gotoScene(0); else if (k === 'End') gotoScene(SCENES.length - 1, true);
-    else if (/^[1-5]$/.test(k)) { K.mode = modeOverride = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; userZoomed = false; setTimeout(() => fit(), 400); setTimeout(() => fit(), 1600); toast(MODES[K.mode].name); }
+    else if (/^[1-6]$/.test(k)) { K.mode = modeOverride = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; userZoomed = false; setTimeout(() => fit(), 400); setTimeout(() => fit(), 1600); toast(MODES[K.mode].name); }
     else if (k === 'l' || k === 'L') { K.labels = !K.labels; applyPanes(); }
     else if (k === '+') { K.text = +(clamp(K.text + 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label + 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
     else if (k === '−' || k === '_') { K.text = +(clamp(K.text - 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label - 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
@@ -776,6 +805,8 @@
     $('#k-labels').onchange = (e) => { K.labels = e.target.checked; applyPanes(); };
     $('#k-anchors').onchange = (e) => { K.anchors = e.target.checked; applyPanes(); lastLayoutKey = ''; };
     $('#k-auto').onchange = (e) => { K.auto = e.target.checked; applyPanes(); };
+    $('#vpick').innerHTML = `<select id="v-mode" title="the designer's mode">${['flat', 'blueprint', 'heat', 'neon', 'three'].map((m) => `<option ${m === K.vmode ? 'selected' : ''}>${m}</option>`).join('')}</select><select id="v-layout" title="layout">${['down', 'right', 'radial', 'tree'].map((m) => `<option ${m === K.vlayout ? 'selected' : ''}>${m}</option>`).join('')}</select>`;
+    $('#v-mode').onchange = (e) => { K.vmode = e.target.value; saveK(); }; $('#v-layout').onchange = (e) => { K.vlayout = e.target.value; saveK(); };
     $('#k-reset').onclick = () => { store.set('knobs', {}); store.set('hiddenAlts', []); location.reload(); };
     $('#helpkeys').innerHTML = KEYS.map(([k, d]) => `<dt>${esc(k)}</dt><dd>${esc(d)}</dd>`).join('');
     resizer($('#hL'), 'L'); resizer($('#hR'), 'R');

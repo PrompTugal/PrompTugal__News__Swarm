@@ -115,3 +115,6 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .fs { position: relative; z-index: 1; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-solid); padding: 6px 8px; font-size: .82em; display: flex; flex-direction: column; gap: 2px }
 .fs b { font: 700 1.1em var(--font-head) } .fs small { color: var(--muted) } .fs .fp { font-family: var(--mono); color: var(--accent2) } .fs i { position: absolute; right: 6px; top: 4px; font-style: normal }
 .fs.l-memory-decrypted { border-color: var(--warn) } .fs.l-vault-encrypted { border-color: var(--accent) } .fs.l-git-public { border-color: var(--alt-A3) }
+/* the designer's views, mounted in the stage */
+#views { position: absolute; inset: 0 } #views.sv { background: transparent }
+#vpick { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 6px; z-index: 3 } #vpick select { background: var(--panel-solid); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 3px 6px }
