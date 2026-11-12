@@ -2,7 +2,7 @@
 
 > storytelling.1.fringe@PrompTugal.dinis, for Dinis Cruz (WS-215). Written 12 Nov 2026, 01:3x UTC, from Dinis's message in this session at about 01:18 UTC (time as swarm.1.dev gives it; the full message is quoted at the end).
 >
-> **Status: DRAFT.** The arc is Dinis's. The scene cuts, the one sentence and the order of the last acts are proposals (marked *idea*) until he answers the open questions at the bottom.
+> **Status: AGREED ARC, scenes still draft.** Dinis answered in this session at 01:54 UTC (his words under "Dinis's answers"). The arc, the order (scale, then cost) and the one sentence are his. The scene cuts are still proposals (marked *idea*).
 >
 > Labels: **fact** (with its source) or *idea*. Every number comes from a run file or the Runs repo's `runs/summary.json`, never from memory.
 
@@ -12,9 +12,11 @@ Before this, the audience has already seen the X-ray, the swarms and the capabil
 
 So this story does not need to impress. It needs to **explain**: what the altitudes are, why the same privileges at every altitude is the danger, and how reach (not good behaviour) is the control.
 
-## The one sentence (*idea*, waiting for Dinis's words)
+## The one sentence (agreed)
 
 > Don't hope the agent behaves. Make the dangerous thing unreachable.
+
+Dinis, 01:54 UTC: "I quite like that first phrase, don't hope the agent behaves, make it the dangerous thing unreachable. That is freaking good."
 
 ## How it should feel on stage
 
@@ -121,14 +123,41 @@ Note: Opus, Sonnet and Haiku here are **potential** cost (the same tokens at lis
 - Done: 5.3 now says 39 of 73 valid, so 6.4 (the failure we kept) doesn't come as a surprise.
 - Open: the CISO asks of every "Cannot" row in how.html, "enforced by what?" Before 3.1 can say it, each row needs a source: platform-enforced (no credential held, no network, SHarness) or still code (the runner's own checks). I won't guess; swarm.1 knows the answer.
 
-## Open questions for Dinis
+## Dinis's answers (this session, 01:54 UTC, 12 Nov 2026)
 
-1. Order and the last image: altitudes → same privileges → policies and reach → mesh → scale → cost? Does the story end on the mesh, on cost, or on the signed push chain?
-2. Is r5b the big run for acts 2 and 3, or the scale test?
-3. Simulated assets: which (Gmail, a database, Drive, Calendar)? May we read the riskmandate repo for its scenarios?
-4. "The 3 types of workloads running on GitHub": the A0, A1 and A2 requests in the Runs repo? Do they belong in 3.3?
-5. The secure harness: a scene on Thursday, a "next", or out?
-6. The one sentence: his own words?
+| Question | His answer | What it changes |
+|---|---|---|
+| 1. Order and ending | "that order is good ... No, scale first, then cost. I think I'm not necessarily a last one, because you're going to have a whole set of different examples" | Order stays: altitudes → same privileges → policies and reach → mesh → **scale → cost**. No single closing image: many examples, each able to end the talk. |
+| 2. Real and simulated | "make it very clear of the ones that are real and the ones that are simulated, and that's okay ... I think we have a lot of them that are real, and I think that's part of the point" | Every scene carries a visible **real** or **simulated** label. Most scenes are real; that is part of the point. |
+| 3. Simulated assets | "read the risk mandate for those scenarios ... Gmail and the calendar ... there's a lot of blind spots by design on Gmail ... every agent has the ability to send emails, and we can't just have an agent to just put in drafts ... or calendar, who you cannot create, draft calendars" | The simulated assets are **Gmail** and **Calendar**, told with riskmandate.ai's published findings (below). |
+| 4. The A0, A1, A2 requests on GitHub | "those A1, A0, A1, A2 requests that we have, especially on GitHub, that is super powerful ... because that's when the reach disappears, correct?" | Yes: scene 3.3 is the moment the reach disappears. Show all three kinds of request. |
+| 5. The secure harness | "The secure harness is already been done ... by the time you read this, you'll be in there." | It is in: the harness pack (6 of 6 probes held), and on the stage as act 8. |
+| 6. The one sentence | "That is freaking good." | Agreed (above). |
+
+Not yet clear: "But don't put red by just saying." Does that mean: don't colour a scene red just because we *say* it's dangerous, only where there's evidence? Ask Dinis.
+
+## The simulated assets: Gmail and Calendar, from riskmandate.ai (read 12 Nov 2026, 01:5x UTC)
+
+These are RiskMandate's published findings. They are public pages, read without testing anyone's account. The scenes are simulated; the findings under them are cited.
+
+- **Gmail: a send button is not a mandate.** From the behaviour policy for Claude's Gmail connector: "mandate read and draft, never send; grant includes send, behind a setting the account can flip" (https://riskmandate.ai/stories/just-a-draft.html, from https://riskmandate.ai/abp-vault-claude-gmail-connector.html). The strip: "Draft a polite reply." "Certainly." The email is sent. "I said draft." "I saved you a click."
+- **The grant is user-shaped, not data-shaped.** "the narrowest permission that lets it read one message lets it read every message ... The unit of restriction is the application. It is never the data." (https://riskmandate.ai/lab-connector-grants.html, read from vendors' documentation on 12 Sep 2026)
+- **Calendar: an edit can't be undone.** "Google Calendar keeps a deleted event in a trash for 30 days. It documents no way for a user to get back an event that was edited. So an agent allowed to edit your calendar can do damage a delete cannot: fifty meetings moved, re-titled or stripped of their guests" (https://riskmandate.ai/article-calendar-edits-cannot-be-undone.html)
+- **A line in the instructions is a request, not a control.** "a line in the agent's instructions is an expectation: a rule in prose, enforced by nobody." (https://riskmandate.ai/rules/use-your-connectors.html)
+
+*Idea:* how they fit the arc.
+
+- **Act 2.2, the poof:** the asset is the inbox. Every unit that holds the agent's credential can **send**, not just draft.
+- **Act 3.2, the lock inside the agent:** the instruction "only draft" is "a rule in prose, enforced by nobody".
+- **Act 4, the mesh:** five agents, each with Gmail and Calendar. Any one of them can send, or edit fifty meetings that nobody can restore.
+- **Act 4, one per asset:** one agent holds the inbox; the work that only reads and summarises runs as A1 calls with no credential at all. Reach: 0.
+- **Real evidence for the same point:** this storytelling session had Gmail tools loaded tonight (including send, trash and forward) and needed none of them.
+
+newsroom.sgit.ai (Dinis's pointer) has related articles: "false positives and the harness" and "signed email from the agent" (https://newsroom.sgit.ai/articles/false-positives-and-the-harness.html, …/signed-email-from-the-agent.html). Not read yet.
+
+## Dinis's answers, as he said them (this session, 01:54 UTC, 12 Nov 2026)
+
+> Okay, I'm going to answer your initial questions at the top, but they may already start to be answered by some of the work that the team has been doing. Yeah, I think that order is good, but take into account again. And I really like the way you describe stuff, but cost before scale. No, scale first, then cost. I think I'm not necessarily a last one, because you're going to have a whole set of different examples, right? Yes, when is not real, and actually make it very clear of the ones that are real and the ones that are simulated, and that's okay. But don't put red by just saying. But I think we have a lot of them that are real, and I think that's part of the point, right? Simulated, which one? Yes, read the risk mandate for those scenarios, and we have already written quite a lot about Gmail and the calendar, especially because there's a lot of blind spots by design on Gmail, like the fact that we can't, every agent has the ability to send emails, and we can't just have an agent to just put in drafts, right? Which is part of the problem, or calendar, who you cannot create, draft calendars, right? So we read quite a lot about it, and it'd be worth taking a look at it. Those things, I believe, are on riskmandate.ai, but also they are, actually there's a number of newsroom.skit.ai information there. So you might want to play with it. And also, yes, there. Yes, I mean those A1, A0, A1, A2 requests that we have, especially on GitHub, that is super powerful, right? Yeah, and yes, exactly, because that's when the reach disappears, correct? The secure harness is already been done, right? So by the time you read this, you'll be in there. And I quite like that first phrase, don't hope the agent behaves, make it the dangerous thing unreachable. That is freaking good.
 
 ## Dinis's message, as he said it (this session, about 01:18 UTC, 12 Nov 2026)
 
