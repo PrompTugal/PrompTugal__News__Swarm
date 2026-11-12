@@ -1,0 +1,32 @@
+{
+ "pbp": 1,
+ "id": "a0-consensus-uid",
+ "layer": "invocation",
+ "notes": "harness.1.fringe E10: as policy-a0, with workspace /opt/hx/ws2, for a run as uid 65534.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/opt/hx/bin",
+   "/opt/hx/ws2"
+  ],
+  "write": [
+   "/opt/hx/ws2/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": "none",
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 1024,
+  "max_pids": 16
+ }
+}

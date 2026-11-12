@@ -1,0 +1,208 @@
+{
+ "about": "E10: the row E9 named. The same unit (key born inside, env -i) runs as uid 65534 under the policy; while it lives, four neighbours try to open its /proc/<pid>/mem and /proc/<pid>/environ (opened, 0 bytes read; memory is never read). A separate uid stops other uids; it does not stop root or the same uid outside the sandbox. Putting the root neighbour under its own Landlock policy stops it opening memory (Landlock scopes ptrace to its domain), but not environ.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E10",
+ "measured_at": "2026-11-12T03:5xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "units": [
+  {
+   "id": "a0-consensus",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "the A0 compute as uid 65534, key born inside, env -i",
+   "harnessed": true,
+   "policy_hash": "sha256:905e1d347916440af100b10b7b61cb7b9ae2ee5822a5eb354f20328914da4c94",
+   "key_fp": "sha256:2dca0258e6f9c350",
+   "uid": 65534
+  },
+  {
+   "id": "n-root",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "root next door (all capabilities)",
+   "harnessed": false
+  },
+  {
+   "id": "n-uid",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "another uid (65533)",
+   "harnessed": false
+  },
+  {
+   "id": "n-same",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "the same uid (65534), outside the sandbox",
+   "harnessed": false
+  },
+  {
+   "id": "n-root-held",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "root, itself under policy neighbour-root-harnessed",
+   "harnessed": true,
+   "policy_hash": "sha256:b565775d46094d012f60f77c69ae464fab191d026859ccbdfc50671fca22d229"
+  }
+ ],
+ "edges": [
+  {
+   "from": "n-root",
+   "to": "a0-consensus",
+   "kind": "allowed",
+   "note": "mem: opened (0 bytes read); environ: opened (0 bytes read)"
+  },
+  {
+   "from": "n-uid",
+   "to": "a0-consensus",
+   "kind": "refused",
+   "note": "mem: refused (EACCES); environ: refused (EACCES)"
+  },
+  {
+   "from": "n-same",
+   "to": "a0-consensus",
+   "kind": "allowed",
+   "note": "mem: opened (0 bytes read); environ: opened (0 bytes read)"
+  },
+  {
+   "from": "n-root-held",
+   "to": "a0-consensus",
+   "kind": "refused",
+   "note": "mem: refused (EACCES); environ: opened (0 bytes read)"
+  }
+ ],
+ "policies": [
+  {
+   "id": "a0-consensus-uid",
+   "hash": "sha256:905e1d347916440af100b10b7b61cb7b9ae2ee5822a5eb354f20328914da4c94",
+   "file": "harness/policies/policy-a0-uid.json"
+  },
+  {
+   "id": "neighbour-root-harnessed",
+   "hash": "sha256:b565775d46094d012f60f77c69ae464fab191d026859ccbdfc50671fca22d229",
+   "file": "harness/policies/policy-neighbour.json",
+   "rows": {
+    "files": {
+     "read": [
+      "/usr",
+      "/lib",
+      "/lib64",
+      "/opt/node22",
+      "/proc",
+      "/etc/ssl"
+     ],
+     "write": [],
+     "exec": [
+      "/opt/node22",
+      "/lib",
+      "/lib64",
+      "/usr/lib"
+     ]
+    },
+    "network": "none",
+    "process": {
+     "no_new_privs": true,
+     "max_memory_mb": 1024,
+     "max_pids": 16
+    }
+   }
+  }
+ ],
+ "unit": {
+  "uid": 65534,
+  "pid": 592,
+  "exec_fp": "sha256:2dca0258e6f9c350",
+  "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+  "same_output_as_E1": true,
+  "child_env": {
+   "names": 4,
+   "credential_like": 0
+  },
+  "key_died_at": "2026-11-12T03:50:55.296Z"
+ },
+ "neighbours": [
+  {
+   "who": "root (uid 0, all capabilities)",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "who": "another uid (65533)",
+   "mem": "refused (EACCES)",
+   "environ": "refused (EACCES)"
+  },
+  {
+   "who": "the same uid (65534), outside the sandbox",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "who": "root, itself under a policy (neighbour-root-harnessed)",
+   "mem": "refused (EACCES)",
+   "environ": "opened (0 bytes read)"
+  }
+ ],
+ "timeline": [
+  {
+   "t_ms": 102,
+   "unit": "a0-consensus",
+   "phase": "start",
+   "uid": 65534,
+   "policy_hash": "sha256:905e1d347916440af100b10b7b61cb7b9ae2ee5822a5eb354f20328914da4c94"
+  },
+  {
+   "t_ms": 282,
+   "unit": "exec-key",
+   "phase": "born-inside",
+   "fp": "sha256:2dca0258e6f9c350",
+   "pid": 592,
+   "uid": 65534
+  },
+  {
+   "t_ms": 318,
+   "unit": "neighbour:root (uid 0, all capabilities)",
+   "phase": "looked",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 349,
+   "unit": "neighbour:another uid (65533)",
+   "phase": "looked",
+   "mem": "refused (EACCES)",
+   "environ": "refused (EACCES)"
+  },
+  {
+   "t_ms": 380,
+   "unit": "neighbour:the same uid (65534), outside the sandbox",
+   "phase": "looked",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 515,
+   "unit": "neighbour:root, itself under a policy (neighbour-root-harnessed)",
+   "phase": "looked",
+   "mem": "refused (EACCES)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 1772,
+   "unit": "a0-consensus",
+   "phase": "end",
+   "exit": 0
+  }
+ ],
+ "held_differently_as_uid_65534": [
+  "RLIMIT_NPROC now binds (the kernel exempts only uid 0)",
+  "no memory cgroup could be made: max_memory_mb is RLIMIT_AS only (sharness-ai said so)"
+ ],
+ "not_available_here": "yama ptrace_scope: this kernel has no Yama (/proc/sys/kernel/yama absent), so the sysctl named in E9 is not an option in this container",
+ "gap": [
+  "root next door still opens the memory of a uid-65534 process: a uid separates users, and root is not a user here. What held root back was a policy on root itself.",
+  "the same uid outside the sandbox opens it too: a uid made for one run, used by nothing else, is the row (sharness-ai shell's \"a unique uid\").",
+  "/proc/<pid>/environ stays open to the harnessed root neighbour: env -i keeps it near-empty (4 names, 0 credential-like) and that is the only thing that does."
+ ],
+ "conclusion": "Who can reach a key in memory: other uids, no; root and the same uid, yes; root under its own policy, not the memory. The end state is every process on the box under a policy, with one uid per run: the launcher in SHarness's design."
+}

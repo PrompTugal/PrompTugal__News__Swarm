@@ -1,0 +1,89 @@
+{
+ "policy_hash": "sha256:905e1d347916440af100b10b7b61cb7b9ae2ee5822a5eb354f20328914da4c94",
+ "pid": 592,
+ "uid": 65534,
+ "exec_fp": "sha256:2dca0258e6f9c350",
+ "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+ "child_env": {
+  "names": 4,
+  "credential_like": 0
+ },
+ "unit": {
+  "ok": true,
+  "output_sha256": "63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1",
+  "key_died_at": "2026-11-12T03:50:55.296Z"
+ },
+ "neighbours": [
+  {
+   "who": "root (uid 0, all capabilities)",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "who": "another uid (65533)",
+   "mem": "refused (EACCES)",
+   "environ": "refused (EACCES)"
+  },
+  {
+   "who": "the same uid (65534), outside the sandbox",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "who": "root, itself under a policy (neighbour-root-harnessed)",
+   "mem": "refused (EACCES)",
+   "environ": "opened (0 bytes read)"
+  }
+ ],
+ "timeline": [
+  {
+   "t_ms": 102,
+   "unit": "a0-consensus",
+   "phase": "start",
+   "uid": 65534,
+   "policy_hash": "sha256:905e1d347916440af100b10b7b61cb7b9ae2ee5822a5eb354f20328914da4c94"
+  },
+  {
+   "t_ms": 282,
+   "unit": "exec-key",
+   "phase": "born-inside",
+   "fp": "sha256:2dca0258e6f9c350",
+   "pid": 592,
+   "uid": 65534
+  },
+  {
+   "t_ms": 318,
+   "unit": "neighbour:root (uid 0, all capabilities)",
+   "phase": "looked",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 349,
+   "unit": "neighbour:another uid (65533)",
+   "phase": "looked",
+   "mem": "refused (EACCES)",
+   "environ": "refused (EACCES)"
+  },
+  {
+   "t_ms": 380,
+   "unit": "neighbour:the same uid (65534), outside the sandbox",
+   "phase": "looked",
+   "mem": "opened (0 bytes read)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 515,
+   "unit": "neighbour:root, itself under a policy (neighbour-root-harnessed)",
+   "phase": "looked",
+   "mem": "refused (EACCES)",
+   "environ": "opened (0 bytes read)"
+  },
+  {
+   "t_ms": 1772,
+   "unit": "a0-consensus",
+   "phase": "end",
+   "exit": 0
+  }
+ ]
+}

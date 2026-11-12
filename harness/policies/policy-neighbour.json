@@ -1,0 +1,29 @@
+{
+ "pbp": 1,
+ "id": "neighbour-root-harnessed",
+ "layer": "invocation",
+ "notes": "harness.1.fringe E10: a root neighbour put under its own policy: it may read /proc (to name the target) and run node; nothing else. Landlock scopes ptrace to the neighbour's own domain.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/opt/node22",
+   "/proc",
+   "/etc/ssl"
+  ],
+  "write": [],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": "none",
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 1024,
+  "max_pids": 16
+ }
+}

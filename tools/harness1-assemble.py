@@ -387,6 +387,35 @@ def e9():
     })
 
 
+def e10():
+    """E9's gap, the next row: the unit as a separate uid; who next door can still open its memory."""
+    d = RAW('uid-neighbours.json'); pu = POL('policy-a0-uid.json'); pn = POL('policy-neighbour.json')
+    hu, hn = phash(os.path.join(H, 'policies', 'policy-a0-uid.json')), phash(os.path.join(H, 'policies', 'policy-neighbour.json'))
+    return write('2026-11-12-harness1-e10-separate-uid.json', {
+        'about': 'E10: the row E9 named. The same unit (key born inside, env -i) runs as uid 65534 under the policy; while it lives, four neighbours try to open its /proc/<pid>/mem and /proc/<pid>/environ (opened, 0 bytes read; memory is never read). A separate uid stops other uids; it does not stop root or the same uid outside the sandbox. Putting the root neighbour under its own Landlock policy stops it opening memory (Landlock scopes ptrace to its domain), but not environ.',
+        'by': BY, 'experiment': 'E10', 'measured_at': '2026-11-12T03:5xZ', 'where': WHERE, 'tool': TOOL,
+        'units': [
+            {'id': 'a0-consensus', 'kind': 'compute', 'altitude': 'A0', 'label': 'the A0 compute as uid 65534, key born inside, env -i', 'harnessed': True, 'policy_hash': hu, 'key_fp': d['exec_fp'], 'uid': d['uid']},
+            {'id': 'n-root', 'kind': 'agent', 'altitude': 'A3', 'label': 'root next door (all capabilities)', 'harnessed': False},
+            {'id': 'n-uid', 'kind': 'agent', 'altitude': 'A3', 'label': 'another uid (65533)', 'harnessed': False},
+            {'id': 'n-same', 'kind': 'agent', 'altitude': 'A3', 'label': 'the same uid (65534), outside the sandbox', 'harnessed': False},
+            {'id': 'n-root-held', 'kind': 'agent', 'altitude': 'A3', 'label': 'root, itself under policy neighbour-root-harnessed', 'harnessed': True, 'policy_hash': hn},
+        ],
+        'edges': [{'from': f'n-{k}', 'to': 'a0-consensus', 'kind': 'allowed' if n['mem'].startswith('opened') else 'refused', 'note': f"mem: {n['mem']}; environ: {n['environ']}"}
+                  for k, n in zip(['root', 'uid', 'same', 'root-held'], d['neighbours'])],
+        'policies': [{'id': pu['id'], 'hash': hu, 'file': 'harness/policies/policy-a0-uid.json'}, {'id': pn['id'], 'hash': hn, 'file': 'harness/policies/policy-neighbour.json', 'rows': {'files': pn['files'], 'network': pn['network'], 'process': pn['process']}}],
+        'unit': {'uid': d['uid'], 'pid': d['pid'], 'exec_fp': d['exec_fp'], 'output_sha256': d['output_sha256'], 'same_output_as_E1': d['output_sha256'] == '63544c8ae8084dd78404abcef8747026025dfe1ed01b50848d33b45dc0f531a1', 'child_env': d['child_env'], 'key_died_at': d['unit'].get('key_died_at')},
+        'neighbours': d['neighbours'],
+        'timeline': d['timeline'],
+        'held_differently_as_uid_65534': ['RLIMIT_NPROC now binds (the kernel exempts only uid 0)', 'no memory cgroup could be made: max_memory_mb is RLIMIT_AS only (sharness-ai said so)'],
+        'not_available_here': 'yama ptrace_scope: this kernel has no Yama (/proc/sys/kernel/yama absent), so the sysctl named in E9 is not an option in this container',
+        'gap': ['root next door still opens the memory of a uid-65534 process: a uid separates users, and root is not a user here. What held root back was a policy on root itself.',
+                'the same uid outside the sandbox opens it too: a uid made for one run, used by nothing else, is the row (sharness-ai shell\'s "a unique uid").',
+                '/proc/<pid>/environ stays open to the harnessed root neighbour: env -i keeps it near-empty (4 names, 0 credential-like) and that is the only thing that does.'],
+        'conclusion': 'Who can reach a key in memory: other uids, no; root and the same uid, yes; root under its own policy, not the memory. The end state is every process on the box under a policy, with one uid per run: the launcher in SHarness\'s design.',
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -458,7 +487,7 @@ def findings():
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9()]
+    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9(), e10()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',
