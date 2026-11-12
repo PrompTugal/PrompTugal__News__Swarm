@@ -251,9 +251,7 @@ $('#save').onclick = async () => {
   const foc = () => { html.classList.toggle('focus'); dispatchEvent(new Event('resize')); };
   $('#focus').onclick = foc; $('#exitf').onclick = foc;
   document.addEventListener('keydown', (e) => { if (/input|textarea|select/i.test(e.target.tagName) || e.metaKey || e.ctrlKey) return; if (e.key === 'z' || e.key === 'Z') foc(); else if (e.key === 'Escape') html.classList.remove('focus'); });
-  // swipe on the deck: next and previous
-  let sx = null, sy = null; deck.addEventListener('touchstart', (e) => { if (e.touches.length !== 1) return (sx = null); sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-  deck.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) $(dx < 0 ? '#next' : '#prev').click(); }, { passive: true });
+  // swipes on the deck: the kit's own (StoryKit.present, swarm.1.dev 243d5bf)
 })();
 </script>
 <script src="../assets/nav.js"></script>

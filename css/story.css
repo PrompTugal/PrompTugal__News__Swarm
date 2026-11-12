@@ -21,3 +21,5 @@
 .sdeck .emb{position:relative;aspect-ratio:16/9;width:100%;border:1px solid var(--line);border-radius:14px;overflow:hidden}.sdeck .emb iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .sdeck [data-r]{transition:opacity .4s,transform .4s}.sdeck [data-r].off{opacity:0;transform:translateY(.4em)}
 @media (max-width:760px){.sdeck .cmp2{grid-template-columns:1fr}.sdeck .ctr{font-size:3.6em}.sdeck .lad>div{grid-template-columns:3.4em 1fr}}
+/* table tones (swarm.1.dev 34b4d42): the mandate's work, a refusal (the control working), the gap (it happened and should not have), real harm only */
+.sdeck td.tone-ok{color:var(--ok)}.sdeck td.tone-cut{color:var(--accent);font-weight:600}.sdeck td.tone-gap{color:var(--warn);font-weight:600;background:color-mix(in srgb,var(--warn) 9%,transparent)}.sdeck td.tone-harm{color:var(--bad);font-weight:700}

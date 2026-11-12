@@ -41,6 +41,7 @@ html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 .pane>p.lead{margin:0 0 14px;color:var(--muted);max-width:80ch}
 .keyrow{display:flex;flex-wrap:wrap;gap:6px 14px;margin:0 0 14px;font-size:.82rem;color:var(--muted)}.keyrow span{display:inline-flex;align-items:center;gap:6px}
 .dot{width:11px;height:11px;border-radius:50%;display:inline-block;flex:none}
+.rp{margin:0 0 16px;border:1px solid var(--line);border-radius:14px;background:var(--panel);overflow:hidden}.rph{display:flex;flex-wrap:wrap;align-items:center;gap:4px 12px;padding:10px 14px;border-bottom:1px solid var(--line)}.rph span{color:var(--muted);font-size:.85rem;flex:1}.rph button{font:inherit;font-size:.85rem;min-height:44px;padding:0 14px;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line);border-radius:9px;cursor:pointer}.rph button:hover{border-color:var(--accent)}#replay{min-height:240px;position:relative}
 .axis{position:relative;height:56px;margin:0 0 16px;border:1px solid var(--line);border-radius:10px;background:var(--panel)}
 .axis b{position:absolute;top:50%;width:12px;height:12px;margin:-6px 0 0 -6px;border-radius:50%;cursor:pointer;box-shadow:0 0 0 3px var(--bg)}
 .axis small{position:absolute;bottom:3px;font:500 .7rem var(--mono);color:var(--muted);transform:translateX(-50%)}
@@ -178,7 +179,7 @@ function present(D) {
   const s = D.story || {}; SC = s.scenes || s.slides || [];
   $('#main').innerHTML = `<section id="deck" aria-live="polite"><div id="slide" class="sdeck"></div></section><div id="cap"></div><span id="pn"></span><div id="prog"><i></i></div>`;
   if (!SC.length) { $('#slide').innerHTML = `<p class="big">The deck has not landed yet.</p><p class="sub">The making-of is in Timeline, Graph and Delivery as it happens.</p>`; return; }
-  kit = null; if (window.StoryKit && StoryKit.present) { try { kit = StoryKit.present($('#slide'), s, { caption: $('#cap'), keys: false, dwell: ATTRACT ? 3200 : 2600, onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); if (EMBED && kit.goto) kit.goto(0); return; } catch (e) { kit = null; } }
+  kit = null; if (window.StoryKit && StoryKit.present) { try { kit = StoryKit.present($('#slide'), s, { caption: $('#cap'), keys: false, swipe: false, dwell: ATTRACT ? 3200 : 2600, onStep: (i, n) => { $('#pn').textContent = `${i + 1} / ${n}`; $('#prog i').style.width = (100 * (i + 1) / n) + '%'; } }); if (EMBED && kit.goto) kit.goto(0); return; } catch (e) { kit = null; } }
   si = 0; ri = 0; paint(EMBED);
 }
 
@@ -191,9 +192,13 @@ function timeline(D) {
   const t0 = new Date(H[0].at), t1 = new Date(H[H.length - 1].at), span = Math.max(1, t1 - t0);
   const axis = H.map((h, j) => `<b data-j="${j}" style="left:calc(14px + (100% - 28px) * ${(new Date(h.at) - t0) / span});background:${col(h)}" title="${esc(hm(h.at) + ' · ' + (h.what || h.who))}"></b>`).join('') + `<small style="left:14px;transform:none">${hm(H[0].at)}</small><small style="right:14px;left:auto;transform:none">${hm(H[H.length - 1].at)} UTC</small>`;
   const list = H.map((h, j) => `${j ? `<div class="gap">+${mins(H[j - 1].at, h.at)} min</div>` : ''}<li data-j="${j}"><span class="t">${hm(h.at)}<em>${esc(h.who || '')}</em></span><i class="dot" style="background:${col(h)}"></i><div class="hop"><h3>${esc(h.what || h.who)}</h3><p>${esc(h.who || '')}${h.to ? ` → ${esc(h.to)}` : ''}${h.artefact ? ` · passes on <b>${esc(h.artefact.name || h.artefact.kind)}</b>` : ''}</p><div class="chips">${chipsOf(h)}</div></div></li>`).join('');
-  $('#main').innerHTML = `<section class="pane"><p class="lead">Every hop from the question to the page, on its real time (UTC, from the commits, inbox times and sessions). ${mins(H[0].at, H[H.length - 1].at)} minutes from first to last.</p>${key()}<div class="axis">${axis}</div><ol class="tl">${list}</ol></section>`;
+  $('#main').innerHTML = `<section class="pane"><p class="lead">Every hop from the question to the page, on its real time (UTC, from the commits, inbox times and sessions). ${mins(H[0].at, H[H.length - 1].at)} minutes from first to last.</p>${key()}<div class="rp"><div class="rph"><b>Replay how it was made</b><span>every hop at its real time, in ten seconds</span><button id="rpgo" type="button">▶ Replay</button></div><div id="replay"></div></div><div class="axis">${axis}</div><ol class="tl">${list}</ol></section>`;
   const sel = (j) => { document.querySelectorAll('.tl li').forEach((l) => l.classList.toggle('sel', +l.dataset.j === j)); const li = $(`.tl li[data-j="${j}"]`); li && li.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); };
   $('#main').onclick = (e) => { const t = e.target.closest('[data-j]'); if (t) sel(+t.dataset.j); };
+  // swarm.1.dev's replay (34b4d42): the making-of plays itself, and the list follows it
+  const rp = $('#replay');
+  if (window.StoryKit && StoryKit.replay) { try { const R = StoryKit.replay(rp, D.trail, { seconds: 10, autoplay: true, onHop: (i, h) => { const j = H.indexOf(h); if (j >= 0) document.querySelectorAll('.tl li').forEach((l) => l.classList.toggle('sel', +l.dataset.j === j)); } }); $('#rpgo').onclick = () => { R.stop(); R.seek(0); R.play(); }; } catch (e) { $('.rp').remove(); } }
+  else $('.rp').remove();
 }
 
 /* ---------- Graph: who passed what to whom ---------- */
