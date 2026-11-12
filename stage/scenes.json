@@ -939,6 +939,105 @@
    ]
   },
   {
+   "id": "harness-before-after",
+   "act": "8 · The harness",
+   "title": "The same code, before and after the harness",
+   "say": "harness.1 ran the same A0 code twice with the same 12 attempts: unharnessed, then under one policy. The output is byte-identical; the reach is not. Measured tonight.",
+   "steps": [
+    {
+     "label": "unharnessed",
+     "dur": 6,
+     "card": {
+      "kind": "compare",
+      "phase": "before",
+      "src": "harness/2026-11-12-harness1-e1e2-before-after.json",
+      "title": "12 attempts by one A0 unit",
+      "source": "harness/2026-11-12-harness1-e1e2-before-after.json"
+     },
+     "caption": "Without the harness: 11 of 12 succeed. It reads /etc/shadow, the home directory, a key; it spawns a shell; it reaches the internet."
+    },
+    {
+     "label": "harnessed",
+     "dur": 6,
+     "card": {
+      "kind": "compare",
+      "phase": "after",
+      "src": "harness/2026-11-12-harness1-e1e2-before-after.json",
+      "title": "12 attempts by one A0 unit",
+      "source": "harness/2026-11-12-harness1-e1e2-before-after.json"
+     },
+     "caption": "Under one policy: 3 of 12. Its mandate (read its data, write its summary), and one gap the record names: the inherited environment."
+    },
+    {
+     "label": "same output",
+     "dur": 2.5,
+     "card": {
+      "kind": "compare",
+      "phase": "done",
+      "src": "harness/2026-11-12-harness1-e1e2-before-after.json",
+      "title": "12 attempts by one A0 unit",
+      "source": "harness/2026-11-12-harness1-e1e2-before-after.json"
+     },
+     "caption": "Same output, sha256 for sha256. The work did not need the reach. Don't hope the agent behaves: make the dangerous thing unreachable."
+    }
+   ]
+  },
+  {
+   "id": "harness-door",
+   "act": "8 · The harness",
+   "title": "The network door",
+   "say": "E4: the harness serves one door to the network that allows one host on one port. Every connection is in its audit log, allowed or refused, with the row that decided.",
+   "steps": [
+    {
+     "label": "the door's log",
+     "dur": 6,
+     "card": {
+      "kind": "check",
+      "src": "harness/2026-11-12-harness1-e4-door.json",
+      "from": "door_audit",
+      "max": 6,
+      "map": {
+       "ask": "path",
+       "askPrefix": "CONNECT ",
+       "outcome": "allowed"
+      },
+      "who": "an A0 unit",
+      "policy": "the door: one host, port 443",
+      "where": "outside",
+      "title": "Every connection meets the door",
+      "source": "harness/2026-11-12-harness1-e4-door.json (door_audit)"
+     },
+     "caption": "The storm site: allowed. Anything else, the model router included: refused, and logged."
+    }
+   ]
+  },
+  {
+   "id": "harness-reach",
+   "act": "8 · The harness",
+   "title": "Mandate, reach and gap, per unit",
+   "say": "E6: what each unit of tonight's runs needed, what it could reach unharnessed, and what it could reach harnessed. Reach is measured, not read off a design.",
+   "steps": [
+    {
+     "label": "need, reach, harnessed",
+     "dur": 6,
+     "card": {
+      "kind": "needheld",
+      "src": "harness/2026-11-12-harness1-e6-reach.json",
+      "from": "units",
+      "label": "unit",
+      "need": "mandate",
+      "held": "reach_unharnessed",
+      "held2": "reach_harnessed",
+      "heldLabel": "reach",
+      "held2Label": "harnessed",
+      "title": "Needed, reached, and reached under the harness",
+      "source": "harness/2026-11-12-harness1-e6-reach.json"
+     },
+     "caption": "The bars that matter are the last two: what it could reach, and what it can still reach under the harness."
+    }
+   ]
+  },
+  {
    "id": "pki",
    "act": "9 · Keys on everything",
    "title": "Who did what, provably",
@@ -1021,6 +1120,25 @@
    ],
    "run": "s001-storm-six--swarm.1.fringe.json",
    "mode": "radial"
+  },
+  {
+   "id": "harness-keys",
+   "act": "9 · Keys on everything",
+   "title": "Keys that live for one run",
+   "say": "E5: the operator key signs the code and the policy, and certifies a key made for one execution. Each key's birth and death is in the record.",
+   "steps": [
+    {
+     "label": "the keys",
+     "dur": 5,
+     "card": {
+      "kind": "keys",
+      "src": "harness/2026-11-12-harness1-e5-pki.json",
+      "title": "A key on everything, for one run",
+      "source": "harness/2026-11-12-harness1-e5-pki.json (keys: created_at, destroyed_at)"
+     },
+     "caption": "Made in memory, used, and dropped with the process: never on disk."
+    }
+   ]
   },
   {
    "id": "team",
@@ -1633,15 +1751,19 @@
     "gap",
     "reach-measured",
     "harness",
+    "harness-before-after",
     "check-inside",
-    "check-outside"
+    "check-outside",
+    "harness-door",
+    "harness-reach"
    ]
   },
   "pki": {
    "title": "Keys on everything",
    "about": "who did what, provably",
    "scenes": [
-    "pki"
+    "pki",
+    "harness-keys"
    ]
   },
   "vaults": {

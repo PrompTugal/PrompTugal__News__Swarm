@@ -70,7 +70,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .focus .app { grid-template-columns: 0 0 1fr 0 0; grid-template-rows: 0 1fr 0 } .focus header, .focus footer, .focus .pane, .focus .handle { visibility: hidden; overflow: hidden; padding: 0; border: 0 }
 @media (max-width: 800px) { .app { grid-template-columns: 0 0 1fr 0 0 } .pane, .handle { display: none } #modes button { padding: 4px 5px } }
 /* cards: slide, gap, lights */
-#card { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 4% 8% 110px }
+#card { position: absolute; inset: 0; display: flex; align-items: safe center; justify-content: center; padding: 56px 8% 120px; overflow: auto }
 #card .slide { max-width: 1250px; width: 100% } #card .kicker { font: 600 .85em var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--accent) }
 #card h2 { font: 700 calc(3.4em * var(--text, 1))/1.08 var(--font-head); margin: 0 0 28px; letter-spacing: -.01em } #card .line { font: 400 calc(1.9em * var(--text, 1))/1.35 var(--font); margin: 0 0 18px; transition: none }
 #card .line.big { font: 700 calc(3.2em * var(--text, 1))/1.12 var(--font-head); color: var(--reach); font-variant-numeric: tabular-nums } #card .src { color: var(--muted); font: .8em var(--mono); margin-top: 22px }
@@ -105,7 +105,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* the policy check */
 #card .check { width: 100%; max-width: 1100px } #card .check h2 { font-size: calc(2.2em * var(--text, 1)) }
 .ck-head, .ck { display: grid; grid-template-columns: 1fr 40px 1fr 40px 180px; align-items: center; gap: 6px } .ck-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px } .ck-head span:nth-child(2) { grid-column: 3 } .ck-head span:nth-child(3) { grid-column: 5 }
-.ck { margin: 0 0 10px; font-size: calc(1.15em * var(--text, 1)) } .ck .ask, .ck .gate, .ck .out { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--panel) } .ck small { display: block; color: var(--muted); font-size: .72em }
+.ck { margin: 0 0 8px; font-size: calc(1.05em * var(--text, 1)) } .ck .ask, .ck .gate, .ck .out { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--panel) } .ck small { display: block; color: var(--muted); font-size: .72em }
 .ck .gate { border-color: var(--accent); text-align: center } .ck .gate.inside { border-color: var(--warn); border-style: dashed } .ck .arrow { text-align: center; color: var(--muted) }
 .ck .out { text-align: center; font: 700 1em var(--font-head); text-transform: uppercase; letter-spacing: .04em } .ck .out.ok { color: var(--ok); border-color: var(--ok) } .ck .out.no { color: var(--bad); border-color: var(--bad) } .ck .out.skip { color: var(--warn); border-color: var(--warn) }
 /* the handover flow */
@@ -127,3 +127,14 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .nh-row { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) } .nh-row .nl small { display: block; color: var(--muted); font: .75em var(--mono) }
 .nh-row .bars { display: flex; flex-direction: column; gap: 4px } .nh-row .bars i { display: block; height: 12px; border-radius: 4px; transition: width .6s } .nh-row .nums { font: 600 .95em var(--mono); color: var(--muted) }
 .gapn { font: 700 1.4em var(--font-head); text-align: center } .gapn.big { color: var(--bad) } .gapn.some { color: var(--warn) } .gapn.none { color: var(--ok) } .nh-row.mark { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px }
+
+/* before and after (E1+E2) */
+#card .cmp { width: 100%; max-width: 1250px } #card .cmp h2 { font-size: calc(2em * var(--text, 1)); margin-bottom: 8px } #card .cmp .same { color: var(--muted); margin: 0 0 14px } #card .cmp .same b { color: var(--ok); font-family: var(--mono) }
+.cm-head, .cm { display: grid; grid-template-columns: 1.4fr 130px 130px 1.4fr; gap: 10px; align-items: center } .cm-head { color: var(--muted); font: 600 .78em var(--mono); text-transform: uppercase; margin-bottom: 6px }
+.cm { padding: 3px 0; border-bottom: 1px solid var(--line); font-size: calc(.9em * var(--text, 1)) } .cm .what small { display: block; color: var(--muted); font-size: .8em } .cm .what b { font-family: var(--mono); font-weight: 600 }
+.cm .b, .cm .a { text-align: center; font: 700 .95em var(--font-head); border-radius: 8px; padding: 4px 0; transition: opacity .3s } .cm .ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent) } .cm .no { color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent) } .cm .gp { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent) }
+.cm .b.ok { color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent) } .cm .rb { color: var(--muted); font: .8em var(--mono); transition: opacity .3s }
+/* keys and their lifetimes (E5) */
+#card .kys { width: 100%; max-width: 1150px } .ky { display: grid; grid-template-columns: 1.3fr 220px 1.4fr; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) }
+.ky small { display: block; color: var(--muted); font-size: .78em; font-family: var(--mono) } .ky .kl b { color: var(--accent); font: 700 1.3em var(--font-head) }
+.nh-row i.held2, .nh-head i.held2 { background: var(--ok) }
