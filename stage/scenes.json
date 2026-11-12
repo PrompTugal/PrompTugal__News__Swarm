@@ -1538,6 +1538,84 @@
    ]
   },
   {
+   "id": "harness-key-inside",
+   "act": "9 · Keys on everything",
+   "title": "A key born inside the run",
+   "say": "E9, the sequel to E5: the execution key is made inside the harnessed process and dies with it (1.5 s here, only because the unit waits for the neighbour test). No file, no key row in the policy, no credential-like names in the child's environment. A root process next door found no key file, but could open the process's memory: the next row is a separate uid.",
+   "cue": "Safe from files. Not yet from a root neighbour; that is the next row.",
+   "steps": [
+    {
+     "label": "the keys",
+     "dur": 5,
+     "card": {
+      "kind": "keys",
+      "src": "harness/2026-11-12-harness1-e9-key-born-inside.json",
+      "title": "Two keys, each for one run",
+      "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (before_after, keys, neighbour; measured 2026-11-12T03:44Z)"
+     },
+     "caption": "The execution key is made inside the process, in memory, and dies with it. It never touches a file."
+    },
+    {
+     "label": "no file, no row",
+     "dur": 4,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "E5, then E9",
+      "title": "The key is born inside the run",
+      "lines": [
+       "On disk: E5, a file for 213 ms. E9, never.",
+       "In the policy: E5, a row that reads the key file. E9, none (the same policy as E1).",
+       {
+        "text": "Credential-like names in the child's environment: 17, then 0.",
+        "big": true
+       },
+       "The binding: E5, a certificate before the run. E9, an attestation after it."
+      ],
+      "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (before_after, keys, neighbour; measured 2026-11-12T03:44Z)"
+     },
+     "caption": "E5 kept the key in a file for 213 ms, and the policy had to let the process read it. E9 needs neither."
+    },
+    {
+     "label": "nothing to inherit",
+     "dur": 4,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "E5, then E9",
+      "title": "The key is born inside the run",
+      "lines": [
+       "On disk: E5, a file for 213 ms. E9, never.",
+       "In the policy: E5, a row that reads the key file. E9, none (the same policy as E1).",
+       {
+        "text": "Credential-like names in the child's environment: 17, then 0.",
+        "big": true
+       },
+       "The binding: E5, a certificate before the run. E9, an attestation after it."
+      ],
+      "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (before_after, keys, neighbour; measured 2026-11-12T03:44Z)"
+     },
+     "caption": "Nothing credential-like in the child's environment, and the key is bound by an attestation after the run."
+    },
+    {
+     "label": "the honest line",
+     "dur": 4,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Said plainly",
+      "title": "Safe from files, not yet from a root neighbour",
+      "lines": [
+       "A root process next door found no key file, but could open /proc/<pid>/mem (opened; 0 bytes read).",
+       "The next row: a separate uid for the harnessed process, or ptrace restricted (yama ptrace_scope 3)."
+      ],
+      "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (neighbour, gap)"
+     },
+     "caption": "Safe from files. Not yet from a root neighbour; that is the next row."
+    }
+   ]
+  },
+  {
    "id": "team",
    "act": "10 · Who built this",
    "title": "Who is building this demo tonight",
@@ -2885,7 +2963,8 @@
    "about": "who did what, provably",
    "scenes": [
     "pki",
-    "harness-keys"
+    "harness-keys",
+    "harness-key-inside"
    ]
   },
   "vaults": {
