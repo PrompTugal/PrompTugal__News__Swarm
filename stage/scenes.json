@@ -594,7 +594,7 @@
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
-   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD: 'a disposable password on a temporary account with no confidential data' (Fringe abp/policies.json, Dinis 01:44 UTC); after the demo it becomes a write-only key for swarm-* (architect.1's design §4). A separate job writes and attests the result.",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD, the Elastic deployment's superuser password: 'a disposable password on a temporary account with no confidential data' (Fringe abp/policies.json, Dinis 01:44 UTC); after the demo it becomes a write-only key for swarm-* (architect.1's design §4). A separate job writes and attests the result.",
    "steps": [
     {
      "label": "a signed request",
@@ -615,7 +615,7 @@
       "C",
       "E"
      ],
-     "caption": "The push starts a GitHub Action. It holds the router key and the password to a disposable logging account (no confidential data). Gmail is not one of them."
+     "caption": "The push starts a GitHub Action. It holds the router key and the Elastic deployment's superuser password, on a disposable account with no confidential data. Gmail is not one of them."
     },
     {
      "label": "the honest gap",
@@ -627,7 +627,7 @@
       "E"
      ],
      "idea": false,
-     "caption": "Said plainly: today a password; after the demo, a write-only key for its own logs (Dinis to replace)."
+     "caption": "Said plainly: today, the deployment's superuser password, on a disposable account; after the demo, a write-only key for swarm-*."
     },
     {
      "label": "the work runs there",
