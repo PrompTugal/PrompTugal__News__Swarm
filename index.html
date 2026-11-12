@@ -288,7 +288,7 @@ async function pollActions(ref = 'dev', announce = true, first = false) {
     const want = location.hash.slice(1), hit = got.find((r) => r.request === want || r.id === want);
     if (first && want && !hit) { rungs(); return; }
     $('#live').textContent = (first ? 'from GitHub Actions: ' : 'new from GitHub Actions: ') + got.map((r) => r.request).join(', '); load((hit || got[got.length - 1]).id);
-  } catch (e) { /* no runs yet, or GitHub unreachable */ }
+  } catch (e) { if (!announce) $('#live').textContent = 'could not read the runs from GitHub; retrying every 30 s'; }
 }
 // the headline: every run that started with a push, added up (runs/summary.json in the Runs repo), and one chip per push (a batch of jobs)
 async function headline() {
@@ -305,7 +305,13 @@ async function headline() {
 }
 async function checkNow() {
   $('#live').textContent = 'asking GitHub for the latest commit…';
-  try { const c = await (await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`)).json(); await pollActions(c.sha, false); } catch (e) { $('#live').textContent = 'GitHub did not answer'; }
+  // GitHub's API allows 60 calls an hour per network without a login (a shared venue wifi can use them up): when it refuses,
+  // say so and fall back to the branch read (which can be up to 5 minutes behind), instead of waiting for ever
+  let sha = null, why = '';
+  try { const r = await fetch(`https://api.github.com/repos/${RUNS_REPO}/commits/dev`); if (r.ok) sha = (await r.json()).sha; else why = r.status === 403 || r.status === 429 ? 'GitHub API limit reached on this network' : 'GitHub API answered ' + r.status; } catch (e) { why = 'GitHub API unreachable'; }
+  const before = runs.length;
+  await pollActions(sha || 'dev', false);
+  if (!sha) $('#live').textContent = `${why}: read the branch instead (up to 5 min behind)` + (runs.length > before ? ' and found new runs' : '; nothing new yet');
 }
 poll(true).then(() => pollActions('dev', true, true)); setInterval(() => poll(false), 15000); setInterval(() => pollActions('dev'), 30000); headline(); setInterval(headline, 30000);
 </script>
