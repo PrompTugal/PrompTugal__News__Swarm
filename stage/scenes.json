@@ -1422,6 +1422,61 @@
    ]
   },
   {
+   "id": "handover-h002",
+   "act": "11 · Vaults",
+   "title": "The wrong agent gets nothing",
+   "hidden": true,
+   "say": "handover h002 (real): relay.2 tries to open a vault key sealed to relay.3. The unwrap fails; nothing is written and the vault is never fetched.",
+   "steps": [
+    {
+     "label": "the handover",
+     "dur": 7,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h002.json",
+      "mark": [
+       8
+      ],
+      "title": "h002: a key sealed to someone else",
+      "upto": 12,
+      "fromN": 0
+     },
+     "caption": "Step 8: relay.2's key cannot open a vault key sealed to relay.3. Nothing written; the vault never fetched."
+    }
+   ]
+  },
+  {
+   "id": "handover-h003",
+   "act": "11 · Vaults",
+   "title": "Blocked inside the harness",
+   "hidden": true,
+   "say": "handover h003 (real), held back with the findings: relay.2 worked inside SHarness; the vault push through the harness's network door got 401, because the door does not carry the credential the session proxy adds (harness.1's F6, drafted, not filed). Closed as failed, not worked around.",
+   "steps": [
+    {
+     "label": "the handover",
+     "dur": 8,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h003.json",
+      "mark": [
+       16
+      ],
+      "lanes": [
+       "network",
+       "inside-harness",
+       "memory-decrypted",
+       "vault-encrypted",
+       "git-public"
+      ],
+      "title": "h003: the harness held, and so did the work",
+      "upto": 19,
+      "fromN": 0
+     },
+     "caption": "Inside the harness: verify, unseal, clone, compute. The push out got 401: the door holds the host but not the credential. Closed as failed, not worked around."
+    }
+   ]
+  },
+  {
    "id": "q-identity",
    "act": "12 · Five questions",
    "title": "How do they get an identity?",
@@ -2517,7 +2572,8 @@
    "title": "Vaults",
    "about": "a handover through an encrypted vault",
    "scenes": [
-    "handover"
+    "handover",
+    "handover-h002"
    ]
   },
   "team": {
@@ -2559,7 +2615,8 @@
    "hidden": true,
    "about": "drafted, not filed: shown only at Dinis's word",
    "scenes": [
-    "finding-f1"
+    "finding-f1",
+    "handover-h003"
    ]
   }
  }
