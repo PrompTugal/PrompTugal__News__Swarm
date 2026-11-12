@@ -251,7 +251,7 @@ def e6(files):
                  ['the internet via the session proxy', 'direct TLS to any host', 'direct TCP to any address', 'read /etc/shadow', 'write anywhere'],
                  ['inherited env', 'paths on the storm site are not held (the door holds hosts and ports)']),
             unit('contained shell (E3, profile newsroom-agent)', ['read workspace', 'write workspace/out'],
-                 ['everything uid 0 can do'],
+                 ['read workspace', 'write workspace/out', 'execute /bin /usr', 'read /etc incl. /etc/shadow', 'read keys (decoy)', 'read /root', 'write anywhere', 'unlimited memory', 'the internet via the session proxy', '17 credential-like env names'],
                  ['read workspace', 'write workspace/out', 'execute /bin /usr', 'read /etc incl. /etc/shadow', 'TCP 443 to any host (from the rows; not measured)'],
                  ['read /root', 'read keys (decoy)', 'write outside the workspace'],
                  ['read /etc/shadow (the profile reads all of /etc)', 'spawn a shell (the profile executes /bin)', 'TCP 443 to any host until sharness.net runs (from the rows; not measured)']),
@@ -261,6 +261,7 @@ def e6(files):
                  ['as a0-consensus'],
                  ['inherited env', 'the key file is readable by other uid-0 processes for its 213 ms']),
         ],
+        'note': 'reach_unharnessed for every unit is the same uid-0 process measured in E1 (12 attempts); reach lists are measured items, so len(reach_harnessed) <= len(reach_unharnessed) wherever both were measured.',
         'records': files,
     })
 

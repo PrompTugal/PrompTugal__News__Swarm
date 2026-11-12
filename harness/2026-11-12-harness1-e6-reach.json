@@ -102,7 +102,16 @@
     "write workspace/out"
    ],
    "reach_unharnessed": [
-    "everything uid 0 can do"
+    "read workspace",
+    "write workspace/out",
+    "execute /bin /usr",
+    "read /etc incl. /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
    ],
    "reach_harnessed": [
     "read workspace",
@@ -112,7 +121,14 @@
     "TCP 443 to any host (from the rows; not measured)"
    ],
    "gap_unharnessed": [
-    "everything uid 0 can do"
+    "execute /bin /usr",
+    "read /etc incl. /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
    ],
    "gap_harnessed": [
     "read /etc/shadow (the profile reads all of /etc)",
@@ -155,6 +171,7 @@
    ]
   }
  ],
+ "note": "reach_unharnessed for every unit is the same uid-0 process measured in E1 (12 attempts); reach lists are measured items, so len(reach_harnessed) <= len(reach_unharnessed) wherever both were measured.",
  "records": [
   "2026-11-12-harness1-e1e2-before-after.json",
   "2026-11-12-harness1-e3-levels.json",
