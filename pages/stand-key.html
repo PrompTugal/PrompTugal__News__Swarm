@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="gravity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Stand Key</title>
+<meta name="description" content="Set up the stand's disposable model key on this device: encrypted here with a passphrase, never sent anywhere in plain text.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+body{background:radial-gradient(ellipse at 50% 0%,var(--bg2) 0%,var(--bg) 65%) fixed;min-height:100vh}
+main{max-width:720px;margin:0 auto;padding:28px 16px 64px}h1{font:700 1.9rem/1.2 var(--font-head);margin:8px 0}
+.card{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:16px;margin:16px 0}
+label{display:block;font-weight:600;margin:10px 0 4px}input,textarea{width:100%;font:inherit;padding:10px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25);color:var(--ink)}
+textarea{font:13px var(--mono);min-height:110px}
+button{font:inherit;font-weight:700;padding:10px 16px;border-radius:10px;border:1px solid var(--accent);background:var(--accent);color:var(--bg);cursor:pointer;margin:12px 8px 0 0}
+button.alt{background:transparent;color:var(--ink);border-color:var(--line)}
+.muted{color:var(--muted);font-size:.92rem}.ok{color:var(--ok)}.bad{color:var(--warn)}code{font:.9em var(--mono);color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+ <h1>The stand's key</h1>
+ <p class="muted">For the stand device only. Paste the disposable OpenRouter key and choose a passphrase. The key is encrypted <b>in this browser</b> and kept here as ciphertext; it is never sent anywhere except to openrouter.ai when the stand calls a model. Do not paste it into a chat.</p>
+
+ <div class="card" id="state-card"><b>On this device:</b> <span id="state">checking…</span>
+  <div><button class="alt" id="test" hidden>Unlock and check the credit</button><button class="alt" id="forget" hidden>Forget it on this device</button></div>
+  <p id="test-out" class="muted" aria-live="polite"></p></div>
+
+ <div class="card">
+  <label for="k">The OpenRouter key</label><input id="k" type="password" autocomplete="off" spellcheck="false" placeholder="sk-or-v1-…">
+  <label for="p">A passphrase (10+ characters)</label><input id="p" type="password" autocomplete="new-password">
+  <button id="seal">Encrypt and keep on this device</button>
+  <p id="out" class="muted" aria-live="polite"></p>
+ </div>
+
+ <div class="card" id="share" hidden>
+  <b>To use it on another device too</b> (optional): this ciphertext is safe to put on the site as <code>data/stand-key.json</code>; without the passphrase it is useless. Copy it and give it to swarm.1, which commits it.
+  <textarea id="blob" readonly></textarea><button class="alt" id="copy">Copy</button>
+ </div>
+</main>
+<script type="module">
+import { sealKey, openKey, saveLocal, findBlob, forgetLocal, credit } from '../assets/stand-key.js';
+const $ = (i) => document.getElementById(i);
+async function refresh() {
+  const f = await findBlob('../');
+  $('state').innerHTML = f ? `<span class="ok">a key is set</span> (${f.blob.hint}, sealed ${f.blob.sealed_at}, from ${f.from})` : '<span class="bad">no key yet</span>';
+  $('test').hidden = !f; $('forget').hidden = !f || f.from !== 'this device';
+  return f;
+}
+$('seal').onclick = async () => {
+  try {
+    const blob = await sealKey($('k').value.trim(), $('p').value);
+    $('k').value = ''; saveLocal(blob);
+    $('out').innerHTML = '<span class="ok">Encrypted and kept on this device.</span> The plain key is no longer on this page.';
+    $('blob').value = JSON.stringify(blob, null, 1); $('share').hidden = false; refresh();
+  } catch (e) { $('out').innerHTML = `<span class="bad">${e.message}</span>`; }
+};
+$('test').onclick = async () => {
+  const pass = $('p').value || prompt('Passphrase'); if (!pass) return;
+  try { const f = await findBlob('../'); const k = await openKey(f.blob, pass); const c = await credit(k);
+    $('test-out').innerHTML = `<span class="ok">Unlocked.</span> Credit: ${c.remaining != null ? '$' + Number(c.remaining).toFixed(2) + ' left' : 'no limit set'}${c.limit != null ? ' of $' + c.limit : ''}; used $${Number(c.used || 0).toFixed(4)}.`;
+  } catch (e) { $('test-out').innerHTML = `<span class="bad">${e.message}</span>`; }
+};
+$('forget').onclick = () => { forgetLocal(); refresh(); $('test-out').textContent = 'Forgotten on this device.'; };
+$('copy').onclick = () => navigator.clipboard.writeText($('blob').value);
+refresh();
+</script>
+</body>
+</html>
