@@ -770,6 +770,116 @@
      "at": "2026-11-12T12:10Z"
     }
    ]
+  },
+  {
+   "slug": "picari",
+   "name": "Picari",
+   "kind": "security",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T12:15Z"
+   },
+   "domain_note": "No domain was given. picari.ai (picari.io redirects to it) matches the card's words: a platform connecting cybersecurity buyers and vendors, free for buyers. The company has not confirmed it yet.",
+   "one_line": "A buyer-led evaluation platform for security tools: a guided brief, a ranked shortlist no vendor can pay to influence, then a private, structured evaluation. Free for security teams.",
+   "site": "https://picari.ai/",
+   "public": [
+    {
+     "fact": "Describes itself as 'a buyer-led evaluation platform for security tools': a ranked shortlist no vendor can pay to influence, then a private evaluation; free for security teams.",
+     "source": "https://picari.ai/",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "Three acts: a conversational AI briefing scopes the problem; a deterministic scoring engine ranks the catalogue into a shortlist with reasons; a private workspace runs the evaluation on criteria weighted before any vendor is invited.",
+     "source": "https://picari.ai/llms.txt",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "'AI conducts the briefing; it does not rank vendors, and vendors cannot pay for placement.'",
+     "source": "https://picari.ai/llms.txt",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "Scores rest on what vendors can prove, not what they promise; if a vendor has not shared the data, the buyer sees that, and every product ruled out has a reason.",
+     "source": "https://picari.ai/",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "Its directory lists 3,000+ security products from 1,000+ vendors across 60+ categories, including AI runtime and agent security, AI-SPM and agentic SOC.",
+     "source": "https://picari.ai/llms.txt",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "It offers an MCP server so Claude or ChatGPT can query its vendor facts.",
+     "source": "https://picari.ai/llms.txt",
+     "read_at": "2026-11-12T13:13Z"
+    },
+    {
+     "fact": "Vendors can claim their profile and take part in evaluations.",
+     "source": "https://picari.ai/",
+     "read_at": "2026-11-12T13:13Z"
+    }
+   ],
+   "told": [
+    "Its card says: 'Less noise. Better cybersecurity matches. Connecting cybersecurity buyers and vendors.'",
+    "It is a cybersecurity startup in vendor management, free for buyers."
+   ],
+   "help": {
+    "pitch": "Picari ranks security tools on what vendors can prove. GAMMA-Ray rates agentic products on public evidence against published standards, with every claim linked to its source and a trust level per fact. For the AI and agent security categories in Picari's directory, that is a second, evidence-graded view a buyer can read: an opinion without confrontation.",
+    "mandate": [
+     "For the agentic tools in its catalogue: what each product says its agents do, written down per configuration, as GAMMA-Ray does today."
+    ],
+    "reach": [
+     "What those agents can reach (connectors, permissions, tools), rated from public evidence and, with the vendor, measured."
+    ],
+    "gap": [
+     "Its own principle, 'if a vendor hasn't shared the data, you'll know', is the same as GAMMA-Ray's 'not yet evidenced'. The gap between claim and evidence is what both make visible."
+    ]
+   },
+   "together": [
+    {
+     "title": "Run GAMMA-Ray on the catalogue",
+     "text": "Seven or eight standards with specific requirements give an opinion without confrontation: each product's card links every level to public evidence (Dinis's first point).",
+     "link": "https://gamma-ray.sgit.ai/"
+    },
+    {
+     "title": "Rank data by assurance level",
+     "text": "Scraped or public, vendor-commented, customer opinion, regulator opinion: FACT-Ray already grades each fact by who says it and how firmly it is recorded (Dinis's second point).",
+     "link": "https://gamma-ray.sgit.ai/fact-ray/"
+    },
+    {
+     "title": "Openness against pay-to-play",
+     "text": "Public reviews and on-record evidence, with a graph linking every claim to its evidence, as PrompTugal and GAMMA-Ray publish (Dinis's third point).",
+     "link": "https://gamma-ray.sgit.ai/spectrum/graph/"
+    },
+    {
+     "title": "Signed identities and versioned vaults",
+     "text": "A key pair for every party and agent, and SGit vaults for versioned, signed data (Dinis's fourth point).",
+     "link": "https://web-summit.sgit.ai/xray/sgit/"
+    },
+    {
+     "title": "Trials and paid evaluations",
+     "text": "Low-commitment trials for vendors and paid evaluation for buyers (Dinis's fifth point).",
+     "link": "https://picari.ai/"
+    }
+   ],
+   "demos": [
+    [
+     "trust",
+     "pki"
+    ],
+    [
+     "trust",
+     "q-why"
+    ],
+    [
+     "reach",
+     "gap"
+    ],
+    [
+     "trust",
+     "handover"
+    ]
+   ]
   }
  ]
 }
