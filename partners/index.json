@@ -137,6 +137,29 @@
    "material": 6
   },
   {
+   "slug": "portstone",
+   "name": "Portstone",
+   "kind": "sales",
+   "kind_label": "Sales and revenue",
+   "one_line": "A cold-calling agency: it assigns trained callers to a B2B campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+   "has": [
+    "met"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T10:35Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://portstone.io/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T10:59Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
    "slug": "replit",
    "name": "Replit",
    "kind": "coding",

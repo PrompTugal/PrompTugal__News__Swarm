@@ -331,6 +331,105 @@
      "at": "2026-11-12T10:26Z"
     }
    ]
+  },
+  {
+   "slug": "portstone",
+   "name": "Portstone",
+   "kind": "sales",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T10:35Z"
+   },
+   "domain_note": "No domain was given. portstone.io ('Portstone · Cold calling agency') matches the service described; portstone.com and portstone.co.uk are unrelated paving companies. Not yet confirmed by the company.",
+   "one_line": "A cold-calling agency: it assigns trained callers to a B2B campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+   "site": "https://portstone.io/home",
+   "public": [
+    {
+     "fact": "Describes itself as a cold calling agency that assigns trained callers to a campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Services: outbound strategy, list building, script writing, SDR placement and training, cold calling, and weekly campaign reporting.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Every call on every campaign is recorded; recordings come with the weekly report, attached to the record they belong to.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Works backwards from the client's revenue goal to the dial volume and connect rate needed, and checks every row of a list for the right company, person and role before calling.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Pricing per campaign: Starter $2,000 (500 dials), Growth $3,500 (1,000 dials), Scale $5,000 (1,500 dials, multiple callers), Custom on request; no setup fees, no long-term contract.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Says it has called into law, agency, B2B SaaS, consulting, salestech, recruiting, financial advisory and other markets, and does not guarantee meetings.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    },
+    {
+     "fact": "Its callers are people, selected, trained and managed by Portstone; the site names no AI agents in its own process.",
+     "source": "https://portstone.io/home",
+     "read_at": "2026-11-12T10:59Z"
+    }
+   ],
+   "told": [
+    "A fractional SDR and cold-calling service that builds outbound pipeline for B2B tech companies."
+   ],
+   "help": {
+    "pitch": "Portstone's own work is done by people, not AI agents, so RiskMandate's measurement is not the first fit. The fit Dinis sees is the other way round: Portstone as an outbound phone channel for RiskMandate's agent-risk assessments and the summit packages, calling B2B tech companies that run AI agents.",
+    "mandate": [
+     "Unknown for agents: the site describes human callers working from an approved script and list. The script is a written mandate for a caller."
+    ],
+    "reach": [
+     "Its process touches client target lists, call recordings and CRM-style records. Whether any AI tooling sits behind list sourcing or connect-rate optimisation is unknown from public pages."
+    ],
+    "gap": [
+     "Unknown. If Portstone adds AI to list sourcing, dialling or reporting, the mandate, reach and gap measurement applies there."
+    ]
+   },
+   "together": [
+    {
+     "title": "An outbound phone channel for RiskMandate",
+     "text": "Portstone calls B2B tech companies to book meetings for RiskMandate's agent-risk assessments and the summit packages (Dinis's point): a reseller or pipeline partner.",
+     "link": "https://store.sgit.ai/"
+    },
+    {
+     "title": "A script built from the X-ray and GAMMA-Ray",
+     "text": "Calls that open with what we already published about the prospect's agents: our partner briefs and X-rays as the call research.",
+     "link": "partners.html"
+    },
+    {
+     "title": "Measure it like a campaign",
+     "text": "Its own funnel (dials, connects, completions, leads, meetings) reported weekly against the summit offer.",
+     "link": "https://portstone.io/home"
+    }
+   ],
+   "demos": [
+    [
+     "reach",
+     "gap"
+    ],
+    [
+     "reach",
+     "opening"
+    ],
+    [
+     "trust",
+     "q-why"
+    ],
+    [
+     "flow",
+     "cost"
+    ]
+   ]
   }
  ]
 }

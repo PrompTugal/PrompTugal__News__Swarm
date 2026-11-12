@@ -1,0 +1,304 @@
+{
+ "slug": "portstone",
+ "name": "Portstone",
+ "kind": "sales",
+ "kind_label": "Sales and revenue",
+ "one_line": "A cold-calling agency: it assigns trained callers to a B2B campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T10:59Z",
+ "asked": {
+  "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T10:35Z"
+ },
+ "note": "Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.",
+ "artefacts": [
+  {
+   "kind": "brief",
+   "title": "This partner brief: Portstone",
+   "url": "#know",
+   "note": "asked for by name at the summit, 2026-11-12T10:35Z",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T10:59Z"
+  },
+  {
+   "kind": "site",
+   "title": "Their own site: portstone.io",
+   "url": "https://portstone.io/",
+   "note": "read by hand for this brief",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T10:59Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Describes itself as a cold calling agency that assigns trained callers to a campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Services: outbound strategy, list building, script writing, SDR placement and training, cold calling, and weekly campaign reporting.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Every call on every campaign is recorded; recordings come with the weekly report, attached to the record they belong to.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Works backwards from the client's revenue goal to the dial volume and connect rate needed, and checks every row of a list for the right company, person and role before calling.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Pricing per campaign: Starter $2,000 (500 dials), Growth $3,500 (1,000 dials), Scale $5,000 (1,500 dials, multiple callers), Custom on request; no setup fees, no long-term contract.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Says it has called into law, agency, B2B SaaS, consulting, salestech, recruiting, financial advisory and other markets, and does not guarantee meetings.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Its callers are people, selected, trained and managed by Portstone; the site names no AI agents in its own process.",
+   "quote": "",
+   "source": "https://portstone.io/home",
+   "read_at": "2026-11-12T10:59Z",
+   "via": "https://portstone.io/home"
+  }
+ ],
+ "told": [
+  "A fractional SDR and cold-calling service that builds outbound pipeline for B2B tech companies."
+ ],
+ "domain_note": "No domain was given. portstone.io ('Portstone · Cold calling agency') matches the service described; portstone.com and portstone.co.uk are unrelated paving companies. Not yet confirmed by the company.",
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "Portstone's own work is done by people, not AI agents, so RiskMandate's measurement is not the first fit. The fit Dinis sees is the other way round: Portstone as an outbound phone channel for RiskMandate's agent-risk assessments and the summit packages, calling B2B tech companies that run AI agents.",
+  "mandate": [
+   {
+    "text": "Unknown for agents: the site describes human callers working from an approved script and list. The script is a written mandate for a caller."
+   }
+  ],
+  "reach": [
+   {
+    "text": "Its process touches client target lists, call recordings and CRM-style records. Whether any AI tooling sits behind list sourcing or connect-rate optimisation is unknown from public pages."
+   }
+  ],
+  "gap": [
+   {
+    "text": "Unknown. If Portstone adds AI to list sourcing, dialling or reporting, the mandate, reach and gap measurement applies there."
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "An outbound phone channel for RiskMandate",
+    "text": "Portstone calls B2B tech companies to book meetings for RiskMandate's agent-risk assessments and the summit packages (Dinis's point): a reseller or pipeline partner.",
+    "link": "https://store.sgit.ai/"
+   },
+   {
+    "title": "A script built from the X-ray and GAMMA-Ray",
+    "text": "Calls that open with what we already published about the prospect's agents: our partner briefs and X-rays as the call research.",
+    "link": "partners.html"
+   },
+   {
+    "title": "Measure it like a campaign",
+    "text": "Its own funnel (dials, connects, completions, leads, meetings) reported weekly against the summit offer.",
+    "link": "https://portstone.io/home"
+   }
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+  }
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Three words for the rest of the demo. The reach shown is measured, in our own container.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "The same work, two ways",
+   "theme": "reach",
+   "demo": "opening",
+   "why": "One real run of 48 loops (r5b), priced two ways.",
+   "present": "theme.html?t=reach&d=opening",
+   "stage": "../stage.html?scene=opening"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "The same tokens, four prices",
+   "theme": "flow",
+   "demo": "cost",
+   "why": "The big run (73 calls) priced on every Claude model at list price, against what we paid.",
+   "present": "theme.html?t=flow&d=cost",
+   "stage": "../stage.html?scene=cost"
+  }
+ ],
+ "deck": {
+  "id": "partner-portstone",
+  "title": "Portstone: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T10:59Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Portstone",
+    "sub": "A cold-calling agency: it assigns trained callers to a B2B campaign and runs it end to end, from the target list to the meetings on the client's calendar.",
+    "caption": "What we have on Portstone, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Describes itself as a cold calling agency that assigns trained callers to a campaign and runs it end to end, from the target list to the…",
+     "Services: outbound strategy, list building, script writing, SDR placement and training, cold calling, and weekly campaign reporting.",
+     "Every call on every campaign is recorded; recordings come with the weekly report, attached to the record they belong to.",
+     "Works backwards from the client's revenue goal to the dial volume and connect rate needed, and checks every row of a list for the right…",
+     "Pricing per campaign: Starter $2,000 (500 dials), Growth $3,500 (1,000 dials), Scale $5,000 (1,500 dials, multiple callers), Custom on…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "Unknown. If Portstone adds AI to list sourcing, dialling or reporting, the mandate, reach and gap measurement applies…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "An outbound phone channel for RiskMandate",
+     "A script built from the X-ray and GAMMA-Ray",
+     "Measure it like a campaign"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach, gap",
+    "step": "gap/two-ways-to-close-it",
+    "caption": "Three words for the rest of the demo. The reach shown is measured, in our own container."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · the summit promotion",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
+     "Write to agent@riskmandate.ai."
+    ]
+   }
+  ]
+ }
+}
