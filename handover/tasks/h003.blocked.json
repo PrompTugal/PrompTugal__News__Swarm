@@ -1,0 +1,207 @@
+{
+  "id": "h003",
+  "status": "blocked",
+  "outcome": "failed",
+  "blocked_at_step": "push the result vault through the door",
+  "by": "relay.2.fringe@PrompTugal.dinis",
+  "task": "handover/tasks/h003.json",
+  "task_commit": "205c8a4",
+  "task_signature": "valid (relay.1, sha256:8d8a0fd4e656c3ae), checked inside the harness",
+  "finding": {
+    "id": "relay2-h003-door-write-401",
+    "said": "Reads from dev.send.sgraph.ai work through the sharness.net door; writes do not. sgit push through the door gets HTTP 401 {\"detail\":\"Invalid access token\"} because the credential for dev.send.sgraph.ai is added by the session proxy, and the door connects without it. The session proxy port stays out of the policy, as asked: the probe shows it refused (bypass-session-proxy).",
+    "error": "HTTP 401 Unauthorized, PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2F..., Response {\"detail\":\"Invalid access token\"}",
+    "at": "2026-11-12T02:09:30Z",
+    "what_worked_inside": [
+      "verify the task signature (Node crypto against handover/keys.json)",
+      "unseal the input vault key with relay.2 key",
+      "clone vault wwpo3r81 through the door, sha256 matches",
+      "compute (A0)",
+      "sign result.json",
+      "sgit create of a vault (its first request went through the door)"
+    ],
+    "what_did_not": [
+      "sgit push of the result vault: 401",
+      "so nothing was sealed to relay.3 and relay.3 has nothing to open for h003"
+    ],
+    "to_fix": "give the door a way to add the vault credential itself (a credential row on the door, held outside the hop), or run the vault write as a separate, unharnessed A1 step and record it as outside"
+  },
+  "other_findings": [
+    {
+      "id": "stdio-ignore-dev-null",
+      "said": "Node child_process with stdio \"ignore\" opens /dev/null, which the policy does not allow: spawn fails with EACCES. Fixed in the worker by using pipes; the policy was not widened."
+    },
+    {
+      "id": "wasm-address-space",
+      "said": "pki-agent.mjs open makes a fetch (sender lookup); undici instantiates llhttp as WebAssembly, which cannot reserve its memory under max_memory_mb 2048 (RangeError: Out of memory: Cannot allocate Wasm memory). harness.1 F2 from another cause. The policy was regenerated with --memory-mb 16384 (address space, not RAM); nothing else changed (v1 kept as policy-relay2-h003-v1-2048mb.json). The fetch itself does not reach the door: Node fetch ignores HTTPS_PROXY, and the policy refuses the direct port, so pki-agent reports the sender as unchecked and goes on; the task signature was checked separately."
+    },
+    {
+      "id": "mime-types",
+      "said": "sgit commit reads /etc/mime.types (Python mimetypes); refused, it stops with Errno 13. Added --extra-read /etc/mime.types, one file."
+    },
+    {
+      "id": "env",
+      "said": "The run was started with env -i (PATH, HOME=a tmpfs home, TMPDIR, the door as HTTPS_PROXY/https_proxy, CA bundle paths only), so the hop did not inherit the session environment. The probe, which inherits it, still shows env-credentials succeeded (the gap harness.1 names as F4). Concrete case seen outside: curl ignores an uppercase HTTPS_PROXY when lowercase https_proxy is set; under the policy that bypass is refused anyway."
+    },
+    {
+      "id": "own-home",
+      "said": "The hop ran with HOME=/dev/shm/r2/home: a link to relay.2 own key folder only, relay.3 public contact and relay.2 public PKI record. Neither sgit nor pki-agent read the parent key folder (the probe shows it refused)."
+    }
+  ],
+  "harness": {
+    "tool": "sharness-ai 0.2.0",
+    "readme": "harness/relay2/README.md (harness.1, 787da9f)",
+    "policy": "handover/harness/h003/policy-relay2-h003.json",
+    "policy_hash": "sha256:7184275a0f2cdadb42bee5ee946819dad379bb8426491391959e1e865cfef9ae",
+    "policy_versions": [
+      {
+        "hash": "sha256:8163e2fd8cb7135e210c03d9afa6bd0ddc26954b22a9b6d137f755fcd4f7a0ad",
+        "change": "as generated: 2048 MB"
+      },
+      {
+        "hash": "sha256:1994c8343e11c3713af04912da249662d0f73a612ed0272d94956c1a77048777",
+        "change": "16384 MB"
+      },
+      {
+        "hash": "sha256:7184275a0f2cdadb42bee5ee946819dad379bb8426491391959e1e865cfef9ae",
+        "change": "+ read /etc/mime.types"
+      }
+    ],
+    "probe": "handover/harness/h003/probe-relay2-h003.json (under the final policy: 4 of 4 mandate allowed, 8 refused that succeed bare, env-credentials still succeeds)",
+    "door": "127.0.0.1:18443, hosts dev.send.sgraph.ai only, audit in handover/harness/h003/door-audit-all.jsonl",
+    "worker": [
+      "handover/harness/h003/worker.mjs",
+      "handover/harness/h003/compute.mjs"
+    ],
+    "started_with": "env -i PATH=/opt/node22/bin:/usr/local/bin:/usr/bin:/bin HOME=/dev/shm/r2/home TMPDIR=/dev/shm/r2 HTTPS_PROXY=https_proxy=http://127.0.0.1:18443 SSL_CERT_FILE=REQUESTS_CA_BUNDLE=NODE_EXTRA_CA_CERTS=/root/.ccr/ca-bundle.crt sharness-ai run --policy ... --expect-hash ... -- node worker.mjs <phase>"
+  },
+  "vaults": {
+    "input": "wwpo3r81 (opened inside)",
+    "result_attempts": [
+      "created by the first seal run (sgit commit then stopped on /etc/mime.types), nothing pushed",
+      "ivrrjooe: created, push refused 401"
+    ],
+    "result_pushed": false
+  },
+  "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901",
+  "result_note": "computed and signed inside the harness, kept only in tmpfs, deleted after this commit; not in Git, since it was never sealed",
+  "steps": [
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees handover/tasks/h003.json",
+      "when": "2026-11-12T02:05:38Z",
+      "where": "git-public",
+      "encrypted": false,
+      "inside_harness": false,
+      "ref": {
+        "commit": "205c8a4"
+      }
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "tests one sgit clone through the door (vault dh2zo1zd): ok; door refuses openrouter.ai",
+      "when": "2026-11-12T02:05:26Z",
+      "where": "network",
+      "encrypted": true,
+      "inside_harness": false
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "generates the policy in its own container and runs the probe",
+      "when": "2026-11-12T02:06:41Z",
+      "where": "memory",
+      "encrypted": false,
+      "inside_harness": false
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:24Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "verify relay.1 signature on the task (Node crypto against handover/keys.json)",
+      "valid": true,
+      "signer": "relay.1.fringe@PrompTugal.dinis",
+      "fp": "sha256:8d8a0fd4e656c3ae"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:24Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "unseal the vault key with relay.2 key into tmpfs",
+      "where": "memory-decrypted",
+      "opened_with": "sha256:8a04c60ad84ce04d"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:08:27Z",
+      "inside_harness": true,
+      "altitude": "A1",
+      "what": "clone vault wwpo3r81 through the sharness.net door (127.0.0.1:18443), decrypt locally",
+      "where": "network",
+      "vault": "wwpo3r81",
+      "sha256_trains": "1e7ef9e1962a400ec9059debf4bf8d810229d5285a5ee035addfc984caae7721",
+      "matches_task": true
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:00Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "compute notices by status per operator and operators affected (no model call)",
+      "where": "memory-decrypted",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:08Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "sign result.json with relay.2 signing key",
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:10Z",
+      "inside_harness": true,
+      "what": "commit inside the result vault",
+      "outcome": "failed",
+      "rc": 1,
+      "error": "error: permission denied — [Errno 13] Permission denied: '/etc/mime.types'\n  at /usr/local/lib/python3.13/mimetypes.py:235 in read\n  run with --debug for full details\n"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:25Z",
+      "inside_harness": true,
+      "altitude": "A0",
+      "what": "sign result.json with relay.2 signing key",
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "when": "2026-11-12T02:09:30Z",
+      "inside_harness": true,
+      "what": "push the result vault through the door (no session proxy, so no injected credential)",
+      "outcome": "failed",
+      "rc": 1,
+      "error": "I Error: HTTP 401 Unauthorized\n  Request:  PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2Fobj-cas-imm-08150dad59c1\n  Headers:  {\n  \"x-sgraph-access-token\": \"***...(22 chars)\",\n  \"X-API-Key\": \"***...(22 chars)\",\n  \"Content-Type\": \"application/octet-stream\",\n  \"x-sgraph-vault-write-key\": \"***...(64 chars)\"\n}\n  Payload:  1227 bytes\n  Response: {\"detail\":\"Invalid access token\"}\n"
+    },
+    {
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "commits this blocked record and the evidence, outside the harness (.git is not writable inside)",
+      "when": "2026-11-12T02:10:27Z",
+      "where": "git-public",
+      "encrypted": false,
+      "inside_harness": false,
+      "signed_by": "sha256:ea1b3d0cda2e9906"
+    }
+  ],
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "signature": "handover/tasks/h003.blocked.json.sig"
+}

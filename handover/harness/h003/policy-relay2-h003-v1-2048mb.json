@@ -1,0 +1,44 @@
+{
+ "pbp": 1,
+ "id": "relay2-h003",
+ "layer": "invocation",
+ "notes": "harness.1.fringe for relay.2's worker hop: reads the system libraries, its tools (/opt/node22, /usr/local), the Git checkout and its own key directory; writes only handover/ and its tmpfs work dir; executes only its tools; the only TCP port is the sharness.net door on 127.0.0.1:18443, which holds the hosts. Generated 2026-11-12T02:06:41Z.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/etc/ca-certificates",
+   "/home/user/PrompTugal__News__Swarm",
+   "/root/.sg-send/keys/sha256_8a04c60ad84ce04d",
+   "/dev/shm/r2",
+   "/opt/node22",
+   "/usr/local",
+   "/tmp/claude-0/-home-user-PrompTugal--News--Swarm/9bbc25c3-63f5-5a85-b8f4-9aef53fecdd2/scratchpad/pki",
+   "/tmp/claude-0/-home-user-PrompTugal--News--Swarm/9bbc25c3-63f5-5a85-b8f4-9aef53fecdd2/scratchpad/worker",
+   "/root/.ccr/ca-bundle.crt"
+  ],
+  "write": [
+   "/home/user/PrompTugal__News__Swarm/handover",
+   "/dev/shm/r2"
+  ],
+  "exec": [
+   "/lib",
+   "/lib64",
+   "/usr/lib",
+   "/opt/node22",
+   "/usr/local"
+  ]
+ },
+ "network": {
+  "connect_tcp_ports": [
+   18443
+  ]
+ },
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 2048,
+  "max_pids": 64
+ }
+}

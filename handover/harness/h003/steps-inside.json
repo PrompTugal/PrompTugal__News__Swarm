@@ -1,0 +1,69 @@
+[
+ {
+  "when": "2026-11-12T02:08:24Z",
+  "inside_harness": true,
+  "altitude": "A0",
+  "what": "verify relay.1 signature on the task (Node crypto against handover/keys.json)",
+  "valid": true,
+  "signer": "relay.1.fringe@PrompTugal.dinis",
+  "fp": "sha256:8d8a0fd4e656c3ae"
+ },
+ {
+  "when": "2026-11-12T02:08:24Z",
+  "inside_harness": true,
+  "altitude": "A0",
+  "what": "unseal the vault key with relay.2 key into tmpfs",
+  "where": "memory-decrypted",
+  "opened_with": "sha256:8a04c60ad84ce04d"
+ },
+ {
+  "when": "2026-11-12T02:08:27Z",
+  "inside_harness": true,
+  "altitude": "A1",
+  "what": "clone vault wwpo3r81 through the sharness.net door (127.0.0.1:18443), decrypt locally",
+  "where": "network",
+  "vault": "wwpo3r81",
+  "sha256_trains": "1e7ef9e1962a400ec9059debf4bf8d810229d5285a5ee035addfc984caae7721",
+  "matches_task": true
+ },
+ {
+  "when": "2026-11-12T02:09:00Z",
+  "inside_harness": true,
+  "altitude": "A0",
+  "what": "compute notices by status per operator and operators affected (no model call)",
+  "where": "memory-decrypted",
+  "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+ },
+ {
+  "when": "2026-11-12T02:09:08Z",
+  "inside_harness": true,
+  "altitude": "A0",
+  "what": "sign result.json with relay.2 signing key",
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+ },
+ {
+  "when": "2026-11-12T02:09:10Z",
+  "inside_harness": true,
+  "what": "commit inside the result vault",
+  "outcome": "failed",
+  "rc": 1,
+  "error": "error: permission denied — [Errno 13] Permission denied: '/etc/mime.types'\n  at /usr/local/lib/python3.13/mimetypes.py:235 in read\n  run with --debug for full details\n"
+ },
+ {
+  "when": "2026-11-12T02:09:25Z",
+  "inside_harness": true,
+  "altitude": "A0",
+  "what": "sign result.json with relay.2 signing key",
+  "signed_by": "sha256:ea1b3d0cda2e9906",
+  "result_sha256": "e3f6ad0ce51634d05bde044aa3b8a856eef05073115ea98e2d2af2b1b0526901"
+ },
+ {
+  "when": "2026-11-12T02:09:30Z",
+  "inside_harness": true,
+  "what": "push the result vault through the door (no session proxy, so no injected credential)",
+  "outcome": "failed",
+  "rc": 1,
+  "error": "I Error: HTTP 401 Unauthorized\n  Request:  PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2Fobj-cas-imm-08150dad59c1\n  Headers:  {\n  \"x-sgraph-access-token\": \"***...(22 chars)\",\n  \"X-API-Key\": \"***...(22 chars)\",\n  \"Content-Type\": \"application/octet-stream\",\n  \"x-sgraph-vault-write-key\": \"***...(64 chars)\"\n}\n  Payload:  1227 bytes\n  Response: {\"detail\":\"Invalid access token\"}\n"
+ }
+]
