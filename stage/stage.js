@@ -420,7 +420,9 @@
     const under = (n) => curMode === 'layers' && !['P', 'A4', 'A3', 'X', 'M', 'T'].includes(n.alt);
     // crowded (more than 24): only the big units keep a label until the presenter zooms in, so the picture stays clean
     const BIG = ['P', 'A4', 'A3', 'X', 'M', 'E', 'C'], labs = lab.length > 24 && !userZoomed ? lab.filter((n) => BIG.includes(n.alt) || n.id === focusId) : lab;
-    const sparse = boostTok * (labs.length <= 8 ? 2.2 : labs.length <= 12 ? 1.8 : labs.length <= 16 ? 1.4 : 1);
+    // the boost is for the projector: on a narrow stage (a laptop with both panes open) it shrinks with the stage's width
+    const fitW = Math.max(0.55, Math.min(1, (W || 1300) / 1300));
+    const sparse = boostTok * (1 + ((labs.length <= 8 ? 2.2 : labs.length <= 12 ? 1.8 : labs.length <= 16 ? 1.4 : 1) - 1) * fitW);
     const ts = gLabels.selectAll('text').data(labs, (n) => n.id);
     ts.exit().remove();
     ts.enter().append('text').attr('class', 'lbl').merge(ts)
