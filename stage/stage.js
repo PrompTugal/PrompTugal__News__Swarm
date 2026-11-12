@@ -309,9 +309,12 @@
   // assets added by a step (the "who can reach it" stories): nodes on the right, sim-marked
   function withAssets(g, names) {
     if (!names || !names.length) return g;
-    const key = names.join(',');
+    // an asset is a name (simulated), or {name, label, real, home}: home "alt:E" ties its one reach line to the first unit of that altitude
+    const nm = (a) => (typeof a === 'string' ? a : a.name), key = names.map(nm).join(',');
     if (g._assets && g._assets.key === key) return g._assets.g;
-    const extra = names.map((a) => g.byId.get('asset:' + a) || { id: 'asset:' + a, kind: 'asset', alt: 'X', label: a, sim: true, t0: 0 });
+    const homeOf = (h) => (h && h.startsWith('alt:') ? (g.nodes.find((n) => n.alt === h.slice(4)) || {}).id : h);
+    const extra = names.map((a) => g.byId.get('asset:' + nm(a)) || (typeof a === 'string' ? { id: 'asset:' + a, kind: 'asset', alt: 'X', label: a, sim: true, t0: 0 }
+      : { id: 'asset:' + a.name, kind: 'asset', alt: 'X', label: a.label || a.name, sim: !a.real, home: homeOf(a.home), t0: 0 }));
     const ng = { ...g, nodes: g.nodes.concat(extra.filter((n) => !g.byId.has(n.id))), byId: new Map(g.byId) };
     extra.forEach((n) => ng.byId.set(n.id, n));
     g._assets = { key, g: ng };
@@ -478,13 +481,15 @@
       const n = R.length; R = R.map((x, i) => ({ ...x, on: st.overlayP * 1.15 > i / Math.max(1, n) }));
       if (st.fail) R = R.map((x) => ({ ...x, failed: x.u.id === st.fail }));
     }
+    const few = R.filter((x) => !x.cut).length <= 2;
     const rs = gReach.selectAll('line').data(R, (x) => x.u.id + '>' + x.a.id);
     rs.exit().remove();
     rs.enter().append('line').merge(rs)
       .attr('class', (x) => 'reachline' + (x.cut ? ' cut' : '') + (x.failed ? ' fail' : ''))
       .attr('x1', (x) => x.u.x).attr('y1', (x) => x.u.y).attr('x2', (x) => x.a.x).attr('y2', (x) => x.a.y)
-      .style('opacity', (x) => (x.on ? (x.cut ? 0.22 : 0.5) * Math.min(dimOf(x.u, st), 1) : 0))
-      .style('stroke-width', 1.2 * K.link);
+      // one or two live lines (the Action's one real reach): drawn bold, so the eye finds it; many lines stay fine
+      .style('opacity', (x) => (x.on ? (x.cut ? 0.22 : few ? 0.95 : 0.5) * Math.min(dimOf(x.u, st), 1) : 0))
+      .style('stroke-width', (x) => (!x.cut && few ? 3 : 1.2) * K.link);
     const reaching = R.filter((x) => x.on && !x.cut).length, units = new Set(R.filter((x) => x.on && !x.cut).map((x) => x.u.id)).size;
     st._reach = { lines: reaching, units };
   }
@@ -524,7 +529,7 @@
       } else if (c.kind === 'check') {   // ask → check → allowed or refused, one row per step of the reveal
         const M = c.map || null, src = (data && pick(data, c.from || 'after.results')) || [];
         const rows = c.rows || (c.fromActions && data ? (pick(data, c.fromActions) || []).map((r) => ({ who: c.who, ask: r.action, check: (c.policy || 'the licence') + ' · reach ' + String(r.fp || '').slice(7, 15), outcome: String(r.got).split(':')[0] })) : null) || (M ? src.slice(0, c.max || 12).map((r) => ({ who: M.who ? pick(r, M.who) : c.who, ask: [M.askPrefix || '', pick(r, M.ask)].join(''), check: M.check ? pick(r, M.check) || c.policy : c.policy, outcome: M.outcome ? (pick(r, M.outcome) === true ? 'allowed' : pick(r, M.outcome) === false ? 'refused' : String(pick(r, M.outcome))) : '', where: c.where })) : src.map((r) => ({ who: c.who || 'the child process', ask: r.probe, check: c.policy || 'policy', outcome: String(r.got).split(' (')[0], expected: r.expected })));
-        el.innerHTML = `<div class="check"><h2>${esc(c.title || '')}</h2><div class="ck-head"><span>asks</span><span>the check</span><span>outcome</span></div>${rows.map((r, i) => `<div class="ck" data-i="${i}"><span class="ask"><small>${esc(r.who || '')}</small>${esc(r.ask)}</span><span class="arrow">→</span><span class="gate ${r.where === 'inside' ? 'inside' : ''}">${esc(r.check)}${r.where ? `<small>${esc(r.where === 'inside' ? 'inside the agent' : 'outside the agent')}</small>` : ''}</span><span class="arrow">→</span><span class="out ${/allow/.test(r.outcome) || r.outcome === 'done' ? 'ok' : /refus|denied|block/.test(r.outcome) ? 'no' : 'skip'}">${esc(r.outcome)}</span></div>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
+        el.innerHTML = `<div class="check"><h2>${esc(c.title || '')}</h2><div class="ck-head"><span>asks</span><span>the check</span><span>outcome</span></div>${rows.map((r, i) => `<div class="ck" data-i="${i}"><span class="ask"><small>${esc(r.who || '')}</small>${esc(r.ask)}</span><span class="arrow">→</span><span class="gate ${r.where === 'inside' ? 'inside' : ''}">${esc(r.check)}${r.where ? `<small>${esc(r.where === 'inside' ? 'inside the agent' : 'outside the agent')}</small>` : ''}</span><span class="arrow">→</span><span class="out ${/^allowed\b/.test(r.outcome) || /^done( ·|$)/.test(r.outcome) ? 'ok' : /refus|denied|block/.test(r.outcome) ? 'no' : 'skip'}">${esc(r.outcome)}</span></div>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
       } else if (c.kind === 'flow') {   // where the data is, step by step: network, in memory (decrypted), vault (encrypted), Git (public)
         const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'disk-plaintext', 'vault-encrypted', 'git-public'];
         const NAMES = { network: 'network', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public', 'inside-harness': 'inside the harness', 'disk-plaintext': 'disk · plaintext' };

@@ -624,10 +624,20 @@
       "P",
       "A3",
       "C",
-      "E"
+      "E",
+      "X"
      ],
      "idea": false,
-     "caption": "Said plainly: today, the deployment's superuser password, on a disposable account; after the demo, a write-only key for swarm-*."
+     "caption": "Said plainly, and drawn: the Action's one real reach today is Elastic, with the deployment's superuser password, on a disposable account. After the demo, a write-only key for swarm-*.",
+     "assets": [
+      {
+       "name": "Elastic",
+       "label": "Elastic · today",
+       "real": true,
+       "home": "alt:E"
+      }
+     ],
+     "overlay": "policy"
     },
     {
      "label": "the work runs there",
@@ -640,6 +650,12 @@
      "label": "can they reach the assets?",
      "dur": 4,
      "assets": [
+      {
+       "name": "Elastic",
+       "label": "Elastic · today",
+       "real": true,
+       "home": "alt:E"
+      },
       "Gmail",
       "Calendar"
      ],
@@ -648,7 +664,7 @@
      "counter": {
       "of": "reach"
      },
-     "caption": "Can any of them reach Gmail or Calendar? No: those are not connected where they run. Don't hope the agent behaves. Make the dangerous thing unreachable."
+     "caption": "Can any of them reach Gmail or Calendar? No: those are not connected where they run. The one line today is the Action to a disposable Elastic. Don't hope the agent behaves. Make the dangerous thing unreachable."
     }
    ]
   },
@@ -901,6 +917,65 @@
       ]
      },
      "caption": "What we paid, on open-weight models through OpenRouter: 62 times less than Opus, for loops that do not need the agent's brain."
+    }
+   ]
+  },
+  {
+   "id": "harness-did-its-job",
+   "act": "8 · The harness",
+   "title": "Everything it was asked to do, it did",
+   "say": "Before the refusals, the work. E1 and E2: the same code, harnessed, did its job; the output is byte-identical (sha256 63544c8a…), and its two mandate actions succeeded. E4: the real storm read went through the door: HTTP 200, 21,010 bytes, the same sha256 as unharnessed. E7: the swarm's own engine read its three datasets through the door.",
+   "cue": "Everything it was asked to do, it did. Everything else, it couldn't.",
+   "steps": [
+    {
+     "label": "the work",
+     "dur": 5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "one A0 unit (E1, E2)",
+        "ask": "read its data, write its summary",
+        "check": "one policy",
+        "where": "outside",
+        "outcome": "done · output byte-identical"
+       },
+       {
+        "who": "the storm read (E4)",
+        "ask": "fetch the real storm data",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "done · HTTP 200, 21,010 bytes"
+       },
+       {
+        "who": "the swarm engine (E7)",
+        "ask": "read 3 storm datasets",
+        "check": "the door: one host",
+        "where": "outside",
+        "outcome": "done · 3 of 3"
+       }
+      ],
+      "upto": 3,
+      "fromN": 0,
+      "title": "Harnessed, and the work got done",
+      "source": "harness/2026-11-12-harness1-e1e2-before-after.json (sha256 63544c8a…) · harness/2026-11-12-harness1-e4-door.json · harness/2026-11-12-harness1-e7-swarm-engine.json"
+     },
+     "caption": "Harnessed, the work got done: the same output, the same bytes."
+    },
+    {
+     "label": "and everything else",
+     "dur": 3,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "The harness",
+      "title": "Everything it was asked to do, it did. Everything else, it couldn't.",
+      "lines": [
+       "The refusals that follow are the policy choosing: one host, one folder, one summary."
+      ],
+      "source": "harness/2026-11-12-harness1-e1e2-before-after.json · harness/2026-11-12-harness1-e4-door.json · harness/2026-11-12-harness1-e7-swarm-engine.json"
+     },
+     "caption": "Everything it was asked to do, it did. Everything else, it couldn't."
     }
    ]
   },
@@ -1356,6 +1431,60 @@
    ]
   },
   {
+   "id": "harness-credential",
+   "act": "8 · The harness",
+   "title": "The mandate allowed, the credential not yet carried",
+   "say": "E11: the same engine, one run, with a door that opens two hosts, the storm site and the model router. The read goes through. The door lets the call out to the router, exactly the mandate. The router answers 401: the key was never given to the process (env -i). Not a success: the reach is right, and the credential is the missing row.",
+   "cue": "Mandate allowed, credential not yet carried.",
+   "steps": [
+    {
+     "label": "through the door",
+     "dur": 5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "the swarm engine (A0)",
+        "ask": "read the storm warnings",
+        "check": "the door: storm site + router",
+        "where": "outside",
+        "outcome": "allowed · 20,811 bytes"
+       },
+       {
+        "who": "the swarm engine (A1)",
+        "ask": "call deepseek/deepseek-v4-flash",
+        "check": "the door: storm site + router",
+        "where": "outside",
+        "outcome": "door allowed · router 401 · 0 tokens, $0"
+       }
+      ],
+      "upto": 2,
+      "fromN": 0,
+      "title": "Two hosts open, one key missing",
+      "source": "harness/2026-11-12-harness1-e11-mandate-door.json (run, door_audit; measured 2026-11-12T03:52Z)"
+     },
+     "caption": "The door let exactly the mandate out. The router said 401: the process never had the key."
+    },
+    {
+     "label": "the missing row",
+     "dur": 4,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Said plainly",
+      "title": "Not through yet",
+      "lines": [
+       "The reach is right: the door let out the storm read and the router call, nothing else.",
+       "The key was never given to the process: it started with env -i.",
+       "The next row: the door holds the key and adds it, outside the process (F6)."
+      ],
+      "source": "harness/2026-11-12-harness1-e11-mandate-door.json (key_handling, what_would_let_it_through)"
+     },
+     "caption": "Mandate allowed, credential not yet carried. That is the next row, not a success."
+    }
+   ]
+  },
+  {
    "id": "harness-reach",
    "act": "8 · The harness",
    "title": "Mandate, reach and gap, per unit",
@@ -1558,7 +1687,7 @@
    "id": "harness-key-inside",
    "act": "9 · Keys on everything",
    "title": "A key born inside the run",
-   "say": "E9, the sequel to E5: the execution key is made inside the harnessed process and dies with it (1.5 s here, only because the unit waits for the neighbour test). No file, no key row in the policy, no credential-like names in the child's environment. A root process next door found no key file, but could open the process's memory: the next row is a separate uid.",
+   "say": "E9, the sequel to E5: the execution key is made inside the harnessed process and dies with it (1.5 s here, only because the unit waits for the neighbour test). No file, no key row in the policy, no credential-like names in the child's environment. A root process next door found no key file, but could open the process's memory: the next row is a separate uid. E10 then ran the unit as its own uid: another uid is refused; root and the same uid outside the sandbox are not; root under its own policy is. Yama is not available on this kernel.",
    "cue": "Safe from files. Not yet from a root neighbour; that is the next row.",
    "steps": [
     {
@@ -1624,11 +1753,53 @@
       "title": "Safe from files, not yet from a root neighbour",
       "lines": [
        "A root process next door found no key file, but could open /proc/<pid>/mem (opened; 0 bytes read).",
-       "The next row: a separate uid for the harnessed process, or ptrace restricted (yama ptrace_scope 3)."
+       "The next row: a separate uid for the harnessed process. (Yama's ptrace_scope is not an option: this kernel has no Yama.)"
       ],
       "source": "harness/2026-11-12-harness1-e9-key-born-inside.json (neighbour, gap)"
      },
      "caption": "Safe from files. Not yet from a root neighbour; that is the next row."
+    },
+    {
+     "label": "a separate uid",
+     "dur": 5,
+     "card": {
+      "kind": "check",
+      "rows": [
+       {
+        "who": "root (uid 0, all capabilities)",
+        "ask": "open the key process's memory",
+        "check": "the unit as uid 65534, under its policy",
+        "where": "outside",
+        "outcome": "opened"
+       },
+       {
+        "who": "another uid (65533)",
+        "ask": "open the key process's memory",
+        "check": "the unit as uid 65534, under its policy",
+        "where": "outside",
+        "outcome": "refused"
+       },
+       {
+        "who": "the same uid (65534), outside the sandbox",
+        "ask": "open the key process's memory",
+        "check": "the unit as uid 65534, under its policy",
+        "where": "outside",
+        "outcome": "opened"
+       },
+       {
+        "who": "root, itself under a policy (neighbour-root-harnessed)",
+        "ask": "open the key process's memory",
+        "check": "the unit as uid 65534, under its policy",
+        "where": "outside",
+        "outcome": "refused"
+       }
+      ],
+      "upto": 4,
+      "fromN": 0,
+      "title": "E10: who can open the memory now",
+      "source": "harness/2026-11-12-harness1-e10-separate-uid.json (neighbours, conclusion; measured 2026-11-12T03:5xZ)"
+     },
+     "caption": "Another uid: refused. Root, and the same uid outside: opened. Root under its own policy: refused. A uid separates users; root is not a user. The end state: every process under a policy, one uid per run."
     }
    ]
   },
@@ -2964,6 +3135,7 @@
    "title": "The harness",
    "about": "mandate, reach, gap; the probes; where the check runs",
    "scenes": [
+    "harness-did-its-job",
     "harness",
     "harness-before-after",
     "check-inside",
@@ -2971,6 +3143,7 @@
     "harness-door",
     "harness-engine",
     "harness-loops",
+    "harness-credential",
     "harness-reach",
     "reach-measured"
    ]
