@@ -11,7 +11,7 @@
 
 ## On the stage (stage.html, dev 69b3488)
 
-- **Main track:** `stage.html#pack=main`, nine scenes plus a close. Every number below was checked at 03:30 UTC against its file:
+- **Main track:** `stage.html#pack=main`, nine scenes plus a close. For a short talk use `stage.html#pack=main&brisk` (or key B): one press plays a whole scene, so 10 presses in all (swarm.1.dev, 4e0b060). Every number below was checked at 03:30 UTC against its file:
 
 | Scene | Number | Source |
 |---|---|---|
