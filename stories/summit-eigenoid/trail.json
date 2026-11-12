@@ -1,0 +1,90 @@
+{
+ "about": "How this deck was made: every hop, with its real time (UTC). Model text is the deck itself; no prompt text is stored.",
+ "hops": [
+  {
+   "at": "2026-11-12T11:30:00Z",
+   "who": "Dinis",
+   "role": "person",
+   "where": "the summit floor",
+   "to": "attendees.1",
+   "what": "meets Eigenoid; wants to go to market together",
+   "abp": false,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:33:00Z",
+   "who": "attendees.1",
+   "role": "agent",
+   "where": "Claude Code cloud",
+   "to": "partners.1",
+   "what": "asks for a brief and a deck (company name only)",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:34:00Z",
+   "who": "partners.1",
+   "role": "agent",
+   "where": "Claude Code cloud → GitHub (3219dfd)",
+   "to": "swarm.1",
+   "what": "reads eigenoid.com; writes the brief; passes the deck request on",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:35:00Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "Claude Code cloud",
+   "to": "the coordinator",
+   "what": "builds the deck with the Studio's primitives",
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:34:50Z",
+   "who": "the coordinator",
+   "role": "coordinator",
+   "where": "OpenRouter, from swarm.1 (Claude Code cloud)",
+   "model": "anthropic/claude-sonnet-5.5",
+   "what": "plans the deck: 7 primitives (statement, flow, statement, compare, table, bullets, statement)",
+   "ms": 13691,
+   "usd": 0.0362241,
+   "tokens": 8767,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:35:04Z",
+   "who": "StoryKit → the coordinator",
+   "role": "kit",
+   "where": "swarm.1 → OpenRouter",
+   "model": "anthropic/claude-sonnet-5.5",
+   "what": "returns 1 refused calls; 1 fixed",
+   "ms": 3296,
+   "usd": 0.02285514,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:35:07Z",
+   "who": "StoryKit",
+   "role": "kit",
+   "where": "swarm.1 (node)",
+   "what": "accepts all 7 scenes",
+   "ms": 0,
+   "abp": true,
+   "github_compute": false
+  },
+  {
+   "at": "2026-11-12T11:35:07Z",
+   "who": "swarm.1",
+   "role": "lead",
+   "where": "GitHub (PrompTugal__News__Swarm, dev) → GitHub Pages",
+   "to": "the page",
+   "what": "publishes stories/summit-eigenoid/ (story.json and this trail)",
+   "abp": true,
+   "github_compute": true
+  }
+ ]
+}

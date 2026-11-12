@@ -1,0 +1,178 @@
+{
+ "title": "Eigenoid and RiskMandate",
+ "id": "summit-eigenoid",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Eigenoid and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Eigenoid"
+  },
+  {
+   "type": "statement",
+   "text": "When one team's agent asks another team's agent, the exchange can be evidenced. The endpoints are a second question.",
+   "kicker": "Going to market together (our suggestion)",
+   "caption": "The angle in one line: two kinds of evidence, one boundary.",
+   "say": [
+    "Eigenoid lets one team's agent consult the specialist agent of the team that owns the answer.",
+    "Our suggestion is a joint offer that evidences both the exchange and the endpoints."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "flow",
+   "title": "What Eigenoid does between agents",
+   "steps": [
+    "One team's agent needs an answer another team owns",
+    "It finds the owning team's agent in the registry",
+    "Finding grants no access",
+    "Owning team decides what is shared and what needs sign-off",
+    "Every exchange is recorded"
+   ],
+   "kicker": "From Eigenoid's own pages",
+   "caption": "People step in only for questions that need a human.",
+   "say": [
+    "One registry lists agents wherever they run: AWS, Google Cloud, Microsoft Azure, on-premises.",
+    "Each listing has an owner, team, environment and status."
+   ],
+   "source": "Eigenoid public pages",
+   "badge": "real"
+  },
+  {
+   "type": "statement",
+   "text": "\"Connecting agents does not contain their runtimes.\"",
+   "kicker": "Eigenoid's own security page",
+   "caption": "The endpoints' tools, permissions and security remain part of the boundary.",
+   "say": [
+    "This is Eigenoid's own line, and it is honest.",
+    "It marks the part a connection does not contain."
+   ],
+   "source": "Eigenoid security page",
+   "badge": "real"
+  },
+  {
+   "type": "compare",
+   "title": "Two halves of one boundary",
+   "before": {
+    "label": "Eigenoid: the exchange",
+    "items": [
+     "Who may ask",
+     "What the owning team shares",
+     "What needs sign-off",
+     "A record of each exchange",
+     "Identity, authorization decisions, policy versions, delegation and human approvals (Enterprise)"
+    ]
+   },
+   "after": {
+    "label": "RiskMandate: each endpoint",
+    "items": [
+     "The agent's written mandate",
+     "What its credentials and tools actually reach",
+     "The gap between the two",
+     "Measured per agent, on either side of the exchange"
+    ]
+   },
+   "kicker": "The joint offer (our suggestion)",
+   "caption": "Eigenoid evidences the exchange; RiskMandate measures mandate, reach and gap.",
+   "say": [
+    "Eigenoid's side comes from its public pages.",
+    "RiskMandate's side is what we would do together, not a claim by Eigenoid."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "table",
+   "title": "Mandate, reach and gap for a listed agent",
+   "cols": [
+    "Measure",
+    "From public pages",
+    "What we would measure"
+   ],
+   "rows": [
+    [
+     "Mandate",
+     "Listing says what it answers and may share",
+     "Mandate against the agent's actual setup"
+    ],
+    [
+     "Reach",
+     "Own tools and permissions; not in the registry",
+     "What its credentials and tools reach"
+    ],
+    [
+     {
+      "text": "Gap",
+      "tone": "gap"
+     },
+     {
+      "text": "Unknown from public pages",
+      "tone": "gap"
+     },
+     "Shared via Eigenoid vs. reachable by other paths"
+    ]
+   ],
+   "kicker": "Our hypothesis, not their claim",
+   "caption": "Built from public pages only; nothing of theirs was tested.",
+   "say": [
+    "The gap is unknown from public pages, and measurable per agent.",
+    "That is where we would work together."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "title": "A natural fit with Eigenoid's own review",
+   "items": [
+    "Eigenoid's readiness review: 45 minutes, one workflow where two agents share context",
+    "Output: a one-page gap report mapped to EU AI Act Articles 9, 12, 14, 15, 17, 19, 26 and 72",
+    "It says it does not certify compliance",
+    "Its published limits: implementation findings, not an independent security audit",
+    "No external user has yet validated a substantive Connect task (as of 6 September 2026)",
+    "Our suggestion: add the endpoint view to that same workflow"
+   ],
+   "kicker": "Where we would start",
+   "caption": "Eigenoid publishes its limits; an endpoint measurement would add what a connection does not contain.",
+   "say": [
+    "The first five points are Eigenoid's own public facts.",
+    "The last is our suggestion for a joint start."
+   ],
+   "source": "Eigenoid public pages, as of 6 September 2026",
+   "badge": "real"
+  },
+  {
+   "type": "statement",
+   "text": "Eigenoid evidences the exchange. RiskMandate measures each endpoint. Together, both are evidenced.",
+   "kicker": "Going to market together",
+   "caption": "Our suggestion, built from public pages only.",
+   "say": [
+    "A connection does not contain the runtimes, so we measure what it does not.",
+    "We would like to test this with you on one workflow."
+   ],
+   "badge": "illustration"
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T11:35:07Z",
+ "partners": [
+  "eigenoid"
+ ],
+ "simulated": false
+}
