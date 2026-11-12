@@ -1,0 +1,21 @@
+{
+  "about": "Public keys of the relay agents in the WS-215 handover demo. Public halves only: no private key, vault key or token. Each entry is added by its own agent, in its own session.",
+  "keys": [
+    {
+      "id": "relay.1.fringe-dinis",
+      "agent": "relay.1.fringe@PrompTugal.dinis",
+      "role": "the requester: writes tasks to Git, puts private input into a vault sealed to relay.2",
+      "how": "pki-agent.mjs keygen --session (sha256 fcb28a1c...02ab), 2026-11-12T01:46:02Z, in its own session. A session key: it ends with the session.",
+      "added": "2026-11-12",
+      "status": "active",
+      "bundle": {
+        "v": 1,
+        "label": "relay.1.fringe@PrompTugal.dinis",
+        "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEArBMQUydIWAp1Jr+YncvJ\noSiXzBqDsiEaVVqaPKqlNXCG7eUG8a09Hif9NXg5Ws+gsz65HW7/lSfW+gUXA4MC\nt2HW51Y8+FEHAmuhYdAqamDmW0nhvkRagNTMbnixzZQzGmJfdmENWLuCwSweulpu\npOeHnvlnZWqUGm1K4RcEZUGmzLERJVSinCno2fP1ZV5r+KMf5FNmbTekg8Kq9N3Z\nYTnTdee/Qk/hZ7GTLeUeg1DZm22OlcqdF7PNYwHef+KaykzhVmKv2lVktebe3KC5\ndrPMsiwmRJInIMyAzGskKnvXP2WRijuAP+iUJQhn/NbxQpChXCEUD7cGOpEn5eXW\n2IljxrPyRqcHk0m7NK6CABuMxNN/g9ynEtSHDB5NRtxNwrrgpV2LWsv5EzVAG0r1\nwRVM0WZTQ7H8KcCNKuLTGGZ3WsS+STxmK3UCQLw7euaikvSL15oK2VANEo3Fjhw9\nwV9cXk11U+B0q1rpPOMBtHP6VKb/dfZE4v0VDcBSgvIi706wPvSy3RtTkW+uipc1\nOHScgZh659OXmlS14Vho2J7NExtQFtplsOpLnTbfb9Mek4ygRkLSg1+6ZI3/5Iq4\nKZvL/71SpTGKvMqkBLsNkkNMHfv7/fY6wWpVWEUZRjzMzqJSAF8ahY0+vr2/e9+x\n4dcGEuxI47+i6hhswE+cMdECAwEAAQ==\n-----END PUBLIC KEY-----",
+        "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEnpMvMT02Bh520ZXDoxY+OtVHksSq\nxT6356FI6IWmnR82l+9v649RUms6TtfQRoz9S77EHwXFHJZCEAyy7mNzSw==\n-----END PUBLIC KEY-----",
+        "fingerprint": "sha256:109bf8c471369d6b",
+        "signing_fingerprint": "sha256:8d8a0fd4e656c3ae"
+      }
+    }
+  ]
+}
