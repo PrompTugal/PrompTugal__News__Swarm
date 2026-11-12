@@ -1797,7 +1797,7 @@
       "upto": 4,
       "fromN": 0,
       "title": "E10: who can open the memory now",
-      "source": "harness/2026-11-12-harness1-e10-separate-uid.json (neighbours, conclusion; measured 2026-11-12T03:50:34Z)"
+      "source": "harness/2026-11-12-harness1-e10-separate-uid.json (neighbours, conclusion; measured 2026-11-12T03:50:55Z)"
      },
      "caption": "Another uid: refused. Root, and the same uid outside: opened. Root under its own policy: refused. A uid separates users; root is not a user. The end state: every process under a policy, one uid per run."
     }
