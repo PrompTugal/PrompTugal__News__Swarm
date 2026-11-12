@@ -25,9 +25,10 @@
   const S = (max) => ({ type: 'string', maxLength: max });
   const LIST = (item, max) => ({ type: 'array', items: item, maxItems: max });
   const CELL = { anyOf: [S(80), { type: 'object', properties: { text: S(80), tone: { type: 'string', enum: ['ok', 'cut', 'gap', 'harm'] } }, required: ['text'], additionalProperties: false }] };
-  const COMMON = { kicker: S(60), caption: S(240), say: LIST(S(400), 6) };   // every scene: a kicker, the caption on screen, what to say
+  const COMMON = { kicker: S(60), caption: S(240), say: LIST(S(400), 6), badge: { type: 'string', enum: ['real', 'simulated', 'illustration'] }, source: S(160) };   // every scene: a kicker, the caption on screen, what to say
   const HEAD = (sc) => (sc.kicker ? `<div class="k">${esc(sc.kicker)}</div>` : '') + (sc.title ? `<h2>${esc(sc.title)}</h2>` : '');
 
+  const DEVICE = { phone: [3.4, 6.6, .6], 'tablet-s': [5.4, 7.6, .5], 'tablet-m': [7, 9.4, .5], 'tablet-l': [8.6, 11.4, .5], laptop: [10, 6.6, .3], server: [6, 7.4, .2], cloud: [8, 5, 2.5] };
   const PRIMITIVES = {
     title: { description: 'The opening or a section title: one big line and an optional sub-line.',
       fields: { title: S(90), sub: S(160) }, required: ['title'],
@@ -57,6 +58,10 @@
       fields: { title: S(90), nodes: LIST({ type: 'object', properties: { id: S(30), label: S(40), alt: { type: 'string', enum: ALT } }, required: ['id', 'label', 'alt'], additionalProperties: false }, 16),
         edges: LIST({ type: 'object', properties: { from: S(30), to: S(30), label: S(30) }, required: ['from', 'to'], additionalProperties: false }, 24) },
       required: ['nodes'], reveals: () => 2, render: graphHtml },
+    devices: { description: 'Devices side by side, each drawn to its kind (phone, small/mid/large tablet, laptop, server, cloud), with what runs on it and what it holds; then the links between them. For "what runs where".',
+      fields: { title: S(90), devices: LIST({ type: 'object', properties: { id: S(30), kind: { type: 'string', enum: Object.keys(DEVICE) }, label: S(40), runs: LIST(S(40), 4), holds: LIST(S(40), 3) }, required: ['id', 'kind', 'label'], additionalProperties: false }, 6),
+        links: LIST({ type: 'object', properties: { from: S(30), to: S(30), label: S(40), tone: { type: 'string', enum: ['ok', 'cut', 'gap', 'harm'] } }, required: ['from', 'to'], additionalProperties: false }, 8) },
+      required: ['devices'], reveals: (sc) => (sc.devices || []).length + ((sc.links || []).length ? 1 : 0), render: devicesHtml },
     counter: { description: 'One number that counts up, with what it counts.',
       fields: { value: { type: 'number' }, unit: S(20), label: S(120) }, required: ['value', 'label'],
       render: (sc) => `${sc.kicker ? `<div class="k">${esc(sc.kicker)}</div>` : ''}<p class="sub">${esc(sc.label)}</p><div class="ctr" data-to="${+sc.value || 0}">0<small>${esc(sc.unit || '')}</small></div>` },
@@ -68,6 +73,14 @@
       required: ['step'],
       render: (sc) => `${HEAD(sc)}<div class="emb"><iframe loading="lazy" src="${esc(ROOT + 'stage.html#' + (sc.pack ? 'pack=' + sc.pack + '&' : '') + 'step=' + sc.step + '&embed')}" title="${esc(sc.title || 'A stage scene')}"></iframe></div>` },
   };
+  // device outlines: width and height in em, and the corner radius; drawn with CSS boxes (no images), so they scale with the card
+  function devicesHtml(sc) {
+    const D = sc.devices || [], L = sc.links || [], linkStep = D.length;
+    const card = (d, j) => { const [w, h, r] = DEVICE[d.kind] || DEVICE['tablet-m'];
+      return `<div class="sk-dev k-${esc(d.kind)}" data-r="${j}" data-id="${esc(d.id)}"><div class="sk-screen" style="width:${w}em;height:${h}em;border-radius:${r}em">${(d.runs || []).map((x) => `<span class="sk-run">${esc(x)}</span>`).join('')}${(d.holds || []).length ? `<span class="sk-holds">${(d.holds || []).map((x) => `<i>🔑 ${esc(x)}</i>`).join('')}</span>` : ''}</div><b>${esc(d.label)}</b></div>`; };
+    const links = L.length ? `<div class="sk-links" data-r="${linkStep}">${L.map((l) => { const a = D.find((d) => d.id === l.from), b = D.find((d) => d.id === l.to); return a && b ? `<span class="sk-link${l.tone ? ' tone-' + esc(l.tone) : ''}">${esc(a.label)} → ${esc(b.label)}${l.label ? `: ${esc(l.label)}` : ''}</span>` : ''; }).join('')}</div>` : '';
+    return `${HEAD(sc)}<div class="sk-devs">${D.map(card).join('')}</div>${links}`;
+  }
   const reveals = (sc) => Math.max(1, (PRIMITIVES[sc.type] && PRIMITIVES[sc.type].reveals ? PRIMITIVES[sc.type].reveals(sc) : 1));
 
   function graphHtml(sc) {   // layered by altitude, top to bottom; edges arrive on the second step
@@ -83,7 +96,9 @@
   function render(sc) {
     const P = PRIMITIVES[sc.type];
     const html = P ? P.render(sc) : `<p class="big">${esc(sc.text || '')}</p>`;
-    return `<div class="storykit sk-${esc(sc.type)}">${html}</div>`;
+    const badge = sc.badge ? `<span class="sk-badge b-${esc(sc.badge)}">${esc(sc.badge === 'real' ? 'REAL' : sc.badge === 'simulated' ? 'SIMULATED' : 'ILLUSTRATION')}</span>` : '';
+    const src = sc.source ? `<details class="sk-src"><summary>source</summary><span>${esc(sc.source)}</span></details>` : '';
+    return `<div class="storykit sk-${esc(sc.type)}">${badge}${html}${src}</div>`;
   }
 
   // ---------- the player: the stage's clock in small (a step is a reveal; → plays the next, ← goes back to the end of the one before)
@@ -280,6 +295,13 @@
 :where(.storykit) :where(.flw) { display: flex; flex-wrap: wrap; align-items: center; gap: .6em } :where(.storykit .flw > div) { border: 1px solid var(--accent, #4fd1a5); border-radius: 10px; padding: .5em .8em } :where(.storykit .flw > i) { font-style: normal; color: var(--muted, #9fb3af) }
 :where(.storykit) :where(.ctr) { font: 700 4.5em var(--font-head, inherit); color: var(--accent, #4fd1a5) } :where(.storykit .ctr small) { font-size: .35em; margin-left: .3em; color: var(--muted, #9fb3af) }
 :where(.storykit) :where(.tbl) { border-collapse: collapse; width: 100% } :where(.storykit .tbl) :where(th, td) { text-align: left; padding: .35em .6em; border-bottom: 1px solid var(--line, #24403b) } :where(.storykit .tbl td.tone-ok) { color: var(--ok, #4fd1a5) } :where(.storykit .tbl td.tone-cut) { color: var(--accent, #5ec2ff) } :where(.storykit .tbl td.tone-gap) { color: var(--warn, #f2c14e) } :where(.storykit .tbl td.tone-harm) { color: var(--bad, #ff6b6b) }
+:where(.storykit .sk-badge) { display: inline-block; font: 600 .62em var(--mono, monospace); letter-spacing: .1em; padding: .2em .7em; border-radius: 6px; margin-bottom: .8em; border: 1px dashed var(--warn, #f2c14e); color: var(--warn, #f2c14e) } :where(.storykit .sk-badge.b-real) { border: 1px solid var(--ok, #4fd1a5); color: var(--ok, #4fd1a5) } :where(.storykit .sk-badge.b-illustration) { border-color: var(--alt-M, #c9d4d2); color: var(--alt-M, #c9d4d2) }
+:where(.storykit .sk-src) { margin-top: 1em; font: .7em var(--mono, monospace); color: var(--muted, #9fb3af) } :where(.storykit .sk-src summary) { cursor: pointer; text-transform: uppercase; letter-spacing: .08em }
+:where(.storykit .sk-devs) { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: center; gap: 1.6em; margin: .6em 0 } :where(.storykit .sk-dev) { display: flex; flex-direction: column; align-items: center; gap: .5em; font-size: .9em }
+:where(.storykit .sk-screen) { border: .3em solid var(--line, #24403b); background: color-mix(in srgb, var(--panel-solid, #0d2422) 85%, transparent); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .3em; padding: .4em; box-sizing: border-box; overflow: hidden }
+:where(.storykit .k-cloud .sk-screen) { border-style: dashed } :where(.storykit .sk-run) { font-size: .72em; padding: .15em .5em; border-radius: 6px; background: color-mix(in srgb, var(--accent, #4fd1a5) 18%, transparent); color: var(--ink, #e8f1ef); text-align: center }
+:where(.storykit .sk-holds) { display: flex; flex-direction: column; gap: .15em } :where(.storykit .sk-holds i) { font-style: normal; font-size: .66em; color: var(--warn, #f2c14e) }
+:where(.storykit .sk-links) { display: flex; flex-wrap: wrap; justify-content: center; gap: .5em; margin-top: .4em } :where(.storykit .sk-link) { font-size: .85em; border: 1px solid var(--line, #24403b); border-radius: 999px; padding: .2em .8em } :where(.storykit .sk-link.tone-cut) { border-color: var(--accent, #5ec2ff) } :where(.storykit .sk-link.tone-gap) { border-color: var(--warn, #f2c14e) } :where(.storykit .sk-link.tone-ok) { border-color: var(--ok, #4fd1a5) } :where(.storykit .sk-link.tone-harm) { border-color: var(--bad, #ff6b6b) }
 :where(.storykit) :where(.emb iframe) { width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line, #24403b); border-radius: 10px }
 :where(.storykit) :where(.sk-graph) { width: 100%; max-height: 60vh } :where(.storykit .sk-graph line) { stroke: var(--muted, #9fb3af); stroke-width: 1.4 } :where(.storykit .sk-graph text) { fill: var(--ink, #e8f1ef); font-size: 13px; text-anchor: middle } :where(.storykit .sk-graph .el) { fill: var(--muted, #9fb3af); font-size: 11px }`;
     document.head.appendChild(st);
