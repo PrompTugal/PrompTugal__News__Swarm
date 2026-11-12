@@ -22,6 +22,14 @@ main{display:grid;grid-template-columns:200px minmax(0,1fr) 320px;gap:12px;paddi
 .rail svg{flex:0 0 22px}.rail b{display:block;font-size:.85rem}.rail small{color:var(--muted);font-size:.72rem;display:block;line-height:1.3}
 .secs{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.secs button{font:inherit;font-size:.75rem;background:none;color:var(--a2);border:1px solid color-mix(in srgb,var(--a2) 40%,transparent);border-radius:999px;padding:2px 9px;cursor:zoom-in}
 .secs button[aria-pressed="true"]{background:color-mix(in srgb,var(--a2) 20%,transparent)}
+/* blast radius (data/reach/<run>.json, swarm.1.dev 0601c36): amber is reach nobody narrowed; a real asset says REAL */
+.br{display:grid;gap:6px;margin-top:8px}.br button{display:flex;align-items:center;gap:8px;width:100%;text-align:left;font:inherit;font-size:.82rem;background:none;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 8px;cursor:pointer}
+.br button:hover{border-color:var(--warn)}.br button[aria-pressed="true"]{border-color:var(--warn);background:color-mix(in srgb,var(--warn) 14%,transparent)}
+.br button b{flex:1}.br button em{font:700 .62rem/1 ui-monospace,monospace;letter-spacing:.06em;font-style:normal;border-radius:4px;padding:3px 4px;border:1px solid currentColor;color:var(--muted)}.br button em.real{color:var(--warn)}
+.br button span{font-variant-numeric:tabular-nums;color:var(--warn);font-weight:600}.br p{margin:2px 0 0;color:var(--muted);font-size:.74rem;line-height:1.35}
+#sv .n.rx>*:first-child{stroke:var(--warn)!important;stroke-width:3px!important;filter:drop-shadow(0 0 5px var(--warn))}#sv .n.rx-no{opacity:.14}#sv.rxon .e{opacity:.12}
+.reachbox{margin-top:10px;border:1px solid color-mix(in srgb,var(--warn) 45%,transparent);border-radius:8px;padding:8px 10px}.reachbox h4{margin:0 0 4px;color:var(--warn)}.reachbox p{margin:2px 0;font-size:.8rem;color:var(--muted)}
+
 #stage{min-width:0;position:relative}.zoom{position:absolute;right:10px;bottom:10px;z-index:2;display:flex;flex-direction:column;gap:4px}.zoom button{width:34px;height:34px;border-radius:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);font-size:1rem;cursor:pointer}
 .how{position:absolute;left:10px;bottom:10px;z-index:2;max-width:min(520px,70%);font-size:.78rem;color:var(--muted);background:color-mix(in srgb,var(--panel) 85%,transparent);border:1px solid var(--line);border-radius:8px;padding:6px 9px}
 .how{transition:opacity .8s;cursor:pointer;top:10px;bottom:auto!important}.how.gone{opacity:0;pointer-events:none}
@@ -62,7 +70,7 @@ body.present header,body.present footer,body.present .rail{display:none}body.pre
 </div>
 <dialog id="picker" aria-label="Choose a run"><div class="ph"><h2>Choose a run</h2><p>Each one is a real run. The preview is the run itself, drawn small.</p><button class="x" id="pickx" aria-label="Close">✕</button></div><div id="pgrid"></div></dialog>
 <main>
-  <section class="panel rail" aria-label="Altitudes"><h2>Altitudes · click to light</h2><div class="list" id="rail"></div><h2 style="margin-top:12px">Sections · click to zoom</h2><div class="secs" id="secs"></div></section>
+  <section class="panel rail" aria-label="Altitudes"><h2>Blast radius · what each unit can reach</h2><div class="br" id="br"><small style="color:var(--muted)">…</small></div><h2 style="margin-top:14px">Altitudes · click to light</h2><div class="list" id="rail"></div><h2 style="margin-top:12px">Sections · click to zoom</h2><div class="secs" id="secs"></div></section>
   <section id="stage" aria-label="The run"><div id="sv" style="position:absolute;inset:0"></div>
     <div class="zoom"><button id="zin" title="Zoom in">+</button><button id="zfit" title="Fit (F)">⤢</button><button id="zout" title="Zoom out">−</button></div>
     <div class="how" id="how"></div></section>
@@ -123,6 +131,8 @@ function detail(n, i) {
       ${used.length ? `<h4>It uses</h4><div class="chips">${used.map(([k, id]) => `<small style="color:var(--muted)">${esc(k)}</small>${chip(id)}`).join('')}</div>` : ''}
       <p class="alt">${kids.length ? 'Double-click it to zoom in.' : ''} Esc clears.</p></div>`;
   }
+  const u = n && RX && RX.units.find((x) => x.id === n.id);
+  if (u) el.querySelector('.det').insertAdjacentHTML('beforeend', u.reaches.length ? `<div class="reachbox"><h4>It can reach ${u.reaches.length === RX.assets.filter((a) => a.held_by.length).length && u.reaches.length > 1 ? 'all of them' : u.reaches.length + ' asset' + (u.reaches.length > 1 ? 's' : '')}</h4><p>${u.reaches.map((id) => { const a = RX.assets.find((x) => x.id === id) || { label: id }; return esc(a.label) + (a.real ? ' (real, a disposable account)' : ' (simulated)'); }).join(' · ')}</p>${(u.via || []).map((v) => `<p>Why: ${esc(v)}</p>`).join('')}</div>` : `<div class="reachbox" style="border-color:var(--line)"><p>It reaches no asset.</p></div>`);
   el.querySelectorAll('[data-go]').forEach((b) => (b.onclick = () => { view.select(b.dataset.go); }));
 }
 function setT(ms) { view.setTime(ms); const end = view.end; $('#t').value = ms == null ? 1000 : Math.round(ms / end * 1000); $('#tl').textContent = ms == null ? 'end · ' + (end / 1000).toFixed(1) + ' s' : (ms / 1000).toFixed(1) + ' / ' + (end / 1000).toFixed(1) + ' s'; }
@@ -131,6 +141,30 @@ function play() {
   const end = view.end, D = Math.min(14000, Math.max(5000, end / 4)); let t = +$('#t').value >= 1000 ? 0 : +$('#t').value / 1000 * end; $('#play').textContent = '❚❚ Pause';
   timer = setInterval(() => { t += 40 * end / D; if (t >= end) { setT(null); clearInterval(timer); timer = null; $('#play').textContent = '▶ Play'; return; } setT(t); }, 40);
 }
+// ---------- blast radius
+let RX = null, RXIX = null, rxOn = null;
+const rxIndex = () => RXIX || (RXIX = fetch('../data/reach/index.json', { cache: 'no-store' }).then((r) => (r.ok ? r.json() : { runs: [] })).catch(() => ({ runs: [] })));
+async function reachFor(run) {
+  const ix = await rxIndex(), keys = [run.id, run.request, run.packet].filter(Boolean), hit = ix.runs.find((x) => keys.includes(x.run));
+  if (!hit) return null; try { return await (await fetch('../data/reach/' + encodeURIComponent(hit.run) + '.json', { cache: 'no-store' })).json(); } catch (e) { return null; }
+}
+function rxPaint() {
+  const svg = $('#sv'), set = rxOn && RX ? new Set(rxOn === '*' ? RX.reaches_everything : (RX.assets.find((a) => a.id === rxOn) || {}).held_by || []) : null;
+  svg.classList.toggle('rxon', !!set);
+  svg.querySelectorAll('.n').forEach((g) => { g.classList.toggle('rx', !!set && set.has(g.dataset.id)); g.classList.toggle('rx-no', !!set && !set.has(g.dataset.id)); });
+  $('#br').querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.rx === rxOn));
+}
+async function rxPanel(run) {
+  RX = null; rxOn = null; rxPaint(); const el = $('#br'); el.innerHTML = '<small style="color:var(--muted)">…</small>';
+  const R = await reachFor(run); if (view.model.run !== run) return; RX = R;
+  if (!R) { el.innerHTML = '<p>No reach data for this run yet.</p>'; return; }
+  const all = R.units.length, ev = R.reaches_everything.length, held = R.assets.filter((a) => a.held_by.length), none = R.assets.filter((a) => !a.held_by.length);
+  el.innerHTML = held.map((a) => `<button data-rx="${esc(a.id)}" title="Light every unit that can reach ${esc(a.label)}"><b>${esc(a.label)}</b><em class="${a.real ? 'real' : ''}">${a.real ? 'REAL' : 'SIM'}</em><span>${a.held_by.length}/${all}</span></button>`).join('')
+    + (held.length > 1 ? `<button data-rx="*" title="Light the units that reach every asset reachable here"><b>Reaches all of them</b><span>${ev}/${all}</span></button>` : '')
+    + `<p>${held.length ? `${ev} of ${all} units reach ${held.length > 1 ? 'all of ' + held.map((a) => esc(a.label)).join(' and ') : esc(held[0].label)}.` : 'No unit reaches an asset.'} ${none.length ? `${none.map((a) => esc(a.label)).join(' and ')}: not reachable here. ` : ''}${esc(R.where === 'actions' ? 'On GitHub Actions the run step’s environment holds the key, so every process in it reaches the asset.' : 'In a session every unit the agent started inherits its reach.')} Derived from where each unit ran, not probed. Model calls reach nothing.</p>`;
+  el.querySelectorAll('button').forEach((b) => (b.onclick = () => { rxOn = rxOn === b.dataset.rx ? null : b.dataset.rx; rxPaint(); }));
+}
+new MutationObserver(() => { if (rxOn) rxPaint(); }).observe(document.getElementById('sv'), { childList: true, subtree: true });
 function load(id) {
   const r = runs.find((x) => x.rung === id || x.id === id || x.packet === id || x.request === id) || runs.find((x) => x.rung === 'r4') || runs[0]; S.run = r.rung || r.request || r.id;
   if (!view) { view = SwarmViews.render($('#sv'), r, { mode: S.mode, layout: S.layout, focus: S.focus });
@@ -138,7 +172,7 @@ function load(id) {
     view.on('focus', (f) => { S.focus = f; document.querySelectorAll('#secs button').forEach((b) => b.setAttribute('aria-pressed', f === 'section:' + b.dataset.s)); sync(); });
     view.on('highlight', (a) => document.querySelectorAll('#rail button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.alt === a)));
   } else view.setRun(r);
-  $('#run').value = r.id; $('#pickname').textContent = runName(r); rail(); detail(null); controls(); setT(S.t != null ? +S.t : null); S.t = null;
+  $('#run').value = r.id; $('#pickname').textContent = runName(r); rail(); detail(null); controls(); rxPanel(r); setT(S.t != null ? +S.t : null); S.t = null;
   const sel = q.get('sel'); if (sel && view.model.byId[sel]) { view.select(sel); q.delete('sel'); }
   sync();
 }
