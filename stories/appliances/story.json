@@ -1,0 +1,89 @@
+{
+ "id": "appliances",
+ "title": "An appliance, not an app",
+ "asked_by": "Dinis Cruz",
+ "answered_by": "storytelling.1.fringe@PrompTugal.dinis, from Dinis's words at ~09:05 UTC",
+ "at": "2026-11-12T09:20:00Z",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "What we sell",
+   "title": "An appliance, not an app",
+   "sub": "A device that arrives set up. You talk to it, press a few buttons, and it does the work.",
+   "say": ["Do you have a use case for a device that is fully configured, ready on day one?"]
+  },
+  {
+   "type": "quote",
+   "text": "we're selling the whole thing set up. So we're selling an experience to a user",
+   "who": "Dinis Cruz, 12 Nov 2026"
+  },
+  {
+   "type": "flow",
+   "title": "Talk to it",
+   "steps": ["You explain your problem", "The device listens", "A model understands (OpenRouter, or the one we choose)", "It sets things up for you", "Done, on the device"],
+   "badge": "illustration",
+   "caption": "A bot you can speak to, with everything already set up."
+  },
+  {
+   "type": "devices",
+   "title": "The same experience on every screen",
+   "devices": [
+    {"id": "phone", "kind": "phone", "label": "Phone", "runs": ["our app, set up"]},
+    {"id": "ipad", "kind": "tablet-m", "label": "iPad", "runs": ["our app, set up", "voice"], "holds": ["your identity"]},
+    {"id": "android", "kind": "tablet-l", "label": "Android, 11 inch", "runs": ["our app, set up", "voice", "camera and sensors"], "holds": ["your identity", "encrypted storage"]},
+    {"id": "vault", "kind": "cloud", "label": "Our vaults", "holds": ["encrypted storage"]},
+    {"id": "models", "kind": "cloud", "label": "The models", "runs": ["OpenRouter, or our choice"]}
+   ],
+   "links": [
+    {"from": "android", "to": "models", "label": "what you said", "tone": "ok"},
+    {"from": "android", "to": "vault", "label": "encrypted", "tone": "ok"},
+    {"from": "ipad", "to": "vault", "label": "encrypted", "tone": "ok"}
+   ],
+   "badge": "illustration",
+   "caption": "On the stand: iPads, Android tablets (small, mid, 11 inch) and phones."
+  },
+  {
+   "type": "bullets",
+   "title": "What a device gives us that a web page can't",
+   "items": [
+    "We control the experience: on Android, and on iPhone and iPad too",
+    "Identity: face and two-factor authentication",
+    "Storage, encrypted on the device itself or in our vaults",
+    "A camera, a microphone and sensors",
+    "It stands on a desk or a wall, always there",
+    "Some run models on the device: Apple Intelligence, or a local model"
+   ],
+   "caption": "A crazy powerful thing to hand someone, ready to go."
+  },
+  {
+   "type": "compare",
+   "title": "An app you install, or an appliance we set up",
+   "before": {"label": "An app", "items": ["you find it, install it, configure it", "you sign in, connect things, hope it fits"]},
+   "after": {"label": "Our appliance", "items": ["arrives set up for your need", "press a few buttons, or just talk to it", "we control the experience, so it stays simple"]}
+  },
+  {
+   "type": "table",
+   "kicker": "Comes with our packages",
+   "title": "Three ways to start",
+   "cols": ["package", "what you get", "the tablet"],
+   "rows": [
+    ["£500 · ABP Tailored", "your deployment in the mandate, corrected by a security professional", "25% off at the summit"],
+    ["£1,500 · ABP Reviewed", "two sessions with your team and a custom vault, signed off", {"text": "or the tablet, set up", "tone": "ok"}],
+    ["£5,000 · A deeper engagement", "your agents mapped, mandated and measured, end to end", {"text": "or the tablet, set up", "tone": "ok"}]
+   ],
+   "source": "tools/partners-build.py OFFER; £500 and £1,500 on store.sgit.ai, £5,000 Dinis's word",
+   "caption": "Or we customise the device to your need."
+  },
+  {
+   "type": "statement",
+   "kicker": "The summit promotion",
+   "text": "Commit today: 25% off, or a tablet set up for you.",
+   "caption": "The tablet comes with the £1,500 or £5,000 package. See store.sgit.ai."
+  },
+  {
+   "type": "statement",
+   "text": "Simple, easy, and we control the experience.",
+   "caption": "An out-of-the-box device, set up for you."
+  }
+ ]
+}

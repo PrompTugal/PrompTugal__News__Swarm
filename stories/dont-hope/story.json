@@ -1,0 +1,124 @@
+{
+ "id": "dont-hope",
+ "title": "Don't hope the agent behaves",
+ "asked_by": "Dinis Cruz",
+ "answered_by": "storytelling.1.fringe@PrompTugal.dinis, from the agreed arc and Dinis's words at ~09:05 UTC",
+ "at": "2026-11-12T09:20:00Z",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "Dinis's story",
+   "title": "Don't hope the agent behaves",
+   "sub": "Understand and control what your agents are doing.",
+   "say": ["This is a story about behaviour, not about files."]
+  },
+  {
+   "type": "quote",
+   "text": "it's about behavior. It's not just about, files and permissions",
+   "who": "Dinis Cruz, 12 Nov 2026",
+   "caption": "Permissions say who may touch what. Behaviour is what the agent actually does with it."
+  },
+  {
+   "type": "ladder",
+   "title": "Five altitudes",
+   "levels": [
+    {"id": "A4", "label": "A swarm", "note": "many agents, one conductor per person"},
+    {"id": "A3", "label": "An agent", "note": "memory, tools, its own wake"},
+    {"id": "A2", "label": "A loop", "note": "read, ask, check, retry"},
+    {"id": "A1", "label": "A model call", "note": "text in, text out"},
+    {"id": "A0", "label": "Code", "note": "reads the data, writes the output"}
+   ],
+   "caption": "Each altitude needs less than the one above it.",
+   "say": ["An agent starts loops, model calls and code. Each needs less than the agent."]
+  },
+  {
+   "type": "quote",
+   "text": "it's not fit for purpose, right? Because it always over-provisions everything.",
+   "who": "Dinis Cruz, on today's permissions and identity",
+   "caption": "Every process inherits its parent's whole reach."
+  },
+  {
+   "type": "table",
+   "kicker": "Measured, one real run",
+   "title": "Needed against held",
+   "cols": ["unit", "altitude", "needed", "held"],
+   "rows": [
+    ["the agent", "A3", "14", {"text": "25", "tone": "gap"}],
+    ["a loop of 3 sub-agents", "A2", "5", {"text": "25", "tone": "gap"}],
+    ["the code it ran", "A0", "3", {"text": "25", "tone": "gap"}],
+    ["the same code, narrowed", "A0", "3", {"text": "4", "tone": "ok"}]
+   ],
+   "badge": "real",
+   "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 2026-11-11T15:40Z), capability primitives",
+   "caption": "The code needed 3 and held 25, because it was started from the agent's shell.",
+   "say": ["Over-provisioned privileges, at the wrong altitude.", "Narrowed, the same code holds 4."]
+  },
+  {
+   "type": "statement",
+   "text": "Over-provisioned privileges, running at the wrong altitude.",
+   "caption": "That combination is the problem we're here to show.",
+   "say": ["Everyone gets the agent's keys. Poof: everybody can reach everything."]
+  },
+  {
+   "type": "compare",
+   "title": "The same code, the same 12 attempts",
+   "before": {"label": "Without the harness", "items": ["11 of 12 attempts succeed", "output sha256 63544c8a…"]},
+   "after": {"label": "In the harness", "items": ["3 of 12: read its data, write its output, the inherited environment", "output sha256 63544c8a…, byte for byte"]},
+   "badge": "real",
+   "source": "harness/ experiments E1 and E2",
+   "caption": "The work didn't need the reach."
+  },
+  {
+   "type": "table",
+   "kicker": "As deep as the business logic",
+   "title": "Pay invoice INV-002, 250.00, once",
+   "cols": ["the agent tries", "with access", "under the mandate"],
+   "rows": [
+    ["pay INV-002, 250.00", {"text": "done", "tone": "ok"}, {"text": "done", "tone": "ok"}],
+    ["pay it again", {"text": "done", "tone": "gap"}, {"text": "refused: only an open invoice", "tone": "cut"}],
+    ["pay a negative amount", {"text": "done", "tone": "gap"}, {"text": "refused: must be positive", "tone": "cut"}],
+    ["pay 100,000", {"text": "done", "tone": "gap"}, {"text": "refused: needs a person", "tone": "cut"}],
+    ["change a supplier's IBAN", {"text": "done", "tone": "gap"}, {"text": "refused: field prohibited", "tone": "cut"}],
+    ["drop the payments table", {"text": "done", "tone": "gap"}, {"text": "refused", "tone": "cut"}]
+   ],
+   "badge": "simulated",
+   "source": "sims/db-mandate/result.json: a real run on a made-up database",
+   "caption": "Access says yes or no. A mandate says which table, which field, which value."
+  },
+  {
+   "type": "counter",
+   "value": 100410,
+   "label": "paid with plain access, when the job was 250.00",
+   "badge": "simulated",
+   "source": "sims/db-mandate/result.json, access.end.paid_total",
+   "caption": "Under the mandate: 250.00, once."
+  },
+  {
+   "type": "statement",
+   "text": "A policy the agent enforces on itself is still hope.",
+   "caption": "The check belongs where the agent can't reach it: the database, the harness, the runner.",
+   "say": ["Put the rule outside the agent, and the dangerous thing is simply not there."]
+  },
+  {
+   "type": "embed",
+   "title": "Somewhere the reach disappears",
+   "step": "elsewhere/a-signed-request",
+   "caption": "A signed request goes to GitHub, which can't reach the asset."
+  },
+  {
+   "type": "compare",
+   "title": "A licence to operate",
+   "before": {"label": "Granted", "items": ["against the reach as measured", "2 actions done"]},
+   "after": {"label": "A tool is connected", "items": ["the reach changed", "licence suspended: 3 actions refused"]},
+   "badge": "simulated",
+   "source": "sims/licence/result.json: real measurement, simulated change",
+   "caption": "When the reach changes, the mandate is asked again."
+  },
+  {
+   "type": "statement",
+   "kicker": "The line",
+   "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+   "caption": "Agreed with Dinis, 12 Nov 2026, 01:54 UTC."
+  }
+ ]
+}
