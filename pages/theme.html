@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Swarm Themes</title>
+<meta name="description" content="The swarm demo by theme: five demos per theme, each with the live demo on the left and its context and what to say on the right.">
+<style>
+:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--a1:#4fd1a5;--a3:#5ec2ff;--p:#f2c14e}
+*{box-sizing:border-box}html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+body{display:grid;grid-template-rows:auto auto 1fr}body:has(.swnav){grid-template-rows:auto auto minmax(0,1fr)}a{color:var(--a3)}
+.top{padding:12px 16px 8px;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.themes{display:flex;flex-wrap:wrap;gap:6px}.themes a{font-size:.85rem;color:var(--muted);text-decoration:none;border:1px solid var(--line);border-radius:999px;padding:4px 12px}.themes a[aria-current="page"]{color:var(--ink);border-color:var(--a1);background:color-mix(in srgb,var(--a1) 14%,transparent)}
+.th{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}.th h1{margin:0;font-size:1.35rem}.th p{margin:0;color:var(--muted);max-width:80ch}
+.demos{display:flex;gap:6px;overflow-x:auto}.demos button{flex:0 0 auto;font:inherit;font-size:.85rem;text-align:left;background:var(--panel);color:var(--muted);border:1px solid var(--line);border-radius:9px;padding:6px 10px;cursor:pointer}
+.demos button b{color:var(--ink);margin-right:6px}.demos button[aria-current="true"]{color:var(--ink);border-color:var(--a3)}
+main{display:grid;grid-template-columns:minmax(0,1fr) 380px;min-height:0}
+.demo{position:relative;min-height:0;background:#06130f}.demo iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.demo .open{position:absolute;right:10px;bottom:10px;z-index:2;font-size:.8rem;background:#04100Fdd;border:1px solid var(--line);border-radius:8px;padding:5px 9px;color:var(--ink);text-decoration:none}
+aside{border-left:1px solid var(--line);padding:16px 18px;overflow:auto;display:flex;flex-direction:column;gap:12px}
+aside .n{color:var(--muted);font-size:.8rem;letter-spacing:.06em;text-transform:uppercase}aside h2{margin:0;font-size:1.3rem;line-height:1.25}
+aside .ctx{margin:0;color:var(--muted)}aside h3{margin:6px 0 0;font-size:.75rem;letter-spacing:.07em;text-transform:uppercase;color:var(--p)}
+aside ol{margin:0;padding-left:20px;display:grid;gap:8px}aside li{font-size:1.02rem;line-height:1.45}
+.nav2{display:flex;gap:8px;margin-top:auto;padding-top:10px}.nav2 button{flex:1;font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:9px;padding:9px;cursor:pointer}.nav2 button:hover{border-color:var(--a3)}.nav2 button:disabled{opacity:.35;cursor:default}
+.hint{color:var(--muted);font-size:.8rem;margin:0}
+body.max .top,body.max aside{display:none}body.max main{grid-template-columns:1fr}body.max{grid-template-rows:auto minmax(0,1fr)}
+.maxbtn{position:absolute;left:10px;bottom:10px;z-index:2;font:inherit;font-size:.8rem;background:#04100Fdd;border:1px solid var(--line);border-radius:8px;padding:5px 9px;color:var(--ink);cursor:pointer}
+@media (max-width:900px){body{height:auto;display:block}main{grid-template-columns:1fr}.demo{height:60vh}aside{border-left:0;border-top:1px solid var(--line)}}
+</style>
+</head>
+<body>
+<section class="top">
+  <nav class="themes" id="themes" aria-label="Themes"></nav>
+  <div class="th"><h1 id="tt">…</h1><p id="tw"></p></div>
+  <div class="demos" id="demos" role="tablist" aria-label="The theme's demos"></div>
+</section>
+<main>
+  <section class="demo"><iframe id="fr" title="The demo"></iframe><button class="maxbtn" id="max" title="The demo alone (M)">⛶ Demo only</button><a class="open" id="open" target="_top">Open in full ↗</a></section>
+  <aside aria-live="polite"><span class="n" id="dn"></span><h2 id="dt"></h2><p class="ctx" id="dc"></p><h3>What to say</h3><ol id="ds"></ol>
+    <p class="hint">Click the demo, then → steps it and ← goes back. ↑ and ↓ (or the buttons) move between demos.</p>
+    <div class="nav2"><button id="prev">← Previous demo</button><button id="next">Next demo →</button></div></aside>
+</main>
+<script>
+const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const Q = new URLSearchParams(location.search);
+let T = null, THEMES = [], i = 0;
+function route() { const p = new URLSearchParams({ t: T.id, d: T.demos[i].id }); try { history.replaceState(null, '', '?' + p); } catch {} }
+function show(k) {
+  i = Math.max(0, Math.min(T.demos.length - 1, k)); const d = T.demos[i];
+  $('#demos').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', j === i));
+  $('#dn').textContent = `${T.title} · demo ${i + 1} of ${T.demos.length}`; $('#dt').textContent = d.title; $('#dc').textContent = d.context || '';
+  $('#ds').innerHTML = (d.say || []).map((x) => `<li>${esc(x)}</li>`).join('');
+  const src = '../' + d.link; $('#open').href = src; $('#prev').disabled = i === 0; $('#next').disabled = i === T.demos.length - 1;
+  const fr = $('#fr'); fr.src = src;
+  // the stage inside: give it the whole frame (its focus mode), so the demo reads at its largest
+  fr.onload = () => { try { const doc = fr.contentDocument; if (/stage\.html/.test(src)) { doc.documentElement.classList.add('focus'); fr.contentWindow.dispatchEvent(new Event('resize')); } } catch (e) { /* another origin: show it as it is */ } };
+  route();
+}
+function load(id) {
+  T = THEMES.find((t) => t.id === id) || THEMES[0];
+  document.title = `${T.title} · Swarm Themes`;
+  $('#themes').innerHTML = THEMES.map((t) => `<a href="?t=${esc(t.id)}"${t.id === T.id ? ' aria-current="page"' : ''}>${esc(t.title)}</a>`).join('');
+  $('#tt').textContent = T.title; $('#tw').textContent = T.why || '';
+  $('#demos').innerHTML = T.demos.map((d, j) => `<button role="tab" data-j="${j}"><b>${j + 1}</b>${esc(d.title)}</button>`).join('');
+  $('#demos').querySelectorAll('button').forEach((b) => (b.onclick = () => show(+b.dataset.j)));
+  const want = Q.get('d'); show(Math.max(0, T.demos.findIndex((d) => d.id === want)));
+}
+$('#prev').onclick = () => show(i - 1); $('#next').onclick = () => show(i + 1);
+$('#max').onclick = () => { document.body.classList.toggle('max'); $('#max').textContent = document.body.classList.contains('max') ? '✕ Back to the notes' : '⛶ Demo only'; };
+document.addEventListener('keydown', (e) => { if (e.metaKey || e.ctrlKey || e.altKey) return; if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); } else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); } else if (e.key === 'm' || e.key === 'M') $('#max').click(); else if (e.key === 'Escape' && document.body.classList.contains('max')) $('#max').click(); });
+fetch('../stories/themes.json', { cache: 'no-store' }).then((r) => r.json()).then((j) => { THEMES = j.themes || []; load(Q.get('t')); })
+  .catch(() => { $('#tt').textContent = 'The themes did not load.'; });
+</script>
+<script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

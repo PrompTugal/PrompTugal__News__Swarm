@@ -13,6 +13,7 @@
   const ITEMS = [
     ['index.html', 'Home', 'The main areas'],
     ['stage.html#pack=main&brisk', 'Present the story', 'Nine scenes, one press each'],
+    ['pages/theme.html', 'Themes', 'Five themes, five demos each, with what to say'],
     ['pages/packs.html', 'Demo packs', 'One idea per step'],
     ['pages/views.html', 'Views', 'One run, six ways to see it'],
     ['pages/flow.html', 'Execution flow', 'The ladder of real runs'],

@@ -28,6 +28,12 @@ a{color:var(--a3)}
 .txt p{margin:0;color:var(--muted);font-size:.95rem}.txt .go{margin-top:auto;padding-top:8px;color:var(--c,var(--a3));font-weight:600;font-size:.9rem}
 .box.main{border-color:color-mix(in srgb,var(--a1) 45%,var(--line))}.box.main .txt h2{font-size:1.3rem}
 
+.row{max-width:1320px;margin:0 auto;padding:4px 20px 18px}.row h2{margin:0 0 10px;font-size:1.1rem}.row h2 small{color:var(--muted);font-weight:400;font-size:.88rem;margin-left:8px}
+.best{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.best a{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;text-decoration:none;color:var(--ink)}
+.best a:hover{border-color:var(--a1)}.best b{display:block;font-size:1rem}.best small{display:block;color:var(--muted);font-size:.82rem;margin-top:4px;line-height:1.35}.best .n{color:var(--a1);font:600 .72rem/1 ui-monospace,monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:6px;display:block}
+.tgrid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.tgrid a{display:flex;flex-direction:column;gap:4px;background:linear-gradient(160deg,color-mix(in srgb,var(--a3) 10%,var(--panel)),var(--panel));border:1px solid var(--line);border-radius:12px;padding:14px;text-decoration:none;color:var(--ink);min-height:150px}
+.tgrid a:hover{border-color:var(--a3)}.tgrid b{font-size:1.05rem}.tgrid small{color:var(--muted);font-size:.85rem;line-height:1.4}.tgrid .d{margin-top:auto;color:var(--a3);font-size:.82rem}
+@media (max-width:1100px){.best,.tgrid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:640px){.best,.tgrid{grid-template-columns:1fr}}
 .more{max-width:1320px;margin:0 auto;padding:0 20px 18px;color:var(--muted);font-size:.92rem}.more a{color:var(--ink)}
 footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);font-size:.8rem;border-top:1px solid var(--line)}
 @media (prefers-reduced-motion:reduce){.box{transition:none}}
@@ -53,6 +59,8 @@ footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);
   <a class="box" href="pages/harness.html" style="--c:var(--a4)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/harness.html" title="Preview: the harness" tabindex="-1" aria-hidden="true"></iframe></div>
     <div class="txt"><h2><i></i>The harness</h2><p>The swarm's own agents under SHarness (early beta): the same work, first with no policy and then with one. What held, and what didn't yet.</p><span class="go">Read the findings →</span></div></a>
 </section>
+<section class="row" aria-label="Best of"><h2>Best of <small>five demos to start with, one from each theme</small></h2><div class="best" id="best"></div></section>
+<section class="row" aria-label="Themes"><h2>Themes <small>five demos each: the demo on the left, the context and what to say on the right</small></h2><div class="tgrid" id="tgrid"></div></section>
 <p class="more">Also: <a href="pages/map.html">the map</a>, what we planned rung by rung.</p>
 <footer>Run by the swarm for Dinis Cruz (WS-215). The workload is the storm site's public data: <a href="https://storm-charles.promptugal.news/">storm-charles.promptugal.news</a>. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit.</footer>
 <script>
@@ -61,6 +69,13 @@ const fit = (f) => { const w = f.parentElement.clientWidth; f.style.transform = 
 const io = 'IntersectionObserver' in window ? new IntersectionObserver((es) => es.forEach((e) => { if (e.isIntersecting) { const f = e.target; if (!f.src) f.src = f.dataset.src; io.unobserve(f); } }), { rootMargin: '200px' }) : null;
 document.querySelectorAll('.shot iframe').forEach((f) => { fit(f); if (io) io.observe(f); else f.src = f.dataset.src; });
 addEventListener('resize', () => document.querySelectorAll('.shot iframe').forEach(fit));
+// the themes and the best five, from storytelling.1's stories/themes.json
+fetch('stories/themes.json', { cache: 'no-store' }).then((r) => r.json()).then((j) => {
+  const E = (x) => String(x ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const T = j.themes || [], find = (t, d) => { const th = T.find((x) => x.id === t); return th && [th, th.demos.find((x) => x.id === d)]; };
+  document.getElementById('best').innerHTML = (j.home || []).map((h) => find(h.theme, h.demo)).filter((x) => x && x[1]).map(([th, d]) => `<a href="pages/theme.html?t=${E(th.id)}&d=${E(d.id)}"><span class="n">${E(th.title)}</span><b>${E(d.title)}</b><small>${E(d.context)}</small></a>`).join('');
+  document.getElementById('tgrid').innerHTML = T.map((th) => `<a href="pages/theme.html?t=${E(th.id)}"><b>${E(th.title)}</b><small>${E(th.why)}</small><span class="d">${th.demos.length} demos →</span></a>`).join('');
+}).catch(() => { document.querySelectorAll('.row').forEach((r) => (r.hidden = true)); });
 // a line of real numbers from the runs, if they load
 fetch('runs/index.json', { cache: 'no-store' }).then((r) => r.json()).then((ix) => {
   const n = ix.runs.length; return fetch('https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Swarm__Runs/dev/runs/summary.json', { cache: 'no-store' }).then((r) => r.json()).then((s) => [n, s.totals]).catch(() => [n, null]);
