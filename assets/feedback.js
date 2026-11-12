@@ -33,6 +33,7 @@ const CSS = `
 #fb-tab{position:fixed;left:0;top:50%;transform:translateY(-50%);z-index:2147483000;writing-mode:vertical-rl;rotate:180deg;font:600 13px/1 system-ui,sans-serif;letter-spacing:.06em;
  padding:12px 7px;border:1px solid var(--accent,#43D9C6);border-left:0;border-radius:0 8px 8px 0;background:var(--panel-solid,#0b2826);color:var(--accent,#43D9C6);cursor:pointer;opacity:.75}
 #fb-tab:hover,#fb-tab:focus-visible{opacity:1}
+@media (max-width:760px),(pointer:coarse) and (max-height:500px){#fb-tab{top:auto;bottom:14px;left:auto;right:14px;transform:none;writing-mode:horizontal-tb;rotate:none;border:1px solid var(--accent,#43D9C6);border-radius:999px;padding:10px 14px;opacity:.9;box-shadow:0 4px 16px rgba(0,0,0,.4)}#fb-box{top:auto;bottom:12px;transform:none}}
 #fb-box{position:fixed;left:12px;top:50%;transform:translateY(-50%);z-index:2147483001;width:min(340px,calc(100vw - 24px));padding:14px;border-radius:14px;
  border:1px solid var(--line,rgba(150,230,215,.25));background:var(--panel-solid,#0b2826);color:var(--ink,#EAF6F3);font:14px/1.4 system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.45)}
 #fb-box[hidden],#fb-tab[hidden]{display:none}
