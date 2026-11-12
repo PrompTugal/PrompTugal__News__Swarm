@@ -1,0 +1,13 @@
+{
+ "v": 1,
+ "kind": "swarm-stand-key/v1",
+ "kdf": "PBKDF2-SHA-256",
+ "rounds": 600000,
+ "cipher": "AES-256-GCM",
+ "salt": "7lgUPvT7XL0gFk6Fdg+GZA==",
+ "iv": "HJKeWScfR57cLOXE",
+ "ct": "clR0gYUkJlTIgm/Ajamt6LCFT7+oSZXah6gf4lEL5uKBczAGtmMlVmx37IgvK6MxLAPSefBh9jnG+vmCx9RBcGLDUvir4b1E2JWjmZ+4Od59i0GWFE5AJyk=",
+ "hint": "…e402",
+ "source": "OPEN_ROUTER_WEB_SUMMIT (a capped, expiring key for the stand)",
+ "sealed_at": "2026-11-12T10:12Z"
+}
