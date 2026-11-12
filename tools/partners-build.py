@@ -223,7 +223,7 @@ OFFER = {'title': 'The summit offer', 'dated': '2026-11-12', 'email': 'agent@ris
          'levels': [{'price': '£500', 'name': 'ABP Tailored', 'text': 'your deployment, reflected in the mandate, corrected by a named security professional', 'time': '1 to 3 days', 'where': 'store.sgit.ai'},
                     {'price': '£1,500', 'name': 'ABP Reviewed', 'text': 'two sessions with your team and a custom vault, signed off by a security professional', 'time': '1 to 5 days', 'where': 'store.sgit.ai'},
                     {'price': '£5,000', 'name': 'A deeper engagement', 'text': 'your agents mapped, mandated and measured with us, end to end', 'time': None, 'where': 'not yet on the store'}],
-         'discount': 'Summit promotion: commit today and choose 25% off any of these, or a tablet set up for you, on us.'}
+         'discount': 'Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you.'}
 
 
 def together_for(name, cards, xray):
@@ -287,7 +287,7 @@ def deck_for(p, steps):
     sc.append({'type': 'bullets', 'kicker': 'Working together · the summit promotion', 'title': 'Three ways to start',
                'items': [cut(f"{l['price']} · {l['name']}: {l['text']}" + (f" ({l['time']})" if l['time'] else ''), 140) for l in OFFER['levels']] + [OFFER['discount']],
                'caption': f"{OFFER['email']} · store.sgit.ai · the summit offer, 12 Nov 2026",
-               'say': ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: commit today and take 25% off, or a tablet set up for you.', f"Write to {OFFER['email']}."]})
+               'say': ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.', f"Write to {OFFER['email']}."]})
     return {'id': 'partner-' + p['slug'], 'title': cut(name + ': a partner brief', 90), 'by': BY, 'at': p['built_at'], 'scenes': sc}
 
 

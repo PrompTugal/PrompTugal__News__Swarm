@@ -255,7 +255,7 @@
      "where": "not yet on the store"
     }
    ],
-   "discount": "Summit promotion: commit today and choose 25% off any of these, or a tablet set up for you, on us."
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
   }
  },
  "demos": [
@@ -398,12 +398,12 @@
      "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
      "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
      "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
-     "Summit promotion: commit today and choose 25% off any of these, or a tablet set up for you, on us."
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
     ],
     "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
     "say": [
      "Pick the level that fits: tailored, reviewed, or end to end.",
-     "Because we met here: commit today and take 25% off, or a tablet set up for you.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
      "Write to agent@riskmandate.ai."
     ]
    }
