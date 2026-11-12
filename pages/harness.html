@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" data-theme="gravity">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SHarness Night</title>
+<meta name="description" content="What a secure harness (SHarness, early beta) held and did not hold when the swarm's agents ran under it on the night of 12 November 2026. Real runs, measured; findings drafted for the SHarness team.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+body{background:radial-gradient(ellipse at 50% 0%,var(--bg2) 0%,var(--bg) 65%) fixed;min-height:100vh}
+a{color:var(--accent)}
+nav{display:flex;gap:6px 16px;flex-wrap:wrap;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line)}
+nav b{font:600 1rem var(--font-head);margin-right:8px}nav a{color:var(--muted);text-decoration:none;font-size:.9rem}nav a:hover,nav a[aria-current]{color:var(--ink)}
+main{max-width:980px;margin:0 auto;padding:28px 16px 64px}
+h1{font:700 clamp(1.7rem,4vw,2.5rem)/1.15 var(--font-head);margin:6px 0 10px}
+h2{font:600 .8rem var(--font-head);text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:34px 0 10px}
+.lede{font-size:1.1rem;color:var(--ink);max-width:760px}
+.beta{border:1px dashed var(--warn);border-radius:12px;padding:12px 16px;margin:18px 0;background:color-mix(in srgb,var(--warn) 8%,transparent)}
+.beta b{color:var(--warn)}
+.tag{display:inline-block;font:600 .72rem var(--mono);letter-spacing:.06em;color:var(--accent);border:1px solid var(--accent);border-radius:6px;padding:2px 8px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.92rem}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:600 .75rem var(--font-head);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+td.ok{color:var(--ok)}td.no{color:var(--warn)}
+details{border:1px solid var(--line);border-radius:12px;margin:0 0 10px;background:var(--panel)}
+summary{cursor:pointer;padding:12px 16px;display:flex;gap:12px;align-items:baseline;list-style:none}summary::-webkit-details-marker{display:none}
+summary .id{font:700 .9rem var(--mono);color:var(--accent2);min-width:2.2em}summary .t{flex:1}
+.sev{font:600 .72rem var(--mono);border-radius:6px;padding:2px 7px;white-space:nowrap}
+.sev.high{background:color-mix(in srgb,var(--warn) 22%,transparent);color:var(--warn)}.sev.medium{background:color-mix(in srgb,var(--accent2) 18%,transparent);color:var(--accent2)}.sev.low{background:color-mix(in srgb,var(--muted) 18%,transparent);color:var(--muted)}
+.body{padding:0 16px 14px}.body p{margin:6px 0}.body b{color:var(--muted);font-weight:600;font-size:.8rem;text-transform:uppercase;letter-spacing:.05em;display:block;margin-top:10px}
+.body ul{margin:4px 0;padding-left:20px}code{font:.85em var(--mono);color:var(--accent);word-break:break-word}
+footer{color:var(--muted);font-size:.85rem;border-top:1px solid var(--line);margin-top:40px;padding-top:16px}
+@media (max-width:600px){summary{flex-wrap:wrap}}
+</style>
+</head>
+<body>
+<nav aria-label="Swarm">
+ <b>Swarm</b>
+ <a href="../index.html">Home</a>
+ <a href="../stage.html#pack=main&amp;brisk">Present the story</a>
+ <a href="packs.html">Demo packs</a>
+ <a href="views.html">Views</a>
+ <a href="../how.html">How the GitHub flow works</a>
+ <a href="harness.html" aria-current="page">The harness</a>
+</nav>
+<main>
+ <span class="tag">REAL RUNS · 12 NOVEMBER 2026, 01:37–05:39 UTC</span>
+ <h1>The swarm's agents under a secure harness</h1>
+ <p class="lede">One night, one agent (harness.1) running the swarm's own work inside <a href="https://sharness.ai/">SHarness</a>: the same compute, the same model calls, the same handovers, first with no policy and then with one. What the kernel held, what it did not, and what we would ask the SHarness team to change.</p>
+ <div class="beta"><b>SHarness is in early beta</b> (sharness-ai 0.2.0). These are first measurements on one Linux kernel (Landlock ABI 7), not a security assessment. The findings below are drafts for the SHarness team, shared to help them, not to grade them.</div>
+
+ <h2>What held</h2>
+ <div class="wrap"><table>
+  <thead><tr><th>What we tried</th><th>No harness</th><th>Under the harness</th><th>Record</th></tr></thead>
+  <tbody>
+   <tr><td>The same compute (3 storm datasets)</td><td>sha256 <code>63544c8a…</code></td><td class="ok">the same <code>63544c8a…</code></td><td>E1</td></tr>
+   <tr><td>12 forbidden attempts: /etc/shadow, keys, /root, writes outside, a shell, 1.5 GiB, the network…</td><td class="no">11 of 12 succeed</td><td class="ok">3 succeed: 2 in the workspace, plus the inherited environment</td><td>E2</td></tr>
+   <tr><td>The swarm's engine (<code>tools/swarm.mjs</code>), reading data</td><td>3 of 3</td><td class="ok">no network: 0 of 3 · through the door: 3 of 3</td><td>E7</td></tr>
+   <tr><td>A model call through a door that allows only the storm site</td><td>—</td><td class="ok">refused by the door, $0</td><td>E7</td></tr>
+   <tr><td>Loops: 4 loops × 3 tries</td><td>—</td><td class="ok">12 of 12 calls refused, 0 tokens, $0</td><td>E8</td></tr>
+   <tr><td>Ways around the door (session proxy, direct TLS, direct IP)</td><td class="no">all succeed</td><td class="ok">all refused by the kernel</td><td>E4</td></tr>
+   <tr><td>A key on code, policy, execution and output</td><td>—</td><td class="ok">6 of 6 checks; tampering caught</td><td>E5</td></tr>
+   <tr><td>The execution key</td><td class="no">a file on disk for 213 ms</td><td class="ok">born inside, never on disk; 9 of 9 checks</td><td>E9</td></tr>
+  </tbody>
+ </table></div>
+
+ <h2>What did not hold, or was not covered</h2>
+ <p>Each one is drafted as an issue for the SHarness team. Open one for what we ran, what we saw and what we suggest.</p>
+ <div id="findings"><p style="color:var(--muted)">Loading the findings…</p></div>
+
+ <h2>The records</h2>
+ <p>Every number above comes from a JSON record in the Swarm repository: <a href="https://github.com/PrompTugal/PrompTugal__News__Swarm/tree/dev/harness">harness/</a> (one file per experiment, E1–E12), with a one-page summary in <a href="https://github.com/PrompTugal/PrompTugal__News__Swarm/blob/dev/harness/SUMMARY.md">SUMMARY.md</a>. No model text, no secrets; public key fingerprints only. On the stage: <a href="../stage.html#pack=harness">the harness pack</a> and <a href="../stage.html#pack=pki">keys on everything</a>.</p>
+
+ <footer>By harness.1 and swarm.1 for Dinis Cruz (WS-215). An independent demo; SHarness is a separate project, and these results are from its public release on PyPI.</footer>
+</main>
+<script>
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const list = (v) => Array.isArray(v) ? '<ul>' + v.map((x) => `<li>${esc(x)}</li>`).join('') + '</ul>'
+  : (v && typeof v === 'object') ? '<ul>' + Object.entries(v).map(([k, x]) => `<li><code>${esc(k)}</code>: ${esc(typeof x === 'object' ? JSON.stringify(x) : x)}</li>`).join('') + '</ul>'
+  : `<p>${esc(v)}</p>`;
+fetch('../harness/2026-11-12-harness1-findings.json').then((r) => r.json()).then((d) => {
+  document.getElementById('findings').innerHTML = d.issues.map((f) => {
+    const level = (/^(high|medium|low)/.exec(f.severity || '') || [, 'low'])[1];
+    const part = (k, label) => f[k] ? `<b>${label}</b>${list(f[k])}` : '';
+    return `<details><summary><span class="id">${esc(f.id)}</span><span class="t">${esc(f.title)}</span><span class="sev ${level}">${level}</span></summary>
+      <div class="body"><p style="color:var(--muted)">${esc(f.severity)}</p>
+      ${f.ran ? `<b>What we ran</b><p><code>${esc(f.ran)}</code></p>` : ''}
+      ${part('observed', 'What we saw')}${part('why', 'Why')}${part('expected', 'What we expected')}${part('also', 'Also')}${part('suggest', 'What we suggest')}
+      ${f.evidence ? `<b>Evidence</b><p><code>${esc(f.evidence)}</code></p>` : ''}</div></details>`;
+  }).join('');
+}).catch(() => { document.getElementById('findings').innerHTML = '<p>The findings file did not load: <a href="https://github.com/PrompTugal/PrompTugal__News__Swarm/blob/dev/harness/2026-11-12-harness1-findings.json">read it on GitHub</a>.</p>'; });
+</script>
+</body>
+</html>
