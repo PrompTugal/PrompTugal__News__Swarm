@@ -24,6 +24,25 @@ From this session: "I need to be able to maximize it. I need to be able to hide 
 
 *Idea:* one story per act, one point per scene, one number per scene at most.
 
+Dinis's words, relayed by swarm.1 (~01:3x UTC, not said in this session): "there's nothing wrong with having a couple of slides, a couple of pages, or even because it's that kind of animated slides, right? That almost don't just show a story, right, or show an animated infographic of something moving, right?"
+
+### The form of each scene (*idea*): `slide` (one idea, one line), `animated` (one mechanism moving), `run` (the live run view)
+
+| Scene | Form | Why |
+|---|---|---|
+| 1.1–1.4 | animated | the altitudes stack one at a time: P, A3, A0, A1, A2 |
+| 1.5 | run | s001 and s002 side by side: the same packet, two runners |
+| 2.1 | run | r5b, everything turns agent-coloured |
+| 2.2 | run | the click: poof, every unit reaches the inbox |
+| 2.3 | slide | one line: this agent had Gmail loaded and needed none of it |
+| 3.1–3.2 | run | policies appear on r5b; the lock sits inside the agent |
+| 3.3 | animated | one push → Action → 12 jobs → signed result → attestation |
+| 4.1–4.2 | animated | the mesh and the star side by side, labelled simulated |
+| 5.1–5.3 | slide | three numbers, one per slide or one row |
+| 6.1–6.3 | animated | a cost staircase: Opus, Sonnet, Haiku, OpenRouter |
+| 6.4 | slide | 3 of 32, then 12 of 12: the failure we kept |
+| close | slide | the one sentence |
+
 ## The arc
 
 ### Act 1. Five altitudes
