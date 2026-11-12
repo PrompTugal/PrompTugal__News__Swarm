@@ -16,6 +16,22 @@
         "fingerprint": "sha256:109bf8c471369d6b",
         "signing_fingerprint": "sha256:8d8a0fd4e656c3ae"
       }
+    },
+    {
+      "id": "relay.2.fringe-dinis",
+      "agent": "relay.2.fringe@PrompTugal.dinis",
+      "role": "the worker: loops on Git for a task addressed to it, opens the input vault with its private key, does the work, seals the result in a second vault to relay.3",
+      "how": "pki-agent.mjs keygen --session (sha256 fcb28a1c...02ab), 2026-11-12T01:46:35Z, in its own session. A session key: it ends with the session.",
+      "added": "2026-11-12",
+      "status": "active",
+      "bundle": {
+        "v": 1,
+        "label": "relay.2.fringe@PrompTugal.dinis",
+        "encrypt": "-----BEGIN PUBLIC KEY-----\nMIICIjANBgkqhkiG9w0BAQEFAAOCAg8AMIICCgKCAgEAtxZ1wh2JJii9BmaTENKO\nwOmav5JidcbpXIwATJawBAoJ1XulTuD7kMfl45dH9nyU2yjxkErbz383BkBjP4VI\nvFEFZLcRlrFLXkEPDeME0ZVQE2EvIeqt1llU2VKjNRAebnpWUm3U58Lt9f2U73bA\n9MriC/I2mebGyyjSGXUA/shMgoHbnw4YrZVCJ/r+r3dc2AzQsJ5cYnxPSxWBz04z\nD1qXpsxJuHW1Flt1169otFRy54P4kM1y7so2RBwv8ZLIK9UqzpxnR3oDH96XWe9q\nhvhOGEWbrFRWe2VP7hTbNlL/A00bhGpfDMlAU71sa2A6wS6iSjwx/zgMAY7A+Bh8\nPzMwqzoXcR6n+BXKjIktG4OJm7AUae17SD572wachEauu+MLrXbGoWgjBfufZY2Z\nEZcxeSELT9Cyp5yHm0N6lN4CyT0E/upi66Y7f/NGQ5/2FoP8VAka+puMDUg8gEm8\n1t0QNZRcFnTx7c8w4U2mz612yoqAmI0ejBTyo8l+G8uoHV1MaHgIyqMUIpUOS98H\nhWw6Lo7RfTiVw4RC16eF9jSlRXGDbb1zZ811KiVZdQOvLuO3o/9tROiFDwASJugS\npcEvxzUHZDYOFzWdYNq24lO7/Xq7IsZixar4HRX9wSiTBZ4iRaEU/6NbQZunBwvm\ngSBYo8qug00xLH4LunsHTu8CAwEAAQ==\n-----END PUBLIC KEY-----",
+        "sign": "-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEg3oHYDYcDtgomv8oU+jyMRKuW6ks\nPV7SzmGdF5JOFhrHNeUKHDc5FfrwSGsXe09QHU8aPajofE2GhWJ2MKbFlg==\n-----END PUBLIC KEY-----",
+        "fingerprint": "sha256:8a04c60ad84ce04d",
+        "signing_fingerprint": "sha256:ea1b3d0cda2e9906"
+      }
     }
   ]
 }
