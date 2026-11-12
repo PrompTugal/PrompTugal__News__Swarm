@@ -83,3 +83,10 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .light i { width: 46px; height: 46px; border-radius: 50%; background: var(--dim); margin-bottom: 8px; transition: background .3s, box-shadow .3s }
 .light.held i { background: var(--ok); box-shadow: 0 0 24px var(--ok) } .light.broke i { background: var(--bad); box-shadow: 0 0 24px var(--bad) }
 .light b { font: 600 1.05em var(--font-head) } .light small { color: var(--muted) } .light span { font: .85em var(--mono) } #card .note { color: var(--muted); max-width: 900px; margin: 0 auto }
+/* reach lines flow from the unit to the asset; the go-to list; anchored chips */
+.reachline:not(.cut) { stroke-dasharray: 5 9; animation: flow 0.9s linear infinite } @keyframes flow { to { stroke-dashoffset: -14 } }
+.edge.k-reach { stroke-dasharray: 5 9; animation: flow 1.2s linear infinite } .edge.fail { animation-duration: .35s }
+.chip .anc { color: var(--accent); font-weight: 700 }
+#goto { position: fixed; inset: 8% 18%; z-index: 9; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 14px; padding: 16px 22px; overflow: auto; display: none }
+#goto[open] { display: block } #goto .g-sc { margin: 0 0 10px } #goto .g-sc b { display: block; margin-bottom: 4px } #goto button { background: none; border: 1px solid var(--line); border-radius: 7px; padding: 3px 8px; margin: 0 4px 4px 0; cursor: pointer } #goto button:hover { border-color: var(--accent) }
+@media (prefers-reduced-motion: reduce) { .reachline, .edge.k-reach { animation: none } }

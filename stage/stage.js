@@ -30,7 +30,7 @@
   const ALT_R = { P: 11, A4: 13, T: 7, A3: 12, A2: 8, A1: 5.5, A0: 4.5, M: 10, D: 7, X: 12, C: 7, E: 9 };
 
   // ---------- knobs (kept per viewer)
-  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false }, store.get('knobs', {}));
+  const K = Object.assign({ mode: 'layers', theme: 'gravity', text: 1, label: 1, node: 1, link: 1, labels: true, anchors: true, rate: 1, left: 260, right: 300, hideL: false, hideR: false, auto: false, userAnchors: {} }, store.get('knobs', {}));
   if (Q.get('mode')) K.mode = Q.get('mode');
   if (Q.get('theme')) K.theme = Q.get('theme');
   const saveK = () => store.set('knobs', K);
@@ -205,7 +205,8 @@
     zoom = d3.zoom().scaleExtent([0.1, 12]).on('zoom', (e) => { zoomG.attr('transform', e.transform); if (e.sourceEvent) userZoomed = true; });
     svg.call(zoom).on('dblclick.zoom', null);
     svg.on('click', (e) => { if (e.target === svg.node()) { focusId = null; } });
-    const ro = new ResizeObserver(() => { const r = $('#stage').getBoundingClientRect(); W = r.width; H = r.height; svg.attr('viewBox', `0 0 ${W} ${H}`); lastLayoutKey = ''; });
+    let rz = null;
+    const ro = new ResizeObserver(() => { const r = $('#stage').getBoundingClientRect(); W = r.width; H = r.height; svg.attr('viewBox', `0 0 ${W} ${H}`); lastLayoutKey = ''; clearTimeout(rz); rz = setTimeout(() => { if (!userZoomed) fit(); }, 450); });
     ro.observe($('#stage'));
   }
 
@@ -243,10 +244,10 @@
   }
   // anchors (graphs.sgit.ai's idea): a group is pulled to a side, so the story's groups stand apart
   const SIDE = { left: [0.12, null], right: [0.88, null], top: [null, 0.12], bottom: [null, 0.88], center: [0.5, 0.5], middle: [0.5, null], 'top-left': [0.12, 0.12], 'top-right': [0.88, 0.12], 'bottom-left': [0.12, 0.88], 'bottom-right': [0.88, 0.88] };
-  function anchorOf(n, anchors) { if (!anchors) return null; return anchors[n.id] || anchors[n.kind] || anchors[n.alt] || null; }
+  function anchorOf(n, anchors) { if (!anchors) return null; const u = K.userAnchors || {}, a = anchors; return u[n.id] || u[n.alt] || a[n.id] || a[n.kind] || a[n.alt] || null; }
   function placeForce(g, st) {
     if (sim) sim.stop();
-    const anchors = K.anchors ? st && st.anchors : null;
+    const anchors = K.anchors ? (st && st.anchors) || {} : null;
     g.nodes.forEach((n) => { if (n.x == null) { n.x = n.tx ?? W / 2 + (Math.random() - 0.5) * 50; n.y = n.ty ?? H / 2 + (Math.random() - 0.5) * 50; } });
     sim = d3.forceSimulation(g.nodes)
       .force('link', d3.forceLink(g.links.filter((l) => l.kind !== 'reach')).id((n) => n.id).distance((l) => 22 + 10 * (ALT_R[l.source.alt] || 6) / 6).strength(0.6))
@@ -309,7 +310,7 @@
       // the 3D mode is not loaded yet: load it once, draw the flat view meanwhile
       loadUniverse();
     } else if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide();
-    const layoutKey = [mode === 'universe' ? 'layers' : mode, W | 0, H | 0, g.nodes.length, JSON.stringify(K.anchors ? st.anchors : null), st.si].join('|');
+    const layoutKey = [mode === 'universe' ? 'layers' : mode, W | 0, H | 0, g.nodes.length, JSON.stringify(K.anchors ? [st.anchors, K.userAnchors] : null), st.si].join('|');
     if (layoutKey !== lastLayoutKey) { lastLayoutKey = layoutKey; (MODES[mode === 'universe' ? 'layers' : mode].place)(g, st); if (mode !== 'force' && sim) { sim.stop(); sim = null; } }
     // ease every node towards its target (the layouts morph into each other)
     for (const n of g.nodes) { if (n.tx == null) continue; if (n.x == null) { n.x = n.tx; n.y = n.ty; } else if (mode !== 'force') { n.x += (n.tx - n.x) * 0.18; n.y += (n.ty - n.y) * 0.18; } }
@@ -378,8 +379,8 @@
     const ts = gLabels.selectAll('text').data(lab, (n) => n.id);
     ts.exit().remove();
     ts.enter().append('text').attr('class', 'lbl').merge(ts)
-      .attr('x', (n) => n.x + r(n) + 4).attr('y', (n) => n.y + 4)
-      .style('font-size', (n) => (['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label + 'px')
+      .attr('x', (n) => n.x + r(n) + 4 / k).attr('y', (n) => n.y + 4 / k).style('stroke-width', 3 / k + 'px')
+      .style('font-size', (n) => ((['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label) / k + 'px')   // the same size on screen at any zoom
       .classed('big', (n) => ['P', 'A4', 'A3', 'X', 'M'].includes(n.alt))
       .text((n) => short(n.label, ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26));
     // counter
@@ -539,7 +540,8 @@
     const open = store.get('openActs', null);
     $('#story').innerHTML = acts.map((a, ai) => `<details ${open == null || open.includes(a.name) ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
     $('#runs').innerHTML = FREE.map((s, i) => `<button class="sc" data-free="${i}"><b>${esc(s.title)}</b></button>`).join('');
-    $('#legend').innerHTML = ALT.filter((a) => a !== '?').map((a) => `<button class="chip ${extraHidden.has(a) ? 'off' : ''}" data-alt="${a}" title="click: show or hide · shift-click: only this"><i style="background:var(--alt-${a})"></i>${esc(ALT_NAME[a])}</button>`).join('');
+    const ARROW = { left: '←', right: '→', top: '↑', bottom: '↓', middle: '↔', center: '◎' };
+    $('#legend').innerHTML = ALT.filter((a) => a !== '?').map((a) => { const an = (K.userAnchors || {})[a]; return `<button class="chip ${extraHidden.has(a) ? 'off' : ''}" data-alt="${a}" title="click: show or hide · shift-click: only this · alt-click or right-click: anchor it left, right, top, bottom (force view)"><i style="background:var(--alt-${a})"></i>${esc(ALT_NAME[a])}${an ? ` <b class="anc">${ARROW[an] || an}</b>` : ''}</button>`; }).join('');
   }
   function renderSide() {
     if (!G) return;
@@ -608,7 +610,7 @@
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
     ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–5', 'view: top-down, tree, radial, force, 3D'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
-    ['A', 'anchors on or off'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['S', 'speed'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
+    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['S', 'speed'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
   ];
   const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'];
   function onKey(e) {
@@ -618,7 +620,7 @@
     else if (k === ' ' || k === 'k') { playing = !playing; stopAt = null; if (playing && t >= TOTAL - 0.01) t = 0; }
     else if (k === 'PageDown' || k === 'ArrowDown') sceneJump(1); else if (k === 'PageUp' || k === 'ArrowUp') sceneJump(-1);
     else if (k === 'Home') gotoScene(0); else if (k === 'End') gotoScene(SCENES.length - 1, true);
-    else if (/^[1-5]$/.test(k)) { K.mode = modeOverride = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; setTimeout(() => fit(), 400); toast(MODES[K.mode].name); }
+    else if (/^[1-5]$/.test(k)) { K.mode = modeOverride = Object.keys(MODES).find((m) => MODES[m].key === k); applyPanes(); lastLayoutKey = ''; userZoomed = false; setTimeout(() => fit(), 400); setTimeout(() => fit(), 1600); toast(MODES[K.mode].name); }
     else if (k === 'l' || k === 'L') { K.labels = !K.labels; applyPanes(); }
     else if (k === '+') { K.text = +(clamp(K.text + 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label + 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
     else if (k === '−' || k === '_') { K.text = +(clamp(K.text - 0.1, 0.6, 2.4)).toFixed(2); K.label = +(clamp(K.label - 0.1, 0.5, 3)).toFixed(2); applyPanes(); }
@@ -631,9 +633,19 @@
     else if (k === 'h' || k === 'H') { K.auto = !K.auto; applyPanes(); toast('auto-advance ' + (K.auto ? 'on' : 'off')); }
     else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
     else if (k === '?') $('#help').toggleAttribute('open');
-    else if (k === 'Escape') { focusId = null; $('#help').removeAttribute('open'); document.documentElement.classList.remove('focus'); }
+    else if (k === 'g' || k === 'G') openGoto();
+    else if (k === 'Escape') { focusId = null; $('#help').removeAttribute('open'); $('#goto').removeAttribute('open'); document.documentElement.classList.remove('focus'); }
     else used = false;
     if (used) e.preventDefault();
+  }
+
+  // ---------- G: go to any scene or step (the talk player's G)
+  function openGoto() {
+    const el = $('#goto');
+    if (el.hasAttribute('open')) { el.removeAttribute('open'); return; }
+    el.innerHTML = '<h2>Go to</h2>' + SCENES.map((sc, si) => `<div class="g-sc"><b>${esc(sc.act || '')} · ${esc(sc.title)}</b>${STEPS.filter((x) => x.si === si).map((x) => `<button data-k="${STEPS.indexOf(x)}">${esc(x.step.label || 'step ' + (x.i + 1))}</button>`).join('')}</div>`).join('');
+    el.setAttribute('open', '');
+    el.onclick = (e) => { const b = e.target.closest('button'); if (!b) return; const S = STEPS[+b.dataset.k]; t = S.e - 1e-3; playing = false; stopAt = null; el.removeAttribute('open'); };
   }
 
   // ---------- wiring
@@ -652,8 +664,12 @@
     $('#story').addEventListener('click', (e) => { const b = e.target.closest('.sc'); if (b) { gotoScene(+b.dataset.si); next(); } });
     $('#story').addEventListener('toggle', () => store.set('openActs', [...document.querySelectorAll('#story details[open]')].map((d) => d.dataset.act)), true);
     $('#runs').addEventListener('click', (e) => { const b = e.target.closest('.sc'); if (b) playScene(FREE[+b.dataset.free]); });
+    const cycleAnchor = (a) => { const order = [undefined, 'left', 'right', 'top', 'bottom', 'center']; const u = K.userAnchors || (K.userAnchors = {}); const nx = order[(order.indexOf(u[a]) + 1) % order.length]; if (nx) u[a] = nx; else delete u[a]; K.anchors = true; applyPanes(); lastLayoutKey = ''; renderStory(); userZoomed = false; setTimeout(() => fit(), 600); setTimeout(() => fit(), 1800); toast(`${ALT_NAME[a]}: ${nx ? 'anchored ' + nx : 'free'}${(st0() || {}).mode !== 'force' && modeOverride !== 'force' ? ' (anchors act in the force view: 4)' : ''}`); };
+    const st0 = () => stateAt(t);
+    $('#legend').addEventListener('contextmenu', (e) => { const b = e.target.closest('.chip'); if (!b) return; e.preventDefault(); cycleAnchor(b.dataset.alt); });
     $('#legend').addEventListener('click', (e) => {
       const b = e.target.closest('.chip'); if (!b) return; const a = b.dataset.alt;
+      if (e.altKey) { cycleAnchor(a); return; }
       if (e.shiftKey) { const all = new Set(ALT); all.delete(a); if ([...extraHidden].length === ALT.length - 1 && !extraHidden.has(a)) extraHidden.clear(); else { extraHidden.clear(); all.forEach((x) => extraHidden.add(x)); } }
       else if (extraHidden.has(a)) extraHidden.delete(a); else extraHidden.add(a);
       store.set('hiddenAlts', [...extraHidden]); renderStory();
