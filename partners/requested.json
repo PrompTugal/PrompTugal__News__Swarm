@@ -879,6 +879,14 @@
      "trust",
      "handover"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-picari",
+     "title": "Picari and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T13:14Z"
+    }
    ]
   }
  ]

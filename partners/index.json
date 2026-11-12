@@ -147,6 +147,37 @@
    "material": 7
   },
   {
+   "slug": "picari",
+   "name": "Picari",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "A buyer-led evaluation platform for security tools: a guided brief, a ranked shortlist no vendor can pay to influence, then a private, structured evaluation. Free for security teams.",
+   "has": [
+    "met",
+    "story"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T12:15Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://picari.ai/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T13:13Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-picari",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T13:14Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
    "slug": "portstone",
    "name": "Portstone",
    "kind": "sales",
@@ -259,29 +290,6 @@
     }
    ],
    "material": 6
-  },
-  {
-   "slug": "picari",
-   "name": "Picari",
-   "kind": "security",
-   "kind_label": "Security",
-   "one_line": "A buyer-led evaluation platform for security tools: a guided brief, a ranked shortlist no vendor can pay to influence, then a private, structured evaluation. Free for security teams.",
-   "has": [
-    "met"
-   ],
-   "products": [],
-   "codes": [],
-   "asked_at": "2026-11-12T12:15Z",
-   "artefacts": [
-    {
-     "kind": "site",
-     "url": "https://picari.ai/",
-     "read_on": "2026-11-12",
-     "fetched_at": "2026-11-12T13:13Z",
-     "source": "their own site, read by hand"
-    }
-   ],
-   "material": 7
   },
   {
    "slug": "replit",
