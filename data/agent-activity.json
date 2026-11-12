@@ -1,15 +1,15 @@
 {
  "about": "Commits per agent per hour over the last 24 hours, read from the git logs (subjects and times only). An agent is named by its commit subject. Written by tools/agent-activity.mjs.",
- "updated": "2026-11-12T03:47:42Z",
- "since": "2026-11-11T03:47:42Z",
+ "updated": "2026-11-12T04:53:03Z",
+ "since": "2026-11-11T04:53:03Z",
  "hours": 24,
  "repos": {
-  "PrompTugal__News__Fringe": 825,
-  "promptugal__news__swarm": 106,
+  "PrompTugal__News__Fringe": 836,
+  "promptugal__news__swarm": 130,
   "promptugal__news__swarm__runs": 13
  },
- "commits": 944,
- "named": 926,
+ "commits": 979,
+ "named": 961,
  "agents_named": 46,
  "agents": [
   {
@@ -90,14 +90,31 @@
    "last": "2026-11-12T01:44:28+00:00"
   },
   {
-   "agent": "swarm.1.fringe@PrompTugal.dinis",
-   "commits": 41,
+   "agent": "swarm.1.dev.fringe@PrompTugal.dinis",
+   "commits": 46,
    "repos": {
-    "PrompTugal__News__Fringe": 20,
-    "promptugal__news__swarm": 13,
+    "PrompTugal__News__Fringe": 14,
+    "promptugal__news__swarm": 32
+   },
+   "hours": {
+    "2026-11-12T04:00Z": 10,
+    "2026-11-12T03:00Z": 10,
+    "2026-11-12T02:00Z": 15,
+    "2026-11-12T01:00Z": 11
+   },
+   "first": "2026-11-12T01:25:48+00:00",
+   "last": "2026-11-12T04:52:14+00:00"
+  },
+  {
+   "agent": "swarm.1.fringe@PrompTugal.dinis",
+   "commits": 43,
+   "repos": {
+    "PrompTugal__News__Fringe": 21,
+    "promptugal__news__swarm": 14,
     "promptugal__news__swarm__runs": 8
    },
    "hours": {
+    "2026-11-12T03:00Z": 2,
     "2026-11-12T02:00Z": 2,
     "2026-11-12T01:00Z": 7,
     "2026-11-12T00:00Z": 8,
@@ -106,7 +123,7 @@
     "2026-11-11T21:00Z": 4
    },
    "first": "2026-11-11T21:22:07+00:00",
-   "last": "2026-11-12T02:47:52+00:00"
+   "last": "2026-11-12T03:47:44+00:00"
   },
   {
    "agent": "elastic.1.fringe@PrompTugal.dinis",
@@ -180,6 +197,53 @@
    "last": "2026-11-12T00:16:38+00:00"
   },
   {
+   "agent": "swarm.1.designer.fringe@PrompTugal.dinis",
+   "commits": 34,
+   "repos": {
+    "PrompTugal__News__Fringe": 7,
+    "promptugal__news__swarm": 27
+   },
+   "hours": {
+    "2026-11-12T04:00Z": 3,
+    "2026-11-12T03:00Z": 5,
+    "2026-11-12T02:00Z": 14,
+    "2026-11-12T01:00Z": 7,
+    "2026-11-12T00:00Z": 2,
+    "2026-11-11T23:00Z": 3
+   },
+   "first": "2026-11-11T23:50:39+00:00",
+   "last": "2026-11-12T04:48:30+00:00"
+  },
+  {
+   "agent": "conductor.fringe@PrompTugal.angelo",
+   "commits": 34,
+   "repos": {
+    "PrompTugal__News__Fringe": 34
+   },
+   "hours": {
+    "2026-11-12T04:00Z": 1,
+    "2026-11-12T03:00Z": 1,
+    "2026-11-12T02:00Z": 1,
+    "2026-11-12T01:00Z": 1,
+    "2026-11-12T00:00Z": 1,
+    "2026-11-11T23:00Z": 3,
+    "2026-11-11T22:00Z": 1,
+    "2026-11-11T21:00Z": 1,
+    "2026-11-11T20:00Z": 7,
+    "2026-11-11T19:00Z": 2,
+    "2026-11-11T18:00Z": 2,
+    "2026-11-11T17:00Z": 1,
+    "2026-11-11T16:00Z": 1,
+    "2026-11-11T15:00Z": 1,
+    "2026-11-11T14:00Z": 1,
+    "2026-11-11T13:00Z": 2,
+    "2026-11-11T12:00Z": 3,
+    "2026-11-11T11:00Z": 4
+   },
+   "first": "2026-11-11T11:21:54+00:00",
+   "last": "2026-11-12T04:29:30+00:00"
+  },
+  {
    "agent": "researcher.2.fringe@PrompTugal.dinis",
    "commits": 34,
    "repos": {
@@ -205,55 +269,13 @@
    "last": "2026-11-12T00:12:13+00:00"
   },
   {
-   "agent": "swarm.1.dev.fringe@PrompTugal.dinis",
-   "commits": 33,
-   "repos": {
-    "PrompTugal__News__Fringe": 10,
-    "promptugal__news__swarm": 23
-   },
-   "hours": {
-    "2026-11-12T03:00Z": 7,
-    "2026-11-12T02:00Z": 15,
-    "2026-11-12T01:00Z": 11
-   },
-   "first": "2026-11-12T01:25:48+00:00",
-   "last": "2026-11-12T03:40:11+00:00"
-  },
-  {
-   "agent": "conductor.fringe@PrompTugal.angelo",
+   "agent": "conductor.fringe@PrompTugal.jose",
    "commits": 33,
    "repos": {
     "PrompTugal__News__Fringe": 33
    },
    "hours": {
-    "2026-11-12T03:00Z": 1,
-    "2026-11-12T02:00Z": 1,
-    "2026-11-12T01:00Z": 1,
-    "2026-11-12T00:00Z": 1,
-    "2026-11-11T23:00Z": 3,
-    "2026-11-11T22:00Z": 1,
-    "2026-11-11T21:00Z": 1,
-    "2026-11-11T20:00Z": 7,
-    "2026-11-11T19:00Z": 2,
-    "2026-11-11T18:00Z": 2,
-    "2026-11-11T17:00Z": 1,
-    "2026-11-11T16:00Z": 1,
-    "2026-11-11T15:00Z": 1,
-    "2026-11-11T14:00Z": 1,
-    "2026-11-11T13:00Z": 2,
-    "2026-11-11T12:00Z": 3,
-    "2026-11-11T11:00Z": 4
-   },
-   "first": "2026-11-11T11:21:54+00:00",
-   "last": "2026-11-12T03:29:54+00:00"
-  },
-  {
-   "agent": "conductor.fringe@PrompTugal.jose",
-   "commits": 32,
-   "repos": {
-    "PrompTugal__News__Fringe": 32
-   },
-   "hours": {
+    "2026-11-12T04:00Z": 1,
     "2026-11-12T03:00Z": 1,
     "2026-11-12T02:00Z": 1,
     "2026-11-12T01:00Z": 1,
@@ -271,7 +293,7 @@
     "2026-11-11T13:00Z": 4
    },
    "first": "2026-11-11T13:04:06+00:00",
-   "last": "2026-11-12T03:08:47+00:00"
+   "last": "2026-11-12T04:08:41+00:00"
   },
   {
    "agent": "design.1.fringe@PrompTugal.dinis",
@@ -296,23 +318,6 @@
    },
    "first": "2026-11-11T11:53:09+00:00",
    "last": "2026-11-11T23:59:18+00:00"
-  },
-  {
-   "agent": "swarm.1.designer.fringe@PrompTugal.dinis",
-   "commits": 30,
-   "repos": {
-    "PrompTugal__News__Fringe": 6,
-    "promptugal__news__swarm": 24
-   },
-   "hours": {
-    "2026-11-12T03:00Z": 4,
-    "2026-11-12T02:00Z": 14,
-    "2026-11-12T01:00Z": 7,
-    "2026-11-12T00:00Z": 2,
-    "2026-11-11T23:00Z": 3
-   },
-   "first": "2026-11-11T23:50:39+00:00",
-   "last": "2026-11-12T03:37:20+00:00"
   },
   {
    "agent": "design.3.fringe@PrompTugal.dinis",
@@ -391,11 +396,12 @@
   },
   {
    "agent": "conductor.fringe@PrompTugal.vicky",
-   "commits": 23,
+   "commits": 24,
    "repos": {
-    "PrompTugal__News__Fringe": 23
+    "PrompTugal__News__Fringe": 24
    },
    "hours": {
+    "2026-11-12T04:00Z": 1,
     "2026-11-12T03:00Z": 1,
     "2026-11-12T02:00Z": 1,
     "2026-11-12T01:00Z": 1,
@@ -415,7 +421,7 @@
     "2026-11-11T11:00Z": 4
    },
    "first": "2026-11-11T11:04:18+00:00",
-   "last": "2026-11-12T03:23:50+00:00"
+   "last": "2026-11-12T04:24:07+00:00"
   },
   {
    "agent": "capture.1.fringe@PrompTugal.dinis",
@@ -468,11 +474,13 @@
   },
   {
    "agent": "conductor.fringe@PrompTugal.indi",
-   "commits": 19,
+   "commits": 21,
    "repos": {
-    "PrompTugal__News__Fringe": 19
+    "PrompTugal__News__Fringe": 21
    },
    "hours": {
+    "2026-11-12T04:00Z": 1,
+    "2026-11-12T03:00Z": 1,
     "2026-11-12T02:00Z": 1,
     "2026-11-12T01:00Z": 1,
     "2026-11-12T00:00Z": 1,
@@ -492,7 +500,7 @@
     "2026-11-11T10:00Z": 2
    },
    "first": "2026-11-11T10:49:53+00:00",
-   "last": "2026-11-12T02:49:13+00:00"
+   "last": "2026-11-12T04:51:59+00:00"
   },
   {
    "agent": "ontologist.1.fringe@PrompTugal.dinis",
@@ -556,17 +564,33 @@
   },
   {
    "agent": "storytelling.1.fringe@PrompTugal.dinis",
+   "commits": 18,
+   "repos": {
+    "promptugal__news__swarm": 18
+   },
+   "hours": {
+    "2026-11-12T04:00Z": 1,
+    "2026-11-12T03:00Z": 3,
+    "2026-11-12T02:00Z": 6,
+    "2026-11-12T01:00Z": 8
+   },
+   "first": "2026-11-12T01:30:36+00:00",
+   "last": "2026-11-12T04:29:19+00:00"
+  },
+  {
+   "agent": "harness.1.fringe@PrompTugal.dinis",
    "commits": 16,
    "repos": {
     "promptugal__news__swarm": 16
    },
    "hours": {
-    "2026-11-12T03:00Z": 2,
-    "2026-11-12T02:00Z": 6,
-    "2026-11-12T01:00Z": 8
+    "2026-11-12T04:00Z": 4,
+    "2026-11-12T03:00Z": 3,
+    "2026-11-12T02:00Z": 7,
+    "2026-11-12T01:00Z": 2
    },
-   "first": "2026-11-12T01:30:36+00:00",
-   "last": "2026-11-12T03:40:24+00:00"
+   "first": "2026-11-12T01:53:39+00:00",
+   "last": "2026-11-12T04:41:24+00:00"
   },
   {
    "agent": "usability.1.fringe@PrompTugal.dinis",
@@ -620,18 +644,18 @@
    "last": "2026-11-11T20:17:50+00:00"
   },
   {
-   "agent": "harness.1.fringe@PrompTugal.dinis",
-   "commits": 10,
+   "agent": "relay.3.fringe@PrompTugal.dinis",
+   "commits": 7,
    "repos": {
-    "promptugal__news__swarm": 10
+    "promptugal__news__swarm": 7
    },
    "hours": {
     "2026-11-12T03:00Z": 1,
-    "2026-11-12T02:00Z": 7,
-    "2026-11-12T01:00Z": 2
+    "2026-11-12T02:00Z": 3,
+    "2026-11-12T01:00Z": 3
    },
-   "first": "2026-11-12T01:53:39+00:00",
-   "last": "2026-11-12T03:45:20+00:00"
+   "first": "2026-11-12T01:39:39+00:00",
+   "last": "2026-11-12T03:51:27+00:00"
   },
   {
    "agent": "gravity.1.fringe@PrompTugal.silvio",
@@ -659,17 +683,19 @@
    "last": "2026-11-11T10:56:22+00:00"
   },
   {
-   "agent": "relay.3.fringe@PrompTugal.dinis",
-   "commits": 6,
+   "agent": "audience.1.fringe@PrompTugal.dinis",
+   "commits": 5,
    "repos": {
-    "promptugal__news__swarm": 6
+    "promptugal__news__swarm": 5
    },
    "hours": {
-    "2026-11-12T02:00Z": 3,
-    "2026-11-12T01:00Z": 3
+    "2026-11-12T04:00Z": 1,
+    "2026-11-12T03:00Z": 1,
+    "2026-11-12T02:00Z": 1,
+    "2026-11-12T01:00Z": 2
    },
-   "first": "2026-11-12T01:39:39+00:00",
-   "last": "2026-11-12T02:44:47+00:00"
+   "first": "2026-11-12T01:39:57+00:00",
+   "last": "2026-11-12T04:47:51+00:00"
   },
   {
    "agent": "relay.1.fringe@PrompTugal.dinis",
@@ -722,19 +748,6 @@
    },
    "first": "2026-11-11T11:40:09+00:00",
    "last": "2026-11-11T17:22:55+00:00"
-  },
-  {
-   "agent": "audience.1.fringe@PrompTugal.dinis",
-   "commits": 3,
-   "repos": {
-    "promptugal__news__swarm": 3
-   },
-   "hours": {
-    "2026-11-12T02:00Z": 1,
-    "2026-11-12T01:00Z": 2
-   },
-   "first": "2026-11-12T01:39:57+00:00",
-   "last": "2026-11-12T02:44:07+00:00"
   },
   {
    "agent": "security.fringe@PrompTugal.dinis",
