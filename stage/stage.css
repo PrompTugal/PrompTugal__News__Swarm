@@ -157,7 +157,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #vpick { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 6px; z-index: 3 } #vpick select { background: var(--panel-solid); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 3px 6px }
 /* needed against held (run-reach) */
 #card .nh { width: 100%; max-width: 1150px } #card .nh h2 { font-size: calc(2.1em * var(--text, 1)) }
-.nh-head, .nh-row { display: grid; grid-template-columns: 260px 1fr 90px 60px; gap: 12px; align-items: center } .nh-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; margin-bottom: 8px }
+.nh-head, .nh-row { display: grid; grid-template-columns: 260px 1fr minmax(90px, max-content) 60px; gap: 12px; align-items: center } .nh-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; margin-bottom: 8px }
 .nh-head i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px } .nh-head i.need, .nh-row i.need { background: var(--alt-A1) } .nh-head i.held, .nh-row i.held { background: color-mix(in srgb, var(--warn) 75%, var(--alt-A0)) }
 .nh-row { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) } .nh-row .nl small { display: block; color: var(--muted); font: .75em var(--mono) }
 .nh-row .bars { display: flex; flex-direction: column; gap: 4px } .nh-row .bars i { display: block; height: 12px; border-radius: 4px; transition: width .6s } .nh-row .nums { font: 600 .95em var(--mono); color: var(--muted) }
