@@ -187,3 +187,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* the play hint: while a step or a scene plays, what → will do (swarm.1, 04:50) */
 #playhint { position: fixed; left: 50%; top: 60px; transform: translateX(-50%); z-index: 6; font: 600 .72em var(--mono); letter-spacing: .06em; color: var(--muted); background: color-mix(in srgb, var(--bg, #071715) 80%, transparent); border: 1px solid color-mix(in srgb, var(--muted) 35%, transparent); border-radius: 999px; padding: 3px 12px; opacity: 0; transition: opacity .3s; pointer-events: none }
 #playhint.on { opacity: .85 }
+/* the caption takes the width it needs (absolute + left:50% had shrink-wrapped it to half the stage: six lines at 1280) */
+#caption { width: max-content }
+/* the play hint lives bottom-right, above the zoom buttons, clear of the badge, the counter and the caption (swarm.1.designer) */
+#playhint { left: auto !important; right: 16px; top: auto !important; bottom: 52px; transform: none !important }
