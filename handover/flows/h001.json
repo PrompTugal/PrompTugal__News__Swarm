@@ -29,20 +29,22 @@
       "n": 2,
       "who": "relay.1.fringe@PrompTugal.dinis",
       "altitude": "A0",
-      "what": "holds the input on its own disk to build the vault (treated as private from here)",
-      "when": "2026-11-12T01:46:40Z",
+      "what": "holds the input in plaintext on its own disk, not in memory only: /root/relay/h001-input (fetched 01:46:30) and the vault's working copy /root/relay/h001-vault (01:46:41). Never in Git. The disk is the session container's and goes with it.",
+      "when": "2026-11-12T01:46:30Z",
       "where": "memory-decrypted",
       "encrypted": false,
       "sealed_to": null,
       "signed_by": null,
-      "ref": {}
+      "ref": {},
+      "medium": "disk (plaintext)",
+      "when_source": "file mtimes (stat)"
     },
     {
       "n": 3,
       "who": "relay.1.fringe@PrompTugal.dinis",
-      "altitude": "A1",
-      "what": "puts the input into a new sgit vault and pushes it (encrypted on the client, ciphertext only on the server)",
-      "when": "2026-11-12T01:46:55Z",
+      "altitude": "A0",
+      "what": "commits the input to a new sgit vault and pushes it: encrypted on the client, only ciphertext on the server. No model call (A0).",
+      "when": "2026-11-12T01:47:01Z",
       "where": "vault-encrypted",
       "encrypted": true,
       "sealed_to": null,
@@ -51,21 +53,23 @@
         "vault": "dh2zo1zd",
         "server": "dev.send.sgraph.ai",
         "commit": "obj-cas-imm-3858d815d7eb"
-      }
+      },
+      "when_source": "vault commit 01:46:42, push recorded in .sg_vault/local/remote_heads.json 01:47:01"
     },
     {
       "n": 4,
       "who": "relay.1.fringe@PrompTugal.dinis",
       "altitude": "A0",
-      "what": "seals the vault key to relay.2's public key only; the plaintext key is shredded",
-      "when": "2026-11-12T01:49:10Z",
+      "what": "seals the vault key to relay.2's public key only (sgit pki encrypt). The plaintext key file was /dev/shm/r1/h001.vaultkey (tmpfs, RAM), written 01:47 by sgit vault show-key and removed with `shred -u /dev/shm/r1/h001.vaultkey` right after the encrypt finished (01:49; the exact second was not recorded). Evidence: at 01:57:14 the file was absent, but the container restarted at 01:57:01, which clears /dev/shm, so the absence alone does not prove the shred. The sealed blob is not signed (sgit pki sign asked for a passphrase); the signed task file names it. The vault key also stays in relay.1's local vault clone (.sg_vault/local), which sgit needs to push, on the container disk only.",
+      "when": "2026-11-12T01:49:00Z",
       "where": "git-public",
       "encrypted": true,
       "sealed_to": "sha256:8a04c60ad84ce04d",
       "signed_by": null,
       "ref": {
         "path": "handover/sealed/h001.vaultkey.relay2.enc"
-      }
+      },
+      "when_source": "approximate (to the minute)"
     },
     {
       "n": 5,
