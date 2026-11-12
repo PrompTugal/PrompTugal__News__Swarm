@@ -23,13 +23,14 @@ header h1 small{display:block;font:400 .78rem var(--font);color:var(--muted);mar
 .tools{display:flex;gap:6px}.tools button{font:inherit;font-size:.85rem;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line);border-radius:8px;padding:6px 10px;cursor:pointer}.tools button:hover{border-color:var(--accent)}
 .tools button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent)}
 .flag{font:700 .7rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:5px 7px;border:1px solid var(--warn);color:var(--warn)}
-.flag.real{border-color:var(--ok);color:var(--ok)}
+.flag.b-real{border:1px solid var(--ok);color:var(--ok)}.flag.b-simulated,.flag.b-sample{border:1px dashed var(--warn);color:var(--warn)}.flag.b-illustration{border:1px solid var(--dim);color:var(--muted)}.flag.b-mixed{border:1px solid transparent;color:var(--ink);background:linear-gradient(var(--panel-solid),var(--panel-solid)) padding-box,linear-gradient(90deg,var(--ok) 50%,var(--warn) 50%) border-box}
 main{position:relative;min-height:0;overflow:auto}
-html.focus header{display:none}html.focus #deck{padding-top:64px}html.focus body{grid-template-rows:minmax(0,1fr)}
+html.focus header{display:none}html.focus #deck{padding-top:64px}
+#slide .emb{width:min(100%,calc((100vh - 300px) * 16 / 9));margin:0 auto}html.focus #slide .emb{width:min(100%,calc((100vh - 200px) * 16 / 9))}#slide .sk-graph{max-height:calc(100vh - 320px)}html.focus body{grid-template-rows:minmax(0,1fr)}
 
 /* ---- Present: the deck, at stage size ---- */
 #deck{position:absolute;inset:0;display:grid;place-items:center;padding:4vh 6vw 90px}
-#slide{width:min(1400px,100%);max-height:100%;overflow:hidden;font-size:clamp(15px,1.75vw,34px)}
+#slide{width:min(1400px,100%);font-size:clamp(15px,1.75vw,34px)}
 html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 #cap{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);max-width:min(900px,90%);width:max-content;text-align:center;font:500 1.15rem/1.35 var(--font-head);padding:10px 18px;border-radius:12px;background:var(--panel);backdrop-filter:var(--glass);border:1px solid var(--line)}
 #cap:empty{display:none}
@@ -67,7 +68,7 @@ html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 .arrow{color:var(--dim);text-align:center;font-size:1.2rem;align-self:center}
 .empty{color:var(--muted);padding:30px 0}
 html.booth .modes a{padding:10px 16px;font-size:.95rem}html.booth .tools button{padding:10px 14px;min-height:44px}html.booth #slide{font-size:clamp(17px,2.1vw,40px)}html.booth.focus #slide{font-size:clamp(18px,2.4vw,44px)}
-@media (max-width:760px){#pn{right:auto;left:14px}#cap{bottom:62px;font-size:1rem;max-width:calc(100% - 28px);width:auto}#deck{padding-bottom:130px}}   /* the feedback pill has the bottom-right corner on a phone (swarm.1, review 8) */
+@media (max-width:760px){#pn{right:auto;left:14px}#deck{position:relative;inset:auto;min-height:100%;place-items:start center;padding:3vh 16px 24px}#cap{position:sticky;left:auto;transform:none;bottom:62px;margin:0 16px 74px;width:auto;max-width:none;font-size:1rem}#pn,#prog{position:fixed}#pn{bottom:20px}}   /* the feedback pill has the bottom-right corner on a phone (swarm.1, review 8) */
 body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}body.embed{grid-template-rows:minmax(0,1fr)}
 @media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}}
 </style>
@@ -128,8 +129,10 @@ function chrome(D) {
   const s = D.story || {};
   document.title = `${s.title || SID} · Swarm Stories`;
   $('#h').innerHTML = `${esc(s.title || 'This story has not landed yet')}<small>${[s.asked_by && `asked by ${esc(s.asked_by)}`, s.answered_by && `answered by ${esc(s.answered_by)}`, s.at && esc(hm(s.at) + ' UTC')].filter(Boolean).join(' · ')}</small>`;
-  const f = $('#flag'); f.hidden = false;
-  if (s.sample) f.textContent = 'Sample · invented'; else if (s.simulated) f.textContent = 'Simulated'; else { f.textContent = 'Real'; f.classList.add('real'); }
+  // the header says what the scenes say (StoryKit.badgeOf, swarm.1.dev 73ff7f6): REAL only when every badged scene is; nothing when none says
+  const f = $('#flag'); f.className = 'flag';
+  const B = window.StoryKit && StoryKit.badgeOf ? StoryKit.badgeOf(s) : s.sample ? { kind: 'sample', label: 'Sample · invented' } : null;
+  f.hidden = !B; if (B) { f.textContent = B.label; f.classList.add('b-' + B.kind); }
   $('#modes').innerHTML = MODES.map(([m, l]) => `<a href="?${new URLSearchParams({ s: SID, m })}"${m === MODE ? ' aria-current="page"' : ''} data-m="${m}">${l}</a>`).join('');
   $('#modes').onclick = (e) => { const a = e.target.closest('a'); if (!a) return; e.preventDefault(); go(a.dataset.m); };
   $('#tools').style.display = MODE === 'present' ? '' : 'none';
@@ -232,8 +235,13 @@ function delivery(D) {
 
 // a scene always fits the screen: step the type down until nothing scrolls (tablets, phones)
 let fitting = false;
-function fit() { const d = $('#deck'), sl = $('#slide'); if (!d || !sl || fitting) return; fitting = true; sl.style.fontSize = ''; let f = parseFloat(getComputedStyle(sl).fontSize), k = 0;
-  while ((d.scrollHeight > d.clientHeight + 2 || sl.scrollHeight > sl.clientHeight + 2) && f > 11 && k++ < 24) { f *= 0.94; sl.style.fontSize = f + 'px'; } fitting = false; }
+function fit() { const d = $('#deck'), sl = $('#slide'), c = $('#cap'); if (!d || !sl || fitting) return; fitting = true;
+  // room for the caption, however many lines it takes; then the type steps down until the scene fits what is left
+  const phone = matchMedia('(max-width:760px)').matches;   // a phone scrolls the deck: type no smaller than 13 px, the caption pinned below
+  const shown = !phone && c && c.textContent.trim() && getComputedStyle(c).display !== 'none'; d.style.paddingBottom = shown ? Math.ceil(d.getBoundingClientRect().bottom - c.getBoundingClientRect().top + 14) + 'px' : '';
+  const cs = getComputedStyle(d), room = d.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+  sl.style.fontSize = ''; let f = parseFloat(getComputedStyle(sl).fontSize), k = 0;
+  while (sl.scrollHeight > room + 2 && f > (phone ? 13 : 11) && k++ < 24) { f *= 0.94; sl.style.fontSize = f + 'px'; } fitting = false; }
 new MutationObserver(() => requestAnimationFrame(fit)).observe(document.getElementById('main'), { childList: true, subtree: true });
 addEventListener('resize', () => requestAnimationFrame(fit));
 function draw() { ({ present, timeline, graph, delivery })[MODE](DATA); }
