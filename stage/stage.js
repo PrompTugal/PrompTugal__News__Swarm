@@ -205,6 +205,11 @@
   function tick(now) {
     const dt = Math.min(0.1, (now - lastFrame) / 1000); lastFrame = now;
     if (playing) { t += dt * K.rate; if (stopAt != null && t >= stopAt) { t = stopAt; playing = false; stopAt = null; if (K.auto) setTimeout(() => { if (!playing) next(); }, 1200); } if (t >= TOTAL) { t = TOTAL - 1e-3; playing = false; } }
+    // say what → does while something plays (swarm.1, 04:50): it finishes what is playing; one more → moves on
+    { let h = $('#playhint'); if (!h) { h = document.createElement('div'); h.id = 'playhint'; document.body.appendChild(h); }
+      const left = playing && stopAt != null ? (stopAt - t) / K.rate : 0, on = left > 1.2;
+      if (on) h.textContent = (K.brisk ? 'playing the scene' : 'playing') + ' · ' + Math.ceil(left) + ' s · → shows its end now';
+      h.classList.toggle('on', on); }
     render();
     requestAnimationFrame(tick);
   }
