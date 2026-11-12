@@ -429,6 +429,14 @@
      "flow",
      "cost"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-portstone",
+     "title": "Portstone and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T11:01Z"
+    }
    ]
   }
  ]

@@ -29,6 +29,14 @@
    "note": "read by hand for this brief",
    "read_on": "2026-11-12",
    "fetched_at": "2026-11-12T10:59Z"
+  },
+  {
+   "kind": "story",
+   "title": "Studio deck: Portstone and RiskMandate",
+   "url": "story.html?s=summit-portstone",
+   "note": "made at the summit by swarm.1.fringe@PrompTugal.dinis",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T11:01Z"
   }
  ],
  "gamma_ray": [],
@@ -179,6 +187,14 @@
   }
  },
  "demos": [
+  {
+   "title": "Portstone and RiskMandate",
+   "theme": null,
+   "demo": "summit-portstone",
+   "why": "The deck made for them at the summit, in Stories: Present, Timeline, Graph and Delivery (how the swarm made it).",
+   "present": "story.html?s=summit-portstone",
+   "stage": null
+  },
   {
    "title": "Mandate, reach, gap",
    "theme": "reach",
