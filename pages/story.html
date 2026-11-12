@@ -82,6 +82,7 @@ html.focus #slide{font-size:clamp(16px,2.05vw,40px)}
 .art.final{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
 .arrow{color:var(--dim);text-align:center;font-size:1.2rem;align-self:center}
 .empty{color:var(--muted);padding:30px 0}
+html.booth .modes a{padding:10px 16px;font-size:.95rem}html.booth .tools button{padding:10px 14px;min-height:44px}html.booth #slide{font-size:clamp(17px,2.1vw,40px)}html.booth.focus #slide{font-size:clamp(18px,2.4vw,44px)}
 body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}body.embed{grid-template-rows:minmax(0,1fr)}
 @media (max-width:760px){header{padding:10px 12px 10px 96px}header h1{flex-basis:100%}.modes{flex:1 1 100%;margin-left:-84px}.modes a{flex:1;text-align:center;padding:6px 4px}.tools{display:none!important}#deck{padding:3vh 16px 80px}#slide{font-size:15px}.cmp2{grid-template-columns:1fr}.tl::before{left:70px}.tl li{grid-template-columns:58px 1fr;gap:24px}.tl li>.dot{left:65px}.gap{margin-left:86px}.ctr{font-size:3.6em}}
 </style>
@@ -96,9 +97,11 @@ body.embed header,body.embed #cap,body.embed #pn,body.embed #prog{display:none}b
 <main id="main"></main>
 <script>
 const $ = (s, r = document) => r.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const Q = new URLSearchParams(location.search), SID = Q.get('s') || 'sample', EMBED = Q.has('embed');
+const Q = new URLSearchParams(location.search), ATTRACT = Q.get('attract') === '1', EMBED = Q.has('embed');
+let SID = Q.get('s') || 'sample';
 const MODES = [['present', 'Present'], ['timeline', 'Timeline'], ['graph', 'Graph'], ['delivery', 'Delivery']];
-let MODE = MODES.some(([m]) => m === Q.get('m')) ? Q.get('m') : 'present';
+let MODE = ATTRACT ? 'present' : MODES.some(([m]) => m === Q.get('m')) ? Q.get('m') : 'present';
+if (ATTRACT) document.documentElement.classList.add('focus');
 if (EMBED) document.body.classList.add('embed');
 
 // The sample: invented, to show the shape until the first real story lands. Every screen says so.
@@ -182,7 +185,10 @@ function step(d) {
   if (ri > 0) { ri--; paint(); return true; } if (si > 0) { si--; ri = reveals(SC[si]) - 1; paint(); return true; } return false;
 }
 function paintBar() { const tot = SC.reduce((a, s) => a + reveals(s), 0), done = SC.slice(0, si).reduce((a, s) => a + reveals(s), 0) + ri + 1; $('#prog i').style.width = (100 * done / tot) + '%'; }
-function play() { if (timer) return stop(); $('#play').setAttribute('aria-pressed', 'true'); $('#play').textContent = '❚❚ Pause'; if (!kit && si === SC.length - 1 && ri === reveals(SC[si]) - 1) { si = 0; ri = 0; paint(); } timer = setInterval(() => { if (kit ? kit.next() === false : !step(1)) stop(); }, 2600); }
+function play() { if (timer) return stop(); $('#play').setAttribute('aria-pressed', 'true'); $('#play').textContent = '❚❚ Pause'; if (!kit && si === SC.length - 1 && ri === reveals(SC[si]) - 1) { si = 0; ri = 0; paint(); } timer = setInterval(() => { if (kit ? kit.next() === false : !step(1)) { stop(); if (ATTRACT) setTimeout(nextStory, 3000); } }, ATTRACT ? 3200 : 2600); }
+// the attract loop: the stories one after another (stories/index.json; the sample until the first lands)
+async function storyIds() { try { const j = await (await fetch('../stories/index.json', { cache: 'no-store' })).json(); const l = (j.stories || []).map((x) => x.id); return l.length ? l : ['sample']; } catch (e) { return ['sample']; } }
+async function nextStory() { const l = await storyIds(), k = (l.indexOf(SID) + 1) % l.length; if (l[k] === SID) { si = 0; ri = 0; paint(); play(); return; } location.href = '?' + new URLSearchParams({ s: l[k], m: 'present', attract: 1, booth: 1 }); }
 function stop() { clearInterval(timer); timer = null; const b = $('#play'); if (b) { b.setAttribute('aria-pressed', 'false'); b.textContent = '▶ Play all'; } }
 function present(D) {
   const s = D.story || {}; SC = s.scenes || s.slides || [];
@@ -250,14 +256,19 @@ document.addEventListener('keydown', (e) => {
 });
 $('#play').onclick = play;
 $('#foc').onclick = () => { document.documentElement.classList.toggle('focus'); dispatchEvent(new Event('resize')); };
-document.addEventListener('click', (e) => { if (MODE === 'present' && e.target.closest('#deck') && !e.target.closest('a,iframe')) { stop(); step(1); } });
+let sx = null, sy = null;
+document.addEventListener('touchstart', (e) => { if (e.touches.length !== 1) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', (e) => { if (sx == null || MODE !== 'present') return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null; if (Math.abs(dx) > 50 && Math.abs(dx) > 1.5 * Math.abs(dy)) { stop(); step(dx < 0 ? 1 : -1); swiped = Date.now(); } }, { passive: true });
+let swiped = 0;
+document.addEventListener('click', (e) => { if (Date.now() - swiped < 400) return; if (MODE === 'present' && e.target.closest('#deck') && !e.target.closest('a,iframe')) { stop(); step(1); } });
 
 // swarm.1.dev's kit, when it is there; the page works without it
 const ks = document.createElement('script'); ks.src = '../assets/story-kit.js';
-const start = () => load().then((D) => { DATA = D || { story: null, trail: null }; chrome(DATA); draw(); });
+const start = async () => { if (ATTRACT && !Q.get('s')) SID = (await storyIds())[0]; const D = await load(); DATA = D || { story: null, trail: null }; chrome(DATA); draw(); if (ATTRACT && MODE === 'present') setTimeout(play, 1200); };
 ks.onload = start; ks.onerror = start; document.head.appendChild(ks);
 </script>
 <script type="module" src="../assets/feedback.js"></script>
 <script src="../assets/nav.js"></script>
+<script src="../assets/booth.js"></script>
 </body>
 </html>

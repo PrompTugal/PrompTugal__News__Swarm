@@ -25,6 +25,12 @@ aside ol{margin:0;padding-left:20px;display:grid;gap:8px}aside li{font-size:1.02
 .hint{color:var(--muted);font-size:.8rem;margin:0}
 body.max .top,body.max aside{display:none}body.max main{grid-template-columns:1fr}body.max{grid-template-rows:auto minmax(0,1fr)}
 .maxbtn{position:absolute;left:10px;bottom:10px;z-index:2;font:inherit;font-size:.8rem;background:#04100Fdd;border:1px solid var(--line);border-radius:8px;padding:5px 9px;color:var(--ink);cursor:pointer}
+.more{display:none;font:inherit;font-size:.85rem;align-self:flex-start;background:none;color:var(--a3);border:1px solid var(--line);border-radius:8px;padding:8px 12px;min-height:44px;cursor:pointer}
+.themes a{padding:8px 14px}.demos button{padding:10px 12px;min-height:44px}.nav2 button{min-height:48px}.demo .open,.maxbtn{padding:10px 12px}
+html.booth aside li{font-size:1.1rem}html.booth aside h2{font-size:1.45rem}
+@media (max-width:760px){.themes{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}.themes a{flex:0 0 auto}.th p{display:none}.top{padding:8px 12px 6px;gap:6px}}
+@media (max-width:900px){.more{display:inline-block}aside:not(.open)>.ctx,aside:not(.open)>h3,aside:not(.open)>ol,aside:not(.open)>.hint{display:none}aside{padding:12px 14px;gap:8px}.nav2{margin-top:4px}.demo{height:min(62vh,56.25vw + 40px)}}
+@media (max-width:900px) and (orientation:portrait){.demo{height:62vh}}
 @media (max-width:900px){body{height:auto;display:block}main{grid-template-columns:1fr}.demo{height:60vh}aside{border-left:0;border-top:1px solid var(--line)}}
 </style>
 </head>
@@ -36,7 +42,7 @@ body.max .top,body.max aside{display:none}body.max main{grid-template-columns:1f
 </section>
 <main>
   <section class="demo"><iframe id="fr" title="The demo"></iframe><button class="maxbtn" id="max" title="The demo alone (M)">⛶ Demo only</button><a class="open" id="open" target="_top">Open in full ↗</a></section>
-  <aside aria-live="polite"><span class="n" id="dn"></span><h2 id="dt"></h2><p class="ctx" id="dc"></p><h3>What to say</h3><ol id="ds"></ol>
+  <aside aria-live="polite"><span class="n" id="dn"></span><h2 id="dt"></h2><button id="more" class="more" aria-expanded="false">What to say ▾</button><p class="ctx" id="dc"></p><h3>What to say</h3><ol id="ds"></ol>
     <p class="hint">Click the demo, then → steps it and ← goes back. ↑ and ↓ (or the buttons) move between demos.</p>
     <div class="nav2"><button id="prev">← Previous demo</button><button id="next">Next demo →</button></div></aside>
 </main>
@@ -50,8 +56,8 @@ function show(k) {
   $('#demos').querySelectorAll('button').forEach((b, j) => b.setAttribute('aria-current', j === i));
   $('#dn').textContent = `${T.title} · demo ${i + 1} of ${T.demos.length}`; $('#dt').textContent = d.title; $('#dc').textContent = d.context || '';
   $('#ds').innerHTML = (d.say || []).map((x) => `<li>${esc(x)}</li>`).join('');
-  const src = '../' + d.link; $('#open').href = src; $('#prev').disabled = i === 0; $('#next').disabled = i === T.demos.length - 1;
-  const fr = $('#fr'); fr.src = src;
+  const src = '../' + d.link, emb = /^stage\.html/.test(d.link) ? '../' + d.link + (d.link.includes('#') ? '&embed' : '#embed') : src;  // the stage alone in the frame (swarm.1.dev cc270e5) $('#open').href = src; $('#prev').disabled = i === 0; $('#next').disabled = i === T.demos.length - 1;
+  const fr = $('#fr'); fr.src = emb; $('aside').classList.remove('open'); $('#more').textContent = 'What to say ▾';
   // the stage inside: give it the whole frame (its focus mode), so the demo reads at its largest
   fr.onload = () => { try { const doc = fr.contentDocument; if (/stage\.html/.test(src)) { doc.documentElement.classList.add('focus'); fr.contentWindow.dispatchEvent(new Event('resize'));
       // a demo never opens on an empty table: if its first step hasn't played, play it (swarm.1's review, 07:33)
@@ -67,6 +73,11 @@ function load(id) {
   $('#demos').querySelectorAll('button').forEach((b) => (b.onclick = () => show(+b.dataset.j)));
   const want = Q.get('d'); show(Math.max(0, T.demos.findIndex((d) => d.id === want)));
 }
+$('#more').onclick = () => { const o = $('aside').classList.toggle('open'); $('#more').setAttribute('aria-expanded', o); $('#more').textContent = o ? 'Less ▴' : 'What to say ▾'; };
+// swipe on the notes (or the tabs) for the next and previous demo; the demo itself keeps its own touches
+let sx = null, sy = null;
+document.addEventListener('touchstart', (e) => { if (e.target.closest('.demo') || e.touches.length !== 1) { sx = null; return; } sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+document.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null; if (Math.abs(dx) > 60 && Math.abs(dx) > 1.5 * Math.abs(dy)) show(i + (dx < 0 ? 1 : -1)); }, { passive: true });
 $('#prev').onclick = () => show(i - 1); $('#next').onclick = () => show(i + 1);
 $('#max').onclick = () => { document.body.classList.toggle('max'); $('#max').textContent = document.body.classList.contains('max') ? '✕ Back to the notes' : '⛶ Demo only'; };
 document.addEventListener('keydown', (e) => { if (e.metaKey || e.ctrlKey || e.altKey) return; if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); show(i + 1); } else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); } else if (e.key === 'm' || e.key === 'M') $('#max').click(); else if (e.key === 'Escape' && document.body.classList.contains('max')) $('#max').click(); });
@@ -75,5 +86,6 @@ fetch('../stories/themes.json', { cache: 'no-store' }).then((r) => r.json()).the
 </script>
 <script type="module" src="../assets/feedback.js"></script>
 <script src="../assets/nav.js"></script>
+<script src="../assets/booth.js"></script>
 </body>
 </html>

@@ -49,7 +49,7 @@ footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);
   <div class="facts" id="facts"><span>Every run is real, signed and replayable</span><span>Model text is never stored: only its length and hash</span></div>
 </section>
 <section class="grid" aria-label="The main areas">
-  <a class="box main" href="stage.html#pack=main&brisk" style="--c:var(--a1)"><div class="shot"><span class="live">LIVE</span><iframe data-src="stage.html#pack=main" title="Preview: the stage" tabindex="-1" aria-hidden="true"></iframe></div>
+  <a class="box main" href="stage.html#pack=main&brisk" style="--c:var(--a1)"><div class="shot"><span class="live">LIVE</span><iframe data-src="stage.html#pack=main&embed" title="Preview: the stage" tabindex="-1" aria-hidden="true"></iframe></div>
     <div class="txt"><h2><i></i>Present the story</h2><p>The talk: nine scenes, one press each. From "everything an agent starts runs with its keys" to the gap, measured, and how to close it. Press <b>Z</b> for the stage alone.</p><span class="go">Start the presentation →</span></div></a>
   <a class="box" href="pages/packs.html" style="--c:var(--p)"><div class="shot"><span class="live">LIVE</span><iframe data-src="pages/packs.html?pack=gap&step=4&embed=1" title="Preview: the demo packs" tabindex="-1" aria-hidden="true"></iframe></div>
     <div class="txt"><h2><i></i>Demo packs</h2><p>Seven short packs, one idea per step: mandate, reach and the gap; the harness; keys; where the data is encrypted.</p><span class="go">Open the packs →</span></div></a>
@@ -93,5 +93,6 @@ fetch('runs/index.json', { cache: 'no-store' }).then((r) => r.json()).then((ix) 
 </script>
 <script type="module" src="assets/feedback.js"></script>
 <script src="assets/nav.js"></script>
+<script src="assets/booth.js"></script>
 </body>
 </html>
