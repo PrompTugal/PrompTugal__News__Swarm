@@ -119,7 +119,7 @@ const OFFER = { email: 'agent@riskmandate.ai', store: 'store.sgit.ai', levels: [
   '£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)',
   '£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)',
   '£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end'],
-  discount: 'Met us at the summit? 25% off any of these when you commit to follow up.' };
+  discount: 'Summit promotion: commit today and choose 25% off any of these, or a tablet set up for you, on us.' };
 // money: every call's cost, added up and shown as a rolling number (this tablet, today)
 const DAY = 'swarm-studio-spend/' + new Date().toISOString().slice(0, 10);
 let SPENT = (() => { try { return +localStorage.getItem(DAY) || 0; } catch { return 0; } })(), SHOWN = SPENT;
@@ -271,7 +271,7 @@ async function make() {
   const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   story.scenes = story.scenes.filter((sc, i) => !(i === 0 && sc.type === 'title'));
   story.scenes.unshift({ type: 'title', kicker: 'RiskMandate · a story made live', title: (org || 'A story told at the stand').slice(0, 90), sub: `${who !== 'a visitor' ? 'With ' + who + ' · ' : ''}Lisbon, ${date}`.slice(0, 160), caption: org ? `For ${org}` : 'Made live, from one conversation' });
-  story.scenes.push({ type: 'bullets', kicker: 'Working together · 25% summit discount', title: 'Three ways to start', items: [...OFFER.levels, OFFER.discount], caption: `${OFFER.email} · ${OFFER.store}`, say: ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: 25% off when you commit to follow up.', `Write to ${OFFER.email}.`] });
+  story.scenes.push({ type: 'bullets', kicker: 'Working together · the summit promotion', title: 'Three ways to start', items: [...OFFER.levels, OFFER.discount], caption: `${OFFER.email} · ${OFFER.store}`, say: ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: commit today and take 25% off, or a tablet set up for you.', `Write to ${OFFER.email}.`] });
   story.title = org ? `${org}: ${who}` : story.title;
   STORY = story; show(STORY); P.goto(0);
   done(hop({ who: 'the deck', role: 'site', where: 'this browser', what: `${STORY.scenes.length} scenes ready: a front page, the story, and the way to work together` }));

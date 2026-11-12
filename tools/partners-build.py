@@ -223,7 +223,7 @@ OFFER = {'title': 'The summit offer', 'dated': '2026-11-12', 'email': 'agent@ris
          'levels': [{'price': '£500', 'name': 'ABP Tailored', 'text': 'your deployment, reflected in the mandate, corrected by a named security professional', 'time': '1 to 3 days', 'where': 'store.sgit.ai'},
                     {'price': '£1,500', 'name': 'ABP Reviewed', 'text': 'two sessions with your team and a custom vault, signed off by a security professional', 'time': '1 to 5 days', 'where': 'store.sgit.ai'},
                     {'price': '£5,000', 'name': 'A deeper engagement', 'text': 'your agents mapped, mandated and measured with us, end to end', 'time': None, 'where': 'not yet on the store'}],
-         'discount': 'Met us at the summit? 25% off any of these when you commit to follow up.'}
+         'discount': 'Summit promotion: commit today and choose 25% off any of these, or a tablet set up for you, on us.'}
 
 
 def together_for(name, cards, xray):
@@ -284,10 +284,10 @@ def deck_for(p, steps):
         if st:
             sc.append({'type': 'embed', 'kicker': 'A demo to show', 'title': cut(d['title'], 90), 'step': st[-1], 'caption': cut(d['why'], 240)}); break
     sc.append({'type': 'statement', 'text': "Don't hope the agent behaves. Make the dangerous thing unreachable.", 'caption': 'The sentence.'})
-    sc.append({'type': 'bullets', 'kicker': 'Working together · 25% summit discount', 'title': 'Three ways to start',
+    sc.append({'type': 'bullets', 'kicker': 'Working together · the summit promotion', 'title': 'Three ways to start',
                'items': [cut(f"{l['price']} · {l['name']}: {l['text']}" + (f" ({l['time']})" if l['time'] else ''), 140) for l in OFFER['levels']] + [OFFER['discount']],
                'caption': f"{OFFER['email']} · store.sgit.ai · the summit offer, 12 Nov 2026",
-               'say': ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: 25% off when you commit to follow up.', f"Write to {OFFER['email']}."]})
+               'say': ['Pick the level that fits: tailored, reviewed, or end to end.', 'Because we met here: commit today and take 25% off, or a tablet set up for you.', f"Write to {OFFER['email']}."]})
     return {'id': 'partner-' + p['slug'], 'title': cut(name + ': a partner brief', 90), 'by': BY, 'at': p['built_at'], 'scenes': sc}
 
 
