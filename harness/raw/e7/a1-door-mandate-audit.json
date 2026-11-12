@@ -1,0 +1,38 @@
+[
+ {
+  "at": "2026-11-12T03:52:02Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ },
+ {
+  "at": "2026-11-12T03:52:02Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "openrouter.ai:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ },
+ {
+  "at": "2026-11-12T03:52:02Z",
+  "door": "sharness.net",
+  "peer": "uid 0",
+  "method": "CONNECT",
+  "path": "storm-charles.promptugal.news:443",
+  "bytes": 0,
+  "allowed": true,
+  "status": 200,
+  "reason": "",
+  "row": ""
+ }
+]

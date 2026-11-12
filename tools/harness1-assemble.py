@@ -416,6 +416,38 @@ def e10():
     })
 
 
+def e11():
+    """The positive case asked for: the whole mandate through the door. Measured: the reads pass, the router is reached, and it answers 401: the credential is not carried."""
+    r = RAW('e7/a1-door-mandate.json')[0]; audit = RAW('e7/a1-door-mandate-audit.json')
+    p = POL('policy-swarm-door-mandate.json'); h = phash(os.path.join(H, 'policies', 'policy-swarm-door-mandate.json'))
+    tl = [{'t_ms': e['t'], 'unit': e['unit'], 'phase': e['phase'], **{k: v for k, v in e.items() if k not in ('t', 'unit', 'phase')}} for e in r['timeline']]
+    for e in tl:
+        if '/call:' in e['unit'] and e['phase'] == 'end':
+            e.update(phase='refused', policy_row=None, refused_by='openrouter.ai itself: HTTP 401 "Missing Authentication header" (the door allowed the tunnel)', error='http_401')
+    return write('2026-11-12-harness1-e11-mandate-door.json', {
+        'about': 'E11, asked for by audience.1 and swarm.1: the positive case. The same engine (E7), the A0 read and the A1 call, under a policy whose only port is a door that allows the whole mandate: the storm site and openrouter.ai. No key is given to the process (env -i; the router sends its placeholder). Measured: the read passes; the door lets the tunnel to openrouter.ai through; OpenRouter answers 401 "Missing Authentication header". The mandate does not get through yet: the door cannot carry the credential the session proxy adds (F6, a second host). Stopped there, as asked: no key was put into the process.',
+        'by': BY, 'experiment': 'E11', 'measured_at': '2026-11-12T03:52Z', 'where': WHERE, 'tool': TOOL,
+        'outcome': 'not through: 401 at the router, 0 tokens, 0 USD',
+        'units': [
+            {'id': 'runner', 'kind': 'agent', 'altitude': 'A3', 'label': "the engine's runner", 'harnessed': True, 'policy_hash': h},
+            {'id': 'runner/read', 'kind': 'compute', 'altitude': 'A0', 'label': 'read weather/warnings.json', 'harnessed': True},
+            {'id': 'runner/call:deepseek-v4-flash#1', 'kind': 'llm-call', 'altitude': 'A1', 'label': 'deepseek-v4-flash via tools/llm.mjs', 'harnessed': True},
+            {'id': 'door', 'kind': 'harness', 'altitude': 'H', 'label': 'sharness.net door: storm site + openrouter.ai'},
+            {'id': 'storm', 'kind': 'site', 'altitude': 'D', 'label': 'storm-charles.promptugal.news'},
+            {'id': 'openrouter', 'kind': 'provider', 'altitude': 'M', 'label': 'openrouter.ai (reached; answered 401)'},
+        ],
+        'edges': [{'from': 'runner/read', 'to': 'door', 'kind': 'allowed'}, {'from': 'door', 'to': 'storm', 'kind': 'allowed'},
+                  {'from': 'runner/call:deepseek-v4-flash#1', 'to': 'door', 'kind': 'allowed'}, {'from': 'door', 'to': 'openrouter', 'kind': 'allowed', 'note': 'tunnel allowed; the request is refused by the router (401): no credential'}],
+        'policy': {'id': p['id'], 'hash': h, 'file': 'harness/policies/policy-swarm-door-mandate.json', 'rows': {'files': p['files'], 'network': p['network'], 'process': p['process']}},
+        'door': {'hosts': ['storm-charles.promptugal.news', 'openrouter.ai'], 'ports': [443]},
+        'run': {'task': r['task'], 'ok': r['ok'], 'calls': r['calls'], 'timeline': tl},
+        'door_audit': audit,
+        'key_handling': 'the OpenRouter key was never given to the harnessed process: it started with env -i (PATH, HOME, CA, ledger dirs, proxy only); the router sent its placeholder. In these containers the real credential is added by the session proxy, which the door does not use.',
+        'what_would_let_it_through': ['a credential row on the door: sharness.net adds the Authorization header for openrouter.ai, holding the key itself, outside the process (F6)', 'or the door chains to the session proxy for named hosts, still deciding hosts itself (F6)'],
+        'for_the_stage': 'the reach is right (the door let exactly the mandate out); the credential is the missing row. Not yet "mandate through": "mandate allowed, credential not carried".',
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -469,7 +501,8 @@ def findings():
              'observed': 'inside the policy (env -i, door only): task signature verified, vault key unsealed, vault wwpo3r81 cloned through the door (sha256 match), compute and signature done, sgit create went through; sgit push through the door: HTTP 401 {"detail":"Invalid access token"} on PUT /api/vault/write/...; the session-proxy port stayed out of the policy and the probe shows it refused',
              'why': 'in these containers the credential for dev.send.sgraph.ai is added by the session proxy; sharness.net connects upstream directly, so the write arrives without it. The policy did its job: the only path that holds the credential is the one it refuses.',
              'suggest': ['a credential row on the door (sharness.net adds the header for one host, the secret held by the door, never by the hop): the contain --secrets blank, made real', 'or chain the door to an upstream proxy for named hosts (the door still decides; the upstream adds the credential)', 'or run the vault write as a separate step outside the harness, recorded as outside'],
-             'evidence': 'handover/tasks/h003.blocked.json, handover/harness/h003/'},
+             'evidence': 'handover/tasks/h003.blocked.json, handover/harness/h003/',
+             'second_host': 'E11 (harness.1, 03:52Z): openrouter.ai through a door that allows it: tunnel 200, then HTTP 401 "Missing Authentication header" at 0 USD; harness/2026-11-12-harness1-e11-mandate-door.json'},
             {'id': 'F7', 'title': 'a minimal file policy meets small system files: /dev/null and /etc/mime.types',
              'severity': 'low (fails closed, each fixed by one narrow row or a code change)',
              'reported_by': 'relay.2.fringe@PrompTugal.dinis, h003',
@@ -487,7 +520,7 @@ def findings():
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9(), e10()]
+    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9(), e10(), e11()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',

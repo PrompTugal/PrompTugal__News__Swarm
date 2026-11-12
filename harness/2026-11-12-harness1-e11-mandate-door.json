@@ -1,0 +1,222 @@
+{
+ "about": "E11, asked for by audience.1 and swarm.1: the positive case. The same engine (E7), the A0 read and the A1 call, under a policy whose only port is a door that allows the whole mandate: the storm site and openrouter.ai. No key is given to the process (env -i; the router sends its placeholder). Measured: the read passes; the door lets the tunnel to openrouter.ai through; OpenRouter answers 401 \"Missing Authentication header\". The mandate does not get through yet: the door cannot carry the credential the session proxy adds (F6, a second host). Stopped there, as asked: no key was put into the process.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E11",
+ "measured_at": "2026-11-12T03:52Z",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "outcome": "not through: 401 at the router, 0 tokens, 0 USD",
+ "units": [
+  {
+   "id": "runner",
+   "kind": "agent",
+   "altitude": "A3",
+   "label": "the engine's runner",
+   "harnessed": true,
+   "policy_hash": "sha256:0d97acf519f89b7f32c5aac9917803cc612c3041bf6c18aebebbee05355f42a2"
+  },
+  {
+   "id": "runner/read",
+   "kind": "compute",
+   "altitude": "A0",
+   "label": "read weather/warnings.json",
+   "harnessed": true
+  },
+  {
+   "id": "runner/call:deepseek-v4-flash#1",
+   "kind": "llm-call",
+   "altitude": "A1",
+   "label": "deepseek-v4-flash via tools/llm.mjs",
+   "harnessed": true
+  },
+  {
+   "id": "door",
+   "kind": "harness",
+   "altitude": "H",
+   "label": "sharness.net door: storm site + openrouter.ai"
+  },
+  {
+   "id": "storm",
+   "kind": "site",
+   "altitude": "D",
+   "label": "storm-charles.promptugal.news"
+  },
+  {
+   "id": "openrouter",
+   "kind": "provider",
+   "altitude": "M",
+   "label": "openrouter.ai (reached; answered 401)"
+  }
+ ],
+ "edges": [
+  {
+   "from": "runner/read",
+   "to": "door",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "storm",
+   "kind": "allowed"
+  },
+  {
+   "from": "runner/call:deepseek-v4-flash#1",
+   "to": "door",
+   "kind": "allowed"
+  },
+  {
+   "from": "door",
+   "to": "openrouter",
+   "kind": "allowed",
+   "note": "tunnel allowed; the request is refused by the router (401): no credential"
+  }
+ ],
+ "policy": {
+  "id": "swarm-door-mandate",
+  "hash": "sha256:0d97acf519f89b7f32c5aac9917803cc612c3041bf6c18aebebbee05355f42a2",
+  "file": "harness/policies/policy-swarm-door-mandate.json",
+  "rows": {
+   "files": {
+    "read": [
+     "/usr",
+     "/lib",
+     "/lib64",
+     "/etc/ssl",
+     "/opt/node22",
+     "/home/user/PrompTugal__News__Swarm/tools",
+     "/home/user/PrompTugal__News__Swarm/harness/bin",
+     "/opt/hx/ws",
+     "/root/.ccr/ca-bundle.crt"
+    ],
+    "write": [
+     "/opt/hx/ws/out"
+    ],
+    "exec": [
+     "/opt/node22",
+     "/lib",
+     "/lib64",
+     "/usr/lib"
+    ]
+   },
+   "network": {
+    "connect_tcp_ports": [
+     18443
+    ]
+   },
+   "process": {
+    "no_new_privs": true,
+    "max_memory_mb": 16384,
+    "max_pids": 16
+   }
+  }
+ },
+ "door": {
+  "hosts": [
+   "storm-charles.promptugal.news",
+   "openrouter.ai"
+  ],
+  "ports": [
+   443
+  ]
+ },
+ "run": {
+  "task": "warnings",
+  "ok": true,
+  "calls": [
+   {
+    "unit": "runner/call:deepseek-v4-flash#1",
+    "model": "deepseek/deepseek-v4-flash",
+    "status": "http_401",
+    "valid": false,
+    "tokens_in": 0,
+    "tokens_out": 0,
+    "cost_usd": 0,
+    "latency_ms": 39,
+    "answer_chars": 0
+   }
+  ],
+  "timeline": [
+   {
+    "t_ms": 0,
+    "unit": "runner",
+    "phase": "start"
+   },
+   {
+    "t_ms": 0,
+    "unit": "runner/read",
+    "phase": "start"
+   },
+   {
+    "t_ms": 413,
+    "unit": "runner/read",
+    "phase": "end",
+    "ok": true,
+    "bytes": 20811
+   },
+   {
+    "t_ms": 414,
+    "unit": "runner/call:deepseek-v4-flash#1",
+    "phase": "start"
+   },
+   {
+    "t_ms": 526,
+    "unit": "runner/call:deepseek-v4-flash#1",
+    "phase": "refused",
+    "valid": false,
+    "cost_usd": 0,
+    "policy_row": null,
+    "refused_by": "openrouter.ai itself: HTTP 401 \"Missing Authentication header\" (the door allowed the tunnel)",
+    "error": "http_401"
+   },
+   {
+    "t_ms": 526,
+    "unit": "runner",
+    "phase": "end"
+   }
+  ]
+ },
+ "door_audit": [
+  {
+   "at": "2026-11-12T03:52:02Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T03:52:02Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "openrouter.ai:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  },
+  {
+   "at": "2026-11-12T03:52:02Z",
+   "door": "sharness.net",
+   "peer": "uid 0",
+   "method": "CONNECT",
+   "path": "storm-charles.promptugal.news:443",
+   "bytes": 0,
+   "allowed": true,
+   "status": 200,
+   "reason": "",
+   "row": ""
+  }
+ ],
+ "key_handling": "the OpenRouter key was never given to the harnessed process: it started with env -i (PATH, HOME, CA, ledger dirs, proxy only); the router sent its placeholder. In these containers the real credential is added by the session proxy, which the door does not use.",
+ "what_would_let_it_through": [
+  "a credential row on the door: sharness.net adds the Authorization header for openrouter.ai, holding the key itself, outside the process (F6)",
+  "or the door chains to the session proxy for named hosts, still deciding hosts itself (F6)"
+ ],
+ "for_the_stage": "the reach is right (the door let exactly the mandate out); the credential is the missing row. Not yet \"mandate through\": \"mandate allowed, credential not carried\"."
+}

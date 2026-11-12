@@ -140,7 +140,8 @@
     "or chain the door to an upstream proxy for named hosts (the door still decides; the upstream adds the credential)",
     "or run the vault write as a separate step outside the harness, recorded as outside"
    ],
-   "evidence": "handover/tasks/h003.blocked.json, handover/harness/h003/"
+   "evidence": "handover/tasks/h003.blocked.json, handover/harness/h003/",
+   "second_host": "E11 (harness.1, 03:52Z): openrouter.ai through a door that allows it: tunnel 200, then HTTP 401 \"Missing Authentication header\" at 0 USD; harness/2026-11-12-harness1-e11-mandate-door.json"
   },
   {
    "id": "F7",

@@ -1,0 +1,38 @@
+{
+ "pbp": 1,
+ "id": "swarm-door-mandate",
+ "layer": "invocation",
+ "notes": "harness.1.fringe E11: as swarm-door; the door it points at allows the whole mandate: the storm site and openrouter.ai. No key in the process: the router sends its placeholder.",
+ "files": {
+  "read": [
+   "/usr",
+   "/lib",
+   "/lib64",
+   "/etc/ssl",
+   "/opt/node22",
+   "/home/user/PrompTugal__News__Swarm/tools",
+   "/home/user/PrompTugal__News__Swarm/harness/bin",
+   "/opt/hx/ws",
+   "/root/.ccr/ca-bundle.crt"
+  ],
+  "write": [
+   "/opt/hx/ws/out"
+  ],
+  "exec": [
+   "/opt/node22",
+   "/lib",
+   "/lib64",
+   "/usr/lib"
+  ]
+ },
+ "network": {
+  "connect_tcp_ports": [
+   18443
+  ]
+ },
+ "process": {
+  "no_new_privs": true,
+  "max_memory_mb": 16384,
+  "max_pids": 16
+ }
+}
