@@ -452,7 +452,7 @@
       .style('font-size', (n) => ((['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label * sparse) / k + 'px')
       .classed('big', (n) => ['P', 'A4', 'A3', 'X', 'M'].includes(n.alt))
       .text((n) => (n.alt === 'A1' && k < 2.5 && n.id !== focusId && /#\d+$/.test(n.label) ? n.label.match(/#\d+$/)[0]   // calls: "#1" until zoomed (the model is on its loop)
-        : short(String(n.label).replace(/\.fringe@PrompTugal\.\w+$|@PrompTugal\.\w+$/, ''), ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26))); // the full name stays in the node's title
+        : short(String(n.label).replace(/\.fringe@PrompTugal\.\w+$|@PrompTugal\.\w+$/, '').replace(/^commit ([0-9a-f]{7})[0-9a-f]+$/, 'commit $1'), ['P', 'A3', 'X'].includes(n.alt) ? 40 : 26))); // the full name stays in the node's title
     // counter
     const c = $('#counter');
     if (st.counter) { c.style.display = ''; const v = counterValue(g, st); const shown = Math.round(v.value * st.counter.p), lab = st.counter.label || v.label; c.innerHTML = `<b>${fmtN(shown)}</b><span>${esc(shown === 1 ? lab.replace(/^units\b/, 'unit').replace(/^results\b/, 'result').replace(/^connections\b/, 'connection') : lab)}</span>`; }
@@ -565,7 +565,8 @@
     // rows across the one step, one after another (however many the file holds)
     let n = st.cardN, p = st.cardP;
     if (c.fromN != null && c.upto != null) {
-      const span = Math.max(1, c.upto - c.fromN), x = st.cardP * span;
+      // a table's first row arrives with its frame (audience.1, swarm.1.designer: an evidence table must never look empty)
+      const span = Math.max(1, c.upto - c.fromN), lead = c.fromN === 0 ? 1 : 0, x = lead + st.cardP * (span - lead);
       el.querySelectorAll('[data-i]').forEach((row) => { const i = +row.dataset.i, k = i < c.fromN ? 1 : i < c.upto ? clamp(x - (i - c.fromN), 0, 1) : 0; row.style.opacity = k; row.style.transform = `translateY(${(1 - k) * 10}px)`; });
       const lastOn = [...el.querySelectorAll('[data-i]')].filter((row) => +row.style.opacity > 0.05).pop();
       if (lastOn && c.kind === 'flow') { const body = el; const r1 = lastOn.getBoundingClientRect(), r0 = body.getBoundingClientRect(); if (r1.bottom > r0.bottom - 130) body.scrollTop += r1.bottom - (r0.bottom - 130); if (r1.top < r0.top + 60) body.scrollTop -= r0.top + 60 - r1.top; }

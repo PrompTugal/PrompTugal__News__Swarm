@@ -776,7 +776,7 @@
      "dur": 2.5,
      "counter": {
       "of": "summary.calls",
-      "label": "model calls from pushes, all of tonight"
+      "label": "all of tonight: model calls"
      },
      "caption": "Every call recorded: model, tokens, cost, valid or not. Never the text."
     },
@@ -785,7 +785,7 @@
      "dur": 2.5,
      "counter": {
       "of": "summary.jobs",
-      "label": "results from pushes, all of tonight, each signed and attested by GitHub"
+      "label": "all of tonight: signed results"
      },
      "caption": "Each result signed by a key made for its run, and attested by GitHub."
     }
@@ -3044,7 +3044,9 @@
         "big": true
        }
       ],
-      "source": "stories/2026-11-12-0118-altitudes-and-reach.md (agreed with Dinis, 01:54 UTC)"
+      "source": "stories/2026-11-12-0118-altitudes-and-reach.md (agreed with Dinis, 01:54 UTC)",
+      "badge": "AGREED · with Dinis, 01:54 UTC (stories/2026-11-12-0118-altitudes-and-reach.md)",
+      "badgeKind": "agreed"
      },
      "caption": ""
     }
