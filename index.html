@@ -14,7 +14,7 @@ a{color:var(--a3)}header,footer{padding:14px 16px}header h1{margin:0;font-size:1
 main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 16px}
 @media (max-width:900px){main{grid-template-columns:1fr}
  /* phone: the ladder becomes one swipeable row above the run, so the run is on the first screen */
- #rungs{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px}#rungs .rung{flex:0 0 200px;margin:0;scroll-snap-align:start}#rungs h2{display:none}#rungs .rung[disabled]{display:none}
+ #rungs{display:flex;gap:6px;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;-webkit-mask-image:linear-gradient(to right,#000 85%,transparent);mask-image:linear-gradient(to right,#000 85%,transparent);padding-right:60px}#rungs .rung{flex:0 0 200px;margin:0;scroll-snap-align:start}#rungs h2{display:none}#rungs .rung[disabled]{display:none}
  .panel[aria-label="Capabilities"]{order:3}}
 /* projector: bigger type at 1600 px and up */
 @media (min-width:1600px){html,body{font-size:18px}.tl .lane{font-size:14px}.tl .ph{font-size:13px}main{grid-template-columns:280px 1fr 260px}svg text{font-size:13px}svg .lbl{font-size:12px}}
@@ -24,7 +24,7 @@ main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 
 .rung b{display:block;font-size:.9rem}.rung span{color:var(--muted);font-size:.78rem}.rung[aria-pressed="true"]{border-color:var(--a3);background:color-mix(in srgb,var(--a3) 12%,transparent)}
 .rung[disabled]{opacity:.5;cursor:default}
 #stage{overflow:auto;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,var(--panel))}#stage svg{display:block;height:auto}
-svg text{fill:var(--ink);font-size:11px}svg .lbl{fill:var(--muted);font-size:10px}
+svg text{fill:var(--ink);font-size:11px}svg .lbl{fill:var(--muted);font-size:10px}svg.few .lbl{font-size:13px}svg .lbl.hero{fill:var(--ink);font-weight:600;font-size:12px}svg.few .lbl.hero{font-size:16px}
 .edge{stroke:var(--line);stroke-width:1.2}.edge.on{stroke:var(--muted)}.edge.planned{stroke-dasharray:4 4}
 .n{transition:opacity .25s}.n.hidden{opacity:.08}.n.live .shape{stroke:var(--live);stroke-width:3}.n.bad .shape{stroke:var(--bad);stroke-width:2.5}.n.ok .shape{stroke:var(--ok);stroke-width:2}.n.planned .shape{stroke-dasharray:4 3;fill-opacity:.25}
 .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}.bar button{font:inherit;background:var(--a3);color:#fff;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
@@ -48,10 +48,10 @@ footer{color:var(--muted);font-size:.8rem}
 .bar button.ghost{background:none;border:1px solid var(--line);color:var(--ink)}
 body.present header,body.present .demos,body.present footer,body.present .panel[aria-label="Capabilities"],body.present #detail,body.present #live{display:none}
 body.present{font-size:19px}body.present main{grid-template-columns:1fr;padding-top:12px}body.present .panel[aria-label="Rungs"]>h2{display:none}
-body.present #rungs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}body.present #rungs .rung{flex:0 0 220px;margin:0}body.present #rungs h2,body.present #rungs p,body.present #rungs .rung[disabled],body.present #checknow{display:none}
+body.present #rungs{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px;-webkit-mask-image:linear-gradient(to right,#000 88%,transparent);mask-image:linear-gradient(to right,#000 88%,transparent);padding-right:120px}body.present #rungs .rung{flex:0 0 220px;margin:0}body.present #rungs h2,body.present #rungs p,body.present #rungs .rung[disabled],body.present #checknow{display:none}
 body.present .amp{font-size:1.25rem}body.present .card b{font-size:1.5rem}body.present .tl .lane{font-size:15px}body.present .tl .ph{font-size:13px}body.present svg .lbl{font-size:13px}
 .headline{margin:0 16px 12px;padding:12px 16px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,color-mix(in srgb,var(--a1) 14%,var(--panel)),var(--panel))}
-.headline .big{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:1.15rem;font-weight:600;margin:0}.headline .big span{white-space:nowrap}.headline .big i{font-style:normal;color:var(--muted);font-weight:400;font-size:.8em}
+.headline .big{display:flex;flex-wrap:wrap;gap:4px 14px;align-items:baseline;font-size:1.15rem;font-weight:600;margin:0}.headline .big span{white-space:nowrap}@media (max-width:600px){.headline .big span{white-space:normal}}.headline .big i{font-style:normal;color:var(--muted);font-weight:400;font-size:.8em}
 .headline .sub{color:var(--muted);font-size:.8rem;margin:4px 0 0}.headline .sub b{color:var(--ink)}
 .batches{display:flex;gap:8px;overflow-x:auto;margin-top:10px;padding-bottom:2px}.batch{flex:0 0 auto;min-width:150px;border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:.78rem;color:var(--muted);text-decoration:none;background:var(--panel)}.batch b{display:block;color:var(--ink);font-size:.9rem}
 .batch .jobs{display:flex;gap:2px;margin:4px 0}.batch .jobs i{width:8px;height:8px;border-radius:2px;background:var(--a3)}
@@ -144,12 +144,12 @@ function layout(nodes, edges, W) {
 function draw() {
   const run = cur; const { nodes, edges } = withCaps(run); const { W, H, byId } = layout(nodes, edges, Math.max(320, $('#stage').clientWidth || 760));
   const big = nodes.length < 40, r = big ? 14 : 8;
-  let s = `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(run.title)}">`;
+  let s = `<svg class="${big ? 'few' : ''}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="${esc(run.title)}">`;
   edges.forEach((e) => { const a = byId[e.from], b = byId[e.to]; if (a && b) s += `<line class="edge ${e.planned ? 'planned' : ''}" data-to="${esc(e.to)}" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}"/>`; });
   nodes.forEach((n) => {
     const st = n.planned ? 'planned' : n.valid === false ? 'bad' : n.valid ? 'ok' : '';
     s += `<g class="n ${st}" data-id="${esc(n.id)}" transform="translate(${n.x},${n.y})"><title>${esc((ALT[n.altitude] || [''])[0] + ': ' + n.label + (n.model ? ' · ' + n.model : '') + (n.tokens ? ' · ' + n.tokens + ' tokens' : '') + (n.cost_usd != null ? ' · ' + n.cost_usd + ' USD' : '') + (n.latency_ms ? ' · ' + n.latency_ms + ' ms' : ''))}</title>${shape(n.altitude, n.cap && n.altitude === 'E' ? 12 : r)}`;
-    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl" text-anchor="middle" y="${r + 13}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 7.4)))))}</text>`;
+    if (big || n.altitude === 'P' || n.altitude === 'A3' || n.cap) s += `<text class="lbl${['P', 'A3', 'A4'].includes(n.altitude) ? ' hero' : ''}" text-anchor="middle" y="${r + (big ? 17 : 13)}">${esc(String(n.label).replace('swarm.1.fringe@PrompTugal.dinis', 'swarm.1 (Claude)').slice(0, Math.max(6, Math.min(34, Math.floor((n.dx || 200) / 7.4)))))}</text>`;
     s += '</g>';
   });
   $('#stage').innerHTML = s + '</svg>'; timeline(run); budget(run); sigs(run);
@@ -157,13 +157,13 @@ function draw() {
   const parts = [['1 person', 1], [`${u.A3 || 0} agent${u.A3 === 1 ? '' : 's'}`, u.A3], [`${u.A2 || 0} loops`, u.A2], [`${m.llm_calls} LLM calls`, m.llm_calls], [`${u.A0 || 0} compute`, u.A0], [`${m.models.length} models`, m.models.length]].filter((p) => p[1]);
   $('#amp').innerHTML = parts.map((p) => p[0]).join(' <i>+</i> ');
   const card = (v, l) => `<div class="card"><b>${v}</b><span>${l}</span></div>`;
-  $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
+  $('#cards').innerHTML = card(m.llm_calls + (m.llm_calls ? ` <small style="font-size:.7rem;color:var(--muted)">${m.valid_calls} valid (${Math.round(100 * m.valid_calls / m.llm_calls)}%)</small>` : ''), 'LLM calls') + card((m.tokens_in + m.tokens_out).toLocaleString(), 'tokens (in + out)') + card('$' + m.openrouter_usd.toFixed(4), 'spent on OpenRouter') + card('$' + m.potential_claude_usd['claude-sonnet-5.5'].toFixed(4), 'same tokens on Claude Sonnet (potential)') + card('$' + m.potential_claude_usd['claude-opus-5.5'].toFixed(4), 'same tokens on Claude Opus (potential)') + card((run.wall_ms / 1000).toFixed(1) + ' s', 'wall time') + card(m.peak_concurrency, 'peak units at once');
   const cons = Object.entries(run.consensus || {});
   const byModel = {}; (run.calls || []).forEach((c) => { const k = c.model.split('/')[1]; const x = (byModel[k] ||= { calls: 0, valid: 0, tin: 0, tout: 0, usd: 0, ms: [] }); x.calls++; x.valid += c.valid ? 1 : 0; x.tin += c.tokens_in; x.tout += c.tokens_out; x.usd += c.cost_usd; x.ms.push(c.latency_ms); });
   chain(run);
   $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}).</p>`
     + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
-    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
+    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}${c.agree * 4 < c.of * 3 ? ` <small style="color:var(--bad)">${c.agree * 2 <= c.of ? 'no consensus' : 'weak'}</small>` : ''}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
 }
 // the run over time: one lane per altitude, the height is how many units of it were live; a playhead follows the replay
 // drawn at the panel's real width, so its text stays the same size on a phone and on a projector
@@ -296,7 +296,7 @@ async function headline() {
   try {
     const j = await (await fetch(RAW('dev') + 'summary.json', { cache: 'no-store' })).json(), t = j.totals, u = t.units || {}, el = $('#headline');
     const n = (x) => Number(x || 0).toLocaleString(), usd = (x) => '$' + Number(x || 0).toFixed(Number(x) < 1 ? 3 : 2), sec = (ms) => Math.round(ms / 1000) + ' s';
-    const big = [[n(t.requests) + ' requests', 'signed'], [n(t.workflow_runs) + ' pushes', ''], [n(t.jobs) + ' jobs', t.peak_jobs_at_once + ' at once at peak'], [n(u.A2) + ' loops', 'A2'], [n(t.calls) + ' LLM calls', 'A1, ' + t.valid_pct + '% valid'], [n(u.A0) + ' compute', 'A0'], [usd(t.openrouter_usd), 'spent'], [usd((t.potential_claude_usd || {})['claude-sonnet-5.5']), 'same tokens on Claude Sonnet']];
+    const big = [[n(t.requests) + ' requests', 'signed'], [n(t.workflow_runs) + ' pushes', ''], [n(t.jobs) + ' jobs', t.peak_jobs_at_once + ' at once at peak'], [n(u.A2) + ' loops', 'A2'], [n(t.calls) + ' LLM calls', 'A1, ' + t.valid_pct + '% valid'], [n(u.A0) + ' compute', 'A0'], [usd(t.openrouter_usd), 'spent'], [usd((t.potential_claude_usd || {})['claude-sonnet-5.5']), `same tokens on Claude Sonnet, for these ${n(t.requests)} push runs`]];
     const batches = [...(j.by_workflow_run || [])].sort((a, b) => String(b.first_start).localeCompare(String(a.first_start))); // newest first
     el.innerHTML = `<p class="big">${big.map(([a, b]) => `<span>${a}${b ? ` <i>${esc(b)}</i>` : ''}</span>`).join('')}</p>`
       + `<p class="sub">Every run that started with a push to <a href="https://github.com/${RUNS_REPO}">${esc(RUNS_REPO.split('/')[1])}</a>, added up: <b>${n(t.tokens_in + t.tokens_out)}</b> tokens on ${(t.models || []).length} open-weight models, from ${esc(String(t.first_start).slice(11, 16))} to ${esc(String(t.last_end).slice(11, 16))} UTC. Updated ${esc(String(j.updated).replace('T', ' ').replace('Z', ' UTC'))}. Not measured: ${esc(j.not_measured || '')}</p>`
