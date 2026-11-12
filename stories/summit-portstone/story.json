@@ -1,0 +1,191 @@
+{
+ "title": "Portstone and RiskMandate",
+ "id": "summit-portstone",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Portstone and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Portstone"
+  },
+  {
+   "type": "bullets",
+   "title": "Portstone: people on the phone, end to end",
+   "kicker": "Who they are",
+   "items": [
+    "A cold calling agency for B2B campaigns",
+    "Trained callers assigned to each campaign",
+    "Run end to end: target list to meetings on the client's calendar",
+    "Outbound strategy, list building, script writing, SDR placement and training, cold calling, weekly reporting",
+    "Callers are people, selected, trained and managed by Portstone"
+   ],
+   "caption": "From Portstone's own pages. Their site names no AI agents in its own process.",
+   "badge": "real",
+   "source": "Portstone public pages",
+   "say": [
+    "Portstone is a human outbound phone channel, and says so.",
+    "We do not claim any AI agents on their side."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "How a Portstone campaign runs",
+   "kicker": "Their process",
+   "steps": [
+    "Client's revenue goal",
+    "Dial volume and connect rate worked backwards",
+    "Every list row checked: company, person, role",
+    "Trained callers dial from an approved script",
+    "Every call recorded, sent with the weekly report",
+    "Meetings on the client's calendar"
+   ],
+   "caption": "Recordings are attached to the record they belong to. Portstone does not guarantee meetings.",
+   "badge": "real",
+   "source": "Portstone public pages",
+   "say": [
+    "It starts from the revenue goal and works back to the dials.",
+    "Recorded calls and weekly reporting make the work easy to inspect."
+   ]
+  },
+  {
+   "type": "table",
+   "title": "Pricing per campaign",
+   "kicker": "What a campaign costs",
+   "cols": [
+    "Package",
+    "Price",
+    "Dials",
+    "Note"
+   ],
+   "rows": [
+    [
+     "Starter",
+     "$2,000",
+     "500",
+     "—"
+    ],
+    [
+     "Growth",
+     "$3,500",
+     "1,000",
+     "—"
+    ],
+    [
+     "Scale",
+     "$5,000",
+     "1,500",
+     "Multiple callers"
+    ],
+    [
+     "Custom",
+     "On request",
+     "On request",
+     "—"
+    ]
+   ],
+   "caption": "No setup fees, no long-term contract. Their published prices, not a quote for us.",
+   "badge": "real",
+   "source": "Portstone public pages",
+   "say": [
+    "Clear, per-campaign pricing makes a small pilot easy to size."
+   ]
+  },
+  {
+   "type": "compare",
+   "title": "The fit runs the other way round",
+   "kicker": "Our hypothesis, not their claim",
+   "before": {
+    "label": "Not the first fit",
+    "items": [
+     "RiskMandate measuring Portstone's agents",
+     "Portstone's own work is done by people",
+     "Its site names no AI agents"
+    ]
+   },
+   "after": {
+    "label": "The better fit",
+    "items": [
+     "Portstone as an outbound phone channel for RiskMandate",
+     "Selling agent-risk assessments and summit packages",
+     "Calling B2B tech companies that run AI agents"
+    ]
+   },
+   "caption": "Built from public pages only; nothing of Portstone's was tested.",
+   "badge": "illustration",
+   "say": [
+    "Measurement is not where we start with a human-run team.",
+    "The partnership is a reseller or pipeline arrangement."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "What we would do together",
+   "kicker": "Proposed partnership",
+   "steps": [
+    "Agree the offer: assessments and summit packages",
+    "Portstone builds and checks the target list",
+    "Script written for the offer",
+    "Trained callers dial B2B tech companies running AI agents",
+    "Recorded calls and weekly report",
+    "Meetings booked for RiskMandate"
+   ],
+   "caption": "What we would do together, not a claim by either company. Details to be agreed.",
+   "badge": "illustration",
+   "say": [
+    "Portstone's existing process carries the campaign; RiskMandate supplies the offer.",
+    "Reseller or pipeline partner: the shape is open for discussion."
+   ]
+  },
+  {
+   "type": "bullets",
+   "title": "What we do not know yet",
+   "kicker": "The honest gap",
+   "items": [
+    "Mandate for agents: unknown; the script is a written mandate for a human caller",
+    "Reach: touches client target lists, call recordings and CRM-style records",
+    "Whether AI tooling sits behind list sourcing or connect-rate optimisation: unknown",
+    "If Portstone adds AI to sourcing, dialling or reporting, mandate, reach and gap measurement applies there"
+   ],
+   "caption": "Unknown from public pages. We would ask, not assume.",
+   "badge": "illustration",
+   "say": [
+    "We name what we cannot see.",
+    "Measurement stays on the table if AI enters their process later."
+   ]
+  },
+  {
+   "type": "statement",
+   "text": "Portstone brings the human callers; RiskMandate brings the agent-risk offer. Together, a phone channel to B2B tech companies that run AI agents.",
+   "kicker": "Our suggestion",
+   "caption": "A partnership proposal from us, for discussion. Not a claim by either company.",
+   "badge": "illustration",
+   "say": [
+    "Start small: one campaign, one offer, clear reporting."
+   ]
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T11:01:08Z",
+ "partners": [
+  "portstone"
+ ],
+ "simulated": false
+}

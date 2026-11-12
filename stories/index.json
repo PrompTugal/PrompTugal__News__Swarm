@@ -1,6 +1,18 @@
 {
  "stories": [
   {
+   "id": "summit-portstone",
+   "title": "Portstone and RiskMandate",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T11:01:08Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "portstone"
+   ]
+  },
+  {
    "id": "summit-oppy",
    "title": "Oppy and RiskMandate",
    "asked_by": "Dinis, at the summit (relayed by attendees.1)",
