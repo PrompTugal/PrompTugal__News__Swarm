@@ -90,3 +90,28 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #goto { position: fixed; inset: 8% 18%; z-index: 9; background: var(--panel-solid); border: 1px solid var(--line); border-radius: 14px; padding: 16px 22px; overflow: auto; display: none }
 #goto[open] { display: block } #goto .g-sc { margin: 0 0 10px } #goto .g-sc b { display: block; margin-bottom: 4px } #goto button { background: none; border: 1px solid var(--line); border-radius: 7px; padding: 3px 8px; margin: 0 4px 4px 0; cursor: pointer } #goto button:hover { border-color: var(--accent) }
 @media (prefers-reduced-motion: reduce) { .reachline, .edge.k-reach { animation: none } }
+/* packs */
+#packs { display: flex; flex-wrap: wrap; gap: 4px; margin: 0 0 8px } #packs:empty { display: none }
+.pk { font-size: .78em; border: 1px solid var(--line); border-radius: 99px; padding: 2px 9px; color: var(--muted); text-decoration: none } .pk.cur { border-color: var(--accent); color: var(--ink); background: color-mix(in srgb, var(--accent) 14%, transparent) }
+/* the unit's box */
+#box { position: absolute; inset: 6% 12% 120px; z-index: 5; pointer-events: none; opacity: 0; transform: scale(.2); transition: opacity .35s, transform .45s cubic-bezier(.2, .8, .2, 1) }
+#box.on { opacity: 1; transform: none; pointer-events: auto }
+#box .bx { height: 100%; overflow: auto; background: var(--panel-solid); border: 1px solid var(--accent); border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); padding: 14px 20px }
+#box header { display: flex; align-items: center; gap: 12px; border: 0; padding: 0 0 10px } #box header i { width: 22px; height: 22px; border-radius: 50% } #box header b { display: block; font: 600 1.2em var(--font-head) } #box header small { color: var(--muted) }
+#box header button { margin-left: auto; background: none; border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer }
+#box table { width: 100%; border-collapse: collapse; font-size: calc(1em * var(--text, 1)) } #box th { text-align: left; color: var(--muted); font-weight: 500; width: 190px; vertical-align: top; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line) }
+#box td { padding: 6px 0; border-bottom: 1px solid var(--line); font-family: var(--mono); font-size: .92em; word-break: break-word } #box td small { display: block; color: var(--dim); font-family: var(--font); font-size: .8em }
+/* the policy check */
+#card .check { width: 100%; max-width: 1100px } #card .check h2 { font-size: calc(2.2em * var(--text, 1)) }
+.ck-head, .ck { display: grid; grid-template-columns: 1fr 40px 1fr 40px 180px; align-items: center; gap: 6px } .ck-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px } .ck-head span:nth-child(2) { grid-column: 3 } .ck-head span:nth-child(3) { grid-column: 5 }
+.ck { margin: 0 0 10px; font-size: calc(1.15em * var(--text, 1)) } .ck .ask, .ck .gate, .ck .out { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--panel) } .ck small { display: block; color: var(--muted); font-size: .72em }
+.ck .gate { border-color: var(--accent); text-align: center } .ck .gate.inside { border-color: var(--warn); border-style: dashed } .ck .arrow { text-align: center; color: var(--muted) }
+.ck .out { text-align: center; font: 700 1em var(--font-head); text-transform: uppercase; letter-spacing: .04em } .ck .out.ok { color: var(--ok); border-color: var(--ok) } .ck .out.no { color: var(--bad); border-color: var(--bad) } .ck .out.skip { color: var(--warn); border-color: var(--warn) }
+/* the handover flow */
+#card .flow { width: 100% } #card .flow h2 { font-size: calc(2em * var(--text, 1)) }
+.lanes { display: grid; grid-auto-columns: minmax(120px, 1fr); grid-template-columns: 170px; gap: 8px 10px; min-height: 360px }
+.lane { grid-column: 1 / -1; border-radius: 10px; display: flex; align-items: center; padding-left: 10px; font: 600 .82em var(--mono); color: var(--muted) }
+.lane.l-network { background: color-mix(in srgb, var(--alt-M) 10%, transparent) } .lane.l-memory-decrypted { background: color-mix(in srgb, var(--warn) 12%, transparent) } .lane.l-vault-encrypted { background: color-mix(in srgb, var(--accent) 12%, transparent) } .lane.l-git-public { background: color-mix(in srgb, var(--alt-A3) 12%, transparent) }
+.fs { position: relative; z-index: 1; border: 1px solid var(--line); border-radius: 10px; background: var(--panel-solid); padding: 6px 8px; font-size: .82em; display: flex; flex-direction: column; gap: 2px }
+.fs b { font: 700 1.1em var(--font-head) } .fs small { color: var(--muted) } .fs .fp { font-family: var(--mono); color: var(--accent2) } .fs i { position: absolute; right: 6px; top: 4px; font-style: normal }
+.fs.l-memory-decrypted { border-color: var(--warn) } .fs.l-vault-encrypted { border-color: var(--accent) } .fs.l-git-public { border-color: var(--alt-A3) }

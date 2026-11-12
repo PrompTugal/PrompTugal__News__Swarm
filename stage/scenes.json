@@ -732,6 +732,90 @@
    ]
   },
   {
+   "id": "check-inside",
+   "act": "8 · The harness",
+   "title": "A check inside the agent",
+   "say": "Where does the policy check run? If it runs inside the agent, a tricked agent can skip it. Illustration, not a run.",
+   "steps": [
+    {
+     "label": "the ask",
+     "dur": 2,
+     "card": {
+      "kind": "check",
+      "idea": true,
+      "upto": 1,
+      "title": "The check runs inside the agent",
+      "rows": [
+       {
+        "who": "the agent",
+        "ask": "read the inbox",
+        "check": "may it? yes",
+        "where": "inside",
+        "outcome": "allowed"
+       },
+       {
+        "who": "the agent (tricked by a page it read)",
+        "ask": "forward the inbox to a stranger",
+        "check": "skipped: the agent decides",
+        "where": "inside",
+        "outcome": "done anyway"
+       }
+      ]
+     },
+     "caption": "An agent asks to read the inbox. Its own policy says yes."
+    },
+    {
+     "label": "tricked",
+     "dur": 3,
+     "card": {
+      "kind": "check",
+      "idea": true,
+      "upto": 2,
+      "title": "The check runs inside the agent",
+      "rows": [
+       {
+        "who": "the agent",
+        "ask": "read the inbox",
+        "check": "may it? yes",
+        "where": "inside",
+        "outcome": "allowed"
+       },
+       {
+        "who": "the agent (tricked by a page it read)",
+        "ask": "forward the inbox to a stranger",
+        "check": "skipped: the agent decides",
+        "where": "inside",
+        "outcome": "done anyway"
+       }
+      ]
+     },
+     "caption": "A page it read tells it to forward everything. The check is its own code: it skips it. That is hope, not control."
+    }
+   ]
+  },
+  {
+   "id": "check-outside",
+   "act": "8 · The harness",
+   "title": "A check outside the process",
+   "say": "SHarness puts the check outside the process: the kernel refuses, whatever the process was told. Real probes, swarm.1's container, 01:37 UTC.",
+   "steps": [
+    {
+     "label": "six asks, one policy",
+     "dur": 7,
+     "card": {
+      "kind": "check",
+      "src": "harness/2026-11-12-swarm1-probe-and-hello.json",
+      "from": "after.results",
+      "who": "the child process",
+      "policy": "policy hello (deny-all)",
+      "title": "The check runs outside: the kernel, under one policy",
+      "source": "harness/2026-11-12-swarm1-probe-and-hello.json"
+     },
+     "caption": "Each ask meets the policy outside the process. Read: allowed. Write, network, memory: refused. Six of six held."
+    }
+   ]
+  },
+  {
    "id": "pki",
    "act": "9 · Keys on everything",
    "title": "Who did what, provably",
@@ -860,6 +944,116 @@
      "caption": "And one GitHub Action: no session, no memory, no keys to your systems. It just runs what a signed push asks."
     }
    ]
+  },
+  {
+   "id": "handover",
+   "act": "11 · Vaults",
+   "title": "A handover through a vault",
+   "say": "relay.1 hands a task to relay.2: the data travels encrypted through a vault; only the vault key is in Git, sealed to relay.2's key. Live: this file grows as the relays work.",
+   "steps": [
+    {
+     "label": "the lanes",
+     "dur": 2,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h001.json",
+      "upto": 0,
+      "title": "Where the data is, step by step"
+     },
+     "caption": "Four places data can be: on the network, decrypted in an agent's memory, encrypted in a vault, public in Git."
+    },
+    {
+     "label": "the handover",
+     "dur": 9,
+     "card": {
+      "kind": "flow",
+      "src": "handover/flows/h001.json",
+      "title": "Where the data is, step by step"
+     },
+     "caption": "Plaintext only inside the agent that works on it. Git only ever sees a key sealed to the next agent."
+    }
+   ]
   }
- ]
+ ],
+ "packs": {
+  "problem": {
+   "title": "The problem",
+   "about": "the opening and mandate, reach, gap",
+   "scenes": [
+    "opening",
+    "gap"
+   ]
+  },
+  "ladder": {
+   "title": "The ladder",
+   "about": "one agent to a swarm of loops",
+   "scenes": [
+    "altitudes",
+    "swarm-of-loops"
+   ]
+  },
+  "privileges": {
+   "title": "Same privileges",
+   "about": "who can reach the assets, policies, running elsewhere",
+   "scenes": [
+    "same-privileges",
+    "policies",
+    "elsewhere"
+   ]
+  },
+  "mesh": {
+   "title": "The mesh",
+   "about": "five agents wired to everything vs one per asset",
+   "scenes": [
+    "mesh",
+    "one-per-asset"
+   ]
+  },
+  "push": {
+   "title": "Every run starts with a push",
+   "about": "a signed request, an Action, a signed result, at scale",
+   "scenes": [
+    "elsewhere",
+    "scale"
+   ]
+  },
+  "cost": {
+   "title": "Cost",
+   "about": "the same tokens, four prices",
+   "scenes": [
+    "cost"
+   ]
+  },
+  "harness": {
+   "title": "The harness",
+   "about": "mandate, reach, gap; the probes; where the check runs",
+   "scenes": [
+    "gap",
+    "harness",
+    "check-inside",
+    "check-outside"
+   ]
+  },
+  "pki": {
+   "title": "Keys on everything",
+   "about": "who did what, provably",
+   "scenes": [
+    "pki"
+   ]
+  },
+  "vaults": {
+   "title": "Vaults",
+   "about": "a handover through an encrypted vault",
+   "scenes": [
+    "handover"
+   ]
+  },
+  "team": {
+   "title": "Who built this",
+   "about": "the session tree, tonight",
+   "scenes": [
+    "team"
+   ]
+  }
+ }
 }

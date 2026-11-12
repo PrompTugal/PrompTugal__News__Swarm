@@ -21,6 +21,7 @@
     <div class="ctl"><button id="tglL" title="left pane (Q)" aria-label="toggle left pane">⇤</button><button id="tglR" title="right pane (E)" aria-label="toggle right pane">⇥</button><button id="focusbtn" title="focus: the stage only (Z)">focus</button><button id="fs" title="fullscreen (F)">⛶</button><button id="helpbtn" title="keys (?)">?</button></div>
   </header>
   <aside class="pane" id="left">
+    <div id="packs"></div>
     <details open><summary>The story</summary><div id="story"></div></details>
     <details><summary>Every run</summary><div id="runs"></div></details>
     <details open><summary>Altitudes</summary><div id="legend"></div><small class="muted">click: hide or show · shift-click: only this one · alt-click or right-click: anchor it (force view)</small></details>
@@ -35,6 +36,7 @@
     <div id="counter" style="display:none"></div>
     <div id="simflag" style="display:none" title="no run file: an illustration of the story">SIMULATED</div>
     <div id="info"></div>
+    <div id="box"></div>
   </main>
   <div class="handle" id="hR" title="drag to resize · double-click to hide"></div>
   <aside class="pane" id="right">

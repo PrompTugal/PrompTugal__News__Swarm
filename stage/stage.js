@@ -104,13 +104,24 @@
     let j;
     try { j = await (await fetch('stage/scenes.json', { cache: 'no-store' })).json(); } catch (e) { j = { scenes: [] }; }
     const runIx = await fetch('runs/index.json').then((r) => r.json()).catch(() => ({ runs: [] }));
-    SCENES = (j.scenes || []).map((s) => ({ ...s, steps: (s.steps || []).map((x) => ({ dur: 2.5, ...x })) }));
+    ALL_SCENES = (j.scenes || []).map((s) => ({ ...s, steps: (s.steps || []).map((x) => ({ dur: 2.5, ...x })) }));
+    PACKS = j.packs || {};
+    applyPack(packFromUrl());
     // every real run is also a free scene: the replay, then each altitude in turn (from the left pane's Runs group)
     FREE = runIx.runs.map((r) => freeScene(r.file, r.title || r.file, r.rung));
     layout();
     renderStory();
   }
-  let FREE = [];
+  let FREE = [], ALL_SCENES = [], PACKS = {}, PACK = null;
+  // packs: mini demos, each a list of scene ids (scenes.json "packs"), opened as stage.html#pack=<name>; no pack = the whole story
+  function packFromUrl() { const m = /pack=([\w-]+)/.exec(location.hash + '&' + location.search); return m ? m[1] : null; }
+  function applyPack(name) {
+    PACK = name && PACKS[name] ? name : null;
+    SCENES = PACK ? PACKS[PACK].scenes.map((id) => ALL_SCENES.find((s) => s.id === id)).filter(Boolean) : ALL_SCENES.slice();
+    layout(); t = 0; playing = false; stopAt = null; shownScene = null;
+    if (typeof renderStory === 'function' && $('#story')) renderStory();
+  }
+  addEventListener('hashchange', () => applyPack(packFromUrl()));
   function freeScene(src, title, rung) {
     return { id: 'run:' + src, act: 'Runs', title: (rung ? rung + ' · ' : '') + title, run: src, free: true, say: 'One real run, replayed as it happened: every unit appears when it started and goes quiet when it ended.',
       steps: [{ label: 'the run, replayed', dur: 6, replay: true, caption: 'Replayed from the run file: each unit appears when it started.' },
@@ -204,7 +215,7 @@
     gLabels = zoomG.append('g').attr('class', 'labels');
     zoom = d3.zoom().scaleExtent([0.1, 12]).on('zoom', (e) => { zoomG.attr('transform', e.transform); if (e.sourceEvent) userZoomed = true; });
     svg.call(zoom).on('dblclick.zoom', null);
-    svg.on('click', (e) => { if (e.target === svg.node()) { focusId = null; } });
+    svg.on('click', (e) => { if (e.target === svg.node()) { focusId = null; $('#box').classList.remove('on'); $('#info').innerHTML = ''; } });
     let rz = null;
     const ro = new ResizeObserver(() => { const r = $('#stage').getBoundingClientRect(); W = r.width; H = r.height; svg.attr('viewBox', `0 0 ${W} ${H}`); lastLayoutKey = ''; clearTimeout(rz); rz = setTimeout(() => { if (!userZoomed) fit(); }, 450); });
     ro.observe($('#stage'));
@@ -273,7 +284,7 @@
   }
 
   // ---------- render one frame
-  let shownScene = null, userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
+  var shownScene = null; let userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
   async function ensureScene(st) {
     const sc = st.scene;
     if (shownScene === sc) return;
@@ -361,7 +372,7 @@
     ne.append('circle').attr('class', 'dot');
     ne.append('title');
     ne.on('dblclick', (e, n) => { e.stopPropagation(); focusId = focusId === n.id ? null : n.id; })
-      .on('click', (e, n) => { e.stopPropagation(); showInfo(n); });
+      .on('click', (e, n) => { e.stopPropagation(); if (e.shiftKey) showInfo(n); else { $('#info').innerHTML = ''; openBox(n, e); } });
     ns.merge(ne).each(function (n) {
       if (n.x == null) return;
       const v = visibleOf(n, st), d = dimOf(n, st), live = liveOf(n, st), failed = st.fail === n.id && st.failP > 0.05;
@@ -465,6 +476,13 @@
         el.innerHTML = `<div class="gap"><svg viewBox="-300 -300 600 600"><circle class="reachc" r="250"/><circle class="gapring" r="250"/><circle class="mand" r="34"/><text class="mt" y="5">${esc(c.mandate || 'mandate')}</text></svg>
           <ul class="ritems">${items.slice(0, 10).map((x, i) => `<li data-i="${i}">${esc(short(String(x), 70))}</li>`).join('')}</ul>
           <div class="glabels"><span class="gl m">${esc(c.mandateLabel || 'Mandate: what it was asked to do')}</span><span class="gl r">${esc(c.reachLabel || 'Reach: what it could actually touch')}</span><span class="gl g">${esc(c.gapLabel || 'The gap: where things go wrong')}</span></div></div>`;
+      } else if (c.kind === 'check') {   // ask → check → allowed or refused, one row per step of the reveal
+        const rows = c.rows || ((data && pick(data, c.from || 'after.results')) || []).map((r) => ({ who: c.who || 'the child process', ask: r.probe, check: c.policy || 'policy', outcome: String(r.got).split(' (')[0], expected: r.expected }));
+        el.innerHTML = `<div class="check"><h2>${esc(c.title || '')}</h2><div class="ck-head"><span>asks</span><span>the check</span><span>outcome</span></div>${rows.map((r, i) => `<div class="ck" data-i="${i}"><span class="ask"><small>${esc(r.who || '')}</small>${esc(r.ask)}</span><span class="arrow">→</span><span class="gate ${r.where === 'inside' ? 'inside' : ''}">${esc(r.check)}${r.where ? `<small>${esc(r.where === 'inside' ? 'inside the agent' : 'outside the agent')}</small>` : ''}</span><span class="arrow">→</span><span class="out ${/allow/.test(r.outcome) ? 'ok' : /refus|denied|block/.test(r.outcome) ? 'no' : 'skip'}">${esc(r.outcome)}</span></div>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
+      } else if (c.kind === 'flow') {   // a handover across the data states: network, memory (decrypted), vault (encrypted), Git (public)
+        const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'vault-encrypted', 'git-public'];
+        const NAMES = { network: 'network (HTTPS)', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public' };
+        el.innerHTML = `<div class="flow"><h2>${esc(c.title || (data && data.run) || '')}</h2><div class="lanes" style="grid-template-rows:repeat(${LANES.length},1fr)">${LANES.map((l, i) => `<div class="lane l-${l}" style="grid-row:${i + 1}"><span>${esc(NAMES[l] || l)}</span></div>`).join('')}${steps.map((s2, i) => `<div class="fs l-${s2.where}" data-i="${i}" style="grid-row:${LANES.indexOf(s2.where) + 1};grid-column:${i + 2}"><b>${i + 1}</b><span>${esc(String(s2.who || '').replace(/\.fringe@PrompTugal\.\w+$/, ''))} · ${esc(s2.altitude || '')}</span><small>${esc(short(s2.what || '', 90))}</small>${s2.encrypted ? '<i title="encrypted">🔒</i>' : '<i title="in the clear">◯</i>'}${s2.sealed_to ? `<small class="fp">sealed to ${esc(s2.sealed_to)}</small>` : ''}${s2.signed_by ? `<small class="fp">signed ${esc(s2.signed_by)}</small>` : ''}</div>`).join('')}</div>${data ? `<p class="src">${esc(c.src)} · ${esc(data.outcome || '')}</p>` : '<p class="src">loading…</p>'}</div>`;
       } else if (c.kind === 'lights') {
         const res = (data && pick(data, c.from || 'after.results')) || [];
         el.innerHTML = `<div class="lights"><h2>${esc(c.title || '')}</h2><div class="row">${res.map((r, i) => `<div class="light" data-i="${i}"><i></i><b>${esc(r.probe)}</b><small>expected ${esc(r.expected)}</small><span>${esc(String(r.got).split(' (')[0])}</span></div>`).join('')}</div>${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
@@ -472,8 +490,10 @@
         el.innerHTML = `<div class="slide">${c.kicker ? `<p class="kicker">${esc(c.kicker)}</p>` : ''}${c.title ? `<h2>${esc(c.title)}</h2>` : ''}${(c.lines || []).map((l, i) => `<p class="line ${typeof l === 'object' && l.big ? 'big' : ''}" data-i="${i}">${esc(typeof l === 'object' ? l.text : l)}</p>`).join('')}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
       }
     }
-    // the reveal, every frame: items up to cardN, the last one at cardP
-    const n = st.cardN, p = st.cardP;
+    // the reveal, every frame: items up to cardN, the last one at cardP. A flow or a check with no "upto" reveals all its
+    // rows across the one step, one after another (however many the file holds)
+    let n = st.cardN, p = st.cardP;
+    if ((c.kind === 'flow' || c.kind === 'check') && c.upto == null) { const cnt = el.querySelectorAll('[data-i]').length, x = st.cardP * cnt; n = Math.min(cnt, Math.floor(x) + 1); p = x - Math.floor(x); if (st.cardP >= 0.999) { n = cnt; p = 1; } }
     el.querySelectorAll('[data-i]').forEach((x) => {
       const i = +x.dataset.i, k = i < n - 1 ? 1 : i === n - 1 ? p : 0; x.style.opacity = k; x.style.transform = `translateY(${(1 - k) * 12}px)`;
       if (x.classList.contains('big')) {   // the numbers in a big line count up as it comes in
@@ -557,6 +577,8 @@
   function renderStory() {
     const acts = []; SCENES.forEach((s, si) => { if (s.free) return; let a = acts.find((x) => x.name === (s.act || '')); if (!a) acts.push(a = { name: s.act || '', scenes: [] }); a.scenes.push({ s, si }); });
     const curAct = STEPS[stepAt(t)] ? STEPS[stepAt(t)].scene.act : acts[0] && acts[0].name;
+    const packs = Object.entries(PACKS);
+    $('#packs').innerHTML = packs.length ? `<a class="pk ${PACK ? '' : 'cur'}" href="#">the whole story</a>` + packs.map(([k, v]) => `<a class="pk ${PACK === k ? 'cur' : ''}" href="#pack=${esc(k)}" title="${esc(v.about || '')}">${esc(v.title || k)}</a>`).join('') : '';
     $('#story').innerHTML = acts.map((a, ai) => `<details ${a.name === curAct ? 'open' : ''} data-act="${esc(a.name)}"><summary>${esc(a.name)}</summary>${a.scenes.map(({ s, si }) => `<button class="sc" data-si="${si}"><b>${esc(s.title)}</b><small>${s.steps.length} steps${s.run && s.run.startsWith('sim:') ? ' · simulated' : ''}</small></button>`).join('')}</details>`).join('') || '<p class="muted">No scenes yet (stage/scenes.json).</p>';
     $('#runs').innerHTML = FREE.map((s, i) => `<button class="sc" data-free="${i}"><b>${esc(s.title)}</b></button>`).join('');
     const ARROW = { left: '←', right: '→', top: '↑', bottom: '↓', middle: '↔', center: '◎' };
@@ -594,9 +616,56 @@
     $('#say').innerHTML = `<h3>${esc(st.scene.title)}</h3><p>${esc(st.scene.say || '')}</p>${st.scene.cue ? `<p class="cue">${esc(st.scene.cue)}</p>` : ''}`;
     document.querySelectorAll('#modes button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === mode));
   }
+  // the box: everything the files say about one unit, zooming out of the node that was clicked. Facts only, each with
+  // where it comes from; what the run does not record says "not recorded".
+  const HOLDS = {   // how.html, "Who holds what" (the mandate by altitude)
+    P: ['instructs', 'only a person instructs; everything else is material'],
+    A4: ['routes work across agents and sessions', 'a swarm conductor: starts agents only at its person\'s word'],
+    A3: ['plans, remembers, wakes itself, holds keys and connectors', 'the only altitude with memory and its own wake'],
+    A2: ['reads, asks, checks, retries', 'cannot start others, schedule or push'],
+    A1: ['one prompt in, one answer out', 'cannot use any tool'],
+    A0: ['runs the code it is given (reads public data)', 'holds no keys'],
+  };
+  async function openBox(n, ev) {
+    const box = $('#box'), r = (G && G.run) || {};
+    const call = (r.calls || []).find((c) => c.unit === n.id);
+    const rows = [];
+    const row = (k, v, src) => rows.push(`<tr><th>${esc(k)}</th><td>${v == null || v === '' ? '<span class="muted">not recorded</span>' : esc(v)}${src ? `<small>${esc(src)}</small>` : ''}</td></tr>`);
+    row('what it is', `${n.label} · ${ALT_NAME[n.alt] || n.alt} · ${n.kind}`);
+    if (HOLDS[n.alt]) { row('its mandate', HOLDS[n.alt][0], 'how.html, Who holds what'); row('what it cannot do', HOLDS[n.alt][1], 'how.html'); }
+    if (n.role) row('role', n.role, 'data/agents.json');
+    if (r.environment) row('where it ran', [r.environment.label, r.environment.account].filter(Boolean).join(' · '), 'the run file');
+    if (n.env) row('environment', [n.env, n.account].filter(Boolean).join(' · '));
+    let pk = null;
+    if (r.packet) try { pk = await (await fetch(`packets/${r.packet}/packet.json`)).json(); pk = pk.body || pk; } catch {}
+    if (!pk && r.request) try { pk = await (await fetch(`https://raw.githubusercontent.com/${RUNS_REPO}/dev/requests/${r.request}/packet.json`)).json(); } catch {}
+    if (pk && ['A3', 'A2', 'A1', 'A0', 'T'].includes(n.alt)) {
+      row('the request\'s mandate', pk.mandate, r.packet ? `packets/${r.packet}/packet.json` : `Runs requests/${r.request}/packet.json`);
+      row('its grant', (pk.grant || []).join(' · '), 'the signed packet');
+      if (pk.budget) row('its budget', Object.entries(pk.budget).map(([k, v]) => `${k} ${v}`).join(' · '), 'the signed packet');
+    }
+    if (call) {
+      row('model', call.served || call.model); row('tokens', `${fmtN(call.tokens_in)} in · ${fmtN(call.tokens_out)} out`); row('cost', '$' + call.cost_usd); row('latency', call.latency_ms + ' ms');
+      row('answer', call.valid ? `valid (${call.verdict})` : `not valid (${call.status})`);
+      row('prompt sha256', call.signed && call.signed.body && call.signed.body.prompt_sha256, 'the prompt itself is never stored');
+      row('answer sha256', call.answer_sha256 ? `${call.answer_sha256} (${call.answer_chars} chars)` : null, 'the answer itself is never stored');
+      row('signed by', call.signed && call.signed.by ? `${call.signed.by.fp} (a key made for this call)` : n.key_fp, 'the run file');
+    } else if (n.key_fp) row('its key', n.key_fp + ' (made for this unit)');
+    if (n.alt === 'A3' || n.kind === 'agent') {
+      row('the run\'s signature', r.signed_by || r.request_signed_by || (r.by && r.by.fp) || null, 'the run file');
+      row('connectors', null, 'which connectors its session held is not in the run file');
+    }
+    if (n.alt === 'D') { row('read from', n.url); row('bytes', n.bytes); row('sha256', n.sha256); row('read at', n.read_at); }
+    if (n.sim) row('note', 'simulated: no run file holds this unit');
+    box.innerHTML = `<div class="bx"><header><i style="background:${color(n)}"></i><div><b>${esc(n.label)}</b><small>${esc(ALT_NAME[n.alt] || n.alt)}</small></div><button aria-label="close" title="close (Esc)">✕</button></header><table>${rows.join('')}</table></div>`;
+    const sr = $('#stage').getBoundingClientRect();
+    box.style.transformOrigin = `${(ev && ev.clientX ? ev.clientX - sr.left : sr.width / 2)}px ${(ev && ev.clientY ? ev.clientY - sr.top : sr.height / 2)}px`;
+    box.classList.remove('on'); void box.offsetWidth; box.classList.add('on');
+    box.querySelector('button').onclick = () => box.classList.remove('on');
+  }
   function showInfo(n) {
     const links = G.links.filter((l) => idOf(l.source) === n.id || idOf(l.target) === n.id).length;
-    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.role ? '<br>' + esc(n.role) : ''}${n.started ? ' · started ' + esc(n.started) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
+    $('#info').innerHTML = `<b>${esc(n.label)}</b><br><small>${esc(ALT_NAME[n.alt] || n.alt)} · ${esc(n.kind)}${n.model ? ' · ' + esc(n.model) : ''}${n.valid != null ? ' · ' + (n.valid ? 'valid' : 'not valid') : ''}${n.cost != null ? ' · $' + n.cost : ''}${n.tokens ? ' · ' + fmtN(n.tokens) + ' tokens' : ''} · ${links} links${n.key_fp ? ' · its own key ' + esc(n.key_fp) : ''}${n.role ? '<br>' + esc(n.role) : ''}${n.started ? ' · started ' + esc(n.started) : ''}${n.sim ? ' · simulated' : ''}</small><br><small class="muted">click: open its box · double-click: focus on its neighbours · drag: move (shift: pin)</small>`;
   }
   function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toast.h); toast.h = setTimeout(() => el.classList.remove('on'), 2200); }
 
@@ -653,7 +722,7 @@
     else if (k === 'f' || k === 'F') { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); }
     else if (k === '?') $('#help').toggleAttribute('open');
     else if (k === 'g' || k === 'G') openGoto();
-    else if (k === 'Escape') { focusId = null; $('#help').removeAttribute('open'); $('#goto').removeAttribute('open'); document.documentElement.classList.remove('focus'); }
+    else if (k === 'Escape') { focusId = null; $('#box').classList.remove('on'); $('#help').removeAttribute('open'); $('#goto').removeAttribute('open'); document.documentElement.classList.remove('focus'); }
     else used = false;
     if (used) e.preventDefault();
   }
