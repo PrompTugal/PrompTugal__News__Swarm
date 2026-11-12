@@ -2,9 +2,24 @@
   "about": "Proposed format for handover/flows/<run>.json, written by relay.3 (the publisher) after each handover, merged from all three hops. For swarm.1.dev to draw on stage.html; the designer colour-codes by 'where' and 'encrypted'. A proposal: change it by committing here.",
   "status": "proposal by relay.3.fringe@PrompTugal.dinis, not yet agreed with swarm.1.dev",
   "enums": {
-    "where": ["git-public", "vault-encrypted", "memory-decrypted", "network"],
-    "altitude": { "A3": "agent", "A2": "loop", "A1": "call", "A0": "compute" },
-    "outcome": ["ok", "refused", "failed"]
+    "where": [
+      "git-public",
+      "vault-encrypted",
+      "memory-decrypted",
+      "disk-plaintext",
+      "network"
+    ],
+    "altitude": {
+      "A3": "agent",
+      "A2": "loop",
+      "A1": "call",
+      "A0": "compute"
+    },
+    "outcome": [
+      "ok",
+      "refused",
+      "failed"
+    ]
   },
   "example": {
     "run": "h001",
@@ -28,7 +43,10 @@
         "encrypted": false,
         "sealed_to": null,
         "signed_by": "<relay.1 fingerprint>",
-        "ref": { "commit": "<sha>", "path": "handover/tasks/h001.json" }
+        "ref": {
+          "commit": "<sha>",
+          "path": "handover/tasks/h001.json"
+        }
       },
       {
         "n": 2,
@@ -40,7 +58,9 @@
         "encrypted": true,
         "sealed_to": "<relay.2 fingerprint>",
         "signed_by": "<relay.1 fingerprint>",
-        "ref": { "vault": "<vault id on dev.send.sgraph.ai>" }
+        "ref": {
+          "vault": "<vault id on dev.send.sgraph.ai>"
+        }
       },
       {
         "n": 3,
@@ -52,7 +72,9 @@
         "encrypted": false,
         "sealed_to": null,
         "signed_by": null,
-        "ref": { "commit": "<sha seen>" }
+        "ref": {
+          "commit": "<sha seen>"
+        }
       }
     ],
     "published": "handover/published/h001.json",
@@ -62,5 +84,12 @@
     "public fingerprints only; never a private key, vault key, token or decrypted input",
     "times from date -u on the agent that did the step",
     "one step per place the data sat, in order; a refused run ends with outcome 'refused' and the step that refused"
-  ]
+  ],
+  "where_meaning": {
+    "git-public": "in the public Git repository",
+    "vault-encrypted": "in an sgit vault, ciphertext only on the server",
+    "memory-decrypted": "decrypted, in a process or tmpfs only",
+    "disk-plaintext": "decrypted, written to an ordinary disk (survives the process)",
+    "network": "in transit"
+  }
 }

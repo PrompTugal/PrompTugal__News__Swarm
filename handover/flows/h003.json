@@ -31,7 +31,7 @@
       "altitude": "A0",
       "what": "holds the input in plaintext on its own disk (/root/relay/h003-input and the vault's working copy). Never in Git.",
       "when": "2026-11-12T02:05:04Z",
-      "where": "memory-decrypted",
+      "where": "disk-plaintext",
       "medium": "disk (plaintext)",
       "encrypted": false,
       "sealed_to": null,

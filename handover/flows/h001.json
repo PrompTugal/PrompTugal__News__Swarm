@@ -31,7 +31,7 @@
       "altitude": "A0",
       "what": "holds the input in plaintext on its own disk, not in memory only: /root/relay/h001-input (fetched 01:46:30) and the vault's working copy /root/relay/h001-vault (01:46:41). Never in Git. The disk is the session container's and goes with it.",
       "when": "2026-11-12T01:46:30Z",
-      "where": "memory-decrypted",
+      "where": "disk-plaintext",
       "encrypted": false,
       "sealed_to": null,
       "signed_by": null,
