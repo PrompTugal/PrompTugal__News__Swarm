@@ -140,4 +140,6 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #card .end b { font-family: var(--font-head) } #card .end i { font-style: normal; font-family: var(--mono) } #card .end.e-before { border-color: var(--warn) } #card .end.e-before i { color: var(--warn) } #card .end.e-after { border-color: var(--ok) } #card .end.e-after i { color: var(--ok) }
 #card iframe.glyph { width: 100%; height: 100%; border: 0; background: transparent }
 /* projector scale for the table cards (swarm.1.designer): read from the back of the room */
-@media (min-width: 1400px) { #card .check, #card .cmp, #card .kys, #card .nh, #card .flow { font-size: 122% } }
+@media (min-width: 1400px) { #card .check, #card .cmp, #card .kys, #card .nh { font-size: 122% } }
+/* the vault timeline has 21 rows: keep each to one line so the whole handover fits one 1080 screen (swarm.1.designer) */
+#card .flow .fs span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis } #card .flow .fs { padding: 2px 8px } #card .flow .fr { margin: 1px 0 } #card .flow h2 { margin-bottom: 4px }
