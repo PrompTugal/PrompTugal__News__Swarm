@@ -21,10 +21,15 @@
 | send-button | (quotes) | riskmandate.ai, four URLs |
 | db-mandate | access: 100,410 paid; mandate: 250 | sims/db-mandate/result.json (real run, simulated data) |
 | elsewhere | 36 calls, 24 loops; holds the router key and the Elastic deployment's superuser password, on a disposable account | Runs repo index.json; run.yml; Fringe abp/policies.json ("The Elastic Cloud superuser password"; "a disposable password on a temporary account with no confidential data") |
-| scale | 12 jobs, 144 calls, 122 valid | Runs repo summary.json |
+| scale | 12 jobs at once from one push; the counters read live from the Runs repo: 216 calls and 15 signed results (all of tonight, at 04:30 UTC) | Runs repo summary.json |
 | cost | Opus 62× OpenRouter; Haiku 40× less than Opus | r5b: 1.907/0.0308; 1.907/0.0477 |
 
 - **Everything else** is behind chips: altitudes, mesh, the harness (E1–E8), keys, vaults (h001, h002), five questions, licence to operate, who built this, animated packs.
+
+## Since 03:30 (harness pack)
+
+- **It now opens on the work done:** "Everything it was asked to do, it did. Everything else, it couldn't." The evidence: E1/E2 (output byte-identical), E4 (HTTP 200, 21,010 bytes through the door), E7 (3 of 3 reads through the door). Checked in the files.
+- **Not through yet, said in amber:** E11, where the door allowed both the storm site and the router, but the model call got a 401 because no key reaches the process (0 tokens, $0). A harnessed model call is the next run.
 
 ## Waiting for your word
 
