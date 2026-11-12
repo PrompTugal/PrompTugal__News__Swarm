@@ -34,7 +34,7 @@ footer button.play{background:var(--accent);color:var(--bg);border-color:var(--a
 .ok-ln{stroke:var(--ok)}.bad-ln{stroke:var(--bad)}.held-ln{stroke:var(--accent)}
 /* colour: red only for real harm (a tricked agent walking round a check); the gap and unharnessed reach are amber; a refusal is the control working, teal (Dinis, ~01:58 UTC) */.ask-ln{stroke:var(--accent)}.flow-ln{stroke:var(--accent);opacity:.7}
 .mandate{fill:var(--ok)}.reach{fill:color-mix(in srgb,var(--reach) 12%,transparent);stroke:var(--reach);stroke-width:3}.gap{fill:url(#hatch);fill-rule:evenodd}
-.cipher{fill:url(#ciph);stroke:var(--accent);stroke-width:2}.plain{fill:color-mix(in srgb,var(--warn) 16%,transparent);stroke:var(--warn);stroke-width:2;stroke-dasharray:6 5}
+.cipher{fill:url(#ciph);stroke:var(--accent);stroke-width:2}.plain.disk{fill:color-mix(in srgb,var(--disk,#ff8a3d) 14%,transparent);stroke:var(--disk,#ff8a3d);stroke-dasharray:none;stroke-width:3}.lane.disk-plaintext{fill:color-mix(in srgb,var(--disk,#ff8a3d) 7%,transparent)}.plain{fill:color-mix(in srgb,var(--warn) 16%,transparent);stroke:var(--warn);stroke-width:2;stroke-dasharray:6 5}
 .ephemeral .plain{animation:fadeout 4s ease 2s forwards}@keyframes fadeout{to{opacity:.25}}
 .life{fill:color-mix(in srgb,var(--accent2) 30%,transparent)}.made{fill:var(--accent2)}.sig{fill:var(--accent2)}
 .box{fill:color-mix(in srgb,var(--panel-solid) 70%,transparent);stroke:var(--line);stroke-width:2}.box.hot{stroke:var(--warn);stroke-width:3}

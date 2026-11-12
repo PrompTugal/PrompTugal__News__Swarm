@@ -145,3 +145,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #card .flow .fs span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis } #card .flow .fs { padding: 2px 8px } #card .flow .fr { margin: 1px 0 } #card .flow h2 { margin-bottom: 4px }
 .l-inside-harness { color: var(--alt-A1) } .fs.l-inside-harness { border-color: var(--alt-A1); background: color-mix(in srgb, var(--alt-A1) 8%, var(--panel-solid)) }
 .fs.failed { border: 2px solid var(--warn) } .fail-tag { color: var(--warn); font: 700 .9em var(--mono) }
+/* a fifth data state (relay.3, FORMAT.json 145f9ef): decrypted on an ordinary disk. Warmer and heavier than in-memory
+   (it outlives the process), still not red: it is a finding, not harm (swarm.1.designer) */
+.l-disk-plaintext { color: var(--disk, #ff8a3d) }
+.fs.l-disk-plaintext { border-color: var(--disk, #ff8a3d); border-width: 2px; background: color-mix(in srgb, var(--disk, #ff8a3d) 8%, var(--panel-solid)) }

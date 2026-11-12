@@ -144,7 +144,7 @@
   PACKS.push({
     id: 'vault', title: 'Where is the data? (sgit vaults)', blurb: 'Public, encrypted, decrypted: colour-coded, hop by hop.',
     steps: [
-      { cap: 'Four places data can sit: Git (public), a vault (encrypted), memory (decrypted, briefly), and the network.', tag: tag('fact', 'handover/flows/FORMAT.json, "where"') },
+      { cap: 'Five places data can sit: Git (public), a vault (encrypted), memory (decrypted, briefly), a disk (decrypted, and it stays), and the network.', tag: tag('fact', 'handover/flows/FORMAT.json, "where"') },
       { cap: 'The task is public: written to Git, signed.', tag: null, dur: 1.2 },
       { cap: 'The private input is sealed to the next agent\'s key. Git and the vault only ever see ciphertext.', tag: null, dur: 1.4 },
       { cap: 'Only that agent opens it, in memory, for as long as the work takes. Then it is gone.', tag: null, dur: 1.4 },
@@ -152,15 +152,15 @@
       { cap: 'Private input in Git: never.', tag: null },
     ],
     draw(F) {
-      const fl = F.flow, lanes = [['git-public', 'Git · public', 'var(--ink)'], ['vault-encrypted', 'vault · encrypted', 'var(--accent)'], ['memory-decrypted', 'memory · decrypted', 'var(--warn)'], ['network', 'network', 'var(--muted)']];
-      const ly = (w) => 230 + lanes.findIndex((l) => l[0] === w) * 140;
+      const fl = F.flow, lanes = [['git-public', 'Git · public', 'var(--ink)'], ['vault-encrypted', 'vault · encrypted', 'var(--accent)'], ['memory-decrypted', 'memory · decrypted', 'var(--warn)'], ['disk-plaintext', 'disk · plaintext', 'var(--disk, #ff8a3d)'], ['network', 'network', 'var(--muted)']];
+      const ly = (w) => 200 + Math.max(0, lanes.findIndex((l) => l[0] === w)) * 120;
       let s = lanes.map(([w, l, c], i) => S(1, `<rect x="120" y="${ly(w) - 55}" width="1380" height="110" rx="14" class="lane ${w}"/>` + T(140, ly(w) - 28, l, { a: 'start', size: 20, w: 600, fill: c }), { d: i * .2 })).join('');
       const steps = (fl?.steps || []).slice(0, 8), xs = (i) => 330 + i * Math.min(260, 1100 / Math.max(1, steps.length - 1));
-      const glyph = (st, x, y) => st.where === 'vault-encrypted' ? `<rect x="${x - 40}" y="${y - 34}" width="80" height="68" rx="10" class="cipher"/>` + lock(x, y - 2, 1) : st.where === 'memory-decrypted' ? `<rect x="${x - 40}" y="${y - 34}" width="80" height="68" rx="10" class="plain"/>` + T(x, y + 8, 'abc', { size: 20, fill: 'var(--warn)' }) : st.where === 'git-public' ? page(x, y, 1.3) : `<circle cx="${x}" cy="${y}" r="20" class="netdot"/>`;
+      const glyph = (st, x, y) => st.where === 'vault-encrypted' ? `<rect x="${x - 40}" y="${y - 34}" width="80" height="68" rx="10" class="cipher"/>` + lock(x, y - 2, 1) : st.where === 'disk-plaintext' ? `<rect x="${x - 40}" y="${y - 34}" width="80" height="68" rx="4" class="plain disk"/>` + T(x, y + 8, 'abc', { size: 20, fill: 'var(--disk, #ff8a3d)' }) : st.where === 'memory-decrypted' ? `<rect x="${x - 40}" y="${y - 34}" width="80" height="68" rx="10" class="plain"/>` + T(x, y + 8, 'abc', { size: 20, fill: 'var(--warn)' }) : st.where === 'git-public' ? page(x, y, 1.3) : `<circle cx="${x}" cy="${y}" r="20" class="netdot"/>`;
       const by = (st) => String(st.who || '').split('@')[0].replace('.fringe', '');
       steps.forEach((st, i) => {
         const x = xs(i), y = ly(st.where), stp = Math.min(5, 2 + Math.floor(i * 3 / Math.max(1, steps.length)));
-        s += S(stp, glyph(st, x, y) + T(x, y + 70, `${st.n}. ${by(st)}`, { size: 15, w: 600 }) + wrap(String(st.what || ''), 30).slice(0, 2).map((ln, j) => T(x, y + 90 + j * 17, ln, { size: 14, fill: 'var(--muted)' })).join('') + (st.sealed_to ? T(x, y - 46, 'sealed to the next key', { size: 13, fill: 'var(--accent)' }) : ''), { d: (i % 3) * .3, cls: st.where === 'memory-decrypted' ? 'ephemeral' : '' });
+        s += S(stp, glyph(st, x, y) + T(x, y + 70, `${st.n}. ${by(st)}`, { size: 15, w: 600 }) + wrap(String(st.what || ''), 19).slice(0, 2).map((ln, j) => T(x, y + 90 + j * 16, ln, { size: 13, fill: 'var(--muted)' })).join('') + `<title>${esc(st.what || '')}</title>` + (st.sealed_to ? T(x, y - 46, 'sealed to the next key', { size: 13, fill: 'var(--accent)' }) : ''), { d: (i % 3) * .3, cls: st.where === 'memory-decrypted' ? 'ephemeral' : '' });
         if (i) { const p = steps[i - 1]; s += S(stp, arrow(xs(i - 1) + 44, ly(p.where), x - 46, y, { cls: 'flow-ln', marker: 'ar' }), { d: (i % 3) * .3 }); }
       });
       s += S(6, T(800, 830, `private input in Git: ${fl && fl.private_input_in_git === false ? 'never' : 'never (by the format\'s rule)'}`, { size: 34, w: 800, fill: 'var(--ok)' }));
