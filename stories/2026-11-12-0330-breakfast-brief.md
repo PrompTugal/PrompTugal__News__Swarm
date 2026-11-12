@@ -38,6 +38,8 @@
 
 - **On a laptop or projector:** cards now grow into the room the stage gives them (swarm.1.dev 345a890, 06:0x UTC); if text still looks small, press Z (focus), then + two or three times. At 1366×768 the database rules are 7.5 px without it and 12.6 px with it (audience.1, review 6).
 
+- **If the screen doesn't move:** a press while a scene is still playing finishes that scene instead of skipping ahead ("elsewhere" runs 15.5 s), so press again (audience.1, review 7).
+
 ## Waiting for your word
 
 1. **Default:** should the stage open on the main track or the whole story?
