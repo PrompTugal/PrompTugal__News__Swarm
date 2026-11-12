@@ -1,0 +1,848 @@
+{
+ "run": "20261111T2257-r4c",
+ "title": "Me → Claude → Claude models (out of tokens)",
+ "where": "session",
+ "environment": "R1 Claude Code cloud",
+ "source": "runs/20261111T2257-r4c.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "runner",
+    "loop:warnings:claude-haiku-5.5",
+    "loop:warnings:claude-haiku-5.5/read",
+    "loop:warnings:claude-sonnet-5.5",
+    "loop:warnings:claude-sonnet-5.5/read",
+    "loop:forecast:claude-haiku-5.5",
+    "loop:forecast:claude-haiku-5.5/read",
+    "loop:forecast:claude-sonnet-5.5",
+    "loop:forecast:claude-sonnet-5.5/read",
+    "loop:stations:claude-haiku-5.5",
+    "loop:stations:claude-haiku-5.5/read",
+    "loop:stations:claude-sonnet-5.5",
+    "loop:stations:claude-sonnet-5.5/read",
+    "loop:tides:claude-haiku-5.5",
+    "loop:tides:claude-haiku-5.5/read",
+    "loop:tides:claude-sonnet-5.5",
+    "loop:tides:claude-sonnet-5.5/read",
+    "loop:transport:claude-haiku-5.5",
+    "loop:transport:claude-haiku-5.5/read",
+    "loop:transport:claude-sonnet-5.5",
+    "loop:transport:claude-sonnet-5.5/read",
+    "loop:flights:claude-haiku-5.5",
+    "loop:flights:claude-haiku-5.5/read",
+    "loop:flights:claude-sonnet-5.5",
+    "loop:flights:claude-sonnet-5.5/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights"
+   ]
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "runner",
+    "loop:warnings:claude-haiku-5.5",
+    "loop:warnings:claude-haiku-5.5/read",
+    "loop:warnings:claude-sonnet-5.5",
+    "loop:warnings:claude-sonnet-5.5/read",
+    "loop:forecast:claude-haiku-5.5",
+    "loop:forecast:claude-haiku-5.5/read",
+    "loop:forecast:claude-sonnet-5.5",
+    "loop:forecast:claude-sonnet-5.5/read",
+    "loop:stations:claude-haiku-5.5",
+    "loop:stations:claude-haiku-5.5/read",
+    "loop:stations:claude-sonnet-5.5",
+    "loop:stations:claude-sonnet-5.5/read",
+    "loop:tides:claude-haiku-5.5",
+    "loop:tides:claude-haiku-5.5/read",
+    "loop:tides:claude-sonnet-5.5",
+    "loop:tides:claude-sonnet-5.5/read",
+    "loop:transport:claude-haiku-5.5",
+    "loop:transport:claude-haiku-5.5/read",
+    "loop:transport:claude-sonnet-5.5",
+    "loop:transport:claude-sonnet-5.5/read",
+    "loop:flights:claude-haiku-5.5",
+    "loop:flights:claude-haiku-5.5/read",
+    "loop:flights:claude-sonnet-5.5",
+    "loop:flights:claude-sonnet-5.5/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "id": "runner",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-haiku-5.5",
+   "label": "warnings · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-haiku-5.5/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-sonnet-5.5",
+   "label": "warnings · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-sonnet-5.5/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-haiku-5.5",
+   "label": "forecast · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-haiku-5.5/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-sonnet-5.5",
+   "label": "forecast · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-sonnet-5.5/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-haiku-5.5",
+   "label": "stations · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-haiku-5.5/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-sonnet-5.5",
+   "label": "stations · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-sonnet-5.5/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-haiku-5.5",
+   "label": "tides · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-haiku-5.5/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-sonnet-5.5",
+   "label": "tides · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-sonnet-5.5/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-haiku-5.5",
+   "label": "transport · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-haiku-5.5/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-sonnet-5.5",
+   "label": "transport · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-sonnet-5.5/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-haiku-5.5",
+   "label": "flights · claude-haiku-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-haiku-5.5/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:claude-haiku-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-sonnet-5.5",
+   "label": "flights · claude-sonnet-5.5",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-sonnet-5.5/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:claude-sonnet-5.5",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:stations:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:stations:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-haiku-5.5/call#1",
+   "label": "claude-haiku-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-sonnet-5.5/call#1",
+   "label": "claude-sonnet-5.5 #1",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:stations:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:warnings:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-haiku-5.5/call#2",
+   "label": "claude-haiku-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-sonnet-5.5/call#2",
+   "label": "claude-sonnet-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:stations:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-sonnet-5.5/call#2",
+   "label": "claude-sonnet-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-sonnet-5.5/call#2",
+   "label": "claude-sonnet-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:warnings:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-sonnet-5.5/call#2",
+   "label": "claude-sonnet-5.5 #2",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-haiku-5.5/call#3",
+   "label": "claude-haiku-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-haiku-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:claude-sonnet-5.5/call#3",
+   "label": "claude-sonnet-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:transport:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:claude-sonnet-5.5/call#3",
+   "label": "claude-sonnet-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:forecast:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:claude-sonnet-5.5/call#3",
+   "label": "claude-sonnet-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:flights:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:claude-sonnet-5.5/call#3",
+   "label": "claude-sonnet-5.5 #3",
+   "altitude": "A1",
+   "parent": "loop:tides:claude-sonnet-5.5",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "consensus:warnings",
+   "label": "consensus warnings",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:forecast",
+   "label": "consensus forecast",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:stations",
+   "label": "consensus stations",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:tides",
+   "label": "consensus tides",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:transport",
+   "label": "consensus transport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:flights",
+   "label": "consensus flights",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "runner",
+  "loop:warnings:claude-haiku-5.5",
+  "loop:warnings:claude-haiku-5.5/read",
+  "loop:warnings:claude-sonnet-5.5",
+  "loop:warnings:claude-sonnet-5.5/read",
+  "loop:forecast:claude-haiku-5.5",
+  "loop:forecast:claude-haiku-5.5/read",
+  "loop:forecast:claude-sonnet-5.5",
+  "loop:forecast:claude-sonnet-5.5/read",
+  "loop:stations:claude-haiku-5.5",
+  "loop:stations:claude-haiku-5.5/read",
+  "loop:stations:claude-sonnet-5.5",
+  "loop:stations:claude-sonnet-5.5/read",
+  "loop:tides:claude-haiku-5.5",
+  "loop:tides:claude-haiku-5.5/read",
+  "loop:tides:claude-sonnet-5.5",
+  "loop:tides:claude-sonnet-5.5/read",
+  "loop:transport:claude-haiku-5.5",
+  "loop:transport:claude-haiku-5.5/read",
+  "loop:transport:claude-sonnet-5.5",
+  "loop:transport:claude-sonnet-5.5/read",
+  "loop:flights:claude-haiku-5.5",
+  "loop:flights:claude-haiku-5.5/read",
+  "loop:flights:claude-sonnet-5.5",
+  "loop:flights:claude-sonnet-5.5/read",
+  "consensus:warnings",
+  "consensus:forecast",
+  "consensus:stations",
+  "consensus:tides",
+  "consensus:transport",
+  "consensus:flights"
+ ]
+}

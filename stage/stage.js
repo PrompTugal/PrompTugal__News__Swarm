@@ -329,8 +329,10 @@
     const nm = (a) => (typeof a === 'string' ? a : a.name), key = names.map(nm).join(',');
     if (g._assets && g._assets.key === key) return g._assets.g;
     const homeOf = (h) => (h && h.startsWith('alt:') ? (g.nodes.find((n) => n.alt === h.slice(4)) || {}).id : h);
+    // home "alts:E,A0,A2": every unit of those altitudes reaches it (the run step's env is inherited by all its processes)
+    const homesOf = (h) => (h && h.startsWith('alts:') ? g.nodes.filter((n) => h.slice(5).split(',').includes(n.alt)).map((n) => n.id) : null);
     const extra = names.map((a) => g.byId.get('asset:' + nm(a)) || (typeof a === 'string' ? { id: 'asset:' + a, kind: 'asset', alt: 'X', label: a, sim: true, t0: 0 }
-      : { id: 'asset:' + a.name, kind: 'asset', alt: 'X', label: a.label || a.name, sim: !a.real, home: homeOf(a.home), t0: 0 }));
+      : { id: 'asset:' + a.name, kind: 'asset', alt: 'X', label: a.label || a.name, sim: !a.real, home: homeOf(a.home), homes: homesOf(a.home), t0: 0 }));
     const ng = { ...g, nodes: g.nodes.concat(extra.filter((n) => !g.byId.has(n.id))), byId: new Map(g.byId) };
     extra.forEach((n) => ng.byId.set(n.id, n));
     g._assets = { key, g: ng };
@@ -491,7 +493,8 @@
         // policy: only the owner reaches (a's home in a simulated graph, else the step's owner, else the first agent);
         // isolated: the same, and every other unit is drawn cut (it runs where the asset is not connected at all)
         const owner = g.byId.get(a.home) || g.byId.get(st.owner) || units.find((u) => u.alt === 'A3');
-        for (const u of units) R.push({ u, a, cut: u !== owner });
+        const owners = a.homes ? new Set(a.homes) : null;
+        for (const u of units) R.push({ u, a, cut: owners ? !owners.has(u.id) : u !== owner });
       }
       // the lines appear one after another over the step, so "everybody" is seen happening
       const n = R.length; R = R.map((x, i) => ({ ...x, on: st.overlayP * 1.15 > i / Math.max(1, n) }));
@@ -507,10 +510,12 @@
       .style('opacity', (x) => (x.on ? (x.cut ? 0.22 : few ? 0.95 : 0.5) * Math.min(dimOf(x.u, st), 1) : 0))
       .style('stroke-width', (x) => (!x.cut && few ? 3 : 1.2) * K.link);
     const reaching = R.filter((x) => x.on && !x.cut).length, units = new Set(R.filter((x) => x.on && !x.cut).map((x) => x.u.id)).size;
-    st._reach = { lines: reaching, units };
+    const by = {}; R.filter((x) => x.on && !x.cut).forEach((x) => { (by[x.a.label] = by[x.a.label] || new Set()).add(x.u.id); });
+    st._reach = { lines: reaching, units, by };
   }
   function counterValue(g, st) {
     const c = st.counter;
+    if (c.of === 'reach' && c.assets) { const u = new Set(); c.assets.forEach((a) => ((st._reach && st._reach.by && st._reach.by[a]) || []).forEach((id) => u.add(id))); return { value: u.size, label: 'units that can reach ' + c.assets.join(' or ') }; }   
     if (c.of === 'reach') return { value: (st._reach && st._reach.units) || 0, label: 'units that can reach the assets' };
     if (c.of === 'units') return { value: g.nodes.filter((n) => n.alt !== 'X' && visibleOf(n, st) > 0.5).length, label: 'units on screen' };
     if (c.of === 'commits') return { value: g.nodes.filter((n) => visibleOf(n, st) > 0.5).reduce((s2, n) => s2 + (n.commits || 0), 0), label: 'commits by the agents on screen, last 24 h' };

@@ -1,0 +1,2506 @@
+{
+ "run": "20261111T2257-r5b",
+ "title": "Me → Claude → a bigger swarm",
+ "where": "session",
+ "environment": "R1 Claude Code cloud",
+ "source": "runs/20261111T2257-r5b.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "runner",
+    "loop:warnings:deepseek-v4-flash",
+    "loop:warnings:deepseek-v4-flash/read",
+    "loop:warnings:mistral-small-2603",
+    "loop:warnings:mistral-small-2603/read",
+    "loop:warnings:llama-3.3-70b-instruct",
+    "loop:warnings:llama-3.3-70b-instruct/read",
+    "loop:warnings:qwen3.7-flash",
+    "loop:warnings:qwen3.7-flash/read",
+    "loop:forecast:deepseek-v4-flash",
+    "loop:forecast:deepseek-v4-flash/read",
+    "loop:forecast:mistral-small-2603",
+    "loop:forecast:mistral-small-2603/read",
+    "loop:forecast:llama-3.3-70b-instruct",
+    "loop:forecast:llama-3.3-70b-instruct/read",
+    "loop:forecast:qwen3.7-flash",
+    "loop:forecast:qwen3.7-flash/read",
+    "loop:stations:deepseek-v4-flash",
+    "loop:stations:deepseek-v4-flash/read",
+    "loop:stations:mistral-small-2603",
+    "loop:stations:mistral-small-2603/read",
+    "loop:stations:llama-3.3-70b-instruct",
+    "loop:stations:llama-3.3-70b-instruct/read",
+    "loop:stations:qwen3.7-flash",
+    "loop:stations:qwen3.7-flash/read",
+    "loop:tides:deepseek-v4-flash",
+    "loop:tides:deepseek-v4-flash/read",
+    "loop:tides:mistral-small-2603",
+    "loop:tides:mistral-small-2603/read",
+    "loop:tides:llama-3.3-70b-instruct",
+    "loop:tides:llama-3.3-70b-instruct/read",
+    "loop:tides:qwen3.7-flash",
+    "loop:tides:qwen3.7-flash/read",
+    "loop:transport:deepseek-v4-flash",
+    "loop:transport:deepseek-v4-flash/read",
+    "loop:transport:mistral-small-2603",
+    "loop:transport:mistral-small-2603/read",
+    "loop:transport:llama-3.3-70b-instruct",
+    "loop:transport:llama-3.3-70b-instruct/read",
+    "loop:transport:qwen3.7-flash",
+    "loop:transport:qwen3.7-flash/read",
+    "loop:flights:deepseek-v4-flash",
+    "loop:flights:deepseek-v4-flash/read",
+    "loop:flights:mistral-small-2603",
+    "loop:flights:mistral-small-2603/read",
+    "loop:flights:llama-3.3-70b-instruct",
+    "loop:flights:llama-3.3-70b-instruct/read",
+    "loop:flights:qwen3.7-flash",
+    "loop:flights:qwen3.7-flash/read",
+    "loop:trains:deepseek-v4-flash",
+    "loop:trains:deepseek-v4-flash/read",
+    "loop:trains:mistral-small-2603",
+    "loop:trains:mistral-small-2603/read",
+    "loop:trains:llama-3.3-70b-instruct",
+    "loop:trains:llama-3.3-70b-instruct/read",
+    "loop:trains:qwen3.7-flash",
+    "loop:trains:qwen3.7-flash/read",
+    "loop:ferries:deepseek-v4-flash",
+    "loop:ferries:deepseek-v4-flash/read",
+    "loop:ferries:mistral-small-2603",
+    "loop:ferries:mistral-small-2603/read",
+    "loop:ferries:llama-3.3-70b-instruct",
+    "loop:ferries:llama-3.3-70b-instruct/read",
+    "loop:ferries:qwen3.7-flash",
+    "loop:ferries:qwen3.7-flash/read",
+    "loop:metro:deepseek-v4-flash",
+    "loop:metro:deepseek-v4-flash/read",
+    "loop:metro:mistral-small-2603",
+    "loop:metro:mistral-small-2603/read",
+    "loop:metro:llama-3.3-70b-instruct",
+    "loop:metro:llama-3.3-70b-instruct/read",
+    "loop:metro:qwen3.7-flash",
+    "loop:metro:qwen3.7-flash/read",
+    "loop:communiques:deepseek-v4-flash",
+    "loop:communiques:deepseek-v4-flash/read",
+    "loop:communiques:mistral-small-2603",
+    "loop:communiques:mistral-small-2603/read",
+    "loop:communiques:llama-3.3-70b-instruct",
+    "loop:communiques:llama-3.3-70b-instruct/read",
+    "loop:communiques:qwen3.7-flash",
+    "loop:communiques:qwen3.7-flash/read",
+    "loop:airport:deepseek-v4-flash",
+    "loop:airport:deepseek-v4-flash/read",
+    "loop:airport:mistral-small-2603",
+    "loop:airport:mistral-small-2603/read",
+    "loop:airport:llama-3.3-70b-instruct",
+    "loop:airport:llama-3.3-70b-instruct/read",
+    "loop:airport:qwen3.7-flash",
+    "loop:airport:qwen3.7-flash/read",
+    "loop:rain:deepseek-v4-flash",
+    "loop:rain:deepseek-v4-flash/read",
+    "loop:rain:mistral-small-2603",
+    "loop:rain:mistral-small-2603/read",
+    "loop:rain:llama-3.3-70b-instruct",
+    "loop:rain:llama-3.3-70b-instruct/read",
+    "loop:rain:qwen3.7-flash",
+    "loop:rain:qwen3.7-flash/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights",
+    "consensus:trains",
+    "consensus:ferries",
+    "consensus:metro",
+    "consensus:communiques",
+    "consensus:airport",
+    "consensus:rain"
+   ]
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "runner",
+    "loop:warnings:deepseek-v4-flash",
+    "loop:warnings:deepseek-v4-flash/read",
+    "loop:warnings:mistral-small-2603",
+    "loop:warnings:mistral-small-2603/read",
+    "loop:warnings:llama-3.3-70b-instruct",
+    "loop:warnings:llama-3.3-70b-instruct/read",
+    "loop:warnings:qwen3.7-flash",
+    "loop:warnings:qwen3.7-flash/read",
+    "loop:forecast:deepseek-v4-flash",
+    "loop:forecast:deepseek-v4-flash/read",
+    "loop:forecast:mistral-small-2603",
+    "loop:forecast:mistral-small-2603/read",
+    "loop:forecast:llama-3.3-70b-instruct",
+    "loop:forecast:llama-3.3-70b-instruct/read",
+    "loop:forecast:qwen3.7-flash",
+    "loop:forecast:qwen3.7-flash/read",
+    "loop:stations:deepseek-v4-flash",
+    "loop:stations:deepseek-v4-flash/read",
+    "loop:stations:mistral-small-2603",
+    "loop:stations:mistral-small-2603/read",
+    "loop:stations:llama-3.3-70b-instruct",
+    "loop:stations:llama-3.3-70b-instruct/read",
+    "loop:stations:qwen3.7-flash",
+    "loop:stations:qwen3.7-flash/read",
+    "loop:tides:deepseek-v4-flash",
+    "loop:tides:deepseek-v4-flash/read",
+    "loop:tides:mistral-small-2603",
+    "loop:tides:mistral-small-2603/read",
+    "loop:tides:llama-3.3-70b-instruct",
+    "loop:tides:llama-3.3-70b-instruct/read",
+    "loop:tides:qwen3.7-flash",
+    "loop:tides:qwen3.7-flash/read",
+    "loop:transport:deepseek-v4-flash",
+    "loop:transport:deepseek-v4-flash/read",
+    "loop:transport:mistral-small-2603",
+    "loop:transport:mistral-small-2603/read",
+    "loop:transport:llama-3.3-70b-instruct",
+    "loop:transport:llama-3.3-70b-instruct/read",
+    "loop:transport:qwen3.7-flash",
+    "loop:transport:qwen3.7-flash/read",
+    "loop:flights:deepseek-v4-flash",
+    "loop:flights:deepseek-v4-flash/read",
+    "loop:flights:mistral-small-2603",
+    "loop:flights:mistral-small-2603/read",
+    "loop:flights:llama-3.3-70b-instruct",
+    "loop:flights:llama-3.3-70b-instruct/read",
+    "loop:flights:qwen3.7-flash",
+    "loop:flights:qwen3.7-flash/read",
+    "loop:trains:deepseek-v4-flash",
+    "loop:trains:deepseek-v4-flash/read",
+    "loop:trains:mistral-small-2603",
+    "loop:trains:mistral-small-2603/read",
+    "loop:trains:llama-3.3-70b-instruct",
+    "loop:trains:llama-3.3-70b-instruct/read",
+    "loop:trains:qwen3.7-flash",
+    "loop:trains:qwen3.7-flash/read",
+    "loop:ferries:deepseek-v4-flash",
+    "loop:ferries:deepseek-v4-flash/read",
+    "loop:ferries:mistral-small-2603",
+    "loop:ferries:mistral-small-2603/read",
+    "loop:ferries:llama-3.3-70b-instruct",
+    "loop:ferries:llama-3.3-70b-instruct/read",
+    "loop:ferries:qwen3.7-flash",
+    "loop:ferries:qwen3.7-flash/read",
+    "loop:metro:deepseek-v4-flash",
+    "loop:metro:deepseek-v4-flash/read",
+    "loop:metro:mistral-small-2603",
+    "loop:metro:mistral-small-2603/read",
+    "loop:metro:llama-3.3-70b-instruct",
+    "loop:metro:llama-3.3-70b-instruct/read",
+    "loop:metro:qwen3.7-flash",
+    "loop:metro:qwen3.7-flash/read",
+    "loop:communiques:deepseek-v4-flash",
+    "loop:communiques:deepseek-v4-flash/read",
+    "loop:communiques:mistral-small-2603",
+    "loop:communiques:mistral-small-2603/read",
+    "loop:communiques:llama-3.3-70b-instruct",
+    "loop:communiques:llama-3.3-70b-instruct/read",
+    "loop:communiques:qwen3.7-flash",
+    "loop:communiques:qwen3.7-flash/read",
+    "loop:airport:deepseek-v4-flash",
+    "loop:airport:deepseek-v4-flash/read",
+    "loop:airport:mistral-small-2603",
+    "loop:airport:mistral-small-2603/read",
+    "loop:airport:llama-3.3-70b-instruct",
+    "loop:airport:llama-3.3-70b-instruct/read",
+    "loop:airport:qwen3.7-flash",
+    "loop:airport:qwen3.7-flash/read",
+    "loop:rain:deepseek-v4-flash",
+    "loop:rain:deepseek-v4-flash/read",
+    "loop:rain:mistral-small-2603",
+    "loop:rain:mistral-small-2603/read",
+    "loop:rain:llama-3.3-70b-instruct",
+    "loop:rain:llama-3.3-70b-instruct/read",
+    "loop:rain:qwen3.7-flash",
+    "loop:rain:qwen3.7-flash/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights",
+    "consensus:trains",
+    "consensus:ferries",
+    "consensus:metro",
+    "consensus:communiques",
+    "consensus:airport",
+    "consensus:rain"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "id": "runner",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash",
+   "label": "warnings · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603",
+   "label": "warnings · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct",
+   "label": "warnings · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash",
+   "label": "warnings · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash",
+   "label": "forecast · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603",
+   "label": "forecast · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct",
+   "label": "forecast · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash",
+   "label": "forecast · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash",
+   "label": "stations · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603",
+   "label": "stations · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct",
+   "label": "stations · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash",
+   "label": "stations · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash",
+   "label": "tides · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603",
+   "label": "tides · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct",
+   "label": "tides · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash",
+   "label": "tides · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash",
+   "label": "transport · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603",
+   "label": "transport · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct",
+   "label": "transport · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash",
+   "label": "transport · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash",
+   "label": "flights · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603",
+   "label": "flights · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct",
+   "label": "flights · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash",
+   "label": "flights · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:deepseek-v4-flash",
+   "label": "trains · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:deepseek-v4-flash/read",
+   "label": "read transport/trains.json",
+   "altitude": "A0",
+   "parent": "loop:trains:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:mistral-small-2603",
+   "label": "trains · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:mistral-small-2603/read",
+   "label": "read transport/trains.json",
+   "altitude": "A0",
+   "parent": "loop:trains:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:llama-3.3-70b-instruct",
+   "label": "trains · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:llama-3.3-70b-instruct/read",
+   "label": "read transport/trains.json",
+   "altitude": "A0",
+   "parent": "loop:trains:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:qwen3.7-flash",
+   "label": "trains · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:trains:qwen3.7-flash/read",
+   "label": "read transport/trains.json",
+   "altitude": "A0",
+   "parent": "loop:trains:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:deepseek-v4-flash",
+   "label": "ferries · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:deepseek-v4-flash/read",
+   "label": "read transport/ferries.json",
+   "altitude": "A0",
+   "parent": "loop:ferries:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:mistral-small-2603",
+   "label": "ferries · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:mistral-small-2603/read",
+   "label": "read transport/ferries.json",
+   "altitude": "A0",
+   "parent": "loop:ferries:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:llama-3.3-70b-instruct",
+   "label": "ferries · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:llama-3.3-70b-instruct/read",
+   "label": "read transport/ferries.json",
+   "altitude": "A0",
+   "parent": "loop:ferries:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:qwen3.7-flash",
+   "label": "ferries · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:ferries:qwen3.7-flash/read",
+   "label": "read transport/ferries.json",
+   "altitude": "A0",
+   "parent": "loop:ferries:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:deepseek-v4-flash",
+   "label": "metro · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:deepseek-v4-flash/read",
+   "label": "read transport/metro.json",
+   "altitude": "A0",
+   "parent": "loop:metro:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:mistral-small-2603",
+   "label": "metro · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:mistral-small-2603/read",
+   "label": "read transport/metro.json",
+   "altitude": "A0",
+   "parent": "loop:metro:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:llama-3.3-70b-instruct",
+   "label": "metro · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:llama-3.3-70b-instruct/read",
+   "label": "read transport/metro.json",
+   "altitude": "A0",
+   "parent": "loop:metro:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:qwen3.7-flash",
+   "label": "metro · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:metro:qwen3.7-flash/read",
+   "label": "read transport/metro.json",
+   "altitude": "A0",
+   "parent": "loop:metro:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:deepseek-v4-flash",
+   "label": "communiques · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:deepseek-v4-flash/read",
+   "label": "read weather/communiques.json",
+   "altitude": "A0",
+   "parent": "loop:communiques:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:mistral-small-2603",
+   "label": "communiques · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:mistral-small-2603/read",
+   "label": "read weather/communiques.json",
+   "altitude": "A0",
+   "parent": "loop:communiques:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:llama-3.3-70b-instruct",
+   "label": "communiques · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:llama-3.3-70b-instruct/read",
+   "label": "read weather/communiques.json",
+   "altitude": "A0",
+   "parent": "loop:communiques:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:qwen3.7-flash",
+   "label": "communiques · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:communiques:qwen3.7-flash/read",
+   "label": "read weather/communiques.json",
+   "altitude": "A0",
+   "parent": "loop:communiques:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:deepseek-v4-flash",
+   "label": "airport · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:deepseek-v4-flash/read",
+   "label": "read weather/airport.json",
+   "altitude": "A0",
+   "parent": "loop:airport:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:mistral-small-2603",
+   "label": "airport · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:mistral-small-2603/read",
+   "label": "read weather/airport.json",
+   "altitude": "A0",
+   "parent": "loop:airport:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:llama-3.3-70b-instruct",
+   "label": "airport · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:llama-3.3-70b-instruct/read",
+   "label": "read weather/airport.json",
+   "altitude": "A0",
+   "parent": "loop:airport:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:qwen3.7-flash",
+   "label": "airport · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:airport:qwen3.7-flash/read",
+   "label": "read weather/airport.json",
+   "altitude": "A0",
+   "parent": "loop:airport:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:deepseek-v4-flash",
+   "label": "rain · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:deepseek-v4-flash/read",
+   "label": "read weather/lisbon-rain.json",
+   "altitude": "A0",
+   "parent": "loop:rain:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:mistral-small-2603",
+   "label": "rain · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:mistral-small-2603/read",
+   "label": "read weather/lisbon-rain.json",
+   "altitude": "A0",
+   "parent": "loop:rain:mistral-small-2603",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:llama-3.3-70b-instruct",
+   "label": "rain · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:llama-3.3-70b-instruct/read",
+   "label": "read weather/lisbon-rain.json",
+   "altitude": "A0",
+   "parent": "loop:rain:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:qwen3.7-flash",
+   "label": "rain · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:rain:qwen3.7-flash/read",
+   "label": "read weather/lisbon-rain.json",
+   "altitude": "A0",
+   "parent": "loop:rain:qwen3.7-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:transport:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:tides:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:metro:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:metro:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:metro:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:metro:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:metro:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:metro:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:ferries:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:ferries:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:ferries:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:ferries:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:tides:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:flights:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:flights:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:trains:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:trains:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:airport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:airport:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:transport:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:communiques:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:communiques:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:communiques:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:transport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:trains:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:trains:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:metro:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:metro:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:qwen3.7-flash/call#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:rain:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:stations:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:airport:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:rain:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:airport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:llama-3.3-70b-instruct/call#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:rain:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:communiques:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:deepseek-v4-flash/call#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:rain:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/call#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:stations:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:rain:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:airport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:communiques:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:trains:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:airport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:rain:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call#3",
+   "label": "deepseek-v4-flash #3",
+   "altitude": "A1",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:communiques:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:ferries:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:qwen3.7-flash/call#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:trains:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:airport:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:airport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:rain:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:rain:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:communiques:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:communiques:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:ferries:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:ferries:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:trains:qwen3.7-flash/call#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:trains:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "consensus:warnings",
+   "label": "consensus warnings",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:forecast",
+   "label": "consensus forecast",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:stations",
+   "label": "consensus stations",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:tides",
+   "label": "consensus tides",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:transport",
+   "label": "consensus transport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:flights",
+   "label": "consensus flights",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:trains",
+   "label": "consensus trains",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:ferries",
+   "label": "consensus ferries",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:metro",
+   "label": "consensus metro",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:communiques",
+   "label": "consensus communiques",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:airport",
+   "label": "consensus airport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "consensus:rain",
+   "label": "consensus rain",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "runner",
+  "loop:warnings:deepseek-v4-flash",
+  "loop:warnings:deepseek-v4-flash/read",
+  "loop:warnings:mistral-small-2603",
+  "loop:warnings:mistral-small-2603/read",
+  "loop:warnings:llama-3.3-70b-instruct",
+  "loop:warnings:llama-3.3-70b-instruct/read",
+  "loop:warnings:qwen3.7-flash",
+  "loop:warnings:qwen3.7-flash/read",
+  "loop:forecast:deepseek-v4-flash",
+  "loop:forecast:deepseek-v4-flash/read",
+  "loop:forecast:mistral-small-2603",
+  "loop:forecast:mistral-small-2603/read",
+  "loop:forecast:llama-3.3-70b-instruct",
+  "loop:forecast:llama-3.3-70b-instruct/read",
+  "loop:forecast:qwen3.7-flash",
+  "loop:forecast:qwen3.7-flash/read",
+  "loop:stations:deepseek-v4-flash",
+  "loop:stations:deepseek-v4-flash/read",
+  "loop:stations:mistral-small-2603",
+  "loop:stations:mistral-small-2603/read",
+  "loop:stations:llama-3.3-70b-instruct",
+  "loop:stations:llama-3.3-70b-instruct/read",
+  "loop:stations:qwen3.7-flash",
+  "loop:stations:qwen3.7-flash/read",
+  "loop:tides:deepseek-v4-flash",
+  "loop:tides:deepseek-v4-flash/read",
+  "loop:tides:mistral-small-2603",
+  "loop:tides:mistral-small-2603/read",
+  "loop:tides:llama-3.3-70b-instruct",
+  "loop:tides:llama-3.3-70b-instruct/read",
+  "loop:tides:qwen3.7-flash",
+  "loop:tides:qwen3.7-flash/read",
+  "loop:transport:deepseek-v4-flash",
+  "loop:transport:deepseek-v4-flash/read",
+  "loop:transport:mistral-small-2603",
+  "loop:transport:mistral-small-2603/read",
+  "loop:transport:llama-3.3-70b-instruct",
+  "loop:transport:llama-3.3-70b-instruct/read",
+  "loop:transport:qwen3.7-flash",
+  "loop:transport:qwen3.7-flash/read",
+  "loop:flights:deepseek-v4-flash",
+  "loop:flights:deepseek-v4-flash/read",
+  "loop:flights:mistral-small-2603",
+  "loop:flights:mistral-small-2603/read",
+  "loop:flights:llama-3.3-70b-instruct",
+  "loop:flights:llama-3.3-70b-instruct/read",
+  "loop:flights:qwen3.7-flash",
+  "loop:flights:qwen3.7-flash/read",
+  "loop:trains:deepseek-v4-flash",
+  "loop:trains:deepseek-v4-flash/read",
+  "loop:trains:mistral-small-2603",
+  "loop:trains:mistral-small-2603/read",
+  "loop:trains:llama-3.3-70b-instruct",
+  "loop:trains:llama-3.3-70b-instruct/read",
+  "loop:trains:qwen3.7-flash",
+  "loop:trains:qwen3.7-flash/read",
+  "loop:ferries:deepseek-v4-flash",
+  "loop:ferries:deepseek-v4-flash/read",
+  "loop:ferries:mistral-small-2603",
+  "loop:ferries:mistral-small-2603/read",
+  "loop:ferries:llama-3.3-70b-instruct",
+  "loop:ferries:llama-3.3-70b-instruct/read",
+  "loop:ferries:qwen3.7-flash",
+  "loop:ferries:qwen3.7-flash/read",
+  "loop:metro:deepseek-v4-flash",
+  "loop:metro:deepseek-v4-flash/read",
+  "loop:metro:mistral-small-2603",
+  "loop:metro:mistral-small-2603/read",
+  "loop:metro:llama-3.3-70b-instruct",
+  "loop:metro:llama-3.3-70b-instruct/read",
+  "loop:metro:qwen3.7-flash",
+  "loop:metro:qwen3.7-flash/read",
+  "loop:communiques:deepseek-v4-flash",
+  "loop:communiques:deepseek-v4-flash/read",
+  "loop:communiques:mistral-small-2603",
+  "loop:communiques:mistral-small-2603/read",
+  "loop:communiques:llama-3.3-70b-instruct",
+  "loop:communiques:llama-3.3-70b-instruct/read",
+  "loop:communiques:qwen3.7-flash",
+  "loop:communiques:qwen3.7-flash/read",
+  "loop:airport:deepseek-v4-flash",
+  "loop:airport:deepseek-v4-flash/read",
+  "loop:airport:mistral-small-2603",
+  "loop:airport:mistral-small-2603/read",
+  "loop:airport:llama-3.3-70b-instruct",
+  "loop:airport:llama-3.3-70b-instruct/read",
+  "loop:airport:qwen3.7-flash",
+  "loop:airport:qwen3.7-flash/read",
+  "loop:rain:deepseek-v4-flash",
+  "loop:rain:deepseek-v4-flash/read",
+  "loop:rain:mistral-small-2603",
+  "loop:rain:mistral-small-2603/read",
+  "loop:rain:llama-3.3-70b-instruct",
+  "loop:rain:llama-3.3-70b-instruct/read",
+  "loop:rain:qwen3.7-flash",
+  "loop:rain:qwen3.7-flash/read",
+  "consensus:warnings",
+  "consensus:forecast",
+  "consensus:stations",
+  "consensus:tides",
+  "consensus:transport",
+  "consensus:flights",
+  "consensus:trains",
+  "consensus:ferries",
+  "consensus:metro",
+  "consensus:communiques",
+  "consensus:airport",
+  "consensus:rain"
+ ]
+}

@@ -1,0 +1,457 @@
+{
+ "run": "20261111-2359-storm-scale-05",
+ "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (5 of 12)",
+ "where": "actions",
+ "environment": "R8 GitHub Actions, PrompTugal__News__Swarm__Runs",
+ "source": "PrompTugal__News__Swarm__Runs runs/20261111-2359-storm-scale-05/result.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:elastic",
+   "label": "Elastic",
+   "kind": "log store",
+   "real": true,
+   "note": "the deployment superuser password, on a disposable account with no confidential data (Fringe abp/policies.json); after the demo a write-only key for swarm-*",
+   "held_by": [
+    "action",
+    "runner",
+    "runner:warnings",
+    "runner:warnings/read",
+    "runner:forecast",
+    "runner:forecast/read",
+    "runner:stations",
+    "runner:stations/read",
+    "runner:tides",
+    "runner:tides/read",
+    "runner:transport",
+    "runner:transport/read",
+    "runner:flights",
+    "runner:flights/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights"
+   ]
+  },
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": false,
+   "held_by": []
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": false,
+   "held_by": []
+  }
+ ],
+ "units": [
+  {
+   "id": "requester",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [],
+   "via": [
+    "commits a signed request; holds no key of the Action"
+   ]
+  },
+  {
+   "id": "commit",
+   "label": "commit dbcca7b099dc",
+   "altitude": "C",
+   "parent": "requester",
+   "reaches": [],
+   "via": []
+  },
+  {
+   "id": "action",
+   "label": "GitHub Action",
+   "altitude": "E",
+   "parent": "commit",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "the run step holds ELASTIC_CLOUD (.github/workflows/run.yml)"
+   ]
+  },
+  {
+   "id": "runner",
+   "label": "run 20261111-2359-storm-scale-05 on GitHub Actions",
+   "altitude": "A0",
+   "parent": "action",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:warnings",
+   "label": "task warnings",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:warnings/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "runner:warnings",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:forecast",
+   "label": "task forecast",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:forecast/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "runner:forecast",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:stations",
+   "label": "task stations",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:stations/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "runner:stations",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:tides",
+   "label": "task tides",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:tides/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "runner:tides",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:transport",
+   "label": "task transport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:transport/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "runner:transport",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:flights",
+   "label": "task flights",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:flights/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "runner:flights",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "runner:forecast/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:forecast",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:forecast/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:forecast",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:transport/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:transport",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:transport/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:transport",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:warnings/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:warnings",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:warnings/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:warnings",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:flights/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:flights",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:flights/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:flights",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:stations/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:stations",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:stations/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:stations",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:tides/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "runner:tides",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "runner:tides/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "runner:tides",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "consensus:warnings",
+   "label": "consensus warnings",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:forecast",
+   "label": "consensus forecast",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:stations",
+   "label": "consensus stations",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:tides",
+   "label": "consensus tides",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:transport",
+   "label": "consensus transport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:flights",
+   "label": "consensus flights",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "action",
+  "runner",
+  "runner:warnings",
+  "runner:warnings/read",
+  "runner:forecast",
+  "runner:forecast/read",
+  "runner:stations",
+  "runner:stations/read",
+  "runner:tides",
+  "runner:tides/read",
+  "runner:transport",
+  "runner:transport/read",
+  "runner:flights",
+  "runner:flights/read",
+  "consensus:warnings",
+  "consensus:forecast",
+  "consensus:stations",
+  "consensus:tides",
+  "consensus:transport",
+  "consensus:flights"
+ ]
+}

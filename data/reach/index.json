@@ -1,0 +1,315 @@
+{
+ "about": "which unit can reach which asset, per run (tools/reach.mjs)",
+ "generated_at": "2026-11-12T07:32:10.964Z",
+ "runs": [
+  {
+   "run": "20261111T2134-r0",
+   "title": "Me → Claude → a task",
+   "where": "session",
+   "units": 2,
+   "reaching": 2,
+   "reaches_everything": 2,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2134-r1",
+   "title": "Me → Claude → compute",
+   "where": "session",
+   "units": 3,
+   "reaching": 3,
+   "reaches_everything": 3,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2134-r2",
+   "title": "Me → Claude → one OpenRouter call",
+   "where": "session",
+   "units": 4,
+   "reaching": 3,
+   "reaches_everything": 3,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2134-r3",
+   "title": "Me → Claude → many models",
+   "where": "session",
+   "units": 8,
+   "reaching": 4,
+   "reaches_everything": 4,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2134-r4",
+   "title": "Me → Claude → loops",
+   "where": "session",
+   "units": 22,
+   "reaching": 14,
+   "reaches_everything": 14,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2134-r5",
+   "title": "Me → Claude → a swarm of loops",
+   "where": "session",
+   "units": 96,
+   "reaching": 56,
+   "reaches_everything": 56,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2257-r4c",
+   "title": "Me → Claude → Claude models (out of tokens)",
+   "where": "session",
+   "units": 63,
+   "reaching": 31,
+   "reaches_everything": 31,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2257-r5b",
+   "title": "Me → Claude → a bigger swarm",
+   "where": "session",
+   "units": 182,
+   "reaching": 109,
+   "reaches_everything": 109,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2258-r4c",
+   "title": "Me → Claude → Claude models",
+   "where": "session",
+   "units": 43,
+   "reaching": 31,
+   "reaches_everything": 31,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111T2258-r4s",
+   "title": "Me → Claude → Claude sub-agents",
+   "where": "session",
+   "units": 10,
+   "reaching": 7,
+   "reaches_everything": 7,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "s001-storm-six--swarm.1.fringe",
+   "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+   "where": "session",
+   "units": 90,
+   "reaching": 57,
+   "reaches_everything": 57,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "s002-storm-six--runner.1.swarm",
+   "title": "Storm: warnings, forecast, stations, tides, transport, flights on 4 models",
+   "where": "session",
+   "units": 91,
+   "reaching": 57,
+   "reaches_everything": 57,
+   "assets": [
+    "Gmail",
+    "Calendar"
+   ]
+  },
+  {
+   "run": "20261111-2344-storm-a1",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 3 model(s)",
+   "where": "actions",
+   "units": 40,
+   "reaching": 19,
+   "reaches_everything": 19,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2344-storm-a2",
+   "title": "A2: storm warnings, forecast, stations, tides, transport, flights on 4 model(s)",
+   "where": "actions",
+   "units": 94,
+   "reaching": 55,
+   "reaches_everything": 55,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2350-storm-a1-fix",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 3 model(s)",
+   "where": "actions",
+   "units": 40,
+   "reaching": 19,
+   "reaches_everything": 19,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-01",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (1 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-02",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (2 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-03",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (3 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-04",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (4 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-05",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (5 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-06",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (6 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-07",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (7 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-08",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (8 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-09",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (9 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-10",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (10 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-11",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (11 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  },
+  {
+   "run": "20261111-2359-storm-scale-12",
+   "title": "A1: storm warnings, forecast, stations, tides, transport, flights on 2 model(s) (12 of 12)",
+   "where": "actions",
+   "units": 34,
+   "reaching": 20,
+   "reaches_everything": 20,
+   "assets": [
+    "Elastic"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1197 @@
+{
+ "run": "20261111-2344-storm-a2",
+ "title": "A2: storm warnings, forecast, stations, tides, transport, flights on 4 model(s)",
+ "where": "actions",
+ "environment": "R8 GitHub Actions, PrompTugal__News__Swarm__Runs",
+ "source": "PrompTugal__News__Swarm__Runs runs/20261111-2344-storm-a2/result.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:elastic",
+   "label": "Elastic",
+   "kind": "log store",
+   "real": true,
+   "note": "the deployment superuser password, on a disposable account with no confidential data (Fringe abp/policies.json); after the demo a write-only key for swarm-*",
+   "held_by": [
+    "action",
+    "loop:warnings:deepseek-v4-flash",
+    "loop:warnings:deepseek-v4-flash/read",
+    "loop:warnings:mistral-small-2603",
+    "loop:warnings:mistral-small-2603/read",
+    "loop:warnings:llama-3.3-70b-instruct",
+    "loop:warnings:llama-3.3-70b-instruct/read",
+    "loop:warnings:qwen3.7-flash",
+    "loop:warnings:qwen3.7-flash/read",
+    "loop:forecast:deepseek-v4-flash",
+    "loop:forecast:deepseek-v4-flash/read",
+    "loop:forecast:mistral-small-2603",
+    "loop:forecast:mistral-small-2603/read",
+    "loop:forecast:llama-3.3-70b-instruct",
+    "loop:forecast:llama-3.3-70b-instruct/read",
+    "loop:forecast:qwen3.7-flash",
+    "loop:forecast:qwen3.7-flash/read",
+    "loop:stations:deepseek-v4-flash",
+    "loop:stations:deepseek-v4-flash/read",
+    "loop:stations:mistral-small-2603",
+    "loop:stations:mistral-small-2603/read",
+    "loop:stations:llama-3.3-70b-instruct",
+    "loop:stations:llama-3.3-70b-instruct/read",
+    "loop:stations:qwen3.7-flash",
+    "loop:stations:qwen3.7-flash/read",
+    "loop:tides:deepseek-v4-flash",
+    "loop:tides:deepseek-v4-flash/read",
+    "loop:tides:mistral-small-2603",
+    "loop:tides:mistral-small-2603/read",
+    "loop:tides:llama-3.3-70b-instruct",
+    "loop:tides:llama-3.3-70b-instruct/read",
+    "loop:tides:qwen3.7-flash",
+    "loop:tides:qwen3.7-flash/read",
+    "loop:transport:deepseek-v4-flash",
+    "loop:transport:deepseek-v4-flash/read",
+    "loop:transport:mistral-small-2603",
+    "loop:transport:mistral-small-2603/read",
+    "loop:transport:llama-3.3-70b-instruct",
+    "loop:transport:llama-3.3-70b-instruct/read",
+    "loop:transport:qwen3.7-flash",
+    "loop:transport:qwen3.7-flash/read",
+    "loop:flights:deepseek-v4-flash",
+    "loop:flights:deepseek-v4-flash/read",
+    "loop:flights:mistral-small-2603",
+    "loop:flights:mistral-small-2603/read",
+    "loop:flights:llama-3.3-70b-instruct",
+    "loop:flights:llama-3.3-70b-instruct/read",
+    "loop:flights:qwen3.7-flash",
+    "loop:flights:qwen3.7-flash/read",
+    "consensus:warnings",
+    "consensus:forecast",
+    "consensus:stations",
+    "consensus:tides",
+    "consensus:transport",
+    "consensus:flights"
+   ]
+  },
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": false,
+   "held_by": []
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": false,
+   "held_by": []
+  }
+ ],
+ "units": [
+  {
+   "id": "requester",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [],
+   "via": [
+    "commits a signed request; holds no key of the Action"
+   ]
+  },
+  {
+   "id": "commit",
+   "label": "commit 44d3ad9d2439",
+   "altitude": "C",
+   "parent": "requester",
+   "reaches": [],
+   "via": []
+  },
+  {
+   "id": "action",
+   "label": "GitHub Action",
+   "altitude": "E",
+   "parent": "commit",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "the run step holds ELASTIC_CLOUD (.github/workflows/run.yml)"
+   ]
+  },
+  {
+   "id": "runner",
+   "label": "GitHub Action for swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "action",
+   "reaches": [],
+   "via": [
+    "commits a signed request; holds no key of the Action"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash",
+   "label": "warnings · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603",
+   "label": "warnings · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct",
+   "label": "warnings · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash",
+   "label": "warnings · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/read",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash",
+   "label": "forecast · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603",
+   "label": "forecast · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct",
+   "label": "forecast · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash",
+   "label": "forecast · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/read",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash",
+   "label": "stations · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603",
+   "label": "stations · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct",
+   "label": "stations · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash",
+   "label": "stations · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/read",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash",
+   "label": "tides · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603",
+   "label": "tides · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct",
+   "label": "tides · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash",
+   "label": "tides · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/read",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash",
+   "label": "transport · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603",
+   "label": "transport · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct",
+   "label": "transport · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash",
+   "label": "transport · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/read",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash",
+   "label": "flights · deepseek-v4-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603",
+   "label": "flights · mistral-small-2603",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:mistral-small-2603",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct",
+   "label": "flights · llama-3.3-70b-instruct",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:llama-3.3-70b-instruct",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash",
+   "label": "flights · qwen3.7-flash",
+   "altitude": "A2",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/read",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "loop:warnings:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:flights:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:flights:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:transport:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:transport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:transport:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:tides:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:tides:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:mistral-small-2603/call:mistral-small-2603#1",
+   "label": "mistral-small-2603 #1",
+   "altitude": "A1",
+   "parent": "loop:stations:mistral-small-2603",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#1",
+   "label": "qwen3.7-flash #1",
+   "altitude": "A1",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:stations:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:llama-3.3-70b-instruct/call:llama-3.3-70b-instruct#1",
+   "label": "llama-3.3-70b-instruct #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:llama-3.3-70b-instruct",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:transport:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#2",
+   "label": "qwen3.7-flash #2",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:qwen3.7-flash/call:qwen3.7-flash#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:tides:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:warnings:qwen3.7-flash/call:qwen3.7-flash#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:warnings:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:qwen3.7-flash/call:qwen3.7-flash#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:stations:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:qwen3.7-flash/call:qwen3.7-flash#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:forecast:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:qwen3.7-flash/call:qwen3.7-flash#3",
+   "label": "qwen3.7-flash #3",
+   "altitude": "A1",
+   "parent": "loop:flights:qwen3.7-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "consensus:warnings",
+   "label": "consensus warnings",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:forecast",
+   "label": "consensus forecast",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:stations",
+   "label": "consensus stations",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:tides",
+   "label": "consensus tides",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:transport",
+   "label": "consensus transport",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  },
+  {
+   "id": "consensus:flights",
+   "label": "consensus flights",
+   "altitude": "A0",
+   "parent": "runner",
+   "reaches": [
+    "asset:elastic"
+   ],
+   "via": [
+    "ELASTIC_CLOUD in the run step env, inherited by every process of the step"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "action",
+  "loop:warnings:deepseek-v4-flash",
+  "loop:warnings:deepseek-v4-flash/read",
+  "loop:warnings:mistral-small-2603",
+  "loop:warnings:mistral-small-2603/read",
+  "loop:warnings:llama-3.3-70b-instruct",
+  "loop:warnings:llama-3.3-70b-instruct/read",
+  "loop:warnings:qwen3.7-flash",
+  "loop:warnings:qwen3.7-flash/read",
+  "loop:forecast:deepseek-v4-flash",
+  "loop:forecast:deepseek-v4-flash/read",
+  "loop:forecast:mistral-small-2603",
+  "loop:forecast:mistral-small-2603/read",
+  "loop:forecast:llama-3.3-70b-instruct",
+  "loop:forecast:llama-3.3-70b-instruct/read",
+  "loop:forecast:qwen3.7-flash",
+  "loop:forecast:qwen3.7-flash/read",
+  "loop:stations:deepseek-v4-flash",
+  "loop:stations:deepseek-v4-flash/read",
+  "loop:stations:mistral-small-2603",
+  "loop:stations:mistral-small-2603/read",
+  "loop:stations:llama-3.3-70b-instruct",
+  "loop:stations:llama-3.3-70b-instruct/read",
+  "loop:stations:qwen3.7-flash",
+  "loop:stations:qwen3.7-flash/read",
+  "loop:tides:deepseek-v4-flash",
+  "loop:tides:deepseek-v4-flash/read",
+  "loop:tides:mistral-small-2603",
+  "loop:tides:mistral-small-2603/read",
+  "loop:tides:llama-3.3-70b-instruct",
+  "loop:tides:llama-3.3-70b-instruct/read",
+  "loop:tides:qwen3.7-flash",
+  "loop:tides:qwen3.7-flash/read",
+  "loop:transport:deepseek-v4-flash",
+  "loop:transport:deepseek-v4-flash/read",
+  "loop:transport:mistral-small-2603",
+  "loop:transport:mistral-small-2603/read",
+  "loop:transport:llama-3.3-70b-instruct",
+  "loop:transport:llama-3.3-70b-instruct/read",
+  "loop:transport:qwen3.7-flash",
+  "loop:transport:qwen3.7-flash/read",
+  "loop:flights:deepseek-v4-flash",
+  "loop:flights:deepseek-v4-flash/read",
+  "loop:flights:mistral-small-2603",
+  "loop:flights:mistral-small-2603/read",
+  "loop:flights:llama-3.3-70b-instruct",
+  "loop:flights:llama-3.3-70b-instruct/read",
+  "loop:flights:qwen3.7-flash",
+  "loop:flights:qwen3.7-flash/read",
+  "consensus:warnings",
+  "consensus:forecast",
+  "consensus:stations",
+  "consensus:tides",
+  "consensus:transport",
+  "consensus:flights"
+ ]
+}

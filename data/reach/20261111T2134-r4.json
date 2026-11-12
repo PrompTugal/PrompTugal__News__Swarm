@@ -1,0 +1,336 @@
+{
+ "run": "20261111T2134-r4",
+ "title": "Me → Claude → loops",
+ "where": "session",
+ "environment": "Claude Code cloud",
+ "source": "runs/20261111T2134-r4.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "swarm.1",
+    "task",
+    "loop:warnings:deepseek-v4-flash",
+    "loop:warnings:deepseek-v4-flash/read:warnings",
+    "loop:forecast:deepseek-v4-flash",
+    "loop:forecast:deepseek-v4-flash/read:forecast",
+    "loop:stations:deepseek-v4-flash",
+    "loop:stations:deepseek-v4-flash/read:stations",
+    "loop:tides:deepseek-v4-flash",
+    "loop:tides:deepseek-v4-flash/read:tides",
+    "loop:transport:deepseek-v4-flash",
+    "loop:transport:deepseek-v4-flash/read:transport",
+    "loop:flights:deepseek-v4-flash",
+    "loop:flights:deepseek-v4-flash/read:flights"
+   ]
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "swarm.1",
+    "task",
+    "loop:warnings:deepseek-v4-flash",
+    "loop:warnings:deepseek-v4-flash/read:warnings",
+    "loop:forecast:deepseek-v4-flash",
+    "loop:forecast:deepseek-v4-flash/read:forecast",
+    "loop:stations:deepseek-v4-flash",
+    "loop:stations:deepseek-v4-flash/read:stations",
+    "loop:tides:deepseek-v4-flash",
+    "loop:tides:deepseek-v4-flash/read:tides",
+    "loop:transport:deepseek-v4-flash",
+    "loop:transport:deepseek-v4-flash/read:transport",
+    "loop:flights:deepseek-v4-flash",
+    "loop:flights:deepseek-v4-flash/read:flights"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "id": "swarm.1",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "task",
+   "label": "Me → Claude → loops",
+   "altitude": "T",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash",
+   "label": "warnings",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/read:warnings",
+   "label": "read weather/warnings.json",
+   "altitude": "A0",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash",
+   "label": "forecast",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/read:forecast",
+   "label": "read weather/forecast.json",
+   "altitude": "A0",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash",
+   "label": "stations",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/read:stations",
+   "label": "read weather/stations.json",
+   "altitude": "A0",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash",
+   "label": "tides",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/read:tides",
+   "label": "read exposure/tides.json",
+   "altitude": "A0",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash",
+   "label": "transport",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/read:transport",
+   "label": "read transport/services.json",
+   "altitude": "A0",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash",
+   "label": "flights",
+   "altitude": "A2",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/read:flights",
+   "label": "read transport/flights.json",
+   "altitude": "A0",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "loop:warnings:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:warnings:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:forecast:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:forecast:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:tides:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:tides:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:flights:deepseek-v4-flash/call:deepseek-v4-flash#1",
+   "label": "deepseek-v4-flash #1",
+   "altitude": "A1",
+   "parent": "loop:flights:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:stations:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:stations:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  },
+  {
+   "id": "loop:transport:deepseek-v4-flash/call:deepseek-v4-flash#2",
+   "label": "deepseek-v4-flash #2",
+   "altitude": "A1",
+   "parent": "loop:transport:deepseek-v4-flash",
+   "reaches": [],
+   "via": [
+    "text in, text out at the provider"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "swarm.1",
+  "task",
+  "loop:warnings:deepseek-v4-flash",
+  "loop:warnings:deepseek-v4-flash/read:warnings",
+  "loop:forecast:deepseek-v4-flash",
+  "loop:forecast:deepseek-v4-flash/read:forecast",
+  "loop:stations:deepseek-v4-flash",
+  "loop:stations:deepseek-v4-flash/read:stations",
+  "loop:tides:deepseek-v4-flash",
+  "loop:tides:deepseek-v4-flash/read:tides",
+  "loop:transport:deepseek-v4-flash",
+  "loop:transport:deepseek-v4-flash/read:transport",
+  "loop:flights:deepseek-v4-flash",
+  "loop:flights:deepseek-v4-flash/read:flights"
+ ]
+}

@@ -594,7 +594,7 @@
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
-   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD, the Elastic deployment's superuser password: 'a disposable password on a temporary account with no confidential data' (Fringe abp/policies.json, Dinis 01:44 UTC); after the demo it becomes a write-only key for swarm-* (architect.1's design §4). A separate job writes and attests the result.",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action's run step holds OPEN_ROUTER_KEY and ELASTIC_CLOUD, the Elastic deployment's superuser password: 'a disposable password on a temporary account with no confidential data' (Fringe abp/policies.json, Dinis 01:44 UTC); after the demo it becomes a write-only key for swarm-* (architect.1's design §4). Every process of the run step inherits that env, so every loop and code unit there can reach Elastic today (data/reach, tools/reach.mjs). A separate job writes and attests the result.",
    "steps": [
     {
      "label": "a signed request",
@@ -618,33 +618,27 @@
      "caption": "The push starts a GitHub Action. It holds the router key and the Elastic deployment's superuser password, on a disposable account with no confidential data. Gmail is not one of them."
     },
     {
-     "label": "the honest gap",
-     "dur": 2.5,
-     "show": [
-      "P",
-      "A3",
-      "C",
-      "E",
-      "X"
-     ],
-     "idea": false,
-     "caption": "Said plainly, and drawn: the Action's one real reach today is Elastic, with the deployment's superuser password, on a disposable account. After the demo, a write-only key for swarm-*.",
-     "assets": [
-      {
-       "name": "Elastic",
-       "label": "Elastic · today",
-       "real": true,
-       "home": "alt:E"
-      }
-     ],
-     "overlay": "policy"
-    },
-    {
      "label": "the work runs there",
      "dur": 4,
      "show": null,
      "replay": true,
      "caption": "36 model calls and 24 loops run there, and on OpenRouter."
+    },
+    {
+     "label": "the honest gap",
+     "dur": 2.5,
+     "show": null,
+     "idea": false,
+     "caption": "Said plainly, and drawn: the run step holds Elastic's superuser password (a disposable account), and every process of that step inherits it. After the demo, a write-only key for swarm-*.",
+     "assets": [
+      {
+       "name": "Elastic",
+       "label": "Elastic · today",
+       "real": true,
+       "home": "alts:E,A0,A2"
+      }
+     ],
+     "overlay": "policy"
     },
     {
      "label": "can they reach the assets?",
@@ -654,7 +648,7 @@
        "name": "Elastic",
        "label": "Elastic",
        "real": true,
-       "home": "alt:E"
+       "home": "alts:E,A0,A2"
       },
       "Gmail",
       "Calendar"
@@ -662,9 +656,13 @@
      "overlay": "isolated",
      "owner": "requester",
      "counter": {
-      "of": "reach"
+      "of": "reach",
+      "assets": [
+       "Gmail",
+       "Calendar"
+      ]
      },
-     "caption": "Can any of them reach Gmail or Calendar? No: those are not connected where they run. The one line today is the Action to a disposable Elastic. Don't hope the agent behaves. Make the dangerous thing unreachable."
+     "caption": "Can any of them reach Gmail or Calendar? No: those are not connected where they run. Elastic, today, yes: a disposable account. Don't hope the agent behaves. Make the dangerous thing unreachable."
     }
    ]
   },

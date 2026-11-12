@@ -1,0 +1,64 @@
+{
+ "run": "20261111T2134-r0",
+ "title": "Me → Claude → a task",
+ "where": "session",
+ "environment": "Claude Code cloud",
+ "source": "runs/20261111T2134-r0.json",
+ "rule": "derived from where each unit ran (see tools/reach.mjs), not probed",
+ "assets": [
+  {
+   "id": "asset:gmail",
+   "label": "Gmail",
+   "kind": "mailbox",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "swarm.1",
+    "task"
+   ]
+  },
+  {
+   "id": "asset:calendar",
+   "label": "Calendar",
+   "kind": "calendar",
+   "real": false,
+   "connected": "simulated",
+   "held_by": [
+    "swarm.1",
+    "task"
+   ]
+  }
+ ],
+ "units": [
+  {
+   "id": "swarm.1",
+   "label": "swarm.1.fringe@PrompTugal.dinis",
+   "altitude": "A3",
+   "parent": "dinis",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  },
+  {
+   "id": "task",
+   "label": "Me → Claude → a task",
+   "altitude": "T",
+   "parent": "swarm.1",
+   "reaches": [
+    "asset:gmail",
+    "asset:calendar"
+   ],
+   "via": [
+    "the agent's process: a child inherits its parent's whole reach (simulated connectors)"
+   ]
+  }
+ ],
+ "reaches_everything": [
+  "swarm.1",
+  "task"
+ ]
+}
