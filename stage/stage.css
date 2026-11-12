@@ -175,3 +175,5 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* a laptop with both panes open leaves ~700 px of stage: cards step their type down so a table stays above the caption (swarm.1.designer) */
 @media (max-width: 1440px) { #card { font-size: 82% } #card .cmp .cm { padding: 1px 0 } #card .check, #card .cmp, #card .kys, #card .nh { font-size: 100% } }
 @media (max-width: 1440px) and (max-height: 860px) { #card { font-size: 74% } }
+/* each hop's card stays inside its grid area; its text ellipsizes there, the full text on hover or click (audience.1, review 4) */
+#card .flow .fs { min-width: 0; max-width: 100%; overflow: hidden; box-sizing: border-box } #card .flow .fr { overflow: hidden }
