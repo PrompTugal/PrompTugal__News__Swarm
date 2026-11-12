@@ -17,10 +17,10 @@
     host = document.getElementById('uni');
     const cv = document.createElement('canvas'); host.appendChild(cv);
     R = new THREE.WebGLRenderer({ canvas: cv, antialias: true, alpha: true }); R.setPixelRatio(Math.min(2, devicePixelRatio || 1));
-    R.toneMapping = THREE.ACESFilmicToneMapping;
+    R.toneMapping = THREE.NoToneMapping; // ACES desaturated the altitude colours to pastel; flat colour keeps the code readable (swarm.1.designer)
     SC = new THREE.Scene(); C = new THREE.PerspectiveCamera(40, 1, 0.1, 500);
     comp = new THREE.EffectComposer(R); comp.addPass(new THREE.RenderPass(SC, C));
-    bloom = new THREE.UnrealBloomPass(new THREE.Vector2(512, 512), 0.9, 0.55, 0.62); comp.addPass(bloom);
+    bloom = new THREE.UnrealBloomPass(new THREE.Vector2(512, 512), 0.5, 0.4, 0.78) /* softer, so each altitude keeps its colour (swarm.1.designer) */; comp.addPass(bloom);
     // stars
     const n = 2500, pos = new Float32Array(n * 3);
     for (let i = 0; i < n; i++) { const r = 120 + Math.random() * 60, a = Math.random() * Math.PI * 2, b = Math.acos(2 * Math.random() - 1); pos.set([r * Math.sin(b) * Math.cos(a), r * Math.cos(b), r * Math.sin(b) * Math.sin(a)], i * 3); }
@@ -49,7 +49,7 @@
         const col = cssColor('--alt-' + n.alt), sz = 0.12 + 0.035 * ctx.r(n);
         const group = new THREE.Group(); group.position.set(Math.cos(ang) * rad, y, Math.sin(ang) * rad);
         const core = new THREE.Mesh(new THREE.SphereGeometry(sz, 16, 12), new THREE.MeshBasicMaterial({ color: col, transparent: true }));
-        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: haloTex(), color: col, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false })); halo.scale.setScalar(sz * 7);
+        const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: haloTex(), color: col, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false })); halo.scale.setScalar(sz * 4.5);
         group.add(core); group.add(halo); SC.add(group);
         meshes.set(n.id, { group, core, halo, n, col });
       });
@@ -80,10 +80,10 @@
         const v = ctx.visible(m.n), dim = st.highlight && !(st.highlight.includes(m.n.alt) || st.highlight.includes(m.n.kind)) ? 0.12 : 1;
         const fail = st.fail === m.n.id && st.failP > 0.05;
         m.group.visible = v > 0.01; m.group.scale.setScalar(0.3 + 0.7 * v + (fail ? 1.2 * st.failP : 0));
-        m.core.material.opacity = dim; m.halo.material.opacity = dim * (fail ? 1 : 0.55);
+        m.core.material.opacity = dim; m.halo.material.opacity = dim * (fail ? 1 : 0.32);
         m.core.material.color.copy(fail ? new THREE.Color('#FF4D6D') : m.col); m.halo.material.color.copy(fail ? new THREE.Color('#FF4D6D') : m.col);
       }
-      lineMat.opacity = st.highlight ? 0.18 : 0.45;
+      lineMat.opacity = st.highlight ? 0.12 : 0.26;
       if (cam.idle) cam.ang += 0.08 * dt;
       C.position.set(Math.cos(cam.ang) * cam.dist, cam.h * (cam.dist / 34), Math.sin(cam.ang) * cam.dist); C.lookAt(0, 0, 0);
       comp.render();
