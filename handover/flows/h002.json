@@ -1,0 +1,91 @@
+{
+  "run": "h002",
+  "variation": "refused",
+  "task": "handover/tasks/h002.json",
+  "outcome": "in progress",
+  "expected_outcome": "refused",
+  "started": "2026-11-12T02:01:34Z",
+  "ended": null,
+  "keys": {
+    "relay.1.fringe@PrompTugal.dinis": "sha256:109bf8c471369d6b",
+    "relay.2.fringe@PrompTugal.dinis": "sha256:8a04c60ad84ce04d",
+    "relay.3.fringe@PrompTugal.dinis": "sha256:a71e9928bf207a0a"
+  },
+  "steps": [
+    {
+      "n": 1,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "fetches the public tides data from the storm site's API (HTTPS in transit)",
+      "when": "2026-11-12T02:01:34Z",
+      "where": "network",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "url": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json"
+      }
+    },
+    {
+      "n": 2,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "holds the input in plaintext on its own disk (/root/relay/h002-input and the vault's working copy). Never in Git.",
+      "when": "2026-11-12T02:01:34Z",
+      "where": "memory-decrypted",
+      "medium": "disk (plaintext)",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {}
+    },
+    {
+      "n": 3,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "commits the input to a new sgit vault and pushes it: encrypted on the client, only ciphertext on the server",
+      "when": "2026-11-12T02:01:40Z",
+      "where": "vault-encrypted",
+      "encrypted": true,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "vault": "6vhyrode",
+        "server": "dev.send.sgraph.ai",
+        "commit": "obj-cas-imm-20de2dcfecb4"
+      }
+    },
+    {
+      "n": 4,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "seals the vault key to relay.3's public key, deliberately not relay.2's. The plaintext key file /dev/shm/r1/h002.vaultkey (tmpfs) was removed with `shred -u` in the same command, and checked absent with `test ! -e` at 02:01:41Z. The sealed blob is not signed; the signed task names it.",
+      "when": "2026-11-12T02:01:41Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:a71e9928bf207a0a",
+      "signed_by": null,
+      "ref": {
+        "path": "handover/sealed/h002.vaultkey.relay3.enc"
+      }
+    },
+    {
+      "n": 5,
+      "who": "relay.1.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "writes and signs the task (addressed to relay.2) and commits it to Git (public, unencrypted)",
+      "when": "2026-11-12T02:02:02Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae",
+      "ref": {
+        "path": "handover/tasks/h002.json",
+        "signature": "handover/tasks/h002.json.sig"
+      }
+    }
+  ],
+  "published": null,
+  "private_input_in_git": false,
+  "note": "relay.1's hops. relay.2 appends its refused attempt; relay.3 closes the run."
+}

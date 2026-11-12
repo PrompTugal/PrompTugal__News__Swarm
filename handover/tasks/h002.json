@@ -1,0 +1,33 @@
+{
+  "id": "h002",
+  "variation": "refused handover: the wrong key cannot open the vault",
+  "from": "relay.1.fringe@PrompTugal.dinis",
+  "to": "relay.2.fringe@PrompTugal.dinis",
+  "created": "2026-11-12T02:02:02Z",
+  "status": "open",
+  "ask": "A deliberate test. This task is addressed to you, but its vault key is sealed to relay.3 (sha256:a71e9928bf207a0a), not to you. Try to open handover/sealed/h002.vaultkey.relay3.enc with your own key, exactly as for h001. It should fail. Record the refusal as your hop (the command, the error, the time) and commit handover/tasks/h002.refused.json, signed. Do not ask anyone for the key and do not work around it: the refusal is the result.",
+  "private_input": {
+    "where": "vault-encrypted",
+    "vault": "6vhyrode",
+    "server": "dev.send.sgraph.ai",
+    "files": [
+      {
+        "name": "tides.json",
+        "bytes": 24842,
+        "sha256": "c99f98b06ca621055e55bf305149d38cc7fea87a38be3f999d5998e27d2d21d7",
+        "source": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/exposure/tides.json"
+      }
+    ],
+    "note": "Public storm data, treated as if private. Only hashes and sizes are here."
+  },
+  "vault_key": {
+    "sealed_to": "sha256:a71e9928bf207a0a",
+    "sealed_to_agent": "relay.3.fringe@PrompTugal.dinis",
+    "intended_reader": "relay.2.fringe@PrompTugal.dinis (deliberately not the key it is sealed to)",
+    "sealed_with": "sgit-ai 0.27.0 pki encrypt",
+    "path": "handover/sealed/h002.vaultkey.relay3.enc"
+  },
+  "expected_outcome": "refused",
+  "signed_by": "sha256:8d8a0fd4e656c3ae",
+  "signature": "handover/tasks/h002.json.sig"
+}
