@@ -23,6 +23,37 @@
  },
  "partners": [
   {
+   "slug": "oppy",
+   "name": "Oppy",
+   "kind": "sales",
+   "kind_label": "Sales and revenue",
+   "one_line": "A B2B platform for sales teams: it filters market signals in real time, matches them to the client's ideal customer profile, and drafts outreach for the moment a prospect is likely to buy.",
+   "has": [
+    "met",
+    "story"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T10:10Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://oppyone.com/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T10:24Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-oppy",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T10:26Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
    "slug": "sustain-nobility",
    "name": "Sustain-Nobility",
    "kind": "governance",
@@ -104,29 +135,6 @@
     }
    ],
    "material": 6
-  },
-  {
-   "slug": "oppy",
-   "name": "Oppy",
-   "kind": "sales",
-   "kind_label": "Sales and revenue",
-   "one_line": "A B2B platform for sales teams: it filters market signals in real time, matches them to the client's ideal customer profile, and drafts outreach for the moment a prospect is likely to buy.",
-   "has": [
-    "met"
-   ],
-   "products": [],
-   "codes": [],
-   "asked_at": "2026-11-12T10:10Z",
-   "artefacts": [
-    {
-     "kind": "site",
-     "url": "https://oppyone.com/",
-     "read_on": "2026-11-12",
-     "fetched_at": "2026-11-12T10:24Z",
-     "source": "their own site, read by hand"
-    }
-   ],
-   "material": 7
   },
   {
    "slug": "replit",

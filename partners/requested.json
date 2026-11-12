@@ -322,7 +322,15 @@
      "q-why"
     ]
    ],
-   "site_confirmed": "oppyone.com, confirmed by Dinis (relayed by attendees.1, 2026-11-12T10:25Z)"
+   "site_confirmed": "oppyone.com, confirmed by Dinis (relayed by attendees.1, 2026-11-12T10:25Z)",
+   "stories": [
+    {
+     "id": "summit-oppy",
+     "title": "Oppy and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T10:26Z"
+    }
+   ]
   }
  ]
 }
