@@ -17,6 +17,10 @@ ol.steps li>b:first-child{display:block}code{background:var(--panel);border:1px 
 .fig text{fill:var(--ink);font-size:12px}.fig .s{fill:var(--muted);font-size:10px}.fig line,.fig path{stroke:var(--muted);stroke-width:1.4;fill:none}
 table{width:100%;border-collapse:collapse;font-size:.9rem}td,th{border-bottom:1px solid var(--line);padding:6px;text-align:left;vertical-align:top}
 footer{color:var(--muted);font-size:.8rem;margin-top:2em}
+.enf,.obs,.none{display:inline-block;font:600 .72rem/1.6 ui-monospace,monospace;text-transform:uppercase;letter-spacing:.04em;border-radius:5px;padding:0 6px;margin-right:4px}
+.enf{color:#04100F;background:var(--a1)}.obs{color:var(--ink);border:1px solid var(--muted)}.none{color:#04100F;background:#f2b544}
+/* phone: the table becomes one card per unit, so it never scrolls sideways */
+@media (max-width:640px){table,tbody,tr,td{display:block;width:100%}tr:first-child{display:none}tr{border:1px solid var(--line);border-radius:10px;padding:6px 10px;margin:0 0 10px;background:var(--panel)}td{border:0;padding:3px 0}td:first-child{font-weight:700;font-size:1rem}td:nth-child(2){color:var(--muted)}td:nth-child(3)::before{content:"Holds: ";color:var(--muted)}td:nth-child(4)::before{content:"Cannot: ";color:var(--muted)}td:nth-child(5)::before{content:"Enforced by: ";color:var(--muted)}}
 /* phone: the figure becomes a vertical flow, so nothing scrolls sideways */
 .flow{display:none;list-style:none;padding:10px 12px;margin:0;background:var(--panel);border:1px solid var(--line);border-radius:10px}
 .flow li{display:flex;gap:10px;align-items:center;padding:4px 0;font-size:.9rem}.flow li+li::before{content:'↓';position:absolute;margin:-26px 0 0 4px;color:var(--muted);font-size:.8rem}.flow li{position:relative}
@@ -80,13 +84,14 @@ footer{color:var(--muted);font-size:.8rem;margin-top:2em}
 
 <h2>Who holds what</h2>
 <table>
-<tr><th>Unit</th><th>Altitude</th><th>Holds</th><th>Cannot</th></tr>
-<tr><td>swarm.1</td><td>A4 swarm</td><td>this repository (push to dev), the router, packets it issues</td><td>push to main; start sessions without Dinis's word</td></tr>
-<tr><td>a runner</td><td>A3 agent</td><td>its own key, a clone of this repository, the router (its account's OpenRouter key)</td><td>run what a packet does not say; spend over the packet's budget</td></tr>
-<tr><td>a loop</td><td>A2</td><td>the packet's grant: the storm API, the router</td><td>start others, schedule, push</td></tr>
-<tr><td>an LLM call</td><td>A1</td><td>a prompt in, an answer out, a key for its signature</td><td>use any tool</td></tr>
-<tr><td>a read, a consensus</td><td>A0 compute</td><td>code</td><td>call a model</td></tr>
+<tr><th>Unit</th><th>Altitude</th><th>Holds</th><th>Cannot</th><th>Enforced by</th></tr>
+<tr><td>swarm.1</td><td>A4 swarm</td><td>this repository (push to dev), the router, packets it issues</td><td>push to main; start sessions without Dinis's word</td><td><span class="enf">enforced</span> the ABP hook in its session: dev only (R5), no secrets (R8), its own name (R9); GitHub: push access only to dev, and CI's gate. <span class="obs">observed</span> the other rules, logged and reviewed.</td></tr>
+<tr><td>a runner</td><td>A3 agent</td><td>its own key, a clone of this repository, the router (its account's OpenRouter key)</td><td>run what a packet does not say; spend over the packet's budget</td><td><span class="enf">enforced</span> the signature checks (<code>tools/swarm.mjs verify</code>; in the Runs repo, the plan job against the Fringe's <code>data/keys.json</code>) and the budget, counted call by call in the engine.</td></tr>
+<tr><td>a loop</td><td>A2</td><td>the packet's grant: the storm API, the router</td><td>start others, schedule, push</td><td><span class="enf">enforced</span> the engine (tries and budget). When harnessed, the kernel too: SHarness and Landlock (<code>harness/</code>: 11 of 12 attempts refused or held, against 1 bare).</td></tr>
+<tr><td>an LLM call</td><td>A1</td><td>a prompt in, an answer out, a key for its signature</td><td>use any tool</td><td><span class="enf">enforced</span> the router (<code>tools/llm.mjs</code>: daily cap, credit floor, ledger) and the provider's key limit.</td></tr>
+<tr><td>a read, a consensus</td><td>A0 compute</td><td>code</td><td>call a model</td><td><span class="none">nothing, unharnessed</span>: it runs with the process's full reach. Under SHarness: <span class="enf">enforced</span> by the kernel (Landlock path rules, the network door, a memory limit).</td></tr>
 </table>
+<p class="muted" style="font-size:.85rem"><span class="enf">enforced</span> means a mechanism outside the model refuses. <span class="obs">observed</span> means it is logged and reviewed.</p>
 
 <h2>Start a runner on another account</h2>
 <p>Open a Claude Code session with PrompTugal/PrompTugal__News__Swarm attached and paste the prompt in <a href="RUNNER.md">RUNNER.md</a>. The runner needs push access to this repository and an OpenRouter key on its environment.</p>

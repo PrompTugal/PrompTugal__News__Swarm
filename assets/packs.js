@@ -41,10 +41,10 @@
       const c = [260, 800, 1340];
       return S(1, `<circle cx="${c[0]}" cy="260" r="34" class="mandate"/>` + T(c[0], 340, 'mandate', { size: 24, w: 600 }))
         + S(2, `<circle cx="${c[1]}" cy="260" r="120" class="reach"/><circle cx="${c[1]}" cy="260" r="34" class="mandate"/>` + T(c[1], 420, 'reach', { size: 24, w: 600 }))
-        + S(3, `<circle cx="${c[2]}" cy="260" r="120" class="reach"/><path d="${ring(c[2], 260, 120, 34)}" class="gap"/><circle cx="${c[2]}" cy="260" r="34" class="mandate"/>` + T(c[2], 420, 'the gap', { size: 24, w: 600, fill: 'var(--bad)' }))
+        + S(3, `<circle cx="${c[2]}" cy="260" r="120" class="reach"/><path d="${ring(c[2], 260, 120, 34)}" class="gap"/><circle cx="${c[2]}" cy="260" r="34" class="mandate"/>` + T(c[2], 420, 'the gap', { size: 24, w: 600, fill: 'var(--warn)' }))
         + S(4, page(220, 600, 1.6) + T(220, 680, 'public', { size: 20 }), { d: 0 }) + S(4, `<rect x="400" y="555" width="110" height="90" rx="10" class="cipher"/>` + lock(455, 600, 1.4) + T(455, 680, 'encrypted', { size: 20 }), { d: .5 }) + S(4, `<rect x="640" y="555" width="110" height="90" rx="10" class="plain"/>` + T(695, 608, 'abc…', { size: 22, fill: 'var(--warn)' }) + T(695, 680, 'decrypted, in memory', { size: 20 }), { d: 1 })
-        + S(5, key(930, 600, 1.6) + `<rect x="1010" y="592" width="220" height="16" rx="8" class="life"/><circle cx="1010" cy="600" r="9" class="made"/><circle cx="1080" cy="600" r="6" class="sig"/><circle cx="1120" cy="600" r="6" class="sig"/><circle cx="1160" cy="600" r="6" class="sig"/>` + T(1240, 607, '✕', { size: 26, fill: 'var(--bad)' }) + T(1080, 680, 'made → signs → destroyed', { size: 20 }))
-        + S(6, `<rect x="1330" y="540" width="180" height="130" rx="8" class="wall"/><rect x="1500" y="585" width="22" height="34" class="door"/>` + arrow(1400, 602, 1560, 602, { cls: 'ok-ln', marker: 'ar-ok' }) + arrow(1400, 570, 1488, 570, { cls: 'bad-ln', marker: 'ar-bad' }) + T(1500, 562, '✕', { size: 22, fill: 'var(--bad)' }) + T(1420, 700, 'harness', { size: 20 }));
+        + S(5, key(930, 600, 1.6) + `<rect x="1010" y="592" width="220" height="16" rx="8" class="life"/><circle cx="1010" cy="600" r="9" class="made"/><circle cx="1080" cy="600" r="6" class="sig"/><circle cx="1120" cy="600" r="6" class="sig"/><circle cx="1160" cy="600" r="6" class="sig"/>` + T(1240, 607, '✕', { size: 26, fill: 'var(--muted)' }) + T(1080, 680, 'made → signs → destroyed', { size: 20 }))
+        + S(6, `<rect x="1330" y="540" width="180" height="130" rx="8" class="wall"/><rect x="1500" y="585" width="22" height="34" class="door"/>` + arrow(1400, 602, 1560, 602, { cls: 'ok-ln', marker: 'ar-ok' }) + arrow(1400, 570, 1488, 570, { cls: 'held-ln', marker: 'ar-held' }) + T(1500, 562, '✕', { size: 22, fill: 'var(--accent)' }) + T(1420, 700, 'harness', { size: 20 }));
     },
   });
 
@@ -63,7 +63,7 @@
         + S(2, `<circle cx="${cx}" cy="${cy}" r="330" class="reach grow"/>`, { dur: 2 }) + S(2, T(cx, cy - 350, 'reach', { size: 26, w: 600, fill: 'var(--reach)' }), { d: 1.2 })
         + facts.map((f, i) => S(2, T(1000, 250 + i * 46, f, { a: 'start', size: 24, cls: 'mono' }), { d: .6 + i * .25 })).join('')
         + S(2, T(1000, 200, 'what the process could touch (measured)', { a: 'start', size: 18, fill: 'var(--muted)' }), { d: .3 })
-        + S(3, `<path d="${ring(cx, cy, 330, 46)}" class="gap"/>` + T(cx, cy - 190, 'THE GAP', { size: 40, w: 800, fill: 'var(--bad)' }), { dur: 1.2 })
+        + S(3, `<path d="${ring(cx, cy, 330, 46)}" class="gap"/>` + T(cx, cy - 190, 'THE GAP', { size: 40, w: 800, fill: 'var(--warn)' }), { dur: 1.2 })
         + S(4, arrow(cx + 330, cy + 220, cx + 120, cy + 90, { cls: 'ok-ln', marker: 'ar-ok', sw: 5 }) + T(1080, 720, '1 · shrink the reach: the harness', { a: 'start', size: 26, w: 600 }) + T(1080, 770, '2 · run the work where the assets are not', { a: 'start', size: 26, w: 600 }), { d: .2 });
     },
     say: { Engineer: 'Your agent\'s process has root and the internet. Its job needed neither.', Investor: 'Every agent incident so far fits in the gap between what it was asked and what it could do. We measure the gap and close it.', CISO: 'Mandate is policy. Reach is fact. Audit the gap, not the prompt.' },
@@ -81,14 +81,14 @@
     draw(F) {
       const a = F.harness?.after || {}, b = F.harness?.before || {}, res = a.results || [], pol = a.policy || {};
       const bx = 380, by = 250, bw = 520, bh = 420, doorY = by + 70;
-      let s = S(1, `<rect x="${bx + 30}" y="${by + 160}" width="220" height="120" rx="18" class="box hot"/>` + T(bx + 140, by + 212, 'agent process', { size: 24, w: 600 }) + T(bx + 140, by + 248, `uid ${b.uid ?? 0} · caps ${String(b.capabilities || 'all').split(' ')[0]}`, { size: 18, cls: 'mono', fill: 'var(--bad)' }));
+      let s = S(1, `<rect x="${bx + 30}" y="${by + 160}" width="220" height="120" rx="18" class="box hot"/>` + T(bx + 140, by + 212, 'agent process', { size: 24, w: 600 }) + T(bx + 140, by + 248, `uid ${b.uid ?? 0} · caps ${String(b.capabilities || 'all').split(' ')[0]}`, { size: 18, cls: 'mono', fill: 'var(--warn)' }));
       s += S(2, `<rect x="${bx}" y="${by}" width="${bw}" height="${bh}" rx="10" class="wall"/><rect x="${bx + bw - 10}" y="${doorY - 22}" width="20" height="44" class="door"/>` + T(bx + bw - 30, doorY - 32, 'read', { size: 16, a: 'end', fill: 'var(--ok)' }) + T(bx + 20, by - 18, `policy "${pol.id || 'hello'}" · ${String(a.policy_hash || '').slice(0, 19)}…`, { a: 'start', size: 18, cls: 'mono' }), { dur: 1.2 });
       const pf = [`network: ${pol.network || 'none'}`, `write: ${JSON.stringify(pol.files?.write ?? [])}`, `no_new_privs: ${pol.process?.no_new_privs ?? 'on'}`, `memory: ${pol.process?.max_memory_mb ?? pol.process?.memory_mb ?? 128} MB max`];
       s += S(2, T(bx + 20, by - 52, pf.join('  ·  '), { a: 'start', size: 18, cls: 'mono', fill: 'var(--muted)' }), { d: .5 });
       res.slice(0, 6).forEach((r, i) => {
         const got = String(r.got).split(/[\s(]/)[0], y = by + 130 + i * 42, ok = got === 'allowed', x0 = bx + 252, d = i * .45;
-        s += S(3, (ok ? arrow(x0, doorY, bx + bw + 120, doorY, { cls: 'ok-ln', marker: 'ar-ok' }) : arrow(x0, y, bx + bw - 14, y, { cls: 'bad-ln', marker: 'ar-bad' }) + T(bx + bw + 2, y + 8, '✕', { size: 24, fill: 'var(--bad)' }))
-          + T(bx + bw + (ok ? 130 : 60), (ok ? doorY : y) + 7, `${r.probe}: ${got}${String(r.expected).split(/[\s(]/)[0] === got ? '' : ' (expected ' + r.expected + ')'}`, { a: 'start', size: 22, cls: 'mono', fill: ok ? 'var(--ok)' : 'var(--bad)' }), { d });
+        s += S(3, (ok ? arrow(x0, doorY, bx + bw + 120, doorY, { cls: 'ok-ln', marker: 'ar-ok' }) : arrow(x0, y, bx + bw - 14, y, { cls: 'held-ln', marker: 'ar-held' }) + T(bx + bw + 2, y + 8, '✕', { size: 24, fill: 'var(--accent)' }))
+          + T(bx + bw + (ok ? 130 : 60), (ok ? doorY : y) + 7, `${r.probe}: ${got}${String(r.expected).split(/[\s(]/)[0] === got ? '' : ' (expected ' + r.expected + ')'}`, { a: 'start', size: 22, cls: 'mono', fill: ok ? 'var(--ok)' : 'var(--accent)' }), { d });
       });
       s += S(4, T(bx + bw / 2, by + bh + 80, `${a.held ?? '?'} of ${a.of ?? '?'} held · ${a.failed ?? 0} failed`, { size: 44, w: 800, fill: 'var(--ok)' }));
       const nc = String(a.not_covered || '').split(/;\s*|\.\s+/).filter(Boolean).slice(0, 4);
@@ -110,9 +110,9 @@
       const ax = 420, ay = 450, asx = 1240;
       return S(1, agent(ax, ay, 'agent', { w: 150, h: 120 }) + `<rect x="${asx - 90}" y="${ay - 70}" width="180" height="140" rx="16" class="asset"/>` + T(asx, ay + 8, 'asset', { size: 26, w: 600 }), { until: 9 })
         + S(1, arrow(ax + 150, ay - 40, asx - 100, ay - 40, { cls: 'ask-ln', marker: 'ar' }), { d: .4, until: 1 })
-        + S(2, lock(ax + 90, ay - 40, 1.2, 'var(--accent)') + arrow(ax + 110, ay - 40, asx - 100, ay - 40, { cls: 'bad-ln', marker: 'ar-bad', len: 200 }) + T(ax + 90, ay - 80, 'check', { size: 18 }), { until: 2 })
+        + S(2, lock(ax + 90, ay - 40, 1.2, 'var(--accent)') + arrow(ax + 110, ay - 40, asx - 100, ay - 40, { cls: 'held-ln', marker: 'ar-held', len: 200 }) + T(ax + 90, ay - 80, 'check', { size: 18 }), { until: 2 })
         + S(3, lock(ax + 90, ay - 40, 1.2, 'var(--dim)') + path(`M${ax - 40},${ay + 10} C${ax + 20},${ay + 110} ${ax + 180},${ay + 110} ${asx - 100},${ay + 30}`, { cls: 'bad-ln', marker: 'ar-bad', sw: 5, len: 900 }) + T(ax - 150, ay + 170, 'tricked: the check is skipped', { a: 'start', size: 24, fill: 'var(--bad)', w: 600 }), { until: 3, dur: 1.4 })
-        + S(4, `<rect x="${ax + 230}" y="${ay - 200}" width="26" height="400" class="wall-v"/>` + lock(ax + 243, ay - 40, 1.4, 'var(--ok)') + arrow(ax + 150, ay - 40, ax + 222, ay - 40, { cls: 'bad-ln', marker: 'ar-bad' }) + T(ax + 243, ay + 240, 'the check is on the wall, outside the agent', { size: 22, w: 600 }) + T(ax + 243, ay + 275, 'harness · signature checked by the runner · budget held by the Action', { size: 18, fill: 'var(--muted)' }));
+        + S(4, `<rect x="${ax + 230}" y="${ay - 200}" width="26" height="400" class="wall-v"/>` + lock(ax + 243, ay - 40, 1.4, 'var(--ok)') + arrow(ax + 150, ay - 40, ax + 222, ay - 40, { cls: 'held-ln', marker: 'ar-held' }) + T(ax + 243, ay + 240, 'the check is on the wall, outside the agent', { size: 22, w: 600 }) + T(ax + 243, ay + 275, 'harness · signature checked by the runner · budget held by the Action', { size: 18, fill: 'var(--muted)' }));
     },
     say: { Engineer: 'A check inside the process it guards is a suggestion.', Investor: 'We sell the wall, not the promise.', CISO: 'Ask of every control: enforced by what, from where?' },
   });
@@ -195,9 +195,9 @@
   function ring(cx, cy, R, r) { return `M${cx - R},${cy} a${R},${R} 0 1 0 ${2 * R},0 a${R},${R} 0 1 0 ${-2 * R},0 Z M${cx - r},${cy} a${r},${r} 0 1 1 ${2 * r},0 a${r},${r} 0 1 1 ${-2 * r},0 Z`; }
 
   const DEFS = `<defs>
-    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="color-mix(in srgb,var(--bad) 18%,transparent)"/><line x1="0" y1="0" x2="0" y2="12" stroke="var(--bad)" stroke-width="4" opacity=".55"/></pattern>
+    <pattern id="hatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="12" height="12" fill="color-mix(in srgb,var(--warn) 18%,transparent)"/><line x1="0" y1="0" x2="0" y2="12" stroke="var(--warn)" stroke-width="4" opacity=".6"/></pattern>
     <pattern id="ciph" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><rect width="10" height="10" fill="color-mix(in srgb,var(--accent) 12%,transparent)"/><line x1="0" y1="0" x2="0" y2="10" stroke="var(--accent)" stroke-width="2" opacity=".5"/></pattern>
-    ${['ar:var(--muted)', 'ar-ok:var(--ok)', 'ar-bad:var(--bad)'].map((m) => { const [id, c] = m.split(':'); return `<marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="${c}"/></marker>`; }).join('')}
+    ${['ar:var(--muted)', 'ar-ok:var(--ok)', 'ar-bad:var(--bad)', 'ar-held:var(--accent)'].map((m) => { const [id, c] = m.split(':'); return `<marker id="${id}" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0L10,5L0,10z" fill="${c}"/></marker>`; }).join('')}
     <filter id="soft"><feGaussianBlur stdDeviation="6"/></filter></defs>`;
 
   window.PACKS = { list: PACKS, W, H, DEFS };

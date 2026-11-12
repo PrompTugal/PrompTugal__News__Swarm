@@ -145,7 +145,7 @@
       const nLeaves = M.order.filter((id) => !(M.kids[id] || []).length).length, gap = (W - 120) / Math.max(1, nLeaves - 1);
       const maxTok = Math.max(1, ...M.nodes.map((n) => M.calls[n.id] ? M.calls[n.id].tokens_in + M.calls[n.id].tokens_out : n.tokens || 0));
       const rOf = (n) => { if (heat && n.altitude === 'A1') { const c = M.calls[n.id], t = c ? c.tokens_in + c.tokens_out : n.tokens || 0; return 4 + 14 * Math.sqrt(t / maxTok); } return (n.altitude === 'P' || n.altitude === 'A4' || n.altitude === 'A3') ? R + 3 : RES.has(n.altitude) ? R - 1 : R; };
-      const col = (n) => { if (heat && n.altitude === 'A1') { const v = M.calls[n.id]?.valid ?? n.valid; return v === false ? 'var(--bad)' : 'var(--a1)'; } return `var(${(ALT[n.altitude] || ALT.A0).c})`; };
+      const col = (n) => { if (heat && n.altitude === 'A1') { const v = M.calls[n.id]?.valid ?? n.valid; return v === false ? 'var(--warn)' : 'var(--a1)'; } return `var(${(ALT[n.altitude] || ALT.A0).c})`; };
       let s = `<svg class="sv-svg" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet" role="img" aria-label="${esc(run.title || run.id)}"><defs>`
         + `<pattern id="sv-grid" width="24" height="24" patternUnits="userSpaceOnUse"><path d="M24 0H0V24" fill="none" class="grid"/></pattern>`
         + `<filter id="sv-glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`
@@ -271,7 +271,7 @@
         const geo = { P: new T.SphereGeometry(1, 20, 14), A4: new T.CylinderGeometry(1, 1, .6, 6), A3: new T.BoxGeometry(1.5, 1.5, 1.5), A2: new T.TorusGeometry(.9, .28, 10, 24), A1: new T.OctahedronGeometry(1.1), A0: new T.BoxGeometry(1.1, 1.1, 1.1) }, def = new T.SphereGeometry(.9, 12, 10);
         const meshes = [], byMesh = new Map();
         for (const n of M.nodes) {
-          const c = M.calls[n.id], bad = (c ? c.valid : n.valid) === false, color = new T.Color(bad ? css(el, '--bad') : css(el, (ALT[n.altitude] || ALT.A0).c));
+          const c = M.calls[n.id], bad = (c ? c.valid : n.valid) === false, color = new T.Color(bad ? css(el, '--warn') : css(el, (ALT[n.altitude] || ALT.A0).c));
           const m = new T.Mesh(geo[n.altitude] || def, new T.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: .55, roughness: .4, metalness: .2, transparent: true, opacity: 1 }));
           const s = ['P', 'A4', 'A3'].includes(n.altitude) ? 14 : RES.has(n.altitude) ? 8 : 6; m.scale.setScalar(s); m.position.copy(pos[n.id]); root.add(m); meshes.push(m); byMesh.set(m, n.id); m.userData = { id: n.id, base: s };
         }

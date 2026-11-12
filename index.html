@@ -6,8 +6,8 @@
 <title>PrompTugal Swarm</title>
 <meta name="description" content="The swarm, one real run at a time: from one person asking one agent, to a swarm of loops and model calls across environments. Every run is real, recorded as JSON, replayed here.">
 <style>
-:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--live:#ffe066}
-/* the universe is dark; light only when asked */ :root[data-theme="light"]{--bg:#f6f8f7;--panel:#ffffff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86;--ok:#14936a;--bad:#d42f40;--live:#c99a00}
+:root{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--warn:#f2b544;--live:#ffe066}
+/* the universe is dark; light only when asked */ :root[data-theme="light"]{--bg:#f6f8f7;--panel:#ffffff;--ink:#132322;--muted:#557370;--line:#cfdcda;--p:#b8860b;--a4:#d9481c;--a3:#1679c7;--a2:#6a55e0;--a1:#14936a;--a0:#5d6d6b;--res:#c23f86;--ok:#14936a;--bad:#d42f40;--warn:#b7791f;--live:#c99a00}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
 a.cta{display:inline-block;background:var(--a3);color:#04100F;font-weight:700;text-decoration:none;border-radius:8px;padding:3px 10px;margin:2px 0}
 a{color:var(--a3)}header,footer{padding:14px 16px}header h1{margin:0;font-size:1.3rem}header p{margin:4px 0 0;color:var(--muted);max-width:70ch}
@@ -26,7 +26,7 @@ main{display:grid;grid-template-columns:240px 1fr 220px;gap:12px;padding:0 16px 
 #stage{overflow:auto;border-radius:8px;background:color-mix(in srgb,var(--bg) 60%,var(--panel))}#stage svg{display:block;height:auto}
 svg text{fill:var(--ink);font-size:11px}svg .lbl{fill:var(--muted);font-size:10px}svg.few .lbl{font-size:13px}svg .lbl.hero{fill:var(--ink);font-weight:600;font-size:12px}svg.few .lbl.hero{font-size:16px}
 .edge{stroke:var(--line);stroke-width:1.2}.edge.on{stroke:var(--muted)}.edge.planned{stroke-dasharray:4 4}
-.n{transition:opacity .25s}.n.hidden{opacity:.08}.n.live .shape{stroke:var(--live);stroke-width:3}.n.bad .shape{stroke:var(--bad);stroke-width:2.5}.n.ok .shape{stroke:var(--ok);stroke-width:2}.n.planned .shape{stroke-dasharray:4 3;fill-opacity:.25}
+.n{transition:opacity .25s}.n.hidden{opacity:.08}.n.live .shape{stroke:var(--live);stroke-width:3}.n.bad .shape{stroke:var(--warn);stroke-width:2.5} /* an invalid answer is the check working: amber; red is for real harm (Dinis, ~01:58 UTC) */.n.ok .shape{stroke:var(--ok);stroke-width:2}.n.planned .shape{stroke-dasharray:4 3;fill-opacity:.25}
 .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 8px}.bar button{font:inherit;background:var(--a3);color:#fff;border:0;border-radius:6px;padding:6px 12px;cursor:pointer}
 .amp{font-weight:600}.amp i{font-style:normal;color:var(--muted);font-weight:400}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin-top:10px}
@@ -163,7 +163,7 @@ function draw() {
   chain(run);
   $('#detail').innerHTML = `<p style="color:var(--muted);margin:10px 0 0">${esc(run.story)} Run <code>${esc(run.id)}</code>, ${esc(run.started_at)}, ${esc(run.environment.label)} (${esc(run.environment.account)}).</p>`
     + (Object.keys(byModel).length ? `<table><tr><th>model</th><th>calls</th><th>valid</th><th>tokens</th><th>USD</th><th>median ms</th></tr>${Object.entries(byModel).map(([k, x]) => `<tr><td>${esc(k)}</td><td>${x.calls}</td><td>${x.valid}</td><td>${x.tin + x.tout}</td><td>${x.usd.toFixed(5)}</td><td>${x.ms.sort((a, b) => a - b)[x.ms.length >> 1]}</td></tr>`).join('')}</table>` : '')
-    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}${c.agree * 4 < c.of * 3 ? ` <small style="color:var(--bad)">${c.agree * 2 <= c.of ? 'no consensus' : 'weak'}</small>` : ''}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
+    + (cons.length ? `<table><tr><th>storm task</th><th>consensus</th><th>models agreeing</th></tr>${cons.map(([k, c]) => `<tr><td>${esc(k)}</td><td>${esc(c.verdict)}${c.agree * 4 < c.of * 3 ? ` <small style="color:var(--warn)">${c.agree * 2 <= c.of ? 'no consensus' : 'weak'}</small>` : ''}</td><td>${c.agree} of ${c.of}</td></tr>`).join('')}</table>` : '');
 }
 // the run over time: one lane per altitude, the height is how many units of it were live; a playhead follows the replay
 // drawn at the panel's real width, so its text stays the same size on a phone and on a projector

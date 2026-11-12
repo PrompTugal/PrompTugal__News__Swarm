@@ -31,12 +31,13 @@ footer button.play{background:var(--accent);color:var(--bg);border-color:var(--a
 .instant .s,.instant .s *{transition:none!important}
 .grow{transform:scale(.06);transform-box:fill-box;transform-origin:center;transition:transform var(--dur,2s) cubic-bezier(.2,.7,.2,1) var(--d,0s)}.s.on .grow{transform:scale(1)}
 .ln{fill:none;stroke:var(--muted);stroke-width:3;stroke-dasharray:var(--len);stroke-dashoffset:var(--len);transition:stroke-dashoffset 1s ease var(--d)}.s.on .ln{stroke-dashoffset:0}
-.ok-ln{stroke:var(--ok)}.bad-ln{stroke:var(--bad)}.ask-ln{stroke:var(--accent)}.flow-ln{stroke:var(--accent);opacity:.7}
+.ok-ln{stroke:var(--ok)}.bad-ln{stroke:var(--bad)}.held-ln{stroke:var(--accent)}
+/* colour: red only for real harm (a tricked agent walking round a check); the gap and unharnessed reach are amber; a refusal is the control working, teal (Dinis, ~01:58 UTC) */.ask-ln{stroke:var(--accent)}.flow-ln{stroke:var(--accent);opacity:.7}
 .mandate{fill:var(--ok)}.reach{fill:color-mix(in srgb,var(--reach) 12%,transparent);stroke:var(--reach);stroke-width:3}.gap{fill:url(#hatch);fill-rule:evenodd}
 .cipher{fill:url(#ciph);stroke:var(--accent);stroke-width:2}.plain{fill:color-mix(in srgb,var(--warn) 16%,transparent);stroke:var(--warn);stroke-width:2;stroke-dasharray:6 5}
 .ephemeral .plain{animation:fadeout 4s ease 2s forwards}@keyframes fadeout{to{opacity:.25}}
 .life{fill:color-mix(in srgb,var(--accent2) 30%,transparent)}.made{fill:var(--accent2)}.sig{fill:var(--accent2)}
-.box{fill:color-mix(in srgb,var(--panel-solid) 70%,transparent);stroke:var(--line);stroke-width:2}.box.hot{stroke:var(--bad);stroke-width:3}
+.box{fill:color-mix(in srgb,var(--panel-solid) 70%,transparent);stroke:var(--line);stroke-width:2}.box.hot{stroke:var(--warn);stroke-width:3}
 .wall{fill:none;stroke:var(--ink);stroke-width:12;opacity:.85}.wall-v{fill:var(--ink);opacity:.85}.door{fill:var(--ok)}
 .asset{fill:color-mix(in srgb,var(--alt-X,#ff7fb0) 16%,transparent);stroke:var(--alt-X,#ff7fb0);stroke-width:3}
 .vaultbox{fill:color-mix(in srgb,var(--accent) 8%,transparent);stroke:var(--accent);stroke-width:2;stroke-dasharray:8 6}
@@ -85,7 +86,7 @@ function legend() {
   const m = (svg) => `<svg width="28" height="28" viewBox="-14 -14 28 28">${svg}</svg>`;
   $('#leg').innerHTML = [[m('<circle r="7" class="mandate"/>'), 'mandate: allowed'], [m('<circle r="12" class="reach"/>'), 'reach: can touch'], [m('<rect x="-12" y="-9" width="24" height="18" class="gap" style="fill:url(#hatch)"/>'), 'the gap'],
     [m('<rect x="-12" y="-9" width="24" height="18" rx="3" class="cipher" style="fill:url(#ciph)"/>'), 'encrypted'], [m('<rect x="-12" y="-9" width="24" height="18" rx="3" class="plain"/>'), 'decrypted, in memory'], [m('<path d="M-6,-9 H4 L8,-5 V9 H-6 Z" fill="none" stroke="var(--ink)" stroke-width="2"/>'), 'public'],
-    [m('<rect x="-12" y="-10" width="24" height="20" class="wall" style="stroke-width:4"/>'), 'harness wall'], [m('<path d="M-10,0 H8" stroke="var(--bad)" stroke-width="3"/><text x="9" y="5" style="fill:var(--bad);font-size:12px">✕</text>'), 'refused']].map(([a, b]) => a + `<span>${b}</span>`).join('');
+    [m('<rect x="-12" y="-10" width="24" height="20" class="wall" style="stroke-width:4"/>'), 'harness wall'], [m('<path d="M-10,0 H8" stroke="var(--accent)" stroke-width="3"/><text x="9" y="5" style="fill:var(--accent);font-size:12px">✕</text>'), 'refused: the control working'], [m('<path d="M-10,0 H8" stroke="var(--bad)" stroke-width="3"/>'), 'red: real harm only']].map(([a, b]) => a + `<span>${b}</span>`).join('');
 }
 function draw() { $('#svg').innerHTML = PACKS.DEFS + packs[P].draw(F); }
 // state at (step, built?): every element of an earlier step is on; this step's elements turn on and animate in

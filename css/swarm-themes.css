@@ -1,7 +1,7 @@
 /* SwarmViews: the five modes, on a spectrum from today's flat view to the futuristic ones.
    swarm.1.designer.fringe@PrompTugal.dinis, 12 November 2026 (WS-215). Every mode keeps the universe's altitude colours
    (--p, --a4, --a3, --a2, --a1, --a0, --res), so a loop is violet and a call is green whichever way you look. */
-.sv{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--live:#ffe066;
+.sv{--bg:#04100F;--panel:#0a1d1b;--ink:#EAF6F3;--muted:#8DB3AC;--line:#1E3A37;--p:#f2c14e;--a4:#ff7a59;--a3:#5ec2ff;--a2:#9b8cff;--a1:#4fd1a5;--a0:#c9d4d2;--res:#f08fc0;--ok:#4fd1a5;--bad:#ff5d6c;--warn:#f2b544;--live:#ffe066;
   --stage:color-mix(in srgb,var(--bg) 60%,var(--panel));--edge:var(--line);--edge-on:var(--ink);--lane:color-mix(in srgb,var(--ink) 3%,transparent);--sec:color-mix(in srgb,var(--a2) 7%,transparent);--font:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   position:relative;height:100%;min-height:360px;background:var(--stage);border-radius:10px;overflow:hidden;font-family:var(--font)}
 .sv-stage{position:absolute;inset:0}.sv-svg{width:100%;height:100%;display:block;touch-action:none;cursor:default;user-select:none}.sv-svg.grab{cursor:grabbing}
@@ -17,7 +17,7 @@
 .sv .e.dim{opacity:.07}.sv .e.hidden,.sv .n.hidden{opacity:0;pointer-events:none}
 .sv .e.flow{stroke:var(--live);stroke-dasharray:5 7;animation:sv-flow .7s linear infinite;opacity:1}@keyframes sv-flow{to{stroke-dashoffset:-24}}
 .sv .n{cursor:pointer;transition:opacity .25s}.sv .n:focus{outline:none}.sv .n:focus-visible .sh{stroke:var(--ink);stroke-width:2.5}
-.sv .n.dim{opacity:.12}.sv .n.bad .sh:not(.ring){stroke:var(--bad);stroke-width:2.2}.sv .n.ok.a-A1 .sh{stroke:none}
+.sv .n.dim{opacity:.12}.sv .n.bad .sh:not(.ring){stroke:var(--warn);stroke-width:2.2} /* invalid answers: amber, the check working; red only for harm */.sv .n.ok.a-A1 .sh{stroke:none}
 .sv .n.live .sh{stroke:var(--live);stroke-width:3}.sv .n.sel .sh{stroke:var(--ink);stroke-width:3}.sv .n.chain .sh{stroke:var(--ink);stroke-width:1.6}
 .sv .n:hover .sh{stroke:var(--ink);stroke-width:2}.sv .n .lat{fill:none;stroke:var(--live);stroke-width:2;opacity:.8}
 .sv-tip{position:absolute;z-index:3;max-width:230px;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:6px 8px;font-size:12px;color:var(--ink);box-shadow:0 6px 20px #0008}
@@ -30,7 +30,7 @@
 .sv[data-mode="blueprint"]{--stage:#06182a;--ink:#d8ecff;--muted:#7fa6c9;--line:#2a4f73;--edge:#3f6f9c;--edge-on:#d8ecff;--lane:#0b2238;--sec:#0e2a46;--font:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .sv[data-mode="blueprint"] .sh{fill-opacity:.12;stroke-width:1.5}.sv[data-mode="blueprint"] .sh:not(.ring){stroke:currentColor}
 .sv[data-mode="blueprint"] .n{color:var(--muted)}.sv[data-mode="blueprint"] .n.a-A3,.sv[data-mode="blueprint"] .n.a-A4,.sv[data-mode="blueprint"] .n.a-P{color:var(--ink)}
-.sv[data-mode="blueprint"] .n.a-A1{color:var(--a1)}.sv[data-mode="blueprint"] .n.a-A2{color:var(--a2)}.sv[data-mode="blueprint"] .n.a-A0{color:var(--a0)}.sv[data-mode="blueprint"] .n.bad{color:var(--bad)}
+.sv[data-mode="blueprint"] .n.a-A1{color:var(--a1)}.sv[data-mode="blueprint"] .n.a-A2{color:var(--a2)}.sv[data-mode="blueprint"] .n.a-A0{color:var(--a0)}.sv[data-mode="blueprint"] .n.bad{color:var(--warn)}
 .sv[data-mode="blueprint"] .lane-band{stroke:#1c3d5e;stroke-dasharray:6 4}.sv[data-mode="blueprint"] .e{stroke-width:1}
 
 /* 3 · heat: the data is the shape. Call size is tokens, colour is valid or not, the yellow arc is latency (a full ring is 20 s) */
