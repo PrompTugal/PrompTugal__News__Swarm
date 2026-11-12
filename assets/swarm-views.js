@@ -77,18 +77,19 @@
     const sections = {};
     for (const id of order) { const n = byId[id], s = n.section; if (!s || !['A2', 'A1', 'A0'].includes(n.altitude)) continue; const x = (sections[s] ||= { id: s, min: 1, max: 0, units: 0 }); x.min = Math.min(x.min, u[id]); x.max = Math.max(x.max, u[id]); x.units++; }
     const calls = Object.fromEntries((run.calls || []).map((c) => [c.unit, c]));
-    return { run, nodes, byId, edges, parent, kids, links, order, depth, u, span, end, sections, calls, lvl, isRes, maxDepth: Math.max(1, ...Object.values(depth)) };
+    const used = [...new Set(Object.values(lvl))].sort((a, b) => a - b), rank = (L) => (used.length > 1 ? used.indexOf(L) / (used.length - 1) : 0.5);
+    return { run, nodes, byId, edges, parent, kids, links, order, depth, u, span, end, sections, calls, lvl, rank, isRes, maxDepth: Math.max(1, ...Object.values(depth)) };
   }
 
   // ---------- the four shapes: every layout is the same (u, level) pair, drawn a different way
   function place(M, layout, W, H) {
     const P = {}, pad = 60, lvl = (n) => (layout === 'tree' ? (M.isRes(n) ? (ALT[n.altitude].lvl === 5 ? M.maxDepth + 1 : -0.6) : M.depth[n.id] ?? 0) : M.lvl[n.id]);
-    const top = layout === 'tree' ? -0.6 : 0, bot = layout === 'tree' ? M.maxDepth + 1 : 5, v = (n) => (lvl(n) - top) / (bot - top);
+    const top = -0.6, bot = M.maxDepth + 1, v = (n) => (layout === 'tree' ? (lvl(n) - top) / (bot - top) : M.rank(M.lvl[n.id]));
     for (const n of M.nodes) {
       const uu = M.u[n.id] ?? 0.5, vv = v(n);
       if (layout === 'right' || layout === 'tree') P[n.id] = { x: pad + vv * (W - 2 * pad), y: pad + uu * (H - 2 * pad) };
       else if (layout === 'radial') { const a = -Math.PI / 2 + uu * Math.PI * 2 * 0.97, r = vv * (Math.min(W, H) / 2 - pad); P[n.id] = { x: W / 2 + r * Math.cos(a), y: H / 2 + r * Math.sin(a), a }; }
-      else P[n.id] = { x: pad + uu * (W - 2 * pad), y: pad + vv * (H - 2 * pad) };
+      else P[n.id] = { x: 150 + uu * (W - 210), y: pad + vv * (H - 2 * pad) };
     }
     return P;
   }
@@ -154,14 +155,14 @@
       const levels = [...new Set(Object.values(M.lvl))].sort((a, b) => a - b).map((L) => { const alts = [...new Set(M.nodes.filter((n) => M.lvl[n.id] === L).map((n) => n.altitude))]; return [L, alts]; }).filter(([, a]) => a.length);
       if (st.layout !== 'tree') for (const [L, altsArr] of levels) {
         const a = 'L', alts = altsArr.join(','), lab = { L: altsArr.map((x) => (x === 'A0' && L < 4 ? (L <= 3 ? 'A0 job' : 'A0 tasks') : WORD[x])).join(' · ') };
-        const v = 60 + (L / 5) * ((st.layout === 'radial' ? Math.min(W, H) / 2 : st.layout === 'right' ? W : H) - 120), gapL = Math.min(1, ...levels.slice(1).map(([x], i) => x - levels[i][0])), band = Math.min(68, gapL / 5 * ((st.layout === 'right' ? W : H) - 120) * 0.9);
-        if (st.layout === 'radial') { const r = (L / 5) * (Math.min(W, H) / 2 - 60); s += `<g class="lane" data-alt="${alts}"><circle cx="${W / 2}" cy="${H / 2}" r="${r}" class="lane-ring"/><text x="${W / 2 + 6}" y="${H / 2 - r - 6}" class="lane-l">${lab[a]}</text></g>`; }
+        const v = 60 + M.rank(L) * ((st.layout === 'radial' ? Math.min(W, H) / 2 : st.layout === 'right' ? W : H) - 120), band = Math.min(68, ((st.layout === 'right' ? W : H) - 120) / Math.max(1, levels.length - 1) * 0.8);
+        if (st.layout === 'radial') { const r = M.rank(L) * (Math.min(W, H) / 2 - 60); s += `<g class="lane" data-alt="${alts}"><circle cx="${W / 2}" cy="${H / 2}" r="${r}" class="lane-ring"/><text x="${W / 2 + 6}" y="${H / 2 - r - 6}" class="lane-l">${lab[a]}</text></g>`; }
         else if (st.layout === 'right') s += `<g class="lane" data-alt="${alts}"><rect x="${v - band / 2}" y="0" width="${band}" height="${H}" class="lane-band"/><text x="${v}" y="22" text-anchor="middle" class="lane-l">${lab[a]}</text></g>`;
         else s += `<g class="lane" data-alt="${alts}"><rect x="0" y="${v - band / 2}" width="${W}" height="${band}" class="lane-band"/><text x="10" y="${v - band / 2 + 14}" class="lane-l">${lab[a]}</text></g>`;
       }
       // sections: one band per storm task around its loops, calls and reads; click to zoom into it
       if (st.layout !== 'radial') for (const sec of Object.values(M.sections)) {
-        const a = 60 + sec.min * ((st.layout === 'down' ? W : H) - 120) - 14, b = 60 + sec.max * ((st.layout === 'down' ? W : H) - 120) + 14;
+        const sp = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id]), a = Math.min(...sp.map((q) => (st.layout === 'down' ? q.x : q.y))) - 14, b = Math.max(...sp.map((q) => (st.layout === 'down' ? q.x : q.y))) + 14;
         if (st.layout === 'down') { const ys = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id].y), y0 = Math.min(...ys) - 26, y1 = Math.max(...ys) + 30; s += `<g class="sec" data-sec="${esc(sec.id)}"><rect x="${a}" y="${y0}" width="${b - a}" height="${y1 - y0}" rx="10"/><text x="${(a + b) / 2}" y="${y1 + 16}" text-anchor="middle">${esc(sec.id)}</text></g>`; }
         else { const xs = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id].x), x0 = Math.min(...xs) - 24, x1 = Math.max(...xs) + 24; s += `<g class="sec" data-sec="${esc(sec.id)}"><rect x="${x0}" y="${a}" width="${x1 - x0}" height="${b - a}" rx="10"/><text x="${x0 + 8}" y="${a + 14}">${esc(sec.id)}</text></g>`; }
       } else for (const sec of Object.values(M.sections)) { const a0 = -Math.PI / 2 + sec.min * Math.PI * 2 * .97 - .02, a1 = -Math.PI / 2 + sec.max * Math.PI * 2 * .97 + .02, rs = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => Math.hypot(P[id].x - W / 2, P[id].y - H / 2)), r0 = Math.min(...rs) - 24, r1 = Math.max(...rs) + 24, cx = W / 2, cy = H / 2, pt = (r, a) => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`, lg = a1 - a0 > Math.PI ? 1 : 0; s += `<g class="sec" data-sec="${esc(sec.id)}"><path d="M${pt(r0, a0)} A${r0},${r0} 0 ${lg} 1 ${pt(r0, a1)} L${pt(r1, a1)} A${r1},${r1} 0 ${lg} 0 ${pt(r1, a0)}Z"/><text x="${cx + (r1 + 16) * Math.cos((a0 + a1) / 2)}" y="${cy + (r1 + 16) * Math.sin((a0 + a1) / 2)}" text-anchor="middle">${esc(sec.id)}</text></g>`; }
@@ -176,14 +177,25 @@
         const res = M.isRes(M.byId[e.to]) || M.isRes(M.byId[e.from]);
         s += `<path class="e ${res ? 'res' : 'tree'} k-${esc(e.kind)}" data-from="${esc(e.from)}" data-to="${esc(e.to)}" d="${d}"><title>${esc(nice(M.byId[e.from].label))} ${esc(e.kind)} ${esc(nice(M.byId[e.to].label))}</title></path>`;
       }
+      // short names: a call shows its try (#1) when its loop already names the model; a loop names its model when its task has several;
+      // a dataset shows its file name; neighbours on the data row are staggered so their labels never overlap
+      const loopsIn = {}; M.nodes.filter((n) => n.altitude === 'A2').forEach((n) => (loopsIn[n.section] = (loopsIn[n.section] || 0) + 1));
+      const modelOf = (id) => (/loop:[^:/]+:([^/]+)/.exec(id) || [])[1];
+      const nameOf = (n) => {
+        if (n.altitude === 'A1') { const tr = (/#\d+$/.exec(n.label) || [''])[0], pm = modelOf(M.parent[n.id] || ''); return pm && String(n.label).startsWith(pm) ? (tr ? 'try ' + tr : n.label) : String(n.label).split('-')[0] + ' ' + tr; }
+        if (n.altitude === 'A2' && loopsIn[n.section] > 1 && modelOf(n.id)) return modelOf(n.id).split('-').slice(0, 2).join('-');
+        if (n.altitude === 'D') return String(n.label).split('/').pop();
+        return nice(n.label);
+      };
+      const stagger = {}; M.nodes.filter((n) => M.isRes(n) && M.lvl[n.id] >= 5).sort((a, b) => (P[a.id]?.x ?? 0) - (P[b.id]?.x ?? 0)).forEach((n, i) => (stagger[n.id] = i % 2));
       s += '</g><g class="nodes">';
       for (const id of [...M.order, ...M.nodes.filter(M.isRes).map((n) => n.id)]) {
         const n = M.byId[id], p = P[id]; if (!p) continue; const r = rOf(n), c = M.calls[id], v = c ? c.valid : n.valid;
         const showLab = !big || ['P', 'A4', 'A3', 'C', 'E', 'M', 'D', 'T'].includes(n.altitude) || blue;
         let label = '';
         if (showLab) {
-          const room = st.layout === 'down' ? Math.max(5, Math.floor(gap / 6)) : 26, txt = short(nice(n.label), n.altitude === 'A1' || n.altitude === 'A0' ? room : 28);
-          const lx = st.layout === 'right' || st.layout === 'tree' ? r + 5 : 0, ly = st.layout === 'right' || st.layout === 'tree' ? 4 : r + 12, anc = lx ? 'start' : 'middle';
+          const room = st.layout === 'down' ? Math.max(5, Math.floor(gap / 6)) : 26, txt = short(nameOf(n), n.altitude === 'A1' || n.altitude === 'A0' ? room : 28);
+          const lx = st.layout === 'right' || st.layout === 'tree' ? r + 5 : 0, ly = st.layout === 'right' || st.layout === 'tree' ? 4 : r + 12 + (st.layout === 'down' && stagger[n.id] ? 14 : 0), anc = lx ? 'start' : 'middle';
           label = (blue && (n.altitude === 'A1' || n.altitude === 'A0') && st.layout === 'down') ? '' : `<text class="nl" x="${lx}" y="${ly}" text-anchor="${anc}">${esc(txt)}</text>`;
           if (blue && c && st.layout !== 'down') label += `<text class="nm" x="${lx}" y="${ly + 11}" text-anchor="${anc}">${c.tokens_in + c.tokens_out} tok · ${c.latency_ms} ms · $${Number(c.cost_usd).toFixed(4)}</text>`;
         }
