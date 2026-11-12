@@ -29,6 +29,14 @@
    "note": "read by hand for this brief",
    "read_on": "2026-11-12",
    "fetched_at": "2026-11-12T15:11Z"
+  },
+  {
+   "kind": "story",
+   "title": "Studio deck: TestMu AI and RiskMandate",
+   "url": "story.html?s=summit-testmu-ai",
+   "note": "made at the summit by swarm.1.fringe@PrompTugal.dinis",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T15:13Z"
   }
  ],
  "gamma_ray": [],
@@ -181,6 +189,14 @@
   }
  },
  "demos": [
+  {
+   "title": "TestMu AI and RiskMandate",
+   "theme": null,
+   "demo": "summit-testmu-ai",
+   "why": "The deck made for them at the summit, in Stories: Present, Timeline, Graph and Delivery (how the swarm made it).",
+   "present": "story.html?s=summit-testmu-ai",
+   "stage": null
+  },
   {
    "title": "The same code, before and after the harness",
    "theme": "harness",

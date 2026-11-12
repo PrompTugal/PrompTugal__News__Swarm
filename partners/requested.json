@@ -987,6 +987,14 @@
      "trust",
      "q-why"
     ]
+   ],
+   "stories": [
+    {
+     "id": "summit-testmu-ai",
+     "title": "TestMu AI and RiskMandate",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T15:13Z"
+    }
    ]
   }
  ]

@@ -247,6 +247,37 @@
    "material": 7
   },
   {
+   "slug": "testmu-ai",
+   "name": "TestMu AI",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "An agentic AI quality engineering platform (formerly LambdaTest). Its Agent Assurance and Rook CLI test AI agents that act, and grade them on what they actually changed, not on what they say they did.",
+   "has": [
+    "met",
+    "story"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T14:40Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://www.testmuai.com/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T15:11Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-testmu-ai",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T15:13Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
    "slug": "cycubix",
    "name": "Cycubix",
    "kind": "security",
@@ -290,29 +321,6 @@
     }
    ],
    "material": 6
-  },
-  {
-   "slug": "testmu-ai",
-   "name": "TestMu AI",
-   "kind": "coding",
-   "kind_label": "Coding agents",
-   "one_line": "An agentic AI quality engineering platform (formerly LambdaTest). Its Agent Assurance and Rook CLI test AI agents that act, and grade them on what they actually changed, not on what they say they did.",
-   "has": [
-    "met"
-   ],
-   "products": [],
-   "codes": [],
-   "asked_at": "2026-11-12T14:40Z",
-   "artefacts": [
-    {
-     "kind": "site",
-     "url": "https://www.testmuai.com/",
-     "read_on": "2026-11-12",
-     "fetched_at": "2026-11-12T15:11Z",
-     "source": "their own site, read by hand"
-    }
-   ],
-   "material": 7
   },
   {
    "slug": "replit",
