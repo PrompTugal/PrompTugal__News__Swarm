@@ -57,7 +57,7 @@ const Q = new URLSearchParams(location.search);
 let ALL = [], KINDS = {}, st = { q: Q.get('q') || '', has: Q.get('has') || 'all', kind: Q.get('kind') || 'all' };
 function route() { const p = new URLSearchParams(); if (st.q) p.set('q', st.q); if (st.has !== 'all') p.set('has', st.has); if (st.kind !== 'all') p.set('kind', st.kind); try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) {} }
 const match = (p) => {
-  if (st.has === 'both' && p.has.length < 2) return false;
+  if (st.has === 'both' && !(p.has.includes('gamma-ray') && p.has.includes('xray'))) return false;
   if (st.has !== 'all' && st.has !== 'both' && !p.has.includes(st.has)) return false;
   if (st.kind !== 'all' && p.kind !== st.kind) return false;
   const q = st.q.trim().toLowerCase(); if (!q) return true;
@@ -65,14 +65,14 @@ const match = (p) => {
 };
 function chips() {
   const n = (f) => ALL.filter(f).length;
-  $('#has').innerHTML = HAS.map(([k, l]) => `<button type="button" data-has="${k}" aria-pressed="${st.has === k}">${l}<small>${k === 'all' ? ALL.length : k === 'both' ? n((p) => p.has.length > 1) : n((p) => p.has.includes(k))}</small></button>`).join('');
+  $('#has').innerHTML = HAS.map(([k, l]) => `<button type="button" data-has="${k}" aria-pressed="${st.has === k}">${l}<small>${k === 'all' ? ALL.length : k === 'both' ? n((p) => p.has.includes('gamma-ray') && p.has.includes('xray')) : n((p) => p.has.includes(k))}</small></button>`).join('');
   const ks = Object.keys(KINDS).filter((k) => ALL.some((p) => p.kind === k));
   $('#kinds').innerHTML = [`<button type="button" data-kind="all" aria-pressed="${st.kind === 'all'}">Every sector</button>`].concat(ks.map((k) => `<button type="button" data-kind="${k}" aria-pressed="${st.kind === k}">${esc(KINDS[k])}<small>${n((p) => p.kind === k)}</small></button>`)).join('');
 }
 function render() {
   const L = ALL.filter(match);
   $('#grid').innerHTML = L.map((p) => `<a class="card" href="partner.html?c=${encodeURIComponent(p.slug)}"><h2>${esc(p.name)}<small>${esc(p.kind_label)}</small></h2><p>${esc(p.one_line)}</p>
-    <div class="tags">${p.has.includes('gamma-ray') ? (p.codes || []).map((c) => `<span class="g" title="GAMMA-Ray card (beta)">γ ${esc(c)}</span>`).join('') : ''}${p.has.includes('xray') ? '<span class="x">X-ray + deck</span>' : ''}${p.has.includes('met') ? '<span class="g">Met at the summit</span>' : ''}${(p.products || []).map((x) => `<span>${esc(x)}</span>`).join('')}</div></a>`).join('');
+    <div class="tags">${p.has.includes('gamma-ray') ? (p.codes || []).map((c) => `<span class="g" title="GAMMA-Ray card (beta)">γ ${esc(c)}</span>`).join('') : ''}${p.has.includes('xray') ? '<span class="x">X-ray + deck</span>' : ''}${p.has.includes('met') ? '<span class="g">Met at the summit</span>' : ''}${p.has.includes('story') ? '<span class="x">Deck in Stories</span>' : ''}${(p.products || []).map((x) => `<span>${esc(x)}</span>`).join('')}</div></a>`).join('');
   $('#empty').hidden = !!L.length; $('#count').textContent = `${L.length} of ${ALL.length} companies`;
   chips(); route();
 }

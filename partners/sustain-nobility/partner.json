@@ -29,6 +29,22 @@
    "note": "read by hand for this brief",
    "read_on": "2026-11-12",
    "fetched_at": "2026-11-12T09:36Z"
+  },
+  {
+   "kind": "story",
+   "title": "Studio deck: Sustain-Nobility: a story made at the summit",
+   "url": "story.html?s=summit-sustain-nobility",
+   "note": "made at the summit by swarm.1.fringe@PrompTugal.dinis",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T09:39Z"
+  },
+  {
+   "kind": "story",
+   "title": "Studio deck: Three layers of one gap (with Cycubix and RiskMandate)",
+   "url": "story.html?s=summit-sustain-cycubix-riskmandate",
+   "note": "made at the summit by swarm.1.fringe@PrompTugal.dinis",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T09:39Z"
   }
  ],
  "gamma_ray": [],
@@ -179,6 +195,22 @@
   }
  },
  "demos": [
+  {
+   "title": "Sustain-Nobility: a story made at the summit",
+   "theme": null,
+   "demo": "summit-sustain-nobility",
+   "why": "The deck made for them at the summit, in Stories: Present, Timeline, Graph and Delivery (how the swarm made it).",
+   "present": "story.html?s=summit-sustain-nobility",
+   "stage": null
+  },
+  {
+   "title": "Three layers of one gap (with Cycubix and RiskMandate)",
+   "theme": null,
+   "demo": "summit-sustain-cycubix-riskmandate",
+   "why": "The deck made for them at the summit, in Stories: Present, Timeline, Graph and Delivery (how the swarm made it).",
+   "present": "story.html?s=summit-sustain-cycubix-riskmandate",
+   "stage": null
+  },
   {
    "title": "Mandate, reach, gap",
    "theme": "reach",

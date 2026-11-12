@@ -7,17 +7,48 @@
    "slug": "sustain-nobility",
    "name": "Sustain-Nobility",
    "kind": "governance",
-   "asked": {"by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis", "at": "2026-11-12T09:35Z"},
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T09:35Z"
+   },
    "one_line": "An AI-governance readiness check for SMEs and the advisors, law firms and ecosystem partners that support them: a governance score, an executive snapshot and a board report.",
    "site": "https://www.sustain-nobility.com/",
    "public": [
-    {"fact": "Offers an AI Governance Readiness Check that assesses governance maturity, identifies risks and generates 'practical, defensible outputs in days instead of months'.", "source": "https://www.sustain-nobility.com/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Serves two audiences: SMEs using AI but unsure about the risks, and ecosystem partners 'supporting hundreds of SMEs with one scalable intelligent governance tool'.", "source": "https://www.sustain-nobility.com/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Plans: Essentials (a 10-minute assessment, a governance score, an initial executive snapshot); Professional (adds a 30-minute review call and an initial executive board report); Partner Licensing (custom, for firms that monitor AI governance across clients).", "source": "https://www.sustain-nobility.com/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Says it combines AI governance, regulatory and legal risk, AI assurance and audit readiness, human rights and ethical safeguards, public policy, and SME operational realities, where most solutions cover only one of legal, technical or policy.", "source": "https://www.sustain-nobility.com/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "The check aims to move an organisation from 'We think our AI is governed' to 'We can demonstrate our AI is governed operationally and defensibly', looking at accountability, oversight, monitoring and evidence readiness.", "source": "https://www.sustain-nobility.com/our-services", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "It says it follows the main UK and EU regulators relevant to AI, and offers real-time diagnostics when a company changes its strategy.", "source": "https://www.sustain-nobility.com/our-services", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Operated by SUSTAIN-NOBILITY Advisory Ltd, registered in England and Wales.", "source": "https://www.sustain-nobility.com/", "read_at": "2026-11-12T09:36Z"}
+    {
+     "fact": "Offers an AI Governance Readiness Check that assesses governance maturity, identifies risks and generates 'practical, defensible outputs in days instead of months'.",
+     "source": "https://www.sustain-nobility.com/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Serves two audiences: SMEs using AI but unsure about the risks, and ecosystem partners 'supporting hundreds of SMEs with one scalable intelligent governance tool'.",
+     "source": "https://www.sustain-nobility.com/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Plans: Essentials (a 10-minute assessment, a governance score, an initial executive snapshot); Professional (adds a 30-minute review call and an initial executive board report); Partner Licensing (custom, for firms that monitor AI governance across clients).",
+     "source": "https://www.sustain-nobility.com/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Says it combines AI governance, regulatory and legal risk, AI assurance and audit readiness, human rights and ethical safeguards, public policy, and SME operational realities, where most solutions cover only one of legal, technical or policy.",
+     "source": "https://www.sustain-nobility.com/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "The check aims to move an organisation from 'We think our AI is governed' to 'We can demonstrate our AI is governed operationally and defensibly', looking at accountability, oversight, monitoring and evidence readiness.",
+     "source": "https://www.sustain-nobility.com/our-services",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "It says it follows the main UK and EU regulators relevant to AI, and offers real-time diagnostics when a company changes its strategy.",
+     "source": "https://www.sustain-nobility.com/our-services",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Operated by SUSTAIN-NOBILITY Advisory Ltd, registered in England and Wales.",
+     "source": "https://www.sustain-nobility.com/",
+     "read_at": "2026-11-12T09:36Z"
+    }
    ],
    "told": [
     "It is selecting 15 pilot startups and is looking for design partners.",
@@ -25,31 +56,107 @@
    ],
    "help": {
     "pitch": "Sustain-Nobility assesses whether an organisation's AI governance can be demonstrated; RiskMandate measures, per agent, what it was asked to do, what it can actually reach, and the gap. Its assessments ask for evidence; we produce evidence, read-only, as a written record.",
-    "mandate": ["A readiness check states what each AI system is for and who is accountable: that is the mandate, in writing."],
-    "reach": ["Its public pages do not say how the reach of an organisation's agents (credentials, tools, data) is measured: unknown, and where RiskMandate's measurement fits."],
-    "gap": ["Its own words: from 'we think' to 'we can demonstrate'. The gap between mandate and reach, measured per agent, is that demonstration for agentic AI."]
+    "mandate": [
+     "A readiness check states what each AI system is for and who is accountable: that is the mandate, in writing."
+    ],
+    "reach": [
+     "Its public pages do not say how the reach of an organisation's agents (credentials, tools, data) is measured: unknown, and where RiskMandate's measurement fits."
+    ],
+    "gap": [
+     "Its own words: from 'we think' to 'we can demonstrate'. The gap between mandate and reach, measured per agent, is that demonstration for agentic AI."
+    ]
    },
    "together": [
-    {"title": "The evidence layer for its assessments", "text": "RiskMandate's mandate, reach and gap record as evidence behind a readiness score, for clients that run AI agents.", "link": "https://gamma-ray.sgit.ai/lens/"},
-    {"title": "Its pilot, with our agents as a design partner", "text": "Our own agent swarm, with its policies and runs public, as a pilot subject that gives feedback on the check.", "link": "../index.html"},
-    {"title": "Refer clients both ways", "text": "Its SMEs with agents to RiskMandate for measurement; our contacts that need a governance programme to Sustain-Nobility.", "link": "https://www.sustain-nobility.com/"}
+    {
+     "title": "The evidence layer for its assessments",
+     "text": "RiskMandate's mandate, reach and gap record as evidence behind a readiness score, for clients that run AI agents.",
+     "link": "https://gamma-ray.sgit.ai/lens/"
+    },
+    {
+     "title": "Its pilot, with our agents as a design partner",
+     "text": "Our own agent swarm, with its policies and runs public, as a pilot subject that gives feedback on the check.",
+     "link": "../index.html"
+    },
+    {
+     "title": "Refer clients both ways",
+     "text": "Its SMEs with agents to RiskMandate for measurement; our contacts that need a governance programme to Sustain-Nobility.",
+     "link": "https://www.sustain-nobility.com/"
+    }
    ],
-   "demos": [["reach", "gap"], ["trust", "q-why"], ["control", "licence"], ["harness", "harness-reach"]]
+   "demos": [
+    [
+     "reach",
+     "gap"
+    ],
+    [
+     "trust",
+     "q-why"
+    ],
+    [
+     "control",
+     "licence"
+    ],
+    [
+     "harness",
+     "harness-reach"
+    ]
+   ],
+   "stories": [
+    {
+     "id": "summit-sustain-nobility",
+     "title": "Sustain-Nobility: a story made at the summit",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T09:39Z"
+    },
+    {
+     "id": "summit-sustain-cycubix-riskmandate",
+     "title": "Three layers of one gap (with Cycubix and RiskMandate)",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T09:39Z"
+    }
+   ]
   },
   {
    "slug": "cycubix",
    "name": "Cycubix",
    "kind": "security",
-   "asked": {"by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis", "at": "2026-11-12T09:35Z"},
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T09:35Z"
+   },
    "one_line": "A Dublin cybersecurity and GRC consultancy and training company; its first product, ConsentScan, scans websites for cookie and consent violations, with an MCP server on its Pro plan.",
    "site": "https://www.cycubix.com/",
    "public": [
-    {"fact": "Cycubix offers cybersecurity training (secure coding in several languages, threat modeling, secure coding for AI and LLM applications against the OWASP Top 10 for LLMs) and consultancy (risk reviews, ISO 27001, GDPR, SOC, NIS2, vCISO).", "source": "https://www.cycubix.com/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "ConsentScan, by Cycubix Ltd, Dublin, is a GDPR and ePrivacy cookie consent checker: one free scan with no sign-up, about 4 minutes, graded A to F.", "source": "https://www.consentscan.io/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "A scan loads the site like a first-time EU visitor, records what fires before consent, then clicks Reject and checks whether trackers keep firing.", "source": "https://www.consentscan.io/how-it-works", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "ConsentScan started as a check Cycubix ran during its ISO 27001, GDPR and security engagements.", "source": "https://www.consentscan.io/", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Plans: Free (1 scan); Starter €19 a month (1 monitored domain); Pro €39 a month (3 monitored domains, and an MCP server to run scans from Claude, Cursor or any MCP client); Agency €99 (10 domains); Enterprise on request.", "source": "https://www.consentscan.io/pricing", "read_at": "2026-11-12T09:36Z"},
-    {"fact": "Its EU Consent Index (2 Nov 2026) tested 160 leading websites in eight EU countries: 69% loaded trackers or non-essential cookies before consent, and 58% of the sites where a Reject click could be completed kept tracking afterwards.", "source": "https://www.cycubix.com/cybersecurity-insights/eu-consent-index-2026", "read_at": "2026-11-12T09:36Z"}
+    {
+     "fact": "Cycubix offers cybersecurity training (secure coding in several languages, threat modeling, secure coding for AI and LLM applications against the OWASP Top 10 for LLMs) and consultancy (risk reviews, ISO 27001, GDPR, SOC, NIS2, vCISO).",
+     "source": "https://www.cycubix.com/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "ConsentScan, by Cycubix Ltd, Dublin, is a GDPR and ePrivacy cookie consent checker: one free scan with no sign-up, about 4 minutes, graded A to F.",
+     "source": "https://www.consentscan.io/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "A scan loads the site like a first-time EU visitor, records what fires before consent, then clicks Reject and checks whether trackers keep firing.",
+     "source": "https://www.consentscan.io/how-it-works",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "ConsentScan started as a check Cycubix ran during its ISO 27001, GDPR and security engagements.",
+     "source": "https://www.consentscan.io/",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Plans: Free (1 scan); Starter €19 a month (1 monitored domain); Pro €39 a month (3 monitored domains, and an MCP server to run scans from Claude, Cursor or any MCP client); Agency €99 (10 domains); Enterprise on request.",
+     "source": "https://www.consentscan.io/pricing",
+     "read_at": "2026-11-12T09:36Z"
+    },
+    {
+     "fact": "Its EU Consent Index (2 Nov 2026) tested 160 leading websites in eight EU countries: 69% loaded trackers or non-essential cookies before consent, and 58% of the sites where a Reject click could be completed kept tracking afterwards.",
+     "source": "https://www.cycubix.com/cybersecurity-insights/eu-consent-index-2026",
+     "read_at": "2026-11-12T09:36Z"
+    }
    ],
    "told": [
     "ConsentScan uses an agentic workflow.",
@@ -57,16 +164,65 @@
    ],
    "help": {
     "pitch": "ConsentScan measures the gap between what a site says (its consent banner) and what it does (the trackers that fire). RiskMandate measures the same kind of gap for AI agents: what an agent was asked to do against what it can reach. For ConsentScan's own agentic workflow and its MCP server, RiskMandate would write down the mandate, measure the reach and record the gap.",
-    "mandate": ["The scanner's own job: load a site, record cookies, click Reject, grade. A narrow, writable mandate."],
-    "reach": ["Its MCP server lets Claude, Cursor or any MCP client run scans: an outside agent with a tool. What the MCP server's credentials can reach beyond scanning is unknown from public pages."],
-    "gap": ["Unknown from public pages; the mandate is narrow, so the gap is measurable. 'Installed, not blocking' (its words for consent platforms) is the same shape as an agent policy that exists but is not enforced."]
+    "mandate": [
+     "The scanner's own job: load a site, record cookies, click Reject, grade. A narrow, writable mandate."
+    ],
+    "reach": [
+     "Its MCP server lets Claude, Cursor or any MCP client run scans: an outside agent with a tool. What the MCP server's credentials can reach beyond scanning is unknown from public pages."
+    ],
+    "gap": [
+     "Unknown from public pages; the mandate is narrow, so the gap is measurable. 'Installed, not blocking' (its words for consent platforms) is the same shape as an agent policy that exists but is not enforced."
+    ]
    },
    "together": [
-    {"title": "A mandate for the ConsentScan MCP server", "text": "A written mandate for what an agent may do through the MCP server, and its reach measured against it.", "link": "https://www.consentscan.io/pricing"},
-    {"title": "Same pattern, two layers: a joint story", "text": "Banner versus trackers, and mandate versus reach: the same gap, said versus done, for websites and for agents.", "link": "https://www.cycubix.com/cybersecurity-insights/eu-consent-index-2026"},
-    {"title": "Training meets measurement", "text": "Its secure-coding-for-LLM training and RiskMandate's measurement of the agents those teams build.", "link": "https://www.cycubix.com/cycubix-trainings/secure-coding-for-large-language-model-applications"}
+    {
+     "title": "A mandate for the ConsentScan MCP server",
+     "text": "A written mandate for what an agent may do through the MCP server, and its reach measured against it.",
+     "link": "https://www.consentscan.io/pricing"
+    },
+    {
+     "title": "Same pattern, two layers: a joint story",
+     "text": "Banner versus trackers, and mandate versus reach: the same gap, said versus done, for websites and for agents.",
+     "link": "https://www.cycubix.com/cybersecurity-insights/eu-consent-index-2026"
+    },
+    {
+     "title": "Training meets measurement",
+     "text": "Its secure-coding-for-LLM training and RiskMandate's measurement of the agents those teams build.",
+     "link": "https://www.cycubix.com/cycubix-trainings/secure-coding-for-large-language-model-applications"
+    }
    ],
-   "demos": [["reach", "send-button"], ["control", "check-outside"], ["harness", "harness-door"], ["reach", "gap"]]
+   "demos": [
+    [
+     "reach",
+     "send-button"
+    ],
+    [
+     "control",
+     "check-outside"
+    ],
+    [
+     "harness",
+     "harness-door"
+    ],
+    [
+     "reach",
+     "gap"
+    ]
+   ],
+   "stories": [
+    {
+     "id": "summit-cycubix",
+     "title": "Cycubix: a story made at the summit",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T09:39Z"
+    },
+    {
+     "id": "summit-sustain-cycubix-riskmandate",
+     "title": "Three layers of one gap (with Sustain-Nobility and RiskMandate)",
+     "by": "swarm.1.fringe@PrompTugal.dinis",
+     "at": "2026-11-12T09:39Z"
+    }
+   ]
   }
  ]
 }

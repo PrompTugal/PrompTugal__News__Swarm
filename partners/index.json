@@ -28,7 +28,8 @@
    "kind_label": "AI governance",
    "one_line": "An AI-governance readiness check for SMEs and the advisors, law firms and ecosystem partners that support them: a governance score, an executive snapshot and a board report.",
    "has": [
-    "met"
+    "met",
+    "story"
    ],
    "products": [],
    "codes": [],
@@ -39,6 +40,20 @@
      "url": "https://www.sustain-nobility.com/",
      "read_on": "2026-11-12",
      "fetched_at": "2026-11-12T09:36Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-sustain-nobility",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:39Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-sustain-cycubix-riskmandate",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:39Z",
      "source": "their own site, read by hand"
     }
    ],
@@ -51,7 +66,8 @@
    "kind_label": "Security",
    "one_line": "A Dublin cybersecurity and GRC consultancy and training company; its first product, ConsentScan, scans websites for cookie and consent violations, with an MCP server on its Pro plan.",
    "has": [
-    "met"
+    "met",
+    "story"
    ],
    "products": [],
    "codes": [],
@@ -69,6 +85,20 @@
      "url": "https://www.cycubix.com/",
      "read_on": "2026-11-12",
      "fetched_at": "2026-11-12T09:36Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-cycubix",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:39Z",
+     "source": "their own site, read by hand"
+    },
+    {
+     "kind": "story",
+     "url": "story.html?s=summit-sustain-cycubix-riskmandate",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T09:39Z",
      "source": "their own site, read by hand"
     }
    ],

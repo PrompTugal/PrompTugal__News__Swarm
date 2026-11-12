@@ -87,7 +87,7 @@ const Q = new URLSearchParams(location.search), slug = (Q.get('c') || '').replac
 const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
 const day = (t) => String(t || '').replace('T', ' ').replace(/Z$/, ' UTC');
 const srcs = (list) => (list || []).filter(Boolean).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join('');
-const KIND = { brief: 'Brief', site: 'Their own site', 'gamma-ray': 'GAMMA-Ray card (beta)', 'gamma-ray-scan': 'GAMMA-Ray scan (beta)', xray: 'X-ray record', 'xray-deck': 'X-ray deck', 'xray-run': 'X-ray run' };
+const KIND = { story: 'In Stories', brief: 'Brief', site: 'Their own site', 'gamma-ray': 'GAMMA-Ray card (beta)', 'gamma-ray-scan': 'GAMMA-Ray scan (beta)', xray: 'X-ray record', 'xray-deck': 'X-ray deck', 'xray-run': 'X-ray run' };
 let P = null, player = null;
 
 function brief(p) {
@@ -125,7 +125,7 @@ function brief(p) {
     ${offer(p.together.offer)}<div class="cards2">${p.together.items.map((t) => `<div><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p><div class="acts"><a class="btn" href="${esc(t.link)}"${/^https?:/.test(t.link) ? ' target="_blank" rel="noopener"' : ''}>Open</a>${t.link2 ? `<a class="btn" href="${esc(t.link2)}" target="_blank" rel="noopener">How</a>` : ''}</div></div>`).join('')}</div></section>`);
   // demos
   out.push(`<section class="s" id="demos"><h2>Demos to show them</h2><p class="note">Our own demos that speak to ${esc(p.kind_label.toLowerCase())}. "With notes" opens the theme page (the demo on the left, what to say on the right); "Stage" opens the scene alone.</p>
-    <div class="cards2">${p.demos.map((d) => `<div><h3>${esc(d.title)}</h3><p>${esc(d.why)}</p><div class="acts"><a class="btn" href="${esc(d.present)}">With notes</a><a class="btn" href="${esc(d.stage)}">Stage</a></div></div>`).join('')}</div></section>`);
+    <div class="cards2">${p.demos.map((d) => `<div><h3>${esc(d.title)}</h3><p>${esc(d.why)}</p><div class="acts"><a class="btn" href="${esc(d.present)}">${d.stage ? 'With notes' : '▶ Open the deck'}</a>${d.stage ? `<a class="btn" href="${esc(d.stage)}">Stage</a>` : ''}</div></div>`).join('')}</div></section>`);
   return out.join('');
 }
 
