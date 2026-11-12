@@ -180,7 +180,7 @@
     if (!S) return null;
     const sc = S.scene, mine = STEPS.filter((x) => x.si === S.si);
     const st = { scene: sc, si: S.si, k, i: S.i, p: clamp((time - S.s) / (S.e - S.s), 0, 1), mode: sc.mode || null, highlight: null, show: null, overlay: null, overlayP: 0,
-      anchors: sc.anchors || null, replay: null, assets: [], assetsP: 1, caption: '', counter: null, owner: null, fail: null, failP: 0, bars: null, barsN: 0, barsP: 1, card: null, cardN: 0, cardP: 1, camera: sc.camera || 'fit', label: '' };
+      anchors: sc.anchors || null, replay: null, assets: [], assetsP: 1, caption: '', counter: null, owner: null, idea: false, fail: null, failP: 0, bars: null, barsN: 0, barsP: 1, card: null, cardN: 0, cardP: 1, camera: sc.camera || 'fit', label: '' };
     for (const x of mine) {
       if (x.i > S.i) break;
       const p = x.i < S.i ? 1 : st.p, s = x.step;
@@ -197,6 +197,7 @@
       if (s.counter) st.counter = { ...s.counter, p: ease(p) };
       if (s.fail !== undefined) { st.fail = s.fail; st.failP = ease(p); }
       if (s.owner !== undefined) st.owner = s.owner;
+      st.idea = !!s.idea;   // a step marked idea is an illustration of what could happen, on a real run
       if (s.card !== undefined) { st.card = s.card; if (s.card) { st.cardN = s.card.upto != null ? s.card.upto : 99; st.cardP = x.i < S.i ? 1 : ease(p); } }
       if (s.bars) { st.bars = s.bars; st.barsN = s.bars.upto != null ? s.bars.upto : s.bars.items ? s.bars.items.length : 0; st.barsP = ease(p); }
     }
@@ -412,8 +413,9 @@
     if (st.counter) { c.style.display = ''; const v = counterValue(g, st); const shown = Math.round(v.value * st.counter.p), lab = st.counter.label || v.label; c.innerHTML = `<b>${fmtN(shown)}</b><span>${esc(shown === 1 ? lab.replace(/^units\b/, 'unit').replace(/^results\b/, 'result').replace(/^connections\b/, 'connection') : lab)}</span>`; }
     else c.style.display = 'none';
     const simOn = g.sim || g.nodes.some((n) => n.sim && visibleOf(n, st) > 0);
-    $('#simflag').style.display = simOn ? '' : 'none'; if (simOn) $('#simflag').textContent = g.sim ? 'SIMULATED' : 'REAL RUN · SIMULATED ASSETS';
+    badge(st.idea ? ['idea', 'ILLUSTRATION · WHAT COULD HAPPEN'] : g.sim ? ['sim', 'SIMULATED'] : simOn ? ['sim', 'REAL RUN · SIMULATED ASSETS'] : ['real', 'REAL RUN · ' + (st.scene.run || '').replace(/^gh:/, 'Runs repo ').replace(/^agents:/, '')]);
   }
+  function badge(b) { const el = $('#simflag'); if (!b) { el.style.display = 'none'; return; } el.style.display = ''; el.className = 'b-' + b[0]; el.textContent = b[1]; }
   const short = (s, n) => (s && s.length > n ? s.slice(0, n - 1) + '…' : s || '');
   const fmtN = (x) => Number(x).toLocaleString('en-GB');
 
@@ -468,7 +470,7 @@
     el.style.display = ''; $('#svg').style.display = 'none'; d3.select('#bars').style('display', 'none'); $('#counter').style.display = 'none';
     if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide();
     const data = cardSrc(c.src);
-    $('#simflag').style.display = c.idea ? '' : 'none'; if (c.idea) $('#simflag').textContent = 'IDEA · NOT A RUN';
+    badge(c.idea ? ['idea', 'ILLUSTRATION · NOT A RUN'] : c.src || c.source ? ['real', 'REAL · ' + short(c.source || c.src, 70)] : null);
     const key = JSON.stringify(c) + st.cardN + (data ? 1 : 0);
     if (key !== lastCardKey) {
       lastCardKey = key;
@@ -485,6 +487,10 @@
         const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'vault-encrypted', 'git-public'];
         const NAMES = { network: 'network (HTTPS)', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public' };
         el.innerHTML = `<div class="flow"><h2>${esc(c.title || (data && data.run) || '')}</h2><div class="lanes" style="grid-template-rows:repeat(${LANES.length},1fr)">${LANES.map((l, i) => `<div class="lane l-${l}" style="grid-row:${i + 1}"><span>${esc(NAMES[l] || l)}</span></div>`).join('')}${steps.map((s2, i) => `<div class="fs l-${s2.where}" data-i="${i}" style="grid-row:${LANES.indexOf(s2.where) + 1};grid-column:${i + 2}"><b>${i + 1}</b><span>${esc(String(s2.who || '').replace(/\.fringe@PrompTugal\.\w+$/, ''))} · ${esc(s2.altitude || '')}</span><small>${esc(short(s2.what || '', 90))}</small>${s2.encrypted ? '<i title="encrypted">🔒</i>' : '<i title="in the clear">◯</i>'}${s2.sealed_to ? `<small class="fp">sealed to ${esc(s2.sealed_to)}</small>` : ''}${s2.signed_by ? `<small class="fp">signed ${esc(s2.signed_by)}</small>` : ''}</div>`).join('')}</div>${data ? `<p class="src">${esc(c.src)} · ${esc(data.outcome || '')}</p>` : '<p class="src">loading…</p>'}</div>`;
+      } else if (c.kind === 'needheld') {
+        const units = (data && pick(data, c.from || 'units')) || [], len = (v) => (Array.isArray(v) ? v.length : +v || 0);
+        const max = Math.max(1, ...units.map((u) => len(u[c.held || 'held'])));
+        el.innerHTML = `<div class="nh"><h2>${esc(c.title || '')}</h2><div class="nh-head"><span></span><span><i class="need"></i>needed</span><span><i class="held"></i>held</span><span>gap</span></div>${units.map((u, i) => { const nd = len(u[c.need || 'needs']), hd = len(u[c.held || 'held']); return `<div class="nh-row ${(c.mark || []).includes(i) ? 'mark' : ''}" data-i="${i}"><span class="nl"><b>${esc(u[c.label || 'unit'])}</b><small>${esc(u.altitude || '')}</small></span><span class="bars"><i class="need" style="width:${(100 * nd) / max}%"></i><i class="held" style="width:${(100 * hd) / max}%"></i></span><span class="nums">${nd} / ${hd}</span><span class="gapn ${hd - nd > 5 ? 'big' : hd - nd > 0 ? 'some' : 'none'}">${hd - nd}</span></div>`; }).join('')}${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
       } else if (c.kind === 'lights') {
         const res = (data && pick(data, c.from || 'after.results')) || [];
         el.innerHTML = `<div class="lights"><h2>${esc(c.title || '')}</h2><div class="row">${res.map((r, i) => `<div class="light" data-i="${i}"><i></i><b>${esc(r.probe)}</b><small>expected ${esc(r.expected)}</small><span>${esc(String(r.got).split(' (')[0])}</span></div>`).join('')}</div>${c.note && data ? `<p class="note">${esc(pick(data, c.note) || c.note)}</p>` : ''}${c.source ? `<p class="src">${esc(c.source)}</p>` : ''}</div>`;
@@ -495,7 +501,7 @@
     // the reveal, every frame: items up to cardN, the last one at cardP. A flow or a check with no "upto" reveals all its
     // rows across the one step, one after another (however many the file holds)
     let n = st.cardN, p = st.cardP;
-    if ((c.kind === 'flow' || c.kind === 'check') && c.upto == null) { const cnt = el.querySelectorAll('[data-i]').length, x = st.cardP * cnt; n = Math.min(cnt, Math.floor(x) + 1); p = x - Math.floor(x); if (st.cardP >= 0.999) { n = cnt; p = 1; } }
+    if ((c.kind === 'flow' || c.kind === 'check' || c.kind === 'needheld') && c.upto == null) { const cnt = el.querySelectorAll('[data-i]').length, x = st.cardP * cnt; n = Math.min(cnt, Math.floor(x) + 1); p = x - Math.floor(x); if (st.cardP >= 0.999) { n = cnt; p = 1; } }
     el.querySelectorAll('[data-i]').forEach((x) => {
       const i = +x.dataset.i, k = i < n - 1 ? 1 : i === n - 1 ? p : 0; x.style.opacity = k; x.style.transform = `translateY(${(1 - k) * 12}px)`;
       if (x.classList.contains('big')) {   // the numbers in a big line count up as it comes in
@@ -523,7 +529,7 @@
   // ---------- the bars (the cost story): the same tokens, priced on each tier, one bar per step
   function drawBars(st) {
     const el = d3.select('#bars').style('display', '');
-    $('#counter').style.display = 'none'; $('#simflag').style.display = 'none';
+    $('#counter').style.display = 'none'; badge(['real', 'REAL RUN · ' + (st.scene.run || '') + ' · Claude prices: list prices for the same tokens']);
     $('#svg').style.display = 'none'; if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide();
     const m = G.metrics || {}, pc = m.potential_claude_usd || {};
     const items = (st.bars.items || []).map((it) => ({ ...it, v: it.of === 'openrouter' ? m.openrouter_usd : it.of ? pc[it.of] : it.value }));

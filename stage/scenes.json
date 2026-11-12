@@ -21,7 +21,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "And the cheap way can also be the safe way."
+       "Don't hope the agent behaves: make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      },
@@ -41,7 +41,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "And the cheap way can also be the safe way."
+       "Don't hope the agent behaves: make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -60,7 +60,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "And the cheap way can also be the safe way."
+       "Don't hope the agent behaves: make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -79,7 +79,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "And the cheap way can also be the safe way."
+       "Don't hope the agent behaves: make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -172,6 +172,54 @@
    ]
   },
   {
+   "id": "reach-measured",
+   "act": "1 · The problem",
+   "title": "The gap, measured unit by unit",
+   "say": "architect.1 measured one real run unit by unit: what each needed, in capability primitives, against what its process held. A process inherits its parent's whole reach.",
+   "steps": [
+    {
+     "label": "needed against held",
+     "dur": 6,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "The agent needed 14 and held 25. The code needed 3 and held 25: it inherits the agent's reach."
+    },
+    {
+     "label": "only the calls",
+     "dur": 2.5,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "mark": [
+       3
+      ],
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "Only the model calls were at their altitude: text in, text out. A gap of 0."
+    },
+    {
+     "label": "narrowed",
+     "dur": 2.5,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "mark": [
+       5
+      ],
+      "note": "answer",
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "The same code, narrowed with Node's permission model: it holds 4. The gap goes from 22 to 1."
+    }
+   ]
+  },
+  {
    "id": "altitudes",
    "act": "2 · Five altitudes",
    "title": "One agent, five altitudes",
@@ -226,7 +274,7 @@
       "A0",
       "D"
      ],
-     "caption": "And code runs (A0): it reads the public storm data. 30 units from one request."
+     "caption": "And code runs (A0): six code units read the public storm data. 30 units in all, from one request."
     },
     {
      "label": "by colour",
@@ -299,20 +347,16 @@
      "dur": 2.5,
      "assets": [
       "Gmail",
-      "Drive",
-      "GitHub",
-      "Database"
+      "Calendar"
      ],
-     "caption": "The agent is connected: Gmail, Drive, GitHub, a database (the assets are simulated)."
+     "caption": "The agent is connected: Gmail and Calendar (simulated assets; the findings are riskmandate.ai's)."
     },
     {
      "label": "who can reach them?",
      "dur": 4,
      "assets": [
       "Gmail",
-      "Drive",
-      "GitHub",
-      "Database"
+      "Calendar"
      ],
      "overlay": "all",
      "counter": {
@@ -321,10 +365,92 @@
      "caption": "Who can reach them? Every loop, every model call, every line of code. Everybody."
     },
     {
+     "label": "send, not draft",
+     "dur": 3,
+     "caption": "And holding the credential means it can send, not just draft. A grant is user-shaped, never data-shaped (riskmandate.ai)."
+    },
+    {
      "label": "one goes wrong",
      "dur": 3,
      "fail": "loop:tides:deepseek-v4-flash/read:tides",
-     "caption": "One bad read, one prompt injection in the data: that code holds the agent's keys."
+     "caption": "What could happen: one prompt injection in the data, and that code holds the agent's credential.",
+     "idea": true
+    }
+   ]
+  },
+  {
+   "id": "send-button",
+   "act": "3 · The same privileges",
+   "title": "A send button is not a mandate",
+   "say": "RiskMandate's published findings on Gmail and Calendar: the grants are user-shaped, so an agent that may draft may also send, and an agent that may edit your calendar can do damage nobody can undo.",
+   "steps": [
+    {
+     "label": "draft, not send",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Gmail and Calendar, from riskmandate.ai",
+      "title": "A send button is not a mandate",
+      "lines": [
+       "Mandate: read and draft, never send. Grant: includes send, behind a setting the account can flip.",
+       "“The narrowest permission that lets it read one message lets it read every message.”",
+       "Calendar keeps deleted events for 30 days, and documents no way to get back an edited one.",
+       "A line in the agent's instructions is “a rule in prose, enforced by nobody.”"
+      ],
+      "source": "riskmandate.ai: stories/just-a-draft.html · lab-connector-grants.html · article-calendar-edits-cannot-be-undone.html · rules/use-your-connectors.html"
+     }
+    },
+    {
+     "label": "one message, every message",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Gmail and Calendar, from riskmandate.ai",
+      "title": "A send button is not a mandate",
+      "lines": [
+       "Mandate: read and draft, never send. Grant: includes send, behind a setting the account can flip.",
+       "“The narrowest permission that lets it read one message lets it read every message.”",
+       "Calendar keeps deleted events for 30 days, and documents no way to get back an edited one.",
+       "A line in the agent's instructions is “a rule in prose, enforced by nobody.”"
+      ],
+      "source": "riskmandate.ai: stories/just-a-draft.html · lab-connector-grants.html · article-calendar-edits-cannot-be-undone.html · rules/use-your-connectors.html"
+     }
+    },
+    {
+     "label": "an edit cannot be undone",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Gmail and Calendar, from riskmandate.ai",
+      "title": "A send button is not a mandate",
+      "lines": [
+       "Mandate: read and draft, never send. Grant: includes send, behind a setting the account can flip.",
+       "“The narrowest permission that lets it read one message lets it read every message.”",
+       "Calendar keeps deleted events for 30 days, and documents no way to get back an edited one.",
+       "A line in the agent's instructions is “a rule in prose, enforced by nobody.”"
+      ],
+      "source": "riskmandate.ai: stories/just-a-draft.html · lab-connector-grants.html · article-calendar-edits-cannot-be-undone.html · rules/use-your-connectors.html"
+     }
+    },
+    {
+     "label": "a rule in prose",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Gmail and Calendar, from riskmandate.ai",
+      "title": "A send button is not a mandate",
+      "lines": [
+       "Mandate: read and draft, never send. Grant: includes send, behind a setting the account can flip.",
+       "“The narrowest permission that lets it read one message lets it read every message.”",
+       "Calendar keeps deleted events for 30 days, and documents no way to get back an edited one.",
+       "A line in the agent's instructions is “a rule in prose, enforced by nobody.”"
+      ],
+      "source": "riskmandate.ai: stories/just-a-draft.html · lab-connector-grants.html · article-calendar-edits-cannot-be-undone.html · rules/use-your-connectors.html"
+     }
     }
    ]
   },
@@ -346,9 +472,7 @@
      "dur": 1.5,
      "assets": [
       "Gmail",
-      "Drive",
-      "GitHub",
-      "Database"
+      "Calendar"
      ],
      "overlay": "all",
      "counter": {
@@ -415,15 +539,14 @@
      "dur": 4,
      "assets": [
       "Gmail",
-      "Drive",
-      "Database"
+      "Calendar"
      ],
      "overlay": "isolated",
      "owner": "requester",
      "counter": {
       "of": "reach"
      },
-     "caption": "Can any of them reach Gmail? No: they run where it is not connected. Not a policy: physics."
+     "caption": "Can any of them reach Gmail or Calendar? No: they run where those are not connected. Don't hope the agent behaves: make the dangerous thing unreachable."
     }
    ]
   },
@@ -521,7 +644,7 @@
      "label": "one job",
      "dur": 3,
      "replay": true,
-     "caption": "One of the jobs: a signed request, an Action, its loops and calls."
+     "caption": "One of the jobs: a signed request, an Action and its model calls (A1)."
     },
     {
      "label": "jobs at once",
@@ -548,7 +671,7 @@
       "of": "summary.jobs",
       "label": "results, each signed and attested by GitHub"
      },
-     "caption": "Each result signed by a key that lived only for its run, and attested by GitHub."
+     "caption": "Each result signed by a key made for its run, and attested by GitHub."
     }
    ]
   },
@@ -833,7 +956,7 @@
        "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
        "Each model call: signed by a key made for that call.",
        "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
-       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+       "A run that started with a push: signed by a key made for its run, and attested by GitHub."
       ],
       "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
      }
@@ -850,7 +973,7 @@
        "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
        "Each model call: signed by a key made for that call.",
        "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
-       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+       "A run that started with a push: signed by a key made for its run, and attested by GitHub."
       ],
       "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
      }
@@ -867,7 +990,7 @@
        "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
        "Each model call: signed by a key made for that call.",
        "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
-       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+       "A run that started with a push: signed by a key made for its run, and attested by GitHub."
       ],
       "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
      }
@@ -884,7 +1007,7 @@
        "The packet: signed by a key made for it (s001: sha256:76bec41cb73435ca).",
        "Each model call: signed by a key made for that call.",
        "The runner signs its result with its own key (s001: sha256:aedceeff1292aae0).",
-       "A run that started with a push: signed by a key that lived only for the run, and attested by GitHub."
+       "A run that started with a push: signed by a key made for its run, and attested by GitHub."
       ],
       "source": "runs/s001-storm-six--swarm.1.fringe.json; PrompTugal__News__Swarm__Runs runs/*/provenance.json"
      }
@@ -973,15 +1096,493 @@
      "caption": "Plaintext only inside the agent that works on it. Git only ever sees a key sealed to the next agent."
     }
    ]
+  },
+  {
+   "id": "q-identity",
+   "act": "12 · Five questions",
+   "title": "How do they get an identity?",
+   "say": "A visitor's five questions, answered with files (pack 0, storytelling.1). Identity: a key per agent, and per unit of work.",
+   "steps": [
+    {
+     "label": "every agent makes its",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Question 1 of 5",
+      "title": "How do they get an identity?",
+      "lines": [
+       "Every agent makes its own key, in its own session; only the public half is published.",
+       {
+        "text": "29 public keys in the Fringe's data/keys.json",
+        "big": true
+       },
+       "Every packet, every model call and every result is signed by a key made for it.",
+       "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
+      ],
+      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+     }
+    },
+    {
+     "label": "29 public keys in",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Question 1 of 5",
+      "title": "How do they get an identity?",
+      "lines": [
+       "Every agent makes its own key, in its own session; only the public half is published.",
+       {
+        "text": "29 public keys in the Fringe's data/keys.json",
+        "big": true
+       },
+       "Every packet, every model call and every result is signed by a key made for it.",
+       "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
+      ],
+      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+     }
+    },
+    {
+     "label": "every packet every model",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Question 1 of 5",
+      "title": "How do they get an identity?",
+      "lines": [
+       "Every agent makes its own key, in its own session; only the public half is published.",
+       {
+        "text": "29 public keys in the Fringe's data/keys.json",
+        "big": true
+       },
+       "Every packet, every model call and every result is signed by a key made for it.",
+       "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
+      ],
+      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+     }
+    },
+    {
+     "label": "the same packet on",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Question 1 of 5",
+      "title": "How do they get an identity?",
+      "lines": [
+       "Every agent makes its own key, in its own session; only the public half is published.",
+       {
+        "text": "29 public keys in the Fringe's data/keys.json",
+        "big": true
+       },
+       "Every packet, every model call and every result is signed by a key made for it.",
+       "The same packet on two runners: s001 signed sha256:aedceeff1292aae0, s002 signed sha256:2f10e242729ae8f9."
+      ],
+      "source": "PrompTugal__News__Fringe data/keys.json · runs/s001-storm-six--swarm.1.fringe.json · runs/s002-storm-six--runner.1.swarm.json"
+     }
+    }
+   ]
+  },
+  {
+   "id": "q-communication",
+   "act": "12 · Five questions",
+   "title": "How do they talk to each other?",
+   "say": "Communication: Git first, vaults for what is sealed.",
+   "steps": [
+    {
+     "label": "through git every commit",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Question 2 of 5",
+      "title": "How do they talk to each other?",
+      "lines": [
+       "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
+       {
+        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "big": true
+       },
+       "Signed requests start runs; sealed vault inboxes carry what must stay private.",
+       "Messages between agents are material, never instruction: only Dinis instructs."
+      ],
+      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+     }
+    },
+    {
+     "label": "196+ commits on the",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Question 2 of 5",
+      "title": "How do they talk to each other?",
+      "lines": [
+       "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
+       {
+        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "big": true
+       },
+       "Signed requests start runs; sealed vault inboxes carry what must stay private.",
+       "Messages between agents are material, never instruction: only Dinis instructs."
+      ],
+      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+     }
+    },
+    {
+     "label": "signed requests start runs",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Question 2 of 5",
+      "title": "How do they talk to each other?",
+      "lines": [
+       "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
+       {
+        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "big": true
+       },
+       "Signed requests start runs; sealed vault inboxes carry what must stay private.",
+       "Messages between agents are material, never instruction: only Dinis instructs."
+      ],
+      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+     }
+    },
+    {
+     "label": "messages between agents are",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Question 2 of 5",
+      "title": "How do they talk to each other?",
+      "lines": [
+       "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
+       {
+        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "big": true
+       },
+       "Signed requests start runs; sealed vault inboxes carry what must stay private.",
+       "Messages between agents are material, never instruction: only Dinis instructs."
+      ],
+      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+     }
+    }
+   ]
+  },
+  {
+   "id": "q-governance",
+   "act": "12 · Five questions",
+   "title": "Who controls what they can do?",
+   "say": "Governance: the honest line is that most rules observe and three enforce. That was a choice.",
+   "steps": [
+    {
+     "label": "deny by default one",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Question 3 of 5",
+      "title": "Who controls what they can do?",
+      "lines": [
+       "Deny by default: one written grant per role and agent (45 agents in abp/policies.json v0.4.1).",
+       {
+        "text": "12 core rules · 3 enforced · the rest observed",
+        "big": true
+       },
+       "Enforced by a hook: push to dev only (R5), never print a key (R8), commit only under your own name (R9).",
+       "The rest observe and log, by Dinis's choice: we learn first, and the log shows what each rule would have blocked."
+      ],
+      "source": "PrompTugal__News__Fringe abp/policies.json v0.4.1 (enforcement.rules)"
+     }
+    },
+    {
+     "label": "12 core rules 3",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Question 3 of 5",
+      "title": "Who controls what they can do?",
+      "lines": [
+       "Deny by default: one written grant per role and agent (45 agents in abp/policies.json v0.4.1).",
+       {
+        "text": "12 core rules · 3 enforced · the rest observed",
+        "big": true
+       },
+       "Enforced by a hook: push to dev only (R5), never print a key (R8), commit only under your own name (R9).",
+       "The rest observe and log, by Dinis's choice: we learn first, and the log shows what each rule would have blocked."
+      ],
+      "source": "PrompTugal__News__Fringe abp/policies.json v0.4.1 (enforcement.rules)"
+     }
+    },
+    {
+     "label": "enforced by a hook",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Question 3 of 5",
+      "title": "Who controls what they can do?",
+      "lines": [
+       "Deny by default: one written grant per role and agent (45 agents in abp/policies.json v0.4.1).",
+       {
+        "text": "12 core rules · 3 enforced · the rest observed",
+        "big": true
+       },
+       "Enforced by a hook: push to dev only (R5), never print a key (R8), commit only under your own name (R9).",
+       "The rest observe and log, by Dinis's choice: we learn first, and the log shows what each rule would have blocked."
+      ],
+      "source": "PrompTugal__News__Fringe abp/policies.json v0.4.1 (enforcement.rules)"
+     }
+    },
+    {
+     "label": "the rest observe and",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Question 3 of 5",
+      "title": "Who controls what they can do?",
+      "lines": [
+       "Deny by default: one written grant per role and agent (45 agents in abp/policies.json v0.4.1).",
+       {
+        "text": "12 core rules · 3 enforced · the rest observed",
+        "big": true
+       },
+       "Enforced by a hook: push to dev only (R5), never print a key (R8), commit only under your own name (R9).",
+       "The rest observe and log, by Dinis's choice: we learn first, and the log shows what each rule would have blocked."
+      ],
+      "source": "PrompTugal__News__Fringe abp/policies.json v0.4.1 (enforcement.rules)"
+     }
+    }
+   ]
+  },
+  {
+   "id": "q-audit",
+   "act": "12 · Five questions",
+   "title": "Where is the audit history?",
+   "say": "Audit: one push, one Action, one signed and attested result, checkable by anyone.",
+   "steps": [
+    {
+     "label": "every run is a",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Question 4 of 5",
+      "title": "Where is the audit history?",
+      "lines": [
+       "Every run is a file: runs/*.json here, runs/<id>/result.json in the Runs repo.",
+       "Every result is signed by its run's key, and GitHub attests which workflow, commit and run made it.",
+       {
+        "text": "13 checks, offline: tools/check-run.mjs",
+        "big": true
+       },
+       "No prompt or answer text is kept: only lengths, hashes and validity."
+      ],
+      "source": "PrompTugal__News__Swarm__Runs tools/check-run.mjs, runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "every result is signed",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Question 4 of 5",
+      "title": "Where is the audit history?",
+      "lines": [
+       "Every run is a file: runs/*.json here, runs/<id>/result.json in the Runs repo.",
+       "Every result is signed by its run's key, and GitHub attests which workflow, commit and run made it.",
+       {
+        "text": "13 checks, offline: tools/check-run.mjs",
+        "big": true
+       },
+       "No prompt or answer text is kept: only lengths, hashes and validity."
+      ],
+      "source": "PrompTugal__News__Swarm__Runs tools/check-run.mjs, runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "13 checks offline toolscheck-runmjs",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Question 4 of 5",
+      "title": "Where is the audit history?",
+      "lines": [
+       "Every run is a file: runs/*.json here, runs/<id>/result.json in the Runs repo.",
+       "Every result is signed by its run's key, and GitHub attests which workflow, commit and run made it.",
+       {
+        "text": "13 checks, offline: tools/check-run.mjs",
+        "big": true
+       },
+       "No prompt or answer text is kept: only lengths, hashes and validity."
+      ],
+      "source": "PrompTugal__News__Swarm__Runs tools/check-run.mjs, runs/*/provenance.json"
+     }
+    },
+    {
+     "label": "no prompt or answer",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 4,
+      "kicker": "Question 4 of 5",
+      "title": "Where is the audit history?",
+      "lines": [
+       "Every run is a file: runs/*.json here, runs/<id>/result.json in the Runs repo.",
+       "Every result is signed by its run's key, and GitHub attests which workflow, commit and run made it.",
+       {
+        "text": "13 checks, offline: tools/check-run.mjs",
+        "big": true
+       },
+       "No prompt or answer text is kept: only lengths, hashes and validity."
+      ],
+      "source": "PrompTugal__News__Swarm__Runs tools/check-run.mjs, runs/*/provenance.json"
+     }
+    }
+   ]
+  },
+  {
+   "id": "q-why",
+   "act": "12 · Five questions",
+   "title": "Why did they think they were allowed?",
+   "say": "Why allowed: the mandate is written down and signed; the gap between mandate and reach is measured (next scene).",
+   "steps": [
+    {
+     "label": "every request carries its",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 1,
+      "kicker": "Question 5 of 5",
+      "title": "Why did they think they were allowed?",
+      "lines": [
+       "Every request carries its mandate, its grant and its budget, and is signed by the agent that asked.",
+       "Every commit names the agent that made it and who it is for (Agent:, For:).",
+       {
+        "text": "And we measure where reach exceeded mandate",
+        "big": true
+       }
+      ],
+      "source": "how.html step 2 · packets/*/packet.json · Fringe data/run-reach.json"
+     }
+    },
+    {
+     "label": "every commit names the",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 2,
+      "kicker": "Question 5 of 5",
+      "title": "Why did they think they were allowed?",
+      "lines": [
+       "Every request carries its mandate, its grant and its budget, and is signed by the agent that asked.",
+       "Every commit names the agent that made it and who it is for (Agent:, For:).",
+       {
+        "text": "And we measure where reach exceeded mandate",
+        "big": true
+       }
+      ],
+      "source": "how.html step 2 · packets/*/packet.json · Fringe data/run-reach.json"
+     }
+    },
+    {
+     "label": "and we measure where",
+     "dur": 2.5,
+     "card": {
+      "kind": "slide",
+      "upto": 3,
+      "kicker": "Question 5 of 5",
+      "title": "Why did they think they were allowed?",
+      "lines": [
+       "Every request carries its mandate, its grant and its budget, and is signed by the agent that asked.",
+       "Every commit names the agent that made it and who it is for (Agent:, For:).",
+       {
+        "text": "And we measure where reach exceeded mandate",
+        "big": true
+       }
+      ],
+      "source": "how.html step 2 · packets/*/packet.json · Fringe data/run-reach.json"
+     }
+    }
+   ]
+  },
+  {
+   "id": "q-gap",
+   "act": "12 · Five questions",
+   "title": "The gap, measured",
+   "say": "architect.1 measured one real run unit by unit: what each needed, in capability primitives, against what its process held. A process inherits its parent's whole reach.",
+   "steps": [
+    {
+     "label": "needed against held",
+     "dur": 6,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "The agent needed 14 and held 25. The code needed 3 and held 25: it inherits the agent's reach."
+    },
+    {
+     "label": "only the calls",
+     "dur": 2.5,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "mark": [
+       3
+      ],
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "Only the model calls were at their altitude: text in, text out. A gap of 0."
+    },
+    {
+     "label": "narrowed",
+     "dur": 2.5,
+     "card": {
+      "kind": "needheld",
+      "src": "https://raw.githubusercontent.com/PrompTugal/PrompTugal__News__Fringe/dev/data/run-reach.json",
+      "mark": [
+       5
+      ],
+      "note": "answer",
+      "title": "What each unit needed, and what it held",
+      "source": "PrompTugal__News__Fringe data/run-reach.json (architect.1, 11 Nov 15:40 UTC)"
+     },
+     "caption": "The same code, narrowed with Node's permission model: it holds 4. The gap goes from 22 to 1."
+    }
+   ]
   }
  ],
  "packs": {
+  "questions": {
+   "title": "Five questions",
+   "about": "identity, communication, governance, audit, why allowed: each answered with a file",
+   "scenes": [
+    "q-identity",
+    "q-communication",
+    "q-governance",
+    "q-audit",
+    "q-why",
+    "q-gap"
+   ]
+  },
   "problem": {
    "title": "The problem",
    "about": "the opening and mandate, reach, gap",
    "scenes": [
     "opening",
-    "gap"
+    "gap",
+    "reach-measured"
    ]
   },
   "ladder": {
@@ -997,6 +1598,7 @@
    "about": "who can reach the assets, policies, running elsewhere",
    "scenes": [
     "same-privileges",
+    "send-button",
     "policies",
     "elsewhere"
    ]
@@ -1029,6 +1631,7 @@
    "about": "mandate, reach, gap; the probes; where the check runs",
    "scenes": [
     "gap",
+    "reach-measured",
     "harness",
     "check-inside",
     "check-outside"

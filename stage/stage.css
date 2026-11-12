@@ -44,7 +44,8 @@ summary::before { content: "▸ "; } details[open] > summary::before { content: 
 #caption:empty { display: none }
 #counter { position: absolute; right: 22px; top: 18px; text-align: right; pointer-events: none }
 #counter b { display: block; font: 700 calc(3.4em * var(--text, 1)) var(--font-head); color: var(--reach); line-height: 1 } #counter span { color: var(--muted) }
-#simflag { position: absolute; left: 16px; top: 14px; font: 600 .75em var(--mono); letter-spacing: .1em; color: var(--warn); border: 1px dashed var(--warn); border-radius: 6px; padding: 2px 8px }
+#simflag { position: absolute; left: 16px; top: 14px; z-index: 4; font: 600 .75em var(--mono); letter-spacing: .1em; color: var(--warn); border: 1px dashed var(--warn); border-radius: 6px; padding: 2px 8px; max-width: 60%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis }
+#simflag.b-real { color: var(--ok); border: 1px solid color-mix(in srgb, var(--ok) 60%, transparent) } #simflag.b-idea { color: var(--alt-M); border-color: var(--alt-M) }
 #info { position: absolute; left: 16px; bottom: 16px; max-width: 360px; font-size: .85em; color: var(--ink); pointer-events: none } #info:empty { display: none }
 #bars { position: absolute; inset: 0; padding: 8% 10% 12%; display: flex; flex-direction: column; justify-content: center; gap: 18px }
 #bars .bar { display: grid; grid-template-columns: 220px 1fr 240px; align-items: center; gap: 14px; transition: opacity .4s; font-size: calc(1.15em * var(--text, 1)) }
@@ -118,3 +119,11 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* the designer's views, mounted in the stage */
 #views { position: absolute; inset: 0 } #views.sv { background: transparent }
 #vpick { position: absolute; right: 16px; bottom: 16px; display: flex; gap: 6px; z-index: 3 } #vpick select { background: var(--panel-solid); color: var(--ink); border: 1px solid var(--line); border-radius: 7px; padding: 3px 6px }
+
+/* needed against held (run-reach) */
+#card .nh { width: 100%; max-width: 1150px } #card .nh h2 { font-size: calc(2.1em * var(--text, 1)) }
+.nh-head, .nh-row { display: grid; grid-template-columns: 260px 1fr 90px 60px; gap: 12px; align-items: center } .nh-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; margin-bottom: 8px }
+.nh-head i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px } .nh-head i.need, .nh-row i.need { background: var(--alt-A1) } .nh-head i.held, .nh-row i.held { background: color-mix(in srgb, var(--bad) 70%, var(--alt-A0)) }
+.nh-row { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) } .nh-row .nl small { display: block; color: var(--muted); font: .75em var(--mono) }
+.nh-row .bars { display: flex; flex-direction: column; gap: 4px } .nh-row .bars i { display: block; height: 12px; border-radius: 4px; transition: width .6s } .nh-row .nums { font: 600 .95em var(--mono); color: var(--muted) }
+.gapn { font: 700 1.4em var(--font-head); text-align: center } .gapn.big { color: var(--bad) } .gapn.some { color: var(--warn) } .gapn.none { color: var(--ok) } .nh-row.mark { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px }
