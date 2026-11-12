@@ -140,8 +140,9 @@
       if (three) { three.destroy(); three = null; }
       el.dataset.mode = st.mode; el.dataset.layout = st.layout;
       if (st.mode === 'three') { svgWrap.innerHTML = '<div class="sv-3d-wait">loading the 3D view…</div>'; draw3d(); return; }
-      [W, H] = canvas(M, st.layout, (svgWrap.clientWidth || 1200) / Math.max(1, svgWrap.clientHeight || 700)); P = place(M, st.layout, W, H);
-      const big = M.nodes.length > 60, R = big ? Math.round(7 * Math.max(1, Math.min(2.2, Math.max(W, H) / 1500))) : 12, heat = st.mode === 'heat', blue = st.mode === 'blueprint', neon = st.mode === 'neon';
+      const lay = st.mode === 'orbit' ? 'radial' : st.layout; // orbit is always rings
+      [W, H] = canvas(M, lay, (svgWrap.clientWidth || 1200) / Math.max(1, svgWrap.clientHeight || 700)); P = place(M, lay, W, H);
+      const LAY = st.mode === 'orbit' ? 'radial' : st.layout, orbit = st.mode === 'orbit', big = M.nodes.length > 60, R = big ? Math.round(7 * Math.max(1, Math.min(2.2, Math.max(W, H) / 1500))) : 12, heat = st.mode === 'heat', blue = st.mode === 'blueprint', neon = st.mode === 'neon';
       const nLeaves = M.order.filter((id) => !(M.kids[id] || []).length).length, gap = (W - 120) / Math.max(1, nLeaves - 1);
       const maxTok = Math.max(1, ...M.nodes.map((n) => M.calls[n.id] ? M.calls[n.id].tokens_in + M.calls[n.id].tokens_out : n.tokens || 0));
       const rOf = (n) => { if (heat && n.altitude === 'A1') { const c = M.calls[n.id], t = c ? c.tokens_in + c.tokens_out : n.tokens || 0; return 4 + 14 * Math.sqrt(t / maxTok); } return (n.altitude === 'P' || n.altitude === 'A4' || n.altitude === 'A3') ? R + 3 : RES.has(n.altitude) ? R - 1 : R; };
@@ -153,17 +154,21 @@
       // altitude guides: lanes (top-down, left-right), rings (radial), depth columns (tree); each labelled and clickable
       const WORD = { P: 'person', A4: 'A4 swarm', T: 'the task', C: 'holds', E: 'runs in', A3: 'A3 agents', A2: 'A2 loops', A1: 'A1 calls', A0: 'A0 compute', M: 'router', D: 'data' };
       const levels = [...new Set(Object.values(M.lvl))].sort((a, b) => a - b).map((L) => { const alts = [...new Set(M.nodes.filter((n) => M.lvl[n.id] === L).map((n) => n.altitude))]; return [L, alts]; }).filter(([, a]) => a.length);
-      if (st.layout !== 'tree') for (const [L, altsArr] of levels) {
+      if (LAY !== 'tree') for (const [L, altsArr] of levels) {
         const a = 'L', alts = altsArr.join(','), lab = { L: altsArr.map((x) => (x === 'A0' && L < 4 ? (L <= 3 ? 'A0 job' : 'A0 tasks') : WORD[x])).join(' · ') };
-        const v = 60 + M.rank(L) * ((st.layout === 'radial' ? Math.min(W, H) / 2 : st.layout === 'right' ? W : H) - 120), band = Math.min(68, ((st.layout === 'right' ? W : H) - 120) / Math.max(1, levels.length - 1) * 0.8);
-        if (st.layout === 'radial') { const r = M.rank(L) * (Math.min(W, H) / 2 - 60); s += `<g class="lane" data-alt="${alts}"><circle cx="${W / 2}" cy="${H / 2}" r="${r}" class="lane-ring"/><text x="${W / 2 + 6}" y="${H / 2 - r - 6}" class="lane-l">${lab[a]}</text></g>`; }
-        else if (st.layout === 'right') s += `<g class="lane" data-alt="${alts}"><rect x="${v - band / 2}" y="0" width="${band}" height="${H}" class="lane-band"/><text x="${v}" y="22" text-anchor="middle" class="lane-l">${lab[a]}</text></g>`;
+        const v = 60 + M.rank(L) * ((LAY === 'radial' ? Math.min(W, H) / 2 : LAY === 'right' ? W : H) - 120), band = Math.min(68, ((LAY === 'right' ? W : H) - 120) / Math.max(1, levels.length - 1) * 0.8);
+        if (LAY === 'radial') { const r = M.rank(L) * (Math.min(W, H) / 2 - 60); s += `<g class="lane" data-alt="${alts}"><circle cx="${W / 2}" cy="${H / 2}" r="${r}" class="lane-ring"/><text x="${W / 2 + 6}" y="${H / 2 - r - 6}" class="lane-l">${lab[a]}</text></g>`; }
+        else if (LAY === 'right') s += `<g class="lane" data-alt="${alts}"><rect x="${v - band / 2}" y="0" width="${band}" height="${H}" class="lane-band"/><text x="${v}" y="22" text-anchor="middle" class="lane-l">${lab[a]}</text></g>`;
         else s += `<g class="lane" data-alt="${alts}"><rect x="0" y="${v - band / 2}" width="${W}" height="${band}" class="lane-band"/><text x="10" y="${v - band / 2 + 14}" class="lane-l">${lab[a]}</text></g>`;
       }
+      if (orbit) { const cx = W / 2, cy = H / 2, R0 = Math.min(W, H) / 2 - 20, a1 = -Math.PI / 2, a0 = a1 - 0.5, pt = (a) => `${cx + R0 * Math.cos(a)},${cy + R0 * Math.sin(a)}`;
+        s += `<defs><radialGradient id="sv-beam" cx="${cx}" cy="${cy}" r="${R0}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="var(--beam)" stop-opacity=".0"/><stop offset=".35" stop-color="var(--beam)" stop-opacity=".10"/><stop offset="1" stop-color="var(--beam)" stop-opacity=".28"/></radialGradient></defs>`
+          + `<g class="beam" style="transform-origin:${cx}px ${cy}px"><path d="M${cx},${cy} L${pt(a0)} A${R0},${R0} 0 0 1 ${pt(a1)} Z" fill="url(#sv-beam)"/><line x1="${cx}" y1="${cy}" x2="${pt(a1).split(',')[0]}" y2="${pt(a1).split(',')[1]}" class="beam-edge"/></g>`
+          + [...Array(72)].map((_, i) => { const a = i * Math.PI / 36, r1 = R0 - (i % 6 ? 6 : 14); return `<line class="tick" x1="${cx + R0 * Math.cos(a)}" y1="${cy + R0 * Math.sin(a)}" x2="${cx + r1 * Math.cos(a)}" y2="${cy + r1 * Math.sin(a)}"/>`; }).join(''); }
       // sections: one band per storm task around its loops, calls and reads; click to zoom into it
-      if (st.layout !== 'radial') for (const sec of Object.values(M.sections)) {
-        const sp = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id]), a = Math.min(...sp.map((q) => (st.layout === 'down' ? q.x : q.y))) - 14, b = Math.max(...sp.map((q) => (st.layout === 'down' ? q.x : q.y))) + 14;
-        if (st.layout === 'down') { const ys = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id].y), y0 = Math.min(...ys) - 26, y1 = Math.max(...ys) + 30; s += `<g class="sec" data-sec="${esc(sec.id)}"><rect x="${a}" y="${y0}" width="${b - a}" height="${y1 - y0}" rx="10"/><text x="${(a + b) / 2}" y="${y1 + 16}" text-anchor="middle">${esc(sec.id)}</text></g>`; }
+      if (LAY !== 'radial') for (const sec of Object.values(M.sections)) {
+        const sp = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id]), a = Math.min(...sp.map((q) => (LAY === 'down' ? q.x : q.y))) - 14, b = Math.max(...sp.map((q) => (LAY === 'down' ? q.x : q.y))) + 14;
+        if (LAY === 'down') { const ys = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id].y), y0 = Math.min(...ys) - 26, y1 = Math.max(...ys) + 30; s += `<g class="sec" data-sec="${esc(sec.id)}"><rect x="${a}" y="${y0}" width="${b - a}" height="${y1 - y0}" rx="10"/><text x="${(a + b) / 2}" y="${y1 + 16}" text-anchor="middle">${esc(sec.id)}</text></g>`; }
         else { const xs = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => P[id].x), x0 = Math.min(...xs) - 24, x1 = Math.max(...xs) + 24; s += `<g class="sec" data-sec="${esc(sec.id)}"><rect x="${x0}" y="${a}" width="${x1 - x0}" height="${b - a}" rx="10"/><text x="${x0 + 8}" y="${a + 14}">${esc(sec.id)}</text></g>`; }
       } else for (const sec of Object.values(M.sections)) { const a0 = -Math.PI / 2 + sec.min * Math.PI * 2 * .97 - .02, a1 = -Math.PI / 2 + sec.max * Math.PI * 2 * .97 + .02, rs = M.order.filter((id) => M.byId[id].section === sec.id).map((id) => Math.hypot(P[id].x - W / 2, P[id].y - H / 2)), r0 = Math.min(...rs) - 24, r1 = Math.max(...rs) + 24, cx = W / 2, cy = H / 2, pt = (r, a) => `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`, lg = a1 - a0 > Math.PI ? 1 : 0; s += `<g class="sec" data-sec="${esc(sec.id)}"><path d="M${pt(r0, a0)} A${r0},${r0} 0 ${lg} 1 ${pt(r0, a1)} L${pt(r1, a1)} A${r1},${r1} 0 ${lg} 0 ${pt(r1, a0)}Z"/><text x="${cx + (r1 + 16) * Math.cos((a0 + a1) / 2)}" y="${cy + (r1 + 16) * Math.sin((a0 + a1) / 2)}" text-anchor="middle">${esc(sec.id)}</text></g>`; }
       // edges: straight (flat, heat), orthogonal elbows (blueprint, tree), curves (neon, radial)
@@ -171,8 +176,8 @@
       for (const e of M.edges) {
         const a = P[e.from], b = P[e.to]; if (!a || !b) continue;
         let d;
-        if (blue || st.layout === 'tree') d = st.layout === 'down' ? `M${a.x},${a.y}V${(a.y + b.y) / 2}H${b.x}V${b.y}` : `M${a.x},${a.y}H${(a.x + b.x) / 2}V${b.y}H${b.x}`;
-        else if (neon || st.layout === 'radial') { const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, cx = st.layout === 'radial' ? mx + (W / 2 - mx) * .25 : mx, cy = st.layout === 'radial' ? my + (H / 2 - my) * .25 : st.layout === 'down' ? a.y : my; d = `M${a.x},${a.y}Q${cx},${cy} ${b.x},${b.y}`; }
+        if (blue || LAY === 'tree') d = LAY === 'down' ? `M${a.x},${a.y}V${(a.y + b.y) / 2}H${b.x}V${b.y}` : `M${a.x},${a.y}H${(a.x + b.x) / 2}V${b.y}H${b.x}`;
+        else if (neon || LAY === 'radial') { const mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2, cx = LAY === 'radial' ? mx + (W / 2 - mx) * .25 : mx, cy = LAY === 'radial' ? my + (H / 2 - my) * .25 : LAY === 'down' ? a.y : my; d = `M${a.x},${a.y}Q${cx},${cy} ${b.x},${b.y}`; }
         else d = `M${a.x},${a.y}L${b.x},${b.y}`;
         const res = M.isRes(M.byId[e.to]) || M.isRes(M.byId[e.from]);
         s += `<path class="e ${res ? 'res' : 'tree'} k-${esc(e.kind)}" data-from="${esc(e.from)}" data-to="${esc(e.to)}" d="${d}"><title>${esc(nice(M.byId[e.from].label))} ${esc(e.kind)} ${esc(nice(M.byId[e.to].label))}</title></path>`;
@@ -194,13 +199,14 @@
         const showLab = !big || ['P', 'A4', 'A3', 'C', 'E', 'M', 'D', 'T'].includes(n.altitude) || blue;
         let label = '';
         if (showLab) {
-          const room = st.layout === 'down' ? Math.max(5, Math.floor(gap / 6)) : 26, txt = short(nameOf(n), n.altitude === 'A1' || n.altitude === 'A0' ? room : 28);
-          const lx = st.layout === 'right' || st.layout === 'tree' ? r + 5 : 0, ly = st.layout === 'right' || st.layout === 'tree' ? 4 : r + 12 + (st.layout === 'down' && stagger[n.id] ? 14 : 0), anc = lx ? 'start' : 'middle';
-          label = (blue && (n.altitude === 'A1' || n.altitude === 'A0') && st.layout === 'down') ? '' : `<text class="nl" x="${lx}" y="${ly}" text-anchor="${anc}">${esc(txt)}</text>`;
-          if (blue && c && st.layout !== 'down') label += `<text class="nm" x="${lx}" y="${ly + 11}" text-anchor="${anc}">${c.tokens_in + c.tokens_out} tok · ${c.latency_ms} ms · $${Number(c.cost_usd).toFixed(4)}</text>`;
+          const room = LAY === 'down' ? Math.max(5, Math.floor(gap / 6)) : 26, txt = short(nameOf(n), n.altitude === 'A1' || n.altitude === 'A0' ? room : 28);
+          const lx = LAY === 'right' || LAY === 'tree' ? r + 5 : 0, ly = LAY === 'right' || LAY === 'tree' ? 4 : r + 12 + (LAY === 'down' && stagger[n.id] ? 14 : 0), anc = lx ? 'start' : 'middle';
+          label = (blue && (n.altitude === 'A1' || n.altitude === 'A0') && LAY === 'down') ? '' : `<text class="nl" x="${lx}" y="${ly}" text-anchor="${anc}">${esc(txt)}</text>`;
+          if (blue && c && LAY !== 'down') label += `<text class="nm" x="${lx}" y="${ly + 11}" text-anchor="${anc}">${c.tokens_in + c.tokens_out} tok · ${c.latency_ms} ms · $${Number(c.cost_usd).toFixed(4)}</text>`;
         }
         const ring = heat && c ? `<circle class="lat" r="${r + 3}" stroke-dasharray="${Math.min(1, c.latency_ms / 20000) * 2 * Math.PI * (r + 3)} 999" transform="rotate(-90)"/>` : '';
-        s += `<g class="n a-${n.altitude} ${v === false ? 'bad' : v ? 'ok' : ''}" data-id="${esc(id)}" data-alt="${n.altitude}" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})" tabindex="0" role="button" aria-label="${esc((ALT[n.altitude]?.name || '') + ': ' + nice(n.label))}">${ring}${shape(n.altitude, r, col(n))}${label}</g>`;
+        const ping = orbit && p.a != null ? `--ping:${(((p.a + Math.PI / 2) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI) / (2 * Math.PI) * 6).toFixed(2)}s;` : '';
+        s += `<g class="n a-${n.altitude} ${v === false ? 'bad' : v ? 'ok' : ''}" style="${ping}" data-id="${esc(id)}" data-alt="${n.altitude}" transform="translate(${p.x.toFixed(1)},${p.y.toFixed(1)})" tabindex="0" role="button" aria-label="${esc((ALT[n.altitude]?.name || '') + ': ' + nice(n.label))}">${ring}${shape(n.altitude, r, col(n))}${label}</g>`;
       }
       s += '</g></g></svg>';
       svgWrap.innerHTML = s;

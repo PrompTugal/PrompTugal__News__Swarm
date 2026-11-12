@@ -43,6 +43,15 @@
 .sv[data-mode="neon"] .n.live .sh{animation:sv-pulse .8s ease-in-out infinite alternate}@keyframes sv-pulse{to{stroke-width:6}}
 .sv[data-mode="neon"] .lane-l{fill:#5d74a8}.sv[data-mode="neon"] .lane-ring{stroke:#1e2b55}.sv[data-mode="neon"] .hole{fill:#05070f}
 
+/* 5 · orbit: the futuristic one. Rings per altitude, a scan beam sweeping every 6 s, each unit flashing as the beam passes */
+.sv[data-mode="orbit"]{--stage:radial-gradient(circle at 50% 50%,#08243a 0%,#04101c 55%,#02060c 100%);--ink:#e6f6ff;--muted:#7fa6c4;--line:#163a55;--edge:#1c4a6b;--edge-on:#bfeaff;--beam:#5ef0ff;--a1:#2bffb5;--a2:#b38cff;--a3:#3fd0ff;background:var(--stage)}
+.sv[data-mode="orbit"] .lane-ring{stroke:#1f6d8f;stroke-dasharray:none;stroke-width:1.2;opacity:.8}.sv[data-mode="orbit"] .lane-l{fill:#5fb7d6}
+.sv[data-mode="orbit"] .tick{stroke:#2a7fa3;stroke-width:1.2;opacity:.7}.sv[data-mode="orbit"] .beam-edge{stroke:var(--beam);stroke-width:2;opacity:.8}
+.sv[data-mode="orbit"] .beam{animation:sv-sweep 6s linear infinite}@keyframes sv-sweep{to{transform:rotate(360deg)}}
+.sv[data-mode="orbit"] .n .sh{animation:sv-ping 6s linear infinite;animation-delay:var(--ping,0s)}@keyframes sv-ping{0%{filter:brightness(2.6) drop-shadow(0 0 6px var(--beam))}8%{filter:none}100%{filter:none}}
+.sv[data-mode="orbit"] .e.tree{stroke-opacity:.55}.sv[data-mode="orbit"] .sec path{fill:color-mix(in srgb,var(--beam) 5%,transparent);stroke:color-mix(in srgb,var(--beam) 25%,transparent)}.sv[data-mode="orbit"] .sec text{fill:#7fe3ff}
+@media (prefers-reduced-motion:reduce){.sv[data-mode="orbit"] .beam,.sv[data-mode="orbit"] .n .sh{animation:none}}
+
 /* 5 · 3D: drawn by three.js on a canvas; the stage only sets the space */
 .sv[data-mode="three"]{--stage:radial-gradient(ellipse at 50% 40%,#0b1a33 0%,#03050b 75%);background:var(--stage)}
 

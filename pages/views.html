@@ -53,13 +53,14 @@ body.present header,body.present footer,body.present .rail{display:none}body.pre
     <div class="how" id="how"></div></section>
   <section class="panel det" id="det" aria-live="polite"></section>
 </main>
-<footer>Run by the swarm for Dinis Cruz (WS-215). Every run is real, recorded as JSON; model text is never stored, only its length, sha256 and validity. The workload is the storm site's public data. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit. Keys: 1–5 mode · F fit · space play · Esc clear · P present.</footer>
+<footer>Run by the swarm for Dinis Cruz (WS-215). Every run is real, recorded as JSON; model text is never stored, only its length, sha256 and validity. The workload is the storm site's public data. Not a warning service: follow <a href="https://www.ipma.pt/">IPMA</a> and <a href="https://www.prociv.gov.pt/">ANEPC</a>. Independent of Web Summit. Keys: 1–6 mode · F fit · space play · Esc clear · P present.</footer>
 <script src="../assets/swarm-views.js"></script>
 <script>
 const MODES = [['flat', 'Flat', 'Today\'s view: one shape per altitude. A loop is a violet ring, a call a green diamond, a read a grey square.'],
   ['blueprint', 'Blueprint', 'A schematic: altitude lanes, orthogonal wiring and the numbers on each unit (tokens, ms, $). Best left-right or as a tree.'],
   ['heat', 'Heat', 'The data is the shape: a call\'s size is its tokens, red is an answer that failed its check, the yellow arc is latency (a full ring is 20 s).'],
   ['neon', 'Neon', 'Glow and motion: press Play and watch the work flow down the edges, loop by loop, call by call.'],
+  ['orbit', 'Orbit', 'The swarm as orbits: one ring per altitude, a scan beam sweeping every six seconds, each unit lighting up as it is passed. Always drawn as rings.'],
   ['three', '3D', 'The altitudes as stacked planes: the person on top, then the swarm, the agents, the loops, the calls and reads. Drag to orbit, wheel to zoom.']];
 const LAYOUTS = [['down', 'Top-down'], ['right', 'Left-right'], ['radial', 'Radial'], ['tree', 'Tree']];
 const RUNS_REPO = 'PrompTugal/PrompTugal__News__Swarm__Runs', RAW = `https://raw.githubusercontent.com/${RUNS_REPO}/dev/runs/`;
@@ -73,7 +74,7 @@ function seg(el, items, cur, fn) { el.innerHTML = items.map(([k, l, d]) => `<but
 function controls() {
   seg($('#modes'), MODES, S.mode, (m) => { S.mode = m; view.setMode(m); controls(); sync(); });
   seg($('#layouts'), LAYOUTS, S.layout, (l) => { S.layout = l; view.setLayout(l); controls(); sync(); });
-  $('#layouts').style.opacity = S.mode === 'three' ? .4 : 1;
+  $('#layouts').style.opacity = S.mode === 'three' || S.mode === 'orbit' ? .4 : 1;
   // the mode's one-line explanation shows, then fades so it never hides the bottom row
   const how = $('#how'); how.textContent = MODES.find((m) => m[0] === S.mode)[2]; how.classList.remove('gone'); clearTimeout(how._t); how._t = setTimeout(() => how.classList.add('gone'), 6000);
 }
@@ -132,7 +133,7 @@ $('#play').onclick = play; $('#zin').onclick = () => view.zoom(.7); $('#zout').o
 $('#present').onclick = () => { document.body.classList.toggle('present'); setTimeout(() => view.setLayout(S.layout), 60); };
 document.addEventListener('keydown', (e) => {
   if (e.target.closest('input,select,textarea') || e.metaKey || e.ctrlKey || e.altKey) return;
-  if (/^[1-5]$/.test(e.key)) { S.mode = MODES[+e.key - 1][0]; view.setMode(S.mode); controls(); sync(); }
+  if (/^[1-6]$/.test(e.key)) { S.mode = MODES[+e.key - 1][0]; view.setMode(S.mode); controls(); sync(); }
   else if (e.key === 'f' || e.key === 'F') view.fit(); else if (e.key === 'Escape') { view.select(null); view.highlight(null); }
   else if (e.key === ' ' && !e.target.closest('button')) { e.preventDefault(); play(); } else if (e.key === 'p' || e.key === 'P') $('#present').click();
 });
