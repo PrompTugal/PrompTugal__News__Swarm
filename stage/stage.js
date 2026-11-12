@@ -464,14 +464,14 @@
   const cardData = new Map();
   function cardSrc(src) { if (!src) return null; if (!cardData.has(src)) { cardData.set(src, null); fetch(src).then((r) => r.json()).then((j) => { cardData.set(src, j); lastCardKey = ''; }).catch(() => cardData.set(src, { error: true })); } return cardData.get(src); }
   const pick = (o, path) => path.split('.').reduce((x, k) => (x == null ? x : x[k]), o);
-  let lastCardKey = '';
+  let lastCardKey = '', glyphStep = null;
   function drawCard(st) {
     const el = $('#card'), c = st.card;
     el.style.display = ''; $('#svg').style.display = 'none'; d3.select('#bars').style('display', 'none'); $('#counter').style.display = 'none';
     if (window.STAGE_UNIVERSE) window.STAGE_UNIVERSE.hide();
     const data = cardSrc(c.src);
     badge(c.idea ? ['idea', 'ILLUSTRATION · NOT A RUN'] : c.src || c.source ? ['real', 'REAL · ' + short(c.source || c.src, 70)] : null);
-    const key = JSON.stringify(c) + st.cardN + (data ? 1 : 0);
+    const key = c.kind === 'glyph' ? 'glyph|' + c.name + '|' + st.si : JSON.stringify(c) + st.cardN + (data ? 1 : 0);
     if (key !== lastCardKey) {
       lastCardKey = key;
       if (c.kind === 'gap') {
@@ -488,10 +488,15 @@
         const steps = (data && data.steps) || [], LANES = c.lanes || ['network', 'memory-decrypted', 'vault-encrypted', 'git-public'];
         const NAMES = { network: 'network (HTTPS)', 'memory-decrypted': 'in memory · decrypted', 'vault-encrypted': 'vault · encrypted', 'git-public': 'Git · public' };
         el.innerHTML = `<div class="flow"><h2>${esc(c.title || (data && data.run) || '')}</h2><div class="lanes" style="grid-template-rows:repeat(${LANES.length},1fr)">${LANES.map((l, i) => `<div class="lane l-${l}" style="grid-row:${i + 1}"><span>${esc(NAMES[l] || l)}</span></div>`).join('')}${steps.map((s2, i) => `<div class="fs l-${s2.where}" data-i="${i}" style="grid-row:${LANES.indexOf(s2.where) + 1};grid-column:${i + 2}"><b>${i + 1}</b><span>${esc(String(s2.who || '').replace(/\.fringe@PrompTugal\.\w+$/, ''))} · ${esc(s2.altitude || '')}</span><small>${esc(short(s2.what || '', 90))}</small>${s2.encrypted ? '<i title="encrypted">🔒</i>' : '<i title="in the clear">◯</i>'}${s2.sealed_to ? `<small class="fp">sealed to ${esc(s2.sealed_to)}</small>` : ''}${s2.signed_by ? `<small class="fp">signed ${esc(s2.signed_by)}</small>` : ''}</div>`).join('')}</div>${data ? `<p class="src">${esc(c.src)} · ${esc(data.outcome || '')}</p>` : '<p class="src">loading…</p>'}</div>`;
+      } else if (c.kind === 'glyph') {
+        el.innerHTML = `<iframe class="glyph" title="${esc(c.name)}" src="pages/packs.html?pack=${encodeURIComponent(c.name)}&step=${st.cardN}&embed=1&cap=${c.cap ? 1 : 0}"></iframe>`;
+        glyphStep = null;
       } else if (c.kind === 'compare') {   // the same attempts, before and after: phase "before" lights the first column, "after" the second
-        const rows = (data && pick(data, c.from || 'comparison')) || [], same = data && pick(data, c.same || 'compute');
-        const ok = (v) => /succeed|allow/.test(String(v));
-        el.innerHTML = `<div class="cmp"><h2>${esc(c.title || '')}</h2>${same && same.unharnessed ? `<p class="same">Same code, same output: sha256 <b>${esc(String(same.unharnessed.output_sha256).slice(0, 16))}…</b> ${same.same_output ? 'both times' : '(different!)'}</p>` : ''}<div class="cm-head"><span>the attempt</span><span>${esc(c.beforeLabel || 'unharnessed')}</span><span>${esc(c.afterLabel || 'harnessed')}</span><span>refused by</span></div>${rows.map((r, i) => `<div class="cm" data-i="${i}"><span class="what"><b>${esc(r.id)}</b><small>${esc(r.what || '')}</small></span><span class="b ${ok(r.unharnessed) ? 'ok' : 'no'}" data-col="b">${ok(r.unharnessed) ? '✓ done' : '✗ refused'}</span><span class="a ${ok(r.harnessed) ? (/GAP|mandate/.test(r.what || '') ? (/GAP/.test(r.what) ? 'gp' : 'ok') : 'gp') : 'no'}" data-col="a">${ok(r.harnessed) ? '✓ done' : '✗ refused'}</span><span class="rb">${esc(r.refused_by || '')}</span></div>`).join('')}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
+        let rows = (data && pick(data, c.from || 'comparison')) || [];
+        if (c.before && data) { const A = pick(data, c.before) || [], B = pick(data, c.after) || []; rows = A.map((a, i) => ({ id: a[c.idKey || 'action'], what: a[c.whatKey || 'kind'], unharnessed: a[c.gotKey || 'got'], harnessed: (B[i] || {})[c.gotKey || 'got'], refused_by: /refus/.test((B[i] || {})[c.gotKey || 'got']) ? (B[i] || {})[c.whyKey || 'why'] : '' })); }
+        const same = data && pick(data, c.same || 'compute');
+        const ok = (v) => /succeed|allow|done/.test(String(v));
+        el.innerHTML = `<div class="cmp"><h2>${esc(c.title || '')}</h2>${c.end && data ? `<div class="ends">${['before', 'after'].map((w) => { const e = pick(data, c.end[w]) || {}; return `<div class="end e-${w}" data-col="${w === 'before' ? 'b' : 'a'}"><b>${esc(c.end[w + 'Label'] || w)}</b>${Object.entries(e).map(([k, v]) => `<span>${esc(k.replace(/_/g, ' '))}: <i>${esc(v)}</i></span>`).join('')}</div>`; }).join('')}</div>` : ''}${same && same.unharnessed ? `<p class="same">Same code, same output: sha256 <b>${esc(String(same.unharnessed.output_sha256).slice(0, 16))}…</b> ${same.same_output ? 'both times' : '(different!)'}</p>` : ''}<div class="cm-head"><span>the attempt</span><span>${esc(c.beforeLabel || 'unharnessed')}</span><span>${esc(c.afterLabel || 'harnessed')}</span><span>refused by</span></div>${rows.map((r, i) => `<div class="cm" data-i="${i}"><span class="what"><b>${esc(r.id)}</b><small>${esc(r.what || '')}</small></span><span class="b ${ok(r.unharnessed) ? 'ok' : 'no'}" data-col="b">${ok(r.unharnessed) ? '✓ done' : '✗ refused'}</span><span class="a ${ok(r.harnessed) ? (/GAP/.test(r.what || '') ? 'gp' : /mandate/.test(r.what || '') ? 'ok' : 'gp') : 'no'}" data-col="a">${ok(r.harnessed) ? '✓ done' : '✗ refused'}</span><span class="rb">${esc(r.refused_by || '')}</span></div>`).join('')}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
       } else if (c.kind === 'keys') {   // keys and how long each one lived
         const keys = (data && pick(data, c.from || 'keys')) || [];
         el.innerHTML = `<div class="kys"><h2>${esc(c.title || '')}</h2>${keys.map((k, i) => { const life = k.created_at && k.destroyed_at ? Date.parse(k.destroyed_at) - Date.parse(k.created_at) : null; return `<div class="ky" data-i="${i}"><span class="kr"><b>${esc(k.role)}</b><small>${esc(k.alg || '')} · ${esc(k.fp || '')}</small></span><span class="kl">${life != null ? `lived <b>${life.toLocaleString('en-GB')} ms</b>` : 'lifetime not recorded'}</span><span class="kw"><small>${esc(k.private_key_path || '')}</small>${k.destroyed_how ? `<small>${esc(k.destroyed_how)}</small>` : ''}</span></div>`; }).join('')}<p class="src">${esc(c.source || c.src || '')}</p></div>`;
@@ -517,12 +522,20 @@
         x.textContent = x.dataset.t.replace(/\d[\d,]*(\.\d+)?/g, (m) => { const v = parseFloat(m.replace(/,/g, '')), dec = (m.split('.')[1] || '').length; return (v * clamp(k * 1.15, 0, 1)).toLocaleString('en-GB', { minimumFractionDigits: dec, maximumFractionDigits: dec }); });
       }
     });
+    if (c.kind === 'glyph') {   // the next step animates in; any other jump lands on its built end (the designer's pages/packs.html)
+      const f = el.querySelector('iframe.glyph'), stepN = st.cardN;
+      if (f && f.contentWindow && glyphStep !== stepN + '|' + K.theme) { glyphStep = stepN + '|' + K.theme; const send = () => { try { f.contentWindow.postMessage({ pack: c.name, step: stepN, theme: K.theme }, '*'); } catch {} }; send(); f.onload = send; }
+      return;
+    }
     if (c.kind === 'compare') {
       const rows = el.querySelectorAll('.cm'), cnt = rows.length, x = st.cardP * cnt;
       rows.forEach((r, i) => { const k = c.phase === 'before' ? clamp(x - i, 0, 1) : 1; r.style.opacity = 1; r.style.transform = 'none';
         r.querySelector('[data-col=b]').style.opacity = c.phase === 'before' ? k : 1;
         const ka = c.phase === 'after' ? clamp(x - i, 0, 1) : c.phase === 'before' ? 0 : 1;
         r.querySelector('[data-col=a]').style.opacity = ka; r.querySelector('.rb').style.opacity = ka; });
+      const eb = el.querySelector('.end.e-before'), ea = el.querySelector('.end.e-after');
+      if (eb) eb.style.opacity = c.phase === 'before' ? clamp(x - cnt + 1, 0, 1) : 1;
+      if (ea) ea.style.opacity = c.phase === 'after' ? clamp(x - cnt + 1, 0, 1) : c.phase === 'before' ? 0 : 1;
     }
     if (c.kind === 'gap') {   // stage 1: the mandate dot; 2: the reach circle grows; 3: the gap turns red
       const g = el.querySelector('.gap'); if (!g) return;

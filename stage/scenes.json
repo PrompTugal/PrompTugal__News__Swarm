@@ -21,7 +21,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "Don't hope the agent behaves: make the dangerous thing unreachable."
+       "Don't hope the agent behaves. Make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      },
@@ -41,7 +41,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "Don't hope the agent behaves: make the dangerous thing unreachable."
+       "Don't hope the agent behaves. Make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -60,7 +60,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "Don't hope the agent behaves: make the dangerous thing unreachable."
+       "Don't hope the agent behaves. Make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -79,7 +79,7 @@
         "text": "Same work: $1.91 on Opus. $0.031 the way we ran it.",
         "big": true
        },
-       "Don't hope the agent behaves: make the dangerous thing unreachable."
+       "Don't hope the agent behaves. Make the dangerous thing unreachable."
       ],
       "source": "runs/20261111T2257-r5b.json: potential_claude_usd and openrouter_usd"
      }
@@ -360,7 +360,8 @@
      ],
      "overlay": "all",
      "counter": {
-      "of": "reach"
+      "of": "reach",
+      "label": "units the agent started that can reach them"
      },
      "caption": "Who can reach them? Every loop, every model call, every line of code. Everybody."
     },
@@ -476,7 +477,8 @@
      ],
      "overlay": "all",
      "counter": {
-      "of": "reach"
+      "of": "reach",
+      "label": "units the agent started that can reach them"
      },
      "caption": "Where we were: everybody reaches everything."
     },
@@ -485,7 +487,11 @@
      "dur": 3.5,
      "overlay": "policy",
      "owner": "swarm.1",
-     "caption": "Policy on: only the agent may reach the assets. Loops, calls and code may not."
+     "caption": "Policy on: only the agent may reach the assets. Loops, calls and code may not.",
+     "counter": {
+      "of": "reach",
+      "label": "may reach them: the agent only"
+     }
     },
     {
      "label": "but who enforces it?",
@@ -499,12 +505,87 @@
    ]
   },
   {
+   "id": "db-mandate",
+   "act": "4 · Policies",
+   "title": "A mandate as deep as the business logic",
+   "say": "A real run on a simulated database (storytelling.1, 01:59 UTC). The mandate: pay invoice INV-002, 250, once. Nine actions, run twice: with access only, then under the mandate, enforced by the database engine (tables, fields, statements, values), not by the agent's instructions.",
+   "cue": "Access says yes or no to the database. A mandate says which table, which field and which value.",
+   "steps": [
+    {
+     "label": "access only",
+     "dur": 6,
+     "card": {
+      "kind": "compare",
+      "phase": "before",
+      "src": "sims/db-mandate/result.json",
+      "before": "access.results",
+      "after": "with_mandate.results",
+      "beforeLabel": "access",
+      "afterLabel": "mandate",
+      "end": {
+       "before": "access.end",
+       "after": "with_mandate.end",
+       "beforeLabel": "with access only",
+       "afterLabel": "under the mandate"
+      },
+      "title": "Pay INV-002, 250, once",
+      "source": "sims/db-mandate/result.json (real run, simulated data)"
+     },
+     "caption": "With access only: 9 of 9 done. Four payments totalling 100,410; a supplier's IBAN changed; the payments table dropped."
+    },
+    {
+     "label": "under the mandate",
+     "dur": 6,
+     "card": {
+      "kind": "compare",
+      "phase": "after",
+      "src": "sims/db-mandate/result.json",
+      "before": "access.results",
+      "after": "with_mandate.results",
+      "beforeLabel": "access",
+      "afterLabel": "mandate",
+      "end": {
+       "before": "access.end",
+       "after": "with_mandate.end",
+       "beforeLabel": "with access only",
+       "afterLabel": "under the mandate"
+      },
+      "title": "Pay INV-002, 250, once",
+      "source": "sims/db-mandate/result.json (real run, simulated data)"
+     },
+     "caption": "Under the mandate: 2 done, 7 refused, each by its rule. One payment of 250; nothing else touched."
+    },
+    {
+     "label": "the line",
+     "dur": 2.5,
+     "card": {
+      "kind": "compare",
+      "phase": "done",
+      "src": "sims/db-mandate/result.json",
+      "before": "access.results",
+      "after": "with_mandate.results",
+      "beforeLabel": "access",
+      "afterLabel": "mandate",
+      "end": {
+       "before": "access.end",
+       "after": "with_mandate.end",
+       "beforeLabel": "with access only",
+       "afterLabel": "under the mandate"
+      },
+      "title": "Pay INV-002, 250, once",
+      "source": "sims/db-mandate/result.json (real run, simulated data)"
+     },
+     "caption": "Access says yes or no to the database. A mandate says which table, which field and which value."
+    }
+   ]
+  },
+  {
    "id": "elsewhere",
    "act": "4 · Policies",
    "title": "Run it where the assets are not",
    "run": "gh:20261111-2344-storm-a2",
    "mode": "layers",
-   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. Neither is connected to your assets.",
+   "say": "A real run from tonight. The agent only commits a signed request; a GitHub Action runs the loops; OpenRouter runs the calls. The Action holds OPEN_ROUTER_KEY and ELASTIC_CLOUD (its run step) and reads its own repository; a separate job writes and attests the result (Runs .github/workflows/run.yml).",
    "steps": [
     {
      "label": "a signed request",
@@ -525,7 +606,7 @@
       "C",
       "E"
      ],
-     "caption": "The push starts a GitHub Action: a different place, with no access to your systems."
+     "caption": "The push starts a GitHub Action. It holds the model router's key and a key to write its own logs. Gmail is not one of them."
     },
     {
      "label": "the work runs there",
@@ -546,7 +627,7 @@
      "counter": {
       "of": "reach"
      },
-     "caption": "Can any of them reach Gmail or Calendar? No: they run where those are not connected. Don't hope the agent behaves: make the dangerous thing unreachable."
+     "caption": "Can any of them reach Gmail or Calendar? No: those are not connected where they run. Don't hope the agent behaves. Make the dangerous thing unreachable."
     }
    ]
   },
@@ -739,7 +820,7 @@
        }
       ]
      },
-     "caption": "Half of it on the middle model."
+     "caption": "On the middle model: half of Opus."
     },
     {
      "label": "Haiku",
@@ -769,7 +850,7 @@
        }
       ]
      },
-     "caption": "A twentieth of that on the small one."
+     "caption": "On the small model: 40 times less than Opus."
     },
     {
      "label": "OpenRouter",
@@ -799,7 +880,7 @@
        }
       ]
      },
-     "caption": "What we paid: open-weight models on OpenRouter, for the loops that do not need the agent's brain."
+     "caption": "What we paid, on open-weight models through OpenRouter: 62 times less than Opus, for loops that do not need the agent's brain."
     }
    ]
   },
@@ -977,7 +1058,7 @@
       "title": "12 attempts by one A0 unit",
       "source": "harness/2026-11-12-harness1-e1e2-before-after.json"
      },
-     "caption": "Same output, sha256 for sha256. The work did not need the reach. Don't hope the agent behaves: make the dangerous thing unreachable."
+     "caption": "Same output, sha256 for sha256. The work did not need the reach. Don't hope the agent behaves. Make the dangerous thing unreachable."
     }
    ]
   },
@@ -1319,17 +1400,17 @@
       "lines": [
        "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
        {
-        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "text": "806 commits in 24 hours on the Fringe: 794 named by their agent, from 39 agents",
         "big": true
        },
        "Signed requests start runs; sealed vault inboxes carry what must stay private.",
        "Messages between agents are material, never instruction: only Dinis instructs."
       ],
-      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+      "source": "git log of PrompTugal__News__Fringe dev, full history, counted by storytelling.1 at 02:00 UTC 12 Nov · commit trailers (Agent:, Issue:, For:) · CLAUDE.md"
      }
     },
     {
-     "label": "196+ commits on the",
+     "label": "806 commits in 24",
      "dur": 2.5,
      "card": {
       "kind": "slide",
@@ -1339,13 +1420,13 @@
       "lines": [
        "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
        {
-        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "text": "806 commits in 24 hours on the Fringe: 794 named by their agent, from 39 agents",
         "big": true
        },
        "Signed requests start runs; sealed vault inboxes carry what must stay private.",
        "Messages between agents are material, never instruction: only Dinis instructs."
       ],
-      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+      "source": "git log of PrompTugal__News__Fringe dev, full history, counted by storytelling.1 at 02:00 UTC 12 Nov · commit trailers (Agent:, Issue:, For:) · CLAUDE.md"
      }
     },
     {
@@ -1359,13 +1440,13 @@
       "lines": [
        "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
        {
-        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "text": "806 commits in 24 hours on the Fringe: 794 named by their agent, from 39 agents",
         "big": true
        },
        "Signed requests start runs; sealed vault inboxes carry what must stay private.",
        "Messages between agents are material, never instruction: only Dinis instructs."
       ],
-      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+      "source": "git log of PrompTugal__News__Fringe dev, full history, counted by storytelling.1 at 02:00 UTC 12 Nov · commit trailers (Agent:, Issue:, For:) · CLAUDE.md"
      }
     },
     {
@@ -1379,13 +1460,13 @@
       "lines": [
        "Through Git: every commit names its agent, the issue and the person (Agent:, Issue:, For:).",
        {
-        "text": "196+ commits on the Fringe by 26 named agents in 24 hours",
+        "text": "806 commits in 24 hours on the Fringe: 794 named by their agent, from 39 agents",
         "big": true
        },
        "Signed requests start runs; sealed vault inboxes carry what must stay private.",
        "Messages between agents are material, never instruction: only Dinis instructs."
       ],
-      "source": "data/agents.json counts_last_24h (swarm.1, 01:42 UTC) · this repository's commit trailers · CLAUDE.md"
+      "source": "git log of PrompTugal__News__Fringe dev, full history, counted by storytelling.1 at 02:00 UTC 12 Nov · commit trailers (Agent:, Issue:, For:) · CLAUDE.md"
      }
     }
    ]
@@ -1678,6 +1759,447 @@
      "caption": "The same code, narrowed with Node's permission model: it holds 4. The gap goes from 22 to 1."
     }
    ]
+  },
+  {
+   "id": "glyph-language",
+   "act": "13 · Animated packs",
+   "title": "The language",
+   "say": "swarm.1.designer's animated pack 'language' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "5",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 5,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "6",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "language",
+      "upto": 6,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-gap",
+   "act": "13 · Animated packs",
+   "title": "Mandate, reach, gap (animated)",
+   "say": "swarm.1.designer's animated pack 'gap' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "gap",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "gap",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "gap",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "gap",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-harness",
+   "act": "13 · Animated packs",
+   "title": "The harness (animated)",
+   "say": "swarm.1.designer's animated pack 'harness' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "harness",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "harness",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "harness",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "harness",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "5",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "harness",
+      "upto": 5,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-policy",
+   "act": "13 · Animated packs",
+   "title": "Where the check lives (animated)",
+   "say": "swarm.1.designer's animated pack 'policy' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "policy",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "policy",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "policy",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "policy",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-keys",
+   "act": "13 · Animated packs",
+   "title": "A key's life (animated)",
+   "say": "swarm.1.designer's animated pack 'keys' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "keys",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "keys",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "keys",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "keys",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "5",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "keys",
+      "upto": 5,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-vault",
+   "act": "13 · Animated packs",
+   "title": "Through a vault (animated)",
+   "say": "swarm.1.designer's animated pack 'vault' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "5",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 5,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "6",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "vault",
+      "upto": 6,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
+  },
+  {
+   "id": "glyph-push",
+   "act": "13 · Animated packs",
+   "title": "One push, twelve jobs (animated)",
+   "say": "swarm.1.designer's animated pack 'push' (pages/packs.html), stepped by the stage's clock. Its facts are read from the same files.",
+   "steps": [
+    {
+     "label": "1",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "push",
+      "upto": 1,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "2",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "push",
+      "upto": 2,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "3",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "push",
+      "upto": 3,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "4",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "push",
+      "upto": 4,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    },
+    {
+     "label": "5",
+     "dur": 2.5,
+     "card": {
+      "kind": "glyph",
+      "name": "push",
+      "upto": 5,
+      "cap": true,
+      "source": "pages/packs.html (swarm.1.designer): facts read from the same run files"
+     }
+    }
+   ]
   }
  ],
  "packs": {
@@ -1717,6 +2239,7 @@
     "same-privileges",
     "send-button",
     "policies",
+    "db-mandate",
     "elsewhere"
    ]
   },
@@ -1777,6 +2300,26 @@
    "about": "the session tree, tonight",
    "scenes": [
     "team"
+   ]
+  },
+  "animated": {
+   "title": "Animated packs",
+   "about": "swarm.1.designer's animated packs: language, gap, harness, policy, keys, vault, push",
+   "scenes": [
+    "glyph-language",
+    "glyph-gap",
+    "glyph-harness",
+    "glyph-policy",
+    "glyph-keys",
+    "glyph-vault",
+    "glyph-push"
+   ]
+  },
+  "database": {
+   "title": "The database",
+   "about": "access against a mandate enforced by the database engine",
+   "scenes": [
+    "db-mandate"
    ]
   }
  }

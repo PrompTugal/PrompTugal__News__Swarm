@@ -31,13 +31,13 @@ summary::before { content: "▸ "; } details[open] > summary::before { content: 
 #stage { position: relative; overflow: hidden; min-width: 0 }
 #svg { width: 100%; height: 100%; display: block; cursor: grab } #svg:active { cursor: grabbing }
 .edge { stroke: var(--muted); fill: none } .edge.k-reads { stroke-dasharray: 3 3 } .edge.k-via { stroke: var(--alt-M); stroke-dasharray: 1 4 }
-.edge.k-reach { stroke: var(--reach) } .edge.fail, .reachline.fail { stroke: var(--bad) !important }
+.edge.k-reach { stroke: var(--reach) } .edge.fail, .reachline.fail { stroke: var(--warn) !important }
 .reachline { stroke: var(--reach); transition: opacity .3s } .reachline.cut { stroke: var(--cut); stroke-dasharray: 2 5 }
 .n { cursor: pointer; transition: opacity .3s }
 .n .dot { stroke: var(--bg); stroke-width: 1.2; filter: var(--glow) }
 .n .halo { fill: none; stroke: transparent; stroke-width: 2 }
 .n.live .halo { stroke: var(--live); stroke-width: 2.5 } .n.bad .halo { stroke: var(--bad) } .n.ok .halo { stroke: color-mix(in srgb, var(--ok) 55%, transparent) }
-.n.fail .halo { stroke: var(--bad); stroke-width: 3; animation: pulse 1s infinite } .n.sim .dot { stroke-dasharray: 2 2; stroke: var(--ink) } .n.pinned .halo { stroke: var(--accent2); stroke-dasharray: 2 2 }
+.n.fail .halo { stroke: var(--warn); stroke-width: 3; animation: pulse 1s infinite } .n.sim .dot { stroke-dasharray: 2 2; stroke: var(--ink) } .n.pinned .halo { stroke: var(--accent2); stroke-dasharray: 2 2 }
 @keyframes pulse { 50% { stroke-opacity: .3 } }
 .lbl { fill: var(--muted); paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; pointer-events: none } .lbl.big { fill: var(--ink); font-weight: 600 }
 #caption { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); max-width: min(900px, 90%); text-align: center; font: 500 calc(1.25em * var(--text, 1)) var(--font-head); padding: 10px 18px; border-radius: 12px; background: var(--panel); backdrop-filter: var(--glass); border: 1px solid var(--line); pointer-events: none }
@@ -76,9 +76,9 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #card .line.big { font: 700 calc(3.2em * var(--text, 1))/1.12 var(--font-head); color: var(--reach); font-variant-numeric: tabular-nums } #card .src { color: var(--muted); font: .8em var(--mono); margin-top: 22px }
 #card .gap { display: grid; grid-template-columns: minmax(280px, 520px) 1fr; gap: 30px; align-items: center; width: 100% }
 #card .gap svg { width: 100%; height: auto; overflow: visible } .reachc { fill: color-mix(in srgb, var(--accent) 10%, transparent); stroke: var(--accent); stroke-width: 2 }
-.gapring { fill: color-mix(in srgb, var(--bad) 22%, transparent); stroke: var(--bad); stroke-width: 3; opacity: 0 } .mand { fill: var(--alt-A1); stroke: var(--bg); stroke-width: 3 } .mt { fill: var(--bg); font: 700 14px var(--font-head); text-anchor: middle }
+.gapring { fill: color-mix(in srgb, var(--warn) 20%, transparent); stroke: var(--warn); stroke-width: 3; opacity: 0 } .mand { fill: var(--alt-A1); stroke: var(--bg); stroke-width: 3 } .mt { fill: var(--bg); font: 700 14px var(--font-head); text-anchor: middle }
 #card .ritems { list-style: none; padding: 0; margin: 0; font: calc(1em * var(--text, 1)) var(--mono); color: var(--ink) } #card .ritems li { padding: 4px 0; border-bottom: 1px solid var(--line) }
-#card .glabels { grid-column: 1 / -1; display: flex; gap: 24px; justify-content: center; font: 600 calc(1.1em * var(--text, 1)) var(--font-head) } .gl.m { color: var(--alt-A1) } .gl.r { color: var(--accent); opacity: 0 } .gl.g { color: var(--bad); opacity: 0 }
+#card .glabels { grid-column: 1 / -1; display: flex; gap: 24px; justify-content: center; font: 600 calc(1.1em * var(--text, 1)) var(--font-head) } .gl.m { color: var(--alt-A1) } .gl.r { color: var(--accent); opacity: 0 } .gl.g { color: var(--warn); opacity: 0 }
 #card .lights { text-align: center; width: 100% } #card .lights .row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin: 26px 0 }
 .light { width: 128px; border: 1px solid var(--line); border-radius: 14px; padding: 16px 10px; background: var(--panel); display: flex; flex-direction: column; gap: 4px; align-items: center; transition: opacity .3s }
 .light i { width: 46px; height: 46px; border-radius: 50%; background: var(--dim); margin-bottom: 8px; transition: background .3s, box-shadow .3s }
@@ -107,7 +107,7 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 .ck-head, .ck { display: grid; grid-template-columns: 1fr 40px 1fr 40px 180px; align-items: center; gap: 6px } .ck-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px } .ck-head span:nth-child(2) { grid-column: 3 } .ck-head span:nth-child(3) { grid-column: 5 }
 .ck { margin: 0 0 8px; font-size: calc(1.05em * var(--text, 1)) } .ck .ask, .ck .gate, .ck .out { border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; background: var(--panel) } .ck small { display: block; color: var(--muted); font-size: .72em }
 .ck .gate { border-color: var(--accent); text-align: center } .ck .gate.inside { border-color: var(--warn); border-style: dashed } .ck .arrow { text-align: center; color: var(--muted) }
-.ck .out { text-align: center; font: 700 1em var(--font-head); text-transform: uppercase; letter-spacing: .04em } .ck .out.ok { color: var(--ok); border-color: var(--ok) } .ck .out.no { color: var(--bad); border-color: var(--bad) } .ck .out.skip { color: var(--warn); border-color: var(--warn) }
+.ck .out { text-align: center; font: 700 1em var(--font-head); text-transform: uppercase; letter-spacing: .04em } .ck .out.ok { color: var(--ok); border-color: var(--ok) } .ck .out.no { color: var(--accent); border-color: var(--accent) } .ck .out.skip { color: var(--warn); border-color: var(--warn) }
 /* the handover flow */
 #card .flow { width: 100% } #card .flow h2 { font-size: calc(2em * var(--text, 1)) }
 .lanes { display: grid; grid-auto-columns: minmax(120px, 1fr); grid-template-columns: 170px; gap: 8px 10px; min-height: 360px }
@@ -123,16 +123,16 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 /* needed against held (run-reach) */
 #card .nh { width: 100%; max-width: 1150px } #card .nh h2 { font-size: calc(2.1em * var(--text, 1)) }
 .nh-head, .nh-row { display: grid; grid-template-columns: 260px 1fr 90px 60px; gap: 12px; align-items: center } .nh-head { color: var(--muted); font: 600 .8em var(--mono); text-transform: uppercase; margin-bottom: 8px }
-.nh-head i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px } .nh-head i.need, .nh-row i.need { background: var(--alt-A1) } .nh-head i.held, .nh-row i.held { background: color-mix(in srgb, var(--bad) 70%, var(--alt-A0)) }
+.nh-head i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px } .nh-head i.need, .nh-row i.need { background: var(--alt-A1) } .nh-head i.held, .nh-row i.held { background: color-mix(in srgb, var(--warn) 75%, var(--alt-A0)) }
 .nh-row { padding: 8px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) } .nh-row .nl small { display: block; color: var(--muted); font: .75em var(--mono) }
 .nh-row .bars { display: flex; flex-direction: column; gap: 4px } .nh-row .bars i { display: block; height: 12px; border-radius: 4px; transition: width .6s } .nh-row .nums { font: 600 .95em var(--mono); color: var(--muted) }
-.gapn { font: 700 1.4em var(--font-head); text-align: center } .gapn.big { color: var(--bad) } .gapn.some { color: var(--warn) } .gapn.none { color: var(--ok) } .nh-row.mark { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px }
+.gapn { font: 700 1.4em var(--font-head); text-align: center } .gapn.big { color: var(--warn) } .gapn.some { color: var(--warn) } .gapn.none { color: var(--ok) } .nh-row.mark { background: color-mix(in srgb, var(--accent) 10%, transparent); border-radius: 8px }
 
 /* before and after (E1+E2) */
 #card .cmp { width: 100%; max-width: 1250px } #card .cmp h2 { font-size: calc(2em * var(--text, 1)); margin-bottom: 8px } #card .cmp .same { color: var(--muted); margin: 0 0 14px } #card .cmp .same b { color: var(--ok); font-family: var(--mono) }
 .cm-head, .cm { display: grid; grid-template-columns: 1.4fr 130px 130px 1.4fr; gap: 10px; align-items: center } .cm-head { color: var(--muted); font: 600 .78em var(--mono); text-transform: uppercase; margin-bottom: 6px }
 .cm { padding: 3px 0; border-bottom: 1px solid var(--line); font-size: calc(.9em * var(--text, 1)) } .cm .what small { display: block; color: var(--muted); font-size: .8em } .cm .what b { font-family: var(--mono); font-weight: 600 }
-.cm .b, .cm .a { text-align: center; font: 700 .95em var(--font-head); border-radius: 8px; padding: 4px 0; transition: opacity .3s } .cm .ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent) } .cm .no { color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, transparent) } .cm .gp { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent) }
+.cm .b, .cm .a { text-align: center; font: 700 .95em var(--font-head); border-radius: 8px; padding: 4px 0; transition: opacity .3s } .cm .ok { color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, transparent) } .cm .no { color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent) } .cm .gp { color: var(--warn); background: color-mix(in srgb, var(--warn) 14%, transparent) }
 .cm .b.ok { color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, transparent) } .cm .rb { color: var(--muted); font: .8em var(--mono); transition: opacity .3s }
 /* keys and their lifetimes (E5) */
 #card .kys { width: 100%; max-width: 1150px } .ky { display: grid; grid-template-columns: 1.3fr 220px 1.4fr; gap: 14px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: calc(1.1em * var(--text, 1)) }
@@ -151,3 +151,8 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
   #caption { font-size: .95em; bottom: 8px }
   header::after { content: "Best on a laptop or a projector"; flex-basis: 100%; color: var(--muted); font-size: .75em }
 }
+
+/* the database run's end states; the designer's packs embedded */
+#card .ends { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 12px } #card .end { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: .9em; display: flex; flex-direction: column; gap: 2px; transition: opacity .3s }
+#card .end b { font-family: var(--font-head) } #card .end i { font-style: normal; font-family: var(--mono) } #card .end.e-before { border-color: var(--warn) } #card .end.e-before i { color: var(--warn) } #card .end.e-after { border-color: var(--ok) } #card .end.e-after i { color: var(--ok) }
+#card iframe.glyph { width: 100%; height: 100%; border: 0; background: transparent }
