@@ -271,7 +271,7 @@
   }
   function placeTree(g) {   // left to right, a tidy tree
     const h = hierarchy(g); d3.tree().size([H * 0.9, W * 0.85])(h);
-    h.each((d) => { const n = g.byId.get(d.data.id); if (n) { n.tx = W * 0.06 + d.y; n.ty = H * 0.05 + d.x; } });
+    h.each((d) => { const n = g.byId.get(d.data.id); if (n) { n.tx = W * 0.06 + d.y; n.ty = H * 0.05 + d.x; n.tdepth = d.depth; n.tinner = !!d.children; } });
   }
   function placeRadial(g) {   // rings by depth: the agent in the middle, the code at the rim
     const h = hierarchy(g), R = Math.min(W, H) * 0.46; d3.tree().size([2 * Math.PI, R]).separation((a, b) => (a.parent === b.parent ? 1 : 2) / Math.max(1, a.depth))(h);
@@ -418,6 +418,9 @@
     const lab = K.labels ? g.nodes.filter((n) => visibleOf(n, st) > 0.5 && dimOf(n, st) > 0.5 && (few || k > 1.6 || ['P', 'A4', 'A3', 'M', 'X', 'E', 'C'].includes(n.alt) || n.id === focusId)) : [];
     const boostTok = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--label-boost')) || 1;
     const under = (n) => curMode === 'layers' && !['P', 'A4', 'A3', 'X', 'M', 'T'].includes(n.alt);
+    // tree: the columns are close, so an inner node's label sits centred above or below it (alternating by depth), never across the next column
+    const stack = (n) => curMode === 'tree' && n.tinner, up = (n) => n.tdepth % 2 === 0;
+    const fsz = (n) => ((['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label * sparse) / k;
     // crowded (more than 24): only the big units keep a label until the presenter zooms in, so the picture stays clean
     const BIG = ['P', 'A4', 'A3', 'X', 'M', 'E', 'C'], labs = lab.length > 24 && !userZoomed ? lab.filter((n) => BIG.includes(n.alt) || n.id === focusId) : lab;
     // the boost is for the projector: on a narrow stage (a laptop with both panes open) it shrinks with the stage's width
@@ -428,8 +431,8 @@
     ts.enter().append('text').attr('class', 'lbl').merge(ts)
       // the same size on screen at any zoom (swarm.1.dev); bigger when few labels are on screen, and in top-down the small units'
       // labels sit centred under the node, clear of the lines from above (swarm.1.designer, Dinis 02:0x UTC); --label-boost tunes it
-      .attr('x', (n) => (under(n) ? n.x : n.x + r(n) + 4 / k)).attr('y', (n) => (under(n) ? n.y + r(n) + (10.5 * K.label * sparse + 2) / k : n.y + 4 / k))
-      .attr('text-anchor', (n) => (under(n) ? 'middle' : 'start')).style('stroke-width', 3 / k + 'px')
+      .attr('x', (n) => (under(n) || stack(n) ? n.x : n.x + r(n) + 4 / k)).attr('y', (n) => (stack(n) ? (up(n) ? n.y - r(n) - 6 / k : n.y + r(n) + fsz(n) + 2 / k) : under(n) ? n.y + r(n) + (10.5 * K.label * sparse + 2) / k : n.y + 4 / k))
+      .attr('text-anchor', (n) => (under(n) || stack(n) ? 'middle' : 'start')).style('stroke-width', 3 / k + 'px')
       .style('font-size', (n) => ((['P', 'A4', 'A3', 'X', 'M'].includes(n.alt) ? 13 : 10.5) * K.label * sparse) / k + 'px')
       .classed('big', (n) => ['P', 'A4', 'A3', 'X', 'M'].includes(n.alt))
       .text((n) => (n.alt === 'A1' && k < 2.5 && n.id !== focusId && /#\d+$/.test(n.label) ? n.label.match(/#\d+$/)[0]   // calls: "#1" until zoomed (the model is on its loop)
@@ -663,11 +666,16 @@
     if (!G || !svg) return;
     const ns = (drawn || G).nodes.filter((n) => n.x != null && !(drawn && drawn.nodes.includes(n) && gNodes.selectAll('g.n').filter((d) => d === n).style('display') === 'none'));
     if (!ns.length) return;
-    const pad = 40; let x0 = d3.min(ns, (n) => n.x) - pad, x1 = d3.max(ns, (n) => n.x) + pad + 80, y0 = d3.min(ns, (n) => n.y) - pad - ($('#counter').style.display !== 'none' ? 80 : 0), y1 = d3.max(ns, (n) => n.y) + pad + ($("#caption").textContent ? 90 : 0);
-    // big labels must fit too: take their real box (in graph coordinates) into the frame
-    try { const b = gLabels.node().getBBox(); if (b.width) { x0 = Math.min(x0, b.x - 16); x1 = Math.max(x1, b.x + b.width + 16); y0 = Math.min(y0, b.y - 16); y1 = Math.max(y1, b.y + b.height + 16 + ($("#caption").textContent ? 90 : 0)); } } catch (e) { /* no labels yet */ }
-    const k = clamp(Math.min(W / (x1 - x0), H / (y1 - y0)), 0.15, 2.5);
-    const tr = d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2).scale(k);
+    // the frame: the nodes and their labels, in graph units; the caption and the counter take real screen space, reserved in pixels
+    const pad = 40; let x0 = d3.min(ns, (n) => n.x) - pad, x1 = d3.max(ns, (n) => n.x) + pad + 80, y0 = d3.min(ns, (n) => n.y) - pad, y1 = d3.max(ns, (n) => n.y) + pad;
+    try { const b = gLabels.node().getBBox(); if (b.width) { x0 = Math.min(x0, b.x - 16); x1 = Math.max(x1, b.x + b.width + 16); y0 = Math.min(y0, b.y - 16); y1 = Math.max(y1, b.y + b.height + 16); } } catch (e) { /* no labels yet */ }
+    const sr = svg.node().getBoundingClientRect(), cap = $('#caption'), cnt = $('#counter');
+    const seen = (e) => e && e.textContent && e.style.display !== 'none' && getComputedStyle(e).display !== 'none';
+    const bot = seen(cap) ? clamp(sr.bottom - cap.getBoundingClientRect().top + 14, 0, H * 0.4) : 0;
+    const top = seen(cnt) ? clamp(cnt.getBoundingClientRect().bottom - sr.top + 10, 0, H * 0.3) : 0;
+    const Hh = H - top - bot;
+    const k = clamp(Math.min(W / (x1 - x0), Hh / (y1 - y0)), 0.15, 2.5);
+    const tr = d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, top + Hh / 2 - k * (y0 + y1) / 2).scale(k);
     (instant ? svg : svg.transition().duration(600)).call(zoom.transform, tr);
     userZoomed = false;
   }
