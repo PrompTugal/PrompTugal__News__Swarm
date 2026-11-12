@@ -1,6 +1,18 @@
 {
  "stories": [
   {
+   "id": "summit-adios",
+   "title": "Adios and RiskMandate",
+   "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+   "answered_by": "their public pages, read by partners.1",
+   "at": "2026-11-12T12:10:34Z",
+   "abp": true,
+   "github_compute": true,
+   "partners": [
+    "adios"
+   ]
+  },
+  {
    "id": "summit-eigenoid",
    "title": "Eigenoid and RiskMandate",
    "asked_by": "Dinis, at the summit (relayed by attendees.1)",

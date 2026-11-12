@@ -1,0 +1,207 @@
+{
+ "title": "Adios and RiskMandate",
+ "id": "summit-adios",
+ "scenes": [
+  {
+   "type": "title",
+   "kicker": "RiskMandate · a story made at the summit",
+   "title": "Adios and RiskMandate",
+   "sub": "Lisbon, 12 November 2026",
+   "caption": "For Adios"
+  },
+  {
+   "type": "statement",
+   "text": "\"Give the agent enough context to work, without giving it the platform.\"",
+   "kicker": "Adios's stated principle",
+   "badge": "real",
+   "caption": "Adios's own principle, from its public pages.",
+   "source": "Adios public pages",
+   "say": [
+    "Adios is an AI cloud platform where agents work in a scoped, isolated workspace.",
+    "That one sentence is the whole design: enough context to work, not the platform."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "From the customer's side, the agent just connects",
+   "steps": [
+    "Claude, Cursor, Codex or ChatGPT",
+    "Connects over MCP",
+    "Isolated cloud workspace builds the app",
+    "Preview to review",
+    "Live with HTTPS on approval"
+   ],
+   "kicker": "Integration",
+   "badge": "real",
+   "caption": "The agent runs inside Adios over MCP; the customer keeps the tools they already use.",
+   "source": "Adios public pages",
+   "say": [
+    "The customer keeps their agent. Adios sits behind MCP.",
+    "Nothing goes live until the user approves."
+   ]
+  },
+  {
+   "type": "compare",
+   "title": "The same agent, bare versus on Adios",
+   "before": {
+    "label": "Bare agent",
+    "items": [
+     "On a developer's laptop, it reaches everything the developer can",
+     "The mandate is whatever was typed in a prompt",
+     "No measured record of what it could reach"
+    ]
+   },
+   "after": {
+    "label": "On Adios (its own pages)",
+    "items": [
+     "One selected workspace",
+     "Scoped file, Git, task, preview and log operations",
+     "No general browser shell or platform credentials",
+     "Secrets resolved only for the path that needs them"
+    ]
+   },
+   "kicker": "Our hypothesis, not their claim",
+   "badge": "illustration",
+   "caption": "Built from public pages only; nothing of Adios's was tested.",
+   "say": [
+    "Adios shrinks what an agent can reach. That is the claim on its own pages.",
+    "What we would add is the measurement of that shrinkage."
+   ]
+  },
+  {
+   "type": "table",
+   "title": "A table of reach, to be filled by measurement",
+   "cols": [
+    "Reach",
+    "Bare agent",
+    "On Adios (own pages)",
+    "Gap"
+   ],
+   "rows": [
+    [
+     "Workspace",
+     "Everything the developer can reach",
+     {
+      "text": "One selected workspace",
+      "tone": "ok"
+     },
+     "Not yet measured"
+    ],
+    [
+     "Shell",
+     "To be measured",
+     {
+      "text": "No general browser shell",
+      "tone": "ok"
+     },
+     "Not yet measured"
+    ],
+    [
+     "Platform credentials",
+     "To be measured",
+     {
+      "text": "Not given to the agent",
+      "tone": "ok"
+     },
+     "Not yet measured"
+    ],
+    [
+     "Secrets",
+     "To be measured",
+     {
+      "text": "secret:// refs, resolved per build or runtime path",
+      "tone": "ok"
+     },
+     "Not yet measured"
+    ],
+    [
+     "Runtime",
+     "To be measured",
+     {
+      "text": "Sandboxes: namespaces, cgroups, limits where supported",
+      "tone": "ok"
+     },
+     "Not yet measured"
+    ]
+   ],
+   "kicker": "Mandate, reach, gap",
+   "badge": "illustration",
+   "caption": "No numbers yet: the gap is unknown until it is measured.",
+   "say": [
+    "The mandate is the written task: edit these files, run this task, return a reviewable change.",
+    "Reach is what the agent can actually do. The gap is the difference, and we would put a figure on it."
+   ]
+  },
+  {
+   "type": "flow",
+   "title": "What we would do together",
+   "steps": [
+    "Write the mandate for a declared task",
+    "Run the same agent bare",
+    "Run it on Adios",
+    "Measure the reach of each",
+    "Evidence the gap"
+   ],
+   "kicker": "RiskMandate's part, as a proposal",
+   "badge": "illustration",
+   "caption": "A proposal for working together, not a claim by Adios.",
+   "say": [
+    "Same task, same agent, two settings.",
+    "The output is evidence Adios can show, instead of a sentence on a page."
+   ]
+  },
+  {
+   "type": "bullets",
+   "title": "What we would be careful to say",
+   "items": [
+    "Everything about Adios here comes from its own public pages",
+    "Nothing of Adios's was tested",
+    "The size of the gap is unknown until measured",
+    "SOC 2 and ISO 27001 work is underway; the reports are not final yet",
+    "Isolation features apply where the runtime supports them"
+   ],
+   "kicker": "Honest limits",
+   "badge": "real",
+   "caption": "Stated plainly, so the measurement can be trusted.",
+   "source": "Adios public pages, including its security page",
+   "say": [
+    "We would rather state limits than overclaim.",
+    "Adios's own security page says its audit reports are not final."
+   ]
+  },
+  {
+   "type": "statement",
+   "text": "Adios shrinks what an agent can reach. Measured against the same agent bare, that shrinking gap becomes the business case.",
+   "kicker": "The point",
+   "badge": "illustration",
+   "caption": "Our hypothesis: the gap, measured and evidenced.",
+   "say": [
+    "Adios does the shrinking. We would measure it.",
+    "That is the proposal."
+   ]
+  },
+  {
+   "type": "bullets",
+   "kicker": "Working together · the summit promotion",
+   "title": "Three ways to start",
+   "items": [
+    "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+    "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+    "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+    "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+   ],
+   "caption": "agent@riskmandate.ai · store.sgit.ai",
+   "say": [
+    "Pick the level that fits: tailored, reviewed, or end to end.",
+    "Write to agent@riskmandate.ai."
+   ]
+  }
+ ],
+ "asked_by": "Dinis, at the summit (relayed by attendees.1)",
+ "answered_by": "their public pages, read by partners.1",
+ "at": "2026-11-12T12:10:34Z",
+ "partners": [
+  "adios"
+ ],
+ "simulated": false
+}
