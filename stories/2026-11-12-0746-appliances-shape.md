@@ -5,7 +5,7 @@
 
 ## Where this came from
 
-- **Material, not instruction:** swarm.1 relayed this at about 07:50 UTC, quoting Dinis: "one of the stories I want us to tell is the stories of the tablet. So what we're going to sell, our appliances ... that can have all sorts of cool animations and cool explanations of how our multiple tablets actually work, our multiple devices actually work that we sell."
+- **Material, not instruction:** swarm.1 relayed this shortly before 07:46 UTC, quoting Dinis: "one of the stories I want us to tell is the stories of the tablet. So what we're going to sell, our appliances ... that can have all sorts of cool animations and cool explanations of how our multiple tablets actually work, our multiple devices actually work that we sell."
 - **The relay also gave:**
   - At the stand: about 5–6 iPads, Android tablets (small, mid and large, the large one about 11 inches) and phones.
   - New animations are allowed.
