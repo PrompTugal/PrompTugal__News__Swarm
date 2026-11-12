@@ -34,18 +34,33 @@ main{display:grid;grid-template-columns:200px minmax(0,1fr) 320px;gap:12px;paddi
 footer{color:var(--muted);font-size:.75rem;padding:0 16px 14px}
 @media (max-width:1100px){main{grid-template-columns:170px minmax(0,1fr) 270px}}
 @media (max-width:820px){main{grid-template-columns:1fr;height:auto}#stage{height:62vh;min-height:380px}.rail{order:2}.det{order:3}.rail .list{display:flex;flex-wrap:wrap;gap:4px}.rail .list button{width:auto}.rail small{display:none}.how{position:static;max-width:none;margin-top:6px}}
+.pick{display:flex;align-items:center;gap:8px;font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:6px 12px;cursor:pointer;max-width:440px;min-width:0}
+.pick:hover{border-color:var(--a3)}.pick small{color:var(--muted);font-size:.72rem;text-transform:uppercase;letter-spacing:.06em}.pick b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.pick span{color:var(--muted)}
+dialog#picker{width:min(1280px,94vw);max-height:88vh;background:var(--bg);color:var(--ink);border:1px solid var(--line);border-radius:14px;padding:0;overflow:auto}dialog#picker::backdrop{background:#000b}
+.ph{position:sticky;top:0;z-index:2;background:var(--bg);padding:16px 20px 10px;border-bottom:1px solid var(--line)}.ph h2{margin:0;font-size:1.25rem}.ph p{margin:4px 0 0;color:var(--muted);font-size:.9rem}.ph .x{position:absolute;right:14px;top:14px;font:inherit;font-size:1.1rem;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;width:36px;height:36px;cursor:pointer}
+#pgrid{padding:12px 20px 20px}#pgrid h3{margin:16px 0 8px;font-size:.8rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}#pgrid h3 small{text-transform:none;letter-spacing:0;font-size:.85rem;margin-left:8px}
+.pcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.pc{display:flex;flex-direction:column;text-align:left;font:inherit;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;cursor:pointer;padding:0}
+.pc:hover,.pc:focus-visible{border-color:var(--a3);outline:none}.pc[aria-current="true"]{border-color:var(--a1);box-shadow:0 0 0 1px var(--a1)}
+.pc .pv{position:relative;height:130px;background:#06130f;pointer-events:none}.pc .pv.sv{min-height:0;height:130px;border-radius:0}.pc .pv .sv-tip,.pc .pv .lane-l{display:none}
+.pc .pt{padding:8px 10px 10px}.pc b{display:block;font-size:.95rem}.pc small{display:block;color:var(--muted);font-size:.8rem;margin-top:3px;line-height:1.35}.pc .nums{color:var(--a1);font-size:.75rem;margin-top:4px}
+.jobs{display:flex;flex-wrap:wrap;gap:6px}.jobs .pc{flex-direction:row;align-items:center}.jobs .pc .pt{padding:6px 10px}
+body.hideL main{grid-template-columns:0 minmax(0,1fr) 320px}body.hideR main{grid-template-columns:200px minmax(0,1fr) 0}body.hideL.hideR main{grid-template-columns:0 minmax(0,1fr) 0}
+body.hideL .rail,body.hideR .det{visibility:hidden;overflow:hidden;padding:0;border:0}
 body.present header,body.present footer,body.present .rail{display:none}body.present main{grid-template-columns:minmax(0,1fr) 340px;height:calc(100vh - 64px)}
 </style>
 </head>
 <body>
 <header><h1>Swarm Views</h1><p>One real run, six ways to see it. Click any unit: what it is, what it holds, what it did.</p></header>
 <div class="bar">
-  <label>Run <select id="run"></select></label>
+  <select id="run" hidden aria-hidden="true"></select><button id="pick" class="pick" title="Choose a run (R)"><small>Run</small><b id="pickname">…</b><span>▾</span></button>
   <span class="seg" id="modes" aria-label="Mode"></span>
   <span class="seg" id="layouts" aria-label="Shape"></span>
   <div class="play"><button id="play">▶ Play</button><input id="t" type="range" min="0" max="1000" value="1000" aria-label="Time in the run"><output id="tl">end</output></div>
+  <span class="seg"><button id="hideL" title="Hide or show the left panel ([)">⇤</button><button id="hideR" title="Hide or show the right panel (])">⇥</button></span>
   <span class="seg"><button id="present" title="Present: the stage and the panel only (P)">⛶</button></span>
 </div>
+<dialog id="picker" aria-label="Choose a run"><div class="ph"><h2>Choose a run</h2><p>Each one is a real run. The preview is the run itself, drawn small.</p><button class="x" id="pickx" aria-label="Close">✕</button></div><div id="pgrid"></div></dialog>
 <main>
   <section class="panel rail" aria-label="Altitudes"><h2>Altitudes · click to light</h2><div class="list" id="rail"></div><h2 style="margin-top:12px">Sections · click to zoom</h2><div class="secs" id="secs"></div></section>
   <section id="stage" aria-label="The run"><div id="sv" style="position:absolute;inset:0"></div>
@@ -123,10 +138,37 @@ function load(id) {
     view.on('focus', (f) => { S.focus = f; document.querySelectorAll('#secs button').forEach((b) => b.setAttribute('aria-pressed', f === 'section:' + b.dataset.s)); sync(); });
     view.on('highlight', (a) => document.querySelectorAll('#rail button').forEach((b) => b.setAttribute('aria-pressed', b.dataset.alt === a)));
   } else view.setRun(r);
-  $('#run').value = r.id; rail(); detail(null); controls(); setT(S.t != null ? +S.t : null); S.t = null;
+  $('#run').value = r.id; $('#pickname').textContent = runName(r); rail(); detail(null); controls(); setT(S.t != null ? +S.t : null); S.t = null;
   const sel = q.get('sel'); if (sel && view.model.byId[sel]) { view.select(sel); q.delete('sel'); }
   sync();
 }
+// a name that says what each run is, and how it differs from the ones next to it
+function runName(r) {
+  if (r.kind === 'action') { const m = /scale-(\d+)/.exec(r.request || ''); if (m) return `Scale test · job ${+m[1]} of 12`; const k = /-(a\d)(-fix)?$/.exec(r.request || ''); return `${r.request_kind || (k ? k[1].toUpperCase() : '')} on GitHub Actions${k && k[2] ? ' · re-run after a fix' : ''} · ${String(r.started_at || '').slice(11, 16)} UTC`; }
+  if (r.kind === 'packet') return `Packet ${r.packet} · run by ${String(r.by || '').split('@')[0]}`;
+  return `${r.rung} · ${r.title}`;
+}
+function runLine(r) { const m = r.metrics || {}; return `${m.llm_calls ?? 0} calls, ${m.valid_calls ?? 0} valid · ${((r.wall_ms || 0) / 1000).toFixed(1)} s · $${Number(m.openrouter_usd || 0).toFixed(4)}`; }
+function pcard(r, mini) {
+  const story = String(r.story || '').replace(/^Request \S+ \(A\d\), committed by \S+; /, '').slice(0, 150);
+  return `<button class="pc" data-id="${esc(r.id)}" aria-current="${!!view && r.id === view.model.run.id}">${mini ? '' : '<div class="pv"></div>'}<div class="pt"><b>${esc(mini ? 'job ' + +((/scale-(\d+)/.exec(r.request) || [, 0])[1]) : runName(r))}</b>${mini ? '' : `<small>${esc(story)}</small>`}<div class="nums">${esc(runLine(r))}</div></div></button>`;
+}
+function openPicker() {
+  const lad = runs.filter((r) => r.kind !== 'packet' && r.kind !== 'action'), pk = runs.filter((r) => r.kind === 'packet'), ac = runs.filter((r) => r.kind === 'action');
+  const scale = ac.filter((r) => /scale-\d+/.test(r.request || '')).sort((a, b) => a.request.localeCompare(b.request)), other = ac.filter((r) => !scale.includes(r));
+  $('#pgrid').innerHTML = `<h3>The ladder <small>one rung at a time: each adds one thing</small></h3><div class="pcards">${lad.map((r) => pcard(r)).join('')}</div>`
+    + (pk.length ? `<h3>Packets <small>the same signed packet, run by different runners</small></h3><div class="pcards">${pk.map((r) => pcard(r)).join('')}</div>` : '')
+    + (other.length ? `<h3>Started with a push <small>a signed request, a GitHub Action, a signed result</small></h3><div class="pcards">${other.map((r) => pcard(r)).join('')}</div>` : '')
+    + (scale.length ? `<h3>The scale test <small>one push, 12 identical jobs at once: the same six tasks on the same two models; only their outcomes differ</small></h3><div class="pcards">${pcard(scale[0])}</div><div class="jobs" style="margin-top:8px">${scale.map((r) => pcard(r, true)).join('')}</div>` : '');
+  $('#pgrid').querySelectorAll('.pc').forEach((b) => (b.onclick = () => { const r = runs.find((x) => x.id === b.dataset.id); $('#picker').close(); S.focus = null; load(r.rung || r.request || r.id); }));
+  const io = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; io.unobserve(e.target); const r = runs.find((x) => x.id === e.target.closest('.pc').dataset.id); try { SwarmViews.render(e.target, r, { mode: 'flat', layout: 'down' }); } catch (err) { /* a preview is optional */ } }), { root: $('#picker') });
+  $('#picker').showModal(); $('#pgrid').querySelectorAll('.pv').forEach((v) => io.observe(v));
+  const cur = $('#pgrid .pc[aria-current="true"]'); if (cur) cur.scrollIntoView({ block: 'center' });
+}
+$('#pick').onclick = openPicker; $('#pickx').onclick = () => $('#picker').close();
+const pane = (k) => { document.body.classList.toggle(k); setTimeout(() => view && view.setLayout(S.layout), 60); };
+$('#hideL').onclick = () => pane('hideL'); $('#hideR').onclick = () => pane('hideR');
+document.addEventListener('keydown', (e) => { if (e.target.closest('input,select,textarea,dialog') || e.metaKey || e.ctrlKey || e.altKey) return; if (e.key === '[') pane('hideL'); else if (e.key === ']') pane('hideR'); else if (e.key === 'r' || e.key === 'R') openPicker(); });
 $('#run').onchange = () => { const r = runs.find((x) => x.id === $('#run').value); S.focus = null; load(r.rung || r.request || r.id); };
 $('#t').oninput = () => { if (timer) play(); const v = +$('#t').value; setT(v >= 1000 ? null : v / 1000 * view.end); };
 $('#play').onclick = play; $('#zin').onclick = () => view.zoom(.7); $('#zout').onclick = () => view.zoom(1.4); $('#zfit').onclick = () => view.fit();
