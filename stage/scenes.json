@@ -639,10 +639,9 @@
    "act": "5 · The mesh",
    "title": "Five agents, every one wired to everything",
    "run": "sim:mesh",
-   "mode": "force",
+   "mode": "layers",
    "anchors": {
     "P": "left",
-    "A3": "middle",
     "X": "right"
    },
    "say": "People struggle with five agents, ten agents. Why: it is a mesh. Every agent has every connector.",

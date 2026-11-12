@@ -156,3 +156,5 @@ footer { grid-column: 1 / -1; display: flex; align-items: center; gap: 10px; pad
 #card .ends { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 0 0 12px } #card .end { border: 1px solid var(--line); border-radius: 10px; padding: 8px 12px; font-size: .9em; display: flex; flex-direction: column; gap: 2px; transition: opacity .3s }
 #card .end b { font-family: var(--font-head) } #card .end i { font-style: normal; font-family: var(--mono) } #card .end.e-before { border-color: var(--warn) } #card .end.e-before i { color: var(--warn) } #card .end.e-after { border-color: var(--ok) } #card .end.e-after i { color: var(--ok) }
 #card iframe.glyph { width: 100%; height: 100%; border: 0; background: transparent }
+/* projector scale for the table cards (swarm.1.designer): read from the back of the room */
+@media (min-width: 1400px) { #card .check, #card .cmp, #card .kys, #card .nh, #card .flow { font-size: 122% } }
