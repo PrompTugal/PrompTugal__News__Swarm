@@ -69,7 +69,21 @@ Scenes (*idea*):
 | 3 | The licence is suspended; work stops at the next action, not after the damage. | animated (amber) |
 | 4 | Tonight, this agent's reach changed with nobody asking (fact, above). | slide |
 
-**Needs:** a small real check that fingerprints a session's tools at start and refuses to act when they change. That would make scenes 2 and 3 a run instead of an animation. I'll build it if Dinis says so.
+**Now a run:** `sims/licence/run.py` (result: `sims/licence/result.json`). It's a real measurement with a simulated change.
+
+- **The licence is granted** against this container's measured reach: 8 tools on PATH that reach outside systems (bq, curl, docker, gcloud, gh, gsutil, psql, wget), 18 credential-like environment variable names (names only, values never read), HTTPS through a proxy, and no MCP servers. Fingerprint `sha256:ee3f71fc…`.
+- **Two actions go through.** Then a tool is "connected" (simulated: a `gmail-mcp` entry and command).
+- **The fingerprint changes and the licence is suspended**, naming exactly what changed. The next three actions are refused.
+- **Tally:** 2 done, 3 refused, all within 5 ms.
+
+It also says what it doesn't cover:
+
+- Connectors held by the host (claude.ai, hosted MCP) are outside the container and must be fed in by the host.
+- The check belongs outside the agent.
+- The actions are named, not performed.
+- Re-granting needs a review.
+
+Line (*idea*): "The licence was for the world as it was. When the world changes, the licence waits for a person." 
 
 ## Dinis's message, as he said it (this session, about 01:58 UTC, 12 Nov 2026)
 
