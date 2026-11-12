@@ -1,0 +1,591 @@
+{
+ "slug": "booking-com",
+ "name": "Booking.com",
+ "kind": "customer-service",
+ "kind_label": "Customer service",
+ "one_line": "A travel platform that runs AI agents for travellers (trip planning, support, voice, car rental) and for its partner properties (guest messaging).",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Booking.com",
+   "url": "https://web-summit.sgit.ai/xray/booking-com/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Booking.com",
+   "url": "https://web-summit.sgit.ai/xray/booking-com/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/booking-com/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/booking-com/",
+  "deck": "https://web-summit.sgit.ai/xray/booking-com/deck/",
+  "run": "https://web-summit.sgit.ai/xray/booking-com/run/",
+  "one_line": "A travel platform that runs AI agents for travellers (trip planning, support, voice, car rental) and for its partner properties (guest messaging).",
+  "read_on": "2026-11-07",
+  "what_it_does": "Booking.com, part of Booking Holdings Inc. (NASDAQ: BKNG), is an online travel platform connecting travellers with accommodation, flights and car rentals. Since June 2023 it has added generative AI across the booking journey: the AI Trip Planner (built on its own recommendation models and partly on OpenAI's ChatGPT API), Smart Filter and Property Q&A, and from October 2025 its first in-house agentic tools, Smart Messenger and Auto-Reply for partners, alongside AI Trip Support, AI Voice Support and an AI Car Rental Helper for travellers. It also runs an app inside ChatGPT for browsing stays and rental cars, which hands the traveller back to Booking.com to book. [s1, s3, s4, s5]",
+  "situations": [
+   {
+    "title": "Smart Messenger answers a property's guests",
+    "helper": "Smart Messenger",
+    "reach": [
+     "Partner, property and reservation information, which Smart Messenger gathers to decide what to suggest or do",
+     "Guests: suggested replies and instant Auto-Reply answers go to travellers in the partner-to-guest messaging channel",
+     "The partner's Extranet inbox, where Smart Messenger, Auto-Reply and Help Me Reply are live",
+     "Past interactions and user feedback, from which the agent keeps learning and adapting its responses",
+     "Payment requests in the same channel: compromised partner accounts have used Booking.com's official guest messaging to ask guests for card details, with real booking information"
+    ],
+    "reach_sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency",
+     "https://www.hospitality.today/article/booking-com-scam-targets-hotel-guest-messages"
+    ],
+    "asked_our_example": [
+     "Suggest replies about the property and the stay; the partner approves each one before it is sent",
+     "Answer instantly only on the topics the partner has defined in Auto-Reply",
+     "Never ask a guest for payment or card details in a message"
+    ],
+    "gap": [
+     "Booking.com says Smart Messenger gathers information to autonomously take action; public material does not say which actions it takes without the partner's approval.",
+     "The agent writes in the channel that phishing has used to request card details from guests; no public description says how agent messages about payment are limited or marked.",
+     "Learning from past interactions: what is kept, and whether it is scoped to one property, is not publicly documented."
+    ],
+    "gap_sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency",
+     "https://www.hospitality.today/article/booking-com-scam-targets-hotel-guest-messages"
+    ]
+   },
+   {
+    "title": "A traveller cancels a stay by phone with AI Voice Support",
+    "helper": "AI Voice Support",
+    "reach": [
+     "The caller's booking details, which the tool pulls once connected",
+     "Trip management, including cancellation requests; Booking Holdings' CEO says Booking.com customers can now cancel bookings through agentic AI",
+     "Property information used to answer questions and support reservation changes (AI Trip Support)",
+     "Human customer service agents, who receive the case with all necessary information on handover"
+    ],
+    "reach_sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html",
+     "https://venturebeat.com/ai/booking-coms-agent-strategy-disciplined-modular-and-already-delivering-2"
+    ],
+    "asked_our_example": [
+     "Act only on the caller's own reservation, after the caller is matched to it",
+     "Cancel only after reading back the cancellation terms and getting a clear yes",
+     "Hand to a human for anything outside the property's policy"
+    ],
+    "gap": [
+     "Public material does not say how a caller is matched to a booking before the tool pulls booking details.",
+     "Whether the tool completes a cancellation itself or hands it to a person, and what confirmation it asks for, is not publicly documented."
+    ],
+    "gap_sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html"
+    ]
+   },
+   {
+    "title": "Planning a trip and booking from the AI Trip Planner",
+    "helper": "AI Trip Planner",
+    "reach": [
+     "Booking.com's recommendation models and accommodation inventory",
+     "Booking.com pricing shown with deep links to property details",
+     "The traveller's past searches and travel history when signed in",
+     "The in-app accommodation booking flow: one tap on a property to complete the reservation",
+     "OpenAI's ChatGPT API, which partly powers the conversation"
+    ],
+    "reach_sources": [
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/",
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/"
+    ],
+    "asked_our_example": [
+     "Recommend and show options; a booking happens only when the traveller taps through and confirms",
+     "Use account history only to personalise this traveller's results"
+    ],
+    "gap": [
+     "Which parts of the conversation and account history reach the third-party model is not publicly documented.",
+     "Booking.com's chief business officer named wrong prices and irrelevant content as the failure mode; prices shown in chat are a path to a booking."
+    ],
+    "gap_sources": [
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/",
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/"
+    ]
+   }
+  ],
+  "questions": [
+   "Smart Messenger gathers information to autonomously take action: which actions can it take without the partner approving them, and can a partner require approval for every message?",
+   "Guest messaging has been used to phish guests for card details: can Smart Messenger or Auto-Reply ever send or suggest a payment request, and is such a message marked or held?",
+   "How is a caller matched to a reservation before AI Voice Support pulls booking details, and does it complete a cancellation itself or hand it to a person?",
+   "Which traveller data (conversation, account history, reservation details) is sent to third-party model providers, and is each agent action recorded against the booking it touched?",
+   "Press reports an internal agent platform with guardrails for prompt injection and personal data: will Booking.com publish what those guardrails cover for the agents that touch reservations?"
+  ],
+  "incidents": [
+   "2023-09: Phishing through Booking.com's guest messaging: attackers took over hotels' Booking.com accounts, extracted guest booking data and messaged guests demanding card details to avoid cancellation. Booking.com said its backend was not breached and described new measures to lock or block inactive partner extranet accounts. The same channel is where Smart Messenger and Auto-Reply now operate; the incidents did not involve the AI agents. [s18, s17]",
+   "2026-03: Reports continue of compromised hotel extranet accounts used to send fraudulent payment requests through the official guest messaging system (not involving its AI agents: the same messaging channel the Smart Messenger agent now uses) [s19]"
+  ],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Booking.com Launches New AI Trip Planner to Enhance Travel Planning Experience (27 June 2023)",
+    "url": "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/",
+    "publisher": "Booking.com Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "How Booking.com's AI Trip Planner Can Inspire Travelers to Plan that Last-Minute Summer Vacation (August 2023)",
+    "url": "https://news.booking.com/how-bookingcoms-ai-trip-planner-can-inspire-travelers-to-plan-that-last-minute-summer-vacation/",
+    "publisher": "Booking.com Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Booking.com Enhances Travel Planning with New AI-Powered Features for Easier, Smarter Decisions (30 October 2024)",
+    "url": "https://news.booking.com/bookingcom-enhances-travel-planning-with-new-ai-powered-features--for-easier-smarter-decisions/",
+    "publisher": "Booking.com Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Booking.com Debuts Agentic AI Innovations, Adding to its Robust Suite of GenAI Tools for Customers (9 October 2025)",
+    "url": "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+    "publisher": "Booking.com Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "Booking.com Is Making Car Rentals Easier with App in ChatGPT (20 May 2026)",
+    "url": "https://news.booking.com/bookingcom-is-making-car-rentals-easier-with-app-in-chatgpt/",
+    "publisher": "Booking.com Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "How we're using generative AI to help make your property stand out (Click. Magazine, partner hub)",
+    "url": "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+    "publisher": "Booking.com Partner Hub",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "Booking Holdings Inc. Form 10-K for the year ended 31 December 2025 (filed 18 February 2026; primary document bkng-20251231.htm)",
+    "url": "https://www.sec.gov/Archives/edgar/data/1075531/0001075531-26-000009-index.htm",
+    "publisher": "Booking Holdings Inc. (SEC EDGAR)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Digital Services Act: 2025 Audit Implementation Report",
+    "url": "https://q-xx.bstatic.com/data/mobile/2025%20-%20Audit%20implementation%20report.pdf",
+    "publisher": "Booking.com B.V.",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Booking Holdings credits AI for better booking, customer service (4 November 2026, originally CX Dive)",
+    "url": "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html",
+    "publisher": "CX Dive via Yahoo",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "AI is starting to help Booking's business. Its stock should benefit (5 November 2026)",
+    "url": "https://www.cnbc.com/2026/11/05/booking-holdings-q3-earnings-ai-opportunity.html",
+    "publisher": "CNBC",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Booking.com built agentic AI before 'agents' existed: small models for speed, big models for trust (8 December 2025)",
+    "url": "https://venturebeat.com/ai/booking-coms-agent-strategy-disciplined-modular-and-already-delivering-2",
+    "publisher": "VentureBeat",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Booking.com says it built AI tools it wishes it had bought off the shelf (HumanX Amsterdam, 23 September 2026)",
+    "url": "https://thenextweb.com/news/booking-com-diageo-ai-at-scale-regrettable-work-humanx",
+    "publisher": "The Next Web",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Booking.com's AI Trip Planner Got an Update. Here's How It Works (30 October 2024)",
+    "url": "https://skift.com/2024/10/30/booking-coms-ai-trip-planner-got-a-big-update-heres-how-it-works/",
+    "publisher": "Skift",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "How to Use the AI Trip Planner on Booking.com (2 March 2025)",
+    "url": "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/",
+    "publisher": "CNET",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Booking.com Orchestrates Data and AI at Scale with Astro",
+    "url": "https://www.astronomer.io/case-studies/booking/",
+    "publisher": "Astronomer (vendor case study)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "Will AI Agents Replace Booking.com? The 2026 Evidence",
+    "url": "https://www.conduit.ai/blog/will-ai-agents-replace-booking-com",
+    "publisher": "Conduit (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Hackers target travelers using third-party booking agency (6 December 2023, with Booking.com's statement)",
+    "url": "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency",
+    "publisher": "FOX 5 New York",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Booking.com Customers Targeted in Major Phishing Campaign (28 September 2023)",
+    "url": "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+    "publisher": "Infosecurity Magazine",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Booking.com scam targets hotel guest messages (5 March 2026)",
+    "url": "https://www.hospitality.today/article/booking-com-scam-targets-hotel-guest-messages",
+    "publisher": "Hospitality.today",
+    "type": "press",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Booking.com's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "Smart Messenger answers a property's guests: Suggest replies about the property and the stay; the partner approves each one before it is sent",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   },
+   {
+    "text": "Smart Messenger answers a property's guests: Answer instantly only on the topics the partner has defined in Auto-Reply",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: Act only on the caller's own reservation, after the caller is matched to it",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: Cancel only after reading back the cancellation terms and getting a clear yes",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Recommend and show options; a booking happens only when the traveller taps through and confirms",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Use account history only to personalise this traveller's results",
+    "via": "https://web-summit.sgit.ai/xray/booking-com/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "Smart Messenger answers a property's guests: Partner, property and reservation information, which Smart Messenger gathers to decide what to suggest or do",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Smart Messenger answers a property's guests: Guests: suggested replies and instant Auto-Reply answers go to travellers in the partner-to-guest messaging channel",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: The caller's booking details, which the tool pulls once connected",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html",
+     "https://venturebeat.com/ai/booking-coms-agent-strategy-disciplined-modular-and-already-delivering-2"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: Trip management, including cancellation requests; Booking Holdings' CEO says Booking.com customers can now cancel bookings through agentic AI",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html",
+     "https://venturebeat.com/ai/booking-coms-agent-strategy-disciplined-modular-and-already-delivering-2"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Booking.com's recommendation models and accommodation inventory",
+    "sources": [
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/",
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Booking.com pricing shown with deep links to property details",
+    "sources": [
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/",
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Smart Messenger answers a property's guests: Booking.com says Smart Messenger gathers information to autonomously take action; public material does not say which actions it takes without the partner's approval.",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Smart Messenger answers a property's guests: The agent writes in the channel that phishing has used to request card details from guests; no public description says how agent messages about payment are limited or marked.",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://partner.booking.com/en-gb/click-magazine/industry-perspectives/how-we-use-generative-ai",
+     "https://www.infosecurity-magazine.com/news/bookingcom-customers-targeted/",
+     "https://www.fox5ny.com/news/hackers-target-third-party-booking-agency"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: Public material does not say how a caller is matched to a booking before the tool pulls booking details.",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "A traveller cancels a stay by phone with AI Voice Support: Whether the tool completes a cancellation itself or hands it to a person, and what confirmation it asks for, is not publicly documented.",
+    "sources": [
+     "https://news.booking.com/bookingcom-debuts-agentic-ai-innovations-adding-to-its-robust-suite-of-genai-tools-for-customers/",
+     "https://travel.yahoo.com/news/articles/booking-holdings-credits-ai-better-212242496.html"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Which parts of the conversation and account history reach the third-party model is not publicly documented.",
+    "sources": [
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/",
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "text": "Planning a trip and booking from the AI Trip Planner: Booking.com's chief business officer named wrong prices and irrelevant content as the failure mode; prices shown in chat are a path to a booking.",
+    "sources": [
+     "https://www.cnet.com/tech/services-and-software/how-to-use-the-ai-trip-planner-on-booking-com/",
+     "https://news.booking.com/en-us/bookingcom-launches-new-ai-trip-planner-to-enhance-travel-planning-experience/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/booking-com/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Booking.com; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/booking-com/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate: published findings on mail and calendar access.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic: pay one invoice, not all of them.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-booking-com",
+  "title": "Booking.com: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Booking.com",
+    "sub": "A travel platform that runs AI agents for travellers (trip planning, support, voice, car rental) and for its partner properties (guest messaging).",
+    "caption": "What we have on Booking.com, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "A travel platform that runs AI agents for travellers (trip planning, support, voice, car rental) and for its partner properties (guest…",
+     "Partner, property and reservation information, which Smart Messenger gathers to decide what to suggest or do",
+     "Guests: suggested replies and instant Auto-Reply answers go to travellers in the partner-to-guest messaging channel",
+     "The caller's booking details, which the tool pulls once connected",
+     "Trip management, including cancellation requests; Booking Holdings' CEO says Booking.com customers can now cancel bookings through agentic…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "Booking.com says Smart Messenger gathers information to autonomously take action; public material does not say which actions it takes…",
+     "The agent writes in the channel that phishing has used to request card details from guests; no public description says how agent messages…",
+     "Learning from past interactions: what is kept, and whether it is scoped to one property, is not publicly documented.",
+     "Public material does not say how a caller is matched to a booking before the tool pulls booking details.",
+     "Whether the tool completes a cancellation itself or hands it to a person, and what confirmation it asks for, is not publicly documented."
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "Booking.com says Smart Messenger gathers information to autonomously take action; public material does not say which…",
+      "The agent writes in the channel that phishing has used to request card details from guests; no public description says…",
+      "Public material does not say how a caller is matched to a booking before the tool pulls booking details.",
+      "Whether the tool completes a cancellation itself or hands it to a person, and what confirmation it asks for, is not…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A send button is not a mandate",
+    "step": "send-button/a-rule-in-prose",
+    "caption": "A send button is not a mandate: published findings on mail and calendar access."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

@@ -1,0 +1,599 @@
+{
+ "slug": "amex-gbt",
+ "name": "Amex GBT",
+ "kind": "customer-service",
+ "kind_label": "Customer service",
+ "one_line": "A travel management company whose agents now search, book and service business trips from inside Claude, Google Chat and Teams, on the traveler's own credentials.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Amex GBT",
+   "url": "https://web-summit.sgit.ai/xray/amex-gbt/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Amex GBT",
+   "url": "https://web-summit.sgit.ai/xray/amex-gbt/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/amex-gbt/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/amex-gbt/",
+  "deck": "https://web-summit.sgit.ai/xray/amex-gbt/deck/",
+  "run": "https://web-summit.sgit.ai/xray/amex-gbt/run/",
+  "one_line": "A travel management company whose agents now search, book and service business trips from inside Claude, Google Chat and Teams, on the traveler's own credentials.",
+  "read_on": "2026-11-07",
+  "what_it_does": "American Express Global Business Travel (Amex GBT) describes itself as a software and services company for travel, expense, and meetings and events; its products include Egencia, Neo and Complete (built with SAP Concur), and it was taken private by Long Lake, which calls itself an AI holding company, in a $6.3 billion deal completed on 29 September 2026. Its stated AI strategy has three parts: revolutionise the customer experience, power the agentic transformation of B2B travel, and reduce operating costs. In July 2026 it launched an agent-to-agent (A2A) layer that routes traveler requests to specialised agents, with the Egencia AI connector in Claude as its first deployment. [s9, s1, s3, s11, s12, s10, s2]",
+  "situations": [
+   {
+    "title": "Booking business trips from Claude",
+    "helper": "Egencia AI in Claude",
+    "reach": [
+     "The traveler's calendar for the coming month",
+     "The traveler's credentials: Claude acts on the traveler's behalf",
+     "End-to-end air and hotel bookings: transactions, not only retrieval",
+     "Company configured policies, traveler profiles and corporate agreements",
+     "Amex GBT marketplace inventory of airlines and hotels",
+     "Transaction data fed into reporting systems"
+    ],
+    "reach_sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "asked_our_example": [
+     "Read calendar entries that imply business travel, to propose trips.",
+     "Book air and hotel only within the company's configured policy, and only trips the traveler has confirmed.",
+     "No changes to the traveler's profile or account settings."
+    ],
+    "gap": [
+     "The connector acts with the traveler's credentials, so what it can do is whatever the traveler can do, while the request was only to help book confirmed trips.",
+     "Calendar access is the whole calendar, while the task needs only the entries that imply travel."
+    ],
+    "gap_sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel"
+    ]
+   },
+   {
+    "title": "Servicing chat with handoff to counselors",
+    "helper": "Egencia virtual agent",
+    "reach": [
+     "Help-centre content the virtual agent is trained on",
+     "Traveler account actions: password resets, adding frequent flyer numbers",
+     "Traveler invoices and itineraries",
+     "Live travel counselors who join or take over the conversation",
+     "Changing booked travel through Egencia AI"
+    ],
+    "reach_sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://www.amexglobalbusinesstravel.com/why-amex-gbt/chat-assistance/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "asked_our_example": [
+     "Answer common questions from help-centre content.",
+     "Account self-service and invoice lookup only for the signed-in traveler.",
+     "Changes to booked travel go to a counselor or are confirmed by the traveler."
+    ],
+    "gap": [
+     "Account changes and invoice retrieval happen in chat; how the agent ties each request to the signed-in traveler is not publicly documented.",
+     "Egencia AI can change travel, so a servicing chat reaches money as well as answers."
+    ],
+    "gap_sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ]
+   },
+   {
+    "title": "Hotel sourcing with Hotel Lobby",
+    "helper": "Hotel Lobby",
+    "reach": [
+     "Client hotel sourcing data, cleansed by the agents",
+     "Negotiated-rate benchmarks across thousands of properties and supplier performance from more than $5 billion of managed hotel spend",
+     "Compliance trends across Amex GBT's client portfolio",
+     "Wish (target) rates that set the negotiating position",
+     "RFPs to hotels, validated by the agents"
+    ],
+    "reach_sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travel.economictimes.indiatimes.com/news/technology/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing/135026172",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ],
+    "asked_our_example": [
+     "Prepare and validate one client's sourcing data and RFPs.",
+     "Consultants keep responsibility for strategy, negotiations and exceptions (publicly stated)."
+    ],
+    "gap": [
+     "Agents working for one client draw on benchmarks and compliance trends from across Amex GBT's whole client portfolio.",
+     "Wish rates the agents calculate set the starting point of a negotiation the consultant owns."
+    ],
+    "gap_sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ]
+   }
+  ],
+  "questions": [
+   "When the Egencia AI connector acts with a traveler's credentials, what can those credentials reach beyond booking, and can a company restrict the connector to search only or require a confirm step before purchase?",
+   "In the A2A layer, is there a record per action of which specialised agent did what, on whose authority, that a customer can export for audit?",
+   "How does the chat agent tie a password reset, loyalty change or invoice request to the signed-in traveler?",
+   "In Hotel Lobby, how is benchmark and compliance data from other clients separated from the client being sourced?",
+   "Under Long Lake, will client travel data be used to improve the Nexus platform shared across Long Lake companies?"
+  ],
+  "incidents": [],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Corporate Travel Management Solutions | Amex GBT",
+    "url": "https://www.amexglobalbusinesstravel.com/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "Amex GBT launches business travel agent-to-agent infrastructure, debuts Egencia AI connector in Claude (27 July 2026)",
+    "url": "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Business Travel Solutions | American Express Global Business Travel",
+    "url": "https://www.amexglobalbusinesstravel.com/business-travel-solutions/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "24/7 chat assistance",
+    "url": "https://www.amexglobalbusinesstravel.com/why-amex-gbt/chat-assistance/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "Traveler Support | Amex GBT",
+    "url": "https://www.amexglobalbusinesstravel.com/traveler-support/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "American Express Global Business Travel Introduces New AI-Powered Solutions (28 May 2025)",
+    "url": "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "What makes Amex GBT Egencia's support unrivaled (16 June 2025)",
+    "url": "https://www.amexglobalbusinesstravel.com/ca/resources/blog/unrivaled-customer-support-for-better-business-travel/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Hotel program management: 6 ways to improve booking and spend (22 October 2026)",
+    "url": "https://www.amexglobalbusinesstravel.com/resources/blog/hotel-program-management-with-ai-powered-marketplace/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "American Express Global Business Travel Reports Strong Fourth Quarter and Full-Year 2025 Financial Results (9 March 2026)",
+    "url": "https://investors.amexglobalbusinesstravel.com/investors/news/news-details/2026/American-Express-Global-Business-Travel-Reports-Strong-Fourth-Quarter-and-Full-Year-2025-Financial-Results/default.aspx",
+    "publisher": "Amex GBT Investor Relations",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Q4 and Full-Year 2025 Earnings Conference Call: prepared remarks (9 March 2026)",
+    "url": "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf",
+    "publisher": "Amex GBT Investor Relations",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Long Lake, the World's First AI Holding Company, Completes $6.3 Billion Acquisition of American Express Global Business Travel (29 September 2026)",
+    "url": "https://investors.amexglobalbusinesstravel.com/investors/news/news-details/2026/Long-Lake-the-Worlds-First-AI-Holding-Company-Completes-6-3-Billion-Acquisition-of-American-Express-Global-Business-Travel/default.aspx",
+    "publisher": "Amex GBT Investor Relations",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Long Lake completes its acquisition of Amex GBT: What customers and partners need to know (29 September 2026)",
+    "url": "https://www.amexglobalbusinesstravel.com/resources/blog/long-lake-amex-gbt-acquisition-faq/",
+    "publisher": "Amex GBT",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Building the Future of Travel & Expense: New Innovations from the SAP Concur and Amex GBT Alliance (17 March 2026)",
+    "url": "https://www.concur.com/blog/article/building-future-travel-expense-new-innovations-from-sap-concur-and-amex-gbt-alliance",
+    "publisher": "SAP Concur",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Amex GBT launches AI-powered business travel booking through Claude integration (28 July 2026)",
+    "url": "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+    "publisher": "ETTravelWorld",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Amex GBT launches agentic AI tool to accelerate hotel sourcing (19 October 2026)",
+    "url": "https://travel.economictimes.indiatimes.com/news/technology/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing/135026172",
+    "publisher": "ETTravelWorld",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "Amex GBT Launches Hotel Lobby, Agentic AI for Hotel Sourcing (15 October 2026)",
+    "url": "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+    "publisher": "Business Travel Executive",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Amex GBT adds agentic commerce to corporate travel (7 August 2026)",
+    "url": "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel",
+    "publisher": "American Banker",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Amex GBT launches agentic AI tool to accelerate hotel sourcing, improve corporate travel programme savings (19 October 2026)",
+    "url": "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+    "publisher": "TravTalk",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Amex GBT launches agentic AI tool to speed up hotel sourcing (15 October 2026)",
+    "url": "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/",
+    "publisher": "Travel Weekly (Australia)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Amex GBT's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "Booking business trips from Claude: Read calendar entries that imply business travel, to propose trips.",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   },
+   {
+    "text": "Booking business trips from Claude: Book air and hotel only within the company's configured policy, and only trips the traveler has confirmed.",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Answer common questions from help-centre content.",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Account self-service and invoice lookup only for the signed-in traveler.",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Prepare and validate one client's sourcing data and RFPs.",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Consultants keep responsibility for strategy, negotiations and exceptions (publicly stated).",
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "Booking business trips from Claude: The traveler's calendar for the coming month",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Booking business trips from Claude: The traveler's credentials: Claude acts on the traveler's behalf",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Help-centre content the virtual agent is trained on",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://www.amexglobalbusinesstravel.com/why-amex-gbt/chat-assistance/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Traveler account actions: password resets, adding frequent flyer numbers",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://www.amexglobalbusinesstravel.com/why-amex-gbt/chat-assistance/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Client hotel sourcing data, cleansed by the agents",
+    "sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travel.economictimes.indiatimes.com/news/technology/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing/135026172",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Negotiated-rate benchmarks across thousands of properties and supplier performance from more than $5 billion of managed hotel spend",
+    "sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travel.economictimes.indiatimes.com/news/technology/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing/135026172",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Booking business trips from Claude: The connector acts with the traveler's credentials, so what it can do is whatever the traveler can do, while the request was only to help book confirmed trips.",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Booking business trips from Claude: Calendar access is the whole calendar, while the task needs only the entries that imply travel.",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/amex-gbt-launches-business-travel-agent-to-agent-infrastructure-debuts-egencia-ai-connector-in-claude/",
+     "https://travel.economictimes.indiatimes.com/news/tourism/corporate/amex-gbt-launches-ai-powered-business-travel-booking-through-claude-integration/132678369",
+     "https://www.americanbanker.com/payments/news/amex-gbt-adds-agentic-commerce-to-corporate-travel"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Account changes and invoice retrieval happen in chat; how the agent ties each request to the signed-in traveler is not publicly documented.",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Servicing chat with handoff to counselors: Egencia AI can change travel, so a servicing chat reaches money as well as answers.",
+    "sources": [
+     "https://www.amexglobalbusinesstravel.com/press-releases/american-express-global-business-travel-introduces-new-ai-powered-solutions/",
+     "https://www.amexglobalbusinesstravel.com/traveler-support/",
+     "https://s201.q4cdn.com/264815268/files/doc_financials/2025/q4/Amex-GBT-Q4-2025-Earnings-Call-Prepared-Remarks.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Agents working for one client draw on benchmarks and compliance trends from across Amex GBT's whole client portfolio.",
+    "sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "text": "Hotel sourcing with Hotel Lobby: Wish rates the agents calculate set the starting point of a negotiation the consultant owns.",
+    "sources": [
+     "https://www.businesstravelexecutive.com/news/amex-gbt-launches-hotel-lobby-agentic-ai-for-hotel-sourcing/",
+     "https://travtalkindia.com/amex-gbt-launches-agentic-ai-tool-to-accelerate-hotel-sourcing-improve-corporate-travel-programme-savings/",
+     "https://www.travelweekly.com.au/amex-gbt-launches-agentic-ai-tool-to-speed-up-hotel-sourcing/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Amex GBT; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/amex-gbt/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate: published findings on mail and calendar access.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic: pay one invoice, not all of them.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-amex-gbt",
+  "title": "Amex GBT: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Amex GBT",
+    "sub": "A travel management company whose agents now search, book and service business trips from inside Claude, Google Chat and Teams, on the traveler's own…",
+    "caption": "What we have on Amex GBT, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "A travel management company whose agents now search, book and service business trips from inside Claude, Google Chat and Teams, on the…",
+     "The traveler's calendar for the coming month",
+     "The traveler's credentials: Claude acts on the traveler's behalf",
+     "Help-centre content the virtual agent is trained on",
+     "Traveler account actions: password resets, adding frequent flyer numbers"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "The connector acts with the traveler's credentials, so what it can do is whatever the traveler can do, while the request was only to help…",
+     "Calendar access is the whole calendar, while the task needs only the entries that imply travel.",
+     "Account changes and invoice retrieval happen in chat; how the agent ties each request to the signed-in traveler is not publicly documented.",
+     "Egencia AI can change travel, so a servicing chat reaches money as well as answers.",
+     "Agents working for one client draw on benchmarks and compliance trends from across Amex GBT's whole client portfolio."
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "The connector acts with the traveler's credentials, so what it can do is whatever the traveler can do, while the…",
+      "Calendar access is the whole calendar, while the task needs only the entries that imply travel.",
+      "Account changes and invoice retrieval happen in chat; how the agent ties each request to the signed-in traveler is not…",
+      "Egencia AI can change travel, so a servicing chat reaches money as well as answers."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A send button is not a mandate",
+    "step": "send-button/a-rule-in-prose",
+    "caption": "A send button is not a mandate: published findings on mail and calendar access."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

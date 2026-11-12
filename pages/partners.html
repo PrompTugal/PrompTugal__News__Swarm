@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Summit Partners</title>
+<meta name="description" content="Every company we have something on: a GAMMA-Ray card or an X-ray record, each with a mini deck, what we know, how RiskMandate could help and which demos to show.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+/* partners.1.fringe@PrompTugal.dinis, 12 Nov 2026 (WS-215), for Dinis: "an area that only has the list of companies that we have something about".
+   Tablet-first: every tap target is at least 44 px. */
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--font)}
+body{background:radial-gradient(ellipse at 50% -10%,var(--bg2) 0%,var(--bg) 60%) fixed}a{color:var(--accent)}
+.hero{max-width:1320px;margin:0 auto;padding:26px 20px 6px}.hero h1{margin:0;font:700 clamp(1.6rem,3vw,2.4rem)/1.15 var(--font-head)}
+.hero p{margin:8px 0 0;color:var(--muted);max-width:76ch}
+.bar{position:sticky;top:0;z-index:5;max-width:1320px;margin:0 auto;padding:12px 20px;display:flex;flex-wrap:wrap;gap:10px;align-items:center;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px)}
+.bar input{flex:1 1 260px;min-height:48px;font:inherit;font-size:1.05rem;color:var(--ink);background:var(--panel-solid);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.bar input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{min-height:44px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--panel-solid);color:var(--muted);font:600 .92rem var(--font);cursor:pointer;touch-action:manipulation}
+.chips button[aria-pressed="true"]{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.chips button small{font-weight:400;opacity:.8;margin-left:4px}
+.count{max-width:1320px;margin:0 auto;padding:0 20px;color:var(--muted);font-size:.9rem}
+.grid{max-width:1320px;margin:0 auto;padding:12px 20px 30px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+@media (max-width:1100px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:640px){.grid{grid-template-columns:1fr}.hero{padding-top:18px}}
+.card{display:flex;flex-direction:column;gap:8px;min-height:44px;padding:16px 18px;background:var(--panel-solid);border:1px solid var(--line);border-radius:14px;text-decoration:none;color:var(--ink);transition:transform .15s,border-color .15s}
+.card:hover,.card:focus-visible{transform:translateY(-2px);border-color:var(--accent);outline:none}
+.card h2{margin:0;font:600 1.25rem var(--font-head);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.card h2 small{font:600 .72rem var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.card p{margin:0;color:var(--muted);font-size:.95rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.tags span{font:600 .72rem/1 var(--mono);letter-spacing:.04em;border:1px solid var(--line);border-radius:6px;padding:6px 7px;color:var(--muted)}
+.tags .g{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 50%,transparent)}
+.tags .x{color:var(--accent2,var(--warn));border-color:color-mix(in srgb,var(--accent2,var(--warn)) 50%,transparent)}
+.ask{max-width:1320px;margin:0 auto;padding:0 20px 18px}.ask div{border:1px dashed var(--line);border-radius:12px;padding:14px 16px;color:var(--muted)}
+.empty{max-width:1320px;margin:0 auto;padding:10px 20px;color:var(--muted)}
+footer{max-width:1320px;margin:0 auto;padding:14px 20px 30px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
+</style>
+</head>
+<body>
+<section class="hero"><h1>Summit Partners</h1>
+<p>Every company we have already made something about: a GAMMA-Ray card (beta) or an X-ray record. Tap one for its mini deck: what we know, with sources; what we made for them; how RiskMandate could help (our hypothesis); how we could work together; and which demos to show.</p></section>
+<div class="bar" role="search">
+  <input id="q" type="search" placeholder="Search a company, a product or a sector" aria-label="Search the partners" autocomplete="off">
+  <div class="chips" id="has" aria-label="Filter by what exists"></div>
+  <div class="chips" id="kinds" aria-label="Filter by sector"></div>
+</div>
+<p class="count" id="count" aria-live="polite"></p>
+<section class="grid" id="grid" aria-label="The partners"></section>
+<p class="empty" id="empty" hidden>No company matches. Ask for it below.</p>
+<section class="ask"><div><b style="color:var(--ink)">Not here yet?</b> Give the name to swarm.1 (or to Dinis's conductor): the entry is built from public sources within the hour, with the same sections.</div></section>
+<footer>Built by partners.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215), from our own public sites: <a href="https://gamma-ray.sgit.ai/">GAMMA-Ray</a> (a beta standard; every rating is experimental) and <a href="https://web-summit.sgit.ai/xray/">the X-ray</a>. Public sources only; no contact details. Independent of Web Summit. <span id="upd"></span></footer>
+<script>
+const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const HAS = [['all', 'All'], ['both', 'Card and X-ray'], ['gamma-ray', 'GAMMA-Ray card'], ['xray', 'X-ray record']];
+const Q = new URLSearchParams(location.search);
+let ALL = [], KINDS = {}, st = { q: Q.get('q') || '', has: Q.get('has') || 'all', kind: Q.get('kind') || 'all' };
+function route() { const p = new URLSearchParams(); if (st.q) p.set('q', st.q); if (st.has !== 'all') p.set('has', st.has); if (st.kind !== 'all') p.set('kind', st.kind); try { history.replaceState(null, '', p.toString() ? '?' + p : location.pathname); } catch (e) {} }
+const match = (p) => {
+  if (st.has === 'both' && p.has.length < 2) return false;
+  if (st.has !== 'all' && st.has !== 'both' && !p.has.includes(st.has)) return false;
+  if (st.kind !== 'all' && p.kind !== st.kind) return false;
+  const q = st.q.trim().toLowerCase(); if (!q) return true;
+  return [p.name, p.slug, p.one_line, p.kind_label, ...(p.products || [])].join(' ').toLowerCase().includes(q);
+};
+function chips() {
+  const n = (f) => ALL.filter(f).length;
+  $('#has').innerHTML = HAS.map(([k, l]) => `<button type="button" data-has="${k}" aria-pressed="${st.has === k}">${l}<small>${k === 'all' ? ALL.length : k === 'both' ? n((p) => p.has.length > 1) : n((p) => p.has.includes(k))}</small></button>`).join('');
+  const ks = Object.keys(KINDS).filter((k) => ALL.some((p) => p.kind === k));
+  $('#kinds').innerHTML = [`<button type="button" data-kind="all" aria-pressed="${st.kind === 'all'}">Every sector</button>`].concat(ks.map((k) => `<button type="button" data-kind="${k}" aria-pressed="${st.kind === k}">${esc(KINDS[k])}<small>${n((p) => p.kind === k)}</small></button>`)).join('');
+}
+function render() {
+  const L = ALL.filter(match);
+  $('#grid').innerHTML = L.map((p) => `<a class="card" href="partner.html?c=${encodeURIComponent(p.slug)}"><h2>${esc(p.name)}<small>${esc(p.kind_label)}</small></h2><p>${esc(p.one_line)}</p>
+    <div class="tags">${p.has.includes('gamma-ray') ? (p.codes || []).map((c) => `<span class="g" title="GAMMA-Ray card (beta)">γ ${esc(c)}</span>`).join('') : ''}${p.has.includes('xray') ? '<span class="x">X-ray + deck</span>' : ''}${(p.products || []).map((x) => `<span>${esc(x)}</span>`).join('')}</div></a>`).join('');
+  $('#empty').hidden = !!L.length; $('#count').textContent = `${L.length} of ${ALL.length} companies`;
+  chips(); route();
+}
+$('#q').value = st.q;
+$('#q').addEventListener('input', (e) => { st.q = e.target.value; render(); });
+document.addEventListener('click', (e) => { const b = e.target.closest('button[data-has],button[data-kind]'); if (!b) return; if (b.dataset.has) st.has = b.dataset.has; else st.kind = b.dataset.kind; render(); });
+fetch('../partners/index.json', { cache: 'no-store' }).then((r) => r.json()).then((j) => { ALL = j.partners || []; KINDS = j.kinds || {}; $('#upd').textContent = `Updated ${String(j.updated || '').replace('T', ' ').replace('Z', ' UTC')}.`; render(); })
+  .catch(() => { $('#empty').hidden = false; $('#empty').textContent = 'The list could not be loaded.'; });
+</script>
+<script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+{
+ "slug": "granter",
+ "name": "Granter",
+ "kind": "other",
+ "kind_label": "Other",
+ "one_line": "Chat-based agent, onboarded with the organisation's details and past applications, that matches funding calls, checks eligibility and admissibility, drafts applications section by section with playbooks, scores drafts with an Evaluator, and supports post-approval reporting. The user submits the application.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: AI Grant Consultant",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/",
+   "note": "A2 · R1 · C1 · O1, Exploring (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: AI Grant Consultant",
+   "url": "https://gamma-ray.sgit.ai/scans/granter-ai-grant-consultant/",
+   "note": "freedom 2 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "AI Grant Consultant",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/",
+   "scan": "https://gamma-ray.sgit.ai/scans/granter-ai-grant-consultant/",
+   "code": "A2 · R1 · C1 · O1",
+   "stage": "Exploring",
+   "provisions": 35,
+   "instruments": 7,
+   "read_on": "2026-11-10",
+   "description": "Chat-based agent, onboarded with the organisation's details and past applications, that matches funding calls, checks eligibility and admissibility, drafts applications section by section with playbooks, scores drafts with an Evaluator, and supports post-approval reporting. The user submits the application.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 2,
+     "name": "Suggests",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 3, Acts",
+      "needs": "Public evidence that it executes actions itself; and that the agent handles routine tasks; the person is consulted on exceptions."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 1,
+     "name": "Contained",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 2, Integrated",
+      "needs": "Public evidence that it works across several domains or systems."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 1,
+     "name": "Disclosed",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 2, Documented",
+      "needs": "Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    }
+   ],
+   "fact_ray": "10 facts: 10 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Granter's own public pages (product, documentation, blog, customer stories, legal and security pages)",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "AI Grant Consultant with its documented defaults.",
+     "freedom": "2 Suggests"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I16",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent suggests; the person reviews and approves each action",
+   "fact": "The privacy policy, which covers the whole Granter platform and does not name the agent, says the platform's AI search, drafts, analyses and recommendations are suggestions that users review and approve before any submission or decision; it does not say each step is approved separately.",
+   "quote": "Users review and approve them before any submission or decision",
+   "source": "https://granter.ai/privacy-policy",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I07",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It retrieves information and recommends actions; a person acts",
+   "fact": "The product page says the agent finds calls, checks eligibility and runs an Evaluator that shows what to improve; the user selects the opportunity and makes the submission.",
+   "quote": "shows what to improve before you submit",
+   "source": "https://granter.ai/blog/ai-grant-consultant",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I09",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It works in one domain's data",
+   "fact": "The agent works in one domain: public and private funding calls at regional, national and EU level.",
+   "quote": "covers both public and private funding, at regional, national and EU level",
+   "source": "https://granter.ai/blog/ai-grant-consultant",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "The product page's FAQ says Granter does not submit the application: the user makes the final submission on the funding platform, since access to submission-platform accounts is restricted for Granter; this states who submits, a structural limit on the product, not an approval step.",
+   "quote": "The final submission is done by you on the relevant platform",
+   "source": "https://granter.ai/blog/ai-grant-consultant",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I20",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its purpose and permitted tasks are stated in writing",
+   "fact": "The product page states the agent's purpose and tasks: find the calls an organisation qualifies for, check eligibility, draft the application against the call's criteria, review it, and manage reporting after approval; its FAQ says the agent does not submit.",
+   "quote": "It finds the calls you qualify for, drafts the application against the official criteria",
+   "source": "https://granter.ai/blog/ai-grant-consultant",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I56",
+   "dims": [
+    "Openness"
+   ],
+   "label": "It tells the people it talks to that it is an AI",
+   "fact": "The privacy policy states that AI-generated content is labelled as such inside the platform; it is a label on generated content, not a statement about disclosure in conversation.",
+   "quote": "AI-generated content is presented as such inside the platform.",
+   "source": "https://granter.ai/privacy-policy",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "In a quote on the product page, Granter's CTO says onboarding collects the organisation's information, such as previous applications and institutional data, which the page says the agent then holds as context (vendor's statement).",
+   "quote": "collect all important information, like previous applications, institutional data",
+   "source": "https://granter.ai/blog/ai-grant-consultant",
+   "read_at": "2026-11-10T19:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Granter's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "AI Grant Consultant, its stated purpose: The product page states the agent's purpose and tasks: find the calls an organisation qualifies for, check eligibility, draft the application against the call's criteria, review it, and manage reporting after approval; its FAQ says the agent does not submit.",
+    "source": "https://granter.ai/blog/ai-grant-consultant",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+   }
+  ],
+  "reach": [
+   {
+    "text": "AI Grant Consultant: The agent works in one domain: public and private funding calls at regional, national and EU level.",
+    "source": "https://granter.ai/blog/ai-grant-consultant",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "AI Grant Consultant: control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Granter has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=AI%20Grant%20Consultant",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "The same work, two ways",
+   "theme": "reach",
+   "demo": "opening",
+   "why": "The same work, two ways.",
+   "present": "theme.html?t=reach&d=opening",
+   "stage": "../stage.html?scene=opening"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? Answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-granter",
+  "title": "Granter: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Granter",
+    "sub": "Chat-based agent, onboarded with the organisation's details and past applications, that matches funding calls, checks eligibility and admissibility, drafts…",
+    "caption": "What we have on Granter, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The privacy policy, which covers the whole Granter platform and does not name the agent, says the platform's AI search, drafts, analyses…",
+     "The product page says the agent finds calls, checks eligibility and runs an Evaluator that shows what to improve; the user selects the…",
+     "The agent works in one domain: public and private funding calls at regional, national and EU level.",
+     "The product page's FAQ says Granter does not submit the application: the user makes the final submission on the funding platform, since…",
+     "The product page states the agent's purpose and tasks: find the calls an organisation qualifies for, check eligibility, draft the…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "AI Grant Consultant: A2 · R1 · C1 · O1",
+    "levels": [
+     {
+      "id": "A2",
+      "label": "Autonomy: Suggests",
+      "note": "Next: Public evidence that it executes actions itself; and that the agent handles routine tasks; the person is consulted on exceptions."
+     },
+     {
+      "id": "R1",
+      "label": "Reach: Contained",
+      "note": "Next: Public evidence that it works across several domains or systems."
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     },
+     {
+      "id": "O1",
+      "label": "Openness: Disclosed",
+      "note": "Next: Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Granter has not reviewed it. Stage: Exploring. 35 provisions lit across 7 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach, gap",
+    "step": "gap/two-ways-to-close-it",
+    "caption": "Mandate, reach, gap: the three words for the conversation."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

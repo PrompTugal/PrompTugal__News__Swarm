@@ -1,0 +1,370 @@
+{
+ "slug": "trent-ai",
+ "name": "Trent AI",
+ "kind": "security",
+ "kind_label": "Security",
+ "one_line": "Agent that keeps code, infrastructure, agents and docs in one context, judges exploitable findings as attack chains, hands fixes to the team's coding agents, reviews and re-scans to verify.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: Trent, the AI Security Engineer",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/",
+   "note": "A3 · R3 · C2 · O3, Scaling (beta)",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: Trent, the AI Security Engineer",
+   "url": "https://gamma-ray.sgit.ai/scans/trent-ai-security-engineer/",
+   "note": "freedom 1, 1, 2, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "Trent, the AI Security Engineer",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/",
+   "scan": "https://gamma-ray.sgit.ai/scans/trent-ai-security-engineer/",
+   "code": "A3 · R3 · C2 · O3",
+   "stage": "Scaling",
+   "provisions": 56,
+   "instruments": 8,
+   "read_on": "2026-11-11",
+   "description": "Agent that keeps code, infrastructure, agents and docs in one context, judges exploitable findings as attack chains, hands fixes to the team's coding agents, reviews and re-scans to verify.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 3,
+     "name": "Acts",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 4, Orchestrates",
+      "needs": "Public evidence that the agent works independently; the person approves critical decisions only."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 3,
+     "name": "Open protocol",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 2,
+     "name": "Configurable",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 3, Observable",
+      "needs": "Public evidence that its actions are logged; and that there is a way to pause or stop it; and that it is monitored in operation."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 3,
+     "name": "Measured",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 4, Verified",
+      "needs": "Public evidence that a public certificate or audit report covers it."
+     }
+    }
+   ],
+   "fact_ray": "17 facts: 17 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Trent AI's own public pages (the product page, a use-case page, the llm-info page, llms",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "Trent, the AI Security Engineer with its documented defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Connectors",
+     "what": "Security connectors (Semgrep, Snyk, Sonar, SARIF) and team connectors (Jira, Linear, Slack, Notion) that the customer connects.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Coding agent",
+     "what": "Trent connected to the customer's coding agent through the Trent plugin or the remote MCP server.",
+     "freedom": "2 Suggests"
+    },
+    {
+     "config": "Auto remediation",
+     "what": "The fully automatic remediation loop, run only on finding categories the team has confirmed once.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I08",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It executes actions itself",
+   "fact": "Through the team connectors the llm-info page lists (Jira, Linear, Slack, Notion), Trent raises remediation tickets in Linear or Jira; the page calls this path Manual because people then make the fix.",
+   "quote": "Trent raises a ticket in Linear or Jira with exact remediation instructions.",
+   "source": "https://trent.ai/use-cases/autonomous-remediation/",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "I17",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent handles routine tasks; the person is consulted on exceptions",
+   "fact": "In the fully automatic path Trent confirms a category of finding with the team once, then hands such findings to the coding agent and verifies the fix; findings that need a person come to the team with a recommended decision.",
+   "quote": "The findings that need human attention, Trent brings to you proactively",
+   "source": "https://trent.ai/use-cases/autonomous-remediation/",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "I25",
+   "dims": [
+    "Reach",
+    "Control"
+   ],
+   "label": "It asks for narrower access than the whole account",
+   "fact": "Trent's plugin README says Trent reads a repository through the Trent GitHub App installed on that repository and the plugin sends only the repository's owner and name, and Trent's agent-native product post lists installing GitHub apps among the actions kept in Trent's dashboard.",
+   "quote": "Trent reads a repository through the Trent GitHub App you install on it.",
+   "source": "https://raw.githubusercontent.com/trnt-ai/trent-agent-plugin/main/README.md",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "Deleting projects, managing keys, inviting members and installing GitHub apps are left to a person in the dashboard.",
+   "quote": "Those decisions stay with the human who accepts their consequences.",
+   "source": "https://trent.ai/blog/agent-native-product-surface/",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "I50",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Test or evaluation results are published",
+   "fact": "Trent publishes benchmark results on 28 CWE-Bench CVEs against other tools, with method and run counts.",
+   "quote": "Trent detected 33–47% of 43 labelled vulnerability instances in 28 CVEs",
+   "source": "https://trent.ai/blog/trent-cursor-grok-vs-cwe-bench-cve/",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "I57",
+   "dims": [
+    "Openness"
+   ],
+   "label": "There is a channel to report problems with it or contest its output",
+   "fact": "Users can contest a finding's severity and correct requirements; corrections are recorded.",
+   "quote": "You can challenge a severity and apply a regrade in place",
+   "source": "https://trent.ai/product/",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  },
+  {
+   "indicator": "S3",
+   "dims": [
+    "Openness"
+   ],
+   "label": "It is machine-readable for agents: it publishes an llms.txt, an AGENTS.md, an API description or an agent card",
+   "fact": "An llms.txt resolves at the site root and maps product, research and company pages.",
+   "quote": "This file is a map of Trent AI",
+   "source": "https://trent.ai/llms.txt",
+   "read_at": "2026-11-11T21:44Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Trent AI's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "Trent, the AI Security Engineer: Trent's plugin README says Trent reads a repository through the Trent GitHub App installed on that repository and the plugin sends only the repository's owner and name, and Trent's agent-native product post lists installing GitHub apps among the actions kept in Trent's dashboard.",
+    "source": "https://raw.githubusercontent.com/trnt-ai/trent-agent-plugin/main/README.md",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Trent, the AI Security Engineer: control is at level 2, Configurable on the public evidence. Not yet shown in public: that its actions are logged; and that there is a way to pause or stop it; and that it is monitored in operation.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Trent AI has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=Trent%2C%20the%20AI%20Security%20Engineer",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach and gap, per unit",
+   "theme": "harness",
+   "demo": "harness-reach",
+   "why": "Mandate, reach and gap, measured three ways, unit by unit.",
+   "present": "theme.html?t=harness&d=harness-reach",
+   "stage": "../stage.html?scene=harness-reach"
+  },
+  {
+   "title": "A check outside the process",
+   "theme": "control",
+   "demo": "check-outside",
+   "why": "A check outside the process: real probes under one deny-all policy.",
+   "present": "theme.html?t=control&d=check-outside",
+   "stage": "../stage.html?scene=check-outside"
+  },
+  {
+   "title": "Who did what, provably",
+   "theme": "trust",
+   "demo": "pki",
+   "why": "Who did what, provably: a packet run by two runners on separate keys.",
+   "present": "theme.html?t=trust&d=pki",
+   "stage": "../stage.html?scene=pki"
+  },
+  {
+   "title": "The mandate allowed, the credential not yet carried",
+   "theme": "harness",
+   "demo": "harness-credential",
+   "why": "A run that did not get through, shown as it is.",
+   "present": "theme.html?t=harness&d=harness-credential",
+   "stage": "../stage.html?scene=harness-credential"
+  }
+ ],
+ "deck": {
+  "id": "partner-trent-ai",
+  "title": "Trent AI: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Trent AI",
+    "sub": "Agent that keeps code, infrastructure, agents and docs in one context, judges exploitable findings as attack chains, hands fixes to the team's coding agents…",
+    "caption": "What we have on Trent AI, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Through the team connectors the llm-info page lists (Jira, Linear, Slack, Notion), Trent raises remediation tickets in Linear or Jira; the…",
+     "In the fully automatic path Trent confirms a category of finding with the team once, then hands such findings to the coding agent and…",
+     "Trent's plugin README says Trent reads a repository through the Trent GitHub App installed on that repository and the plugin sends only…",
+     "Deleting projects, managing keys, inviting members and installing GitHub apps are left to a person in the dashboard.",
+     "Trent publishes benchmark results on 28 CWE-Bench CVEs against other tools, with method and run counts."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "Trent, the AI Security Engineer: A3 · R3 · C2 · O3",
+    "levels": [
+     {
+      "id": "A3",
+      "label": "Autonomy: Acts",
+      "note": "Next: Public evidence that the agent works independently; the person approves critical decisions only."
+     },
+     {
+      "id": "R3",
+      "label": "Reach: Open protocol",
+      "note": "Next: Public evidence that others build on it: third parties publish integrations, skills or agents for it."
+     },
+     {
+      "id": "C2",
+      "label": "Control: Configurable",
+      "note": "Next: Public evidence that its actions are logged; and that there is a way to pause or stop it; and that it is monitored in operation."
+     },
+     {
+      "id": "O3",
+      "label": "Openness: Measured",
+      "note": "Next: Public evidence that a public certificate or audit report covers it."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Trent AI has not reviewed it. Stage: Scaling. 56 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 2, Configurable on the public evidence. Not yet shown in public: that its actions are logged; and…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach and gap, per unit",
+    "step": "harness-reach/need-reach-harnessed",
+    "caption": "Mandate, reach and gap, measured three ways, unit by unit."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

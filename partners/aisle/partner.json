@@ -1,0 +1,354 @@
+{
+ "slug": "aisle",
+ "name": "AISLE",
+ "kind": "security",
+ "kind_label": "Security",
+ "one_line": "AISLE's platform of AI agents that finds vulnerabilities in source code, triages them, writes and tests patches, and delivers them as pull requests for people to merge.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: AISLE platform",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/",
+   "note": "A4 · R2 · C1 · O2, Building (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: AISLE platform",
+   "url": "https://gamma-ray.sgit.ai/scans/aisle-platform/",
+   "note": "freedom 1, 4, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "AISLE platform",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/",
+   "scan": "https://gamma-ray.sgit.ai/scans/aisle-platform/",
+   "code": "A4 · R2 · C1 · O2",
+   "stage": "Building",
+   "provisions": 68,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "AISLE's platform of AI agents that finds vulnerabilities in source code, triages them, writes and tests patches, and delivers them as pull requests for people to merge.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 4,
+     "name": "Orchestrates",
+     "question": "What does the agent do on its own?"
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 3, Open protocol",
+      "needs": "Public evidence that it asks for narrower access than the whole account."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "17 facts: 17 π Moderate. Each is written beside its evidence above.",
+   "built_from": "AISLE's own public product, blog and about pages, and third-party vulnerability records (OpenSSL, curl, Samba) that credit its work",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "The platform connected to a customer's repositories, delivering findings and patches as pull requests.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Fixes as pull requests",
+     "what": "The customer sets, per severity and repository, that AISLE goes on from triage to open a pull request with a tested patch.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "With the MCP server",
+     "what": "A customer connects AISLE's read-only MCP server to its own coding agent.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I10",
+   "dims": [
+    "Autonomy",
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The platform page states it plugs into the customer's scanners, repositories and CI.",
+   "quote": "AISLE plugs into the scanners, repos, and CI you already run",
+   "source": "https://aisle.com/platform",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  },
+  {
+   "indicator": "I18",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent works independently; the person approves critical decisions only",
+   "fact": "The page states AISLE writes and tests a patch and opens a pull request, that the customer decides per severity and repository how far it goes, and that a person on the customer's team merges; no default is stated.",
+   "quote": "Nothing reaches your main branch until someone on your team merges it.",
+   "source": "https://aisle.com/platform/autonomous-remediation",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  },
+  {
+   "indicator": "I11",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It connects to external tools or services across a trust boundary",
+   "fact": "AISLE connects from its own service to the customer's hosted version control systems.",
+   "quote": "AISLE connects to GitHub, GitLab, Bitbucket, and Azure DevOps.",
+   "source": "https://aisle.com/platform/vulnerability-discovery",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "A merge to the main branch needs a person on the customer's team; AISLE opens the pull request and waits.",
+   "quote": "it opens the pull request and waits for human approval",
+   "source": "https://aisle.com/platform/autonomous-remediation",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The page states which findings get guidance instead of a patch, and that a fix breaking tests goes back to the team.",
+   "quote": "When findings can't be safely patched, it provides clear remediation advice instead.",
+   "source": "https://aisle.com/platform/autonomous-remediation",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The privacy policy lists customer data as code repositories and related data submitted to the service.",
+   "quote": "Code repositories and related data submitted to Services",
+   "source": "https://aisle.com/privacy-policy",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of AISLE's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "AISLE platform: The platform page states it plugs into the customer's scanners, repositories and CI.",
+    "source": "https://aisle.com/platform",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+   },
+   {
+    "text": "AISLE platform: AISLE connects from its own service to the customer's hosted version control systems.",
+    "source": "https://aisle.com/platform/vulnerability-discovery",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "AISLE platform: control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; AISLE has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=AISLE%20platform",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "Mandate, reach and gap, per unit",
+   "theme": "harness",
+   "demo": "harness-reach",
+   "why": "Mandate, reach and gap, measured three ways, unit by unit.",
+   "present": "theme.html?t=harness&d=harness-reach",
+   "stage": "../stage.html?scene=harness-reach"
+  },
+  {
+   "title": "A check outside the process",
+   "theme": "control",
+   "demo": "check-outside",
+   "why": "A check outside the process: real probes under one deny-all policy.",
+   "present": "theme.html?t=control&d=check-outside",
+   "stage": "../stage.html?scene=check-outside"
+  },
+  {
+   "title": "Who did what, provably",
+   "theme": "trust",
+   "demo": "pki",
+   "why": "Who did what, provably: a packet run by two runners on separate keys.",
+   "present": "theme.html?t=trust&d=pki",
+   "stage": "../stage.html?scene=pki"
+  },
+  {
+   "title": "The mandate allowed, the credential not yet carried",
+   "theme": "harness",
+   "demo": "harness-credential",
+   "why": "A run that did not get through, shown as it is.",
+   "present": "theme.html?t=harness&d=harness-credential",
+   "stage": "../stage.html?scene=harness-credential"
+  }
+ ],
+ "deck": {
+  "id": "partner-aisle",
+  "title": "AISLE: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "AISLE",
+    "sub": "AISLE's platform of AI agents that finds vulnerabilities in source code, triages them, writes and tests patches, and delivers them as pull requests for people…",
+    "caption": "What we have on AISLE, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The platform page states it plugs into the customer's scanners, repositories and CI.",
+     "The page states AISLE writes and tests a patch and opens a pull request, that the customer decides per severity and repository how far it…",
+     "AISLE connects from its own service to the customer's hosted version control systems.",
+     "A merge to the main branch needs a person on the customer's team; AISLE opens the pull request and waits.",
+     "The page states which findings get guidance instead of a patch, and that a fix breaking tests goes back to the team."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "AISLE platform: A4 · R2 · C1 · O2",
+    "levels": [
+     {
+      "id": "A4",
+      "label": "Autonomy: Orchestrates",
+      "note": "What does the agent do on its own?"
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that it asks for narrower access than the whole account."
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; AISLE has not reviewed it. Stage: Building. 68 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Mandate, reach and gap, per unit",
+    "step": "harness-reach/need-reach-harnessed",
+    "caption": "Mandate, reach and gap, measured three ways, unit by unit."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

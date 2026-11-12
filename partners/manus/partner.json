@@ -1,0 +1,993 @@
+{
+ "slug": "manus",
+ "name": "Manus",
+ "kind": "general-agent",
+ "kind_label": "General agents",
+ "one_line": "A general AI agent that plans and carries out tasks on its own cloud computer, browsing, running code and acting in the apps you connect.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: Manus",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/",
+   "note": "A3 · R2 · C1 · O2, Building (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: Manus",
+   "url": "https://gamma-ray.sgit.ai/scans/manus-agent/",
+   "note": "freedom 1, 1, 4, 4, 1, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray",
+   "title": "X-ray: Manus",
+   "url": "https://web-summit.sgit.ai/xray/manus-ai/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Manus",
+   "url": "https://web-summit.sgit.ai/xray/manus-ai/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/manus-ai/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "Manus",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/",
+   "scan": "https://gamma-ray.sgit.ai/scans/manus-agent/",
+   "code": "A3 · R2 · C1 · O2",
+   "stage": "Building",
+   "provisions": 52,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "Manus AI's general agent that plans and carries out tasks for a user in a cloud sandbox, and also through a desktop app, a browser extension and an API.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 3,
+     "name": "Acts",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 4, Orchestrates",
+      "needs": "Public evidence that the agent works independently; the person approves critical decisions only."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "18 facts: 18 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Manus AI's own public documentation, API documentation, security page, blog and customer stories, and its published llms",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "The agent in Manus's cloud sandbox with its defaults, no apps connected.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "With connectors",
+     "what": "The user connects apps (for example Gmail or Notion) or MCP servers.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Manus Studio, working locally",
+     "what": "The desktop app with Work locally on, in its default permission mode.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Manus Studio, ask for approval",
+     "what": "The desktop app in the permission mode Ask for approval.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Browser Operator",
+     "what": "The extension lets the agent work in the user's own browser.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Through the API",
+     "what": "An integrator runs Manus through its API and answers its confirmation events in its own interface.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I08",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It executes actions itself",
+   "fact": "The API docs list actions the agent carries out in its task loop, such as sending email, changing calendar events, running terminal commands and deploying a service. This is the API's documentation of the task loop.",
+   "quote": "tools that the current Manus agent runs in the main task loop",
+   "source": "https://open.manus.ai/docs/v2/task-lifecycle/confirmation-events.md",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I17",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent handles routine tasks; the person is consulted on exceptions",
+   "fact": "In Manus Studio the default Approve for me mode auto-approves safe local actions and asks the person when a decision is needed.",
+   "quote": "Reviews and auto-approves safe local actions.",
+   "source": "https://manus.im/docs/features/desktop.md",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I10",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "Connectors let the agent read data from and act in apps such as Gmail and Notion once the user connects them.",
+   "quote": "lets Manus read data from an app, such as Gmail or Notion",
+   "source": "https://manus.im/docs/introduction/quickstart.md",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I11",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It connects to external tools or services across a trust boundary",
+   "fact": "The Similarweb data integration is used without setup, the agent fetching metrics from the external service.",
+   "quote": "Manus automatically connects to Similarweb and retrieves the exact metrics",
+   "source": "https://manus.im/blog/similarweb-manus",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "The API's confirmation events list action types that wait for the user before they run, among them sending email, deleting calendar events, deploying a service and running a command; the page is for integrators who build their own confirmation interface, does not say when the waits occur in the app, and some types accept global_allow, which skips later ones.",
+   "quote": "Send, save as draft, or cancel",
+   "source": "https://open.manus.ai/docs/v2/task-lifecycle/confirmation-events.md",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The Browser Operator page lists limitations, including complex interactions and sites with anti-bot measures.",
+   "quote": "Complex interactions, such as drag-and-drop and multi-step forms, may not work perfectly.",
+   "source": "https://manus.im/docs/features/browser-operator.md",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The sandbox post lists what the task sandbox stores, and the Studio page says what is sent to the cloud.",
+   "quote": "Your Manus Sandbox stores the files needed during task execution, including",
+   "source": "https://manus.im/blog/manus-sandbox",
+   "read_at": "2026-11-10T04:59Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+  }
+ ],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/manus-ai/",
+  "deck": "https://web-summit.sgit.ai/xray/manus-ai/deck/",
+  "run": "https://web-summit.sgit.ai/xray/manus-ai/run/",
+  "one_line": "A general AI agent that plans and carries out tasks on its own cloud computer, browsing, running code and acting in the apps you connect.",
+  "read_on": "2026-11-07",
+  "what_it_does": "Manus is an autonomous general AI agent that completes tasks rather than answering questions: it works in a sandbox virtual computer with internet access, a persistent file system and the ability to install software, and can keep a persistent Cloud Computer running 24/7. Its 416 connectors let it read data from and take actions in services such as Gmail, Notion, Slack and GitHub, while Browser Operator and Manus Studio extend it to the user's own logged-in browser and computer. Automations let it start work on a schedule or on an event in a connected app, without the user opening a task. [s4, s14, s9, s5, s8, s21]",
+  "situations": [
+   {
+    "title": "SilentBridge: a page summary that reached Gmail (2025)",
+    "helper": "Manus agent",
+    "reach": [
+     "Untrusted content the agent reads while working: web pages, search results and documents, including hidden instructions in them",
+     "The user's Gmail, through Manus's first-party email connector",
+     "Code and shell execution inside the agent's sandbox, where passwordless sudo gave root",
+     "The agent's own deploy_expose_port tool, which could publish its internal code server to the internet",
+     "Secrets in the agent container: API keys and internal endpoints in environment variables",
+     "Outbound network to any server, including one the attacker controls"
+    ],
+    "reach_sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ],
+    "asked_our_example": [
+     "Summarise the page or document the user pointed to, and nothing else",
+     "Use the Gmail connector only for a request about the user's own email"
+    ],
+    "gap": [
+     "Content the agent was only meant to read could drive connector calls and outbound requests: the research found no separation between information to summarise and instructions to execute, and no per-operation consent for connector actions.",
+     "The sandbox was over-privileged: code execution by default, passwordless sudo, secrets in the environment and a tool that exposes internal services, so one injected instruction reached root and the platform's own credentials."
+    ],
+    "gap_sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ]
+   },
+   {
+    "title": "September 2026: one email to code execution",
+    "helper": "Manus agent",
+    "reach": [
+     "Incoming email the agent reads through the Gmail connector, including hidden instructions in it",
+     "The agent's server-side JavaScript runtime, where decoded content was executed",
+     "A reverse shell inside the app, opened through a remote code execution bug",
+     "Credentials and tokens for the accounts the victim had linked, which could include Gmail, Dropbox or GitHub",
+     "Manus's prompt-injection check, which spots a prompt hidden in data and notifies the owner"
+    ],
+    "reach_sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ],
+    "asked_our_example": [
+     "Read and process the user's email as data",
+     "Run code only when the user's own request calls for it"
+    ],
+    "gap": [
+     "Email content could become executable code in the agent's runtime: the check flagged plain injected commands but warned only after an obfuscated payload had already run.",
+     "From the runtime, the tokens of every linked account were within reach, so one email reached every service the user had connected."
+    ],
+    "gap_sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ]
+   },
+   {
+    "title": "Browser Operator inside your logged-in browser",
+    "helper": "Browser Operator",
+    "reach": [
+     "The user's local desktop browser, its existing logins and active tabs, from the user's own IP address",
+     "Messages and posting on the user's social accounts, such as LinkedIn messages and Twitter posts",
+     "Job application sites, submitting applications with the user's attached resume",
+     "Shopping accounts, such as the user's Amazon order history",
+     "Accounts the user logs into in the Cloud Browser: email, CRM, social media, premium research tools"
+    ],
+    "reach_sources": [
+     "https://manus.im/docs/features/browser-operator",
+     "https://manus.im/features/manus-browser-operator",
+     "https://manus.im/docs/features/cloud-browser"
+    ],
+    "asked_our_example": [
+     "Read unread LinkedIn messages and draft replies to job offers; send nothing",
+     "Work only on the site named in the task"
+    ],
+    "gap": [
+     "Authorisation is documented per session, not per site or per action: once granted, the agent works with every login in the browser, and nothing documented makes a session read-only.",
+     "Actions come from the user's own browser and IP, which the vendor says sites see as genuine, so the sites' own controls cannot tell the agent from the person."
+    ],
+    "gap_sources": [
+     "https://manus.im/docs/features/browser-operator",
+     "https://manus.im/features/manus-browser-operator"
+    ]
+   }
+  ],
+  "questions": [
+   "When a task has read untrusted content (a page, a document or an email), can connector calls, code execution and outbound requests be made to wait for the user's approval, as Automations' Approval required does for sends?",
+   "Can a Browser Operator session be limited to one site, or to read-only, rather than covering every login in the browser, and can the action log be exported?",
+   "After SilentBridge and the Salt Labs finding, can code the agent runs still reach the tokens of connected accounts, and is passwordless sudo still the sandbox default?",
+   "Cue agents have their own email, phone number and wallet and pay within a budget the user sets: who can change that budget, and is each payment recorded against a named person?",
+   "Since the separation from Meta, which entity processes customer and connector data, under which jurisdiction, and are the published SOC 2 and ISO attestations for that entity?"
+  ],
+  "incidents": [
+   "2025-08: Embrace The Red showed an indirect prompt injection in a PDF making Manus call its deploy_expose_port tool without a human in the loop, expose its internal VS Code Server to the internet and leak the URL and password to a third party, giving full control of the agent's dev box. Disclosed to Manus on 1 June 2025; the author said the status of mitigations remained unclear at publication. [s40]",
+   "2026-02: Aurascape AuraLabs published SilentBridge, zero-click indirect prompt injection through web pages, search results and documents (each scored CVSS 9.8), demonstrating Gmail exfiltration, secret extraction, a root shell in the sandbox, public exposure of the internal code server and unauthenticated access to other customers' media on a public CDN. Found September 2025; Manus mitigated in November 2025. [s35, s36]",
+   "2026-09: Salt Labs turned one email into remote code execution in Manus: a JSFuck-obfuscated payload ran before the prompt-injection check warned, and a reverse shell exposed tokens for connected accounts such as Gmail, Dropbox or GitHub. Disclosed through Meta's bug bounty programme and patched. [s37, s38, s39]"
+  ],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Manus: Hands On AI",
+    "url": "https://manus.im/",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "About us - Manus",
+    "url": "https://manus.im/about",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Manus Features: Build, Create, Research and Automate",
+    "url": "https://manus.im/features",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Welcome",
+    "url": "https://manus.im/docs/introduction/welcome",
+    "publisher": "Manus Documentation",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "Browser Operator",
+    "url": "https://manus.im/docs/features/browser-operator",
+    "publisher": "Manus Documentation",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "Manus Browser Operator: Turn Any Browser into an AI Browser",
+    "url": "https://manus.im/features/manus-browser-operator",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "Cloud browser",
+    "url": "https://manus.im/docs/features/cloud-browser",
+    "publisher": "Manus Documentation",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Manus Studio",
+    "url": "https://manus.im/docs/features/desktop",
+    "publisher": "Manus Documentation",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Connectors (last updated 2 November 2026)",
+    "url": "https://manus.im/docs/integrations/connectors",
+    "publisher": "Manus Documentation",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "How can I use Manus Connectors?",
+    "url": "https://help.manus.im/en/articles/12231777-how-can-i-use-manus-connectors",
+    "publisher": "Manus Help Center",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Gmail AI Assistant: Triage Inbox and Prep Meetings",
+    "url": "https://manus.im/connectors/gmail",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Notion MCP: Read, Update and Automate Your Workspace",
+    "url": "https://www.manus.im/connectors/notion",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Asana AI Agent and MCP: Plan, Track and Report Work",
+    "url": "https://manus.im/connectors/asana",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "What is the Cloud Computer?",
+    "url": "https://help.manus.im/en/articles/15392111-what-is-the-cloud-computer",
+    "publisher": "Manus Help Center",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Troubleshooting the \"My Computer\" Feature Not Appearing or Connecting",
+    "url": "https://help.manus.im/en/articles/14320382-troubleshooting-the-my-computer-feature-not-appearing-or-connecting",
+    "publisher": "Manus Help Center",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "What are the differences between Chat mode and Agent mode?",
+    "url": "https://help.manus.im/en/articles/17768086-what-are-the-differences-between-chat-mode-and-agent-mode",
+    "publisher": "Manus Help Center",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Verify before you act (23 June 2026)",
+    "url": "https://help.manus.im/en/articles/15595028-verify-before-you-act",
+    "publisher": "Manus Help Center",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Introduction: Manus API v2",
+    "url": "https://open.manus.im/docs/v2/introduction",
+    "publisher": "Manus API Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Agents: Manus API v2",
+    "url": "https://open.manus.im/docs/v2/agents-overview",
+    "publisher": "Manus API Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s20",
+    "title": "Introducing Wide Research (31 July 2025)",
+    "url": "https://manus.im/blog/introducing-wide-research",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s21",
+    "title": "Introducing Automations: Put Repetitive Work on Autopilot (15 October 2026)",
+    "url": "https://manus.im/blog/introducing-automations",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s22",
+    "title": "Introducing Manus 2.0 (28 September 2026)",
+    "url": "https://manus.im/blog/introducing-manus-2-0",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s23",
+    "title": "Introducing Plan Mode: A New Way to Work with Manus (22 July 2026)",
+    "url": "https://manus.im/blog/manus-plan-mode",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s24",
+    "title": "Introducing Manus in Your Chat: Your Personal Agent, Everywhere You Are (16 February 2026)",
+    "url": "https://manus.im/blog/manus-agents-telegram",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s25",
+    "title": "Blog - Manus",
+    "url": "https://www.manus.im/blog",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s26",
+    "title": "A Note to Our Users (11 August 2026)",
+    "url": "https://manus.im/blog/a-note-to-our-users",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s27",
+    "title": "Manus Resumes Independent Operations (1 September 2026)",
+    "url": "https://manus.im/blog/manus-resumes-independent-operations",
+    "publisher": "Manus Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s28",
+    "title": "AI Workspace for Projects and Team Knowledge",
+    "url": "https://www.manus.im/features/projects",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s29",
+    "title": "Build custom AI workflows with Manus Agent Skills",
+    "url": "https://manus.im/features/agent-skills",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s30",
+    "title": "Download Manus",
+    "url": "https://www.manus.im/download",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s31",
+    "title": "Manus AI Agent Toolkit for Delivering Work",
+    "url": "https://manus.im/en/tools",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s32",
+    "title": "Manus for Product Management: AI Agent for Product Management and Research",
+    "url": "https://manus.im/solutions/product",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s33",
+    "title": "Manus for Marketing: AI Agent for Marketing Automation",
+    "url": "https://manus.im/solutions/marketing",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s34",
+    "title": "Security - Manus",
+    "url": "https://manus.im/security",
+    "publisher": "Manus",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s35",
+    "title": "SilentBridge: Zero-Click AI Agent Takeover in Meta Manus (24 February 2026)",
+    "url": "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+    "publisher": "Aurascape AuraLabs",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s36",
+    "title": "Security and Compliance Risks of Using Manus AI (last updated June 2026)",
+    "url": "https://aurascape.ai/answers/manus-ai-security-compliance-risks/",
+    "publisher": "Aurascape",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s37",
+    "title": "This popular AI agent could be hacked by a single email: with potentially disastrous consequences (2 October 2026)",
+    "url": "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+    "publisher": "TechRadar",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s38",
+    "title": "Manus AI Agent Exposed by Prompt-Injection Bug (24 September 2026)",
+    "url": "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+    "publisher": "SQ Magazine",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s39",
+    "title": "$4B Manus AI Platform Exploited Through Prompt Injection Vulnerability (24 September 2026)",
+    "url": "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/",
+    "publisher": "Aviatrix Threat Research Center",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s40",
+    "title": "How Prompt Injection Exposes Manus' VS Code Server to the Internet (25 August 2025)",
+    "url": "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/",
+    "publisher": "Embrace The Red",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s41",
+    "title": "Manus (AI agent)",
+    "url": "https://en.wikipedia.org/wiki/Manus_(AI_agent)",
+    "publisher": "Wikipedia",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s42",
+    "title": "From Mind to Machine: The Rise of Manus AI as a Fully Autonomous Digital Agent (arXiv:2505.02024)",
+    "url": "https://arxiv.org/abs/2505.02024",
+    "publisher": "arXiv",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s43",
+    "title": "Manus AI: An Analytical Guide to the Autonomous AI Agent 2025",
+    "url": "https://www.baytechconsulting.com/blog/manus-ai-an-analytical-guide-to-the-autonomous-ai-agent-2025",
+    "publisher": "Baytech Consulting",
+    "type": "other",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Manus's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): Summarise the page or document the user pointed to, and nothing else",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   },
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): Use the Gmail connector only for a request about the user's own email",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   },
+   {
+    "text": "September 2026: one email to code execution: Read and process the user's email as data",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   },
+   {
+    "text": "September 2026: one email to code execution: Run code only when the user's own request calls for it",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   },
+   {
+    "text": "Browser Operator inside your logged-in browser: Read unread LinkedIn messages and draft replies to job offers; send nothing",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   },
+   {
+    "text": "Browser Operator inside your logged-in browser: Work only on the site named in the task",
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "Manus: Connectors let the agent read data from and act in apps such as Gmail and Notion once the user connects them.",
+    "source": "https://manus.im/docs/introduction/quickstart.md",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+   },
+   {
+    "text": "Manus: The Similarweb data integration is used without setup, the agent fetching metrics from the external service.",
+    "source": "https://manus.im/blog/similarweb-manus",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+   },
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): Untrusted content the agent reads while working: web pages, search results and documents, including hidden instructions in them",
+    "sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): The user's Gmail, through Manus's first-party email connector",
+    "sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "September 2026: one email to code execution: Incoming email the agent reads through the Gmail connector, including hidden instructions in it",
+    "sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "September 2026: one email to code execution: The agent's server-side JavaScript runtime, where decoded content was executed",
+    "sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Manus: control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/"
+   },
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): Content the agent was only meant to read could drive connector calls and outbound requests: the research found no separation between information to summarise and instructions to execute, and no per-operation consent for connector actions.",
+    "sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "SilentBridge: a page summary that reached Gmail (2025): The sandbox was over-privileged: code execution by default, passwordless sudo, secrets in the environment and a tool that exposes internal services, so one injected instruction reached root and the platform's own credentials.",
+    "sources": [
+     "https://aurascape.ai/resources/auralabs-research/silentbridge-zero-click-agent-takeover-meta-manus/",
+     "https://manus.im/connectors/gmail",
+     "https://embracethered.com/blog/posts/2025/manus-ai-kill-chain-expose-port-vs-code-server-on-internet/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "September 2026: one email to code execution: Email content could become executable code in the agent's runtime: the check flagged plain injected commands but warned only after an obfuscated payload had already run.",
+    "sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "September 2026: one email to code execution: From the runtime, the tokens of every linked account were within reach, so one email reached every service the user had connected.",
+    "sources": [
+     "https://www.techradar.com/pro/security/this-popular-ai-agent-could-be-hacked-by-a-single-email-with-potentially-disastrous-consequences",
+     "https://sqmagazine.co.uk/manus-prompt-injection-bug/",
+     "https://aviatrix.ai/threat-research-center/manus-prompt-injection-vulnerability-2026/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "text": "Browser Operator inside your logged-in browser: Authorisation is documented per session, not per site or per action: once granted, the agent works with every login in the browser, and nothing documented makes a session read-only.",
+    "sources": [
+     "https://manus.im/docs/features/browser-operator",
+     "https://manus.im/features/manus-browser-operator"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/manus-ai/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Manus has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=Manus",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Manus; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/manus-ai/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "Everybody can reach everything",
+   "theme": "reach",
+   "demo": "same-privileges",
+   "why": "An agent connected to your apps can reach far more than its task needs.",
+   "present": "theme.html?t=reach&d=same-privileges",
+   "stage": "../stage.html?scene=same-privileges"
+  },
+  {
+   "title": "The network door",
+   "theme": "harness",
+   "demo": "harness-door",
+   "why": "One host, one port, and the kernel enforcing it.",
+   "present": "theme.html?t=harness&d=harness-door",
+   "stage": "../stage.html?scene=harness-door"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A new tool connected mid-run changes the licence to operate.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  }
+ ],
+ "deck": {
+  "id": "partner-manus",
+  "title": "Manus: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Manus",
+    "sub": "A general AI agent that plans and carries out tasks on its own cloud computer, browsing, running code and acting in the apps you connect.",
+    "caption": "What we have on Manus, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "A general AI agent that plans and carries out tasks on its own cloud computer, browsing, running code and acting in the apps you connect.",
+     "Untrusted content the agent reads while working: web pages, search results and documents, including hidden instructions in them",
+     "The user's Gmail, through Manus's first-party email connector",
+     "Incoming email the agent reads through the Gmail connector, including hidden instructions in it",
+     "The agent's server-side JavaScript runtime, where decoded content was executed"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "Manus: A3 · R2 · C1 · O2",
+    "levels": [
+     {
+      "id": "A3",
+      "label": "Autonomy: Acts",
+      "note": "Next: Public evidence that the agent works independently; the person approves critical decisions only."
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Manus has not reviewed it. Stage: Building. 52 provisions lit across 8 instruments."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "Content the agent was only meant to read could drive connector calls and outbound requests: the research found no separation between…",
+     "The sandbox was over-privileged: code execution by default, passwordless sudo, secrets in the environment and a tool that exposes internal…",
+     "Email content could become executable code in the agent's runtime: the check flagged plain injected commands but warned only after an…",
+     "From the runtime, the tokens of every linked account were within reach, so one email reached every service the user had connected.",
+     "Authorisation is documented per session, not per site or per action: once granted, the agent works with every login in the browser, and…"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated…",
+      "a page summary that reached Gmail (2025): Content the agent was only meant to read could drive connector calls and…",
+      "a page summary that reached Gmail (2025): The sandbox was over-privileged: code execution by default, passwordless…",
+      "one email to code execution: Email content could become executable code in the agent's runtime: the check flagged…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "Everybody can reach everything",
+    "step": "same-privileges/one-goes-wrong",
+    "caption": "An agent connected to your apps can reach far more than its task needs."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

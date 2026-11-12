@@ -1,0 +1,341 @@
+{
+ "slug": "automaise",
+ "name": "Automaise",
+ "kind": "customer-service",
+ "kind_label": "Customer service",
+ "one_line": "Voice and chat assistant (inbound and outbound voice, customer self-service chat, internal helpdesk chat) that answers customers and completes transactions such as data changes, payments and orders.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: Automaise Conversational AI",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/",
+   "note": "A3 · R2 · C– · O1, Building (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: Automaise Conversational AI",
+   "url": "https://gamma-ray.sgit.ai/scans/automaise-conversational-ai/",
+   "note": "freedom 1, 4 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "Automaise Conversational AI",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/",
+   "scan": "https://gamma-ray.sgit.ai/scans/automaise-conversational-ai/",
+   "code": "A3 · R2 · C– · O1",
+   "stage": "Building",
+   "provisions": 21,
+   "instruments": 6,
+   "read_on": "2026-11-10",
+   "description": "Voice and chat assistant (inbound and outbound voice, customer self-service chat, internal helpdesk chat) that answers customers and completes transactions such as data changes, payments and orders.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 3,
+     "name": "Acts",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 4, Orchestrates",
+      "needs": "Public evidence that the agent works independently; the person approves critical decisions only."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": null,
+     "name": "not yet evidenced",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 1, Stated",
+      "needs": "Public evidence that a limit on it is a rule in prose."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 1,
+     "name": "Disclosed",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 2, Documented",
+      "needs": "Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    }
+   ],
+   "fact_ray": "6 facts: 6 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Automaise (Automaise S",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "Conversational AI with its documented defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Connected systems",
+     "what": "A deployment connected to the operator's own CRM, contact-centre or messaging platforms; the connection is built per deployment.",
+     "freedom": "4 Acts widely"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I08",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It executes actions itself",
+   "fact": "The product page says, in one vendor sentence with no named customer, that data changes, payments, orders and service subscriptions are completed end-to-end by the AI with no agent stepping in; it does not say through which systems, and the connected-systems configuration is the scan's inference.",
+   "quote": "completed end-to-end by the AI, with no need for an agent",
+   "source": "https://site.automaise.com/conversational-ai",
+   "read_at": "2026-11-10T17:48Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+  },
+  {
+   "indicator": "I17",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent handles routine tasks; the person is consulted on exceptions",
+   "fact": "The FAQ says requests that follow a predictable flow are handled autonomously, and that a conversation needing human intervention passes to an available agent with its context (the FAQ text is in the product page's script file, captured as it loads).",
+   "quote": "When a conversation reaches a point that requires human intervention",
+   "source": "https://framerusercontent.com/sites/2oOCAmSqmUJsdceu4ef5J/Qq644o6Aab6qlVpuxwnOdBYCwMeQYtwb4UBEDaOYKYc.uN0Y50vq.mjs",
+   "read_at": "2026-11-10T17:48Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+  },
+  {
+   "indicator": "I10",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The product page says Conversational AI connects with CRM, contact-centre (CCaaS) and messaging platforms; it names these categories only, and no named connector or integration list was found in the sources.",
+   "quote": "Conversational AI connects with every major CRM, CCaaS, and messaging platform",
+   "source": "https://site.automaise.com/conversational-ai",
+   "read_at": "2026-11-10T17:48Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+  },
+  {
+   "indicator": "I20",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its purpose and permitted tasks are stated in writing",
+   "fact": "The FAQ lists the types of request the assistant handles on its own.",
+   "quote": "account management, payments, order tracking, appointment scheduling, data updates",
+   "source": "https://site.automaise.com/conversational-ai",
+   "read_at": "2026-11-10T17:48Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The service terms define Customer Data as what a business provides to the service, including assistant configurations, frequent questions' answers and messages, and the data of its end users.",
+   "quote": "Virtual Employee configurations, frequent questions’ answers, text messages",
+   "source": "https://www.automaise.com/legal/privacy-policy",
+   "read_at": "2026-11-10T17:48Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Automaise's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "Automaise Conversational AI, its stated purpose: The FAQ lists the types of request the assistant handles on its own.",
+    "source": "https://site.automaise.com/conversational-ai",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+   }
+  ],
+  "reach": [
+   {
+    "text": "Automaise Conversational AI: The product page says Conversational AI connects with CRM, contact-centre (CCaaS) and messaging platforms; it names these categories only, and no named connector or integration list was found in the sources.",
+    "source": "https://site.automaise.com/conversational-ai",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Automaise Conversational AI: control is at not yet evidenced on the public evidence. Not yet shown in public: that a limit on it is a rule in prose.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Automaise has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=Automaise%20Conversational%20AI",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate: published findings on mail and calendar access.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic: pay one invoice, not all of them.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-automaise",
+  "title": "Automaise: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Automaise",
+    "sub": "Voice and chat assistant (inbound and outbound voice, customer self-service chat, internal helpdesk chat) that answers customers and completes transactions…",
+    "caption": "What we have on Automaise, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The product page says, in one vendor sentence with no named customer, that data changes, payments, orders and service subscriptions are…",
+     "The FAQ says requests that follow a predictable flow are handled autonomously, and that a conversation needing human intervention passes…",
+     "The product page says Conversational AI connects with CRM, contact-centre (CCaaS) and messaging platforms; it names these categories only…",
+     "The FAQ lists the types of request the assistant handles on its own.",
+     "The service terms define Customer Data as what a business provides to the service, including assistant configurations, frequent questions'…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "Automaise Conversational AI: A3 · R2 · C– · O1",
+    "levels": [
+     {
+      "id": "A3",
+      "label": "Autonomy: Acts",
+      "note": "Next: Public evidence that the agent works independently; the person approves critical decisions only."
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C–",
+      "label": "Control: not yet evidenced",
+      "note": "Next: Public evidence that a limit on it is a rule in prose."
+     },
+     {
+      "id": "O1",
+      "label": "Openness: Disclosed",
+      "note": "Next: Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Automaise has not reviewed it. Stage: Building. 21 provisions lit across 6 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at not yet evidenced on the public evidence. Not yet shown in public: that a limit on it is a rule in prose."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A send button is not a mandate",
+    "step": "send-button/a-rule-in-prose",
+    "caption": "A send button is not a mandate: published findings on mail and calendar access."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

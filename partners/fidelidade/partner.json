@@ -1,0 +1,596 @@
+{
+ "slug": "fidelidade",
+ "name": "Fidelidade",
+ "kind": "finance",
+ "kind_label": "Finance and insurance",
+ "one_line": "Portugal's largest insurer, whose in-house AI reads motor claims, answers the phone and, its AI director told the press, drafts customer messages with language models",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Fidelidade",
+   "url": "https://web-summit.sgit.ai/xray/fidelidade/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Fidelidade",
+   "url": "https://web-summit.sgit.ai/xray/fidelidade/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/fidelidade/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/fidelidade/",
+  "deck": "https://web-summit.sgit.ai/xray/fidelidade/deck/",
+  "run": "https://web-summit.sgit.ai/xray/fidelidade/run/",
+  "one_line": "Portugal's largest insurer, whose in-house AI reads motor claims, answers the phone and, its AI director told the press, drafts customer messages with language models",
+  "read_on": "2026-11-07",
+  "what_it_does": "Fidelidade, founded in 1808, is the market leader in Portuguese insurance (life and non-life, a 28.1% share), present in 14 countries on 4 continents, with gross written premiums of 6,529 million euros in 2025; Fosun holds about 85% of its capital and Caixa Geral de Depósitos about 15%. Its in-house Center for Artificial Intelligence & Analytics builds the AI it runs: GAMA, which reads claims documents and health invoices; Contact IA, a natural-voice phone line and email triage for its contact centres; Knowledge AI, a language-model assistant over the company's operational knowledge; and Trusty, the virtual assistant on its website and app. Its 2025 report sets out a six-pillar AI strategy that includes fairness, compliance with the AI Act and GDPR, and alignment with the business. [s2, s16, s18, s5, s4, s8, s1]",
+  "situations": [
+   {
+    "title": "A motor claim read by GAMA, answered by a model",
+    "helper": "GAMA (documents)",
+    "reach": [
+     "The accident declaration (DAAA) and claim participation the customer uploads, or photographs, in the MyFidelidade app or web area",
+     "Extracting and processing the declaration's data automatically, more than half of declarations with no human intervention (April 2025)",
+     "Customer communication: 'Toda a nossa comunicação com clientes é hoje produzida por modelos de linguagem' (all our communication with customers is now produced by language models), the AI director said in April 2025",
+     "Health expense reimbursements and provider invoices processed through GAMA, including provider billing in Angola and Mozambique",
+     "Configurable workflows, fields and integration flows for any line of business, geography or document type"
+    ],
+    "reach_sources": [
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2024/12/08/fidelidade-recebe-dois-premios-por-projeto-de-inteligencia-artificial/"
+    ],
+    "asked_our_example": [
+     "Read the declaration, extract its fields and pass them to the claims team",
+     "When a field is unreadable or ambiguous, hand it to a person (Fidelidade describes this behaviour in GAMA)",
+     "No message to the customer and no payment decision without a claims handler's review"
+    ],
+    "gap": [
+     "Fidelidade publishes the share processed without people and that all customer communication is written by language models, but not where a person reviews a message or a decision before it reaches the customer",
+     "The documents GAMA is known to struggle with (folded, phone-photographed declarations) are the ones customers send, and what follows a misread field is not published",
+     "The same system reaches reimbursements and provider invoices in other countries; the limits on what it settles there are not published"
+    ],
+    "gap_sources": [
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2024/12/08/fidelidade-recebe-dois-premios-por-projeto-de-inteligencia-artificial/"
+    ]
+   },
+   {
+    "title": "A phone call answered and routed by Contact IA",
+    "helper": "Contact IA (voice/email)",
+    "reach": [
+     "Identifying and authenticating the caller by natural voice, replacing key navigation",
+     "Customer and policy records used to identify the caller (MARIA, the earlier speech bot, identified customers through their policy and other information)",
+     "Routing each call to the operator or team it judges most appropriate",
+     "Email Automation: classifying incoming customer emails and directing them to teams",
+     "Call Analytics over recorded calls, emails and other channels",
+     "A path to 'true self-service' that the 2025 report says the architecture will open"
+    ],
+    "reach_sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ],
+    "asked_our_example": [
+     "Authenticate the caller and route the call; take no action on the policy",
+     "Give a caller's details to an operator only after authentication succeeds",
+     "Use recorded interactions for service analytics only"
+    ],
+    "gap": [
+     "Voice authentication is the gate to the caller's policy data; how it fails, and what an unauthenticated caller can reach, is not published",
+     "Self-service is named as the next step, which would move the system from routing calls to acting on them"
+    ],
+    "gap_sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ]
+   },
+   {
+    "title": "Knowledge AI: one source feeding every AI system",
+    "helper": "Knowledge AI (KAI)",
+    "reach": [
+     "The operational knowledge base: the company's procedures, policies and coverage logic, written and validated by business staff",
+     "External systems, reached through a language-model integration layer",
+     "Every other AI system in the company, which KAI supplies with business knowledge",
+     "Content it creates: FAQs, eLearning and simplified text",
+     "Answers that claims managers and brokers rely on for decisions about customers"
+    ],
+    "reach_sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf"
+    ],
+    "asked_our_example": [
+     "Answer staff questions from validated content, with the source shown",
+     "Change the knowledge base only through the editor's workflow and permissions"
+    ],
+    "gap": [
+     "An error or unvalidated change in the base reaches every AI system it feeds, not only the person asking",
+     "Which external systems the language-model layer can reach, and whether it can write to them, is not published"
+    ],
+    "gap_sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html"
+    ]
+   }
+  ],
+  "questions": [
+   "GAMA processes more than half of accident declarations without a person: at what point, if any, does a claims handler see a case before the customer is told or paid?",
+   "Your AI director said all communication with customers is produced by language models: which messages are reviewed by a person before they are sent?",
+   "What can a caller reach after Contact IA's voice authentication, and what will the planned self-service let it change on a policy?",
+   "Which external systems can Knowledge AI's language-model layer reach, can it write to any of them, and which AI systems does it feed?",
+   "A press report says you integrated Coalex.ai to keep your autonomous agents compliant: which agents are these, and what does a flagged action trigger?"
+  ],
+  "incidents": [],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Fidelidade | No1 em Seguros Automóvel, Saúde, Casa e Viagens (home page, Portuguese)",
+    "url": "https://fidelidade.pt/",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "A Fidelidade: quem somos (about the company, Portuguese)",
+    "url": "https://fidelidade.pt/institucional/quem-somos/sobre-nos/a-fidelidade",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Seguro Automóvel: Participar Sinistro (motor claims and assistance, Portuguese)",
+    "url": "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Knowledge AI da Fidelidade distinguido nos Excellence in Data & AI 2026 (press release, Lisbon, 30 September 2026, Portuguese)",
+    "url": "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "Fidelidade Integrated Management Report 2025 (English): AI strategy, innovation (p. 74) and sustainability statements (p. 183)",
+    "url": "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "Fidelidade Integrated Management Report 2024 (English): innovation and non-financial statements (pp. 344 to 345)",
+    "url": "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "Fidelidade Solvency and Financial Condition Report 2023 (English translation)",
+    "url": "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/2023/Fidelidade_SFCR_EN_2023.pdf",
+    "publisher": "Fidelidade (fidelidade.pt)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Fidelidade estuda vender solução interna de IA após receber \"várias propostas de compra\" (9 April 2025)",
+    "url": "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+    "publisher": "ECO (eco.sapo.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Fidelidade recebe dois prémios por projeto de inteligência artificial (8 December 2024)",
+    "url": "https://eco.sapo.pt/2024/12/08/fidelidade-recebe-dois-premios-por-projeto-de-inteligencia-artificial/",
+    "publisher": "ECO (eco.sapo.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Assistente virtual da Fidelidade vence Portugal IDC Digital Award (16 December 2021)",
+    "url": "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/",
+    "publisher": "ECO (eco.sapo.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Fidelidade distinguida nos Excellence in Data & AI 2026 com o projeto Knowledge AI (2 October 2026)",
+    "url": "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html",
+    "publisher": "Netthings (netthings.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Coalex.ai raises angel round from Angels Way to build its AI 'trust layer' (19 June 2026)",
+    "url": "https://dealroom.co/news/135231-coalex-ai-raises-angel-round-from-angels-way-to-build-its-ai-trust-layer/",
+    "publisher": "Dealroom.co",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Fidelidade Fuels Innovation with the Launch of Protechting 7.0 (10 October 2024)",
+    "url": "https://en.fosun.com/content/details46_5067.html",
+    "publisher": "Fosun (en.fosun.com)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Portuguese Insurer Fidelidade Transforms Customer Experience with DXC Technology (3 April 2023)",
+    "url": "https://dxc.com/newsroom/04032023",
+    "publisher": "DXC Technology (dxc.com)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Innovation at Fidelidade",
+    "url": "https://www.qorusglobal.com/content/29715-innovation-at-fidelidade",
+    "publisher": "Qorus (qorusglobal.com)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "Da Fundação em 2026 a agarrar as poupanças dos portugueses: Fidelidade junta 4.000 pessoas e anuncia objetivos",
+    "url": "https://executivedigest.sapo.pt/da-fundacao-em-2026-a-agarrar-as-poupancas-dos-portugueses-fidelidade-junta-4-000-pessoas-e-anuncia-objetivos-da-seguradora/",
+    "publisher": "Executive Digest (executivedigest.sapo.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Fidelidade apresenta plataforma inovadora para longevidade (21 June 2026)",
+    "url": "https://segurus.pt/artigos/fidelidade-plataforma-longevidade",
+    "publisher": "Segurus (segurus.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Fidelidade: Two centuries protecting Portugal (19 October 2026)",
+    "url": "https://www.essential-business.pt/2026/10/19/fidelidade-two-centuries-protecting-portugal/",
+    "publisher": "Essential Business (essential-business.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Fidelidade reforça aposta na \"inovação aberta\" e \"longevidade\" durante a Web Summit 2025 (18 November 2025)",
+    "url": "https://executivedigest.sapo.pt/fidelidade-reforca-aposta-na-inovacao-aberta-e-longevidade-durante-a-web-summit-2025/",
+    "publisher": "Executive Digest (executivedigest.sapo.pt)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Fidelidade's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "A motor claim read by GAMA, answered by a model: Read the declaration, extract its fields and pass them to the claims team",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   },
+   {
+    "text": "A motor claim read by GAMA, answered by a model: When a field is unreadable or ambiguous, hand it to a person (Fidelidade describes this behaviour in GAMA)",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Authenticate the caller and route the call; take no action on the policy",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Give a caller's details to an operator only after authentication succeeds",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: Answer staff questions from validated content, with the source shown",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: Change the knowledge base only through the editor's workflow and permissions",
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "A motor claim read by GAMA, answered by a model: The accident declaration (DAAA) and claim participation the customer uploads, or photographs, in the MyFidelidade app or web area",
+    "sources": [
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A motor claim read by GAMA, answered by a model: Extracting and processing the declaration's data automatically, more than half of declarations with no human intervention (April 2025)",
+    "sources": [
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Identifying and authenticating the caller by natural voice, replacing key navigation",
+    "sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Customer and policy records used to identify the caller (MARIA, the earlier speech bot, identified customers through their policy and other information)",
+    "sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: The operational knowledge base: the company's procedures, policies and coverage logic, written and validated by business staff",
+    "sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: External systems, reached through a language-model integration layer",
+    "sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "A motor claim read by GAMA, answered by a model: Fidelidade publishes the share processed without people and that all customer communication is written by language models, but not where a person reviews a message or a decision before it reaches the customer",
+    "sources": [
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A motor claim read by GAMA, answered by a model: The documents GAMA is known to struggle with (folded, phone-photographed declarations) are the ones customers send, and what follows a misread field is not published",
+    "sources": [
+     "https://eco.sapo.pt/2025/04/09/fidelidade-estuda-vender-solucao-interna-de-ia-apos-receber-varias-propostas-de-compra/",
+     "https://fidelidade.pt/particulares/mobilidade/utilizar/participacao-sinistros-e-assistencia",
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Voice authentication is the gate to the caller's policy data; how it fails, and what an unauthenticated caller can reach, is not published",
+    "sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "A phone call answered and routed by Contact IA: Self-service is named as the next step, which would move the system from routing calls to acting on them",
+    "sources": [
+     "https://www.fidelidade.pt/EN/fidelidade/investor-relations/financial-information/Documents/RUI_Fidelidade_2025_EN_VF.pdf",
+     "https://www.fidelidade.pt/PT/a-fidelidade/QuemSomos/QuemSomos/Documents/2.%20RUIG%202024%20-%20VFinal_EN.pdf",
+     "https://eco.sapo.pt/2021/12/16/assistente-virtual-da-fidelidade-vence-portugal-idc-digital-award/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: An error or unvalidated change in the base reaches every AI system it feeds, not only the person asking",
+    "sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "text": "Knowledge AI: one source feeding every AI system: Which external systems the language-model layer can reach, and whether it can write to them, is not published",
+    "sources": [
+     "https://fidelidade.pt/hubfs/site-fidelidade/documentacao-institucional/press-releases/knowledge_ai_excellence_in_data_&_ai_2026.pdf?hsLang=pt",
+     "https://www.netthings.pt/2026/10/fidelidade-distinguida-nos-excellence.html"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/fidelidade/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Fidelidade; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/fidelidade/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A REAL run on a SIMULATED ledger: the task was to pay one invoice.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? Answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A licence to operate that changes when a tool is connected.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  }
+ ],
+ "deck": {
+  "id": "partner-fidelidade",
+  "title": "Fidelidade: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Fidelidade",
+    "sub": "Portugal's largest insurer, whose in-house AI reads motor claims, answers the phone and, its AI director told the press, drafts customer messages with…",
+    "caption": "What we have on Fidelidade, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Portugal's largest insurer, whose in-house AI reads motor claims, answers the phone and, its AI director told the press, drafts customer…",
+     "The accident declaration (DAAA) and claim participation the customer uploads, or photographs, in the MyFidelidade app or web area",
+     "Extracting and processing the declaration's data automatically, more than half of declarations with no human intervention (April 2025)",
+     "Identifying and authenticating the caller by natural voice, replacing key navigation",
+     "Customer and policy records used to identify the caller (MARIA, the earlier speech bot, identified customers through their policy and…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "Fidelidade publishes the share processed without people and that all customer communication is written by language models, but not where a…",
+     "The documents GAMA is known to struggle with (folded, phone-photographed declarations) are the ones customers send, and what follows a…",
+     "The same system reaches reimbursements and provider invoices in other countries; the limits on what it settles there are not published",
+     "Voice authentication is the gate to the caller's policy data; how it fails, and what an unauthenticated caller can reach, is not published",
+     "Self-service is named as the next step, which would move the system from routing calls to acting on them"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "Fidelidade publishes the share processed without people and that all customer communication is written by language…",
+      "The documents GAMA is known to struggle with (folded, phone-photographed declarations) are the ones customers send…",
+      "Voice authentication is the gate to the caller's policy data; how it fails, and what an unauthenticated caller can…",
+      "Self-service is named as the next step, which would move the system from routing calls to acting on them"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A mandate as deep as the business logic",
+    "step": "db-mandate/the-line",
+    "caption": "A REAL run on a SIMULATED ledger: the task was to pay one invoice."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

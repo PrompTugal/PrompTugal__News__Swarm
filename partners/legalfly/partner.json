@@ -1,0 +1,381 @@
+{
+ "slug": "legalfly",
+ "name": "LEGALFLY",
+ "kind": "legal",
+ "kind_label": "Legal",
+ "one_line": "Platform of legal agents (Discovery, Review, Draft, Multi Review, Legal Radar, Translation) plus Agent Studio, where customers build multi-step workflows with triggers, conditions, approvals and notifications.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: LEGALFLY agents",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/",
+   "note": "A3 · R2 · C1 · O2, Building (beta)",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: LEGALFLY agents",
+   "url": "https://gamma-ray.sgit.ai/scans/legalfly-agents/",
+   "note": "freedom 2, 3, 2 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "LEGALFLY agents",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/",
+   "scan": "https://gamma-ray.sgit.ai/scans/legalfly-agents/",
+   "code": "A3 · R2 · C1 · O2",
+   "stage": "Building",
+   "provisions": 41,
+   "instruments": 7,
+   "read_on": "2026-11-11",
+   "description": "Platform of legal agents (Discovery, Review, Draft, Multi Review, Legal Radar, Translation) plus Agent Studio, where customers build multi-step workflows with triggers, conditions, approvals and notifications.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 3,
+     "name": "Acts",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 4, Orchestrates",
+      "needs": "Public evidence that the agent works independently; the person approves critical decisions only."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "13 facts: 13 π Moderate. Each is written beside its evidence above.",
+   "built_from": "LEGALFLY's own public pages (product, documentation, blog, customer stories, legal and security pages)",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "LEGALFLY legal AI agents with Agent Studio with its documented defaults.",
+     "freedom": "2 Suggests"
+    },
+    {
+     "config": "Agent studio",
+     "what": "A workflow or custom agent the customer builds or enables in Agent Studio (triggers, steps, approvals); not active until configured",
+     "freedom": "3 Acts"
+    },
+    {
+     "config": "Integrations",
+     "what": "Connectors (SharePoint, Google Drive, Slack, Teams, Salesforce) that LEGALFLY activates for the organisation on request and each user then connects",
+     "freedom": "2 Suggests"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I08",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It executes actions itself",
+   "fact": "The workflow library describes pre-built Agent Studio workflows that act on their results, such as updating a processing register, emailing redlined documents and routing drafts for signature.",
+   "quote": "drafts a DPIA where high risk is found and updates your register",
+   "source": "https://www.legalfly.com/products/workflows",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I17",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent handles routine tasks; the person is consulted on exceptions",
+   "fact": "A pre-built workflow answers routine mailbox questions and sends anything not covered to Legal for approval.",
+   "quote": "with Legal approving anything not clearly covered",
+   "source": "https://www.legalfly.com/products/workflows",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I10",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "SharePoint and Google Drive can be connected so that Discovery searches the customer's folders without moving the documents.",
+   "quote": "Connect SharePoint and Google Drive to access your documents directly in LEGALFLY.",
+   "source": "https://www.legalfly.com/platform/integrations",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I11",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It connects to external tools or services across a trust boundary",
+   "fact": "Discovery connects to a customer's Salesforce org through an MCP integration after per-user authorisation.",
+   "quote": "Through the Discovery agent's Salesforce MCP integration",
+   "source": "https://help.legalfly.com/articles/38318067078162-salesforce",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "In Agent Studio a workflow builder can add approval and review steps at the points where a decision is needed.",
+   "quote": "Set approval and review steps where a decision is needed",
+   "source": "https://www.legalfly.com/agentstudio",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The help centre states a limit for users: Discovery's Salesforce integration reads records and cannot create, update or delete them.",
+   "quote": "This integration is currently read-only.",
+   "source": "https://help.legalfly.com/articles/38318067078162-salesforce",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The sources Legal Radar monitors are described by type of institution.",
+   "quote": "We monitor the published updates from a jurisdiction's main institutions",
+   "source": "https://www.legalfly.com/products/legal-radar",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  },
+  {
+   "indicator": "I61",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The models and third-party components it uses are listed",
+   "fact": "The trust centre lists subprocessors, including Anthropic and OpenAI as AI inference providers, with data locations.",
+   "quote": "Processes pseudonymised content only, unless a customer explicitly enables",
+   "source": "https://trust.legalfly.com",
+   "read_at": "2026-11-11T06:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of LEGALFLY's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "LEGALFLY agents: SharePoint and Google Drive can be connected so that Discovery searches the customer's folders without moving the documents.",
+    "source": "https://www.legalfly.com/platform/integrations",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+   },
+   {
+    "text": "LEGALFLY agents: Discovery connects to a customer's Salesforce org through an MCP integration after per-user authorisation.",
+    "source": "https://help.legalfly.com/articles/38318067078162-salesforce",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "LEGALFLY agents: control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; LEGALFLY has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=LEGALFLY%20agents",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? Answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "A handover through a vault",
+   "theme": "trust",
+   "demo": "handover",
+   "why": "A handover between three agents, every step recorded.",
+   "present": "theme.html?t=trust&d=handover",
+   "stage": "../stage.html?scene=handover"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  }
+ ],
+ "deck": {
+  "id": "partner-legalfly",
+  "title": "LEGALFLY: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "LEGALFLY",
+    "sub": "Platform of legal agents (Discovery, Review, Draft, Multi Review, Legal Radar, Translation) plus Agent Studio, where customers build multi-step workflows with…",
+    "caption": "What we have on LEGALFLY, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The workflow library describes pre-built Agent Studio workflows that act on their results, such as updating a processing register…",
+     "A pre-built workflow answers routine mailbox questions and sends anything not covered to Legal for approval.",
+     "SharePoint and Google Drive can be connected so that Discovery searches the customer's folders without moving the documents.",
+     "Discovery connects to a customer's Salesforce org through an MCP integration after per-user authorisation.",
+     "In Agent Studio a workflow builder can add approval and review steps at the points where a decision is needed."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "LEGALFLY agents: A3 · R2 · C1 · O2",
+    "levels": [
+     {
+      "id": "A3",
+      "label": "Autonomy: Acts",
+      "note": "Next: Public evidence that the agent works independently; the person approves critical decisions only."
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; LEGALFLY has not reviewed it. Stage: Building. 41 provisions lit across 7 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A mandate as deep as the business logic",
+    "step": "db-mandate/the-line",
+    "caption": "A mandate as deep as the business logic."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

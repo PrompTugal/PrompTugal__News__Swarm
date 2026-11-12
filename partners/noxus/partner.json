@@ -1,0 +1,410 @@
+{
+ "slug": "noxus",
+ "name": "Noxus",
+ "kind": "platform",
+ "kind_label": "Agent platforms",
+ "one_line": "Configurable agents that use flows, integration actions, knowledge bases, tables, MCP servers, code execution and a sandbox to carry out tasks, deployed through the web app, API, SDK, chat widget, Slack, Teams, Google Chat, WhatsApp or Telegram.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: Noxus AI Workers",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/",
+   "note": "A4 · R3 · C2 · O2, Scaling (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: Noxus AI Workers",
+   "url": "https://gamma-ray.sgit.ai/scans/noxus-ai-workers/",
+   "note": "freedom 1, 1, 1, 4, 1, 1, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "Noxus AI Workers",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/",
+   "scan": "https://gamma-ray.sgit.ai/scans/noxus-ai-workers/",
+   "code": "A4 · R3 · C2 · O2",
+   "stage": "Scaling",
+   "provisions": 70,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "Configurable agents that use flows, integration actions, knowledge bases, tables, MCP servers, code execution and a sandbox to carry out tasks, deployed through the web app, API, SDK, chat widget, Slack, Teams, Google Chat, WhatsApp or Telegram.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 4,
+     "name": "Orchestrates",
+     "question": "What does the agent do on its own?"
+    },
+    {
+     "dim": "Reach",
+     "level": 3,
+     "name": "Open protocol",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 2,
+     "name": "Configurable",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 3, Observable",
+      "needs": "Public evidence that it is monitored in operation."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "25 facts: 25 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Noxus's own public pages (product, documentation, blog, customer stories, legal and security pages)",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "Noxus AI Workers (AI Co-workers; 'Agents' in the documentation) with its documented defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Code exec",
+     "what": "Code Execution tool turned on for the agent",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Sandbox",
+     "what": "Sandbox tool turned on for the agent (persistent Syd sandbox)",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Hitl",
+     "what": "Human in the Loop tool or Require Approval turned on for the agent",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Bot identity",
+     "what": "Agent deployed under a service account or app-only identity rather than a user's OAuth",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Obs feedback",
+     "what": "Phoenix or Langfuse observability provider connected, enabling user feedback on responses",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Actions",
+     "what": "Integration actions (single integration nodes, such as Send Email or Delete OneDrive File) selected as tools for the agent",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I10",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The tools page states one agent can be given integration actions as tools, such as Send Email, Create Google Drive Sharing Link or Delete OneDrive File, alongside flows, knowledge bases and database connections.",
+   "quote": "Create Google Drive Sharing Link or Delete OneDrive File",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I18",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent works independently; the person approves critical decisions only",
+   "fact": "The tools page documents a Human in the Loop tool an agent owner may enable, under which the agent escalates to a person to get approval for critical actions; it does not say how any given agent is shipped.",
+   "quote": "Get approval for critical actions",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "S4",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It exposes an agent interface: a published MCP server, an agent card, or an API documented for agents to call",
+   "fact": "A hosted MCP server lets external clients and agents call Noxus agents, conversations and workflows as tools, authenticated with a workspace API key whose permissions gate the tools.",
+   "quote": "Drive the Noxus platform from any MCP-compatible client",
+   "source": "https://docs.noxus.ai/sdk/mcp/overview",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I25",
+   "dims": [
+    "Reach",
+    "Control"
+   ],
+   "label": "It asks for narrower access than the whole account",
+   "fact": "Each agent reaches only the flows, actions, knowledge bases and database connections selected for it; its SQL is generated read-only and runs with that connection's privileges, and tables are read-only unless edits are allowed.",
+   "quote": "Select which database connection(s) the agent may query",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "The Human in the Loop tool and Require Approval make the agent ask a person before actions run.",
+   "quote": "Get approval for critical actions",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I23",
+   "dims": [
+    "Control"
+   ],
+   "label": "What it can reach is enumerated: scopes, permissions, tools",
+   "fact": "Each agent's tools are an enumerated list chosen by the builder: the flows, actions, knowledge bases, database connections and MCP servers it may use.",
+   "quote": "Select which flows the agent can access",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The tools page documents limits, such as web research being less reliable than knowledge bases.",
+   "quote": "Web research is slower and less reliable than knowledge bases.",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The tools page describes the data an agent can use: knowledge bases, connected databases queried read-only, and workspace tables.",
+   "quote": "Query, and optionally edit, workspace tables",
+   "source": "https://docs.noxus.ai/platform/agents/tools",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  },
+  {
+   "indicator": "I61",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The models and third-party components it uses are listed",
+   "fact": "The model providers and model families an agent can use are listed.",
+   "quote": "Claude 4.x family",
+   "source": "https://docs.noxus.ai/core/infrastructure/models-providers",
+   "read_at": "2026-11-10T15:47Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Noxus's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "Noxus AI Workers: A hosted MCP server lets external clients and agents call Noxus agents, conversations and workflows as tools, authenticated with a workspace API key whose permissions gate the tools.",
+    "source": "https://docs.noxus.ai/sdk/mcp/overview",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+   },
+   {
+    "text": "Noxus AI Workers: Each agent reaches only the flows, actions, knowledge bases and database connections selected for it; its SQL is generated read-only and runs with that connection's privileges, and tables are read-only unless edits are allowed.",
+    "source": "https://docs.noxus.ai/platform/agents/tools",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Noxus AI Workers: control is at level 2, Configurable on the public evidence. Not yet shown in public: that it is monitored in operation.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Noxus has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=Noxus%20AI%20Workers",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "One agent per asset",
+   "theme": "control",
+   "demo": "one-per-asset",
+   "why": "One agent per asset instead of every agent wired to everything.",
+   "present": "theme.html?t=control&d=one-per-asset",
+   "stage": "../stage.html?scene=one-per-asset"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A new tool connected mid-run changes the licence to operate.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "One push, twelve jobs at once",
+   "theme": "flow",
+   "demo": "scale",
+   "why": "One push, twelve jobs at once.",
+   "present": "theme.html?t=flow&d=scale",
+   "stage": "../stage.html?scene=scale"
+  },
+  {
+   "title": "The gap, measured unit by unit",
+   "theme": "reach",
+   "demo": "reach-measured",
+   "why": "What each unit needed against what it held.",
+   "present": "theme.html?t=reach&d=reach-measured",
+   "stage": "../stage.html?scene=reach-measured"
+  }
+ ],
+ "deck": {
+  "id": "partner-noxus",
+  "title": "Noxus: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Noxus",
+    "sub": "Configurable agents that use flows, integration actions, knowledge bases, tables, MCP servers, code execution and a sandbox to carry out tasks, deployed…",
+    "caption": "What we have on Noxus, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The tools page states one agent can be given integration actions as tools, such as Send Email, Create Google Drive Sharing Link or Delete…",
+     "The tools page documents a Human in the Loop tool an agent owner may enable, under which the agent escalates to a person to get approval…",
+     "A hosted MCP server lets external clients and agents call Noxus agents, conversations and workflows as tools, authenticated with a…",
+     "Each agent reaches only the flows, actions, knowledge bases and database connections selected for it; its SQL is generated read-only and…",
+     "The Human in the Loop tool and Require Approval make the agent ask a person before actions run."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "Noxus AI Workers: A4 · R3 · C2 · O2",
+    "levels": [
+     {
+      "id": "A4",
+      "label": "Autonomy: Orchestrates",
+      "note": "What does the agent do on its own?"
+     },
+     {
+      "id": "R3",
+      "label": "Reach: Open protocol",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C2",
+      "label": "Control: Configurable",
+      "note": "Next: Public evidence that it is monitored in operation."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Noxus has not reviewed it. Stage: Scaling. 70 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 2, Configurable on the public evidence. Not yet shown in public: that it is monitored in operation."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "One agent per asset",
+    "step": "one-per-asset/one-loses-control",
+    "caption": "One agent per asset instead of every agent wired to everything."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

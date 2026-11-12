@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Partner Brief</title>
+<meta name="description" content="One company's mini deck: what we know with sources, what we made for them, how RiskMandate could help (our hypothesis), how we could work together, and which demos to show.">
+<link rel="stylesheet" href="../stage/themes.css">
+<style>
+/* partners.1.fringe@PrompTugal.dinis, 12 Nov 2026 (WS-215). pages/partner.html?c=<slug>[&mode=present]. Reads partners/<slug>/partner.json.
+   Facts, our hypothesis and our suggestions are labelled apart. Tablet-first; every tap target is at least 44 px. */
+*{box-sizing:border-box}html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 var(--font)}
+body{background:radial-gradient(ellipse at 50% -10%,var(--bg2) 0%,var(--bg) 60%) fixed}a{color:var(--accent);overflow-wrap:anywhere}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.top{padding:20px 0 6px}.back{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);text-decoration:none;font-size:.95rem}
+.top h1{margin:2px 0 0;font:700 clamp(1.8rem,3.6vw,2.8rem)/1.1 var(--font-head)}
+.top .one{margin:8px 0 0;color:var(--muted);font-size:1.08rem;max-width:80ch}
+.kick{font:600 .75rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.tabs{position:sticky;top:0;z-index:5;display:flex;gap:8px;flex-wrap:wrap;padding:12px 0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px)}
+.tabs button,.btn{min-height:44px;padding:8px 16px;border-radius:999px;border:1px solid var(--line);background:var(--panel-solid);color:var(--ink);font:600 .95rem var(--font);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;touch-action:manipulation}
+.tabs button[aria-pressed="true"]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.tabs .jump{margin-left:auto;display:flex;gap:6px;flex-wrap:wrap}.tabs .jump a{min-height:44px;display:inline-flex;align-items:center;padding:0 10px;color:var(--muted);text-decoration:none;font-size:.9rem}
+@media (max-width:900px){.tabs .jump{display:none}}
+section.s{margin:14px 0 22px;padding:18px 20px;background:var(--panel-solid);border:1px solid var(--line);border-radius:16px;scroll-margin-top:76px}
+section.s>h2{margin:0 0 4px;font:700 1.35rem var(--font-head);display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.lab{font:700 .68rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:6px 8px;border:1px solid}
+.lab.fact{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 55%,transparent)}.lab.hyp{color:var(--warn);border-color:color-mix(in srgb,var(--warn) 55%,transparent)}
+.lab.sug{color:var(--accent2,var(--accent));border-color:color-mix(in srgb,var(--accent2,var(--accent)) 55%,transparent)}.lab.beta{color:var(--muted);border-color:var(--line)}
+.note{margin:4px 0 12px;color:var(--muted);font-size:.92rem}
+.arts{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
+.arts a{display:flex;flex-direction:column;gap:3px;min-height:64px;padding:12px 14px;border:1px solid var(--line);border-radius:12px;text-decoration:none;color:var(--ink);background:var(--panel)}
+.arts a:hover{border-color:var(--accent)}.arts small{color:var(--muted);font-size:.82rem}.arts b{font-weight:600}
+ul.facts{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+ul.facts li{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+ul.facts q{display:block;margin-top:6px;color:var(--muted);font-style:italic}
+.src{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:6px;font-size:.82rem;color:var(--muted)}.src a{display:inline-flex;align-items:center;min-height:32px}
+.dims{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}@media (max-width:820px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dims div{padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.dims b{display:block;font:700 1.8rem var(--font-head);color:var(--accent)}
+.dims span{display:block;font-weight:600}.dims small{display:block;color:var(--muted);font-size:.82rem;margin-top:4px}
+.three{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}@media (max-width:900px){.three{grid-template-columns:1fr}}
+.three>div{padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.three h3{margin:0 0 6px;font:700 1.05rem var(--font-head)}
+.three ul{margin:0;padding-left:18px}.three li{margin:6px 0}
+.pitch{font-size:1.08rem;margin:6px 0 12px}
+details.sit{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin:8px 0}
+details.sit summary{min-height:48px;padding:12px 14px;cursor:pointer;font-weight:600;list-style-position:inside}
+details.sit>div{padding:0 14px 12px}details.sit h4{margin:10px 0 4px;font-size:.95rem;color:var(--muted)}
+.cards2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.cards2>div{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+.cards2 h3{margin:0;font:700 1.05rem var(--font-head)}.cards2 p{margin:0;color:var(--muted);font-size:.93rem}.cards2 .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+ol.qs{margin:0;padding-left:22px}ol.qs li{margin:8px 0}
+/* present mode: the StoryKit deck */
+#present{display:none}body.present #brief{display:none}body.present #present{display:block}
+.deck{position:relative;min-height:48vh;padding:28px 30px;background:var(--panel-solid);border:1px solid var(--line);border-radius:16px;font-size:clamp(14px,1.5vw,19px);overflow:hidden}
+.deck .storykit{max-width:1000px}
+.ctl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.ctl .btn{min-width:56px;justify-content:center;font-size:1.05rem}
+.ctl .pos{color:var(--muted);font:600 .9rem var(--mono)}
+.cap{color:var(--muted);font-size:1rem;margin:6px 0}.say{margin:6px 0 20px;padding-left:20px;color:var(--ink)}.say:empty{display:none}
+html.focus .wrap>.top,html.focus .tabs .jump{display:none}html.focus .deck{min-height:80vh}
+footer{margin-top:20px;padding:14px 0 30px;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line)}
+.err{padding:30px 0;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="back" href="partners.html">← All partners</a><div class="kick" id="kind"></div><h1 id="name">Partner brief</h1><p class="one" id="one"></p></div>
+  <div class="tabs" role="toolbar" aria-label="Mode">
+    <button type="button" data-mode="brief" aria-pressed="true">Brief</button><button type="button" data-mode="present" aria-pressed="false">▶ Present the mini deck</button>
+    <nav class="jump" aria-label="Sections"><a href="#made">Made</a><a href="#know">Know</a><a href="#help">Help</a><a href="#together">Together</a><a href="#demos">Demos</a></nav>
+  </div>
+  <main id="brief"><p class="err" id="err">Loading…</p></main>
+  <section id="present" aria-label="The mini deck">
+    <div class="deck" id="deck"></div>
+    <div class="ctl"><button class="btn" id="prev" type="button" aria-label="Back">←</button><button class="btn" id="next" type="button" aria-label="Next">→</button><button class="btn" id="play" type="button">▶ Play all</button><button class="btn" id="focus" type="button">⤢ Focus</button><span class="pos" id="pos"></span></div>
+    <p class="cap" id="cap"></p><ul class="say" id="say"></ul>
+  </section>
+  <footer id="foot">Built by partners.1.fringe@PrompTugal.dinis for Dinis Cruz (WS-215). Public sources only; no contact details. Facts, our hypotheses and our suggestions are labelled apart. Independent of Web Summit.</footer>
+</div>
+<script src="../assets/story-kit.js"></script>
+<script>
+const $ = (s) => document.querySelector(s), esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const Q = new URLSearchParams(location.search), slug = (Q.get('c') || '').replace(/[^a-z0-9-]/g, '');
+const host = (u) => { try { return new URL(u).hostname.replace(/^www\./, ''); } catch (e) { return u; } };
+const day = (t) => String(t || '').replace('T', ' ').replace(/Z$/, ' UTC');
+const srcs = (list) => (list || []).filter(Boolean).map((u) => `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(host(u))}</a>`).join('');
+const KIND = { 'gamma-ray': 'GAMMA-Ray card (beta)', 'gamma-ray-scan': 'GAMMA-Ray scan (beta)', xray: 'X-ray record', 'xray-deck': 'X-ray deck', 'xray-run': 'X-ray run' };
+let P = null, player = null;
+
+function brief(p) {
+  const out = [];
+  // what we made for them
+  out.push(`<section class="s" id="made"><h2>What we made for them</h2><p class="note">Our own public pages about ${esc(p.name)}. Each was read on the date shown and fetched again for this brief at ${esc(day(p.built_at))}.</p>
+    <div class="arts">${p.artefacts.map((a) => `<a href="${esc(a.url)}" target="_blank" rel="noopener"><small>${esc(KIND[a.kind] || a.kind)}</small><b>${esc(a.title)}</b><small>${esc(a.note || '')}${a.note ? ' · ' : ''}read ${esc(a.read_on)}</small></a>`).join('')}
+    <a href="#" data-mode="present"><small>This page</small><b>▶ The mini deck</b><small>Built from these, in the swarm's own primitives</small></a></div></section>`);
+  // what we know
+  const k = [];
+  const x = p.xray;
+  if (x && x.what_it_does) k.push(`<p>${esc(x.what_it_does)}</p><div class="src">From <a href="${esc(x.page)}" target="_blank" rel="noopener">the X-ray</a>, sources read ${esc(x.read_on)}</div>`);
+  if (p.gamma_ray.length) k.push(`<h3 style="margin:16px 0 8px">From the GAMMA-Ray evidence</h3><ul class="facts">${p.facts.map((f) => `<li>${esc(f.fact)}${f.quote ? `<q>${esc(f.quote)}</q>` : ''}<div class="src"><span>${esc(f.label)} (${esc(f.dims.join(', '))})</span><a href="${esc(f.source)}" target="_blank" rel="noopener">${esc(host(f.source))}</a><span>read ${esc(day(f.read_at))}</span><a href="${esc(f.via)}" target="_blank" rel="noopener">on the card</a></div></li>`).join('')}</ul>`);
+  if (x) {
+    k.push(`<h3 style="margin:16px 0 8px">From the X-ray: what its AI helpers can reach</h3>` + x.situations.map((s, i) => `<details class="sit"${i ? '' : ' open'}><summary>${esc(s.title)}${s.helper ? ` <span style="color:var(--muted);font-weight:400">· ${esc(s.helper)}</span>` : ''}</summary><div><ul>${s.reach.map((r) => `<li>${esc(r)}</li>`).join('')}</ul><div class="src">${srcs(s.reach_sources)}<span>read ${esc(x.read_on)}</span></div></div></details>`).join(''));
+    if (x.incidents.length) k.push(`<h3 style="margin:16px 0 8px">Incidents, as reported</h3><ul>${x.incidents.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`);
+    if (x.sources.length) k.push(`<details class="sit"><summary>All ${x.sources.length} sources of the X-ray</summary><div><ul>${x.sources.map((s) => `<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a> · ${esc(s.publisher)} (${esc(s.type)}, read ${esc(s.read_on)})</li>`).join('')}</ul></div></details>`);
+  }
+  out.push(`<section class="s" id="know"><h2>What we know <span class="lab fact">Facts, with sources</span></h2><p class="note">Only what their own pages and the press say, each with its source and when it was read. Where nothing public says it, it is unknown.</p>${k.join('')}</section>`);
+  // the card
+  p.gamma_ray.forEach((g) => out.push(`<section class="s"><h2>GAMMA-Ray: ${esc(g.product)} <span class="lab beta">Beta · experimental</span></h2>
+    <p class="note">${esc(g.code)} · stage ${esc(g.stage)} · ${esc(g.provisions)} provisions lit across ${esc(g.instruments)} instruments · read ${esc(g.read_on)} · not reviewed by ${esc(p.name)}. GAMMA-Ray is a standard in beta: <a href="https://gamma-ray.sgit.ai/rating/" target="_blank" rel="noopener">how a rating is made</a>.</p>
+    <div class="dims">${g.dims.map((d) => `<div><b>${esc(d.dim[0])}${d.level ?? '–'}</b><span>${esc(d.dim)}: ${esc(d.name)}</span><small>${esc(d.question || '')}</small>${d.next_unlock ? `<small><b style="display:inline;font:inherit;color:var(--ink)">Next, ${esc(d.next_unlock.level)}:</b> ${esc(d.next_unlock.needs)}</small>` : ''}</div>`).join('')}</div>
+    ${g.configs.length ? `<details class="sit"><summary>Its configurations, as documented (freedom level)</summary><div><ul>${g.configs.map((c) => `<li><b>${esc(c.config)}</b>: ${esc(c.what)} <span style="color:var(--muted)">· ${esc(c.freedom)}</span></li>`).join('')}</ul></div></details>` : ''}
+    <div class="src">FACT-Ray: ${esc(g.fact_ray || '')} · <a href="${esc(g.card)}" target="_blank" rel="noopener">the card</a> · <a href="${esc(g.scan)}" target="_blank" rel="noopener">the scan</a></div></section>`));
+  // how RiskMandate could help
+  const col = (t, list) => `<div><h3>${t}</h3><ul>${list.length ? list.map((i) => `<li>${esc(i.text)}${i.ours ? ' <span class="lab hyp" style="padding:3px 5px">our example</span>' : ''}<div class="src">${srcs(i.sources || [i.source])}${i.via ? `<a href="${esc(i.via)}" target="_blank" rel="noopener">via ${esc(host(i.via))}</a>` : ''}</div></li>`).join('') : '<li>Unknown: nothing public says it.</li>'}</ul></div>`;
+  out.push(`<section class="s" id="help"><h2>How RiskMandate could help <span class="lab hyp">Our hypothesis, not their claim</span></h2><p class="note">${esc(p.help.label)}</p><p class="pitch">${esc(p.help.pitch)}</p>
+    <div class="three">${col('Mandate: what it is asked to do', p.help.mandate)}${col('Reach: what it can touch', p.help.reach)}${col('The gap', p.help.gap)}</div></section>`);
+  if (x && x.questions.length) out.push(`<section class="s"><h2>The questions we would ask <span class="lab sug">Not asked yet</span></h2><ol class="qs">${x.questions.map((q) => `<li>${esc(q)}</li>`).join('')}</ol></section>`);
+  // together
+  out.push(`<section class="s" id="together"><h2>How we could work together <span class="lab sug">Our suggestions</span></h2><p class="note">${esc(p.together.label)}</p>
+    <div class="cards2">${p.together.items.map((t) => `<div><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p><div class="acts"><a class="btn" href="${esc(t.link)}"${/^https?:/.test(t.link) ? ' target="_blank" rel="noopener"' : ''}>Open</a>${t.link2 ? `<a class="btn" href="${esc(t.link2)}" target="_blank" rel="noopener">How</a>` : ''}</div></div>`).join('')}</div></section>`);
+  // demos
+  out.push(`<section class="s" id="demos"><h2>Demos to show them</h2><p class="note">Our own demos that speak to ${esc(p.kind_label.toLowerCase())}. "With notes" opens the theme page (the demo on the left, what to say on the right); "Stage" opens the scene alone.</p>
+    <div class="cards2">${p.demos.map((d) => `<div><h3>${esc(d.title)}</h3><p>${esc(d.why)}</p><div class="acts"><a class="btn" href="${esc(d.present)}">With notes</a><a class="btn" href="${esc(d.stage)}">Stage</a></div></div>`).join('')}</div></section>`);
+  return out.join('');
+}
+
+function present() {
+  if (player || !window.StoryKit || !P.deck) return;
+  player = StoryKit.present($('#deck'), P.deck, { caption: $('#cap'), keys: false, dwell: 3200, onStep: (i, n, info) => { $('#pos').textContent = `${i + 1} / ${n}`; $('#say').innerHTML = (info.say || []).map((s) => `<li>${esc(s)}</li>`).join(''); } });
+}
+function mode(m) {
+  document.body.classList.toggle('present', m === 'present');
+  document.querySelectorAll('.tabs button[data-mode]').forEach((b) => b.setAttribute('aria-pressed', b.dataset.mode === m));
+  if (m === 'present') present(); else if (player) player.stop();
+  const q = new URLSearchParams(location.search); if (m === 'present') q.set('mode', 'present'); else q.delete('mode'); try { history.replaceState(null, '', '?' + q); } catch (e) {}
+}
+document.addEventListener('click', (e) => { const b = e.target.closest('[data-mode]'); if (b) { e.preventDefault(); mode(b.dataset.mode); scrollTo(0, 0); } });
+$('#next').onclick = () => { if (player) { player.stop(); player.next(); } };
+$('#prev').onclick = () => { if (player) { player.stop(); player.prev(); } };
+$('#play').onclick = () => { if (player) { const on = player.play(); $('#play').textContent = on ? '■ Stop' : '▶ Play all'; } };
+$('#focus').onclick = () => document.documentElement.classList.toggle('focus');
+addEventListener('keydown', (e) => { if (!document.body.classList.contains('present') || !player) return; if (e.key === 'ArrowRight' || e.key === 'PageDown') { player.stop(); player.next(); } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { player.stop(); player.prev(); } else if (e.key === 'z') document.documentElement.classList.toggle('focus'); });
+// swipe on a tablet: left for next, right for back
+let x0 = null; $('#deck').addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+$('#deck').addEventListener('touchend', (e) => { if (x0 == null || !player) return; const dx = e.changedTouches[0].clientX - x0; x0 = null; if (Math.abs(dx) > 50) { player.stop(); dx < 0 ? player.next() : player.prev(); } });
+
+if (!slug) { $('#err').innerHTML = 'No company named. <a href="partners.html">Pick one from the list</a>.'; }
+else fetch(`../partners/${slug}/partner.json`, { cache: 'no-store' }).then((r) => { if (!r.ok) throw new Error(r.status); return r.json(); }).then((p) => {
+  P = p; document.title = `${p.name} · Partner Brief`;
+  $('#name').textContent = p.name; $('#one').textContent = p.one_line; $('#kind').textContent = `${p.kind_label} · partner brief`;
+  $('#brief').innerHTML = brief(p);
+  $('#foot').insertAdjacentHTML('beforeend', ` Built ${esc(day(p.built_at))}. ${esc(p.note)}`);
+  if (Q.get('mode') === 'present') mode('present');
+}).catch(() => { $('#err').innerHTML = `We have nothing on "${esc(slug)}" yet. <a href="partners.html">Back to the list</a>; ask swarm.1 to build it.`; });
+</script>
+<script type="module" src="../assets/feedback.js"></script>
+<script src="../assets/nav.js"></script>
+</body>
+</html>

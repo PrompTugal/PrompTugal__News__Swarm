@@ -1,0 +1,417 @@
+{
+ "slug": "outsystems",
+ "name": "OutSystems",
+ "kind": "platform",
+ "kind_label": "Agent platforms",
+ "one_line": "Builds, runs and governs AI agents (agentic apps) on OutSystems Developer Cloud (ODC): agents call server actions, MCP tools and external A2A agents, with guardrails, evaluations, traces and workflow human-in-the-loop steps.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: OutSystems Agent Workbench",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/",
+   "note": "A4 · R3 · C2 · O2, Scaling (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: OutSystems Agent Workbench",
+   "url": "https://gamma-ray.sgit.ai/scans/outsystems-agent-workbench/",
+   "note": "freedom 1, 4, 1, 1, 1, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "OutSystems Agent Workbench",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/",
+   "scan": "https://gamma-ray.sgit.ai/scans/outsystems-agent-workbench/",
+   "code": "A4 · R3 · C2 · O2",
+   "stage": "Scaling",
+   "provisions": 61,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "Builds, runs and governs AI agents (agentic apps) on OutSystems Developer Cloud (ODC): agents call server actions, MCP tools and external A2A agents, with guardrails, evaluations, traces and workflow human-in-the-loop steps.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 4,
+     "name": "Orchestrates",
+     "question": "What does the agent do on its own?"
+    },
+    {
+     "dim": "Reach",
+     "level": 3,
+     "name": "Open protocol",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 2,
+     "name": "Configurable",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 3, Observable",
+      "needs": "Public evidence that its actions are logged; and that it is monitored in operation."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "22 facts: 22 π Moderate. Each is written beside its evidence above.",
+   "built_from": "OutSystems's own public pages (product, documentation, blog, customer stories, legal and security pages)",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "OutSystems Agent Workbench with its documented defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Hitl workflow",
+     "what": "The builder places the agent in an ODC workflow with a Human activity assigned to a user or role; not part of an agent by default.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Guardrails",
+     "what": "Agent guardrails enabled by an administrator (stage baseline) or a developer (per agent) in the ODC Portal; usage is charged through Agent Workbench add-on packs; not enforced in two regions.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Agent workflow",
+     "what": "The builder chains several agents as automatic activities in an ODC workflow (sequential, parallel or loop); not part of a single agent by default.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "A2a connection",
+     "what": "An administrator creates an A2A connection to an external agent in the ODC Portal and the builder adds its SendMessage action to the agent; ODC acts as A2A 0.3.0 client only.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "MCP connection",
+     "what": "An administrator creates a connection to an MCP server in the ODC Portal and imports selected tools as server actions, which the builder adds to the agent; not part of an agent by default.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I10",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The product FAQ says agents connect to APIs, databases, ERP, CRM and legacy systems and orchestrate workflows across platforms.",
+   "quote": "Agents orchestrate workflows across platforms while maintaining security and governance.",
+   "source": "https://www.outsystems.com/platform/agentic-ai-workbench",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I12",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "Several agents coordinate inside the organisation",
+   "fact": "Workflows chain several agents, each with its own lifecycle, passing one agent's output to the next.",
+   "quote": "With this pattern, you can chain multiple agents together sequentially.",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=2d97c9e1-6bd4-48ef-8efc-66b75069eb5f",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I13",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "Agents operate across organisational boundaries or disparate stacks",
+   "fact": "Agentic apps can delegate tasks to external agents, outside ODC, over the A2A protocol.",
+   "quote": "allows your ODC agentic apps to interact and collaborate with external agents",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=6c449182-a1d4-4584-9558-5292f761f97a",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I18",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent works independently; the person approves critical decisions only",
+   "fact": "In a workflow, agents run as automatic activities completed without human intervention, and a Human activity assigned to a user or role pauses the workflow until that person approves or rejects the agent's output.",
+   "quote": "allowing the workflow to resume based on the human's decision",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=2d97c9e1-6bd4-48ef-8efc-66b75069eb5f",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I14",
+   "dims": [
+    "Reach"
+   ],
+   "label": "There is a published protocol or communication layer between agents",
+   "fact": "The A2A connector implements version 0.3.0 of the published Agent2Agent protocol, reading the remote agent card.",
+   "quote": "ODC A2A connector supports only A2A 0.3.0 protocol version",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=8764e4f7-25f3-4a21-b6a9-000c59f4a93a",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I25",
+   "dims": [
+    "Reach",
+    "Control"
+   ],
+   "label": "It asks for narrower access than the whole account",
+   "fact": "The builder grants each agent a set of server actions it may call; with none granted, the agent relies only on the AI model's knowledge.",
+   "quote": "You provide the agent with a set of available actions.",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=aec0cd3b-dcd4-4077-b0c0-04e987bdb690",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "The human-in-the-loop pattern stops at a high-stakes trigger until a person verifies or decides.",
+   "quote": "alerts a human user to provide verification or a decision before proceeding",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=5332e43d-bd1c-4403-8f46-5cbdaf198318",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The guardrails page documents where guardrails do not apply: files, some languages in basic-coverage regions, and two unsupported regions.",
+   "quote": "Prompts or responses in other languages can bypass safety filters.",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=673835c6-c109-4aa2-a3b5-507ab4da8611",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The docs describe agent grounding data: internal aggregates, search services and external tools.",
+   "quote": "Sources can include internal aggregates, search services (RAG), or external tools.",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=24d5a0ea-68c8-4851-b7de-e0908c122862",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  },
+  {
+   "indicator": "I61",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The models and third-party components it uses are listed",
+   "fact": "The docs list the supported model providers (OpenAI, Anthropic, Azure OpenAI, Amazon Bedrock, Gemini and others) and the trial models.",
+   "quote": "ODC supports connections to AI models from multiple providers",
+   "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=af45db6e-ac0f-4ab9-8e4a-4ba8fd559812",
+   "read_at": "2026-11-10T15:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of OutSystems's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "OutSystems Agent Workbench: The A2A connector implements version 0.3.0 of the published Agent2Agent protocol, reading the remote agent card.",
+    "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=8764e4f7-25f3-4a21-b6a9-000c59f4a93a",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+   },
+   {
+    "text": "OutSystems Agent Workbench: The builder grants each agent a set of server actions it may call; with none granted, the agent relies only on the AI model's knowledge.",
+    "source": "https://extranetprdintegrations.outsystems.net/Documentation_API/rest/getContentMarkdown/doc?Guid=aec0cd3b-dcd4-4077-b0c0-04e987bdb690",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "OutSystems Agent Workbench: control is at level 2, Configurable on the public evidence. Not yet shown in public: that its actions are logged; and that it is monitored in operation.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; OutSystems has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=OutSystems%20Agent%20Workbench",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "One agent per asset",
+   "theme": "control",
+   "demo": "one-per-asset",
+   "why": "One agent per asset instead of every agent wired to everything.",
+   "present": "theme.html?t=control&d=one-per-asset",
+   "stage": "../stage.html?scene=one-per-asset"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A new tool connected mid-run changes the licence to operate.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "One push, twelve jobs at once",
+   "theme": "flow",
+   "demo": "scale",
+   "why": "One push, twelve jobs at once.",
+   "present": "theme.html?t=flow&d=scale",
+   "stage": "../stage.html?scene=scale"
+  },
+  {
+   "title": "The gap, measured unit by unit",
+   "theme": "reach",
+   "demo": "reach-measured",
+   "why": "What each unit needed against what it held.",
+   "present": "theme.html?t=reach&d=reach-measured",
+   "stage": "../stage.html?scene=reach-measured"
+  }
+ ],
+ "deck": {
+  "id": "partner-outsystems",
+  "title": "OutSystems: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "OutSystems",
+    "sub": "Builds, runs and governs AI agents (agentic apps) on OutSystems Developer Cloud (ODC): agents call server actions, MCP tools and external A2A agents, with…",
+    "caption": "What we have on OutSystems, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The product FAQ says agents connect to APIs, databases, ERP, CRM and legacy systems and orchestrate workflows across platforms.",
+     "Workflows chain several agents, each with its own lifecycle, passing one agent's output to the next.",
+     "Agentic apps can delegate tasks to external agents, outside ODC, over the A2A protocol.",
+     "In a workflow, agents run as automatic activities completed without human intervention, and a Human activity assigned to a user or role…",
+     "The A2A connector implements version 0.3.0 of the published Agent2Agent protocol, reading the remote agent card."
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "OutSystems Agent Workbench: A4 · R3 · C2 · O2",
+    "levels": [
+     {
+      "id": "A4",
+      "label": "Autonomy: Orchestrates",
+      "note": "What does the agent do on its own?"
+     },
+     {
+      "id": "R3",
+      "label": "Reach: Open protocol",
+      "note": "Next: Public evidence that others build on it: third parties publish integrations, skills or agents for it."
+     },
+     {
+      "id": "C2",
+      "label": "Control: Configurable",
+      "note": "Next: Public evidence that its actions are logged; and that it is monitored in operation."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; OutSystems has not reviewed it. Stage: Scaling. 61 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 2, Configurable on the public evidence. Not yet shown in public: that its actions are logged; and…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "One agent per asset",
+    "step": "one-per-asset/one-loses-control",
+    "caption": "One agent per asset instead of every agent wired to everything."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

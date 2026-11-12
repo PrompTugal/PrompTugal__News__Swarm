@@ -1,0 +1,790 @@
+{
+ "slug": "cloudflare",
+ "name": "Cloudflare",
+ "kind": "infrastructure",
+ "kind_label": "Infrastructure for agents",
+ "one_line": "The connectivity cloud that hosts AI agents: the Agents SDK on Durable Objects, Workers AI inference, AI Gateway and managed MCP servers.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Cloudflare",
+   "url": "https://web-summit.sgit.ai/xray/cloudflare/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Cloudflare",
+   "url": "https://web-summit.sgit.ai/xray/cloudflare/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/cloudflare/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/cloudflare/",
+  "deck": "https://web-summit.sgit.ai/xray/cloudflare/deck/",
+  "run": "https://web-summit.sgit.ai/xray/cloudflare/run/",
+  "one_line": "The connectivity cloud that hosts AI agents: the Agents SDK on Durable Objects, Workers AI inference, AI Gateway and managed MCP servers.",
+  "read_on": "2026-11-07",
+  "what_it_does": "Cloudflare runs a global network and security platform, now pitched as one platform for apps, agents and workforce. For agents it offers the Agents SDK, which hosts each agent as a Durable Object with its own storage, scheduling and tools (browser, sandbox, web search, MCP, payments), Workers AI for serverless model inference, and AI Gateway to log, cache, route, rate-limit and budget model calls across providers. It also runs managed remote MCP servers that let outside agents read and change a Cloudflare account through its API. [s1, s2, s3, s4, s19]",
+  "situations": [
+   {
+    "title": "Aug to Sep 2026: GLM-5.3 answers held other customers' data",
+    "helper": "Workers AI inference",
+    "reach": [
+     "The customer's prompt: very long context sent by an agent or app to GLM-5.3 (affected prompts were longer than 681,280 tokens)",
+     "The shared KV cache pool in GPU memory: fixed-size pages reused between requests and not zeroed; the prefill pool held 681,280 tokens against an advertised 1,048,576-token context",
+     "Other customers' prompts and partial generations left in stale cache pages from requests made shortly before",
+     "Responses delivered to a different customer: 155 responses between 27 August and 9 September 2026, returned with HTTP 200 and coherent text",
+     "Where a response is kept afterwards: AI Gateway logs (prompt and response, on by default for each gateway) and the agent's own storage"
+    ],
+    "reach_sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/workers-ai/models/glm-5.3/",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+     "https://developers.cloudflare.com/agents/"
+    ],
+    "asked_our_example": [
+     "As documented on the Workers AI data usage page: inputs and outputs are Customer Content, Cloudflare does not make it available to other Cloudflare customers, and standard inference keeps no inputs or outputs after the response",
+     "The customer's agent sends its own project context and gets back an answer built only from its own request"
+    ],
+    "gap": [
+     "The model was advertised with a 1,048,576-token context while the cache pool held 681,280 tokens; the mismatch was known before launch and pre-launch tests checked only status codes and performance, not output, so the isolation between customers rested on an untested assumption.",
+     "Nothing in the response marked the leak: the client got HTTP 200 and a coherent reply, so another customer's data could flow into an agent's context and into stored logs without either customer seeing it."
+    ],
+    "gap_sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+     "https://developers.cloudflare.com/agents/"
+    ]
+   },
+   {
+    "title": "A coding agent changes a Cloudflare account through MCP",
+    "helper": "Cloudflare API MCP",
+    "reach": [
+     "The whole Cloudflare API through two tools: more than 2,500 endpoints across DNS, Workers, R2, Zero Trust and every other product",
+     "Model-written JavaScript run against the API client inside an isolated Dynamic Worker sandbox",
+     "DNS records and Worker deployments the agent can create or change",
+     "Account configuration, logs and analytics the agent can read",
+     "Zero Trust and security configuration, reachable through the same API",
+     "The grant itself: OAuth permissions chosen at connect, or a user or account API token passed as a bearer token for automation"
+    ],
+    "reach_sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ],
+    "asked_our_example": [
+     "Read the zone's configuration and add one DNS record for one site",
+     "No changes to Zero Trust policies, Workers or other zones without the owner's approval"
+    ],
+    "gap": [
+     "One server covers the entire API, so the only boundary is the permissions chosen at OAuth time or on the token; a broad grant puts security policy and every product within reach of a task that needs one record.",
+     "Changes are made by code the model writes and runs in one execute() call; the docs describe the agent making suggested changes for you, with no documented per-change approval on this server."
+    ],
+    "gap_sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ]
+   },
+   {
+    "title": "A support agent with tools, a browser and payments",
+    "helper": "Agents SDK agent",
+    "reach": [
+     "The agent's own state: SQL storage, chat history and an AI Search knowledge base it can write back to",
+     "External MCP servers (for example GitHub), whose tools go into model calls, acting on behalf of the end user with an OAuth grant",
+     "A browser that keeps tabs, cookies and login sessions between turns, and can open sites the agent serves itself",
+     "Payments: x402 (stablecoins such as USDC) and the Machine Payments Protocol, paid programmatically with no pre-shared key; human approval on the x402 client is optional",
+     "A Linux sandbox for shell commands and scripts; it cannot read the agent's storage or bindings and reaches the internet only when allowed",
+     "Models from many providers through AI Gateway, which holds the vendor keys or bills through Unified Billing"
+    ],
+    "reach_sources": [
+     "https://developers.cloudflare.com/agents/",
+     "https://developers.cloudflare.com/ai-search/agent-sdks/agents-sdk/",
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/",
+     "https://developers.cloudflare.com/agents/tools/browser/",
+     "https://developers.cloudflare.com/browser-run/",
+     "https://developers.cloudflare.com/agents/tools/payments/",
+     "https://developers.cloudflare.com/agents/tools/sandbox/",
+     "https://developers.cloudflare.com/agents/models/",
+     "https://developers.cloudflare.com/ai-gateway/features/"
+    ],
+    "asked_our_example": [
+     "Answer customers from the knowledge base and read issue activity; no actions in customers' own accounts",
+     "Spend on models and paid services within a monthly budget, and any single payment over a threshold only with a person's approval"
+    ],
+    "gap": [
+     "The browser keeps logins between turns, and MCP tools act with the end user's grant, so the agent can reach into accounts that the support task only needs to read about.",
+     "Human approval for x402 payments is optional on the client; unless the developer sets it, the agent can pay a 402 challenge on its own."
+    ],
+    "gap_sources": [
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/",
+     "https://developers.cloudflare.com/agents/tools/browser/",
+     "https://developers.cloudflare.com/browser-run/",
+     "https://developers.cloudflare.com/agents/tools/payments/"
+    ]
+   }
+  ],
+  "questions": [
+   "After the GLM-5.3 exposure, what tells a Workers AI customer, per request, that the answer was built only from its own data, and were the customers who received or supplied the 155 affected responses told which requests were involved?",
+   "Can a Cloudflare API MCP server session be limited to one zone and read-only by default, with each write held for a person's approval, rather than relying on the OAuth scopes chosen at connect?",
+   "Is every action an agent takes through the MCP server recorded in the account audit log as that agent, separately from the human who granted it?",
+   "For agents that pay through x402 or MPP, can an account set a hard spending ceiling and mandatory approval that the developer cannot leave optional?",
+   "Browser sessions keep cookies and logins between turns: which controls stop an agent from using a logged-in session for something its task did not need, and is that use logged?"
+  ],
+  "incidents": [
+   "2026-08: Cross-request KV cache exposure in the GLM-5.3 model on Workers AI: 155 responses to prompts longer than 681,280 tokens contained data from other customers' requests made shortly before. Reported by a security researcher through HackerOne; Cloudflare took the model offline within 40 minutes of declaring an incident, restored it the same day with a corrected configuration and patched engine, and found no evidence of deliberate exploitation. [s13]",
+   "2025-08: Salesloft Drift breach: a threat actor used OAuth credentials of the Drift chat agent's Salesforce integration to exfiltrate support case text from Cloudflare's Salesforce tenant (12 to 17 August 2025). Cloudflare found 104 Cloudflare API tokens in the data and rotated them, disconnected all third-party integrations from Salesforce, and said no Cloudflare services or infrastructure were compromised. [s31, s24]"
+  ],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Cloudflare: Build for the agent era",
+    "url": "https://www.cloudflare.com/",
+    "publisher": "Cloudflare",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "Build Agents on Cloudflare",
+    "url": "https://developers.cloudflare.com/agents/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Cloudflare Workers AI",
+    "url": "https://developers.cloudflare.com/workers-ai/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Cloudflare AI Gateway",
+    "url": "https://developers.cloudflare.com/ai-gateway/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "AI Gateway: Features",
+    "url": "https://developers.cloudflare.com/ai-gateway/features/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "AI Gateway: Getting started",
+    "url": "https://developers.cloudflare.com/ai-gateway/get-started/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "AI Gateway: Cloudflare Access",
+    "url": "https://developers.cloudflare.com/ai-gateway/configuration/cloudflare-access/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "AI Search: AI Gateway",
+    "url": "https://developers.cloudflare.com/ai-search/configuration/models/ai-gateway/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Cloudflare Workers",
+    "url": "https://developers.cloudflare.com/workers/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Docs for agents",
+    "url": "https://developers.cloudflare.com/docs-for-agents/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "AI Gateway Changelog",
+    "url": "https://developers.cloudflare.com/changelog/product/ai-gateway/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Agents SDK: MCP client (repository docs)",
+    "url": "https://github.com/cloudflare/agents/blob/main/docs/agents/mcp-client.md",
+    "publisher": "Cloudflare (GitHub)",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Cross-request KV cache exposure in the GLM-5.3 Workers AI model, and our remediation with SGLang (26 October 2026)",
+    "url": "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Agents: Think harness",
+    "url": "https://developers.cloudflare.com/agents/harnesses/think/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Agents: Models",
+    "url": "https://developers.cloudflare.com/agents/models/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "Cloudflare Workers AI: Edge AI Inference Platform",
+    "url": "https://www.cloudflare.com/products/workers-ai/",
+    "publisher": "Cloudflare",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Workers AI: serverless GPU-powered inference on Cloudflare's global network (27 September 2023)",
+    "url": "https://blog.cloudflare.com/workers-ai/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Agents: MCP",
+    "url": "https://developers.cloudflare.com/agents/tools/mcp/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Cloudflare's own MCP servers",
+    "url": "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s20",
+    "title": "AI Search: Agents SDK",
+    "url": "https://developers.cloudflare.com/ai-search/agent-sdks/agents-sdk/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s21",
+    "title": "Cloudflare Agents",
+    "url": "https://agents.cloudflare.com/",
+    "publisher": "Cloudflare",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s22",
+    "title": "Piecing together the Agent puzzle: MCP, authentication & authorization, and Durable Objects free tier (7 April 2025)",
+    "url": "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s23",
+    "title": "Cloudflare outage on February 20, 2026",
+    "url": "https://blog.cloudflare.com/cloudflare-outage-february-20-2026/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s24",
+    "title": "Posts tagged \"Post Mortem\"",
+    "url": "https://blog.cloudflare.com/tag/post-mortem/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s25",
+    "title": "Posts tagged \"Outage\"",
+    "url": "https://blog.cloudflare.com/tag/outage/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s26",
+    "title": "Cloudflare's AI Platform: an inference layer designed for agents (16 April 2026)",
+    "url": "https://blog.cloudflare.com/ai-platform/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s27",
+    "title": "Agents SDK v0.3.0 with AI SDK v6 (changelog, 22 December 2025)",
+    "url": "https://developers.cloudflare.com/changelog/post/2025-12-22-agents-sdk-ai-sdk-v6/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s28",
+    "title": "cloudflare/agents (README)",
+    "url": "https://github.com/cloudflare/agents",
+    "publisher": "Cloudflare (GitHub)",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s29",
+    "title": "Cloudflare Status",
+    "url": "https://www.cloudflarestatus.com/",
+    "publisher": "Cloudflare",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s30",
+    "title": "Cloudflare Outage History",
+    "url": "https://statusgator.com/services/cloudflare/outage-history",
+    "publisher": "StatusGator",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s31",
+    "title": "The impact of the Salesloft Drift breach on Cloudflare and our customers (2 September 2025)",
+    "url": "https://blog.cloudflare.com/response-to-salesloft-drift-incident/",
+    "publisher": "Cloudflare Blog",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s32",
+    "title": "Agents: Browser",
+    "url": "https://developers.cloudflare.com/agents/tools/browser/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s33",
+    "title": "Browser Run (formerly Browser Rendering)",
+    "url": "https://developers.cloudflare.com/browser-run/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s34",
+    "title": "Human-in-the-loop patterns",
+    "url": "https://developers.cloudflare.com/agents/concepts/agentic-patterns/human-in-the-loop/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s35",
+    "title": "Agentic Payments",
+    "url": "https://developers.cloudflare.com/agents/tools/payments/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s36",
+    "title": "Agents: Sandbox",
+    "url": "https://developers.cloudflare.com/agents/tools/sandbox/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s37",
+    "title": "How Code Mode works",
+    "url": "https://developers.cloudflare.com/agents/tools/codemode/how-it-works/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s38",
+    "title": "AI Gateway: Spend limits",
+    "url": "https://developers.cloudflare.com/ai-gateway/features/spend-limits/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s39",
+    "title": "AI Gateway: Data Loss Prevention (DLP)",
+    "url": "https://developers.cloudflare.com/ai-gateway/features/dlp/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s40",
+    "title": "AI Gateway: Logging",
+    "url": "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s41",
+    "title": "Workers AI: Data usage",
+    "url": "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s42",
+    "title": "Workers AI model: glm-5.3",
+    "url": "https://developers.cloudflare.com/workers-ai/models/glm-5.3/",
+    "publisher": "Cloudflare Docs",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Cloudflare's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: As documented on the Workers AI data usage page: inputs and outputs are Customer Content, Cloudflare does not make it available to other Cloudflare customers, and standard inference keeps no inputs or outputs after the response",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   },
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: The customer's agent sends its own project context and gets back an answer built only from its own request",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: Read the zone's configuration and add one DNS record for one site",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: No changes to Zero Trust policies, Workers or other zones without the owner's approval",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: Answer customers from the knowledge base and read issue activity; no actions in customers' own accounts",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: Spend on models and paid services within a monthly budget, and any single payment over a threshold only with a person's approval",
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: The customer's prompt: very long context sent by an agent or app to GLM-5.3 (affected prompts were longer than 681,280 tokens)",
+    "sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/workers-ai/models/glm-5.3/",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: The shared KV cache pool in GPU memory: fixed-size pages reused between requests and not zeroed; the prefill pool held 681,280 tokens against an advertised 1,048,576-token context",
+    "sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/workers-ai/models/glm-5.3/",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: The whole Cloudflare API through two tools: more than 2,500 endpoints across DNS, Workers, R2, Zero Trust and every other product",
+    "sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: Model-written JavaScript run against the API client inside an isolated Dynamic Worker sandbox",
+    "sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: The agent's own state: SQL storage, chat history and an AI Search knowledge base it can write back to",
+    "sources": [
+     "https://developers.cloudflare.com/agents/",
+     "https://developers.cloudflare.com/ai-search/agent-sdks/agents-sdk/",
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: External MCP servers (for example GitHub), whose tools go into model calls, acting on behalf of the end user with an OAuth grant",
+    "sources": [
+     "https://developers.cloudflare.com/agents/",
+     "https://developers.cloudflare.com/ai-search/agent-sdks/agents-sdk/",
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: The model was advertised with a 1,048,576-token context while the cache pool held 681,280 tokens; the mismatch was known before launch and pre-launch tests checked only status codes and performance, not output, so the isolation between customers rested on an untested assumption.",
+    "sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+     "https://developers.cloudflare.com/agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "Aug to Sep 2026: GLM-5.3 answers held other customers' data: Nothing in the response marked the leak: the client got HTTP 200 and a coherent reply, so another customer's data could flow into an agent's context and into stored logs without either customer seeing it.",
+    "sources": [
+     "https://blog.cloudflare.com/kv-cache-exposure-remediation",
+     "https://developers.cloudflare.com/ai-gateway/observability/logging/",
+     "https://developers.cloudflare.com/workers-ai/platform/data-usage/",
+     "https://developers.cloudflare.com/agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: One server covers the entire API, so the only boundary is the permissions chosen at OAuth time or on the token; a broad grant puts security policy and every product within reach of a task that needs one record.",
+    "sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A coding agent changes a Cloudflare account through MCP: Changes are made by code the model writes and runs in one execute() call; the docs describe the agent making suggested changes for you, with no documented per-change approval on this server.",
+    "sources": [
+     "https://developers.cloudflare.com/agents/model-context-protocol/cloudflare/servers-for-cloudflare/",
+     "https://developers.cloudflare.com/docs-for-agents/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: The browser keeps logins between turns, and MCP tools act with the end user's grant, so the agent can reach into accounts that the support task only needs to read about.",
+    "sources": [
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/",
+     "https://developers.cloudflare.com/agents/tools/browser/",
+     "https://developers.cloudflare.com/browser-run/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "text": "A support agent with tools, a browser and payments: Human approval for x402 payments is optional on the client; unless the developer sets it, the agent can pay a 402 challenge on its own.",
+    "sources": [
+     "https://developers.cloudflare.com/agents/tools/mcp/",
+     "https://blog.cloudflare.com/building-ai-agents-with-mcp-authn-authz-and-durable-objects/",
+     "https://developers.cloudflare.com/agents/tools/browser/",
+     "https://developers.cloudflare.com/browser-run/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/cloudflare/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Cloudflare; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/cloudflare/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "The network door",
+   "theme": "harness",
+   "demo": "harness-door",
+   "why": "The network door: one host, one port, enforced by the kernel.",
+   "present": "theme.html?t=harness&d=harness-door",
+   "stage": "../stage.html?scene=harness-door"
+  },
+  {
+   "title": "A key born inside the run",
+   "theme": "trust",
+   "demo": "harness-key-inside",
+   "why": "A key born inside the run; it never touches a file.",
+   "present": "theme.html?t=trust&d=harness-key-inside",
+   "stage": "../stage.html?scene=harness-key-inside"
+  },
+  {
+   "title": "Run it where the assets are not",
+   "theme": "flow",
+   "demo": "elsewhere",
+   "why": "Run it where the assets are not.",
+   "present": "theme.html?t=flow&d=elsewhere",
+   "stage": "../stage.html?scene=elsewhere"
+  },
+  {
+   "title": "Mandate, reach and gap, per unit",
+   "theme": "harness",
+   "demo": "harness-reach",
+   "why": "Mandate, reach and gap, per unit.",
+   "present": "theme.html?t=harness&d=harness-reach",
+   "stage": "../stage.html?scene=harness-reach"
+  }
+ ],
+ "deck": {
+  "id": "partner-cloudflare",
+  "title": "Cloudflare: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Cloudflare",
+    "sub": "The connectivity cloud that hosts AI agents: the Agents SDK on Durable Objects, Workers AI inference, AI Gateway and managed MCP servers.",
+    "caption": "What we have on Cloudflare, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The connectivity cloud that hosts AI agents: the Agents SDK on Durable Objects, Workers AI inference, AI Gateway and managed MCP servers.",
+     "The customer's prompt: very long context sent by an agent or app to GLM-5.3 (affected prompts were longer than 681,280 tokens)",
+     "The shared KV cache pool in GPU memory: fixed-size pages reused between requests and not zeroed; the prefill pool held 681,280 tokens…",
+     "The whole Cloudflare API through two tools: more than 2,500 endpoints across DNS, Workers, R2, Zero Trust and every other product",
+     "Model-written JavaScript run against the API client inside an isolated Dynamic Worker sandbox"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "The model was advertised with a 1,048,576-token context while the cache pool held 681,280 tokens; the mismatch was known before launch and…",
+     "Nothing in the response marked the leak: the client got HTTP 200 and a coherent reply, so another customer's data could flow into an…",
+     "One server covers the entire API, so the only boundary is the permissions chosen at OAuth time or on the token; a broad grant puts…",
+     "Changes are made by code the model writes and runs in one execute() call; the docs describe the agent making suggested changes for you…",
+     "The browser keeps logins between turns, and MCP tools act with the end user's grant, so the agent can reach into accounts that the support…"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "GLM-5.3 answers held other customers' data: The model was advertised with a 1,048,576-token context while the cache…",
+      "GLM-5.3 answers held other customers' data: Nothing in the response marked the leak: the client got HTTP 200 and a…",
+      "One server covers the entire API, so the only boundary is the permissions chosen at OAuth time or on the token; a…",
+      "Changes are made by code the model writes and runs in one execute() call; the docs describe the agent making suggested…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "The network door",
+    "step": "harness-door/the-door-s-log",
+    "caption": "The network door: one host, one port, enforced by the kernel."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

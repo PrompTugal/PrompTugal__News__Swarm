@@ -1,0 +1,600 @@
+{
+ "slug": "klarna",
+ "name": "Klarna",
+ "kind": "finance",
+ "kind_label": "Finance and insurance",
+ "one_line": "A payments and shopping company whose OpenAI-powered assistant answers most of its customer-service chats, with humans brought back as a choice.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Klarna",
+   "url": "https://web-summit.sgit.ai/xray/klarna/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Klarna",
+   "url": "https://web-summit.sgit.ai/xray/klarna/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/klarna/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/klarna/",
+  "deck": "https://web-summit.sgit.ai/xray/klarna/deck/",
+  "run": "https://web-summit.sgit.ai/xray/klarna/run/",
+  "one_line": "A payments and shopping company whose OpenAI-powered assistant answers most of its customer-service chats, with humans brought back as a choice.",
+  "read_on": "2026-11-07",
+  "what_it_does": "Klarna is a payments and shopping company (it describes itself as a global digital bank and flexible payments provider) whose app lets consumers pay later, manage payments and shop. Since February 2024 its OpenAI-powered AI assistant has answered customer-service chats in the app, handling refunds, returns, payment issues, cancellations, disputes and invoice inaccuracies; Klarna says it handled 80% of customer-service chats in 2025. Customers can still ask for a human, and in May 2025 the CEO said Klarna would recruit human agents so that a person is always available. [s1, s6, s3, s8, s9]",
+  "situations": [
+   {
+    "title": "2024 to 2025: AI-first customer service, then humans back",
+    "helper": "AI assistant (service)",
+    "reach": [
+     "Customer-service chats in the Klarna app: two-thirds of chats in the first month (2.3 million conversations), 80% of chats in 2025, Klarna says",
+     "Refunds, returns, payment-related issues, cancellations, disputes and invoice inaccuracies",
+     "Each customer's outstanding balances, upcoming payment schedules, purchase power and spending limits",
+     "The hand-off to a person: customers can choose a live agent, and the US help page offers human support or a dedicated agent",
+     "The customer-service workforce: about 3,000 agents, mostly at outsourcing partners, which a spokesperson said would fall to about 2,300",
+     "Klarna's public and regulatory statements about the assistant: 700 then 853 agents' equivalent work, $39 million (2024) and about $59 million (2025) in cost savings, satisfaction on par with humans, all from Klarna's own measurements"
+    ],
+    "reach_sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/",
+     "https://www.klarna.com/us/help/",
+     "https://www.euronews.com/2024/02/28/klarnas-ai-bot-is-doing-the-work-of-700-employees-what-will-happen-to-their-jobs",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=CORRESP",
+     "https://www.customerexperiencedive.com/news/klarna-says-ai-agent-work-853-employees/805987/"
+    ],
+    "asked_our_example": [
+     "Klarna's stated policy: every user is told they are talking to a chatbot and can choose to speak with a human instead (Klarna, December 2024)",
+     "As a Klarna spokesperson put it in March 2024: more experienced and senior staff are still needed, with specialised training for complex or sensitive cases",
+     "The assistant resolves routine errands end to end; a change to a customer's money or payment terms is recorded with who decided it"
+    ],
+    "gap": [
+     "Disputes, refunds and invoice corrections sit in the same chat reach as routine questions; nothing public shows where the line to senior human staff for complex or sensitive cases was drawn.",
+     "The human path that contains the agent (the choice of a person) depended on a workforce that was shrinking while the assistant took more chats.",
+     "The evidence of success is Klarna's own: share of chats, resolution time and satisfaction from its chat logs and internal surveys, with no independent measurement in the public record."
+    ],
+    "gap_sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/",
+     "https://www.klarna.com/us/help/",
+     "https://www.euronews.com/2024/02/28/klarnas-ai-bot-is-doing-the-work-of-700-employees-what-will-happen-to-their-jobs",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=CORRESP",
+     "https://www.customerexperiencedive.com/news/klarna-says-ai-agent-work-853-employees/805987/"
+    ]
+   },
+   {
+    "title": "Shopping assistant: from recommendation to purchase",
+    "helper": "AI assistant (shopping)",
+    "reach": [
+     "Klarna's price database of 5.6 million products from thousands of stores, with stock, delivery and cashback information",
+     "The user's shopping preferences and habits (what they buy and when, brands they prefer), used for recommendations",
+     "A purchase made directly in the app with Klarna's flexible payment methods (Pay Later and Fair Financing are consumer credit)",
+     "Merchants' listings and customer reviews, summarised into an 'unbiased, AI-generated' pros and cons"
+    ],
+    "reach_sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ],
+    "asked_our_example": [
+     "Help the user find and compare products with a neutral summary",
+     "The purchase, and any credit used for it, is the user's own decision, made outside the recommendation"
+    ],
+    "gap": [
+     "Recommendations built from the user's habits run straight into a purchase, possibly on credit, in the same chat flow.",
+     "Klarna calls the summaries unbiased, but nothing public shows how the ranking is evidenced to be independent of Klarna's merchant relationships."
+    ],
+    "gap_sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ]
+   },
+   {
+    "title": "Kiki: internal answers across internal systems",
+    "helper": "Kiki (internal)",
+    "reach": [
+     "Information across Klarna's internal systems",
+     "Who is asking: answers are personalised to the person and their team",
+     "Over 250,000 employee questions and Kiki's answers (about 2,000 a day)",
+     "Third-party AI tools employees use, where Klarna's own risk factors say confidential information could be disclosed"
+    ],
+    "reach_sources": [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/"
+    ],
+    "asked_our_example": [
+     "Answer an employee from information that employee is already allowed to see",
+     "No confidential information leaves Klarna's systems through an AI tool"
+    ],
+    "gap": [
+     "Kiki answers across internal systems and personalises by asker; nothing public shows how its answers follow each employee's own access."
+    ],
+    "gap_sources": [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/"
+    ]
+   }
+  ],
+  "questions": [
+   "Which errands can the AI assistant complete on its own (refunds, dispute outcomes, invoice corrections, payment changes), and which must go to a person before money or payment terms change?",
+   "How is a dispute or other complex or sensitive case detected in the chat and handed to experienced staff, and is that hand-off recorded?",
+   "The satisfaction and accuracy figures come from your own chat logs and surveys: are they broken down by case type, and has anyone outside Klarna measured them?",
+   "When the shopping assistant leads to a purchase on credit, what separates the recommendation from the credit offer, and how is the 'unbiased' summary evidenced?",
+   "How do Kiki's answers respect each employee's own access to internal systems?"
+  ],
+  "incidents": [
+   "2025-05: Klarna's CEO told Bloomberg that cost-cutting in customer service had gone too far and produced 'lower quality', and that Klarna would recruit human agents (a freelance, remote pilot) so customers always have a person. A Klarna spokesperson said the company was still 'very much AI-first'. In July 2025 Klarna told the SEC the remark concerned human customer service, not AI-driven service, and had been misreported. [s8, s9, s10, s7]",
+   "2026-02: Documented risk: Klarna's annual report says generative AI, including in its customer-service chatbot, may create inaccurate, incomplete or misleading output that may not be easily detectable. [s6]"
+  ],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Klarna AI assistant handles two-thirds of customer service chats in its first month (27 February 2024)",
+    "url": "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+    "publisher": "Klarna International press",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "Shopping made smarter: Klarna adds more AI features to its assistant powered by OpenAI (19 September 2024)",
+    "url": "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+    "publisher": "Klarna International press",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Ensure AI Benefits Everyone (4 December 2024)",
+    "url": "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/",
+    "publisher": "Klarna International",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Customer service | Klarna US",
+    "url": "https://www.klarna.com/us/help/",
+    "publisher": "Klarna",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "90% of Klarna staff are using AI daily: game changer for productivity (14 May 2024)",
+    "url": "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/",
+    "publisher": "Klarna International press",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "Klarna Group plc annual report on Form 20-F for the year ended 31 December 2025 (filed 26 February 2026; listed on the EDGAR company page)",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+    "publisher": "US SEC EDGAR (Klarna Group plc filing)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "Klarna Group plc response letter to SEC staff comments on its Form F-1 registration statement (16 July 2025; listed on the EDGAR company page)",
+    "url": "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=CORRESP",
+    "publisher": "US SEC EDGAR (Klarna Group plc correspondence)",
+    "type": "filing",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Klarna Slows AI-Driven Job Cuts With Call for Real People (8 May 2025; opening paragraphs only, rest paywalled)",
+    "url": "https://news.bloomberglaw.com/artificial-intelligence/klarna-rethinks-ai-cost-cutting-plan-with-call-for-real-people",
+    "publisher": "Bloomberg Law",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Klarna plans to hire humans again, as new landmark survey reveals most AI projects fail to deliver (9 May 2025)",
+    "url": "https://fortune.com/2025/05/09/klarna-ai-humans-return-on-investment/",
+    "publisher": "Fortune",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Klarna Is Hiring Customer Service Agents After AI Couldn't Cut It on Calls, According to the Company's CEO (9 May 2025)",
+    "url": "https://www.entrepreneur.com/business-news/klarna-ceo-reverses-course-by-hiring-more-humans-not-ai/491396",
+    "publisher": "Entrepreneur",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Klarna says its AI agent is doing the work of 853 employees (20 November 2025)",
+    "url": "https://www.customerexperiencedive.com/news/klarna-says-ai-agent-work-853-employees/805987/",
+    "publisher": "CX Dive",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Klarna sees its AI assistant as a success. Is it too early to tell? (12 March 2024)",
+    "url": "https://www.ciodive.com/news/klarna-generative-ai-customer-service-call-center/709916/",
+    "publisher": "CIO Dive",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Klarna's AI bot is doing the work of 700 employees. What will happen to their jobs? (28 February 2024)",
+    "url": "https://www.euronews.com/2024/02/28/klarnas-ai-bot-is-doing-the-work-of-700-employees-what-will-happen-to-their-jobs",
+    "publisher": "Euronews",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Klarna's AI assistant is doing the work of 700 people, and it paints a bleak picture for the future of work (29 February 2024)",
+    "url": "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+    "publisher": "ITPro",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "How Klarna's AI assistant redefined customer support at scale for 85 million active users (12 February 2025)",
+    "url": "https://www.langchain.com/blog/customers-klarna",
+    "publisher": "LangChain (vendor customer story)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "What Klarna's AI Did in 30 Days, And What Broke (18 March 2026)",
+    "url": "https://www.twig.so/blog/how-klarna-is-revolutionizing-customer-support-with-ai",
+    "publisher": "Twig (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Klarna AI Saved $40M on Support, Then Walked It Back (18 March 2026)",
+    "url": "https://www.twig.so/blog/klarna-ai-customer-support-efficiency",
+    "publisher": "Twig (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Klarna AI Assistant: Two-Thirds of Support Automated",
+    "url": "https://www.usefini.com/blog/klarna-automates-two-thirds-of-customer-service-with-ai-assistant",
+    "publisher": "Fini (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Klarna AI reversal: mid-market lessons (21 May 2026)",
+    "url": "https://irisagent.com/blog/klarna-ai-reversal-mid-market-lessons/",
+    "publisher": "IrisAgent (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s20",
+    "title": "Klarna's AI customer service deployment | AI Autopsy 002 (12 June 2026)",
+    "url": "https://www.bigeye.com/blog/klarnas-ai-customer-service-deployment",
+    "publisher": "Bigeye (vendor blog)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s21",
+    "title": "Klarna: Enterprise AI Deployment Profile (31 October 2026)",
+    "url": "https://imagine.ai/research/klarna",
+    "publisher": "Imagine",
+    "type": "other",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Klarna's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: Klarna's stated policy: every user is told they are talking to a chatbot and can choose to speak with a human instead (Klarna, December 2024)",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   },
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: As a Klarna spokesperson put it in March 2024: more experienced and senior staff are still needed, with specialised training for complex or sensitive cases",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: Help the user find and compare products with a neutral summary",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: The purchase, and any credit used for it, is the user's own decision, made outside the recommendation",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   },
+   {
+    "text": "Kiki: internal answers across internal systems: Answer an employee from information that employee is already allowed to see",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   },
+   {
+    "text": "Kiki: internal answers across internal systems: No confidential information leaves Klarna's systems through an AI tool",
+    "via": "https://web-summit.sgit.ai/xray/klarna/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: Customer-service chats in the Klarna app: two-thirds of chats in the first month (2.3 million conversations), 80% of chats in 2025, Klarna says",
+    "sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: Refunds, returns, payment-related issues, cancellations, disputes and invoice inaccuracies",
+    "sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: Klarna's price database of 5.6 million products from thousands of stores, with stock, delivery and cashback information",
+    "sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: The user's shopping preferences and habits (what they buy and when, brands they prefer), used for recommendations",
+    "sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Kiki: internal answers across internal systems: Information across Klarna's internal systems",
+    "sources": [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Kiki: internal answers across internal systems: Who is asking: answers are personalised to the person and their team",
+    "sources": [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: Disputes, refunds and invoice corrections sit in the same chat reach as routine questions; nothing public shows where the line to senior human staff for complex or sensitive cases was drawn.",
+    "sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/",
+     "https://www.klarna.com/us/help/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "2024 to 2025: AI-first customer service, then humans back: The human path that contains the agent (the choice of a person) depended on a workforce that was shrinking while the assistant took more chats.",
+    "sources": [
+     "https://www.klarna.com/international/press/klarna-ai-assistant-handles-two-thirds-of-customer-service-chats-in-its-first-month/",
+     "https://www.itpro.com/technology/artificial-intelligence/klarnas-ai-assistant-is-doing-the-work-of-700-people-and-it-paints-a-bleak-picture-for-the-future-of-work",
+     "https://www.klarna.com/international/press/ensure-ai-benefits-everyone/",
+     "https://www.klarna.com/us/help/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: Recommendations built from the user's habits run straight into a purchase, possibly on credit, in the same chat flow.",
+    "sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Shopping assistant: from recommendation to purchase: Klarna calls the summaries unbiased, but nothing public shows how the ranking is evidenced to be independent of Klarna's merchant relationships.",
+    "sources": [
+     "https://www.klarna.com/international/press/shopping-made-smarter-klarna-adds-more-ai-features-to-its-assistant-powered-by-openai/",
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "text": "Kiki: internal answers across internal systems: Kiki answers across internal systems and personalises by asker; nothing public shows how its answers follow each employee's own access.",
+    "sources": [
+     "https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=2003292&type=20-F",
+     "https://www.klarna.com/international/press/90-of-klarna-staff-are-using-ai-daily-game-changer-for-productivity/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/klarna/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Klarna; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/klarna/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A REAL run on a SIMULATED ledger: the task was to pay one invoice.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? Answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A licence to operate that changes when a tool is connected.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  }
+ ],
+ "deck": {
+  "id": "partner-klarna",
+  "title": "Klarna: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Klarna",
+    "sub": "A payments and shopping company whose OpenAI-powered assistant answers most of its customer-service chats, with humans brought back as a choice.",
+    "caption": "What we have on Klarna, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "A payments and shopping company whose OpenAI-powered assistant answers most of its customer-service chats, with humans brought back as a…",
+     "Customer-service chats in the Klarna app: two-thirds of chats in the first month (2.3 million conversations), 80% of chats in 2025, Klarna…",
+     "Refunds, returns, payment-related issues, cancellations, disputes and invoice inaccuracies",
+     "Klarna's price database of 5.6 million products from thousands of stores, with stock, delivery and cashback information",
+     "The user's shopping preferences and habits (what they buy and when, brands they prefer), used for recommendations"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "Disputes, refunds and invoice corrections sit in the same chat reach as routine questions; nothing public shows where the line to senior…",
+     "The human path that contains the agent (the choice of a person) depended on a workforce that was shrinking while the assistant took more…",
+     "The evidence of success is Klarna's own: share of chats, resolution time and satisfaction from its chat logs and internal surveys, with no…",
+     "Recommendations built from the user's habits run straight into a purchase, possibly on credit, in the same chat flow.",
+     "Klarna calls the summaries unbiased, but nothing public shows how the ranking is evidenced to be independent of Klarna's merchant…"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "AI-first customer service, then humans back: Disputes, refunds and invoice corrections sit in the same chat reach as…",
+      "AI-first customer service, then humans back: The human path that contains the agent (the choice of a person) depended…",
+      "from recommendation to purchase: Recommendations built from the user's habits run straight into a purchase, possibly…",
+      "from recommendation to purchase: Klarna calls the summaries unbiased, but nothing public shows how the ranking is…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A mandate as deep as the business logic",
+    "step": "db-mandate/the-line",
+    "caption": "A REAL run on a SIMULATED ledger: the task was to pay one invoice."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

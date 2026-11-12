@@ -1,0 +1,412 @@
+{
+ "slug": "emergence",
+ "name": "Emergence",
+ "kind": "platform",
+ "kind_label": "Agent platforms",
+ "one_line": "Enterprise platform of agents over company data, composed of Assess and Enrich modules (Toolkit planned), with solutions for Data Insights (talk-to-data), Data Governance and Semiconductor analytics; exposes a hosted MCP server that outside agents can call, and uses A2A between its own agents.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: CRAFT",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/",
+   "note": "A4 · R3 · C2 · O2, Scaling (beta)",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: CRAFT",
+   "url": "https://gamma-ray.sgit.ai/scans/emergence-craft/",
+   "note": "freedom 4, 4, 4, 4 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-11",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "CRAFT",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/",
+   "scan": "https://gamma-ray.sgit.ai/scans/emergence-craft/",
+   "code": "A4 · R3 · C2 · O2",
+   "stage": "Scaling",
+   "provisions": 79,
+   "instruments": 8,
+   "read_on": "2026-11-11",
+   "description": "Enterprise platform of agents over company data, composed of Assess and Enrich modules (Toolkit planned), with solutions for Data Insights (talk-to-data), Data Governance and Semiconductor analytics; exposes a hosted MCP server that outside agents can call, and uses A2A between its own agents.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 4,
+     "name": "Orchestrates",
+     "question": "What does the agent do on its own?"
+    },
+    {
+     "dim": "Reach",
+     "level": 3,
+     "name": "Open protocol",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 2,
+     "name": "Configurable",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 3, Observable",
+      "needs": "Public evidence that it is monitored in operation."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "25 facts: 25 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Emergence AI's own public pages (product, documentation, blog, customer stories, legal and security pages)",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "CRAFT with its documented defaults.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Semiconductor",
+     "what": "The Semiconductor solution, a separate set of services deployed on CRAFT",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Data insights",
+     "what": "Deployments that include the Data Insights (Talk2Data) solution, per the MCP page",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "Agent audit",
+     "what": "Agent audit turned on for a project, per the audit log page",
+     "freedom": "4 Acts widely"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I10",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The data connections page lists implemented connections to PostgreSQL, Redshift and Snowflake databases, S3, GCS and MinIO storage and NFS file systems; the release notes (2026.04) say the Snowflake connector serves cataloging, profiling and natural-language querying alongside PostgreSQL and Redshift sources.",
+   "quote": "configured links to external data sources: databases, object storage, and file systems",
+   "source": "https://docs.emergence.ai/platform/data-connections.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I18",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent works independently; the person approves critical decisions only",
+   "fact": "The release notes (2026.03) say the DQ execution, DQ assessment and metadata assessment workflows no longer require approval because they are read-only analyses, while DQ tag and rule generation still require approval; the Data Governance workflows page (captured) says a person's approval (Save) of a profiling or enrichment run is what applies its changes to the scorecard.",
+   "quote": "results are available immediately on completion, since these are read-only analyses",
+   "source": "https://docs.emergence.ai/releases/index.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I14",
+   "dims": [
+    "Reach"
+   ],
+   "label": "There is a published protocol or communication layer between agents",
+   "fact": "The agents talk to each other over the published A2A protocol, with Agent Cards for discovery.",
+   "quote": "All inter-agent communication uses the A2A protocol",
+   "source": "https://docs.emergence.ai/data-insights/overview.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "S4",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It exposes an agent interface: a published MCP server, an agent card, or an API documented for agents to call",
+   "fact": "The documentation publishes a hosted MCP server that outside agents and IDE clients can call, with OAuth 2.0 PKCE; the endpoint did not answer our read-only probe.",
+   "quote": "external agents to CRAFT's tool gateway over the Model Context Protocol",
+   "source": "https://docs.emergence.ai/platform/mcp-server.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I25",
+   "dims": [
+    "Reach",
+    "Control"
+   ],
+   "label": "It asks for narrower access than the whole account",
+   "fact": "The MCP page says the X-Project-ID header selects a project but grants no access, that project membership is checked server side against the caller's token, and that each project keeps an allowlist of the tools each agent identity may call, refusing others with tool_not_allowed; execute_query accepts SELECT statements only, and only this page states the allowlist as current.",
+   "quote": "project membership is enforced server-side against your JWT's claims",
+   "source": "https://docs.emergence.ai/platform/mcp-server.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "The release notes (2026.03) say generated data quality tags and rules are previewed, with their SQL and validation status, and a reviewer approves them before they are persisted.",
+   "quote": "so reviewers approve before commit",
+   "source": "https://docs.emergence.ai/releases/index.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I23",
+   "dims": [
+    "Control"
+   ],
+   "label": "What it can reach is enumerated: scopes, permissions, tools",
+   "fact": "The admin guide lists project roles (Owner, Admin, Developer, Operator, Viewer) and what each may do; the MCP page also lists the tools by name.",
+   "quote": "Read resources and trigger workflows. Cannot create or delete resources.",
+   "source": "https://docs.emergence.ai/guides/customer-admin/roles-and-permissions.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "The MCP page has an errors and limits table, including a 500-row cap on query results and SELECT-only queries.",
+   "quote": "server-enforced cap of 500 rows",
+   "source": "https://docs.emergence.ai/platform/mcp-server.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The security docs describe four classification levels for the data the platform processes and the handling for each.",
+   "quote": "CRAFT classifies all data processed by the platform into defined sensitivity levels",
+   "source": "https://docs.emergence.ai/security/data-classification.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  },
+  {
+   "indicator": "I61",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The models and third-party components it uses are listed",
+   "fact": "The introduction names the third-party components (Keycloak, OpenFGA, Prefect, LiteLLM) and says models are reached through LiteLLM, naming Gemini, GPT and Claude in an open list.",
+   "quote": "via LiteLLM (Gemini, GPT, Claude, and more)",
+   "source": "https://docs.emergence.ai/getting-started/introduction.md",
+   "read_at": "2026-11-11T06:46Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Emergence's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "CRAFT: The agents talk to each other over the published A2A protocol, with Agent Cards for discovery.",
+    "source": "https://docs.emergence.ai/data-insights/overview.md",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+   },
+   {
+    "text": "CRAFT: The documentation publishes a hosted MCP server that outside agents and IDE clients can call, with OAuth 2.0 PKCE; the endpoint did not answer our read-only probe.",
+    "source": "https://docs.emergence.ai/platform/mcp-server.md",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+   },
+   {
+    "text": "CRAFT: The MCP page says the X-Project-ID header selects a project but grants no access, that project membership is checked server side against the caller's token, and that each project keeps an allowlist of the tools each agent identity may call, refusing others with tool_not_allowed; execute_query accepts SELECT statements only, and only this page states the allowlist as current.",
+    "source": "https://docs.emergence.ai/platform/mcp-server.md",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "CRAFT: control is at level 2, Configurable on the public evidence. Not yet shown in public: that it is monitored in operation.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Emergence has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=CRAFT",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "One agent per asset",
+   "theme": "control",
+   "demo": "one-per-asset",
+   "why": "One agent per asset instead of every agent wired to everything.",
+   "present": "theme.html?t=control&d=one-per-asset",
+   "stage": "../stage.html?scene=one-per-asset"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A new tool connected mid-run changes the licence to operate.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "One push, twelve jobs at once",
+   "theme": "flow",
+   "demo": "scale",
+   "why": "One push, twelve jobs at once.",
+   "present": "theme.html?t=flow&d=scale",
+   "stage": "../stage.html?scene=scale"
+  },
+  {
+   "title": "The gap, measured unit by unit",
+   "theme": "reach",
+   "demo": "reach-measured",
+   "why": "What each unit needed against what it held.",
+   "present": "theme.html?t=reach&d=reach-measured",
+   "stage": "../stage.html?scene=reach-measured"
+  }
+ ],
+ "deck": {
+  "id": "partner-emergence",
+  "title": "Emergence: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Emergence",
+    "sub": "Enterprise platform of agents over company data, composed of Assess and Enrich modules (Toolkit planned), with solutions for Data Insights (talk-to-data)…",
+    "caption": "What we have on Emergence, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The data connections page lists implemented connections to PostgreSQL, Redshift and Snowflake databases, S3, GCS and MinIO storage and NFS…",
+     "The release notes (2026.03) say the DQ execution, DQ assessment and metadata assessment workflows no longer require approval because they…",
+     "The agents talk to each other over the published A2A protocol, with Agent Cards for discovery.",
+     "The documentation publishes a hosted MCP server that outside agents and IDE clients can call, with OAuth 2.0 PKCE; the endpoint did not…",
+     "The MCP page says the X-Project-ID header selects a project but grants no access, that project membership is checked server side against…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "CRAFT: A4 · R3 · C2 · O2",
+    "levels": [
+     {
+      "id": "A4",
+      "label": "Autonomy: Orchestrates",
+      "note": "What does the agent do on its own?"
+     },
+     {
+      "id": "R3",
+      "label": "Reach: Open protocol",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C2",
+      "label": "Control: Configurable",
+      "note": "Next: Public evidence that it is monitored in operation."
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Emergence has not reviewed it. Stage: Scaling. 79 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 2, Configurable on the public evidence. Not yet shown in public: that it is monitored in operation."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "One agent per asset",
+    "step": "one-per-asset/one-loses-control",
+    "caption": "One agent per asset instead of every agent wired to everything."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

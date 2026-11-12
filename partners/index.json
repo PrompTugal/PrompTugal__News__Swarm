@@ -1,0 +1,1200 @@
+{
+ "about": "Every company we have something on: a GAMMA-Ray card (beta) or an X-ray record, on our own public sites. One entry per company; its mini deck is pages/partner.html?c=<slug>. Only companies with at least one real artefact.",
+ "by": "partners.1.fringe@PrompTugal.dinis",
+ "for": "Dinis Cruz",
+ "issue": "WS-215",
+ "updated": "2026-11-12T07:53Z",
+ "sources": [
+  "https://gamma-ray.sgit.ai/",
+  "https://web-summit.sgit.ai/xray/"
+ ],
+ "kinds": {
+  "coding": "Coding agents",
+  "general-agent": "General agents",
+  "customer-service": "Customer service",
+  "security": "Security",
+  "platform": "Agent platforms",
+  "legal": "Legal",
+  "finance": "Finance and insurance",
+  "infrastructure": "Infrastructure for agents",
+  "other": "Other"
+ },
+ "partners": [
+  {
+   "slug": "replit",
+   "name": "Replit",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "An AI platform whose agent builds, tests and publishes apps from plain language, with its own database, hosting and connectors.",
+   "has": [
+    "gamma-ray",
+    "xray"
+   ],
+   "products": [
+    "Replit Agent"
+   ],
+   "codes": [
+    "A4 · R2 · C2 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/replit-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/replit-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/replit/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/replit/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/replit/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 23
+  },
+  {
+   "slug": "manus",
+   "name": "Manus",
+   "kind": "general-agent",
+   "kind_label": "General agents",
+   "one_line": "A general AI agent that plans and carries out tasks on its own cloud computer, browsing, running code and acting in the apps you connect.",
+   "has": [
+    "gamma-ray",
+    "xray"
+   ],
+   "products": [
+    "Manus"
+   ],
+   "codes": [
+    "A3 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/manus-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/manus-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/manus-ai/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/manus-ai/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/manus-ai/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 21
+  },
+  {
+   "slug": "anthropic",
+   "name": "Anthropic",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "The same coding agent in a cloud session: a managed container with one repository attached and a proxy above it.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Claude Code on the web",
+    "Claude Code, on your own machine"
+   ],
+   "codes": [
+    "A4 · R2 · C– · O2",
+    "A4 · R2 · C4 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/claude-code-web/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/claude-code-web/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/claude-code-local/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/claude-code-local/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 18
+  },
+  {
+   "slug": "amex-gbt",
+   "name": "Amex GBT",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "A travel management company whose agents now search, book and service business trips from inside Claude, Google Chat and Teams, on the traveler's own credentials.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/amex-gbt/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/amex-gbt/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/amex-gbt/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "atlassian",
+   "name": "Atlassian",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Atlassian's AI layer, Rovo, whose agents search, write and act across Jira, Confluence and connected apps, on a user's account or their own.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/atlassian/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/atlassian/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/atlassian/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "booking-com",
+   "name": "Booking.com",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "A travel platform that runs AI agents for travellers (trip planning, support, voice, car rental) and for its partner properties (guest messaging).",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/booking-com/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/booking-com/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/booking-com/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "cloudflare",
+   "name": "Cloudflare",
+   "kind": "infrastructure",
+   "kind_label": "Infrastructure for agents",
+   "one_line": "The connectivity cloud that hosts AI agents: the Agents SDK on Durable Objects, Workers AI inference, AI Gateway and managed MCP servers.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/cloudflare/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/cloudflare/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/cloudflare/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "emergence",
+   "name": "Emergence",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Enterprise platform of agents over company data, composed of Assess and Enrich modules (Toolkit planned), with solutions for Data Insights (talk-to-data), Data Governance and Semiconductor analytics; exposes a hosted MCP server that outside agents can call, and uses A2A between its own agents.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "CRAFT"
+   ],
+   "codes": [
+    "A4 · R3 · C2 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/emergence-craft/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/emergence-craft/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "feedzai",
+   "name": "Feedzai",
+   "kind": "finance",
+   "kind_label": "Finance and insurance",
+   "one_line": "AI-native fraud and financial crime prevention for banks, now with Farol, an always-on agent for fraud and AML analysts, and a stated plan to tell good customer agents from bad ones.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/feedzai/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/feedzai/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/feedzai/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "fidelidade",
+   "name": "Fidelidade",
+   "kind": "finance",
+   "kind_label": "Finance and insurance",
+   "one_line": "Portugal's largest insurer, whose in-house AI reads motor claims, answers the phone and, its AI director told the press, drafts customer messages with language models",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/fidelidade/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/fidelidade/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/fidelidade/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "jetbrains",
+   "name": "JetBrains",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "JetBrains' coding agent that plans and makes changes in a code base, in JetBrains IDEs, on the command line and in CI through GitHub and GitLab.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Junie"
+   ],
+   "codes": [
+    "A4 · R2 · C2 · O3"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/junie/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/junie/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "klarna",
+   "name": "Klarna",
+   "kind": "finance",
+   "kind_label": "Finance and insurance",
+   "one_line": "A payments and shopping company whose OpenAI-powered assistant answers most of its customer-service chats, with humans brought back as a choice.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/klarna/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/klarna/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/klarna/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "outsystems",
+   "name": "OutSystems",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Builds, runs and governs AI agents (agentic apps) on OutSystems Developer Cloud (ODC): agents call server actions, MCP tools and external A2A agents, with guardrails, evaluations, traces and workflow human-in-the-loop steps.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "OutSystems Agent Workbench"
+   ],
+   "codes": [
+    "A4 · R3 · C2 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/outsystems-agent-workbench/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/outsystems-agent-workbench/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "primitive",
+   "name": "Primitive",
+   "kind": "infrastructure",
+   "kind_label": "Infrastructure for agents",
+   "one_line": "Email infrastructure for AI agents: each agent gets its own address, an API to send and receive, and hosted code that runs on every inbound message.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/primitive/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/primitive/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/primitive/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "salesforce",
+   "name": "Salesforce",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Salesforce's Agentforce: autonomous AI agents that read and act on CRM data across service, sales, marketing and commerce, inside the Einstein Trust Layer.",
+   "has": [
+    "xray"
+   ],
+   "products": [],
+   "codes": [],
+   "artefacts": [
+    {
+     "kind": "xray",
+     "url": "https://web-summit.sgit.ai/xray/salesforce/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-deck",
+     "url": "https://web-summit.sgit.ai/xray/salesforce/deck/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    },
+    {
+     "kind": "xray-run",
+     "url": "https://web-summit.sgit.ai/xray/salesforce/run/",
+     "read_on": "2026-11-07",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "web-summit.sgit.ai/xray"
+    }
+   ],
+   "material": 12
+  },
+  {
+   "slug": "noxus",
+   "name": "Noxus",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Configurable agents that use flows, integration actions, knowledge bases, tables, MCP servers, code execution and a sandbox to carry out tasks, deployed through the web app, API, SDK, chat widget, Slack, Teams, Google Chat, WhatsApp or Telegram.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Noxus AI Workers"
+   ],
+   "codes": [
+    "A4 · R3 · C2 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/noxus-ai-workers/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/noxus-ai-workers/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 11
+  },
+  {
+   "slug": "crowdstrike",
+   "name": "CrowdStrike",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "AI agents in the Falcon platform for security operations: conversational AI, prebuilt agents (for example Detection Triage), multi-agent investigations, and AgentWorks for custom agents.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Charlotte AI"
+   ],
+   "codes": [
+    "A3 · R3 · C2 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/crowdstrike-charlotte-ai/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/crowdstrike-charlotte-ai/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 10
+  },
+  {
+   "slug": "legalfly",
+   "name": "LEGALFLY",
+   "kind": "legal",
+   "kind_label": "Legal",
+   "one_line": "Platform of legal agents (Discovery, Review, Draft, Multi Review, Legal Radar, Translation) plus Agent Studio, where customers build multi-step workflows with triggers, conditions, approvals and notifications.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "LEGALFLY agents"
+   ],
+   "codes": [
+    "A3 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/legalfly-agents/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/legalfly-agents/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 10
+  },
+  {
+   "slug": "visor-ai",
+   "name": "Visor.ai",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "Visor.ai's voice and chat AI agents for customer service, with Nexa, the agent that builds, tests and proposes fixes to them.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Visor.ai AI agents"
+   ],
+   "codes": [
+    "A3 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/visor-ai-agents/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 10
+  },
+  {
+   "slug": "getvocal",
+   "name": "GetVocal",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "GetVocal AI's voice, chat, WhatsApp and email agents for enterprise contact centres, built in its Agent Builder and supervised by people through its control console.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "GetVocal AI agents"
+   ],
+   "codes": [
+    "A4 · R2 · C1 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/getvocal-agents/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 9
+  },
+  {
+   "slug": "github",
+   "name": "GitHub",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "The asynchronous agent on GitHub.com that creates branches, writes code and opens pull requests in response to assigned issues.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "GitHub Copilot cloud agent"
+   ],
+   "codes": [
+    "A3 · R2 · C2 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/github-copilot-cloud-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/github-copilot-cloud-agent/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 9
+  },
+  {
+   "slug": "granter",
+   "name": "Granter",
+   "kind": "other",
+   "kind_label": "Other",
+   "one_line": "Chat-based agent, onboarded with the organisation's details and past applications, that matches funding calls, checks eligibility and admissibility, drafts applications section by section with playbooks, scores drafts with an Evaluator, and supports post-approval reporting. The user submits the application.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "AI Grant Consultant"
+   ],
+   "codes": [
+    "A2 · R1 · C1 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/granter-ai-grant-consultant/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/granter-ai-grant-consultant/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 9
+  },
+  {
+   "slug": "spinnable",
+   "name": "Spinnable",
+   "kind": "platform",
+   "kind_label": "Agent platforms",
+   "one_line": "Role-based AI workers with their own email address, memory, scheduled tasks and access to 35+ connected tools, reachable by email, WhatsApp, Slack, meetings and voice.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Spinnable AI employees"
+   ],
+   "codes": [
+    "A3 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/spinnable-ai-employees/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/spinnable-ai-employees/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 9
+  },
+  {
+   "slug": "trent-ai",
+   "name": "Trent AI",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "Agent that keeps code, infrastructure, agents and docs in one context, judges exploitable findings as attack chains, hands fixes to the team's coding agents, reviews and re-scans to verify.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Trent, the AI Security Engineer"
+   ],
+   "codes": [
+    "A3 · R3 · C2 · O3"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/trent-ai-security-engineer/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/trent-ai-security-engineer/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 9
+  },
+  {
+   "slug": "aisle",
+   "name": "AISLE",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "AISLE's platform of AI agents that finds vulnerabilities in source code, triages them, writes and tests patches, and delivers them as pull requests for people to merge.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "AISLE platform"
+   ],
+   "codes": [
+    "A4 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/aisle-platform/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/aisle-platform/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 8
+  },
+  {
+   "slug": "buzz",
+   "name": "Buzz",
+   "kind": "other",
+   "kind_label": "Other",
+   "one_line": "AI agents added to team rooms that read and create in Notion, Google Drive and Google Calendar with the asker's access; anything they would create is made only after the asker confirms, and tasks created that way can sync to Jira or Linear.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Buzz work agents"
+   ],
+   "codes": [
+    "A2 · R2 · C1 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/buzz-messaging-ai/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/buzz-messaging-ai/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 8
+  },
+  {
+   "slug": "bythelaw",
+   "name": "ByTheLaw",
+   "kind": "legal",
+   "kind_label": "Legal",
+   "one_line": "Chat assistant that answers legal questions with citations to official Portuguese and EU sources, analyses uploaded documents, drafts contracts, emails and translations, and organises work in projects. The site menu names it 'ByTheLaw: Legal research and knowledge'; the help centre calls it 'Legal Chat'.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "ByTheLaw"
+   ],
+   "codes": [
+    "A1 · R2 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/bythelaw-legal-chat/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/bythelaw-legal-chat/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 8
+  },
+  {
+   "slug": "pebl",
+   "name": "Pebl",
+   "kind": "other",
+   "kind_label": "Other",
+   "one_line": "An AI assistant embedded in Pebl's employer-of-record platform that answers global employment questions, builds workforce reports from the customer's Pebl data, and submits or approves time-off requests for the user who asks.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Pebl Alfie"
+   ],
+   "codes": [
+    "A– · R1 · C1 · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/pebl-alfie/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/pebl-alfie/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 8
+  },
+  {
+   "slug": "talkdesk",
+   "name": "Talkdesk",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "Customer-facing AI agent that resolves requests and completes tasks across voice, digital and email channels, handing over to a human agent when needed.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Talkdesk Autopilot"
+   ],
+   "codes": [
+    "A4 · R2 · C1 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/talkdesk-autopilot/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/talkdesk-autopilot/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 8
+  },
+  {
+   "slug": "automaise",
+   "name": "Automaise",
+   "kind": "customer-service",
+   "kind_label": "Customer service",
+   "one_line": "Voice and chat assistant (inbound and outbound voice, customer self-service chat, internal helpdesk chat) that answers customers and completes transactions such as data changes, payments and orders.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Automaise Conversational AI"
+   ],
+   "codes": [
+    "A3 · R2 · C– · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/automaise-conversational-ai/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/automaise-conversational-ai/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 7
+  },
+  {
+   "slug": "codacy",
+   "name": "Codacy",
+   "kind": "coding",
+   "kind_label": "Coding agents",
+   "one_line": "Opt-in pull request reviewer on GitHub that combines Codacy's static analysis with a language model, reads the PR, linked Jira or Linear tickets and repository instructions, and posts a review with a verdict, a summary, test suggestions and inline comments with suggested fixes. It can run automatically on the first review of a PR or on demand (button or public API).",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "AI Reviewer"
+   ],
+   "codes": [
+    "A1 · R2 · C– · O2"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/codacy-ai-reviewer/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/codacy-ai-reviewer/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 7
+  },
+  {
+   "slug": "ethiack",
+   "name": "Ethiack",
+   "kind": "security",
+   "kind_label": "Security",
+   "one_line": "AI agent that runs reconnaissance, exploits vulnerabilities with non-destructive routines and reports findings with proof of exploitation; used in Continuous Adversarial Exposure Validation and in Agentic Pentests (Swift, Depth).",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "Hackian"
+   ],
+   "codes": [
+    "A– · R2 · C1 · O1"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/ethiack-hackian/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/ethiack-hackian/",
+     "read_on": "2026-11-10",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 7
+  },
+  {
+   "slug": "student-property-network",
+   "name": "Student Property Network",
+   "kind": "other",
+   "kind_label": "Other",
+   "one_line": "Python scrapers collect roles from UK real estate firms' careers pages into a database; a large language model decides whether each role is accepted onto the list, and accepted roles appear in the app and site.",
+   "has": [
+    "gamma-ray"
+   ],
+   "products": [
+    "SPN AI job scanner"
+   ],
+   "codes": [
+    "A– · R1 · C– · O–"
+   ],
+   "artefacts": [
+    {
+     "kind": "gamma-ray",
+     "url": "https://gamma-ray.sgit.ai/spectrum/cards/student-property-network/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    },
+    {
+     "kind": "gamma-ray-scan",
+     "url": "https://gamma-ray.sgit.ai/scans/student-property-network/",
+     "read_on": "2026-11-11",
+     "fetched_at": "2026-11-12T07:53Z",
+     "source": "gamma-ray.sgit.ai"
+    }
+   ],
+   "material": 3
+  }
+ ]
+}

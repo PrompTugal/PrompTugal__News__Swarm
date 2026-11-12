@@ -1,0 +1,628 @@
+{
+ "slug": "salesforce",
+ "name": "Salesforce",
+ "kind": "platform",
+ "kind_label": "Agent platforms",
+ "one_line": "Salesforce's Agentforce: autonomous AI agents that read and act on CRM data across service, sales, marketing and commerce, inside the Einstein Trust Layer.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Salesforce",
+   "url": "https://web-summit.sgit.ai/xray/salesforce/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Salesforce",
+   "url": "https://web-summit.sgit.ai/xray/salesforce/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/salesforce/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/salesforce/",
+  "deck": "https://web-summit.sgit.ai/xray/salesforce/deck/",
+  "run": "https://web-summit.sgit.ai/xray/salesforce/run/",
+  "one_line": "Salesforce's Agentforce: autonomous AI agents that read and act on CRM data across service, sales, marketing and commerce, inside the Einstein Trust Layer.",
+  "read_on": "2026-11-07",
+  "what_it_does": "Agentforce is Salesforce's platform of autonomous AI agents, built into the Salesforce Platform, that answer questions, resolve cases, qualify leads and take actions for customers and employees around the clock. Agents are built from subagents (topics), natural-language instructions and actions made from existing Flows, prompt templates, Apex and APIs, grounded in CRM and Data 360 data, with MuleSoft, MCP and A2A reaching other systems. The Einstein Trust Layer wraps them with dynamic grounding, data masking, zero data retention, toxicity detection and an audit trail. [s1, s2, s3, s9, s12, s7]",
+  "situations": [
+   {
+    "title": "SalesBleed: a poisoned web lead hijacks the agent (2026)",
+    "helper": "Employee Agent",
+    "reach": [
+     "The Leads table, which anyone on the internet can write to through the unauthenticated Web-to-Lead form; the agent reads it when an employee asks about leads",
+     "The Accounts table (company names, deal sizes), readable by the same Query Records tool because the default General CRM subagent holds read access to both Leads and Accounts",
+     "Trusted URLs, the redaction layer that strips untrusted URLs from agent output after the agent generates it",
+     "The chat surface and Slack, which fetch external image URLs and unfurl links automatically, without a click",
+     "Slack threads and channels, through the Reply to a Slack Thread action, posting under the agent's identity"
+    ],
+    "reach_sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ],
+    "asked_our_example": [
+     "As reported: the employee asks the agent to check the latest leads and help with the newest one",
+     "Read the leads and accounts the employee is working on; post to Slack only with the employee's confirmation and under their name; send nothing to destinations the organization has not trusted"
+    ],
+    "gap": [
+     "One subagent identity held attacker-writable input (leads), read access to sensitive data (accounts) and an output that renders links and images: the researchers call it a version of the lethal trifecta, and say these are defaults, not misconfigurations.",
+     "The only barrier between the agent's output and the outside was redaction applied after generation, and the redactor and the renderer disagreed on what a URL is.",
+     "Reply to a Slack Thread posted without user confirmation and without naming the user who invoked it, so the agent could speak in Slack beyond what the employee asked."
+    ],
+    "gap_sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ]
+   },
+   {
+    "title": "Service Agent resolving cases, orders and refunds",
+    "helper": "Service Agent",
+    "reach": [
+     "Cases, customer history and interaction notes",
+     "Orders: order inquiries, cancellations, exchanges, returns and refunds",
+     "Customers directly, on voice, WhatsApp, Facebook Messenger and websites",
+     "Unified customer profiles in Data 360, including external data connected by Zero Copy (for example loyalty data held in Databricks)",
+     "Flows, Apex, prompt templates and MuleSoft APIs turned into actions that can reach other systems"
+    ],
+    "reach_sources": [
+     "https://www.salesforce.com/agentforce/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/agentforce/pre-built-use-cases/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+     "https://www.salesforce.com/news/press-releases/2024/09/12/agentforce-announcement/",
+     "https://www.salesforce.com/agentforce/how-it-works/",
+     "https://www.salesforce.com/platform/agentforce-platform/"
+    ],
+    "asked_our_example": [
+     "Answer questions and resolve cases for the customer in the conversation, using that customer's records only",
+     "Cancellations, returns and refunds within the published returns policy; anything outside it goes to a human with a summary"
+    ],
+    "gap": [
+     "Every Flow, Apex class or MuleSoft API made into an action extends the agent's reach to whatever that automation can touch, which can be wider than the service job.",
+     "Refunds and order changes have money consequences, and the policy check depends on data quality: Salesforce's own example shows a 30-day returns rule failing on dates in the wrong format."
+    ],
+    "gap_sources": [
+     "https://www.salesforce.com/agentforce/how-it-works/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/platform/agentforce-platform/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+     "https://www.salesforce.com/news/press-releases/2024/09/12/agentforce-announcement/",
+     "https://www.salesforce.com/agentforce/pre-built-use-cases/"
+    ]
+   },
+   {
+    "title": "Banking agent disputing charges and issuing credits",
+    "helper": "Service Agent",
+    "reach": [
+     "Recent transactions on the customer's account",
+     "Provisional credits issued to customers",
+     "Merchants, notified of disputed charges",
+     "The customer, in a conversation to identify unauthorized charges",
+     "Triggers without a person: changes in data, business rules, automations or API calls from other systems"
+    ],
+    "reach_sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ],
+    "asked_our_example": [
+     "Identify disputed charges with the authenticated cardholder and open a dispute",
+     "Provisional credits and merchant notices above a set amount wait for a human"
+    ],
+    "gap": [
+     "Salesforce describes the agent issuing provisional credits and notifying merchants all before a human needs to intervene: money and outside parties are in reach on the agent's own judgement.",
+     "Agents can start from data changes or API calls, so a dispute flow can run with no customer or employee in the loop."
+    ],
+    "gap_sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ]
+   }
+  ],
+  "questions": [
+   "The default General CRM subagent reads both Leads, which anyone can write through Web-to-Lead, and Accounts: can an admin split those so an agent reading public leads cannot query accounts, and will that become the default?",
+   "User confirmation on Slack write actions is now on by default but can be switched off with one click: is turning it off recorded in the Audit Trail, and can it be alerted on?",
+   "Trusted URLs redaction runs after the agent writes its output: is it now applied identically on every surface that renders agent output (chat, Slack, mobile, Experience sites), and can customers see a log of what was redacted?",
+   "For actions that move money, such as refunds, quotes or provisional credits, what approval thresholds can a customer set, and is each approval recorded against a named person?",
+   "Which identity does a customer-facing Service Agent run as, and can a customer list every record and system an agent can reach through its actions before it goes live?"
+  ],
+  "incidents": [
+   "2025-07: ForcedLeak (CVSS 9.4, scored by the researchers): Noma Labs showed that instructions hidden in a Web-to-Lead description field could make Agentforce query CRM lead data and send it in an image request to a Salesforce-allowlisted domain that had expired and been bought for $5. Salesforce re-secured the domain, enforced Trusted URLs for Agentforce and Einstein AI from 8 September 2025, and said it had released patches that prevent output in Agentforce agents from being sent to untrusted URLs. [s15, s16, s17]",
+   "2026-06: SalesBleed: Zenity Labs reported three flaws: two bypasses of the Trusted URLs redaction allowing zero-click exfiltration of account data from a poisoned web lead (in chat and through Slack link previews), and a Reply to a Slack Thread action that posted without confirmation or attribution, usable for phishing under the agent's identity. Salesforce fixed all three (confirmed 21 September 2026), said it had no evidence of exploitation, and changed Slack action defaults to require confirmation. [s18, s19, s20, s21]"
+  ],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "Agentforce: The AI Agent Platform | Salesforce",
+    "url": "https://www.salesforce.com/agentforce/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "How Does Agentforce Work? | Salesforce",
+    "url": "https://www.salesforce.com/agentforce/how-it-works/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "Agentforce 360 Platform: Agentic Capabilities | Salesforce",
+    "url": "https://www.salesforce.com/platform/agentforce-platform/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "AI Agent Use Cases | Salesforce",
+    "url": "https://www.salesforce.com/agentforce/use-cases/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "AI Agent Pre-Built Use Cases | Salesforce",
+    "url": "https://www.salesforce.com/agentforce/pre-built-use-cases/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "Agentforce Use Cases for Sales | Salesforce",
+    "url": "https://www.salesforce.com/agentforce/use-cases/sales/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "Trusted AI: Key Principles | Salesforce",
+    "url": "https://www.salesforce.com/artificial-intelligence/trusted-ai/",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Salesforce Unveils Agentforce: What AI Was Meant to Be (12 September 2024)",
+    "url": "https://www.salesforce.com/news/press-releases/2024/09/12/agentforce-announcement/",
+    "publisher": "Salesforce Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Salesforce's Agentforce Is Here: Trusted, Autonomous AI Agents to Scale Your Workforce (29 October 2024)",
+    "url": "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+    "publisher": "Salesforce Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Agentforce Sales: The 24/7 Digital Workforce that Ends the Sales Grind (16 March 2026)",
+    "url": "https://www.salesforce.com/news/stories/agentforce-sales-announcement/",
+    "publisher": "Salesforce Newsroom",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "Salesforce's Agentforce Privacy FAQ (published June 2025)",
+    "url": "https://www.salesforce.com/en-us/wp-content/uploads/sites/4/documents/legal/Privacy/agentforce-privacy-FAQ.pdf",
+    "publisher": "Salesforce",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Understanding Agentforce: AI Solutions for Business (Introduction to Agentforce)",
+    "url": "https://trailhead.salesforce.com/content/learn/modules/introduction-to-agentforce/get-to-know-agentforce-functionality",
+    "publisher": "Salesforce Trailhead",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Understanding Data Cloud's Role in Agentforce",
+    "url": "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce",
+    "publisher": "Salesforce Trailhead",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Unlocking Agentforce for Industry Success",
+    "url": "https://trailhead.salesforce.com/content/learn/modules/agentforce-for-industries-quick-look/get-to-know-agentforce-for-industries",
+    "publisher": "Salesforce Trailhead",
+    "type": "docs",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "ForcedLeak: AI agent risks exposed in Salesforce Agentforce (25 September 2025)",
+    "url": "https://noma.security/blog/forcedleak-agent-risks-exposed-in-salesforce-agentforce",
+    "publisher": "Noma Security (Noma Labs)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "Salesforce Patches Critical ForcedLeak Bug Exposing CRM Data via AI Prompt Injection (25 September 2025)",
+    "url": "https://thehackernews.com/2025/09/salesforce-patches-critical-forcedleak.html",
+    "publisher": "The Hacker News",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Prompt injection and a $5 domain trick Salesforce Agentforce into leaking sales (26 September 2025)",
+    "url": "https://www.theregister.com/2025/09/26/salesforce_agentforce_forceleak_attack/",
+    "publisher": "The Register",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "SalesBleed: Indirect Prompt Injection and 0-Click Data Exfiltration on Agentforce",
+    "url": "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+    "publisher": "Zenity Labs",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "SalesBleed: Hijacking Agentforce in Slack for Anonymous Phishing Attacks",
+    "url": "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing",
+    "publisher": "Zenity Labs",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s20",
+    "title": "Salesforce Agentforce vulns allowed 0-click CRM data theft, anonymous phishing (24 September 2026)",
+    "url": "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+    "publisher": "The Register",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s21",
+    "title": "'SalesBleed' Flaws in Salesforce Agentforce Enabled Zero-Click Data Exfiltration (25 September 2026)",
+    "url": "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+    "publisher": "SecurityWeek",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s22",
+    "title": "What Is Salesforce Agentforce? 2026 Guide",
+    "url": "https://www.cynoteck.com/blog-post/salesforce-agentforce-complete-guide",
+    "publisher": "Cynoteck (Salesforce consultancy)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s23",
+    "title": "Ultimate Salesforce Agentforce Guide (17 September 2024)",
+    "url": "https://www.apexhours.com/salesforce-agentforce/",
+    "publisher": "Apex Hours",
+    "type": "other",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Salesforce's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): As reported: the employee asks the agent to check the latest leads and help with the newest one",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   },
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): Read the leads and accounts the employee is working on; post to Slack only with the employee's confirmation and under their name; send nothing to destinations the organization has not trusted",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Answer questions and resolve cases for the customer in the conversation, using that customer's records only",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Cancellations, returns and refunds within the published returns policy; anything outside it goes to a human with a summary",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Identify disputed charges with the authenticated cardholder and open a dispute",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Provisional credits and merchant notices above a set amount wait for a human",
+    "via": "https://web-summit.sgit.ai/xray/salesforce/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): The Leads table, which anyone on the internet can write to through the unauthenticated Web-to-Lead form; the agent reads it when an employee asks about leads",
+    "sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): The Accounts table (company names, deal sizes), readable by the same Query Records tool because the default General CRM subagent holds read access to both Leads and Accounts",
+    "sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Cases, customer history and interaction notes",
+    "sources": [
+     "https://www.salesforce.com/agentforce/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/agentforce/pre-built-use-cases/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Orders: order inquiries, cancellations, exchanges, returns and refunds",
+    "sources": [
+     "https://www.salesforce.com/agentforce/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/agentforce/pre-built-use-cases/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Recent transactions on the customer's account",
+    "sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Provisional credits issued to customers",
+    "sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): One subagent identity held attacker-writable input (leads), read access to sensitive data (accounts) and an output that renders links and images: the researchers call it a version of the lethal trifecta, and say these are defaults, not misconfigurations.",
+    "sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "SalesBleed: a poisoned web lead hijacks the agent (2026): The only barrier between the agent's output and the outside was redaction applied after generation, and the redactor and the renderer disagreed on what a URL is.",
+    "sources": [
+     "https://labs.zenity.io/post/salesbleed-0-click-data-exfiltration-on-agentforce",
+     "https://www.securityweek.com/salesbleed-flaws-in-salesforce-agentforce-enabled-zero-click-data-exfiltration/",
+     "https://www.theregister.com/security/2026/09/24/salesforce-agentforce-vulns-allowed-0-click-crm-data-theft-anonymous-phishing/5298958",
+     "https://labs.zenity.io/post/salesbleed-hijacking-agentforce-in-slack-for-anonymous-phishing"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Every Flow, Apex class or MuleSoft API made into an action extends the agent's reach to whatever that automation can touch, which can be wider than the service job.",
+    "sources": [
+     "https://www.salesforce.com/agentforce/how-it-works/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/platform/agentforce-platform/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Service Agent resolving cases, orders and refunds: Refunds and order changes have money consequences, and the policy check depends on data quality: Salesforce's own example shows a 30-day returns rule failing on dates in the wrong format.",
+    "sources": [
+     "https://www.salesforce.com/agentforce/how-it-works/",
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/",
+     "https://www.salesforce.com/platform/agentforce-platform/",
+     "https://trailhead.salesforce.com/content/learn/modules/data-cloud-powered-agentforce/explore-data-cloud-and-agentforce"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Salesforce describes the agent issuing provisional credits and notifying merchants all before a human needs to intervene: money and outside parties are in reach on the agent's own judgement.",
+    "sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "text": "Banking agent disputing charges and issuing credits: Agents can start from data changes or API calls, so a dispute flow can run with no customer or employee in the loop.",
+    "sources": [
+     "https://www.salesforce.com/news/press-releases/2024/10/29/agentforce-general-availability-announcement/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/salesforce/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Salesforce; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/salesforce/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "One agent per asset",
+   "theme": "control",
+   "demo": "one-per-asset",
+   "why": "One agent per asset instead of every agent wired to everything.",
+   "present": "theme.html?t=control&d=one-per-asset",
+   "stage": "../stage.html?scene=one-per-asset"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A new tool connected mid-run changes the licence to operate.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  },
+  {
+   "title": "One push, twelve jobs at once",
+   "theme": "flow",
+   "demo": "scale",
+   "why": "One push, twelve jobs at once.",
+   "present": "theme.html?t=flow&d=scale",
+   "stage": "../stage.html?scene=scale"
+  },
+  {
+   "title": "The gap, measured unit by unit",
+   "theme": "reach",
+   "demo": "reach-measured",
+   "why": "What each unit needed against what it held.",
+   "present": "theme.html?t=reach&d=reach-measured",
+   "stage": "../stage.html?scene=reach-measured"
+  }
+ ],
+ "deck": {
+  "id": "partner-salesforce",
+  "title": "Salesforce: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Salesforce",
+    "sub": "Salesforce's Agentforce: autonomous AI agents that read and act on CRM data across service, sales, marketing and commerce, inside the Einstein Trust Layer.",
+    "caption": "What we have on Salesforce, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Salesforce's Agentforce: autonomous AI agents that read and act on CRM data across service, sales, marketing and commerce, inside the…",
+     "The Leads table, which anyone on the internet can write to through the unauthenticated Web-to-Lead form; the agent reads it when an…",
+     "The Accounts table (company names, deal sizes), readable by the same Query Records tool because the default General CRM subagent holds…",
+     "Cases, customer history and interaction notes",
+     "Orders: order inquiries, cancellations, exchanges, returns and refunds"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "One subagent identity held attacker-writable input (leads), read access to sensitive data (accounts) and an output that renders links and…",
+     "The only barrier between the agent's output and the outside was redaction applied after generation, and the redactor and the renderer…",
+     "Reply to a Slack Thread posted without user confirmation and without naming the user who invoked it, so the agent could speak in Slack…",
+     "Every Flow, Apex class or MuleSoft API made into an action extends the agent's reach to whatever that automation can touch, which can be…",
+     "Refunds and order changes have money consequences, and the policy check depends on data quality: Salesforce's own example shows a 30-day…"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "a poisoned web lead hijacks the agent (2026): One subagent identity held attacker-writable input (leads), read access…",
+      "a poisoned web lead hijacks the agent (2026): The only barrier between the agent's output and the outside was…",
+      "Every Flow, Apex class or MuleSoft API made into an action extends the agent's reach to whatever that automation can…",
+      "Refunds and order changes have money consequences, and the policy check depends on data quality: Salesforce's own…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "One agent per asset",
+    "step": "one-per-asset/one-loses-control",
+    "caption": "One agent per asset instead of every agent wired to everything."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

@@ -1,0 +1,377 @@
+{
+ "slug": "getvocal",
+ "name": "GetVocal",
+ "kind": "customer-service",
+ "kind_label": "Customer service",
+ "one_line": "GetVocal AI's voice, chat, WhatsApp and email agents for enterprise contact centres, built in its Agent Builder and supervised by people through its control console.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: GetVocal AI agents",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/",
+   "note": "A4 · R2 · C1 · O1, Building (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: GetVocal AI agents",
+   "url": "https://gamma-ray.sgit.ai/scans/getvocal-agents/",
+   "note": "freedom 1, 4, 1, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "GetVocal AI agents",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/",
+   "scan": "https://gamma-ray.sgit.ai/scans/getvocal-agents/",
+   "code": "A4 · R2 · C1 · O1",
+   "stage": "Building",
+   "provisions": 71,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "GetVocal AI's voice, chat, WhatsApp and email agents for enterprise contact centres, built in its Agent Builder and supervised by people through its control console.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 4,
+     "name": "Orchestrates",
+     "question": "What does the agent do on its own?"
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 1,
+     "name": "Disclosed",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 2, Documented",
+      "needs": "Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    }
+   ],
+   "fact_ray": "20 facts: 20 π Moderate. Each is written beside its evidence above.",
+   "built_from": "GetVocal AI's own public product, blog, customer-story, privacy and status pages, and its published llms",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "Agents built in Agent Builder and run on the platform with its defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "With human validation nodes",
+     "what": "The customer's operators set which steps need a person's validation, approval or consultation before the agent proceeds.",
+     "freedom": "4 Acts widely"
+    },
+    {
+     "config": "With a disclosure node",
+     "what": "The deployment opens each conversation by saying the customer is speaking with a virtual assistant; seen in one deployment, not stated as a default.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Several agents in the Control Center",
+     "what": "The customer runs several agents, with conversations routed between them.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I10",
+   "dims": [
+    "Autonomy",
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The llms.txt says the agents work across the customer's CRM, CCaaS, telephony and helpdesk systems.",
+   "quote": "Agents handle voice and chat across your existing stack (CRM, CCaaS, telephony, helpdesk)",
+   "source": "https://www.getvocal.ai/llms.txt",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I18",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent works independently; the person approves critical decisions only",
+   "fact": "The Control Tower page says the agent asks a human to approve critical decisions before executing them.",
+   "quote": "AI proactively asks a human to approve critical decisions before executing them.",
+   "source": "https://www.getvocal.ai/control-tower",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I11",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It connects to external tools or services across a trust boundary",
+   "fact": "The handoff payload is described as sent over a REST API to the agent desktop, naming Genesys Cloud and Salesforce integrations.",
+   "quote": "delivered via bidirectional REST API to the unified agent desktop",
+   "source": "https://www.getvocal.ai/blog/ai-agent-escalation-logic-human-handoff",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I38",
+   "dims": [
+    "Control"
+   ],
+   "label": "High-impact actions need a person's approval",
+   "fact": "llms.txt says high-stakes actions such as large transactions, high-value returns and sensitive data get human-in-the-loop approval. A GetVocal blog on escalation says operators configure, in the Control Tower's Operator View, which decision nodes require validation.",
+   "quote": "with human-in-the-loop approval on high-stakes actions",
+   "source": "https://www.getvocal.ai/llms.txt",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I20",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its purpose and permitted tasks are stated in writing",
+   "fact": "The llms.txt says the agents resolve customer conversations end to end inside the customer's business rules, with human approval on high-stakes actions; the Control Tower FAQ says the agent cannot take actions its graph does not contain.",
+   "quote": "Agents resolve customer conversations end to end while staying inside your business rules",
+   "source": "https://www.getvocal.ai/llms.txt",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I56",
+   "dims": [
+    "Openness"
+   ],
+   "label": "It tells the people it talks to that it is an AI",
+   "fact": "In one deployment for an unnamed large Spanish telecom operator, each call opened with a disclosure that the caller was speaking with a virtual assistant. No GetVocal page states that agents disclose they are AI by default or documents a disclosure setting; the EU AI Act blog advises deployers to add a disclosure node.",
+   "quote": "clear disclosure that the caller was speaking with a virtual assistant",
+   "source": "https://www.getvocal.ai/customers/large-spanish-telecom",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The agents are described as grounded in the customer's call scripts, help documents, CRM records and past transcripts.",
+   "quote": "a living model of your call scripts, help docs, CRM records and past transcripts",
+   "source": "https://www.getvocal.ai/enterprise-ai-agents",
+   "read_at": "2026-11-10T15:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of GetVocal's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "GetVocal AI agents, its stated purpose: The llms.txt says the agents resolve customer conversations end to end inside the customer's business rules, with human approval on high-stakes actions; the Control Tower FAQ says the agent cannot take actions its graph does not contain.",
+    "source": "https://www.getvocal.ai/llms.txt",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+   }
+  ],
+  "reach": [
+   {
+    "text": "GetVocal AI agents: The llms.txt says the agents work across the customer's CRM, CCaaS, telephony and helpdesk systems.",
+    "source": "https://www.getvocal.ai/llms.txt",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+   },
+   {
+    "text": "GetVocal AI agents: The handoff payload is described as sent over a REST API to the agent desktop, naming Genesys Cloud and Salesforce integrations.",
+    "source": "https://www.getvocal.ai/blog/ai-agent-escalation-logic-human-handoff",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "GetVocal AI agents: control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/getvocal-agents/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; GetVocal has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=GetVocal%20AI%20agents",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate: published findings on mail and calendar access.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic: pay one invoice, not all of them.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-getvocal",
+  "title": "GetVocal: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "GetVocal",
+    "sub": "GetVocal AI's voice, chat, WhatsApp and email agents for enterprise contact centres, built in its Agent Builder and supervised by people through its control…",
+    "caption": "What we have on GetVocal, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "The llms.txt says the agents work across the customer's CRM, CCaaS, telephony and helpdesk systems.",
+     "The Control Tower page says the agent asks a human to approve critical decisions before executing them.",
+     "The handoff payload is described as sent over a REST API to the agent desktop, naming Genesys Cloud and Salesforce integrations.",
+     "llms.txt says high-stakes actions such as large transactions, high-value returns and sensitive data get human-in-the-loop approval. A…",
+     "The llms.txt says the agents resolve customer conversations end to end inside the customer's business rules, with human approval on…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "GetVocal AI agents: A4 · R2 · C1 · O1",
+    "levels": [
+     {
+      "id": "A4",
+      "label": "Autonomy: Orchestrates",
+      "note": "What does the agent do on its own?"
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that what it can reach is enumerated: scopes, permissions, tools."
+     },
+     {
+      "id": "O1",
+      "label": "Openness: Disclosed",
+      "note": "Next: Public evidence that its limits and known failure cases are documented for those who use it."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; GetVocal has not reviewed it. Stage: Building. 71 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that what it can reach is enumerated…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A send button is not a mandate",
+    "step": "send-button/a-rule-in-prose",
+    "caption": "A send button is not a mandate: published findings on mail and calendar access."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

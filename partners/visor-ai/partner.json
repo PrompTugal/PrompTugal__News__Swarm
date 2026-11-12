@@ -1,0 +1,381 @@
+{
+ "slug": "visor-ai",
+ "name": "Visor.ai",
+ "kind": "customer-service",
+ "kind_label": "Customer service",
+ "one_line": "Visor.ai's voice and chat AI agents for customer service, with Nexa, the agent that builds, tests and proposes fixes to them.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "gamma-ray",
+   "title": "GAMMA-Ray card: Visor.ai AI agents",
+   "url": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/",
+   "note": "A3 · R2 · C1 · O2, Building (beta)",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "gamma-ray-scan",
+   "title": "GAMMA-Ray scan: Visor.ai AI agents",
+   "url": "https://gamma-ray.sgit.ai/scans/visor-ai-agents/",
+   "note": "freedom 1, 1, 1 across its configurations; deployment governance not assessed.",
+   "read_on": "2026-11-10",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [
+  {
+   "product": "Visor.ai AI agents",
+   "card": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/",
+   "scan": "https://gamma-ray.sgit.ai/scans/visor-ai-agents/",
+   "code": "A3 · R2 · C1 · O2",
+   "stage": "Building",
+   "provisions": 66,
+   "instruments": 8,
+   "read_on": "2026-11-10",
+   "description": "Visor.ai's voice and chat AI agents for customer service, with Nexa, the agent that builds, tests and proposes fixes to them.",
+   "dims": [
+    {
+     "dim": "Autonomy",
+     "level": 3,
+     "name": "Acts",
+     "question": "What does the agent do on its own?",
+     "next_unlock": {
+      "level": "level 4, Orchestrates",
+      "needs": "Public evidence that the agent works independently; the person approves critical decisions only."
+     }
+    },
+    {
+     "dim": "Reach",
+     "level": 2,
+     "name": "Integrated",
+     "question": "How connected is it?",
+     "next_unlock": {
+      "level": "level 4, Ecosystem",
+      "needs": "Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties publish integrations, skills or agents for it."
+     }
+    },
+    {
+     "dim": "Control",
+     "level": 1,
+     "name": "Stated",
+     "question": "Can people stay in command?",
+     "next_unlock": {
+      "level": "level 2, Configurable",
+      "needs": "Public evidence that high-impact actions need a person's approval; and that what it can reach is enumerated: scopes, permissions, tools."
+     }
+    },
+    {
+     "dim": "Openness",
+     "level": 2,
+     "name": "Documented",
+     "question": "Does it show its work?",
+     "next_unlock": {
+      "level": "level 3, Measured",
+      "needs": "Public evidence that test or evaluation results are published."
+     }
+    }
+   ],
+   "fact_ray": "18 facts: 18 π Moderate. Each is written beside its evidence above.",
+   "built_from": "Visor",
+   "configs": [
+    {
+     "config": "As shipped",
+     "what": "Voice AI Agent with its documented defaults.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Healthcare deployment",
+     "what": "Deployment practice stated for healthcare customers: scope and data agreed with the customer's DPO before go-live.",
+     "freedom": "1 Answers"
+    },
+    {
+     "config": "Deployed by Visor",
+     "what": "The deployment service described under 'How we deploy' on the product pages: a Visor team, end-to-end testing, validation by the customer's team before launch, and training of the customer's people.",
+     "freedom": "1 Answers"
+    }
+   ]
+  }
+ ],
+ "facts": [
+  {
+   "indicator": "I08",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "It executes actions itself",
+   "fact": "At Generali, the platform was connected to the insurer's systems through web services, so four common requests (duplicate documents, address changes, adding a vehicle, cancellations) run end to end as automated workflows.",
+   "quote": "those requests now run end to end as automated workflows",
+   "source": "https://www.visor.ai/success-stories/generali/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I17",
+   "dims": [
+    "Autonomy"
+   ],
+   "label": "The agent handles routine tasks; the person is consulted on exceptions",
+   "fact": "At Generali the chat agent handles conversations from start to finish; when a conversation needs a person, an advisor picks it up in live chat.",
+   "quote": "When a conversation does need a person, an advisor picks it up",
+   "source": "https://www.visor.ai/success-stories/generali/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I10",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It works across several domains or systems",
+   "fact": "The voice agent connects to telephony and to the customer's contact-centre or CCaaS platform.",
+   "quote": "It connects to your telephony and to your contact-centre or CCaaS platform",
+   "source": "https://www.visor.ai/voice-agent/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I11",
+   "dims": [
+    "Reach"
+   ],
+   "label": "It connects to external tools or services across a trust boundary",
+   "fact": "Generali connected the platform to its own systems through web services.",
+   "quote": "connected the platform to its own systems through web services",
+   "source": "https://www.visor.ai/success-stories/generali/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I47",
+   "dims": [
+    "Control"
+   ],
+   "label": "A limit on it is a rule in prose",
+   "fact": "For healthcare, the page states as a rule that the agents do not give clinical advice and are set up to pass a clinical question to a person.",
+   "quote": "The agents don't give clinical advice",
+   "source": "https://www.visor.ai/healthcare/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I22",
+   "dims": [
+    "Openness"
+   ],
+   "label": "Its limits and known failure cases are documented for those who use it",
+   "fact": "A reliability note states that the models can occasionally fail and that providers do not guarantee total availability.",
+   "quote": "The models generate each answer in the moment and can occasionally fail.",
+   "source": "https://www.visor.ai/voice-agent/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I58",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The data it uses is described",
+   "fact": "The chat agent answers from a knowledge base built from the customer's documents and kept in sync with them.",
+   "quote": "The agent answers from a knowledge base built from your own documents",
+   "source": "https://www.visor.ai/chat-agent/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  },
+  {
+   "indicator": "I61",
+   "dims": [
+    "Openness"
+   ],
+   "label": "The models and third-party components it uses are listed",
+   "fact": "The security page lists the AI providers in the voice and chat path (Azure, Vertex AI Gemini, Deepgram, AssemblyAI, ElevenLabs) and what each processes.",
+   "quote": "Gemini large language models used by the AI agents to process conversations",
+   "source": "https://www.visor.ai/security/",
+   "read_at": "2026-11-10T18:45Z",
+   "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+  }
+ ],
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Visor.ai's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [],
+  "reach": [
+   {
+    "text": "Visor.ai AI agents: The voice agent connects to telephony and to the customer's contact-centre or CCaaS platform.",
+    "source": "https://www.visor.ai/voice-agent/",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+   },
+   {
+    "text": "Visor.ai AI agents: Generali connected the platform to its own systems through web services.",
+    "source": "https://www.visor.ai/success-stories/generali/",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "Visor.ai AI agents: control is at level 1, Stated on the public evidence. Not yet shown in public: that high-impact actions need a person's approval; and that what it can reach is enumerated: scopes, permissions, tools.",
+    "via": "https://gamma-ray.sgit.ai/spectrum/cards/visor-ai-agents/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Check and claim the GAMMA-Ray card",
+    "text": "The card is beta and read only from public pages; Visor.ai has not reviewed it. A correction is dated and published, and a file at /.well-known/fact-ray.json on their own domain raises the trust of every fact on it.",
+    "link": "https://gamma-ray.sgit.ai/feedback/?about=Visor.ai%20AI%20agents",
+    "link2": "https://gamma-ray.sgit.ai/fact-ray/well-known/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate: published findings on mail and calendar access.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A mandate as deep as the business logic: pay one invoice, not all of them.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "Mandate, reach, gap",
+   "theme": "reach",
+   "demo": "gap",
+   "why": "Mandate, reach, gap: the three words for the conversation.",
+   "present": "theme.html?t=reach&d=gap",
+   "stage": "../stage.html?scene=gap"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? A visitor's question, answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  }
+ ],
+ "deck": {
+  "id": "partner-visor-ai",
+  "title": "Visor.ai: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Visor.ai",
+    "sub": "Visor.ai's voice and chat AI agents for customer service, with Nexa, the agent that builds, tests and proposes fixes to them.",
+    "caption": "What we have on Visor.ai, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "At Generali, the platform was connected to the insurer's systems through web services, so four common requests (duplicate documents…",
+     "At Generali the chat agent handles conversations from start to finish; when a conversation needs a person, an advisor picks it up in live…",
+     "The voice agent connects to telephony and to the customer's contact-centre or CCaaS platform.",
+     "Generali connected the platform to its own systems through web services.",
+     "For healthcare, the page states as a rule that the agents do not give clinical advice and are set up to pass a clinical question to a…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "ladder",
+    "kicker": "GAMMA-Ray card (beta)",
+    "title": "Visor.ai AI agents: A3 · R2 · C1 · O2",
+    "levels": [
+     {
+      "id": "A3",
+      "label": "Autonomy: Acts",
+      "note": "Next: Public evidence that the agent works independently; the person approves critical decisions only."
+     },
+     {
+      "id": "R2",
+      "label": "Reach: Integrated",
+      "note": "Next: Public evidence that agents operate across organisational boundaries or disparate stacks; and that others build on it: third parties…"
+     },
+     {
+      "id": "C1",
+      "label": "Control: Stated",
+      "note": "Next: Public evidence that high-impact actions need a person's approval; and that what it can reach is enumerated: scopes, permissions…"
+     },
+     {
+      "id": "O2",
+      "label": "Openness: Documented",
+      "note": "Next: Public evidence that test or evaluation results are published."
+     }
+    ],
+    "caption": "A beta rating from public evidence only; Visor.ai has not reviewed it. Stage: Building. 66 provisions lit across 8 instruments."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "control is at level 1, Stated on the public evidence. Not yet shown in public: that high-impact actions need a…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Check and claim the GAMMA-Ray card",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A send button is not a mandate",
+    "step": "send-button/a-rule-in-prose",
+    "caption": "A send button is not a mandate: published findings on mail and calendar access."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}

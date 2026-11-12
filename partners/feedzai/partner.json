@@ -1,0 +1,664 @@
+{
+ "slug": "feedzai",
+ "name": "Feedzai",
+ "kind": "finance",
+ "kind_label": "Finance and insurance",
+ "one_line": "AI-native fraud and financial crime prevention for banks, now with Farol, an always-on agent for fraud and AML analysts, and a stated plan to tell good customer agents from bad ones.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T07:53Z",
+ "note": "Everything here is from public pages. Facts carry their source and the time they were read; the hypothesis and the suggestions are ours and say so. GAMMA-Ray is a beta standard: every rating is experimental.",
+ "artefacts": [
+  {
+   "kind": "xray",
+   "title": "X-ray: Feedzai",
+   "url": "https://web-summit.sgit.ai/xray/feedzai/",
+   "note": "verified record: reach, our example of a mandate, the gap",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-deck",
+   "title": "X-ray deck for the stand: Feedzai",
+   "url": "https://web-summit.sgit.ai/xray/feedzai/deck/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  },
+  {
+   "kind": "xray-run",
+   "title": "X-ray run: how the record was made",
+   "url": "https://web-summit.sgit.ai/xray/feedzai/run/",
+   "read_on": "2026-11-07",
+   "fetched_at": "2026-11-12T07:53Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [],
+ "xray": {
+  "page": "https://web-summit.sgit.ai/xray/feedzai/",
+  "deck": "https://web-summit.sgit.ai/xray/feedzai/deck/",
+  "run": "https://web-summit.sgit.ai/xray/feedzai/run/",
+  "one_line": "AI-native fraud and financial crime prevention for banks, now with Farol, an always-on agent for fraud and AML analysts, and a stated plan to tell good customer agents from bad ones.",
+  "read_on": "2026-11-07",
+  "what_it_does": "Feedzai sells a RiskOps platform that banks, payment networks and acquirers use to detect and stop fraud, scams and money laundering in real time, unifying identity, behavioural, device, transaction and third-party signals from onboarding to remediation, with a separate network score (Feedzai IQ Score) delivered by API. Since 24 September 2026 the platform ships Farol, an embedded agent that retrieves and summarises alert data, analyses rule performance, drafts suspicious activity reports and answers product questions inside RiskOps Studio. Feedzai says it is building two more things for the agentic era: Bring Your Own Agent, to connect banks' own and partner agents to its platform, and detection that checks who authorised a customer's agent, what it may do and whether it still matches its intent. [s1, s4, s14, s3, s2, s6]",
+  "situations": [
+   {
+    "title": "A customer's agent moves money at a Feedzai bank",
+    "helper": "Agentic Detection (KYA)",
+    "reach": [
+     "The customer's online banking session: the agent logs in on the customer's behalf",
+     "The customer's money: the agent pays bills and moves money, and Feedzai expects agents to approve transactions on users' behalf",
+     "Real-time payment rails (instant payments such as Pix, and Canada's Real-Time Rail) that clear and settle in seconds, around the clock",
+     "Feedzai's real-time scoring of the session and payment: behavioural biometrics, device intelligence, transaction and network signals",
+     "Malicious agents that look identical to customers' agents: agent takeovers, agent botnets and agentic malware"
+    ],
+    "reach_sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/riskops/",
+     "https://www.feedzai.com/solutions/transaction-fraud/",
+     "https://www.feedzai.com/industries/retail-banks/",
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-detection/"
+    ],
+    "asked_our_example": [
+     "The customer authorises the agent to pay named recurring bills from one account, up to a monthly limit",
+     "The agent may not add payees, raise limits or send money to a new beneficiary without the customer confirming"
+    ],
+    "gap": [
+     "The bank's identity checks were built to verify a human; Feedzai itself says what an agent is allowed to do, on whose authority and within what limits is not yet established, and that live registries of authorised agents will be needed. Until then the customer's limits live only between the customer and the agent.",
+     "An instant payment clears in seconds, so any check on whether the agent is still within its limits has to happen before the money moves, not after.",
+     "A malicious agent can look identical to the customer's agent; the detection meant to tell them apart is still being built."
+    ],
+    "gap_sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-detection/"
+    ]
+   },
+   {
+    "title": "Farol inside a bank's fraud and AML team",
+    "helper": "Farol",
+    "reach": [
+     "Alert and case data in the institution's fraud and AML stack, and the analyst tools around it",
+     "Rule sets, rule performance, coverage gaps and thresholds",
+     "Production-ready rule suggestions and what the launch release calls autonomous execution capabilities in risk workflows",
+     "Suspicious Activity Report drafts built from case data, about named customers, for local filing requirements",
+     "Product documentation, answered in plain language with cited sources"
+    ],
+    "reach_sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "asked_our_example": [
+     "As Feedzai documents it: agents surface insights and recommendations with transparent reasoning, and analysts verify outcomes and take actions as they see fit",
+     "The bank lets Farol read alerts and draft; any rule change goes through challenger testing and a named approver, and only an investigator files a SAR"
+    ],
+    "gap": [
+     "The launch release speaks of autonomous execution and production-ready rule suggestions, while the product page says analysts take the actions; which actions Farol can take on its own in a given deployment is not public.",
+     "A SAR draft about a named customer is one click from case data; Feedzai's own blog says the final call to file must be documented and attributed to a named human."
+    ],
+    "gap_sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ]
+   },
+   {
+    "title": "A bank's own agents through Bring Your Own Agent",
+    "helper": "Bring Your Own Agent",
+    "reach": [
+     "Feedzai's data, intelligence and workflows, the same context Farol works from",
+     "A Model Context Protocol gateway through which connected agents inherit the platform's permissions and audit trail",
+     "Third-party partner agents and the bank's choice of model",
+     "Bank workflows reached through a secure connection"
+    ],
+    "reach_sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ],
+    "asked_our_example": [
+     "The bank's own agent reads alert context for one queue and writes notes, nothing else",
+     "A partner agent is read-only and sees no customer data beyond the case it is asked about"
+    ],
+    "gap": [
+     "Agents that inherit the platform's permissions reach whatever the platform role they run under reaches; how narrowly one connected agent can be scoped is not yet documented.",
+     "A partner agent on a model of the bank's choice works from the same context as Feedzai's own agents; where that data goes for inference is outside Feedzai's estate."
+    ],
+    "gap_sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ]
+   }
+  ],
+  "questions": [
+   "When Farol uses what your launch release calls autonomous execution, which actions can it take without an analyst approving them (changing a live rule, closing an alert, filing a SAR), and who in the bank sets that line?",
+   "Agents connected through Bring Your Own Agent inherit the platform's permissions: can a bank scope one connected agent below the role it connects under, and is each action attributed to that agent and to a named human in the audit trail?",
+   "For Know Your Agent: when a customer's agent arrives at a bank, what will your detection read to learn the limits the customer set, and what happens to a payment that is outside them on a rail that settles in seconds?",
+   "Farol runs inside the institution's environment: which model providers does it call, and does any case or customer data leave the bank's estate for inference?",
+   "Can a bank export Farol's record of what it retrieved, recommended and who acted on it into its own model risk records, so a supervisor can see who authorised each step?"
+  ],
+  "incidents": [],
+  "sources": [
+   {
+    "id": "s1",
+    "title": "AI-Native Fraud & Financial Crime Prevention Platform | Feedzai",
+    "url": "https://www.feedzai.com/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s2",
+    "title": "Farol: The AI Agent for Fraud & Risk | Feedzai",
+    "url": "https://www.feedzai.com/farol-agentic-riskops/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s3",
+    "title": "As Banks Pivot to Agentic AI, Feedzai Unveils Farol to Transform Fraud Analysis and Cut Investigation Times (24 September 2026)",
+    "url": "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s4",
+    "title": "Market Leading Fraud Prevention RiskOps Platform | Feedzai",
+    "url": "https://www.feedzai.com/riskops/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s5",
+    "title": "AI for Fraud Prevention and Financial Crime | Feedzai",
+    "url": "https://www.feedzai.com/solutions/ai/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s6",
+    "title": "Beyond the Transaction: 3 Key Lessons from Feedzai Fusion São Paulo 2026 (6 November 2026)",
+    "url": "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s7",
+    "title": "AML Transaction Monitoring Software: Powered by AI | Feedzai",
+    "url": "https://www.feedzai.com/solutions/aml-transaction-monitoring/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s8",
+    "title": "Anti-Money Laundering Transaction Monitoring | Feedzai",
+    "url": "https://www.feedzai.com/resource/anti-money-laundering-transaction-monitoring/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s9",
+    "title": "Transaction Fraud Solution for Banks | Feedzai",
+    "url": "https://www.feedzai.com/solutions/transaction-fraud/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s10",
+    "title": "Fraud & Financial Crime Prevention for Retail Banks | Feedzai",
+    "url": "https://www.feedzai.com/industries/retail-banks/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s11",
+    "title": "RiskOps Brazil: Merging Identity, Fraud, and AML | Feedzai",
+    "url": "https://www.feedzai.com/blog/riskops-brazil-risk-architecture/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s12",
+    "title": "Press Releases | Feedzai",
+    "url": "https://www.feedzai.com/press-releases/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s13",
+    "title": "Anti-Money Laundering Solutions | Feedzai",
+    "url": "https://www.feedzai.com/anti-money-laundering/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s14",
+    "title": "Feedzai Opens $9 Trillion Fraud Intelligence Network (9 June 2026)",
+    "url": "https://www.feedzai.com/pressrelease/feedzai-iq-score-9t-fraud-intelligence-network/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s15",
+    "title": "Feedzai Unveils RiskFM AI Foundation Model for Financial Crime Prevention (24 March 2026)",
+    "url": "https://www.feedzai.com/pressrelease/riskfm-ai-risk-model/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s16",
+    "title": "llm.txt for Feedzai",
+    "url": "https://www.feedzai.com/llms.txt",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s17",
+    "title": "Customer Stories | Feedzai",
+    "url": "https://www.feedzai.com/customers/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s18",
+    "title": "Feedzai: AI-Native, End-to-end Fraud and Financial Crime Prevention | AWS Marketplace",
+    "url": "https://aws.amazon.com/marketplace/pp/prodview-6cbmn62splyhq",
+    "publisher": "AWS Marketplace (vendor-supplied listing)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s19",
+    "title": "Novobanco selects Feedzai to unify fraud and AML prevention",
+    "url": "https://fintech.global/2026/03/09/novobanco-selects-feedzai-to-unify-fraud-and-aml-prevention/",
+    "publisher": "FinTech Global",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s20",
+    "title": "In Advance of Canada's Real-Time Rail Rollout, Peoples Group Partners with Feedzai to Advance Fraud Defenses and Support 24/7 Instant Payments (PR Newswire, 10 September 2026)",
+    "url": "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+    "publisher": "Yahoo Finance (PR Newswire release)",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s21",
+    "title": "Feedzai Warns of AI-Powered Romance Scams as Citibank Faces Lawsuit Over $20 Million Fraud",
+    "url": "https://financefeeds.com/feedzai-warns-of-ai-powered-romance-scams-as-citibank-faces-lawsuit-over-20-million-fraud/",
+    "publisher": "FinanceFeeds",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s22",
+    "title": "Feedzai news and analysis articles: Chartis Research",
+    "url": "https://www.chartis-research.com/organisations/feedzai",
+    "publisher": "Chartis Research",
+    "type": "other",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s23",
+    "title": "Feedzai Recognized as Industry Leader in SPARK Matrix for FCC Data Management",
+    "url": "https://www.feedzai.com/inthenews/feedzai-recognized-as-industry-leader-in-2026-spark-matrix-for-fcc/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s24",
+    "title": "Feedzai Tops Fraud and AML Machine Learning Platforms | Feedzai",
+    "url": "https://www.feedzai.com/resource/feedzai-again-named-best-in-class-fraud-and-aml-machine-learning-platform-by-aite-novarica-group/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s25",
+    "title": "Banks Think They're Ready for Tomorrow's Fraud. Feedzai's Survey Suggests Otherwise (8 October 2026)",
+    "url": "https://www.prnewswire.com/in/news-releases/banks-think-theyre-ready-for-tomorrows-fraud-feedzais-survey-suggests-otherwise-302901413.html",
+    "publisher": "PR Newswire",
+    "type": "press",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s26",
+    "title": "What Agentic AI Actually Changes in Fraud Prevention (13 August 2026)",
+    "url": "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s27",
+    "title": "Agentic AI Fraud Detection: The Future of Autonomous Risk Prevention (24 September 2026)",
+    "url": "https://www.feedzai.com/blog/agentic-ai-fraud-detection/",
+    "publisher": "Feedzai (feedzai.com)",
+    "type": "own-site",
+    "read_on": "2026-11-07"
+   },
+   {
+    "id": "s28",
+    "title": "Who let the agent in? | Web Summit (Lisbon 2026 session page)",
+    "url": "https://websummit.com/sessions/lis26/1de6a591-ec17-4399-8f28-13f4bff1cae1/who-let-the-agent-in/",
+    "publisher": "Web Summit (websummit.com)",
+    "type": "other",
+    "read_on": "2026-11-07"
+   }
+  ]
+ },
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "RiskMandate would measure, for one real deployment of Feedzai's agents, what each agent was asked to do (its mandate), what its credentials and connections actually let it reach (its grant), and the difference between the two (the gap), and keep that as a written record. It is read-only: never in the request path.",
+  "mandate": [
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: The customer authorises the agent to pay named recurring bills from one account, up to a monthly limit",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   },
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: The agent may not add payees, raise limits or send money to a new beneficiary without the customer confirming",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: As Feedzai documents it: agents surface insights and recommendations with transparent reasoning, and analysts verify outcomes and take actions as they see fit",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: The bank lets Farol read alerts and draft; any rule change goes through challenger testing and a named approver, and only an investigator files a SAR",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: The bank's own agent reads alert context for one queue and writes notes, nothing else",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: A partner agent is read-only and sees no customer data beyond the case it is asked about",
+    "via": "https://web-summit.sgit.ai/xray/feedzai/",
+    "ours": true
+   }
+  ],
+  "reach": [
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: The customer's online banking session: the agent logs in on the customer's behalf",
+    "sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: The customer's money: the agent pays bills and moves money, and Feedzai expects agents to approve transactions on users' behalf",
+    "sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: Alert and case data in the institution's fraud and AML stack, and the analyst tools around it",
+    "sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: Rule sets, rule performance, coverage gaps and thresholds",
+    "sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: Feedzai's data, intelligence and workflows, the same context Farol works from",
+    "sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: A Model Context Protocol gateway through which connected agents inherit the platform's permissions and audit trail",
+    "sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   }
+  ],
+  "gap": [
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: The bank's identity checks were built to verify a human; Feedzai itself says what an agent is allowed to do, on whose authority and within what limits is not yet established, and that live registries of authorised agents will be needed. Until then the customer's limits live only between the customer and the agent.",
+    "sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A customer's agent moves money at a Feedzai bank: An instant payment clears in seconds, so any check on whether the agent is still within its limits has to happen before the money moves, not after.",
+    "sources": [
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://finance.yahoo.com/technology/ai/articles/advance-canadas-real-time-rail-130000007.html",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: The launch release speaks of autonomous execution and production-ready rule suggestions, while the product page says analysts take the actions; which actions Farol can take on its own in a given deployment is not public.",
+    "sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "Farol inside a bank's fraud and AML team: A SAR draft about a named customer is one click from case data; Feedzai's own blog says the final call to file must be documented and attributed to a named human.",
+    "sources": [
+     "https://www.feedzai.com/pressrelease/as-banks-pivot-to-agentic-ai-feedzai-unveils-farol-to-transform-fraud-analysis-and-cut-investigation-times/",
+     "https://www.feedzai.com/farol-agentic-riskops/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: Agents that inherit the platform's permissions reach whatever the platform role they run under reaches; how narrowly one connected agent can be scoped is not yet documented.",
+    "sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "text": "A bank's own agents through Bring Your Own Agent: A partner agent on a model of the bank's choice works from the same context as Feedzai's own agents; where that data goes for inference is outside Feedzai's estate.",
+    "sources": [
+     "https://www.feedzai.com/farol-agentic-riskops/",
+     "https://www.feedzai.com/blog/agentic-ai-fraud-prevention/",
+     "https://www.feedzai.com/blog/feedzai-fusion-brazil/"
+    ],
+    "via": "https://web-summit.sgit.ai/xray/feedzai/"
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Answer the open questions of the X-ray",
+    "text": "The X-ray lists the questions we would ask Feedzai; none has been asked yet.",
+    "link": "https://web-summit.sgit.ai/xray/feedzai/"
+   },
+   {
+    "title": "Measure one deployment",
+    "text": "Pick one agent in one deployment; RiskMandate records its mandate, its grant and the gap, read-only. The lens page explains the measurement.",
+    "link": "https://gamma-ray.sgit.ai/lens/"
+   },
+   {
+    "title": "Run one of their agents under a harness, on stage",
+    "text": "The same task run bare and under one policy, with the probes and the record public, as in our own harness runs (simulated data only).",
+    "link": "harness.html"
+   }
+  ]
+ },
+ "demos": [
+  {
+   "title": "A mandate as deep as the business logic",
+   "theme": "control",
+   "demo": "db-mandate",
+   "why": "A REAL run on a SIMULATED ledger: the task was to pay one invoice.",
+   "present": "theme.html?t=control&d=db-mandate",
+   "stage": "../stage.html?scene=db-mandate"
+  },
+  {
+   "title": "A send button is not a mandate",
+   "theme": "reach",
+   "demo": "send-button",
+   "why": "A send button is not a mandate.",
+   "present": "theme.html?t=reach&d=send-button",
+   "stage": "../stage.html?scene=send-button"
+  },
+  {
+   "title": "Why did they think they were allowed?",
+   "theme": "trust",
+   "demo": "q-why",
+   "why": "Why was it allowed? Answered with files.",
+   "present": "theme.html?t=trust&d=q-why",
+   "stage": "../stage.html?scene=q-why"
+  },
+  {
+   "title": "A licence that lapses when the reach changes",
+   "theme": "control",
+   "demo": "licence",
+   "why": "A licence to operate that changes when a tool is connected.",
+   "present": "theme.html?t=control&d=licence",
+   "stage": "../stage.html?scene=licence"
+  }
+ ],
+ "deck": {
+  "id": "partner-feedzai",
+  "title": "Feedzai: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T07:53Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Feedzai",
+    "sub": "AI-native fraud and financial crime prevention for banks, now with Farol, an always-on agent for fraud and AML analysts, and a stated plan to tell good…",
+    "caption": "What we have on Feedzai, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "AI-native fraud and financial crime prevention for banks, now with Farol, an always-on agent for fraud and AML analysts, and a stated plan…",
+     "The customer's online banking session: the agent logs in on the customer's behalf",
+     "The customer's money: the agent pays bills and moves money, and Feedzai expects agents to approve transactions on users' behalf",
+     "Alert and case data in the institution's fraud and AML stack, and the analyst tools around it",
+     "Rule sets, rule performance, coverage gaps and thresholds"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "bullets",
+    "kicker": "The X-ray",
+    "title": "Where reach and mandate do not match",
+    "items": [
+     "The bank's identity checks were built to verify a human; Feedzai itself says what an agent is allowed to do, on whose authority and within…",
+     "An instant payment clears in seconds, so any check on whether the agent is still within its limits has to happen before the money moves…",
+     "A malicious agent can look identical to the customer's agent; the detection meant to tell them apart is still being built.",
+     "The launch release speaks of autonomous execution and production-ready rule suggestions, while the product page says analysts take the…",
+     "A SAR draft about a named customer is one click from case data; Feedzai's own blog says the final call to file must be documented and…"
+    ],
+    "caption": "From the X-ray record. The mandate side is our example of sensible limits, not their policy."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "The bank's identity checks were built to verify a human; Feedzai itself says what an agent is allowed to do, on whose…",
+      "An instant payment clears in seconds, so any check on whether the agent is still within its limits has to happen…",
+      "The launch release speaks of autonomous execution and production-ready rule suggestions, while the product page says…",
+      "A SAR draft about a named customer is one click from case data; Feedzai's own blog says the final call to file must be…"
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Answer the open questions of the X-ray",
+     "Measure one deployment",
+     "Run one of their agents under a harness, on stage"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "A mandate as deep as the business logic",
+    "step": "db-mandate/the-line",
+    "caption": "A REAL run on a SIMULATED ledger: the task was to pay one invoice."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   }
+  ]
+ }
+}
