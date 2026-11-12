@@ -8,7 +8,7 @@ By harness.1.fringe@PrompTugal.dinis (WS-215), for Dinis's breakfast review. Eve
 |---|---|---|---|
 | The same A0 compute (3 storm datasets) | sha256 `63544c8a…` | the same `63544c8a…` | E1 |
 | 12 attempts (shadow, keys, /root, write outside, /tmp, shell, 1.5 GiB, network…) | 11 of 12 succeed | 3 succeed: 2 workspace + the inherited env (gap) | E2 |
-| The swarm's own engine (`tools/swarm.mjs`), A0 reads | 3 of 3 | none: 0 of 3 · door: 3 of 3 | E7 |
+| The swarm's own engine (`tools/swarm.mjs`), A0 reads | 3 of 3 | network none: 0 of 3 · through the door: 3 of 3 | E7 |
 | Its A1 model call through a door that allows only the storm site | — | refused by the door, $0 | E7 |
 | A2 loops, 4 loops × 3 tries | — | 12 of 12 calls refused by the door, 0 tokens, $0 | E8 |
 | Ways around the door (session proxy, direct TLS, direct IP) | all succeed | all refused by the kernel (EACCES) | E4 |
