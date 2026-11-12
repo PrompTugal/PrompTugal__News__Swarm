@@ -44,6 +44,8 @@ footer button.play{background:var(--accent);color:var(--bg);border-color:var(--a
 .netdot{fill:var(--muted)}.commit{fill:var(--accent2)}.job{fill:var(--alt-A3,#5ec2ff);opacity:.9}
 @media (max-width:900px){main{grid-template-columns:1fr;grid-template-rows:62vh auto}aside{border-left:0;border-top:1px solid var(--line)}#cap{font-size:1rem;bottom:8px}#steps button span{display:none}}
 body.focus header,body.focus aside{display:none}body.focus main{grid-template-columns:1fr}
+/* embed: inside the stage (an iframe card); the stage's clock drives it with postMessage({pack, step}); ?cap=0 hides the caption */
+body.embed{grid-template-rows:1fr;background:transparent}body.embed header,body.embed aside,body.embed footer{display:none}body.embed main{grid-template-columns:1fr}body.embed.nocap #cap{display:none}
 @media (prefers-reduced-motion:reduce){.s,.grow,.ln{transition:none!important}}
 </style>
 </head>
@@ -120,6 +122,11 @@ document.addEventListener('keydown', (e) => {
 });
 (async () => {
   if (Q.get('theme')) document.documentElement.dataset.theme = Q.get('theme');
+  if (Q.has('embed')) { document.body.classList.add('embed'); if (Q.get('cap') === '0') document.body.classList.add('nocap'); }
+  // the stage (or any parent page) steps a pack: postMessage({ pack: 'gap', step: 3, theme: 'gravity' }, '*'); step is 1-based
+  addEventListener('message', (e) => { const m = e.data || {}; if (typeof m !== 'object' || (m.pack == null && m.step == null)) return; if (m.theme) document.documentElement.dataset.theme = m.theme;
+    const pi = m.pack != null ? Math.max(0, packs.findIndex((p) => p.id === m.pack)) : P, si = Math.min(packs[pi].steps.length - 1, Math.max(0, (+m.step || 1) - 1));
+    if (pi === P && si === step + 1) go(pi, si, false); else go(pi, si, true); });
   await facts(); legend();
   const pi = Math.max(0, packs.findIndex((p) => p.id === Q.get('pack'))), si = Math.max(0, (+Q.get('step') || 1) - 1);
   P = -1; go(pi, Math.min(si, packs[pi].steps.length - 1), true);
