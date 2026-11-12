@@ -150,7 +150,18 @@
     "execute node"
    ],
    "reach_unharnessed": [
-    "(unharnessed run not repeated: as a0-consensus)"
+    "read workspace/data",
+    "write workspace/out",
+    "read /opt/hx/keys/exec.pem",
+    "execute node",
+    "read /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "spawn a shell",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
    ],
    "reach_harnessed": [
     "read workspace/data",
@@ -160,7 +171,15 @@
     "credential-like env names"
    ],
    "gap_unharnessed": [
-    "(unharnessed run not repeated: as a0-consensus)"
+    "read /opt/hx/keys/exec.pem",
+    "read /etc/shadow",
+    "read keys (decoy)",
+    "read /root",
+    "write anywhere",
+    "spawn a shell",
+    "unlimited memory",
+    "the internet via the session proxy",
+    "17 credential-like env names"
    ],
    "gap_harnessed": [
     "inherited env",

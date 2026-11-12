@@ -256,7 +256,7 @@ def e6(files):
                  ['read /root', 'read keys (decoy)', 'write outside the workspace'],
                  ['read /etc/shadow (the profile reads all of /etc)', 'spawn a shell (the profile executes /bin)', 'TCP 443 to any host until sharness.net runs (from the rows; not measured)']),
             unit('a0-consensus-signed (E5)', ['read workspace/data', 'write workspace/out', 'read its one execution key', 'execute node'],
-                 ['(unharnessed run not repeated: as a0-consensus)'],
+                 ['read workspace/data', 'write workspace/out', 'read /opt/hx/keys/exec.pem', 'execute node', 'read /etc/shadow', 'read keys (decoy)', 'read /root', 'write anywhere', 'spawn a shell', 'unlimited memory', 'the internet via the session proxy', '17 credential-like env names'],
                  ['read workspace/data', 'write workspace/out', 'read /opt/hx/keys/exec.pem', 'execute node', 'credential-like env names'],
                  ['as a0-consensus'],
                  ['inherited env', 'the key file is readable by other uid-0 processes for its 213 ms']),
