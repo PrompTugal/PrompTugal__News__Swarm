@@ -1,0 +1,153 @@
+{
+ "about": "E12: one policy carried to five enforcers. policy-a0 (the E1 policy, sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334) translated by sharness-ai policy translate to Landlock (what ran tonight), bubblewrap, Docker, Kubernetes and the Claude Code sandbox, with the tool's own notes per target (headed \"not enforced\"; some lines state what the target does enforce, e.g. bwrap sets no_new_privs, and the Landlock notes are a mapping, so they are kept verbatim and not counted). Translated, not run: bwrap is not installed here, and running the Docker form would pull an image from a registry.",
+ "by": "harness.1.fringe@PrompTugal.dinis",
+ "experiment": "E12",
+ "measured_at": "2026-11-12T04:4xZ",
+ "where": "R1 Claude Code cloud, riskmandate-personal (harness.1's container; uid 0, all capabilities, no seccomp before any policy)",
+ "tool": "sharness-ai 0.2.0 (PyPI), Landlock ABI 7, node v22.23.4",
+ "policy": {
+  "id": "a0-consensus",
+  "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334",
+  "file": "harness/policies/policy-a0.json"
+ },
+ "units": [
+  {
+   "id": "policy",
+   "kind": "policy",
+   "altitude": "P3",
+   "label": "policy-a0",
+   "hash": "sha256:ff160f6890cab76c895ec3ea3e9c7dacdf53c8340179debed60469ef12858334"
+  },
+  {
+   "id": "landlock",
+   "kind": "enforcer",
+   "altitude": "H",
+   "label": "landlock"
+  },
+  {
+   "id": "bwrap",
+   "kind": "enforcer",
+   "altitude": "H",
+   "label": "bwrap"
+  },
+  {
+   "id": "docker",
+   "kind": "enforcer",
+   "altitude": "H",
+   "label": "docker"
+  },
+  {
+   "id": "kubernetes",
+   "kind": "enforcer",
+   "altitude": "H",
+   "label": "kubernetes"
+  },
+  {
+   "id": "claude-code",
+   "kind": "enforcer",
+   "altitude": "H",
+   "label": "claude-code"
+  }
+ ],
+ "edges": [
+  {
+   "from": "policy",
+   "to": "landlock",
+   "kind": "translates to",
+   "note": "see targets[].tool_notes"
+  },
+  {
+   "from": "policy",
+   "to": "bwrap",
+   "kind": "translates to",
+   "note": "see targets[].tool_notes"
+  },
+  {
+   "from": "policy",
+   "to": "docker",
+   "kind": "translates to",
+   "note": "see targets[].tool_notes"
+  },
+  {
+   "from": "policy",
+   "to": "kubernetes",
+   "kind": "translates to",
+   "note": "see targets[].tool_notes"
+  },
+  {
+   "from": "policy",
+   "to": "claude-code",
+   "kind": "translates to",
+   "note": "see targets[].tool_notes"
+  }
+ ],
+ "targets": [
+  {
+   "to": "landlock",
+   "form": "sharness-ai run --policy <file> -- node a0-consensus.mjs",
+   "tool_notes": [
+    "files.read, files.exec, files.write: Landlock path rules; network: an empty namespace or Landlock TCP ports; caps: rlimits and cgroups; no_new_privs: set",
+    "not yet in the CLI: per-component uids, seccomp, mutual TLS, the launcher (see sharness.ai/design/containment)"
+   ]
+  },
+  {
+   "to": "bwrap",
+   "form": "bwrap --unshare-all --die-with-parent --new-session --cap-drop ALL --ro-bind /etc/ssl /etc/ssl --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/hx/bin /opt/hx/bin --ro-bind /opt/hx/ws /opt/hx/ws --ro-bind /opt/node22 /opt/node22 --ro-bind /usr /usr --ro-bind /usr/lib /usr/lib --bind /opt/hx/ws/out /opt/hx/ws/out -- node a0-consensus.mjs",
+   "tool_notes": [
+    "no_new_privs: bwrap sets it (PR_SET_NO_NEW_PRIVS) for the sandboxed process",
+    "files.exec: not distinct from files.read; a read-only bind is also executable in bwrap (use noexec mounts or Landlock inside)",
+    "files.write: a writable bind is also executable in bwrap; sharness-ai run never grants execute on a writable path",
+    "process.max_memory_mb 1024: not enforced by bwrap; prefix with `prlimit --as=1073741824` or run under a cgroup",
+    "process.max_pids 16: not enforced by bwrap; `prlimit --nproc=16` or a pids cgroup"
+   ]
+  },
+  {
+   "to": "docker",
+   "form": "docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --user 65534:65534 --network none --memory 1024m --pids-limit 16 -v /opt/hx/bin:/opt/hx/bin:ro -v /opt/hx/ws:/opt/hx/ws:ro -v /opt/node22:/opt/node22:ro -v /opt/hx/ws/out:/opt/hx/ws/out python:3.12-alpine node a0-consensus.mjs",
+   "tool_notes": [
+    "image python:3.12-alpine is named by tag; pin it by digest (image@sha256:…) so the policy binds to one build",
+    "files.read of system paths (/usr, /lib, /bin, /sbin, /etc): taken from the image, not bound from the host",
+    "files.exec: not distinct from read; everything readable in the image is executable (Docker has no exec allowlist)",
+    "the policy hash: Docker does not check one; the launcher's --expect-hash has no equivalent"
+   ]
+  },
+  {
+   "to": "kubernetes",
+   "form": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: harnessed\n  labels: { app: harnessed }\nspec:\n  automountServiceAccountToken: false\n  securityContext:\n    runAsNonRoot: true\n    runAsUser: 65534\n    seccompProfile: { type: RuntimeDefault }\n  containers:\n    - name: app\n      image: python:3.12-alpine\n      args: [\"node\", \"a0-consensus.mjs\"]\n      securityContext:\n        allowPrivilegeEscalation: false\n        readOnlyRootFilesystem: true\n        capabilities: { drop: [\"ALL\"] }\n      resources:\n          limits:\n            memory: 1024Mi\n      volumeMounts:\n          - name: w0\n            mountPath: \"/opt/hx/ws/out\"\n  volumes:\n      - name: w0\n        emptyDir: {}\n---\napiVersion: networking.k8s.io/v1\nkind: NetworkPolicy\nmetadata:\n  name: harnessed-egress\nspec:\n  podSelector: { matchLabels: { app: harnessed } }\n  policyTypes: [Egress]\n  egress: []",
+   "tool_notes": [
+    "image python:3.12-alpine is named by tag; pin it by digest (image@sha256:…) so the policy binds to one build",
+    "files.read: the image's filesystem, read-only; host paths are not bound (a policy's read list becomes the image's contents)",
+    "files.exec: no execute allowlist in a securityContext",
+    "files.write: each path becomes an emptyDir volume (not the host's folder)",
+    "process.max_pids: no per-pod pids limit in the Pod spec (the kubelet's podPidsLimit is cluster-wide)",
+    "seccompProfile RuntimeDefault is the runtime's default filter, not the policy's syscall list",
+    "the policy hash: nothing in Kubernetes checks it; an admission controller could"
+   ]
+  },
+  {
+   "to": "claude-code",
+   "form": "{\n  \"sandbox\": {\n    \"enabled\": true,\n    \"allowUnsandboxedCommands\": false,\n    \"failIfUnavailable\": true,\n    \"filesystem\": {\n      \"allowWrite\": [\n        \"/opt/hx/ws/out\"\n      ]\n    },\n    \"network\": {\n      \"allowedDomains\": [],\n      \"strictAllowlist\": true\n    }\n  }\n}",
+   "tool_notes": [
+    "files.read: not an allowlist in the sandbox; it reads most of the machine unless paths are listed in filesystem.denyRead (the policy's read list cannot be expressed as a deny list without knowing the machine)",
+    "files.exec: no equivalent; the sandbox has no execute allowlist",
+    "covers Bash, PowerShell and Monitor commands and their children only; the built-in file and web tools, hooks, MCP servers and the harness itself are outside it (per its documentation)",
+    "network none: expressed as an empty allowedDomains with strictAllowlist; the proxy refuses every host (UDP and ICMP cannot leave the sandbox per its documentation)",
+    "process.max_memory_mb / max_pids: no equivalent in the sandbox settings",
+    "the policy hash: settings are read by the agent's own process (a Setting in ABP terms); managed settings make them a Boundary for the user, not for the harness"
+   ]
+  }
+ ],
+ "read_across": [
+  "files.exec has no equivalent outside Landlock: bwrap, Docker, Kubernetes and the Claude Code sandbox all make what is readable executable. The E1 refusal of /bin/sh (spawn-shell) is a Landlock row only.",
+  "the policy hash binds only where the launcher checks it (--expect-hash): Docker, Kubernetes and the Claude Code settings do not check one.",
+  "files.read as an allowlist exists in Landlock and bwrap (binds); Docker and Kubernetes take it from the image; the Claude Code sandbox reads most of the machine unless denied.",
+  "memory and pids: Docker and Kubernetes hold memory; pids only Docker (per pod: cluster-wide); bwrap and the Claude Code sandbox need prlimit or a cgroup."
+ ],
+ "run_status": {
+  "landlock": "ran tonight (E1 to E11)",
+  "bwrap": "not installed here",
+  "docker": "CLI present, not run (it would pull python:3.12-alpine)",
+  "kubernetes": "no cluster here",
+  "claude-code": "settings form only; not applied to this session"
+ }
+}

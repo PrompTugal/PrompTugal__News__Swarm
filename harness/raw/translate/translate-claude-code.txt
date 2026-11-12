@@ -1,0 +1,24 @@
+{
+  "sandbox": {
+    "enabled": true,
+    "allowUnsandboxedCommands": false,
+    "failIfUnavailable": true,
+    "filesystem": {
+      "allowWrite": [
+        "/opt/hx/ws/out"
+      ]
+    },
+    "network": {
+      "allowedDomains": [],
+      "strictAllowlist": true
+    }
+  }
+}
+
+# claude-code: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - files.read: not an allowlist in the sandbox; it reads most of the machine unless paths are listed in filesystem.denyRead (the policy's read list cannot be expressed as a deny list without knowing the machine)
+#   - files.exec: no equivalent; the sandbox has no execute allowlist
+#   - covers Bash, PowerShell and Monitor commands and their children only; the built-in file and web tools, hooks, MCP servers and the harness itself are outside it (per its documentation)
+#   - network none: expressed as an empty allowedDomains with strictAllowlist; the proxy refuses every host (UDP and ICMP cannot leave the sandbox per its documentation)
+#   - process.max_memory_mb / max_pids: no equivalent in the sandbox settings
+#   - the policy hash: settings are read by the agent's own process (a Setting in ABP terms); managed settings make them a Boundary for the user, not for the harness

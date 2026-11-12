@@ -1,0 +1,3 @@
+# landlock: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - files.read, files.exec, files.write: Landlock path rules; network: an empty namespace or Landlock TCP ports; caps: rlimits and cgroups; no_new_privs: set
+#   - not yet in the CLI: per-component uids, seccomp, mutual TLS, the launcher (see sharness.ai/design/containment)

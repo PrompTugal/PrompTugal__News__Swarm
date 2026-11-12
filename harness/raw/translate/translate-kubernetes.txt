@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: harnessed
+  labels: { app: harnessed }
+spec:
+  automountServiceAccountToken: false
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65534
+    seccompProfile: { type: RuntimeDefault }
+  containers:
+    - name: app
+      image: python:3.12-alpine
+      args: ["node", "a0-consensus.mjs"]
+      securityContext:
+        allowPrivilegeEscalation: false
+        readOnlyRootFilesystem: true
+        capabilities: { drop: ["ALL"] }
+      resources:
+          limits:
+            memory: 1024Mi
+      volumeMounts:
+          - name: w0
+            mountPath: "/opt/hx/ws/out"
+  volumes:
+      - name: w0
+        emptyDir: {}
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: harnessed-egress
+spec:
+  podSelector: { matchLabels: { app: harnessed } }
+  policyTypes: [Egress]
+  egress: []
+
+
+# kubernetes: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - image python:3.12-alpine is named by tag; pin it by digest (image@sha256:…) so the policy binds to one build
+#   - files.read: the image's filesystem, read-only; host paths are not bound (a policy's read list becomes the image's contents)
+#   - files.exec: no execute allowlist in a securityContext
+#   - files.write: each path becomes an emptyDir volume (not the host's folder)
+#   - process.max_pids: no per-pod pids limit in the Pod spec (the kubelet's podPidsLimit is cluster-wide)
+#   - seccompProfile RuntimeDefault is the runtime's default filter, not the policy's syscall list
+#   - the policy hash: nothing in Kubernetes checks it; an admission controller could

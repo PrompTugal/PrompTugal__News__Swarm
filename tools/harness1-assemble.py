@@ -448,6 +448,33 @@ def e11():
     })
 
 
+def e12():
+    """One policy, five enforcers: sharness-ai policy translate, with what each target does not enforce. Translated, not run."""
+    ph = phash(os.path.join(H, 'policies', 'policy-a0.json'))
+    T = ['landlock', 'bwrap', 'docker', 'kubernetes', 'claude-code']
+    rd = lambda f: open(os.path.join(H, 'raw', 'translate', f)).read()
+    targets = []
+    for t in T:
+        notes = [l.strip().lstrip('#').strip()[2:].strip() for l in rd(f'translate-{t}.notes.txt').splitlines() if l.strip().lstrip('#').strip().startswith('- ')]
+        full = rd(f'translate-{t}.txt'); form = full.split('\n# ')[0].strip()
+        targets.append({'to': t, 'form': form, 'tool_notes': notes})
+    return write('2026-11-12-harness1-e12-translate.json', {
+        'about': 'E12: one policy carried to five enforcers. policy-a0 (the E1 policy, ' + ph + ') translated by sharness-ai policy translate to Landlock (what ran tonight), bubblewrap, Docker, Kubernetes and the Claude Code sandbox, with the tool\'s own notes per target (headed "not enforced"; some lines state what the target does enforce, e.g. bwrap sets no_new_privs, and the Landlock notes are a mapping, so they are kept verbatim and not counted). Translated, not run: bwrap is not installed here, and running the Docker form would pull an image from a registry.',
+        'by': BY, 'experiment': 'E12', 'measured_at': '2026-11-12T04:4xZ', 'where': WHERE, 'tool': TOOL,
+        'policy': {'id': 'a0-consensus', 'hash': ph, 'file': 'harness/policies/policy-a0.json'},
+        'units': [{'id': 'policy', 'kind': 'policy', 'altitude': 'P3', 'label': 'policy-a0', 'hash': ph}] + [{'id': t['to'], 'kind': 'enforcer', 'altitude': 'H', 'label': t['to']} for t in targets],
+        'edges': [{'from': 'policy', 'to': t['to'], 'kind': 'translates to', 'note': 'see targets[].tool_notes'} for t in targets],
+        'targets': targets,
+        'read_across': [
+            'files.exec has no equivalent outside Landlock: bwrap, Docker, Kubernetes and the Claude Code sandbox all make what is readable executable. The E1 refusal of /bin/sh (spawn-shell) is a Landlock row only.',
+            'the policy hash binds only where the launcher checks it (--expect-hash): Docker, Kubernetes and the Claude Code settings do not check one.',
+            'files.read as an allowlist exists in Landlock and bwrap (binds); Docker and Kubernetes take it from the image; the Claude Code sandbox reads most of the machine unless denied.',
+            'memory and pids: Docker and Kubernetes hold memory; pids only Docker (per pod: cluster-wide); bwrap and the Claude Code sandbox need prlimit or a cgroup.',
+        ],
+        'run_status': {'landlock': 'ran tonight (E1 to E11)', 'bwrap': 'not installed here', 'docker': 'CLI present, not run (it would pull python:3.12-alpine)', 'kubernetes': 'no cluster here', 'claude-code': 'settings form only; not applied to this session'},
+    })
+
+
 def findings():
     """Drafted in the shape of SHarness issues. Not filed anywhere: Dinis decides that."""
     e3 = RAW('explain-contain-a0.json')['steps']
@@ -520,7 +547,7 @@ def findings():
 
 
 if __name__ == '__main__':
-    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9(), e10(), e11()]
+    files = [e1e2(), e3(), e4(), e5(), e7(), e8(), e9(), e10(), e11(), e12()]
     files.append(e6(files))
     files.append(findings())
     idx = {'about': 'harness.1.fringe@PrompTugal.dinis: SHarness experiments in this swarm, tonight (WS-215). Each record: units with altitude, edges, timeline (start, attempt, allowed/refused, end), policy rows and hash, keys (public fingerprints only), before and after.',

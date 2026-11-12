@@ -1,0 +1,7 @@
+docker run --rm --read-only --cap-drop ALL --security-opt no-new-privileges --user 65534:65534 --network none --memory 1024m --pids-limit 16 -v /opt/hx/bin:/opt/hx/bin:ro -v /opt/hx/ws:/opt/hx/ws:ro -v /opt/node22:/opt/node22:ro -v /opt/hx/ws/out:/opt/hx/ws/out python:3.12-alpine node a0-consensus.mjs
+
+# docker: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - image python:3.12-alpine is named by tag; pin it by digest (image@sha256:…) so the policy binds to one build
+#   - files.read of system paths (/usr, /lib, /bin, /sbin, /etc): taken from the image, not bound from the host
+#   - files.exec: not distinct from read; everything readable in the image is executable (Docker has no exec allowlist)
+#   - the policy hash: Docker does not check one; the launcher's --expect-hash has no equivalent

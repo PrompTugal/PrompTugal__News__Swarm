@@ -1,0 +1,8 @@
+bwrap --unshare-all --die-with-parent --new-session --cap-drop ALL --ro-bind /etc/ssl /etc/ssl --ro-bind /lib /lib --ro-bind /lib64 /lib64 --ro-bind /opt/hx/bin /opt/hx/bin --ro-bind /opt/hx/ws /opt/hx/ws --ro-bind /opt/node22 /opt/node22 --ro-bind /usr /usr --ro-bind /usr/lib /usr/lib --bind /opt/hx/ws/out /opt/hx/ws/out -- node a0-consensus.mjs
+
+# bwrap: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - no_new_privs: bwrap sets it (PR_SET_NO_NEW_PRIVS) for the sandboxed process
+#   - files.exec: not distinct from files.read; a read-only bind is also executable in bwrap (use noexec mounts or Landlock inside)
+#   - files.write: a writable bind is also executable in bwrap; sharness-ai run never grants execute on a writable path
+#   - process.max_memory_mb 1024: not enforced by bwrap; prefix with `prlimit --as=1073741824` or run under a cgroup
+#   - process.max_pids 16: not enforced by bwrap; `prlimit --nproc=16` or a pids cgroup

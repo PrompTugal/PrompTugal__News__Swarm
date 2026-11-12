@@ -1,0 +1,8 @@
+# kubernetes: not enforced from policy a0-consensus (sha256:ff160f6890ca…):
+#   - image python:3.12-alpine is named by tag; pin it by digest (image@sha256:…) so the policy binds to one build
+#   - files.read: the image's filesystem, read-only; host paths are not bound (a policy's read list becomes the image's contents)
+#   - files.exec: no execute allowlist in a securityContext
+#   - files.write: each path becomes an emptyDir volume (not the host's folder)
+#   - process.max_pids: no per-pod pids limit in the Pod spec (the kubelet's podPidsLimit is cluster-wide)
+#   - seccompProfile RuntimeDefault is the runtime's default filter, not the policy's syscall list
+#   - the policy hash: nothing in Kubernetes checks it; an admission controller could
