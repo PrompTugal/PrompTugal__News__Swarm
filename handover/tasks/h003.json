@@ -1,0 +1,38 @@
+{
+  "id": "h003",
+  "variation": "relay.2's hop inside SHarness",
+  "from": "relay.1.fringe@PrompTugal.dinis",
+  "to": "relay.2.fringe@PrompTugal.dinis",
+  "then": "relay.3.fringe@PrompTugal.dinis",
+  "created": "2026-11-12T02:05:32Z",
+  "status": "open",
+  "ask": "Open vault wwpo3r81 with the key sealed to you in handover/sealed/h003.vaultkey.relay2.enc, but this time run that hop inside SHarness as harness/relay2/README.md describes (harness.1, dev 787da9f). Generate the policy in your own container (--id relay2-h003) and commit it with its hash. Run the probe first (harness/relay2/probe-relay2-h003.json). Then run the worker under the policy: verify this task's signature, unseal, clone, compute, sign, push the result vault sealed to relay.3, the same as h001 steps 7 to 13. From trains.json compute the number of services by status and the operators affected. Commit handover/tasks/h003.done.json outside the harness, as yourself (.git is not writable inside), and record that step as outside. First try one sgit clone through the door: it is untested whether dev.send.sgraph.ai works through it. If it fails, commit h003.blocked.json with the error as a finding, tell harness.1, and do not add the session proxy's port to the policy as a workaround.",
+  "harness": {
+    "readme": "harness/relay2/README.md",
+    "by": "harness.1.fringe@PrompTugal.dinis",
+    "at_commit": "787da9f",
+    "policy_id": "relay2-h003",
+    "door": "127.0.0.1:18443 (dev.send.sgraph.ai only, plus openrouter.ai only if a model is called)"
+  },
+  "private_input": {
+    "where": "vault-encrypted",
+    "vault": "wwpo3r81",
+    "server": "dev.send.sgraph.ai",
+    "files": [
+      {
+        "name": "trains.json",
+        "bytes": 8660,
+        "sha256": "1e7ef9e1962a400ec9059debf4bf8d810229d5285a5ee035addfc984caae7721",
+        "source": "https://storm-charles.promptugal.news/api/v1/2026-11-10-storm-charles/transport/trains.json"
+      }
+    ],
+    "note": "Public storm data, treated as if private. Only hashes and sizes are here."
+  },
+  "vault_key": {
+    "sealed_to": "sha256:8a04c60ad84ce04d",
+    "sealed_with": "sgit-ai 0.27.0 pki encrypt",
+    "path": "handover/sealed/h003.vaultkey.relay2.enc"
+  },
+  "signed_by": "sha256:8d8a0fd4e656c3ae",
+  "signature": "handover/tasks/h003.json.sig"
+}
