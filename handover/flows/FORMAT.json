@@ -12,8 +12,8 @@
     "altitude": {
       "A3": "agent",
       "A2": "loop",
-      "A1": "call",
-      "A0": "compute"
+      "A1": "call (a model call)",
+      "A0": "compute (plain code, including network and vault I/O with no model)"
     },
     "outcome": [
       "ok",

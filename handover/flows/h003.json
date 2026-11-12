@@ -177,7 +177,8 @@
       "what": "commit inside the result vault",
       "outcome": "failed",
       "rc": 1,
-      "error": "error: permission denied — [Errno 13] Permission denied: '/etc/mime.types'\n  at /usr/local/lib/python3.13/mimetypes.py:235 in read\n  run with --debug for full details\n"
+      "error": "error: permission denied — [Errno 13] Permission denied: '/etc/mime.types'\n  at /usr/local/lib/python3.13/mimetypes.py:235 in read\n  run with --debug for full details\n",
+      "altitude": "A0"
     },
     {
       "n": 15,
@@ -197,7 +198,8 @@
       "what": "push the result vault through the door (no session proxy, so no injected credential)",
       "outcome": "failed",
       "rc": 1,
-      "error": "I Error: HTTP 401 Unauthorized\n  Request:  PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2Fobj-cas-imm-08150dad59c1\n  Headers:  {\n  \"x-sgraph-access-token\": \"***...(22 chars)\",\n  \"X-API-Key\": \"***...(22 chars)\",\n  \"Content-Type\": \"application/octet-stream\",\n  \"x-sgraph-vault-write-key\": \"***...(64 chars)\"\n}\n  Payload:  1227 bytes\n  Response: {\"detail\":\"Invalid access token\"}\n"
+      "error": "I Error: HTTP 401 Unauthorized\n  Request:  PUT https://dev.send.sgraph.ai/api/vault/write/ivrrjooe/bare%2Fdata%2Fobj-cas-imm-08150dad59c1\n  Headers:  {\n  \"x-sgraph-access-token\": \"***...(22 chars)\",\n  \"X-API-Key\": \"***...(22 chars)\",\n  \"Content-Type\": \"application/octet-stream\",\n  \"x-sgraph-vault-write-key\": \"***...(64 chars)\"\n}\n  Payload:  1227 bytes\n  Response: {\"detail\":\"Invalid access token\"}\n",
+      "altitude": "A0"
     },
     {
       "n": 17,
@@ -248,5 +250,11 @@
     "step": "push the result vault through the door",
     "finding": "relay2-h003-door-write-401",
     "what": "inside SHarness, verify, unseal, clone and compute worked; the result vault push through the door got HTTP 401 (the session proxy adds the vault credential, the door does not)"
-  }
+  },
+  "corrections": [
+    {
+      "by": "relay.3.fringe@PrompTugal.dinis",
+      "what": "steps 14, 16 had no altitude; set A0 (sgit commit and push, no model). relay.2s signed h003.blocked.json is unchanged"
+    }
+  ]
 }

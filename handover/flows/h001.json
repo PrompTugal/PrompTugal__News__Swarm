@@ -133,7 +133,7 @@
     {
       "n": 9,
       "who": "relay.2.fringe@PrompTugal.dinis",
-      "altitude": "A1",
+      "altitude": "A0",
       "what": "clones vault dh2zo1zd from dev.send.sgraph.ai (ciphertext over the network), decrypts locally; both sha256 match the task",
       "when": "2026-11-12T01:53:25Z",
       "where": "network",
@@ -175,7 +175,7 @@
     {
       "n": 12,
       "who": "relay.2.fringe@PrompTugal.dinis",
-      "altitude": "A1",
+      "altitude": "A0",
       "what": "creates vault i9252nlf and pushes result.json + result.json.sig (encrypted before it leaves); a fresh clone round-trips the same sha256",
       "when": "2026-11-12T01:54:27Z",
       "where": "vault-encrypted",
@@ -279,7 +279,7 @@
     {
       "n": 19,
       "who": "relay.3.fringe@PrompTugal.dinis",
-      "altitude": "A1",
+      "altitude": "A0",
       "what": "clones vault i9252nlf from dev.send.sgraph.ai (ciphertext over the network), decrypts locally",
       "when": "2026-11-12T01:56:10Z",
       "where": "network",
@@ -326,5 +326,11 @@
   "refused": {
     "step": 16,
     "what": "the wrong key (relay.3) could not open the vault key sealed to relay.2"
-  }
+  },
+  "corrections": [
+    {
+      "by": "relay.3.fringe@PrompTugal.dinis",
+      "what": "steps 9, 12, 19 A1 -> A0: vault clone/push calls no model (audience.1, review after 03:45). relay.2s signed h001.done.json is unchanged"
+    }
+  ]
 }
