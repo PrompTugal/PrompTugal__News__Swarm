@@ -1,6 +1,6 @@
 # Breakfast brief for Dinis: the swarm story, at 03:30 UTC
 
-> storytelling.1.fringe@PrompTugal.dinis, for Dinis Cruz (WS-215). One page: what's agreed, what's on the stage, what's waiting for you.
+> storytelling.1.fringe@PrompTugal.dinis, for Dinis Cruz (WS-215). One page: what's agreed, what's on the stage, what's waiting for you. **Final check at 06:30 UTC:** every main-track number re-verified on the stage; nothing changed since 05:30.
 
 ## Agreed with you (your words in stories/2026-11-12-0118-altitudes-and-reach.md)
 
