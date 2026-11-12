@@ -1,0 +1,305 @@
+{
+ "slug": "cloudsway",
+ "name": "Cloudsway",
+ "kind": "infrastructure",
+ "kind_label": "Infrastructure for agents",
+ "one_line": "AI agent infrastructure: real-time search for agents, secure sandboxes to run their code and files, and a managed Agent API to build or embed task-executing agents.",
+ "made_by": "partners.1.fringe@PrompTugal.dinis",
+ "issue": "WS-215",
+ "for": "Dinis Cruz",
+ "built_at": "2026-11-12T11:23Z",
+ "asked": {
+  "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T11:05Z"
+ },
+ "note": "Facts are from their own public pages, each with its source and read time. What they told us at the summit is marked as such and is not on their pages. The hypothesis and the suggestions are ours and say so.",
+ "artefacts": [
+  {
+   "kind": "brief",
+   "title": "This partner brief: Cloudsway",
+   "url": "#know",
+   "note": "asked for by name at the summit, 2026-11-12T11:05Z",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T11:23Z"
+  },
+  {
+   "kind": "site",
+   "title": "Their own site: cloudsway.ai",
+   "url": "https://www.cloudsway.ai/",
+   "note": "read by hand for this brief",
+   "read_on": "2026-11-12",
+   "fetched_at": "2026-11-12T11:23Z"
+  }
+ ],
+ "gamma_ray": [],
+ "facts": [
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Describes itself as AI agent infrastructure 'for teams building agents that need to access real-time information, execute tasks securely, and deliver real-world outcomes'.",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/home.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/home.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Three products: Search (real-time, source-backed web data), ScaleBox (secure sandboxes for code, files and workflows) and Agent API (a managed agent layer).",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/home.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/home.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Search combines SmartSearch (live source discovery) and Reader (structured extraction from pages, PDFs, images and rich media), in 30+ languages.",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/product-search.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/product-search.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "ScaleBox is 'globally distributed sandbox infrastructure purpose-built for AI agents': isolated environments to run agent-written code, process files, call tools and external APIs, with usage visibility and workload-based control.",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/product-scalebox.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/product-scalebox.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Agent API composes Search and ScaleBox with planning, thread-based memory, multi-file processing, streaming of search steps and tool calls, and structured deliverables (reports, tables, charts, JSON, files).",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/product-agent-api.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/product-agent-api.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "Agent API is for SaaS companies, vertical software teams (finance, legal, retail, healthcare, manufacturing), startups and solution providers delivering agent workflows to enterprises.",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/ai/product-agent-api.md",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/ai/product-agent-api.md"
+  },
+  {
+   "indicator": null,
+   "dims": [],
+   "label": "From their own pages",
+   "fact": "The site publishes machine-readable product context for agents (llms.txt and Markdown twins of its pages).",
+   "quote": "",
+   "source": "https://www.cloudsway.ai/llms.txt",
+   "read_at": "2026-11-12T11:23Z",
+   "via": "https://www.cloudsway.ai/llms.txt"
+  }
+ ],
+ "told": [
+  "The swarm's workflow was run live on Cloudsway at the summit, and it worked.",
+  "Both sides are exploring an API and billing partnership."
+ ],
+ "domain_note": "No domain was given. cloudsway.ai ('Cloudsway | AI Agent Infrastructure'; cloudsway.com redirects to it) matches. Not yet confirmed by the company.",
+ "xray": null,
+ "help": {
+  "label": "Our hypothesis, not their claim. Built from public pages only; nothing of theirs was tested.",
+  "pitch": "Cloudsway gives agents reach: live web data, sandboxes that run their code and call external APIs, and a managed agent that plans and uses tools. RiskMandate measures that reach against what each agent was asked to do. Together: agents built on Cloudsway that carry a written mandate and a measured record of what they could reach.",
+  "mandate": [
+   {
+    "text": "Agent API returns a deliverable for a task: the task is the mandate. Streaming of search steps and tool calls makes it observable."
+   }
+  ],
+  "reach": [
+   {
+    "text": "ScaleBox sandboxes can run agent-written code and call tools and external APIs; Search reaches the open web. What a sandbox's network and credentials can reach per tenant is not stated on the public pages."
+   }
+  ],
+  "gap": [
+   {
+    "text": "Unknown from public pages. The sandbox is where the gap is measurable: one sandbox, one policy, the reach recorded, as in our own harness runs."
+   }
+  ]
+ },
+ "together": {
+  "label": "Our suggestions. Nothing here is agreed.",
+  "items": [
+   {
+    "title": "Exploring an API and billing partnership",
+    "text": "RiskMandate's users running on Cloudsway through its API. Being explored; nothing is agreed.",
+    "link": "https://www.cloudsway.ai/product/agent-api"
+   },
+   {
+    "title": "A mandate for every ScaleBox sandbox",
+    "text": "Each sandbox run with a written mandate and its reach measured: the harness pattern from our stage, on their runtime.",
+    "link": "harness.html"
+   },
+   {
+    "title": "The summit run, as a case study",
+    "text": "The swarm's workflow that ran on Cloudsway at the summit, written up with its trail.",
+    "link": "stories.html"
+   }
+  ],
+  "offer": {
+   "title": "The summit offer",
+   "dated": "2026-11-12",
+   "email": "agent@riskmandate.ai",
+   "store": "https://store.sgit.ai/",
+   "levels": [
+    {
+     "price": "£500",
+     "name": "ABP Tailored",
+     "text": "your deployment, reflected in the mandate, corrected by a named security professional",
+     "time": "1 to 3 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£1,500",
+     "name": "ABP Reviewed",
+     "text": "two sessions with your team and a custom vault, signed off by a security professional",
+     "time": "1 to 5 days",
+     "where": "store.sgit.ai"
+    },
+    {
+     "price": "£5,000",
+     "name": "A deeper engagement",
+     "text": "your agents mapped, mandated and measured with us, end to end",
+     "time": null,
+     "where": "not yet on the store"
+    }
+   ],
+   "discount": "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+  }
+ },
+ "demos": [
+  {
+   "title": "The network door",
+   "theme": "harness",
+   "demo": "harness-door",
+   "why": "A real run: one host, one port, and the kernel enforcing it.",
+   "present": "theme.html?t=harness&d=harness-door",
+   "stage": "../stage.html?scene=harness-door"
+  },
+  {
+   "title": "Run it where the assets are not",
+   "theme": "flow",
+   "demo": "elsewhere",
+   "why": "A real run: the agent only commits a signed request; a GitHub Action does the work.",
+   "present": "theme.html?t=flow&d=elsewhere",
+   "stage": "../stage.html?scene=elsewhere"
+  },
+  {
+   "title": "The same code, before and after the harness",
+   "theme": "harness",
+   "demo": "harness-before-after",
+   "why": "The same 12 attempts, run bare and then under one policy.",
+   "present": "theme.html?t=harness&d=harness-before-after",
+   "stage": "../stage.html?scene=harness-before-after"
+  },
+  {
+   "title": "One push, twelve jobs at once",
+   "theme": "flow",
+   "demo": "scale",
+   "why": "Tonight's scale test, from the Runs repo.",
+   "present": "theme.html?t=flow&d=scale",
+   "stage": "../stage.html?scene=scale"
+  }
+ ],
+ "deck": {
+  "id": "partner-cloudsway",
+  "title": "Cloudsway: a partner brief",
+  "by": "partners.1.fringe@PrompTugal.dinis",
+  "at": "2026-11-12T11:23Z",
+  "scenes": [
+   {
+    "type": "title",
+    "kicker": "A partner brief",
+    "title": "Cloudsway",
+    "sub": "AI agent infrastructure: real-time search for agents, secure sandboxes to run their code and files, and a managed Agent API to build or embed task-executing…",
+    "caption": "What we have on Cloudsway, what we know, and how RiskMandate could help. Public sources only; our hypotheses say so."
+   },
+   {
+    "type": "bullets",
+    "kicker": "What we know (facts)",
+    "title": "From their public pages",
+    "items": [
+     "Describes itself as AI agent infrastructure 'for teams building agents that need to access real-time information, execute tasks securely…",
+     "Three products: Search (real-time, source-backed web data), ScaleBox (secure sandboxes for code, files and workflows) and Agent API (a…",
+     "Search combines SmartSearch (live source discovery) and Reader (structured extraction from pages, PDFs, images and rich media), in 30+…",
+     "ScaleBox is 'globally distributed sandbox infrastructure purpose-built for AI agents': isolated environments to run agent-written code…",
+     "Agent API composes Search and ScaleBox with planning, thread-based memory, multi-file processing, streaming of search steps and tool…"
+    ],
+    "caption": "Facts only. Each has its source and the time it was read, on the brief page."
+   },
+   {
+    "type": "compare",
+    "kicker": "Our hypothesis, not their claim",
+    "title": "How RiskMandate could help",
+    "before": {
+     "label": "On public evidence today",
+     "items": [
+      "one sandbox, one policy, the reach recorded, as in our own harness runs."
+     ]
+    },
+    "after": {
+     "label": "With RiskMandate",
+     "items": [
+      "A written mandate for each agent: what it was asked to do",
+      "Its grant, measured: what its credentials actually reach",
+      "The gap between the two, recorded and priced",
+      "Read-only: never in the request path"
+     ]
+    },
+    "caption": "Our hypothesis from public pages. Nothing of theirs was tested."
+   },
+   {
+    "type": "flow",
+    "kicker": "Our suggestion",
+    "title": "How we could work together",
+    "steps": [
+     "Exploring an API and billing partnership",
+     "A mandate for every ScaleBox sandbox",
+     "The summit run, as a case study"
+    ],
+    "caption": "Suggestions only; nothing is agreed."
+   },
+   {
+    "type": "embed",
+    "kicker": "A demo to show",
+    "title": "The network door",
+    "step": "harness-door/the-door-s-log",
+    "caption": "A real run: one host, one port, and the kernel enforcing it."
+   },
+   {
+    "type": "statement",
+    "text": "Don't hope the agent behaves. Make the dangerous thing unreachable.",
+    "caption": "The sentence."
+   },
+   {
+    "type": "bullets",
+    "kicker": "Working together · the summit promotion",
+    "title": "Three ways to start",
+    "items": [
+     "£500 · ABP Tailored: your deployment, reflected in the mandate, corrected by a named security professional (1 to 3 days)",
+     "£1,500 · ABP Reviewed: two sessions with your team and a custom vault, signed off by a security professional (1 to 5 days)",
+     "£5,000 · A deeper engagement: your agents mapped, mandated and measured with us, end to end",
+     "Summit promotion: commit today and take 25% off any of these, or, with the £1,500 or £5,000 package, a tablet set up for you."
+    ],
+    "caption": "agent@riskmandate.ai · store.sgit.ai · the summit offer, 12 Nov 2026",
+    "say": [
+     "Pick the level that fits: tailored, reviewed, or end to end.",
+     "Because we met here: commit today and take 25% off, or, with £1,500 or £5,000, a tablet set up for you.",
+     "Write to agent@riskmandate.ai."
+    ]
+   }
+  ]
+ }
+}

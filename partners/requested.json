@@ -438,6 +438,106 @@
      "at": "2026-11-12T11:01Z"
     }
    ]
+  },
+  {
+   "slug": "cloudsway",
+   "name": "Cloudsway",
+   "kind": "infrastructure",
+   "asked": {
+    "by": "Dinis, met at the summit; relayed by attendees.1.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T11:05Z"
+   },
+   "domain_note": "No domain was given. cloudsway.ai ('Cloudsway | AI Agent Infrastructure'; cloudsway.com redirects to it) matches. Not yet confirmed by the company.",
+   "one_line": "AI agent infrastructure: real-time search for agents, secure sandboxes to run their code and files, and a managed Agent API to build or embed task-executing agents.",
+   "site": "https://www.cloudsway.ai/",
+   "public": [
+    {
+     "fact": "Describes itself as AI agent infrastructure 'for teams building agents that need to access real-time information, execute tasks securely, and deliver real-world outcomes'.",
+     "source": "https://www.cloudsway.ai/ai/home.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "Three products: Search (real-time, source-backed web data), ScaleBox (secure sandboxes for code, files and workflows) and Agent API (a managed agent layer).",
+     "source": "https://www.cloudsway.ai/ai/home.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "Search combines SmartSearch (live source discovery) and Reader (structured extraction from pages, PDFs, images and rich media), in 30+ languages.",
+     "source": "https://www.cloudsway.ai/ai/product-search.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "ScaleBox is 'globally distributed sandbox infrastructure purpose-built for AI agents': isolated environments to run agent-written code, process files, call tools and external APIs, with usage visibility and workload-based control.",
+     "source": "https://www.cloudsway.ai/ai/product-scalebox.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "Agent API composes Search and ScaleBox with planning, thread-based memory, multi-file processing, streaming of search steps and tool calls, and structured deliverables (reports, tables, charts, JSON, files).",
+     "source": "https://www.cloudsway.ai/ai/product-agent-api.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "Agent API is for SaaS companies, vertical software teams (finance, legal, retail, healthcare, manufacturing), startups and solution providers delivering agent workflows to enterprises.",
+     "source": "https://www.cloudsway.ai/ai/product-agent-api.md",
+     "read_at": "2026-11-12T11:23Z"
+    },
+    {
+     "fact": "The site publishes machine-readable product context for agents (llms.txt and Markdown twins of its pages).",
+     "source": "https://www.cloudsway.ai/llms.txt",
+     "read_at": "2026-11-12T11:23Z"
+    }
+   ],
+   "told": [
+    "The swarm's workflow was run live on Cloudsway at the summit, and it worked.",
+    "Both sides are exploring an API and billing partnership."
+   ],
+   "help": {
+    "pitch": "Cloudsway gives agents reach: live web data, sandboxes that run their code and call external APIs, and a managed agent that plans and uses tools. RiskMandate measures that reach against what each agent was asked to do. Together: agents built on Cloudsway that carry a written mandate and a measured record of what they could reach.",
+    "mandate": [
+     "Agent API returns a deliverable for a task: the task is the mandate. Streaming of search steps and tool calls makes it observable."
+    ],
+    "reach": [
+     "ScaleBox sandboxes can run agent-written code and call tools and external APIs; Search reaches the open web. What a sandbox's network and credentials can reach per tenant is not stated on the public pages."
+    ],
+    "gap": [
+     "Unknown from public pages. The sandbox is where the gap is measurable: one sandbox, one policy, the reach recorded, as in our own harness runs."
+    ]
+   },
+   "together": [
+    {
+     "title": "Exploring an API and billing partnership",
+     "text": "RiskMandate's users running on Cloudsway through its API. Being explored; nothing is agreed.",
+     "link": "https://www.cloudsway.ai/product/agent-api"
+    },
+    {
+     "title": "A mandate for every ScaleBox sandbox",
+     "text": "Each sandbox run with a written mandate and its reach measured: the harness pattern from our stage, on their runtime.",
+     "link": "harness.html"
+    },
+    {
+     "title": "The summit run, as a case study",
+     "text": "The swarm's workflow that ran on Cloudsway at the summit, written up with its trail.",
+     "link": "stories.html"
+    }
+   ],
+   "demos": [
+    [
+     "harness",
+     "harness-door"
+    ],
+    [
+     "flow",
+     "elsewhere"
+    ],
+    [
+     "harness",
+     "harness-before-after"
+    ],
+    [
+     "flow",
+     "scale"
+    ]
+   ]
   }
  ]
 }

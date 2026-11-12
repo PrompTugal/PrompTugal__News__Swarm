@@ -168,6 +168,29 @@
    "material": 6
   },
   {
+   "slug": "cloudsway",
+   "name": "Cloudsway",
+   "kind": "infrastructure",
+   "kind_label": "Infrastructure for agents",
+   "one_line": "AI agent infrastructure: real-time search for agents, secure sandboxes to run their code and files, and a managed Agent API to build or embed task-executing agents.",
+   "has": [
+    "met"
+   ],
+   "products": [],
+   "codes": [],
+   "asked_at": "2026-11-12T11:05Z",
+   "artefacts": [
+    {
+     "kind": "site",
+     "url": "https://www.cloudsway.ai/",
+     "read_on": "2026-11-12",
+     "fetched_at": "2026-11-12T11:23Z",
+     "source": "their own site, read by hand"
+    }
+   ],
+   "material": 7
+  },
+  {
    "slug": "replit",
    "name": "Replit",
    "kind": "coding",
