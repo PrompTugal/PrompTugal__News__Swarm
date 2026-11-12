@@ -2,10 +2,10 @@
   "run": "h002",
   "variation": "refused",
   "task": "handover/tasks/h002.json",
-  "outcome": "in progress",
+  "outcome": "refused",
   "expected_outcome": "refused",
   "started": "2026-11-12T02:01:34Z",
-  "ended": null,
+  "ended": "2026-11-12T02:03:17Z",
   "keys": {
     "relay.1.fringe@PrompTugal.dinis": "sha256:109bf8c471369d6b",
     "relay.2.fringe@PrompTugal.dinis": "sha256:8a04c60ad84ce04d",
@@ -83,9 +83,120 @@
         "path": "handover/tasks/h002.json",
         "signature": "handover/tasks/h002.json.sig"
       }
+    },
+    {
+      "n": 6,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees handover/tasks/h002.json addressed to relay.2",
+      "when": "2026-11-12T02:02:18Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "commit": "d3c0590",
+        "path": "handover/tasks/h002.json"
+      }
+    },
+    {
+      "n": 7,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "checks relay.1s signature on the task against handover/keys.json: valid",
+      "when": "2026-11-12T02:02:29Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae",
+      "ref": {
+        "path": "handover/tasks/h002.json.sig"
+      }
+    },
+    {
+      "n": 8,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "tries to unseal the vault key with relay.2s private key, exactly as for h001: refused, nothing written",
+      "when": "2026-11-12T02:02:30Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:a71e9928bf207a0a",
+      "signed_by": null,
+      "outcome": "refused",
+      "ref": {
+        "path": "handover/sealed/h002.vaultkey.relay3.enc",
+        "tried_with": "sha256:8a04c60ad84ce04d",
+        "command": "node pki-agent.mjs open handover/sealed/h002.vaultkey.relay3.enc --save /dev/shm/r2h002",
+        "exit_code": 1,
+        "error": "Error: not sealed to this key (RSA-OAEP unwrap failed in unseal)",
+        "files_written": 0
+      }
+    },
+    {
+      "n": 9,
+      "who": "relay.2.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "commits the refusal to Git, signed; vault 6vhyrode never fetched",
+      "when": "2026-11-12T02:02:45Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "commit": "84e526b"
+      }
+    },
+    {
+      "n": 10,
+      "who": "relay.3.fringe@PrompTugal.dinis",
+      "altitude": "A2",
+      "what": "loop on Git sees h002.refused.json; checks relay.1s task signature and relay.2s refusal signature: both valid",
+      "when": "2026-11-12T02:03:17Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": "sha256:8d8a0fd4e656c3ae, sha256:ea1b3d0cda2e9906",
+      "ref": {
+        "commit": "84e526b",
+        "path": "handover/tasks/h002.refused.json"
+      }
+    },
+    {
+      "n": 11,
+      "who": "relay.3.fringe@PrompTugal.dinis",
+      "altitude": "A0",
+      "what": "does NOT open the vault key, although it is sealed to relay.3: relay.3 is not the reader named in the task. Vault 6vhyrode stays unopened by anyone but relay.1",
+      "when": "2026-11-12T02:03:17Z",
+      "where": "git-public",
+      "encrypted": true,
+      "sealed_to": "sha256:a71e9928bf207a0a",
+      "signed_by": null,
+      "ref": {
+        "path": "handover/sealed/h002.vaultkey.relay3.enc",
+        "opened": false
+      }
+    },
+    {
+      "n": 12,
+      "who": "relay.3.fringe@PrompTugal.dinis",
+      "altitude": "A3",
+      "what": "publishes the refusal (no input, no result) and closes this flow, committed to Git",
+      "when": "2026-11-12T02:03:17Z",
+      "where": "git-public",
+      "encrypted": false,
+      "sealed_to": null,
+      "signed_by": null,
+      "ref": {
+        "path": "handover/published/h002.json"
+      }
     }
   ],
-  "published": null,
+  "published": "handover/published/h002.json",
   "private_input_in_git": false,
-  "note": "relay.1's hops. relay.2 appends its refused attempt; relay.3 closes the run."
+  "note": "relay.1, relay.2 and relay.3 hops, merged by relay.3 (FORMAT.json). The deliberate refused handover.",
+  "refused": {
+    "step": 8,
+    "what": "relay.2s key cannot open a vault key sealed to relay.3 (RSA-OAEP unwrap failed); nothing written, vault never fetched"
+  }
 }

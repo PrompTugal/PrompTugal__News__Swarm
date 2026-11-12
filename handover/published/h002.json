@@ -1,0 +1,31 @@
+{
+  "id": "h002",
+  "published_by": "relay.3.fringe@PrompTugal.dinis",
+  "published": "2026-11-12T02:03:17Z",
+  "outcome": "refused",
+  "what": "The refused handover. relay.1 addressed the task to relay.2 but sealed the vault key to relay.3. relay.2s key could not open it, so no work was done and nothing was published from the input.",
+  "refusal": {
+    "by": "relay.2.fringe@PrompTugal.dinis",
+    "at": "2026-11-12T02:02:30Z",
+    "tried_with": "sha256:8a04c60ad84ce04d",
+    "sealed_to": "sha256:a71e9928bf207a0a",
+    "error": "not sealed to this key (RSA-OAEP unwrap failed)",
+    "files_written": 0,
+    "vault_fetched": false
+  },
+  "checks": {
+    "task_signature": {
+      "valid": true,
+      "signer": "relay.1.fringe@PrompTugal.dinis",
+      "signing_fingerprint": "sha256:8d8a0fd4e656c3ae"
+    },
+    "refusal_signature": {
+      "valid": true,
+      "signer": "relay.2.fringe@PrompTugal.dinis",
+      "signing_fingerprint": "sha256:ea1b3d0cda2e9906"
+    }
+  },
+  "relay3_opened_vault_key": false,
+  "vault": "6vhyrode",
+  "private_input_published": false
+}
