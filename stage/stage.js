@@ -297,7 +297,7 @@
   }
 
   // ---------- render one frame
-  var shownScene = null; let lastReplayFit = 0, userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
+  var shownScene = null; let clickT = null, lastReplayFit = 0, userZoomed = false, lastStepK = -1, modeOverride = null, curMode = 'layers';
   async function ensureScene(st) {
     const sc = st.scene;
     if (shownScene === sc) return;
@@ -387,8 +387,8 @@
     ne.append('circle').attr('class', 'halo');
     ne.append('circle').attr('class', 'dot');
     ne.append('title');
-    ne.on('dblclick', (e, n) => { e.stopPropagation(); focusId = focusId === n.id ? null : n.id; })
-      .on('click', (e, n) => { e.stopPropagation(); if (e.shiftKey) showInfo(n); else { $('#info').innerHTML = ''; openBox(n, e); } });
+    ne.on('dblclick', (e, n) => { e.stopPropagation(); clearTimeout(clickT); $('#box').classList.remove('on'); focusId = focusId === n.id ? null : n.id; if (focusId) zoomToSubtree(n); else fit(); })
+      .on('click', (e, n) => { e.stopPropagation(); clearTimeout(clickT); if (e.shiftKey) { showInfo(n); return; } const ev = { clientX: e.clientX, clientY: e.clientY }; clickT = setTimeout(() => { $('#info').innerHTML = ''; openBox(n, ev); }, 260); });
     ns.merge(ne).each(function (n) {
       if (n.x == null) return;
       const v = visibleOf(n, st), d = dimOf(n, st), live = liveOf(n, st), failed = st.fail === n.id && st.failP > 0.05;
@@ -559,6 +559,7 @@
   // the Runs repo's summary.json (every run that started with a push, added up), read once
   let SUMMARY = null, sumLoading = false;
   function loadSummary() { if (SUMMARY || sumLoading) return; sumLoading = true; fetch(RAW('summary.json'), { cache: 'no-store' }).then((r) => r.json()).then((j) => { SUMMARY = j; }).catch(() => { sumLoading = false; }); }
+  setInterval(() => { if (!SUMMARY) return; fetch(RAW('summary.json'), { cache: 'no-store' }).then((r) => r.json()).then((j) => { if (j.updated !== SUMMARY.updated) toast('live: a new run landed in the Runs repo'); SUMMARY = j; }).catch(() => {}); }, 60000);
 
   // ---------- the bars (the cost story): the same tokens, priced on each tier, one bar per step
   function drawBars(st) {
@@ -639,6 +640,20 @@
     const tr = d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2).scale(k);
     (instant ? svg : svg.transition().duration(600)).call(zoom.transform, tr);
     userZoomed = false;
+  }
+  // the presenter's "zoom in on that one": the unit and everything below it (its children, theirs, ...), framed
+  function zoomToSubtree(n0) {
+    const g = drawn || G; if (!g) return;
+    const kids = new Map(); g.links.forEach((l) => { const a = idOf(l.source), b = idOf(l.target); if (!kids.has(a)) kids.set(a, []); kids.get(a).push(b); });
+    const seen = new Set([n0.id]), q = [n0.id];
+    const hub = (id) => { const n = g.byId.get(id); return !n || ['M', 'D', 'X', 'P'].includes(n.alt); };   // shared hubs (the router, datasets, assets) are not part of anyone's subtree
+    while (q.length && seen.size < 400) { for (const c of kids.get(q.shift()) || []) if (!seen.has(c) && !hub(c)) { seen.add(c); q.push(c); } }
+    const ns = [...seen].map((id) => g.byId.get(id)).filter((n) => n && n.x != null);
+    if (!ns.length) return;
+    const pad = 60, x0 = d3.min(ns, (n) => n.x) - pad, x1 = d3.max(ns, (n) => n.x) + pad + 120, y0 = d3.min(ns, (n) => n.y) - pad, y1 = d3.max(ns, (n) => n.y) + pad + 60;
+    const k = clamp(Math.min(W / (x1 - x0), H / (y1 - y0)), 0.2, 6);
+    svg.transition().duration(700).call(zoom.transform, d3.zoomIdentity.translate(W / 2 - k * (x0 + x1) / 2, H / 2 - k * (y0 + y1) / 2).scale(k));
+    userZoomed = true;   // the camera stays there until 0, fit, or the next scene
   }
   function zoomBy(f) { if (curMode === 'views' && SV) { SV.zoom(1 / f); return; } svg.transition().duration(250).call(zoom.scaleBy, f); }
 
@@ -768,7 +783,7 @@
     ['→ / tap', 'next step: plays it, holds on its end'], ['←', 'back to the previous stop (the end of the step before)'], ['Space', 'play or pause'],
     ['PageDown / PageUp', 'next / previous scene'], ['Home / End', 'the first scene / the end of the last'], ['1–6', 'view: top-down, tree, radial, force, 3D, the designer\'s views'],
     ['L', 'labels on or off'], ['+ / −', 'text size'], ['] / [', 'node size'], ['0', 'fit to screen'], ['= / -', 'zoom in / out (or the wheel)'],
-    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'],
+    ['A', 'anchors on or off (alt-click or right-click an altitude to anchor it)'], ['G', 'go to any scene or step'], ['Z', 'focus: the stage only'], ['Q / E', 'hide the left / the right pane'], ['T', 'next theme'], ['s / S', 'speed: 0.5×, 1×, 2×, 5×, 20× (→ in the middle of a step: all at once)'], ['drag the step bars', 'scrub within a scene'], ['H', 'auto-advance'], ['F', 'fullscreen'], ['?', 'this help'], ['Esc', 'clear the focus'], ['double-click a unit', 'zoom to it and everything it started (0 to come back)'], ['click a unit', 'open its box'],
   ];
   const THEMES = ['gravity', 'night', 'ember', 'blueprint', 'paper', 'newsprint'];
   function onKey(e) {
